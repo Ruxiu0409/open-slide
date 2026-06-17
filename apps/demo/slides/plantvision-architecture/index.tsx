@@ -2,6 +2,8 @@ import type { CSSProperties, ReactNode } from 'react';
 import type { DesignSystem, Page, SlideMeta, SlideTransition } from '@open-slide/core';
 import { ImagePlaceholder, Step, Steps, useSlidePageNumber } from '@open-slide/core';
 import userPreview from './assets/user-preview.jpg';
+import polycamIcon from './assets/polycam-icon.jpg';
+import polycamCapture from './assets/polycam-capture.jpg';
 
 export const design: DesignSystem = {
   palette: { bg: '#F4F8EF', text: '#22372A', accent: '#3B8E44' },
@@ -646,13 +648,33 @@ const ObjectTracking: Page = () => (
 const ReferenceObject: Page = () => (
   <Shell eyebrow="AR · Reference Object">
     <Heading>掃描什麼、錨定什麼</Heading>
-    <div style={{ marginTop: 44, display: 'flex', flexDirection: 'column', gap: 22 }}>
-      <Steps>
-        <StepRow n="01">用 Polycam 掃描目標,均勻光線、乾淨背景,匯出 USDZ</StepRow>
-        <Step><StepRow n="02">優先追「花盆＋植株」;葉片晃動造成不穩就只追花盆</StepRow></Step>
-        <Step><StepRow n="03">花盆太對稱,就貼一張 marker card 改用影像追蹤</StepRow></Step>
-        <Step><StepRow n="04">永遠不要把 UI 錨在會晃動變形的單片葉子上</StepRow></Step>
-      </Steps>
+    <div style={{ marginTop: 34, display: 'flex', gap: 56, flex: 1, alignItems: 'center' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 22 }}>
+        <Steps>
+          <StepRow n="01">用 Polycam 掃描目標,均勻光線、乾淨背景,匯出 USDZ</StepRow>
+          <Step><StepRow n="02">優先追「花盆＋植株」;葉片晃動造成不穩就只追花盆</StepRow></Step>
+          <Step><StepRow n="03">花盆太對稱,就貼一張 marker card 改用影像追蹤</StepRow></Step>
+          <Step><StepRow n="04">永遠不要把 UI 錨在會晃動變形的單片葉子上</StepRow></Step>
+        </Steps>
+      </div>
+      <div style={{ flex: '0 0 34%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, alignSelf: 'stretch' }}>
+          <img
+            src={polycamIcon}
+            alt="Polycam app icon"
+            style={{ width: 68, height: 68, borderRadius: 16, border: hairline, boxShadow: softShadow }}
+          />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+            <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 28, fontWeight: 760, color: '#1E5E2E' }}>Polycam</span>
+            <span style={{ fontSize: 19, color: muted }}>3D 掃描 App</span>
+          </div>
+        </div>
+        <img
+          src={polycamCapture}
+          alt="Polycam 掃描擷取畫面"
+          style={{ height: 540, width: 'auto', borderRadius: 22, border: hairline, boxShadow: softShadow, display: 'block' }}
+        />
+      </div>
     </div>
   </Shell>
 );
@@ -682,14 +704,87 @@ const TermMap: Page = () => (
   </Shell>
 );
 
+const IconBadge = ({ children }: { children: ReactNode }) => (
+  <span
+    style={{
+      width: 60,
+      height: 60,
+      borderRadius: 16,
+      background: surfaceHi,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexShrink: 0,
+    }}
+  >
+    {children}
+  </span>
+);
+
+const svgProps = {
+  width: 30,
+  height: 30,
+  viewBox: '0 0 24 24',
+  fill: 'none',
+  stroke: '#3B8E44',
+  strokeWidth: 2,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
+} as const;
+
+const IconCamera = () => (
+  <svg {...svgProps} aria-hidden>
+    <path d="M3 8h3l1.5-2h7L16 8h5v11H3z" />
+    <circle cx="12" cy="13" r="3.2" />
+  </svg>
+);
+const IconLeaf = () => (
+  <svg {...svgProps} aria-hidden>
+    <path d="M5 19c8 0 14-5 14-14C8 5 5 11 5 19z" />
+    <path d="M5 19 13 11" />
+  </svg>
+);
+const IconData = () => (
+  <svg {...svgProps} aria-hidden>
+    <ellipse cx="12" cy="6" rx="7" ry="3" />
+    <path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6" />
+    <path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3" />
+  </svg>
+);
+const IconWaves = () => (
+  <svg {...svgProps} aria-hidden>
+    <path d="M2 9c2-3 4-3 6 0s4 3 6 0 4-3 6 0" />
+    <path d="M2 15c2-3 4-3 6 0s4 3 6 0 4-3 6 0" />
+  </svg>
+);
+
+const ChallengeCard = ({ icon, title, body }: { icon: ReactNode; title: string; body: string }) => (
+  <div
+    style={{
+      background: surface,
+      border: hairline,
+      borderRadius: 'var(--osd-radius)',
+      boxShadow: softShadow,
+      padding: '30px 34px 32px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 16,
+    }}
+  >
+    <IconBadge>{icon}</IconBadge>
+    <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 30, fontWeight: 740, color: '#1E5E2E' }}>{title}</div>
+    <div style={{ fontSize: 24, lineHeight: 1.5, color: muted }}>{body}</div>
+  </div>
+);
+
 const Challenges: Page = () => (
   <Shell eyebrow="Challenges & Limits">
     <Heading>遇到的問題與取捨</Heading>
-    <div style={{ marginTop: 48, display: 'flex', flexDirection: 'column', gap: 26 }}>
-      <Point>取不到 Vision Pro 主鏡頭 → 改由 Mac 擷取鏡像跑 CV,代價是多一段網路延遲</Point>
-      <Point>葉片晃動、遮擋、生長變形 → 追花盆 / 底座 / marker,而非葉片</Point>
-      <Point>枯萎樣本偏少(iNaturalist 多是漂亮開花株)→ 需自行補拍實機取景樣本</Point>
-      <Point>單幀分類會閃爍 → tile 投票 + 時間平滑;平手寧可回報不確定</Point>
+    <div style={{ marginTop: 40, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 26 }}>
+      <ChallengeCard icon={<IconCamera />} title="拿不到主鏡頭" body="改由 Mac 擷取鏡像跑 CV,代價是多一段網路延遲。" />
+      <ChallengeCard icon={<IconLeaf />} title="葉片晃動變形" body="改追花盆 / 底座 / marker,而非會晃動的葉片。" />
+      <ChallengeCard icon={<IconData />} title="枯萎樣本偏少" body="iNaturalist 多為開花株,需自行補拍實機樣本。" />
+      <ChallengeCard icon={<IconWaves />} title="單幀分類閃爍" body="tile 投票 + 時間平滑;平手寧可回報不確定。" />
     </div>
   </Shell>
 );
