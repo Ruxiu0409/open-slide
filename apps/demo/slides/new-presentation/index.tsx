@@ -3214,7 +3214,6 @@ const Conclusion: Page = () => (
 
 export const meta: SlideMeta = {
   title: '智慧城市包裹物流管理系統',
-  description: 'Smart City Package Logistics Management System',
 };
 
 export default [

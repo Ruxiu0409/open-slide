@@ -3715,6 +3715,7 @@ const activityPhotoCards = [
   {
     src: competitionActivity05,
     alt: 'Apple 平台進階技術簡報，內容包含 Vision、Speech、Natural Language',
+    objectPosition: 'center 50%',
     style: { left: 414, top: 534, width: 474, height: 224 },
   },
   {
