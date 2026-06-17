@@ -492,10 +492,10 @@ const Agenda: Page = () => (
   <Shell eyebrow="本次報告">
     <Heading>Agenda</Heading>
     <div style={{ marginTop: 34, display: 'flex', flexDirection: 'column' }}>
-      <AgendaRow n="01" title="系統概觀" sub="核心決定:辨識(CV)與空間追蹤(AR)是兩條獨立管線" />
-      <AgendaRow n="02" title={<span style={{ color: 'var(--osd-accent)' }}>電腦視覺</span>} sub="tile 分類、投票聚合、時間平滑、枯萎健康偵測" />
-      <AgendaRow n="03" title={<span style={{ color: sky }}>擴增實境</span>} sub="物件追蹤、reference object 掃描、空間標籤錨定" />
-      <AgendaRow n="04" title="收尾" sub="技術名詞對應、挑戰與限制、Demo 與參考文獻" />
+      <AgendaRow n="01" title="系統概觀" sub="核心決定:辨識(CV)與空間追蹤(AR)兩條獨立管線、Apple 框架" />
+      <AgendaRow n="02" title={<span style={{ color: 'var(--osd-accent)' }}>電腦視覺</span>} sub="tile 分類、投票、時間平滑、資訊卡、健康(枯萎+黃化+趨勢)" />
+      <AgendaRow n="03" title={<span style={{ color: sky }}>擴增實境</span>} sub="物件追蹤、reference object 掃描、空間標籤、3D 生長動畫" />
+      <AgendaRow n="04" title="收尾" sub="歷史紀錄、技術對應、挑戰、實作畫面與參考文獻" />
     </div>
   </Shell>
 );
@@ -997,10 +997,187 @@ const Closing: Page = () => (
   </div>
 );
 
+// ── 資訊卡的 key/value 列 ──
+const InfoRow = ({ k, v }: { k: string; v: ReactNode }) => (
+  <div style={{ display: 'flex', gap: 16, padding: '13px 0', borderTop: hairline, alignItems: 'baseline' }}>
+    <span style={{ fontFamily: MONO, fontSize: 19, color: 'var(--osd-accent)', minWidth: 76, flexShrink: 0 }}>{k}</span>
+    <span style={{ fontSize: 25, lineHeight: 1.45, color: 'var(--osd-text)' }}>{v}</span>
+  </div>
+);
+
+const InfoCard: Page = () => (
+  <Shell eyebrow="CV · Result & Info">
+    <Heading>辨識結果 → 資訊卡</Heading>
+    <div style={{ marginTop: 34, display: 'flex', gap: 48, flex: 1, alignItems: 'center' }}>
+      <div style={{ flex: '0 0 42%', display: 'flex', flexDirection: 'column', gap: 24 }}>
+        <p style={{ fontSize: 26, lineHeight: 1.5, color: muted, margin: 0 }}>
+          辨識出 <Code>plantID</Code> 後,對應本地植物資料庫,組出一張資訊卡;使用者可一鍵「加入歷史紀錄」。
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+          <Point>顯示中文名、學名、科屬、形態特徵與照護建議</Point>
+          <Point>辨識信心一併呈現;低於門檻時退回 demo 資料</Point>
+          <Point>資料本地內建,relay 只傳 id + 信心,不傳整包資料</Point>
+        </div>
+      </div>
+      <div
+        style={{
+          flex: 1,
+          background: surface,
+          border: hairline,
+          borderRadius: 'var(--osd-radius)',
+          boxShadow: softShadow,
+          padding: '30px 38px 34px',
+        }}
+      >
+        <span style={{ fontFamily: MONO, fontSize: 18, color: 'var(--osd-accent)', letterSpacing: '0.14em' }}>辨識結果</span>
+        <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 40, fontWeight: 800, color: '#1E5E2E', margin: '8px 0 6px' }}>馬纓丹</div>
+        <div style={{ marginTop: 8 }}>
+          <InfoRow k="學名" v="Lantana camara" />
+          <InfoRow k="科屬" v="馬鞭草科 Verbenaceae" />
+          <InfoRow k="形態" v="莖方形具逆刺、葉對生卵形粗糙、密集繖形花序" />
+          <InfoRow k="照護" v="喜全日照與高溫、耐旱排水佳、花後修剪、全株含毒勿食" />
+          <InfoRow k="信心" v={<span style={{ color: 'var(--osd-accent)', fontWeight: 700 }}>90%</span>} />
+        </div>
+      </div>
+    </div>
+  </Shell>
+);
+
+// ── 健康趨勢小卡 ──
+const TrendChip = ({ arrow, label, modifier, color }: { arrow: string; label: string; modifier: string; color: string }) => (
+  <div style={{ flex: 1, background: surface, border: hairline, borderRadius: 18, padding: '24px 26px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <span style={{ fontSize: 40, lineHeight: 1, color }}>{arrow}</span>
+    <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 28, fontWeight: 720 }}>{label}</span>
+    <span style={{ fontSize: 22, color: muted, lineHeight: 1.4 }}>{modifier}</span>
+  </div>
+);
+
+const HealthSignals: Page = () => (
+  <Shell eyebrow="CV · Health Signals">
+    <Heading>不只枯萎:黃化與趨勢</Heading>
+    <p style={{ fontSize: 27, color: muted, lineHeight: 1.45, margin: '26px 0 0', maxWidth: 1480 }}>
+      健康由兩條獨立訊號合成:枯萎與葉片黃化,整體取較嚴重者;再用時間窗判斷狀況變化。
+    </p>
+    <div style={{ marginTop: 30 }}>
+      <span style={{ fontFamily: MONO, fontSize: 18, color: 'var(--osd-accent)', letterSpacing: '0.14em' }}>葉片黃化 · YELLOWING</span>
+      <div style={{ marginTop: 14, display: 'flex', gap: 22 }}>
+        <Band range="< 15%" label="正常" color="#5BE59A" />
+        <Band range="< 35%" label="輕微黃化" color="#E4D24A" />
+        <Band range="< 60%" label="中度黃化" color={amber} />
+        <Band range="≥ 60%" label="嚴重黃化" color="#C9572A" />
+      </div>
+    </div>
+    <div style={{ marginTop: 26 }}>
+      <span style={{ fontFamily: MONO, fontSize: 18, color: 'var(--osd-accent)', letterSpacing: '0.14em' }}>趨勢 · TREND</span>
+      <div style={{ marginTop: 14, display: 'flex', gap: 22 }}>
+        <TrendChip arrow="↗" label="惡化" modifier="狀況似乎正在惡化" color="#C9572A" />
+        <TrendChip arrow="→" label="穩定" modifier="近期狀況穩定" color={muted} />
+        <TrendChip arrow="↘" label="好轉" modifier="狀況似乎正在好轉" color="#3B8E44" />
+      </div>
+    </div>
+  </Shell>
+);
+
+// ── 生長階段卡 ──
+const StageCard = ({ pct, name, color }: { pct: string; name: string; color: string }) => (
+  <div style={{ flex: 1, background: surface, border: hairline, borderRadius: 18, boxShadow: softShadow, padding: '26px 24px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+    <span style={{ width: 46, height: 46, borderRadius: 12, background: color, boxShadow: `0 0 22px ${color}55` }} />
+    <span style={{ fontFamily: MONO, fontSize: 24, color: muted }}>{pct}</span>
+    <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 30, fontWeight: 720 }}>{name}</span>
+  </div>
+);
+
+const Growth: Page = () => (
+  <Shell eyebrow="AR · 3D Growth Animation">
+    <Heading>3D 生長動畫:發芽到成熟</Heading>
+    <div style={{ marginTop: 32, display: 'flex', gap: 22 }}>
+      <StageCard pct="20%" name="發芽" color="#BFE0AE" />
+      <StageCard pct="48%" name="長葉" color="#8FD08A" />
+      <StageCard pct="74%" name="開花" color="#57B36A" />
+      <StageCard pct="100%" name="成熟" color="#2E7D32" />
+    </div>
+    <div style={{ marginTop: 30, display: 'flex', flexDirection: 'column', gap: 18 }}>
+      <Point>RealityKit 程式生成各階段模型(花盆、莖、葉、花),不需外部 3D 檔</Point>
+      <Point>以 <Code>scale</Code> / <Code>opacity</Code> / <Code>position</Code> 內插:莖 y 由 0.25 長到 1.0、葉漸進淡入、花於開花後才出現</Point>
+      <Point>使用者用手勢控制播放、暫停、切換階段與重播(<Code>GrowthView</Code>)</Point>
+    </div>
+  </Shell>
+);
+
+// ── 歷史紀錄列 ──
+const HistoryRow = ({ name, sci, conf, when }: { name: string; sci: string; conf: string; when: string }) => (
+  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '17px 0', borderTop: hairline }}>
+    <span>
+      <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 27, fontWeight: 720, color: '#1E5E2E' }}>{name}</span>
+      <span style={{ fontSize: 21, color: dim, fontStyle: 'italic', marginLeft: 12 }}>{sci}</span>
+    </span>
+    <span style={{ fontFamily: MONO, fontSize: 21, color: muted }}>
+      <span style={{ color: 'var(--osd-accent)' }}>{conf}</span> · {when}
+    </span>
+  </div>
+);
+
+const History: Page = () => (
+  <Shell eyebrow="App · History">
+    <Heading>歷史紀錄</Heading>
+    <div style={{ marginTop: 34, display: 'flex', gap: 48, flex: 1, alignItems: 'center' }}>
+      <div style={{ flex: '0 0 44%', display: 'flex', flexDirection: 'column', gap: 18 }}>
+        <p style={{ fontSize: 26, lineHeight: 1.5, color: muted, margin: 0 }}>
+          每次辨識可存進歷史,離線保存、隨時回顧整理。
+        </p>
+        <Point>記錄品種、學名、信心、來源與時間(<Code>PlantHistoryRecord</Code>)</Point>
+        <Point>以 JSON 檔本地持久化(<Code>HistoryStore</Code>),重開仍在</Point>
+        <Point><Code>HistoryView</Code> 清單呈現,可逐筆檢視與清除</Point>
+      </div>
+      <div
+        style={{
+          flex: 1,
+          background: surface,
+          border: hairline,
+          borderRadius: 'var(--osd-radius)',
+          boxShadow: softShadow,
+          padding: '14px 36px 28px',
+        }}
+      >
+        <HistoryRow name="馬纓丹" sci="Lantana camara" conf="90%" when="今天 17:45" />
+        <HistoryRow name="天竺葵" sci="Pelargonium × hortorum" conf="92%" when="今天 16:20" />
+        <HistoryRow name="馬纓丹" sci="Lantana camara" conf="88%" when="昨天 10:08" />
+      </div>
+    </div>
+  </Shell>
+);
+
 export const meta: SlideMeta = {
   title: 'PlantVision · 電腦視覺與擴增實境期末報告',
   createdAt: '2026-06-17T08:24:19.553Z',
 };
+
+export const notes: (string | undefined)[] = [
+  '開場:我們做的是 PlantVision,一個在 Apple Vision Pro 上的植物辨識 App,結合電腦視覺與擴增實境。組員介紹。',
+  '報告分四段:系統概觀、電腦視覺、擴增實境,最後收尾。先講為什麼把辨識和空間追蹤拆開。',
+  'PlantVision 把真實植物變成會跟著它的空間資訊卡。系統有兩條獨立管線:一條管「是什麼、健不健康」,一條管「它在空間哪裡」。右圖是使用者實際看到的畫面。',
+  '核心設計:辨識(CV)在 Mac 端跑、空間追蹤(AR)在裝置端跑,兩者刻意解耦,任一邊壞掉另一邊照常運作。',
+  '整個系統站在 Apple 的四個框架上:ARKit 管空間追蹤、RealityKit 管 3D 與標籤、Vision 管影像前處理、Core ML 跑模型。我們是組合既有能力,不是從零造。',
+  '進入第一段:電腦視覺。流程是抽幀→tile 分類→投票→時間平滑→分級。',
+  '關鍵做法:不是只裁中間一塊,而是把整幀切成很多重疊小塊(tile)各自分類,因為植物常偏離中心。底下有 tile 的名詞解釋。',
+  '每塊 tile 投票,看最高票和次高票差多少、有幾塊佐證,夠穩才下判斷,否則回報不確定。門檻是用真實截圖調出來的。',
+  '單幀會抖,所以在約 0.7 秒的時間窗做多數決壓掉閃爍;平手時寧可說不確定,也不要顯示錯的。',
+  '辨識完成後對應本地植物資料庫,組出資訊卡:中文名、學名、科屬、形態、照護、信心。這裡用我們實際辨識的馬纓丹當例子,可一鍵加入歷史。',
+  '健康偵測:用第二個分類器,把枯萎當成「面積比例」問題,枯萎比例分四級,而不是數幾塊葉子。',
+  '健康其實有兩條訊號:枯萎和葉片黃化,整體取較嚴重者;再用時間窗判斷在惡化、好轉還是穩定,給使用者趨勢提示。',
+  '進入第二段:擴增實境。這條管線完全在裝置端,用 ARKit 追植株的 6DoF 位姿。',
+  '裝置端自己決定位置和身分,只看當下追到哪個 reference object,不依賴 Mac。需要實機與 world-sensing 權限。',
+  '怎麼做出 reference object:用 Polycam 掃描整株馬纓丹含花盆、匯出 USDZ,匯入 Reality Composer Pro 標部位錨點,再餵給 ARKit。右邊是我們真實掃出來的 3D 模型。',
+  '追到位姿後,在 ImmersiveSpace 把部位標籤錨在物件局部座標。新增植物幾乎零程式碼,丟模型 + 加一筆 profile 即可。',
+  '另一個 RealityKit 應用:3D 生長動畫,從發芽、長葉、開花到成熟四階段,用程式生成模型加 scale/opacity 內插,使用者可手勢控制播放。',
+  '辨識過的植物會存進歷史紀錄,本地 JSON 持久化,可隨時回顧與清除。',
+  '把用到的 CV / AR 技術名詞對應到我們的實作,方便對照課程內容。',
+  '遇到的四個主要問題與取捨:拿不到主鏡頭、葉片晃動、樣本偏少、單幀閃爍,各自怎麼解。',
+  '實作畫面(一)空間追蹤管線:Polycam 掃描、Reality Composer Pro 佈錨點、Create ML 訓練 Object Tracking 模型。',
+  '實作畫面(二)辨識與中繼:Create ML 的 PlantClassifier 訓練資料(馬纓丹/background/天竺葵),以及 Mac 端抽幀經 Socket.IO 中繼。',
+  '參考用到的 Apple 框架文件與資料來源。',
+  '總結三點:CV 與 AR 解耦、tile 投票加時間平滑收斂雜訊、務實面對真實限制。謝謝聆聽。',
+];
 
 export default [
   Cover,
@@ -1012,11 +1189,15 @@ export default [
   TileVoting,
   Voting,
   Smoothing,
+  InfoCard,
   Wither,
+  HealthSignals,
   ARDivider,
   ObjectTracking,
   ReferenceObject,
   SpatialLabel,
+  Growth,
+  History,
   TermMap,
   Challenges,
   DemoSpatial,
