@@ -3,7 +3,7 @@ import type { DesignSystem, Page, SlideMeta, SlideTransition } from '@open-slide
 import { ImagePlaceholder, Step, Steps, useSlidePageNumber } from '@open-slide/core';
 import userPreview from './assets/user-preview.jpg';
 import polycamIcon from './assets/polycam-icon.jpg';
-import polycamCapture from './assets/polycam-capture.jpg';
+import polycamScreen from './assets/polycam-screen.jpg';
 
 export const design: DesignSystem = {
   palette: { bg: '#F4F8EF', text: '#22372A', accent: '#3B8E44' },
@@ -271,7 +271,7 @@ const Band = ({ range, label, color }: { range: string; label: string; color: st
     }}
   >
     <span style={{ width: 44, height: 44, borderRadius: 12, background: color, boxShadow: `0 0 22px ${color}66` }} />
-    <span style={{ fontFamily: MONO, fontSize: 22, color: muted }}>{range}</span>
+    <span style={{ fontFamily: MONO, fontSize: 25, color: muted }}>{range}</span>
     <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 28, fontWeight: 680 }}>{label}</span>
   </div>
 );
@@ -323,10 +323,10 @@ const TermRow = ({ term, en, where }: { term: string; en: string; where: ReactNo
     }}
   >
     <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-      <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 27, fontWeight: 700 }}>{term}</span>
-      <span style={{ fontFamily: MONO, fontSize: 17, color: dim, letterSpacing: '0.04em' }}>{en}</span>
+      <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 30, fontWeight: 700 }}>{term}</span>
+      <span style={{ fontFamily: MONO, fontSize: 19, color: dim, letterSpacing: '0.04em' }}>{en}</span>
     </div>
-    <span style={{ fontSize: 24, lineHeight: 1.45, color: muted }}>{where}</span>
+    <span style={{ fontSize: 27, lineHeight: 1.45, color: muted }}>{where}</span>
   </div>
 );
 
@@ -340,7 +340,7 @@ const RefRow = ({ tag, children }: { tag: string; children: ReactNode }) => (
 const DemoShot = ({ caption }: { caption: string }) => (
   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
     <ImagePlaceholder hint={caption} height={360} />
-    <span style={{ fontSize: 22, color: muted, lineHeight: 1.4 }}>{caption}</span>
+    <span style={{ fontSize: 25, color: muted, lineHeight: 1.4 }}>{caption}</span>
   </div>
 );
 
@@ -477,7 +477,7 @@ const Overview: Page = () => (
           alt="使用者透過 Vision Pro 看到植物與空間標籤的預覽"
           style={{ width: '100%', borderRadius: 'var(--osd-radius)', border: hairline, boxShadow: softShadow, display: 'block' }}
         />
-        <span style={{ fontSize: 20, color: dim, lineHeight: 1.4 }}>
+        <span style={{ fontSize: 23, color: dim, lineHeight: 1.45 }}>
           使用者透過 Vision Pro 即時辨識植物,並以空間標籤與 3D 生長動畫呈現。
         </span>
       </div>
@@ -519,14 +519,14 @@ const FrameworkCard = ({ tag, name, gives, use }: { tag: string; name: string; g
       gap: 12,
     }}
   >
-    <span style={{ fontFamily: MONO, fontSize: 16, color: 'var(--osd-accent)', letterSpacing: '0.14em' }}>{tag}</span>
-    <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 32, fontWeight: 760, color: '#1E5E2E' }}>{name}</div>
-    <div style={{ fontSize: 22, lineHeight: 1.45, color: muted }}>
+    <span style={{ fontFamily: MONO, fontSize: 18, color: 'var(--osd-accent)', letterSpacing: '0.14em' }}>{tag}</span>
+    <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 34, fontWeight: 760, color: '#1E5E2E' }}>{name}</div>
+    <div style={{ fontSize: 25, lineHeight: 1.5, color: muted }}>
       <span style={{ color: 'var(--osd-accent)', fontWeight: 600 }}>Apple 提供　</span>
       {gives}
     </div>
-    <div style={{ fontSize: 22, lineHeight: 1.45, color: 'var(--osd-text)' }}>
-      <span style={{ color: dim, fontFamily: MONO, fontSize: 17 }}>我們用來　</span>
+    <div style={{ fontSize: 25, lineHeight: 1.5, color: 'var(--osd-text)' }}>
+      <span style={{ color: dim, fontFamily: MONO, fontSize: 19 }}>我們用來　</span>
       {use}
     </div>
   </div>
@@ -645,6 +645,35 @@ const ObjectTracking: Page = () => (
   </Shell>
 );
 
+const PhoneFrame = ({ src, alt }: { src: string; alt: string }) => (
+  <div
+    style={{
+      width: 268,
+      padding: 11,
+      borderRadius: 50,
+      background: 'linear-gradient(150deg, #444946 0%, #2C302E 55%, #3A3F3C 100%)',
+      boxShadow: '0 34px 64px -26px rgba(0,0,0,0.5), inset 0 0 0 2px rgba(255,255,255,0.07)',
+      flexShrink: 0,
+    }}
+  >
+    <div style={{ position: 'relative', width: 246, height: 524, borderRadius: 40, overflow: 'hidden', background: '#000' }}>
+      <img src={src} alt={alt} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
+      <div
+        style={{
+          position: 'absolute',
+          top: 13,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: 86,
+          height: 25,
+          background: '#000',
+          borderRadius: 13,
+        }}
+      />
+    </div>
+  </div>
+);
+
 const ReferenceObject: Page = () => (
   <Shell eyebrow="AR · Reference Object">
     <Heading>掃描什麼、錨定什麼</Heading>
@@ -669,11 +698,7 @@ const ReferenceObject: Page = () => (
             <span style={{ fontSize: 19, color: muted }}>3D 掃描 App</span>
           </div>
         </div>
-        <img
-          src={polycamCapture}
-          alt="Polycam 掃描擷取畫面"
-          style={{ height: 540, width: 'auto', borderRadius: 22, border: hairline, boxShadow: softShadow, display: 'block' }}
-        />
+        <PhoneFrame src={polycamScreen} alt="Polycam 掃描擷取畫面" />
       </div>
     </div>
   </Shell>
@@ -773,7 +798,7 @@ const ChallengeCard = ({ icon, title, body }: { icon: ReactNode; title: string; 
   >
     <IconBadge>{icon}</IconBadge>
     <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 30, fontWeight: 740, color: '#1E5E2E' }}>{title}</div>
-    <div style={{ fontSize: 24, lineHeight: 1.5, color: muted }}>{body}</div>
+    <div style={{ fontSize: 26, lineHeight: 1.5, color: muted }}>{body}</div>
   </div>
 );
 
