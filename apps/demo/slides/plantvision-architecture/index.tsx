@@ -725,11 +725,11 @@ const MacbookFrame = ({ src, alt, sh }: { src: string; alt: string; sh: number }
           border: '1px solid rgba(0,0,0,0.35)',
         }}
       >
-        <div style={{ width: sw, height: sh, overflow: 'hidden', borderRadius: 5, background: '#000' }}>
+        <div style={{ width: sw, height: sh, overflow: 'hidden', borderRadius: 5, background: '#0b0c0d', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <img
             src={src}
             alt={alt}
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+            style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', display: 'block' }}
           />
         </div>
       </div>
