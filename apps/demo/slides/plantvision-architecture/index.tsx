@@ -1,9 +1,14 @@
 import type { CSSProperties, ReactNode } from 'react';
 import type { DesignSystem, Page, SlideMeta, SlideTransition } from '@open-slide/core';
-import { ImagePlaceholder, Step, Steps, useSlidePageNumber } from '@open-slide/core';
+import { Step, Steps, useSlidePageNumber } from '@open-slide/core';
 import userPreview from './assets/user-preview.jpg';
 import polycamIcon from './assets/polycam-icon.jpg';
-import polycamScreen from './assets/polycam-screen.jpg';
+import polycamModel from './assets/polycam-model.jpg';
+import polycamLibrary from './assets/polycam-library.jpg';
+import mlObjectTracking from './assets/ml-objecttracking.jpg';
+import macRelay from './assets/mac-relay.jpg';
+import rcpAnchor from './assets/rcp-anchor.jpg';
+import mlClassifier from './assets/ml-classifier.jpg';
 
 export const design: DesignSystem = {
   palette: { bg: '#F4F8EF', text: '#22372A', accent: '#3B8E44' },
@@ -337,10 +342,37 @@ const RefRow = ({ tag, children }: { tag: string; children: ReactNode }) => (
   </div>
 );
 
-const DemoShot = ({ caption }: { caption: string }) => (
-  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
-    <ImagePlaceholder hint={caption} height={360} />
-    <span style={{ fontSize: 25, color: muted, lineHeight: 1.4 }}>{caption}</span>
+const GalleryCard = ({
+  src,
+  tag,
+  caption,
+  wellHeight = 396,
+}: {
+  src: string;
+  tag: string;
+  caption: string;
+  wellHeight?: number;
+}) => (
+  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16, minWidth: 0 }}>
+    <div
+      style={{
+        height: wellHeight,
+        background: surfaceHi,
+        border: hairline,
+        borderRadius: 'var(--osd-radius)',
+        boxShadow: softShadow,
+        overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <img src={src} alt={caption} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }} />
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+      <span style={{ fontFamily: MONO, fontSize: 17, color: 'var(--osd-accent)', letterSpacing: '0.12em' }}>{tag}</span>
+      <span style={{ fontSize: 24, color: 'var(--osd-text)', lineHeight: 1.4 }}>{caption}</span>
+    </div>
   </div>
 );
 
@@ -645,7 +677,7 @@ const ObjectTracking: Page = () => (
   </Shell>
 );
 
-const PhoneFrame = ({ src, alt }: { src: string; alt: string }) => (
+const PhoneFrame = ({ src, alt, island = true }: { src: string; alt: string; island?: boolean }) => (
   <div
     style={{
       width: 268,
@@ -658,18 +690,20 @@ const PhoneFrame = ({ src, alt }: { src: string; alt: string }) => (
   >
     <div style={{ position: 'relative', width: 246, height: 524, borderRadius: 40, overflow: 'hidden', background: '#000' }}>
       <img src={src} alt={alt} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
-      <div
-        style={{
-          position: 'absolute',
-          top: 13,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: 86,
-          height: 25,
-          background: '#000',
-          borderRadius: 13,
-        }}
-      />
+      {island ? (
+        <div
+          style={{
+            position: 'absolute',
+            top: 13,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 86,
+            height: 25,
+            background: '#000',
+            borderRadius: 13,
+          }}
+        />
+      ) : null}
     </div>
   </div>
 );
@@ -698,7 +732,7 @@ const ReferenceObject: Page = () => (
             <span style={{ fontSize: 19, color: muted }}>3D 掃描 App</span>
           </div>
         </div>
-        <PhoneFrame src={polycamScreen} alt="Polycam 掃描擷取畫面" />
+        <PhoneFrame src={polycamModel} alt="Polycam 掃描出的馬纓丹 3D 模型" island={false} />
       </div>
     </div>
   </Shell>
@@ -814,13 +848,33 @@ const Challenges: Page = () => (
   </Shell>
 );
 
-const Demo: Page = () => (
-  <Shell eyebrow="Demo">
-    <Heading>實機畫面</Heading>
-    <div style={{ marginTop: 44, display: 'flex', gap: 32 }}>
-      <DemoShot caption="Vision Pro 沉浸式部位標籤錨在真實植株旁" />
-      <DemoShot caption="2D 視窗:植物資訊 + 枯萎等級徽章" />
-      <DemoShot caption="Mac relay：tile 分類與抽幀畫面" />
+const DemoSpatial: Page = () => (
+  <Shell eyebrow="實作畫面 · 空間追蹤管線">
+    <Heading>掃描 → 錨點 → 追蹤模型</Heading>
+    <div style={{ marginTop: 38, display: 'flex', gap: 32 }}>
+      <GalleryCard src={polycamLibrary} tag="POLYCAM" caption="實際掃描:馬纓丹、天竺葵兩盆植株" />
+      <GalleryCard src={rcpAnchor} tag="REALITY COMPOSER PRO" caption="PlantAnchor:在模型上佈署部位錨點" />
+      <GalleryCard src={mlObjectTracking} tag="CREATE ML" caption="Object Tracking 模板訓練追蹤模型" />
+    </div>
+  </Shell>
+);
+
+const DemoRecognition: Page = () => (
+  <Shell eyebrow="實作畫面 · 辨識與中繼">
+    <Heading>影像分類與抽幀中繼</Heading>
+    <div style={{ marginTop: 38, display: 'flex', gap: 40, justifyContent: 'center' }}>
+      <GalleryCard
+        src={mlClassifier}
+        tag="CREATE ML"
+        caption="PlantClassifier 訓練資料:馬纓丹 175、background 175、天竺葵 114"
+        wellHeight={440}
+      />
+      <GalleryCard
+        src={macRelay}
+        tag="MAC FRAME RELAY"
+        caption="Mac 端抽幀、跑分類,經 Socket.IO 中繼送出"
+        wellHeight={440}
+      />
     </div>
   </Shell>
 );
@@ -902,7 +956,8 @@ export default [
   SpatialLabel,
   TermMap,
   Challenges,
-  Demo,
+  DemoSpatial,
+  DemoRecognition,
   References,
   Closing,
 ] satisfies Page[];
