@@ -346,28 +346,24 @@ const GalleryCard = ({
   src,
   tag,
   caption,
-  wellHeight = 396,
+  device,
+  sh,
+  stageH,
 }: {
   src: string;
   tag: string;
   caption: string;
-  wellHeight?: number;
+  device: 'phone' | 'mac';
+  sh: number;
+  stageH: number;
 }) => (
-  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16, minWidth: 0 }}>
-    <div
-      style={{
-        height: wellHeight,
-        background: surfaceHi,
-        border: hairline,
-        borderRadius: 'var(--osd-radius)',
-        boxShadow: softShadow,
-        overflow: 'hidden',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <img src={src} alt={caption} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }} />
+  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 18, minWidth: 0 }}>
+    <div style={{ height: stageH, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      {device === 'phone' ? (
+        <PhoneFrame src={src} alt={caption} island={false} sh={sh} />
+      ) : (
+        <MacbookFrame src={src} alt={caption} sh={sh} />
+      )}
     </div>
     <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
       <span style={{ fontFamily: MONO, fontSize: 17, color: 'var(--osd-accent)', letterSpacing: '0.12em' }}>{tag}</span>
@@ -677,33 +673,79 @@ const ObjectTracking: Page = () => (
   </Shell>
 );
 
-const PhoneFrame = ({ src, alt, island = true }: { src: string; alt: string; island?: boolean }) => (
-  <div
-    style={{
-      width: 336,
-      padding: 13,
-      borderRadius: 62,
-      background: 'linear-gradient(150deg, #444946 0%, #2C302E 55%, #3A3F3C 100%)',
-      boxShadow: '0 34px 64px -26px rgba(0,0,0,0.5), inset 0 0 0 2px rgba(255,255,255,0.07)',
-      flexShrink: 0,
-    }}
-  >
-    <div style={{ position: 'relative', width: 310, height: 664, borderRadius: 50, overflow: 'hidden', background: '#000' }}>
-      <img src={src} alt={alt} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
-      {island ? (
-        <div
-          style={{
-            position: 'absolute',
-            top: 13,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: 86,
-            height: 25,
-            background: '#000',
-            borderRadius: 13,
-          }}
-        />
-      ) : null}
+const PhoneFrame = ({ src, alt, island = true, sh = 664 }: { src: string; alt: string; island?: boolean; sh?: number }) => {
+  const sw = Math.round(sh * 0.467);
+  const pad = Math.max(9, Math.round(sh * 0.0195));
+  const sr = Math.round(sh * 0.075);
+  return (
+    <div
+      style={{
+        width: sw + pad * 2,
+        padding: pad,
+        borderRadius: sr + pad,
+        background: 'linear-gradient(150deg, #444946 0%, #2C302E 55%, #3A3F3C 100%)',
+        boxShadow: '0 34px 64px -26px rgba(0,0,0,0.5), inset 0 0 0 2px rgba(255,255,255,0.07)',
+        flexShrink: 0,
+      }}
+    >
+      <div style={{ position: 'relative', width: sw, height: sh, borderRadius: sr, overflow: 'hidden', background: '#000' }}>
+        <img src={src} alt={alt} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
+        {island ? (
+          <div
+            style={{
+              position: 'absolute',
+              top: Math.round(sh * 0.022),
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: Math.round(sw * 0.28),
+              height: Math.round(sw * 0.082),
+              background: '#000',
+              borderRadius: 13,
+            }}
+          />
+        ) : null}
+      </div>
+    </div>
+  );
+};
+
+// MacBook 外殼:深色螢幕邊框 + 銀色底座與凹槽。sh = 螢幕內容高度。
+const MacbookFrame = ({ src, alt, sh }: { src: string; alt: string; sh: number }) => (
+  <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
+    <div
+      style={{
+        background: '#0C0D0E',
+        borderRadius: 14,
+        padding: 11,
+        boxShadow: softShadow,
+        border: '1px solid rgba(0,0,0,0.35)',
+      }}
+    >
+      <img src={src} alt={alt} style={{ height: sh, width: 'auto', display: 'block', borderRadius: 4 }} />
+    </div>
+    <div
+      style={{
+        position: 'relative',
+        width: 'calc(100% + 54px)',
+        height: 15,
+        background: 'linear-gradient(180deg, #d8dadf 0%, #aeb2b8 55%, #979ba1 100%)',
+        borderRadius: '0 0 11px 11px',
+        boxShadow: '0 12px 20px -12px rgba(0,0,0,0.45)',
+      }}
+    >
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: 118,
+          height: 8,
+          background: '#bfc3c9',
+          borderRadius: '0 0 7px 7px',
+          boxShadow: 'inset 0 -2px 3px rgba(0,0,0,0.22)',
+        }}
+      />
     </div>
   </div>
 );
@@ -844,10 +886,10 @@ const Challenges: Page = () => (
 const DemoSpatial: Page = () => (
   <Shell eyebrow="實作畫面 · 空間追蹤管線">
     <Heading>掃描 → 錨點 → 追蹤模型</Heading>
-    <div style={{ marginTop: 38, display: 'flex', gap: 32 }}>
-      <GalleryCard src={polycamLibrary} tag="POLYCAM" caption="實際掃描:馬纓丹、天竺葵兩盆植株" />
-      <GalleryCard src={rcpAnchor} tag="REALITY COMPOSER PRO" caption="PlantAnchor:在模型上佈署部位錨點" />
-      <GalleryCard src={mlObjectTracking} tag="CREATE ML" caption="Object Tracking 模板訓練追蹤模型" />
+    <div style={{ marginTop: 34, display: 'flex', gap: 32, alignItems: 'flex-start' }}>
+      <GalleryCard src={polycamLibrary} device="phone" sh={330} stageH={372} tag="POLYCAM" caption="實際掃描:馬纓丹、天竺葵兩盆植株" />
+      <GalleryCard src={rcpAnchor} device="mac" sh={300} stageH={372} tag="REALITY COMPOSER PRO" caption="PlantAnchor:在模型上佈署部位錨點" />
+      <GalleryCard src={mlObjectTracking} device="mac" sh={300} stageH={372} tag="CREATE ML" caption="Object Tracking 模板訓練追蹤模型" />
     </div>
   </Shell>
 );
@@ -855,18 +897,22 @@ const DemoSpatial: Page = () => (
 const DemoRecognition: Page = () => (
   <Shell eyebrow="實作畫面 · 辨識與中繼">
     <Heading>影像分類與抽幀中繼</Heading>
-    <div style={{ marginTop: 38, display: 'flex', gap: 40, justifyContent: 'center' }}>
+    <div style={{ marginTop: 34, display: 'flex', gap: 48, justifyContent: 'center', alignItems: 'flex-start' }}>
       <GalleryCard
         src={mlClassifier}
+        device="mac"
+        sh={392}
+        stageH={448}
         tag="CREATE ML"
         caption="PlantClassifier 訓練資料:馬纓丹 175、background 175、天竺葵 114"
-        wellHeight={440}
       />
       <GalleryCard
         src={macRelay}
+        device="mac"
+        sh={392}
+        stageH={448}
         tag="MAC FRAME RELAY"
         caption="Mac 端抽幀、跑分類,經 Socket.IO 中繼送出"
-        wellHeight={440}
       />
     </div>
   </Shell>
