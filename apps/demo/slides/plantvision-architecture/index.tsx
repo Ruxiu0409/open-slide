@@ -147,7 +147,7 @@ const Heading = ({ children }: { children: ReactNode }) => (
     >
       {children}
     </h2>
-    <div style={{ height: 3, width: '100%', background: 'var(--osd-accent)', opacity: 0.7, borderRadius: 2, marginTop: 16 }} />
+    <div style={{ height: 4, width: 168, background: 'var(--osd-accent)', opacity: 0.8, borderRadius: 2, marginTop: 16 }} />
   </div>
 );
 
@@ -481,8 +481,8 @@ const Cover: Page = () => (
 Cover.transition = settle;
 
 const Agenda: Page = () => (
-  <Shell eyebrow="Agenda">
-    <Heading>報告路線</Heading>
+  <Shell eyebrow="本次報告">
+    <Heading>Agenda</Heading>
     <div style={{ marginTop: 52, display: 'flex', flexDirection: 'column', gap: 28 }}>
       <Point>系統概觀,以及核心決定:辨識(CV)與空間追蹤(AR)是兩條獨立管線</Point>
       <Point><span style={{ color: 'var(--osd-accent)' }}>電腦視覺</span>:tile 分類、投票聚合、時間平滑、枯萎健康偵測</Point>
@@ -680,15 +680,15 @@ const ObjectTracking: Page = () => (
 const PhoneFrame = ({ src, alt, island = true }: { src: string; alt: string; island?: boolean }) => (
   <div
     style={{
-      width: 268,
-      padding: 11,
-      borderRadius: 50,
+      width: 336,
+      padding: 13,
+      borderRadius: 62,
       background: 'linear-gradient(150deg, #444946 0%, #2C302E 55%, #3A3F3C 100%)',
       boxShadow: '0 34px 64px -26px rgba(0,0,0,0.5), inset 0 0 0 2px rgba(255,255,255,0.07)',
       flexShrink: 0,
     }}
   >
-    <div style={{ position: 'relative', width: 246, height: 524, borderRadius: 40, overflow: 'hidden', background: '#000' }}>
+    <div style={{ position: 'relative', width: 310, height: 664, borderRadius: 50, overflow: 'hidden', background: '#000' }}>
       <img src={src} alt={alt} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
       {island ? (
         <div
@@ -711,7 +711,7 @@ const PhoneFrame = ({ src, alt, island = true }: { src: string; alt: string; isl
 const ReferenceObject: Page = () => (
   <Shell eyebrow="AR · Reference Object">
     <Heading>掃描什麼、錨定什麼</Heading>
-    <div style={{ marginTop: 34, display: 'flex', gap: 56, flex: 1, alignItems: 'center' }}>
+    <div style={{ marginTop: 22, display: 'flex', gap: 48, flex: 1, alignItems: 'center' }}>
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 22 }}>
         <Steps>
           <StepRow n="01">用 Polycam 掃描馬纓丹整株(含花盆),匯出 USDZ</StepRow>
@@ -720,19 +720,12 @@ const ReferenceObject: Page = () => (
           <Step><StepRow n="04">作為 reference object 餵給 ARKit,穩定定位與顯示標籤</StepRow></Step>
         </Steps>
       </div>
-      <div style={{ flex: '0 0 34%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, alignSelf: 'stretch' }}>
-          <img
-            src={polycamIcon}
-            alt="Polycam app icon"
-            style={{ width: 68, height: 68, borderRadius: 16, border: hairline, boxShadow: softShadow }}
-          />
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-            <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 28, fontWeight: 760, color: '#1E5E2E' }}>Polycam</span>
-            <span style={{ fontSize: 19, color: muted }}>3D 掃描 App</span>
-          </div>
-        </div>
+      <div style={{ flex: '0 0 40%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
         <PhoneFrame src={polycamModel} alt="Polycam 掃描出的馬纓丹 3D 模型" island={false} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <img src={polycamIcon} alt="Polycam" style={{ width: 38, height: 38, borderRadius: 9, border: hairline }} />
+          <span style={{ fontSize: 22, color: muted }}>Polycam 掃描的馬纓丹 3D 模型</span>
+        </div>
       </div>
     </div>
   </Shell>
