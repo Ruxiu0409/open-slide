@@ -11,7 +11,7 @@ export const design: DesignSystem = {
     display: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, sans-serif',
     body: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif',
   },
-  typeScale: { hero: 200, body: 36 },
+  typeScale: { hero: 150, body: 36 },
   radius: 26,
 };
 
@@ -429,14 +429,14 @@ const Cover: Page = () => (
         style={{
           marginTop: 56,
           display: 'flex',
-          gap: 18,
+          gap: 22,
           alignItems: 'center',
           fontFamily: MONO,
-          fontSize: 24,
+          fontSize: 34,
           color: 'var(--osd-text)',
         }}
       >
-        <span style={{ color: dim, letterSpacing: '0.14em', fontSize: 19 }}>組員</span>
+        <span style={{ color: dim, letterSpacing: '0.14em', fontSize: 24 }}>組員</span>
         <span>蔡承曄</span>
         <span style={{ color: dim }}>·</span>
         <span>陳俊宇</span>
