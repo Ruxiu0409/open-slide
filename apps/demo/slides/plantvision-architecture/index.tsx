@@ -478,14 +478,24 @@ const Cover: Page = () => (
 );
 Cover.transition = settle;
 
+const AgendaRow = ({ n, title, sub }: { n: string; title: ReactNode; sub: string }) => (
+  <div style={{ display: 'flex', alignItems: 'baseline', gap: 32, padding: '22px 4px', borderTop: hairline }}>
+    <span style={{ fontFamily: MONO, fontSize: 42, fontWeight: 600, color: 'var(--osd-accent)', minWidth: 78, flexShrink: 0 }}>{n}</span>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
+      <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 38, fontWeight: 740, color: '#1E5E2E', lineHeight: 1.1 }}>{title}</span>
+      <span style={{ fontSize: 25, color: muted, lineHeight: 1.4 }}>{sub}</span>
+    </div>
+  </div>
+);
+
 const Agenda: Page = () => (
   <Shell eyebrow="本次報告">
     <Heading>Agenda</Heading>
-    <div style={{ marginTop: 52, display: 'flex', flexDirection: 'column', gap: 28 }}>
-      <Point>系統概觀,以及核心決定:辨識(CV)與空間追蹤(AR)是兩條獨立管線</Point>
-      <Point><span style={{ color: 'var(--osd-accent)' }}>電腦視覺</span>:tile 分類、投票聚合、時間平滑、枯萎健康偵測</Point>
-      <Point><span style={{ color: sky }}>擴增實境</span>:物件追蹤、reference object 掃描、空間標籤錨定</Point>
-      <Point>技術名詞對應、挑戰與限制、Demo 與參考文獻</Point>
+    <div style={{ marginTop: 34, display: 'flex', flexDirection: 'column' }}>
+      <AgendaRow n="01" title="系統概觀" sub="核心決定:辨識(CV)與空間追蹤(AR)是兩條獨立管線" />
+      <AgendaRow n="02" title={<span style={{ color: 'var(--osd-accent)' }}>電腦視覺</span>} sub="tile 分類、投票聚合、時間平滑、枯萎健康偵測" />
+      <AgendaRow n="03" title={<span style={{ color: sky }}>擴增實境</span>} sub="物件追蹤、reference object 掃描、空間標籤錨定" />
+      <AgendaRow n="04" title="收尾" sub="技術名詞對應、挑戰與限制、Demo 與參考文獻" />
     </div>
   </Shell>
 );
@@ -614,6 +624,9 @@ const TileVoting: Page = () => (
       <Point><Code>classifyScene</Code> 對一整排重疊 tile 各跑一次 <Code>PlantClassifier</Code></Point>
       <Point>每個 tile 是獨立的影像分類;<Code>"background"</Code> 是保留標籤,代表「沒有植物」</Point>
     </div>
+    <p style={{ marginTop: 'auto', marginBottom: 0, fontSize: 21, color: dim, lineHeight: 1.5, borderTop: hairline, paddingTop: 18 }}>
+      ※ <span style={{ color: 'var(--osd-accent)', fontFamily: MONO }}>tile</span>:把整幀畫面切成的一塊塊重疊小方格,每塊各自獨立送進模型分類。
+    </p>
   </Shell>
 );
 
