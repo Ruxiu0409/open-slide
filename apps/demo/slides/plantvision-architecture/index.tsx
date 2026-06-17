@@ -886,10 +886,10 @@ const Challenges: Page = () => (
 const DemoSpatial: Page = () => (
   <Shell eyebrow="實作畫面 · 空間追蹤管線">
     <Heading>掃描 → 錨點 → 追蹤模型</Heading>
-    <div style={{ marginTop: 34, display: 'flex', gap: 32, alignItems: 'flex-start' }}>
-      <GalleryCard src={polycamLibrary} device="phone" sh={330} stageH={372} tag="POLYCAM" caption="實際掃描:馬纓丹、天竺葵兩盆植株" />
-      <GalleryCard src={rcpAnchor} device="mac" sh={300} stageH={372} tag="REALITY COMPOSER PRO" caption="PlantAnchor:在模型上佈署部位錨點" />
-      <GalleryCard src={mlObjectTracking} device="mac" sh={300} stageH={372} tag="CREATE ML" caption="Object Tracking 模板訓練追蹤模型" />
+    <div style={{ marginTop: 30, display: 'flex', gap: 28, alignItems: 'flex-start' }}>
+      <GalleryCard src={polycamLibrary} device="phone" sh={388} stageH={430} tag="POLYCAM" caption="實際掃描:馬纓丹、天竺葵兩盆植株" />
+      <GalleryCard src={rcpAnchor} device="mac" sh={318} stageH={430} tag="REALITY COMPOSER PRO" caption="PlantAnchor:在模型上佈署部位錨點" />
+      <GalleryCard src={mlObjectTracking} device="mac" sh={318} stageH={430} tag="CREATE ML" caption="Object Tracking 模板訓練追蹤模型" />
     </div>
   </Shell>
 );
@@ -897,20 +897,20 @@ const DemoSpatial: Page = () => (
 const DemoRecognition: Page = () => (
   <Shell eyebrow="實作畫面 · 辨識與中繼">
     <Heading>影像分類與抽幀中繼</Heading>
-    <div style={{ marginTop: 34, display: 'flex', gap: 48, justifyContent: 'center', alignItems: 'flex-start' }}>
+    <div style={{ marginTop: 30, display: 'flex', gap: 44, justifyContent: 'center', alignItems: 'flex-start' }}>
       <GalleryCard
         src={mlClassifier}
         device="mac"
-        sh={392}
-        stageH={448}
+        sh={460}
+        stageH={520}
         tag="CREATE ML"
         caption="PlantClassifier 訓練資料:馬纓丹 175、background 175、天竺葵 114"
       />
       <GalleryCard
         src={macRelay}
         device="mac"
-        sh={392}
-        stageH={448}
+        sh={460}
+        stageH={520}
         tag="MAC FRAME RELAY"
         caption="Mac 端抽幀、跑分類,經 Socket.IO 中繼送出"
       />
