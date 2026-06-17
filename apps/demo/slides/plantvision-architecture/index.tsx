@@ -1,9 +1,9 @@
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import type { DesignSystem, Page, SlideMeta, SlideTransition } from '@open-slide/core';
 import { ImagePlaceholder, Step, Steps, useSlidePageNumber } from '@open-slide/core';
 
 export const design: DesignSystem = {
-  palette: { bg: '#0B1310', text: '#ECF3EE', accent: '#5BE59A' },
+  palette: { bg: '#F4F8EF', text: '#22372A', accent: '#3B8E44' },
   fonts: {
     display: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, sans-serif',
     body: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif',
@@ -14,14 +14,14 @@ export const design: DesignSystem = {
 
 // 超出 DesignSystem 形狀的色彩 / 字體留作純常數。
 const MONO = 'ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace';
-const muted = '#86A394';
-const dim = '#5C7567';
-const amber = '#F2B14C';
-const sky = '#7FB5F0';
-const surface = 'rgba(255, 255, 255, 0.045)';
-const surfaceHi = 'rgba(255, 255, 255, 0.075)';
-const hairline = '1px solid rgba(255, 255, 255, 0.10)';
-const softShadow = '0 30px 70px -30px rgba(0, 0, 0, 0.6)';
+const muted = '#5E7A66';
+const dim = '#9DB0A2';
+const amber = '#E0922A';
+const sky = '#2F6FB5';
+const surface = '#FFFFFF';
+const surfaceHi = '#EAF3E4';
+const hairline = '1px solid rgba(34, 55, 42, 0.12)';
+const softShadow = '0 24px 50px -28px rgba(31, 60, 38, 0.22)';
 
 const fill = {
   width: '100%',
@@ -29,19 +29,31 @@ const fill = {
   fontFamily: 'var(--osd-font-body)',
 } as const;
 
-// visionOS 風的柔光 — 每頁背景一抹植物綠輝光。
-const Glow = ({ tint = 'rgba(91,229,154,0.16)' }: { tint?: string }) => (
-  <div
-    aria-hidden
-    style={{
-      position: 'absolute',
-      inset: 0,
-      background:
-        `radial-gradient(900px 600px at 82% 12%, ${tint}, transparent 60%),` +
-        'radial-gradient(700px 700px at 6% 96%, rgba(91,229,154,0.07), transparent 60%)',
-      pointerEvents: 'none',
-    }}
-  />
+// 水彩葉片 — 角落點綴,呼應淺色植物風。
+const Leaf = ({ style }: { style?: CSSProperties }) => (
+  <svg width="300" height="300" viewBox="0 0 100 100" aria-hidden style={{ position: 'absolute', ...style }}>
+    <path d="M50 3 C20 17 7 50 12 94 C56 94 94 60 93 16 C79 9 64 6 50 3 Z" fill="#BFE0AE" />
+    <path d="M51 13 C45 42 36 67 19 87" stroke="#9ECB8C" strokeWidth="2.4" fill="none" strokeLinecap="round" />
+  </svg>
+);
+
+// 淺色水彩底:角落葉叢 + 柔和綠色水洗。
+const Glow = () => (
+  <div aria-hidden style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        background:
+          'radial-gradient(760px 520px at 90% 4%, rgba(91,160,90,0.12), transparent 62%),' +
+          'radial-gradient(680px 620px at 2% 100%, rgba(91,160,90,0.10), transparent 60%)',
+      }}
+    />
+    <Leaf style={{ top: -54, left: -64, transform: 'rotate(14deg)', opacity: 0.55 }} />
+    <Leaf style={{ top: 36, left: 96, transform: 'rotate(-32deg) scale(0.62)', opacity: 0.4 }} />
+    <Leaf style={{ bottom: -64, right: -54, transform: 'rotate(196deg)', opacity: 0.5 }} />
+    <Leaf style={{ bottom: 44, right: 104, transform: 'rotate(150deg) scale(0.62)', opacity: 0.34 }} />
+  </div>
 );
 
 const Eyebrow = ({ children }: { children: ReactNode }) => (
@@ -113,18 +125,22 @@ const Shell = ({ eyebrow, children }: { eyebrow?: ReactNode; children: ReactNode
 );
 
 const Heading = ({ children }: { children: ReactNode }) => (
-  <h2
-    style={{
-      fontFamily: 'var(--osd-font-display)',
-      fontSize: 64,
-      fontWeight: 760,
-      lineHeight: 1.08,
-      letterSpacing: '-0.02em',
-      margin: 0,
-    }}
-  >
-    {children}
-  </h2>
+  <div>
+    <h2
+      style={{
+        fontFamily: 'var(--osd-font-display)',
+        fontSize: 64,
+        fontWeight: 800,
+        lineHeight: 1.08,
+        letterSpacing: '-0.02em',
+        margin: 0,
+        color: '#1E5E2E',
+      }}
+    >
+      {children}
+    </h2>
+    <div style={{ height: 3, width: '100%', background: 'var(--osd-accent)', opacity: 0.7, borderRadius: 2, marginTop: 16 }} />
+  </div>
 );
 
 const Lead = ({ children }: { children: ReactNode }) => (
@@ -141,10 +157,9 @@ const Point = ({ children }: { children: ReactNode }) => (
         background: 'var(--osd-accent)',
         flexShrink: 0,
         marginTop: 15,
-        boxShadow: '0 0 16px rgba(91,229,154,0.5)',
       }}
     />
-    <span style={{ fontSize: 'var(--osd-size-body)', lineHeight: 1.5, color: '#D6E4DB' }}>{children}</span>
+    <span style={{ fontSize: 'var(--osd-size-body)', lineHeight: 1.5, color: 'var(--osd-text)' }}>{children}</span>
   </div>
 );
 
@@ -220,21 +235,22 @@ const StepRow = ({ n, children }: { n: string; children: ReactNode }) => (
       style={{
         fontFamily: MONO,
         fontSize: 22,
-        color: 'var(--osd-accent)',
-        border: hairline,
-        borderRadius: 10,
+        fontWeight: 600,
+        color: '#fff',
+        borderRadius: '50%',
         width: 52,
         height: 52,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,
-        background: surface,
+        background: 'var(--osd-accent)',
+        boxShadow: '0 6px 16px -6px rgba(59,142,68,0.6)',
       }}
     >
       {n}
     </span>
-    <span style={{ fontSize: 31, lineHeight: 1.4, color: '#D6E4DB' }}>{children}</span>
+    <span style={{ fontSize: 31, lineHeight: 1.4, color: 'var(--osd-text)' }}>{children}</span>
   </div>
 );
 
@@ -314,7 +330,7 @@ const TermRow = ({ term, en, where }: { term: string; en: string; where: ReactNo
 const RefRow = ({ tag, children }: { tag: string; children: ReactNode }) => (
   <div style={{ display: 'flex', gap: 22, alignItems: 'baseline' }}>
     <span style={{ fontFamily: MONO, fontSize: 19, color: 'var(--osd-accent)', minWidth: 132, flexShrink: 0 }}>{tag}</span>
-    <span style={{ fontSize: 25, lineHeight: 1.5, color: '#CFE0D6' }}>{children}</span>
+    <span style={{ fontSize: 25, lineHeight: 1.5, color: 'var(--osd-text)' }}>{children}</span>
   </div>
 );
 
@@ -414,7 +430,7 @@ const Cover: Page = () => (
           alignItems: 'center',
           fontFamily: MONO,
           fontSize: 24,
-          color: '#CFE0D6',
+          color: 'var(--osd-text)',
         }}
       >
         <span style={{ color: dim, letterSpacing: '0.14em', fontSize: 19 }}>組員</span>
