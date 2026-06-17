@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react';
 import type { DesignSystem, Page, SlideMeta, SlideTransition } from '@open-slide/core';
 import { ImagePlaceholder, Step, Steps, useSlidePageNumber } from '@open-slide/core';
+import userPreview from './assets/user-preview.jpg';
 
 export const design: DesignSystem = {
   palette: { bg: '#F4F8EF', text: '#22372A', accent: '#3B8E44' },
@@ -29,7 +30,7 @@ const fill = {
   fontFamily: 'var(--osd-font-body)',
 } as const;
 
-// 水彩葉片 — 角落點綴,呼應淺色植物風。
+// 水彩葉片：角落點綴,呼應淺色植物風。
 const Leaf = ({ style }: { style?: CSSProperties }) => (
   <svg width="300" height="300" viewBox="0 0 100 100" aria-hidden style={{ position: 'absolute', ...style }}>
     <path d="M50 3 C20 17 7 50 12 94 C56 94 94 60 93 16 C79 9 64 6 50 3 Z" fill="#BFE0AE" />
@@ -460,17 +461,25 @@ const Agenda: Page = () => (
 const Overview: Page = () => (
   <Shell eyebrow="System Overview">
     <Heading>PlantVision 是什麼</Heading>
-    <Lead>
-      把一株真實植物,變成 Vision Pro 裡會跟著它的空間資訊卡。系統有兩條獨立管線——一條負責「這是什麼、健不健康」,
-      一條負責「它在空間哪裡」。
-    </Lead>
-    <div style={{ marginTop: 44, display: 'flex', gap: 32 }}>
-      <Card tag="電腦視覺 · CV" title="辨識植物與健康" body="Mac 端跑 Core ML,判植物品種與枯萎程度,送回 plantID 與枯萎等級。" />
-      <Card tag="擴增實境 · AR" title="空間追蹤與標籤" body="裝置端 ARKit 追固定植株,把資訊 UI 錨定在它附近的空間裡。" />
+    <div style={{ marginTop: 34, display: 'flex', gap: 48, flex: 1, alignItems: 'center' }}>
+      <div style={{ flex: '0 0 44%', display: 'flex', flexDirection: 'column', gap: 20 }}>
+        <p style={{ fontSize: 26, lineHeight: 1.5, color: muted, margin: 0 }}>
+          把一株真實植物,變成 Vision Pro 裡會跟著它的空間資訊卡。系統分成兩條獨立管線:一條負責「這是什麼、健不健康」,一條負責「它在空間哪裡」。
+        </p>
+        <Card tag="電腦視覺 · CV" title="辨識植物與健康" body="跑 Core ML 判植物品種與枯萎程度,輸出 plantID 與等級。" />
+        <Card tag="擴增實境 · AR" title="空間追蹤與標籤" body="裝置端 ARKit 追固定植株,把資訊 UI 錨定在它附近。" />
+      </div>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <img
+          src={userPreview}
+          alt="使用者透過 Vision Pro 看到植物與空間標籤的預覽"
+          style={{ width: '100%', borderRadius: 'var(--osd-radius)', border: hairline, boxShadow: softShadow, display: 'block' }}
+        />
+        <span style={{ fontSize: 20, color: dim, lineHeight: 1.4 }}>
+          使用者透過 Vision Pro 即時辨識植物,並以空間標籤與 3D 生長動畫呈現。
+        </span>
+      </div>
     </div>
-    <p style={{ marginTop: 36, fontSize: 24, color: dim, lineHeight: 1.5 }}>
-      基礎建設:Mac 擷取畫面 → Socket.IO 中繼 → Vision Pro,三者只靠網路對話。
-    </p>
   </Shell>
 );
 
@@ -490,7 +499,7 @@ const CoreDecision: Page = () => (
       />
     </div>
     <p style={{ marginTop: 40, fontSize: 27, color: muted, lineHeight: 1.5 }}>
-      兩個身分來源各自能單獨壞掉與退場——CV 掛了不影響 AR 定位,反之亦然。
+      兩個身分來源各自能單獨壞掉與退場，CV 掛了不影響 AR 定位,反之亦然。
     </p>
   </Shell>
 );
@@ -525,7 +534,7 @@ const AppleStack: Page = () => (
   <Shell eyebrow="Built on Apple Frameworks">
     <Heading>站在 Apple 的框架上</Heading>
     <p style={{ fontSize: 27, color: muted, lineHeight: 1.45, margin: '26px 0 0', maxWidth: 1440 }}>
-      整個系統不是從零造輪子,而是組合 Apple 在 visionOS 上提供的能力——空間感知、3D 渲染、影像分析與裝置端推論。
+      整個系統不是從零造輪子,而是組合 Apple 在 visionOS 上提供的能力，空間感知、3D 渲染、影像分析與裝置端推論。
     </p>
     <div style={{ marginTop: 34, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 26 }}>
       <FrameworkCard
@@ -569,7 +578,7 @@ const TileVoting: Page = () => (
   <Shell eyebrow="CV · Image Classification">
     <Heading>滿幀 tile 分類,而非中心裁切</Heading>
     <div style={{ marginTop: 52, display: 'flex', flexDirection: 'column', gap: 28 }}>
-      <Point>植物常只佔鏡像一小塊、又偏離中心——單一中心裁切會直接漏掉</Point>
+      <Point>植物常只佔鏡像一小塊、又偏離中心，單一中心裁切會直接漏掉</Point>
       <Point><Code>classifyScene</Code> 對一整排重疊 tile 各跑一次 <Code>PlantClassifier</Code></Point>
       <Point>每個 tile 是獨立的影像分類;<Code>"background"</Code> 是保留標籤,代表「沒有植物」</Point>
     </div>
@@ -592,7 +601,7 @@ const Smoothing: Page = () => (
     <Heading>用時間維度壓掉閃爍</Heading>
     <div style={{ marginTop: 52, display: 'flex', flexDirection: 'column', gap: 28 }}>
       <Point>每幀的結果仍會抖動;<Code>TemporalLabelSmoother</Code> 在 ~0.7s 窗內做多數決</Point>
-      <Point>平手時回報「不確定」,而不是硬猜——寧可不顯示,也不要顯示錯的</Point>
+      <Point>平手時回報「不確定」,而不是硬猜，寧可不顯示,也不要顯示錯的</Point>
       <Point>抽幀約每 0.1s 一張,窗內累積約 7 幀再投票</Point>
     </div>
   </Shell>
@@ -618,7 +627,7 @@ const ARDivider: Page = () => (
   <SectionDivider
     part="Part II · Augmented Reality"
     title="擴增實境"
-    sub="用 ARKit 追固定植株的 6DoF 位姿,把資訊卡穩定錨定在真實空間裡——這條管線完全在裝置端,不碰 Mac。"
+    sub="用 ARKit 追固定植株的 6DoF 位姿,把資訊卡穩定錨定在真實空間裡，這條管線完全在裝置端,不碰 Mac。"
   />
 );
 ARDivider.transition = settle;
@@ -742,10 +751,10 @@ const Closing: Page = () => (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 26 }}>
         <Point>CV 與 AR 拆成兩條獨立管線,各自能單獨壞掉與退場</Point>
         <Point>tile 投票 + 時間濾波,把單幀雜訊收斂成穩定判斷</Point>
-        <Point>追花盆而非葉片、寧可回報不確定——務實面對真實世界的限制</Point>
+        <Point>追花盆而非葉片、寧可回報不確定，務實面對真實世界的限制</Point>
       </div>
       <div style={{ marginTop: 52, fontFamily: MONO, fontSize: 22, color: dim }}>
-        蔡承曄 · 陳俊宇 · 曾柏諺　—　感謝聆聽
+        蔡承曄 · 陳俊宇 · 曾柏諺　·　感謝聆聽
       </div>
     </div>
   </div>
