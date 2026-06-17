@@ -11,7 +11,7 @@ export const design: DesignSystem = {
     display: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, sans-serif',
     body: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif',
   },
-  typeScale: { hero: 150, body: 36 },
+  typeScale: { hero: 200, body: 36 },
   radius: 26,
 };
 
