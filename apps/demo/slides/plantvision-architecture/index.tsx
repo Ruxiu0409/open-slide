@@ -714,10 +714,10 @@ const ReferenceObject: Page = () => (
     <div style={{ marginTop: 34, display: 'flex', gap: 56, flex: 1, alignItems: 'center' }}>
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 22 }}>
         <Steps>
-          <StepRow n="01">用 Polycam 掃描目標,均勻光線、乾淨背景,匯出 USDZ</StepRow>
-          <Step><StepRow n="02">優先追「花盆＋植株」;葉片晃動造成不穩就只追花盆</StepRow></Step>
-          <Step><StepRow n="03">花盆太對稱,就貼一張 marker card 改用影像追蹤</StepRow></Step>
-          <Step><StepRow n="04">永遠不要把 UI 錨在會晃動變形的單片葉子上</StepRow></Step>
+          <StepRow n="01">用 Polycam 掃描馬纓丹整株(含花盆),匯出 USDZ</StepRow>
+          <Step><StepRow n="02">整株輪廓明顯,直接以「花盆＋植株」作為追蹤目標</StepRow></Step>
+          <Step><StepRow n="03">匯入 Reality Composer Pro,在模型上標出花、葉等部位錨點</StepRow></Step>
+          <Step><StepRow n="04">作為 reference object 餵給 ARKit,穩定定位與顯示標籤</StepRow></Step>
         </Steps>
       </div>
       <div style={{ flex: '0 0 34%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18 }}>
