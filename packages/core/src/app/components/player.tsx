@@ -4,14 +4,15 @@ import { useWheelPageNavigation } from '@/lib/use-wheel-page-navigation';
 import { cn } from '@/lib/utils';
 import type { DesignSystem } from '../lib/design';
 import type { Page } from '../lib/sdk';
+import type { EntryDirection, StepAggregate, StepController } from '../lib/step-context';
 import type { SlideTransition } from '../lib/transition';
 import { usePrefersReducedMotion } from '../lib/use-prefers-reduced-motion';
+import { OverviewGrid } from './overview-grid';
 import { PresentBlackoutOverlay } from './present/blackout-overlay';
 import { PresentControlBar } from './present/control-bar';
 import { PresentHelpOverlay } from './present/help-overlay';
 import { PresentJumpInput } from './present/jump-input';
 import { PresentLaserPointer } from './present/laser-pointer';
-import { PresentOverviewGrid } from './present/overview-grid';
 import { PresentProgressBar } from './present/progress-bar';
 import { useIdle } from './present/use-idle';
 import { usePointerNearBottom } from './present/use-pointer-near-bottom';
@@ -84,12 +85,37 @@ export function Player({
   const canPrev = index > 0;
   const canNext = index < pages.length - 1;
 
+  const stepControllerRef = useRef<StepController | null>(null);
+  const [entryDirection, setEntryDirection] = useState<EntryDirection>('jump');
+  const [stepAggregate, setStepAggregate] = useState<StepAggregate>({
+    revealed: 0,
+    stepCount: 0,
+  });
+  const handleAggregateChange = useCallback((a: StepAggregate) => {
+    setStepAggregate((cur) =>
+      cur.revealed === a.revealed && cur.stepCount === a.stepCount ? cur : a,
+    );
+  }, []);
+
+  // Every navigation funnels through here so entryDirection is settled
+  // synchronously, before the incoming page's <Steps> reads it on mount.
+  const handleIndexChange = useCallback(
+    (next: number) => {
+      const delta = next - index;
+      setEntryDirection(delta === 1 ? 'forward' : delta === -1 ? 'backward' : 'jump');
+      onIndexChange(next);
+    },
+    [index, onIndexChange],
+  );
+
   const goPrev = useCallback(() => {
-    if (index > 0) onIndexChange(index - 1);
-  }, [index, onIndexChange]);
+    if (stepControllerRef.current?.retreat()) return;
+    if (index > 0) handleIndexChange(index - 1);
+  }, [index, handleIndexChange]);
   const goNext = useCallback(() => {
-    if (index < pages.length - 1) onIndexChange(index + 1);
-  }, [index, pages.length, onIndexChange]);
+    if (stepControllerRef.current?.advance()) return;
+    if (index < pages.length - 1) handleIndexChange(index + 1);
+  }, [index, pages.length, handleIndexChange]);
 
   const overlayActive = controls && (overviewOpen || helpOpen);
 
@@ -147,8 +173,15 @@ export function Player({
   // and answers `request-state` pings so newly opened presenter windows
   // hydrate immediately.
   const presenterState = useMemo<PresenterState>(
-    () => ({ index, pageCount: pages.length, blackout, startedAt }),
-    [index, pages.length, blackout, startedAt],
+    () => ({
+      index,
+      pageCount: pages.length,
+      blackout,
+      startedAt,
+      stepIndex: stepAggregate.revealed,
+      stepCount: stepAggregate.stepCount,
+    }),
+    [index, pages.length, blackout, startedAt, stepAggregate],
   );
   const presenterStateRef = useRef(presenterState);
   presenterStateRef.current = presenterState;
@@ -158,14 +191,14 @@ export function Player({
       if (msg.type === 'next') goNext();
       else if (msg.type === 'prev') goPrev();
       else if (msg.type === 'goto') {
-        onIndexChange(Math.max(0, Math.min(pages.length - 1, msg.index)));
+        handleIndexChange(Math.max(0, Math.min(pages.length - 1, msg.index)));
       } else if (msg.type === 'toggle-blackout') {
         setBlackout((cur) => (cur === msg.mode ? null : msg.mode));
       } else if (msg.type === 'request-state') {
         send({ type: 'state', state: presenterStateRef.current });
       }
     },
-    [goNext, goPrev, onIndexChange, pages.length],
+    [goNext, goPrev, handleIndexChange, pages.length],
   );
 
   const channel = usePresenterChannel(slideId ?? '__none__', (msg) => {
@@ -231,12 +264,12 @@ export function Player({
       }
       if (e.key === 'Home') {
         setKeyboardDriven(true);
-        onIndexChange(0);
+        handleIndexChange(0);
         return;
       }
       if (e.key === 'End') {
         setKeyboardDriven(true);
-        onIndexChange(pages.length - 1);
+        handleIndexChange(pages.length - 1);
         return;
       }
 
@@ -277,7 +310,7 @@ export function Player({
     onExit,
     goNext,
     goPrev,
-    onIndexChange,
+    handleIndexChange,
     pages.length,
     slideId,
   ]);
@@ -315,6 +348,9 @@ export function Player({
           total={pages.length}
           moduleTransition={transition}
           disabled={prefersReducedMotion}
+          stepControllerRef={stepControllerRef}
+          entryDirection={entryDirection}
+          onStepAggregateChange={handleAggregateChange}
         />
       </SlideCanvas>
 
@@ -322,7 +358,7 @@ export function Player({
         <div data-osd-chrome style={{ display: 'contents' }}>
           <PresentProgressBar index={index} total={pages.length} visible={chromeVisible} />
           <PresentBlackoutOverlay mode={blackout} />
-          <PresentJumpInput pageCount={pages.length} onJump={onIndexChange} />
+          <PresentJumpInput pageCount={pages.length} onJump={handleIndexChange} />
           <PresentLaserPointer enabled={laser} />
           <PresentControlBar
             tooltipContainer={rootEl}
@@ -344,13 +380,14 @@ export function Player({
             onHelp={() => setHelpOpen(true)}
             onExit={onExit}
           />
-          <PresentOverviewGrid
+          <OverviewGrid
             pages={pages}
             design={design}
             open={overviewOpen}
             current={index}
             onClose={() => setOverviewOpen(false)}
-            onSelect={onIndexChange}
+            onSelect={handleIndexChange}
+            variant="present"
           />
           <PresentHelpOverlay open={helpOpen} onOpenChange={setHelpOpen} container={rootEl} />
         </div>
@@ -361,6 +398,6 @@ export function Player({
 
 export function openPresenterWindow(slideId: string) {
   if (typeof window === 'undefined') return;
-  const url = `/s/${encodeURIComponent(slideId)}/presenter`;
+  const url = `${import.meta.env.BASE_URL}s/${encodeURIComponent(slideId)}/presenter`;
   window.open(url, `open-slide-presenter-${slideId}`, 'popup,width=1280,height=800');
 }
