@@ -495,6 +495,67 @@ const CoreDecision: Page = () => (
   </Shell>
 );
 
+const FrameworkCard = ({ tag, name, gives, use }: { tag: string; name: string; gives: ReactNode; use: ReactNode }) => (
+  <div
+    style={{
+      background: surface,
+      border: hairline,
+      borderRadius: 'var(--osd-radius)',
+      boxShadow: softShadow,
+      padding: '28px 32px 30px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 12,
+    }}
+  >
+    <span style={{ fontFamily: MONO, fontSize: 16, color: 'var(--osd-accent)', letterSpacing: '0.14em' }}>{tag}</span>
+    <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 32, fontWeight: 760, color: '#1E5E2E' }}>{name}</div>
+    <div style={{ fontSize: 22, lineHeight: 1.45, color: muted }}>
+      <span style={{ color: 'var(--osd-accent)', fontWeight: 600 }}>Apple 提供　</span>
+      {gives}
+    </div>
+    <div style={{ fontSize: 22, lineHeight: 1.45, color: 'var(--osd-text)' }}>
+      <span style={{ color: dim, fontFamily: MONO, fontSize: 17 }}>我們用來　</span>
+      {use}
+    </div>
+  </div>
+);
+
+const AppleStack: Page = () => (
+  <Shell eyebrow="Built on Apple Frameworks">
+    <Heading>站在 Apple 的框架上</Heading>
+    <p style={{ fontSize: 27, color: muted, lineHeight: 1.45, margin: '26px 0 0', maxWidth: 1440 }}>
+      整個系統不是從零造輪子,而是組合 Apple 在 visionOS 上提供的能力——空間感知、3D 渲染、影像分析與裝置端推論。
+    </p>
+    <div style={{ marginTop: 34, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 26 }}>
+      <FrameworkCard
+        tag="空間感知 · TRACKING"
+        name="ARKit"
+        gives="平面偵測、World/Anchor、6DoF 物件追蹤(ObjectTrackingProvider)、world-sensing。"
+        use="在真實空間定位固定植株,提供位姿。"
+      />
+      <FrameworkCard
+        tag="3D 渲染 · RENDERING"
+        name="RealityKit"
+        gives="Entity / Anchor 場景、3D 模型載入、材質與動畫,並與 ARKit anchor 綁定。"
+        use="顯示空間標籤與植物 3D 生長動畫。"
+      />
+      <FrameworkCard
+        tag="影像分析 · IMAGE"
+        name="Vision"
+        gives="影像請求管線、前處理與特徵分析。"
+        use="把鏡像畫面整理成可分類的輸入。"
+      />
+      <FrameworkCard
+        tag="裝置端推論 · ML"
+        name="Core ML"
+        gives="on-device 模型推論,低延遲、不上傳雲端。"
+        use="跑植物分類模型,輸出 plantID 與信心。"
+      />
+    </div>
+  </Shell>
+);
+
 const CVDivider: Page = () => (
   <SectionDivider
     part="Part I · Computer Vision"
@@ -700,6 +761,7 @@ export default [
   Agenda,
   Overview,
   CoreDecision,
+  AppleStack,
   CVDivider,
   TileVoting,
   Voting,
