@@ -349,6 +349,7 @@ const GalleryCard = ({
   device,
   sh,
   stageH,
+  flex = '1 1 0',
 }: {
   src: string;
   tag: string;
@@ -356,8 +357,9 @@ const GalleryCard = ({
   device: 'phone' | 'mac';
   sh: number;
   stageH: number;
+  flex?: string;
 }) => (
-  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 18, minWidth: 0 }}>
+  <div style={{ flex, display: 'flex', flexDirection: 'column', gap: 18, minWidth: 0 }}>
     <div style={{ height: stageH, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       {device === 'phone' ? (
         <PhoneFrame src={src} alt={caption} island={false} sh={sh} />
@@ -709,46 +711,55 @@ const PhoneFrame = ({ src, alt, island = true, sh = 664 }: { src: string; alt: s
   );
 };
 
-// MacBook 外殼:深色螢幕邊框 + 銀色底座與凹槽。sh = 螢幕內容高度。
-const MacbookFrame = ({ src, alt, sh }: { src: string; alt: string; sh: number }) => (
-  <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
-    <div
-      style={{
-        background: '#0C0D0E',
-        borderRadius: 14,
-        padding: 11,
-        boxShadow: softShadow,
-        border: '1px solid rgba(0,0,0,0.35)',
-      }}
-    >
-      <img src={src} alt={alt} style={{ height: sh, width: 'auto', display: 'block', borderRadius: 4 }} />
-    </div>
-    <div
-      style={{
-        position: 'relative',
-        width: 'calc(100% + 54px)',
-        height: 15,
-        background: 'linear-gradient(180deg, #d8dadf 0%, #aeb2b8 55%, #979ba1 100%)',
-        borderRadius: '0 0 11px 11px',
-        boxShadow: '0 12px 20px -12px rgba(0,0,0,0.45)',
-      }}
-    >
+// MacBook 外殼:固定 16:10 螢幕比例 + 深色邊框 + 銀色底座凹槽。sh = 螢幕高度。
+const MacbookFrame = ({ src, alt, sh }: { src: string; alt: string; sh: number }) => {
+  const sw = Math.round(sh * 1.6);
+  return (
+    <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
       <div
         style={{
-          position: 'absolute',
-          top: 0,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: 118,
-          height: 8,
-          background: '#bfc3c9',
-          borderRadius: '0 0 7px 7px',
-          boxShadow: 'inset 0 -2px 3px rgba(0,0,0,0.22)',
+          background: '#0C0D0E',
+          borderRadius: 14,
+          padding: 10,
+          boxShadow: softShadow,
+          border: '1px solid rgba(0,0,0,0.35)',
         }}
-      />
+      >
+        <div style={{ width: sw, height: sh, overflow: 'hidden', borderRadius: 5, background: '#000' }}>
+          <img
+            src={src}
+            alt={alt}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+          />
+        </div>
+      </div>
+      <div
+        style={{
+          position: 'relative',
+          width: 'calc(100% + 30px)',
+          height: 15,
+          background: 'linear-gradient(180deg, #d8dadf 0%, #aeb2b8 55%, #979ba1 100%)',
+          borderRadius: '0 0 11px 11px',
+          boxShadow: '0 12px 20px -12px rgba(0,0,0,0.45)',
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 118,
+            height: 8,
+            background: '#bfc3c9',
+            borderRadius: '0 0 7px 7px',
+            boxShadow: 'inset 0 -2px 3px rgba(0,0,0,0.22)',
+          }}
+        />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const ReferenceObject: Page = () => (
   <Shell eyebrow="AR · Reference Object">
@@ -886,10 +897,10 @@ const Challenges: Page = () => (
 const DemoSpatial: Page = () => (
   <Shell eyebrow="實作畫面 · 空間追蹤管線">
     <Heading>掃描 → 錨點 → 追蹤模型</Heading>
-    <div style={{ marginTop: 30, display: 'flex', gap: 28, alignItems: 'flex-start' }}>
-      <GalleryCard src={polycamLibrary} device="phone" sh={388} stageH={430} tag="POLYCAM" caption="實際掃描:馬纓丹、天竺葵兩盆植株" />
-      <GalleryCard src={rcpAnchor} device="mac" sh={318} stageH={430} tag="REALITY COMPOSER PRO" caption="PlantAnchor:在模型上佈署部位錨點" />
-      <GalleryCard src={mlObjectTracking} device="mac" sh={318} stageH={430} tag="CREATE ML" caption="Object Tracking 模板訓練追蹤模型" />
+    <div style={{ marginTop: 28, display: 'flex', gap: 28, alignItems: 'flex-start' }}>
+      <GalleryCard src={polycamLibrary} device="phone" sh={406} stageH={456} flex="0 0 232px" tag="POLYCAM" caption="實際掃描:馬纓丹、天竺葵兩盆植株" />
+      <GalleryCard src={rcpAnchor} device="mac" sh={398} stageH={456} tag="REALITY COMPOSER PRO" caption="PlantAnchor:在模型上佈署部位錨點" />
+      <GalleryCard src={mlObjectTracking} device="mac" sh={398} stageH={456} tag="CREATE ML" caption="Object Tracking 模板訓練追蹤模型" />
     </div>
   </Shell>
 );
@@ -901,16 +912,16 @@ const DemoRecognition: Page = () => (
       <GalleryCard
         src={mlClassifier}
         device="mac"
-        sh={460}
-        stageH={520}
+        sh={466}
+        stageH={526}
         tag="CREATE ML"
         caption="PlantClassifier 訓練資料:馬纓丹 175、background 175、天竺葵 114"
       />
       <GalleryCard
         src={macRelay}
         device="mac"
-        sh={460}
-        stageH={520}
+        sh={466}
+        stageH={526}
         tag="MAC FRAME RELAY"
         caption="Mac 端抽幀、跑分類,經 Socket.IO 中繼送出"
       />
