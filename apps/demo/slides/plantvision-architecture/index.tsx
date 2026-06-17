@@ -648,7 +648,7 @@ const ReferenceObject: Page = () => (
     <Heading>掃描什麼、錨定什麼</Heading>
     <div style={{ marginTop: 44, display: 'flex', flexDirection: 'column', gap: 22 }}>
       <Steps>
-        <StepRow n="01">用 iPhone 14 Pro Max 掃描目標,均勻光線、乾淨背景,匯出 USDZ</StepRow>
+        <StepRow n="01">用 Polycam 掃描目標,均勻光線、乾淨背景,匯出 USDZ</StepRow>
         <Step><StepRow n="02">優先追「花盆＋植株」;葉片晃動造成不穩就只追花盆</StepRow></Step>
         <Step><StepRow n="03">花盆太對稱,就貼一張 marker card 改用影像追蹤</StepRow></Step>
         <Step><StepRow n="04">永遠不要把 UI 錨在會晃動變形的單片葉子上</StepRow></Step>
