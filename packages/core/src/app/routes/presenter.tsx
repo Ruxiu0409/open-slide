@@ -14,8 +14,15 @@ import { CANVAS_HEIGHT, CANVAS_WIDTH } from '../lib/sdk';
 import { type StepController, StepHost } from '../lib/step-context';
 import { useSlideModule } from '../lib/use-slide-module';
 
-export function Presenter() {
-  const { slideId = '' } = useParams();
+export function Presenter({
+  slideId: slideIdProp,
+  onExit,
+}: {
+  slideId?: string;
+  onExit?: () => void;
+} = {}) {
+  const params = useParams();
+  const slideId = slideIdProp ?? params.slideId ?? '';
   const { slide, error } = useSlideModule(slideId);
 
   // Presenter view is a passive mirror of the projection window. It only
@@ -76,11 +83,14 @@ export function Presenter() {
       } else if (e.key === 'w' || e.key === 'W') {
         e.preventDefault();
         toggleWhite();
+      } else if (e.key === 'Escape' && onExit) {
+        e.preventDefault();
+        onExit();
       }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [goNext, goPrev, toggleBlack, toggleWhite]);
+  }, [goNext, goPrev, toggleBlack, toggleWhite, onExit]);
 
   if (error) {
     return (
