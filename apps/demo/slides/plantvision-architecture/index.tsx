@@ -625,6 +625,66 @@ const AppleStack: Page = () => (
   </Shell>
 );
 
+// reference object 的 boundingBox 欄位小卡。
+const BoxChip = ({ field, desc }: { field: string; desc: string }) => (
+  <div
+    style={{
+      flex: 1,
+      background: surface,
+      border: hairline,
+      borderRadius: 18,
+      boxShadow: softShadow,
+      padding: '24px 24px 26px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 10,
+    }}
+  >
+    <span style={{ fontFamily: MONO, fontSize: 26, color: 'var(--osd-accent)', fontWeight: 600 }}>{field}</span>
+    <span style={{ fontSize: 23, lineHeight: 1.45, color: muted }}>{desc}</span>
+  </div>
+);
+
+const Positioning: Page = () => (
+  <Shell eyebrow="Apple Frameworks · Positioning">
+    <Heading>怎麼定位?6DoF 位姿與座標變換</Heading>
+    <p style={{ fontSize: 26, color: muted, lineHeight: 1.45, margin: '24px 0 0', maxWidth: 1480 }}>
+      ARKit 的 <Code>ObjectTrackingProvider</Code> 持續吐出 <Code>ObjectAnchor</Code>，每個 anchor 都帶一個位姿矩陣，標籤要落在哪、轉幾度,全靠它。
+    </p>
+    <div style={{ marginTop: 30, display: 'flex', alignItems: 'center' }}>
+      <Node tag="物件 LOCAL · RCP" name="部位錨點座標" role="花/葉位置,公尺,固定烘在模型上" />
+      <Flow label="套用位姿" />
+      <Node tag="ARKit · ObjectAnchor" name="4×4 位姿矩陣" role="originFromAnchorTransform,位置＋旋轉(6DoF),每幀更新" />
+      <Flow label="對齊" />
+      <Node tag="世界座標" name="眼前真實空間" role="標籤穩定釘在植株旁" />
+    </div>
+    <div style={{ marginTop: 30, display: 'flex', flexDirection: 'column', gap: 18 }}>
+      <Point>把整株標籤子樹的 root 對齊到 <Code>originFromAnchorTransform</Code>;部位錨點隨矩陣一起被變換到世界座標</Point>
+      <Point><Code>isTracked</Code> 為真才更新位置,暫時 lost 就先把標籤藏起來,不讓它漂在錯的地方</Point>
+      <Point>位姿每幀會抖 → 指數平滑(<Code>alpha 0.25</Code>)壓掉;使用者鎖定時凍結 pose</Point>
+    </div>
+  </Shell>
+);
+
+const Scale: Page = () => (
+  <Shell eyebrow="Apple Frameworks · Scale">
+    <Heading>大小怎麼抓?reference object 的真實尺度</Heading>
+    <p style={{ fontSize: 26, color: muted, lineHeight: 1.45, margin: '24px 0 0', maxWidth: 1480 }}>
+      尺度不是 runtime 估的，掃描/訓練時就把真實世界大小烘進 <Code>.referenceobject</Code>。每個 <Code>ObjectAnchor</Code> 都附一個以公尺為單位的 <Code>boundingBox</Code>。
+    </p>
+    <div style={{ marginTop: 30, display: 'flex', gap: 20 }}>
+      <BoxChip field="min / max" desc="物件框的兩個對角(公尺)" />
+      <BoxChip field="center" desc="框的幾何中心" />
+      <BoxChip field="extent" desc="長寬高三軸尺寸" />
+    </div>
+    <div style={{ marginTop: 30, display: 'flex', flexDirection: 'column', gap: 18 }}>
+      <Point>reference object 設為 <Code>gravity-aligned</Code> 並排除底面,桌上盆栽站得穩、不會上下顛倒</Point>
+      <Point>一切都是真實公尺,部位錨點(物件 local 公尺)自動落在正確實體位置與大小,不必用相機估距</Point>
+      <Point>第一次追到就印出 <Code>boundingBox</Code> 核對「追蹤框 vs 模型框」;整片一致偏移用 <Code>frameCorrection</Code> 補常數平移(變形漂移修不了)</Point>
+    </div>
+  </Shell>
+);
+
 const CVDivider: Page = () => (
   <SectionDivider
     part="Part I · Computer Vision"
@@ -1168,6 +1228,8 @@ export const notes: (string | undefined)[] = [
   '這頁是我們最關鍵的設計決定:把辨識和空間追蹤刻意拆開。辨識在 Mac 端跑 Core ML,決定是什麼植物、多枯萎;空間追蹤在裝置端用 ARKit,決定它在哪、是哪一株。好處是兩邊各自獨立:辨識壞掉不會影響定位,定位斷了也不影響辨識,整個系統更穩。',
   '在進入細節前,先講我們遇到的限制,這也解釋了後面為什麼這樣設計。第一,visionOS 基於隱私不開放 App 取用裝置相機,所以我們改用 Mac 鏡像擷取畫面來跑辨識。第二,葉片會晃、會變形,所以我們追花盆而不是葉片。第三,枯萎樣本很少,得自己補拍。第四,畫面會閃,用多幀投票加時間平滑解決。',
   '我們不是從零造輪子,而是站在 Apple 的框架上。ARKit 負責空間感知和物件追蹤,RealityKit 負責 3D 渲染、空間標籤和生長動畫,Vision 負責影像前處理,Core ML 負責在裝置端跑模型。我們做的,是把這四個能力組合起來。',
+  '先深入講框架怎麼幫我們定位。ARKit 的 ObjectTrackingProvider 會一直吐出 ObjectAnchor,每個都帶一個四乘四的位姿矩陣 originFromAnchorTransform,同時表達位置跟旋轉,也就是六個自由度。我們的做法是:花跟葉的部位錨點是先在模型的物件座標系裡用公尺烘好的固定值,runtime 把整株標籤的 root 對齊到這個矩陣,部位錨點就跟著被變換到眼前的世界座標。另外,只有 isTracked 為真才更新位置,暫時追丟就先把標籤藏起來;位姿每幀會抖,我們用 alpha 0.25 的指數平滑壓掉,使用者鎖定時則直接凍結。',
+  '再來是大小怎麼抓。重點是:尺度不是 runtime 即時估的,而是掃描跟訓練的時候就把真實世界大小烘進 referenceobject 了。ARKit 追到後,每個 anchor 都附一個以公尺為單位的 boundingBox,有 min、max 兩個對角、中心 center,還有長寬高 extent。我們把 reference object 設成 gravity-aligned、排除底面,桌上的盆栽就站得穩、不會顛倒。因為一切都是真實公尺,部位錨點直接落在正確的實體位置跟大小,不需要另外用相機估距離。第一次追到時我們會把 boundingBox 印出來,核對追蹤框跟模型框是不是同一個座標系;如果整片標籤一致偏移一個常數,就用 frameCorrection 補,但變形造成的飄移修不了。',
   '接下來進入第一大段:電腦視覺。這段的目標,是把一張張會抖動的畫面,收斂成一個穩定可信的辨識結果。流程是:抽幀、切成小塊分類、投票、時間平滑,最後分級。',
   '第一步是分類。我們不是只裁畫面正中間那一塊,因為植物常常只佔畫面一小角、又偏離中心。所以我們把整張畫面切成很多重疊的小方格,也就是 tile,每一塊各自送進模型分類。底下有 tile 的解釋。另外 Background 是一個保留標籤,代表這塊沒有植物。',
   '每塊 tile 都會投一票,我們再把這些票聚合成一個答案。看最高票跟第二名差多少、有幾塊互相佐證,夠明確才下判斷,不夠就回報不確定。這些門檻不是隨便設的,是拿真實截圖一張一張調出來的。',
@@ -1196,6 +1258,8 @@ export default [
   CoreDecision,
   Challenges,
   AppleStack,
+  Positioning,
+  Scale,
   CVDivider,
   TileVoting,
   Voting,
