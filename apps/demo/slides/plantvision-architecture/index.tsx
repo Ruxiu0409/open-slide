@@ -353,12 +353,6 @@ const TermRow = ({ term, en, where }: { term: string; en: string; where: ReactNo
   </div>
 );
 
-const RefRow = ({ tag, children }: { tag: string; children: ReactNode }) => (
-  <div style={{ display: 'flex', gap: 22, alignItems: 'baseline' }}>
-    <span style={{ fontFamily: MONO, fontSize: 19, color: 'var(--osd-accent)', minWidth: 132, flexShrink: 0 }}>{tag}</span>
-    <span style={{ fontSize: 25, lineHeight: 1.5, color: 'var(--osd-text)' }}>{children}</span>
-  </div>
-);
 
 const GalleryCard = ({
   src,
@@ -1070,19 +1064,6 @@ const DemoRecognition: Page = () => (
   </Shell>
 );
 
-const References: Page = () => (
-  <Shell eyebrow="References">
-    <Heading>參考文獻與來源</Heading>
-    <div style={{ marginTop: 44, display: 'flex', flexDirection: 'column', gap: 22 }}>
-      <RefRow tag="ARKit">Object Tracking / ObjectTrackingProvider、Reference Objects(Apple Developer)</RefRow>
-      <RefRow tag="Core ML">Image Classification 模型整合與推論(Apple Developer)</RefRow>
-      <RefRow tag="Create ML">影像分類訓練(CLI 與 Create ML.app)</RefRow>
-      <RefRow tag="RealityKit">Reality Composer Pro:錨點場景與部位座標</RefRow>
-      <RefRow tag="Dataset">iNaturalist 馬纓丹影像(CC 授權)作為枯萎分類素材</RefRow>
-      <RefRow tag="Networking">Socket.IO v4 即時訊息中繼</RefRow>
-    </div>
-  </Shell>
-);
 
 const Closing: Page = () => (
   <div
@@ -1247,7 +1228,6 @@ export const notes: (string | undefined)[] = [
   '這是實作畫面的掃描與錨點:左邊用 Polycam 實際掃描馬纓丹跟天竺葵,右邊在 Reality Composer Pro 把花、葉的部位錨點標在模型上。',
   '接著訓練追蹤模型:用 Create ML 的 Object Tracking 模板餵入掃描資料,產出右邊這個 PlantTracker.referenceobject。它就是 ARKit 實際拿來追蹤的物件,設定成 gravity-aligned、排除底面,很適合放在桌上的盆栽。',
   '辨識跟中繼這條線:左邊是 Create ML 的 PlantClassifier 訓練資料,有馬纓丹、天竺葵跟背景三類;右邊是我們的 Mac Frame Relay,負責抽幀、跑分類,再透過 Socket.IO 把結果送回 Vision Pro。',
-  '這是我們用到的 Apple 框架文件跟資料來源。',
   '最後總結三點。第一,我們把辨識跟空間追蹤拆成兩條獨立流程,各自能單獨運作。第二,用 tile 投票加上時間平滑,把單幀的雜訊收斂成穩定的判斷。第三,我們很務實地面對真實世界的限制,像是追花盆而不是葉片、寧可說不確定。以上是我們的報告,謝謝大家。',
 ];
 
@@ -1277,6 +1257,5 @@ export default [
   DemoSpatial,
   DemoTracking,
   DemoRecognition,
-  References,
   Closing,
 ] satisfies Page[];
