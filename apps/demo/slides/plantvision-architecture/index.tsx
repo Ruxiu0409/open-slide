@@ -10,6 +10,7 @@ import rcpAnchor from './assets/rcp-anchor.jpg';
 import mlClassifier from './assets/ml-classifier.jpg';
 import plantTracker from './assets/plant-tracker.jpg';
 import infoCardReal from './assets/info-card-real.jpg';
+import historyReal from './assets/history-real.jpg';
 import polycamDemo from './assets/polycam-demo.mp4';
 
 export const design: DesignSystem = {
@@ -830,10 +831,10 @@ const ReferenceObject: Page = () => (
 );
 
 const ModelStep = ({ n, t, d }: { n: string; t: string; d: string }) => (
-  <div style={{ display: 'flex', flexDirection: 'column', gap: 6, background: surface, border: hairline, borderRadius: 16, boxShadow: softShadow, padding: '18px 26px' }}>
-    <span style={{ fontFamily: MONO, fontSize: 16, color: 'var(--osd-accent)', letterSpacing: '0.12em' }}>STEP {n}</span>
-    <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 26, fontWeight: 720 }}>{t}</span>
-    <span style={{ fontSize: 21, color: muted, lineHeight: 1.4 }}>{d}</span>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 10, background: surface, border: hairline, borderRadius: 20, boxShadow: softShadow, padding: '30px 36px' }}>
+    <span style={{ fontFamily: MONO, fontSize: 18, color: 'var(--osd-accent)', letterSpacing: '0.12em' }}>STEP {n}</span>
+    <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 32, fontWeight: 720 }}>{t}</span>
+    <span style={{ fontSize: 24, color: muted, lineHeight: 1.45 }}>{d}</span>
   </div>
 );
 
@@ -967,9 +968,10 @@ const Challenges: Page = () => (
 const DemoSpatial: Page = () => (
   <Shell eyebrow="實作畫面 · 掃描與錨點">
     <Heading>掃描 → 標記錨點</Heading>
-    <div style={{ marginTop: 30, display: 'flex', gap: 44, alignItems: 'flex-start' }}>
-      <GalleryCard src={polycamLibrary} device="phone" sh={430} stageH={486} flex="0 0 250px" tag="POLYCAM" caption="實際掃描:馬纓丹、天竺葵兩盆植株" />
-      <GalleryCard src={rcpAnchor} device="mac" sh={440} stageH={486} tag="REALITY COMPOSER PRO" caption="PlantAnchor:在模型上佈署部位錨點" />
+    <div style={{ marginTop: 24, display: 'flex', gap: 28, alignItems: 'center', justifyContent: 'center' }}>
+      <GalleryCard src={polycamLibrary} device="phone" sh={452} stageH={508} flex="0 0 auto" tag="POLYCAM" caption="掃描馬纓丹、天竺葵兩盆植株" />
+      <span style={{ fontSize: 60, color: 'var(--osd-accent)', flexShrink: 0, paddingBottom: 56 }}>→</span>
+      <GalleryCard src={rcpAnchor} device="mac" sh={430} stageH={508} flex="0 0 auto" tag="REALITY COMPOSER PRO" caption="在模型上佈署花、葉部位錨點" />
     </div>
   </Shell>
 );
@@ -1128,24 +1130,11 @@ const Growth: Page = () => (
   </Shell>
 );
 
-// ── 歷史紀錄列 ──
-const HistoryRow = ({ name, sci, conf, when }: { name: string; sci: string; conf: string; when: string }) => (
-  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '17px 0', borderTop: hairline }}>
-    <span>
-      <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 27, fontWeight: 720, color: '#1E5E2E' }}>{name}</span>
-      <span style={{ fontSize: 21, color: dim, fontStyle: 'italic', marginLeft: 12 }}>{sci}</span>
-    </span>
-    <span style={{ fontFamily: MONO, fontSize: 21, color: muted }}>
-      <span style={{ color: 'var(--osd-accent)' }}>{conf}</span> · {when}
-    </span>
-  </div>
-);
-
 const History: Page = () => (
   <Shell eyebrow="App · History">
     <Heading>歷史紀錄</Heading>
     <div style={{ marginTop: 34, display: 'flex', gap: 48, flex: 1, alignItems: 'center' }}>
-      <div style={{ flex: '0 0 44%', display: 'flex', flexDirection: 'column', gap: 18 }}>
+      <div style={{ flex: '0 0 42%', display: 'flex', flexDirection: 'column', gap: 18 }}>
         <p style={{ fontSize: 26, lineHeight: 1.5, color: muted, margin: 0 }}>
           每次辨識可存進歷史,離線保存、隨時回顧整理。
         </p>
@@ -1153,19 +1142,15 @@ const History: Page = () => (
         <Point>以 JSON 檔本地持久化(<Code>HistoryStore</Code>),重開仍在</Point>
         <Point><Code>HistoryView</Code> 清單呈現,可逐筆檢視與清除</Point>
       </div>
-      <div
-        style={{
-          flex: 1,
-          background: surface,
-          border: hairline,
-          borderRadius: 'var(--osd-radius)',
-          boxShadow: softShadow,
-          padding: '14px 36px 28px',
-        }}
-      >
-        <HistoryRow name="馬纓丹" sci="Lantana camara" conf="90%" when="今天 17:45" />
-        <HistoryRow name="天竺葵" sci="Pelargonium × hortorum" conf="92%" when="今天 16:20" />
-        <HistoryRow name="馬纓丹" sci="Lantana camara" conf="88%" when="昨天 10:08" />
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <img
+          src={historyReal}
+          alt="Vision Pro 上的歷史紀錄視窗(天竺葵、馬纓丹各 100%)"
+          style={{ width: '100%', borderRadius: 'var(--osd-radius)', border: hairline, boxShadow: softShadow, display: 'block' }}
+        />
+        <span style={{ fontSize: 21, color: dim, lineHeight: 1.4 }}>
+          實機:Vision Pro 上的歷史紀錄(天竺葵、馬纓丹各 100% · 來源 Mac Relay)
+        </span>
       </div>
     </div>
   </Shell>
@@ -1195,7 +1180,7 @@ export const notes: (string | undefined)[] = [
   '這段影片是用 Polycam 製作馬纓丹模型的過程:環繞拍攝整株與花盆、Polycam 自動生成 3D 網格與材質,再匯出 USDZ,給後面的 ARKit 追蹤用。',
   '追到位置之後,我們在沉浸式空間裡,把部位標籤錨定在物件的局部座標上,這些座標來自剛剛的 Reality Composer Pro 場景。要新增一種可追蹤的植物幾乎不用寫程式,丟進參考物件、加一筆設定就好。如果整株有固定偏移,可以用 frameCorrection 校正。',
   '另一個擴增實境的應用,是 3D 生長動畫,呈現植物從發芽、長葉、開花到成熟的過程。模型是用 RealityKit 程式生成的,不需要外部 3D 檔;靠 scale、opacity、position 的變化,讓莖長高、葉子慢慢淡入、花在開花階段才出現。使用者可以用手勢播放、暫停、切換階段跟重播。',
-  '辨識過的植物會存進歷史紀錄。每一筆會記錄品種、學名、信心、來源跟時間,用 JSON 在本地保存,App 重開也還在。使用者可以在清單裡逐筆檢視,也可以清除。',
+  '辨識過的植物會存進歷史紀錄,右邊就是實機畫面。每一筆會記錄品種、學名、信心、來源跟時間,像這裡天竺葵和馬纓丹都是 100%、來源是 Mac Relay。資料用 JSON 在本地保存,App 重開也還在,使用者可以在清單裡逐筆檢視,也可以一鍵清除。',
   '這頁把課堂上的電腦視覺跟擴增實境名詞,對應到我們實際用在哪裡,方便大家對照:影像分類、滑動視窗切塊、投票聚合、時間濾波,還有六自由度物件追蹤跟空間錨定。',
   '這是實作畫面的掃描與錨點:左邊用 Polycam 實際掃描馬纓丹跟天竺葵,右邊在 Reality Composer Pro 把花、葉的部位錨點標在模型上。',
   '接著訓練追蹤模型:用 Create ML 的 Object Tracking 模板餵入掃描資料,產出右邊這個 PlantTracker.referenceobject。它就是 ARKit 實際拿來追蹤的物件,設定成 gravity-aligned、排除底面,很適合放在桌上的盆栽。',
