@@ -37,6 +37,21 @@ const fill = {
   fontFamily: 'var(--osd-font-body)',
 } as const;
 
+// 螢光筆重點:柔綠橫條從左掃到右(學自 steps-in-motion 的 m-sweep)。
+// 放在 <Step> 內會在揭露時掃入;單獨使用則為靜態標示。
+const SWEEP_CSS =
+  '@keyframes pvSweep{from{background-size:0% 0.46em}to{background-size:100% 0.46em}}' +
+  '.pv-mark{background-image:linear-gradient(rgba(91,229,154,0.55),rgba(91,229,154,0.55));background-repeat:no-repeat;background-position:left 92%;background-size:100% 0.46em;font-weight:700;border-radius:2px}' +
+  '[data-osd-step="revealed"] .pv-mark{animation:pvSweep 620ms cubic-bezier(0.16,1,0.3,1) both}';
+if (typeof document !== 'undefined' && !document.getElementById('pv-sweep-css')) {
+  const styleEl = document.createElement('style');
+  styleEl.id = 'pv-sweep-css';
+  styleEl.textContent = SWEEP_CSS;
+  document.head.appendChild(styleEl);
+}
+
+const Mark = ({ children }: { children: ReactNode }) => <span className="pv-mark">{children}</span>;
+
 // 水彩葉片：角落點綴,呼應淺色植物風。
 const Leaf = ({ style }: { style?: CSSProperties }) => (
   <svg width="300" height="300" viewBox="0 0 100 100" aria-hidden style={{ position: 'absolute', ...style }}>
@@ -506,7 +521,7 @@ const Overview: Page = () => (
     <div style={{ marginTop: 34, display: 'flex', gap: 48, flex: 1, alignItems: 'center' }}>
       <div style={{ flex: '0 0 44%', display: 'flex', flexDirection: 'column', gap: 20 }}>
         <p style={{ fontSize: 26, lineHeight: 1.5, color: muted, margin: 0 }}>
-          把一株真實植物,變成 Vision Pro 裡會跟著它的空間資訊卡。系統分成兩條獨立管線:一條負責「這是什麼、健不健康」,一條負責「它在空間哪裡」。
+          把一株真實植物,變成 Vision Pro 裡會跟著它的空間資訊卡。系統分成<Mark>兩條獨立管線</Mark>:一條負責「這是什麼、健不健康」,一條負責「它在空間哪裡」。
         </p>
         <Card tag="電腦視覺 · CV" title="辨識植物與健康" body="跑 Core ML 判植物品種與枯萎程度,輸出 plantID 與等級。" />
         <Card tag="擴增實境 · AR" title="空間追蹤與標籤" body="裝置端 ARKit 追固定植株,把資訊 UI 錨定在它附近。" />
@@ -541,7 +556,7 @@ const CoreDecision: Page = () => (
       />
     </div>
     <p style={{ marginTop: 40, fontSize: 27, color: muted, lineHeight: 1.5 }}>
-      兩個身分來源各自能單獨壞掉與退場，CV 掛了不影響 AR 定位,反之亦然。
+      兩個身分來源<Mark>各自能單獨壞掉與退場</Mark>,CV 掛了不影響 AR 定位,反之亦然。
     </p>
   </Shell>
 );
@@ -993,9 +1008,11 @@ const Closing: Page = () => (
         三件值得帶走的事
       </h2>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 26 }}>
-        <Point>CV 與 AR 拆成兩條獨立管線,各自能單獨壞掉與退場</Point>
-        <Point>tile 投票 + 時間濾波,把單幀雜訊收斂成穩定判斷</Point>
-        <Point>追花盆而非葉片、寧可回報不確定，務實面對真實世界的限制</Point>
+        <Steps>
+          <Step><Point>CV 與 AR 拆成<Mark>兩條獨立管線</Mark>,各自能單獨壞掉與退場</Point></Step>
+          <Step><Point><Mark>tile 投票 + 時間濾波</Mark>,把單幀雜訊收斂成穩定判斷</Point></Step>
+          <Step><Point>追花盆而非葉片、<Mark>寧可回報不確定</Mark>,務實面對真實世界的限制</Point></Step>
+        </Steps>
       </div>
       <div style={{ marginTop: 52, fontFamily: MONO, fontSize: 22, color: dim }}>
         蔡承曄 · 陳俊宇 · 曾柏諺　·　感謝聆聽
