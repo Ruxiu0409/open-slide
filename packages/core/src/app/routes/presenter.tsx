@@ -14,6 +14,11 @@ import { CANVAS_HEIGHT, CANVAS_WIDTH } from '../lib/sdk';
 import { type StepController, StepHost } from '../lib/step-context';
 import { useSlideModule } from '../lib/use-slide-module';
 
+/**
+ * The presenter console — a passive mirror of the audience window. Used both as
+ * the `/presenter` route and inline in the editor; pass `onExit` for the inline
+ * case so `Esc` returns to the editor.
+ */
 export function Presenter({
   slideId: slideIdProp,
   onExit,

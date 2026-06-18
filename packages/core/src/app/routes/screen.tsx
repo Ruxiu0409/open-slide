@@ -4,8 +4,10 @@ import { format, useLocale } from '@/lib/use-locale';
 import { Player } from '../components/player';
 import { useSlideModule } from '../lib/use-slide-module';
 
-// The audience slide window. It hosts the Player with controls, so it is the
-// source of truth that broadcasts state and answers the presenter's commands.
+/**
+ * The audience slide window. It hosts the Player with controls, so it is the
+ * source of truth that broadcasts state and answers the presenter's commands.
+ */
 export function Screen() {
   const { slideId = '' } = useParams();
   const { slide, error } = useSlideModule(slideId);

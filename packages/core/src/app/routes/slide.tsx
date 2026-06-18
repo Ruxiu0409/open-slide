@@ -125,9 +125,11 @@ export function Slide() {
     [pageCount, setSearchParams],
   );
 
-  // Open the slides in a second window (audience) and turn this window into the
-  // presenter console. The audience window is the source of truth; this console
-  // mirrors it and drives navigation over the channel.
+  /**
+   * Open the slides in a second window (audience) and turn this window into the
+   * presenter console. The audience window is the source of truth; this console
+   * mirrors it and drives navigation over the channel.
+   */
   const startPresenterMode = useCallback(() => {
     if (!slideId) return;
     openAudienceWindow(slideId, index);
