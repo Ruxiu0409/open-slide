@@ -8,6 +8,7 @@ import mlObjectTracking from './assets/ml-objecttracking.jpg';
 import macRelay from './assets/mac-relay.jpg';
 import rcpAnchor from './assets/rcp-anchor.jpg';
 import mlClassifier from './assets/ml-classifier.jpg';
+import plantTracker from './assets/plant-tracker.jpg';
 
 export const design: DesignSystem = {
   palette: { bg: '#F4F8EF', text: '#22372A', accent: '#3B8E44' },
@@ -925,12 +926,21 @@ const Challenges: Page = () => (
 );
 
 const DemoSpatial: Page = () => (
-  <Shell eyebrow="實作畫面 · 空間追蹤流程">
-    <Heading>掃描 → 錨點 → 追蹤模型</Heading>
-    <div style={{ marginTop: 28, display: 'flex', gap: 28, alignItems: 'flex-start' }}>
-      <GalleryCard src={polycamLibrary} device="phone" sh={406} stageH={456} flex="0 0 232px" tag="POLYCAM" caption="實際掃描:馬纓丹、天竺葵兩盆植株" />
-      <GalleryCard src={rcpAnchor} device="mac" sh={398} stageH={456} tag="REALITY COMPOSER PRO" caption="PlantAnchor:在模型上佈署部位錨點" />
-      <GalleryCard src={mlObjectTracking} device="mac" sh={398} stageH={456} tag="CREATE ML" caption="Object Tracking 模板訓練追蹤模型" />
+  <Shell eyebrow="實作畫面 · 掃描與錨點">
+    <Heading>掃描 → 標記錨點</Heading>
+    <div style={{ marginTop: 30, display: 'flex', gap: 44, alignItems: 'flex-start' }}>
+      <GalleryCard src={polycamLibrary} device="phone" sh={430} stageH={486} flex="0 0 250px" tag="POLYCAM" caption="實際掃描:馬纓丹、天竺葵兩盆植株" />
+      <GalleryCard src={rcpAnchor} device="mac" sh={440} stageH={486} tag="REALITY COMPOSER PRO" caption="PlantAnchor:在模型上佈署部位錨點" />
+    </div>
+  </Shell>
+);
+
+const DemoTracking: Page = () => (
+  <Shell eyebrow="實作畫面 · 追蹤模型">
+    <Heading>訓練出可追蹤的物件</Heading>
+    <div style={{ marginTop: 30, display: 'flex', gap: 44, justifyContent: 'center', alignItems: 'flex-start' }}>
+      <GalleryCard src={mlObjectTracking} device="mac" sh={460} stageH={520} tag="CREATE ML" caption="Object Tracking 模板:餵入掃描資料訓練" />
+      <GalleryCard src={plantTracker} device="mac" sh={460} stageH={520} tag="REFERENCE OBJECT" caption="產出 PlantTracker.referenceobject:gravity-aligned、排除底面" />
     </div>
   </Shell>
 );
@@ -1165,7 +1175,8 @@ export const notes: (string | undefined)[] = [
   '另一個擴增實境的應用,是 3D 生長動畫,呈現植物從發芽、長葉、開花到成熟的過程。模型是用 RealityKit 程式生成的,不需要外部 3D 檔;靠 scale、opacity、position 的變化,讓莖長高、葉子慢慢淡入、花在開花階段才出現。使用者可以用手勢播放、暫停、切換階段跟重播。',
   '辨識過的植物會存進歷史紀錄。每一筆會記錄品種、學名、信心、來源跟時間,用 JSON 在本地保存,App 重開也還在。使用者可以在清單裡逐筆檢視,也可以清除。',
   '這頁把課堂上的電腦視覺跟擴增實境名詞,對應到我們實際用在哪裡,方便大家對照:影像分類、滑動視窗切塊、投票聚合、時間濾波,還有六自由度物件追蹤跟空間錨定。',
-  '這是我們的實作畫面,空間追蹤這條線:左邊是用 Polycam 實際掃描馬纓丹跟天竺葵,中間是在 Reality Composer Pro 佈署部位錨點,右邊是用 Create ML 的 Object Tracking 模板訓練追蹤模型。',
+  '這是實作畫面的掃描與錨點:左邊用 Polycam 實際掃描馬纓丹跟天竺葵,右邊在 Reality Composer Pro 把花、葉的部位錨點標在模型上。',
+  '接著訓練追蹤模型:用 Create ML 的 Object Tracking 模板餵入掃描資料,產出右邊這個 PlantTracker.referenceobject。它就是 ARKit 實際拿來追蹤的物件,設定成 gravity-aligned、排除底面,很適合放在桌上的盆栽。',
   '辨識跟中繼這條線:左邊是 Create ML 的 PlantClassifier 訓練資料,有馬纓丹、天竺葵跟背景三類;右邊是我們的 Mac Frame Relay,負責抽幀、跑分類,再透過 Socket.IO 把結果送回 Vision Pro。',
   '這是我們用到的 Apple 框架文件跟資料來源。',
   '最後總結三點。第一,我們把辨識跟空間追蹤拆成兩條獨立流程,各自能單獨運作。第二,用 tile 投票加上時間平滑,把單幀的雜訊收斂成穩定的判斷。第三,我們很務實地面對真實世界的限制,像是追花盆而不是葉片、寧可說不確定。以上是我們的報告,謝謝大家。',
@@ -1192,6 +1203,7 @@ export default [
   History,
   TermMap,
   DemoSpatial,
+  DemoTracking,
   DemoRecognition,
   References,
   Closing,
