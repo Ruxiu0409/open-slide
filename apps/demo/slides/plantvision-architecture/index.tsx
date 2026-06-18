@@ -830,7 +830,7 @@ const ReferenceObject: Page = () => (
 );
 
 const ModelStep = ({ n, t, d }: { n: string; t: string; d: string }) => (
-  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 6, background: surface, border: hairline, borderRadius: 16, boxShadow: softShadow, padding: '18px 26px' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 6, background: surface, border: hairline, borderRadius: 16, boxShadow: softShadow, padding: '18px 26px' }}>
     <span style={{ fontFamily: MONO, fontSize: 16, color: 'var(--osd-accent)', letterSpacing: '0.12em' }}>STEP {n}</span>
     <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 26, fontWeight: 720 }}>{t}</span>
     <span style={{ fontSize: 21, color: muted, lineHeight: 1.4 }}>{d}</span>
@@ -840,12 +840,15 @@ const ModelStep = ({ n, t, d }: { n: string; t: string; d: string }) => (
 const VideoDemo: Page = () => (
   <Shell eyebrow="Demo · 製作 3D 模型">
     <Heading>用 Polycam 製作馬纓丹模型</Heading>
-    <div style={{ marginTop: 18, flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 24 }}>
-      <PhoneFrame videoSrc={polycamDemo} alt="馬纓丹 Polycam 掃描影片" island={false} sh={470} />
-      <div style={{ display: 'flex', gap: 20, alignSelf: 'stretch' }}>
+    <div style={{ marginTop: 18, flex: 1, display: 'flex', gap: 36, alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 22 }}>
         <ModelStep n="1" t="環繞拍攝" d="繞著馬纓丹多角度拍攝整株與花盆" />
         <ModelStep n="2" t="自動建模" d="Polycam 生成 3D 網格與材質" />
-        <ModelStep n="3" t="匯出 USDZ" d="供 Reality Composer Pro 與 ARKit 使用" />
+      </div>
+      <PhoneFrame videoSrc={polycamDemo} alt="馬纓丹 Polycam 掃描影片" island={false} sh={540} />
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 22 }}>
+        <ModelStep n="3" t="匯出 USDZ" d="取得標準 3D 模型檔" />
+        <ModelStep n="4" t="用於追蹤" d="匯入 RCP、餵給 ARKit 追蹤" />
       </div>
     </div>
   </Shell>
