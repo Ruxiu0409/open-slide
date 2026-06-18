@@ -2,7 +2,6 @@ import type { CSSProperties, ReactNode } from 'react';
 import type { DesignSystem, Page, SlideMeta, SlideTransition } from '@open-slide/core';
 import { Step, Steps, useSlidePageNumber } from '@open-slide/core';
 import userPreview from './assets/user-preview.jpg';
-import polycamIcon from './assets/polycam-icon.jpg';
 import polycamModel from './assets/polycam-model.jpg';
 import polycamLibrary from './assets/polycam-library.jpg';
 import mlObjectTracking from './assets/ml-objecttracking.jpg';
@@ -507,10 +506,10 @@ const Agenda: Page = () => (
   <Shell eyebrow="本次報告">
     <Heading>Agenda</Heading>
     <div style={{ marginTop: 34, display: 'flex', flexDirection: 'column' }}>
-      <AgendaRow n="01" title="系統概觀" sub="核心決定:辨識(CV)與空間追蹤(AR)兩條獨立管線、Apple 框架" />
+      <AgendaRow n="01" title="系統概觀" sub="核心決定:CV 與 AR 兩條獨立流程、面對的限制、Apple 框架" />
       <AgendaRow n="02" title={<span style={{ color: 'var(--osd-accent)' }}>電腦視覺</span>} sub="tile 分類、投票、時間平滑、資訊卡、枯萎程度與趨勢" />
       <AgendaRow n="03" title={<span style={{ color: sky }}>擴增實境</span>} sub="物件追蹤、reference object 掃描、空間標籤、3D 生長動畫" />
-      <AgendaRow n="04" title="收尾" sub="歷史紀錄、技術對應、挑戰、實作畫面與參考文獻" />
+      <AgendaRow n="04" title="收尾" sub="歷史紀錄、技術對應、實作畫面與參考文獻" />
     </div>
   </Shell>
 );
@@ -521,7 +520,7 @@ const Overview: Page = () => (
     <div style={{ marginTop: 34, display: 'flex', gap: 48, flex: 1, alignItems: 'center' }}>
       <div style={{ flex: '0 0 44%', display: 'flex', flexDirection: 'column', gap: 20 }}>
         <p style={{ fontSize: 26, lineHeight: 1.5, color: muted, margin: 0 }}>
-          把一株真實植物,變成 Vision Pro 裡會跟著它的空間資訊卡。系統分成<Mark>兩條獨立管線</Mark>:一條負責「這是什麼、健不健康」,一條負責「它在空間哪裡」。
+          把一株真實植物,變成 Vision Pro 裡會跟著它的空間資訊卡。系統分成<Mark>兩條獨立流程</Mark>:一條負責「這是什麼、健不健康」,一條負責「它在空間哪裡」。
         </p>
         <Card tag="電腦視覺 · CV" title="辨識植物與健康" body="跑 Core ML 判植物品種與枯萎程度,輸出 plantID 與等級。" />
         <Card tag="擴增實境 · AR" title="空間追蹤與標籤" body="裝置端 ARKit 追固定植株,把資訊 UI 錨定在它附近。" />
@@ -547,7 +546,7 @@ const CoreDecision: Page = () => (
       <Card
         tag="RECOGNITION · CV"
         title="Mac 分類 → 2D 視窗"
-        body="決定『是什麼植物、多枯萎』。只認訓練過的目標植物(馬纓丹、天竺葵);不是目標或沒有植物,就辨識成 background。"
+        body="決定『是什麼植物、多枯萎』。只認訓練過的目標植物(馬纓丹、天竺葵);不是目標或沒有植物,就辨識成 Background。"
       />
       <Card
         tag="SPATIAL TRACKING · AR"
@@ -609,7 +608,7 @@ const AppleStack: Page = () => (
       <FrameworkCard
         tag="影像分析 · IMAGE"
         name="Vision"
-        gives="影像請求管線、前處理與特徵分析。"
+        gives="影像請求流程、前處理與特徵分析。"
         use="把鏡像畫面整理成可分類的輸入。"
       />
       <FrameworkCard
@@ -637,7 +636,7 @@ const TileVoting: Page = () => (
     <div style={{ marginTop: 52, display: 'flex', flexDirection: 'column', gap: 28 }}>
       <Point>植物常只佔鏡像一小塊、又偏離中心，單一中心裁切會直接漏掉</Point>
       <Point><Code>classifyScene</Code> 對一整排重疊 tile 各跑一次 <Code>PlantClassifier</Code></Point>
-      <Point>每個 tile 是獨立的影像分類;<Code>"background"</Code> 是保留標籤,代表「沒有植物」</Point>
+      <Point>每個 tile 是獨立的影像分類;<Code>"Background"</Code> 是保留標籤,代表「沒有植物」</Point>
     </div>
     <p style={{ marginTop: 'auto', marginBottom: 0, fontSize: 21, color: dim, lineHeight: 1.5, borderTop: hairline, paddingTop: 18 }}>
       ※ <span style={{ color: 'var(--osd-accent)', fontFamily: MONO }}>tile</span>:把整幀畫面切成的一塊塊重疊小方格,每塊各自獨立送進模型分類。
@@ -694,7 +693,7 @@ const ARDivider: Page = () => (
   <SectionDivider
     part="Part II · Augmented Reality"
     title="擴增實境"
-    sub="用 ARKit 追固定植株的 6DoF 位姿,把資訊卡穩定錨定在真實空間裡，這條管線完全在裝置端,不碰 Mac。"
+    sub="用 ARKit 追固定植株的 6DoF 位姿,把資訊卡穩定錨定在真實空間裡，這條流程完全在裝置端,不碰 Mac。"
   />
 );
 ARDivider.transition = settle;
@@ -799,7 +798,7 @@ const MacbookFrame = ({ src, alt, sh }: { src: string; alt: string; sh: number }
 const ReferenceObject: Page = () => (
   <Shell eyebrow="AR · Reference Object">
     <Heading>掃描什麼、錨定什麼</Heading>
-    <div style={{ marginTop: 22, display: 'flex', gap: 48, flex: 1, alignItems: 'center' }}>
+    <div style={{ marginTop: 14, display: 'flex', gap: 40, flex: 1, alignItems: 'center' }}>
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 22 }}>
         <Steps>
           <StepRow n="01">用 Polycam 掃描馬纓丹整株(含花盆),匯出 USDZ</StepRow>
@@ -808,12 +807,8 @@ const ReferenceObject: Page = () => (
           <Step><StepRow n="04">作為 reference object 餵給 ARKit,穩定定位與顯示標籤</StepRow></Step>
         </Steps>
       </div>
-      <div style={{ flex: '0 0 40%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
-        <PhoneFrame src={polycamModel} alt="Polycam 掃描出的馬纓丹 3D 模型" island={false} />
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <img src={polycamIcon} alt="Polycam" style={{ width: 38, height: 38, borderRadius: 9, border: hairline }} />
-          <span style={{ fontSize: 22, color: muted }}>Polycam 掃描的馬纓丹 3D 模型</span>
-        </div>
+      <div style={{ flex: '0 0 46%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <PhoneFrame src={polycamModel} alt="Polycam 掃描出的馬纓丹 3D 模型" island={false} sh={724} />
       </div>
     </div>
   </Shell>
@@ -924,13 +919,13 @@ const Challenges: Page = () => (
       <ChallengeCard icon={<IconCamera />} title="取不到裝置相機" body="visionOS 基於隱私不開放 App 取用 Vision Pro 的主鏡頭與穿透影像;改由 Mac 鏡像擷取畫面跑 CV,代價是多一段網路延遲。" />
       <ChallengeCard icon={<IconLeaf />} title="葉片晃動變形" body="改追花盆 / 底座 / marker,而非會晃動的葉片。" />
       <ChallengeCard icon={<IconData />} title="枯萎樣本偏少" body="iNaturalist 多為開花株,需自行補拍實機樣本。" />
-      <ChallengeCard icon={<IconWaves />} title="單幀分類閃爍" body="tile 投票 + 時間平滑;平手寧可回報不確定。" />
+      <ChallengeCard icon={<IconWaves />} title="畫面會閃爍" body="用多幀投票加時間平滑穩定判斷;平手寧可回報不確定。" />
     </div>
   </Shell>
 );
 
 const DemoSpatial: Page = () => (
-  <Shell eyebrow="實作畫面 · 空間追蹤管線">
+  <Shell eyebrow="實作畫面 · 空間追蹤流程">
     <Heading>掃描 → 錨點 → 追蹤模型</Heading>
     <div style={{ marginTop: 28, display: 'flex', gap: 28, alignItems: 'flex-start' }}>
       <GalleryCard src={polycamLibrary} device="phone" sh={406} stageH={456} flex="0 0 232px" tag="POLYCAM" caption="實際掃描:馬纓丹、天竺葵兩盆植株" />
@@ -950,7 +945,7 @@ const DemoRecognition: Page = () => (
         sh={466}
         stageH={526}
         tag="CREATE ML"
-        caption="PlantClassifier 訓練資料:馬纓丹 175、background 175、天竺葵 114"
+        caption="PlantClassifier 訓練資料:馬纓丹 175、Background 175、天竺葵 114"
       />
       <GalleryCard
         src={macRelay}
@@ -1009,7 +1004,7 @@ const Closing: Page = () => (
       </h2>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 26 }}>
         <Steps>
-          <Step><Point>CV 與 AR 拆成<Mark>兩條獨立管線</Mark>,各自能單獨壞掉與退場</Point></Step>
+          <Step><Point>CV 與 AR 拆成<Mark>兩條獨立流程</Mark>,各自能單獨壞掉與退場</Point></Step>
           <Step><Point><Mark>tile 投票 + 時間濾波</Mark>,把單幀雜訊收斂成穩定判斷</Point></Step>
           <Step><Point>追花盆而非葉片、<Mark>寧可回報不確定</Mark>,務實面對真實世界的限制</Point></Step>
         </Steps>
@@ -1039,7 +1034,7 @@ const InfoCard: Page = () => (
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
           <Point>顯示中文名、學名、科屬、形態特徵與照護建議</Point>
-          <Point>辨識信心一併呈現;低於門檻時退回 demo 資料</Point>
+          <Point>辨識信心一併呈現;低於門檻就判定為 Background,不顯示資訊卡</Point>
           <Point>資料本地內建,relay 只傳 id + 信心,不傳整包資料</Point>
         </div>
       </div>
@@ -1153,27 +1148,27 @@ export const meta: SlideMeta = {
 export const notes: (string | undefined)[] = [
   '大家好,我們這組的專題是 PlantVision,一個在 Apple Vision Pro 上的植物辨識應用。它結合電腦視覺和擴增實境:用相機認出植物、判斷健不健康,再把資訊直接顯示在你眼前的真實植株旁邊。組員是蔡承曄、陳俊宇、曾柏諺,今天由我們一起報告。',
   '先說明今天的順序。第一段講系統概觀,特別是我們最重要的一個設計決定。第二段講電腦視覺,也就是怎麼把畫面變成穩定的辨識結果。第三段講擴增實境,怎麼把資訊釘在空間裡,還有 3D 生長動畫。最後是歷史紀錄、挑戰、實作畫面跟參考資料。',
-  '先給大家一個整體印象。PlantVision 要做的,是把一株真實植物,變成 Vision Pro 裡會跟著它移動的空間資訊卡。整個系統其實分成兩條獨立的管線:一條負責「這是什麼植物、健不健康」,另一條負責「它在空間中的哪裡」。右邊這張圖,就是使用者戴上裝置實際看到的樣子。',
+  '先給大家一個整體印象。PlantVision 要做的,是把一株真實植物,變成 Vision Pro 裡會跟著它移動的空間資訊卡。整個系統其實分成兩條獨立的流程:一條負責「這是什麼植物、健不健康」,另一條負責「它在空間中的哪裡」。右邊這張圖,就是使用者戴上裝置實際看到的樣子。',
   '這頁是我們最關鍵的設計決定:把辨識和空間追蹤刻意拆開。辨識在 Mac 端跑 Core ML,決定是什麼植物、多枯萎;空間追蹤在裝置端用 ARKit,決定它在哪、是哪一株。好處是兩邊各自獨立:辨識壞掉不會影響定位,定位斷了也不影響辨識,整個系統更穩。',
+  '在進入細節前,先講我們遇到的限制,這也解釋了後面為什麼這樣設計。第一,visionOS 基於隱私不開放 App 取用裝置相機,所以我們改用 Mac 鏡像擷取畫面來跑辨識。第二,葉片會晃、會變形,所以我們追花盆而不是葉片。第三,枯萎樣本很少,得自己補拍。第四,畫面會閃,用多幀投票加時間平滑解決。',
   '我們不是從零造輪子,而是站在 Apple 的框架上。ARKit 負責空間感知和物件追蹤,RealityKit 負責 3D 渲染、空間標籤和生長動畫,Vision 負責影像前處理,Core ML 負責在裝置端跑模型。我們做的,是把這四個能力組合起來。',
   '接下來進入第一大段:電腦視覺。這段的目標,是把一張張會抖動的畫面,收斂成一個穩定可信的辨識結果。流程是:抽幀、切成小塊分類、投票、時間平滑,最後分級。',
-  '第一步是分類。我們不是只裁畫面正中間那一塊,因為植物常常只佔畫面一小角、又偏離中心。所以我們把整張畫面切成很多重疊的小方格,也就是 tile,每一塊各自送進模型分類。底下有 tile 的解釋。另外 background 是一個保留標籤,代表這塊沒有植物。',
+  '第一步是分類。我們不是只裁畫面正中間那一塊,因為植物常常只佔畫面一小角、又偏離中心。所以我們把整張畫面切成很多重疊的小方格,也就是 tile,每一塊各自送進模型分類。底下有 tile 的解釋。另外 Background 是一個保留標籤,代表這塊沒有植物。',
   '每塊 tile 都會投一票,我們再把這些票聚合成一個答案。看最高票跟第二名差多少、有幾塊互相佐證,夠明確才下判斷,不夠就回報不確定。這些門檻不是隨便設的,是拿真實截圖一張一張調出來的。',
   '就算單張畫面判對了,連續看還是會跳動。所以我們在大約 0.7 秒的時間窗內做多數決,把單幀的閃爍壓掉。如果票數平手,我們寧可顯示不確定,也不要硬猜一個錯的答案。',
   '辨識出植物之後,系統會用這個 plantID 去對應本地的植物資料庫,組出一張資訊卡。像這裡的馬纓丹,會顯示中文名、學名、科屬、形態特徵、照護建議,還有辨識信心。使用者可以一鍵把它加入歷史紀錄。這些資料是本地內建的,網路上只傳一個 id 跟信心值。',
   '除了認出品種,我們還會判斷健康。我們把枯萎當成一個「面積比例」的問題:每塊 tile 判健康或枯萎,枯萎比例就是枯萎的塊數除以有植物的塊數,再分成四級。另外也會看時間上的趨勢,是在惡化、穩定還是好轉,給使用者更有用的提示。',
-  '進入第二大段:擴增實境。這條管線完全在裝置端跑,不依賴 Mac。核心是用 ARKit 去追蹤固定那一株植物的位置和角度。',
+  '進入第二大段:擴增實境。這條流程完全在裝置端跑,不依賴 Mac。核心是用 ARKit 去追蹤固定那一株植物的位置和角度。',
   'ARKit 的 ObjectTrackingProvider 會去追我們事先建立好的參考物件。位置跟身分,都由當下追到哪個物件來決定,並持續更新它的六自由度位姿。這個功能需要實機跟空間感知權限,在模擬器上會退回我們做的合成場景。',
   '怎麼做出參考物件?我們用 Polycam 把整株馬纓丹連花盆掃描下來、匯出 USDZ;因為整株輪廓夠明顯,就直接拿花盆加植株當追蹤目標。再匯入 Reality Composer Pro,在模型上標出花、葉的部位錨點,最後餵給 ARKit。右邊就是我們真實掃出來的 3D 模型。',
   '追到位置之後,我們在沉浸式空間裡,把部位標籤錨定在物件的局部座標上,這些座標來自剛剛的 Reality Composer Pro 場景。要新增一種可追蹤的植物幾乎不用寫程式,丟進參考物件、加一筆設定就好。如果整株有固定偏移,可以用 frameCorrection 校正。',
   '另一個擴增實境的應用,是 3D 生長動畫,呈現植物從發芽、長葉、開花到成熟的過程。模型是用 RealityKit 程式生成的,不需要外部 3D 檔;靠 scale、opacity、position 的變化,讓莖長高、葉子慢慢淡入、花在開花階段才出現。使用者可以用手勢播放、暫停、切換階段跟重播。',
   '辨識過的植物會存進歷史紀錄。每一筆會記錄品種、學名、信心、來源跟時間,用 JSON 在本地保存,App 重開也還在。使用者可以在清單裡逐筆檢視,也可以清除。',
   '這頁把課堂上的電腦視覺跟擴增實境名詞,對應到我們實際用在哪裡,方便大家對照:影像分類、滑動視窗切塊、投票聚合、時間濾波,還有六自由度物件追蹤跟空間錨定。',
-  '做的過程遇到幾個主要問題。第一,visionOS 基於隱私不開放 App 取用裝置相機,所以我們改用 Mac 鏡像擷取畫面來跑辨識。第二,葉片會晃、會變形,所以我們追花盆而不是葉片。第三,枯萎樣本很少,得自己補拍。第四,單幀會閃,用投票加時間平滑解決。',
   '這是我們的實作畫面,空間追蹤這條線:左邊是用 Polycam 實際掃描馬纓丹跟天竺葵,中間是在 Reality Composer Pro 佈署部位錨點,右邊是用 Create ML 的 Object Tracking 模板訓練追蹤模型。',
   '辨識跟中繼這條線:左邊是 Create ML 的 PlantClassifier 訓練資料,有馬纓丹、天竺葵跟背景三類;右邊是我們的 Mac Frame Relay,負責抽幀、跑分類,再透過 Socket.IO 把結果送回 Vision Pro。',
   '這是我們用到的 Apple 框架文件跟資料來源。',
-  '最後總結三點。第一,我們把辨識跟空間追蹤拆成兩條獨立管線,各自能單獨運作。第二,用 tile 投票加上時間平滑,把單幀的雜訊收斂成穩定的判斷。第三,我們很務實地面對真實世界的限制,像是追花盆而不是葉片、寧可說不確定。以上是我們的報告,謝謝大家。',
+  '最後總結三點。第一,我們把辨識跟空間追蹤拆成兩條獨立流程,各自能單獨運作。第二,用 tile 投票加上時間平滑,把單幀的雜訊收斂成穩定的判斷。第三,我們很務實地面對真實世界的限制,像是追花盆而不是葉片、寧可說不確定。以上是我們的報告,謝謝大家。',
 ];
 
 export default [
@@ -1181,6 +1176,7 @@ export default [
   Agenda,
   Overview,
   CoreDecision,
+  Challenges,
   AppleStack,
   CVDivider,
   TileVoting,
@@ -1195,7 +1191,6 @@ export default [
   Growth,
   History,
   TermMap,
-  Challenges,
   DemoSpatial,
   DemoRecognition,
   References,
