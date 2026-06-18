@@ -493,7 +493,7 @@ const Agenda: Page = () => (
     <Heading>Agenda</Heading>
     <div style={{ marginTop: 34, display: 'flex', flexDirection: 'column' }}>
       <AgendaRow n="01" title="系統概觀" sub="核心決定:辨識(CV)與空間追蹤(AR)兩條獨立管線、Apple 框架" />
-      <AgendaRow n="02" title={<span style={{ color: 'var(--osd-accent)' }}>電腦視覺</span>} sub="tile 分類、投票、時間平滑、資訊卡、健康(枯萎+黃化+趨勢)" />
+      <AgendaRow n="02" title={<span style={{ color: 'var(--osd-accent)' }}>電腦視覺</span>} sub="tile 分類、投票、時間平滑、資訊卡、枯萎程度與趨勢" />
       <AgendaRow n="03" title={<span style={{ color: sky }}>擴增實境</span>} sub="物件追蹤、reference object 掃描、空間標籤、3D 生長動畫" />
       <AgendaRow n="04" title="收尾" sub="歷史紀錄、技術對應、挑戰、實作畫面與參考文獻" />
     </div>
@@ -654,16 +654,23 @@ const Smoothing: Page = () => (
 
 const Wither: Page = () => (
   <Shell eyebrow="CV · Health Classification">
-    <Heading>枯萎是「面積比例」,不是數幾塊</Heading>
-    <Lead>
-      第二個與辨識完全獨立的分類器,共用同一批 tile:每塊判 <Code>healthy</Code> / <Code>withered</Code>,
-      枯萎比例 = 枯萎 ÷(健康＋枯萎),時間窗內取平均後分四級。
-    </Lead>
-    <div style={{ marginTop: 44, display: 'flex', gap: 24 }}>
+    <Heading>枯萎程度與趨勢</Heading>
+    <p style={{ fontSize: 27, color: muted, lineHeight: 1.45, margin: '26px 0 0', maxWidth: 1480 }}>
+      與辨識獨立的分類器,共用同一批 tile:每塊判 <Code>healthy</Code> / <Code>withered</Code>,枯萎比例 = 枯萎 ÷(健康＋枯萎),時間窗取平均後分四級。
+    </p>
+    <div style={{ marginTop: 30, display: 'flex', gap: 22 }}>
       <Band range="< 10%" label="健康" color="#5BE59A" />
       <Band range="< 35%" label="輕微" color="#C8E06A" />
       <Band range="< 65%" label="中度" color={amber} />
       <Band range="≥ 65%" label="嚴重" color="#E2683E" />
+    </div>
+    <div style={{ marginTop: 26 }}>
+      <span style={{ fontFamily: MONO, fontSize: 18, color: 'var(--osd-accent)', letterSpacing: '0.14em' }}>趨勢 · TREND</span>
+      <div style={{ marginTop: 14, display: 'flex', gap: 22 }}>
+        <TrendChip arrow="↗" label="惡化" modifier="狀況似乎正在惡化" color="#C9572A" />
+        <TrendChip arrow="→" label="穩定" modifier="近期狀況穩定" color={muted} />
+        <TrendChip arrow="↘" label="好轉" modifier="狀況似乎正在好轉" color="#3B8E44" />
+      </div>
     </div>
   </Shell>
 );
@@ -1052,32 +1059,6 @@ const TrendChip = ({ arrow, label, modifier, color }: { arrow: string; label: st
   </div>
 );
 
-const HealthSignals: Page = () => (
-  <Shell eyebrow="CV · Health Signals">
-    <Heading>不只枯萎:黃化與趨勢</Heading>
-    <p style={{ fontSize: 27, color: muted, lineHeight: 1.45, margin: '26px 0 0', maxWidth: 1480 }}>
-      健康由兩條獨立訊號合成:枯萎與葉片黃化,整體取較嚴重者;再用時間窗判斷狀況變化。
-    </p>
-    <div style={{ marginTop: 30 }}>
-      <span style={{ fontFamily: MONO, fontSize: 18, color: 'var(--osd-accent)', letterSpacing: '0.14em' }}>葉片黃化 · YELLOWING</span>
-      <div style={{ marginTop: 14, display: 'flex', gap: 22 }}>
-        <Band range="< 15%" label="正常" color="#5BE59A" />
-        <Band range="< 35%" label="輕微黃化" color="#E4D24A" />
-        <Band range="< 60%" label="中度黃化" color={amber} />
-        <Band range="≥ 60%" label="嚴重黃化" color="#C9572A" />
-      </div>
-    </div>
-    <div style={{ marginTop: 26 }}>
-      <span style={{ fontFamily: MONO, fontSize: 18, color: 'var(--osd-accent)', letterSpacing: '0.14em' }}>趨勢 · TREND</span>
-      <div style={{ marginTop: 14, display: 'flex', gap: 22 }}>
-        <TrendChip arrow="↗" label="惡化" modifier="狀況似乎正在惡化" color="#C9572A" />
-        <TrendChip arrow="→" label="穩定" modifier="近期狀況穩定" color={muted} />
-        <TrendChip arrow="↘" label="好轉" modifier="狀況似乎正在好轉" color="#3B8E44" />
-      </div>
-    </div>
-  </Shell>
-);
-
 // ── 生長階段卡 ──
 const StageCard = ({ pct, name, color }: { pct: string; name: string; color: string }) => (
   <div style={{ flex: 1, background: surface, border: hairline, borderRadius: 18, boxShadow: softShadow, padding: '26px 24px', display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -1163,8 +1144,7 @@ export const notes: (string | undefined)[] = [
   '每塊 tile 投票,看最高票和次高票差多少、有幾塊佐證,夠穩才下判斷,否則回報不確定。門檻是用真實截圖調出來的。',
   '單幀會抖,所以在約 0.7 秒的時間窗做多數決壓掉閃爍;平手時寧可說不確定,也不要顯示錯的。',
   '辨識完成後對應本地植物資料庫,組出資訊卡:中文名、學名、科屬、形態、照護、信心。這裡用我們實際辨識的馬纓丹當例子,可一鍵加入歷史。',
-  '健康偵測:用第二個分類器,把枯萎當成「面積比例」問題,枯萎比例分四級,而不是數幾塊葉子。',
-  '健康其實有兩條訊號:枯萎和葉片黃化,整體取較嚴重者;再用時間窗判斷在惡化、好轉還是穩定,給使用者趨勢提示。',
+  '健康偵測:用第二個分類器,把枯萎當成「面積比例」問題分四級;再用時間窗判斷在惡化、好轉還是穩定,給使用者趨勢提示。',
   '進入第二段:擴增實境。這條管線完全在裝置端,用 ARKit 追植株的 6DoF 位姿。',
   '裝置端自己決定位置和身分,只看當下追到哪個 reference object,不依賴 Mac。需要實機與 world-sensing 權限。',
   '怎麼做出 reference object:用 Polycam 掃描整株馬纓丹含花盆、匯出 USDZ,匯入 Reality Composer Pro 標部位錨點,再餵給 ARKit。右邊是我們真實掃出來的 3D 模型。',
@@ -1191,7 +1171,6 @@ export default [
   Smoothing,
   InfoCard,
   Wither,
-  HealthSignals,
   ARDivider,
   ObjectTracking,
   ReferenceObject,
