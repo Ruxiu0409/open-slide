@@ -13,6 +13,7 @@ import infoCardReal from './assets/info-card-real.jpg';
 import historyReal from './assets/history-real.jpg';
 import polycamDemo from './assets/polycam-demo.mp4';
 import recognitionDemo from './assets/recognition-demo.mp4';
+import plantClassifierModel from './assets/plant-classifier-model.png';
 
 export const design: DesignSystem = {
   palette: { bg: '#F4F8EF', text: '#22372A', accent: '#3B8E44' },
@@ -1065,6 +1066,32 @@ const DemoRecognition: Page = () => (
   </Shell>
 );
 
+const ClassifierModel: Page = () => (
+  <Shell eyebrow="實作畫面 · 辨識模型">
+    <Heading>辨識模型:PlantClassifier</Heading>
+    <div style={{ marginTop: 30, display: 'flex', gap: 48, flex: 1, alignItems: 'center' }}>
+      <div style={{ flex: '0 0 38%', display: 'flex', flexDirection: 'column', gap: 18 }}>
+        <p style={{ fontSize: 26, lineHeight: 1.5, color: muted, margin: 0 }}>
+          辨識用的就是這顆 Core ML 影像分類模型,在 Xcode 裡可直接檢視它的型別、大小與類別標籤。
+        </p>
+        <Point>型別 <Code>Image Classifier</Code>(Core ML),僅 <Code>13 KB</Code>,完全在裝置端推論</Point>
+        <Point>三個類別標籤:<Code>background</Code>、<Code>lantana-camara</Code>、<Code>pelargonium-hortorum</Code></Point>
+        <Point>以 <Code>Create ML 6.2</Code> 訓練,支援 iOS / macOS / visionOS 17+</Point>
+      </div>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <img
+          src={plantClassifierModel}
+          alt="Xcode 中 PlantClassifier.mlmodel 的詳情頁"
+          style={{ width: '100%', borderRadius: 'var(--osd-radius)', border: hairline, boxShadow: softShadow, display: 'block' }}
+        />
+        <span style={{ fontSize: 21, color: dim, lineHeight: 1.4 }}>
+          Xcode:PlantClassifier.mlmodel 詳情(Image Classifier · 13 KB · 3 類標籤)
+        </span>
+      </div>
+    </div>
+  </Shell>
+);
+
 
 const Closing: Page = () => (
   <div
@@ -1252,6 +1279,7 @@ export const notes: (string | undefined)[] = [
   '這是實作畫面的掃描與錨點:左邊用 Polycam 實際掃描馬纓丹跟天竺葵,右邊在 Reality Composer Pro 把花、葉的部位錨點標在模型上。',
   '接著訓練追蹤模型:用 Create ML 的 Object Tracking 模板餵入掃描資料,產出右邊這個 PlantTracker.referenceobject。它就是 ARKit 實際拿來追蹤的物件,設定成 gravity-aligned、排除底面,很適合放在桌上的盆栽。',
   '辨識跟中繼這條線:左邊是 Create ML 的 PlantClassifier 訓練資料,有馬纓丹、天竺葵跟背景三類;右邊是我們的 Mac Frame Relay,負責抽幀、跑分類,再透過 Socket.IO 把結果送回 Vision Pro。',
+  '這是辨識用的模型本身,在 Xcode 裡打開 PlantClassifier.mlmodel 就能看到。它是一顆 Core ML 的影像分類器,只有 13KB,完全在裝置端跑;類別標籤剛好三類:background、lantana-camara、pelargonium-hortorum,對應背景、馬纓丹跟天竺葵。是用 Create ML 6.2 訓練出來的。',
   '最後總結三點。第一,我們把辨識跟空間追蹤拆成兩條獨立流程,各自能單獨運作。第二,用 tile 投票加上時間平滑,把單幀的雜訊收斂成穩定的判斷。第三,我們很務實地面對真實世界的限制,像是追花盆而不是葉片、寧可說不確定。以上是我們的報告,謝謝大家。',
 ];
 
@@ -1282,5 +1310,6 @@ export default [
   DemoSpatial,
   DemoTracking,
   DemoRecognition,
+  ClassifierModel,
   Closing,
 ] satisfies Page[];
