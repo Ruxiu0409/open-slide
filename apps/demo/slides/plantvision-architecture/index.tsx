@@ -906,7 +906,7 @@ const Challenges: Page = () => (
   <Shell eyebrow="Challenges & Limits">
     <Heading>遇到的問題與取捨</Heading>
     <div style={{ marginTop: 40, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 26 }}>
-      <ChallengeCard icon={<IconCamera />} title="拿不到主鏡頭" body="改由 Mac 擷取鏡像跑 CV,代價是多一段網路延遲。" />
+      <ChallengeCard icon={<IconCamera />} title="取不到頭顯相機" body="visionOS 基於隱私不開放 App 取用 Vision Pro 的主鏡頭與穿透影像;改由 Mac 鏡像擷取畫面跑 CV,代價是多一段網路延遲。" />
       <ChallengeCard icon={<IconLeaf />} title="葉片晃動變形" body="改追花盆 / 底座 / marker,而非會晃動的葉片。" />
       <ChallengeCard icon={<IconData />} title="枯萎樣本偏少" body="iNaturalist 多為開花株,需自行補拍實機樣本。" />
       <ChallengeCard icon={<IconWaves />} title="單幀分類閃爍" body="tile 投票 + 時間平滑;平手寧可回報不確定。" />
