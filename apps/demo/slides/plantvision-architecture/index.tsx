@@ -12,6 +12,7 @@ import plantTracker from './assets/plant-tracker.jpg';
 import infoCardReal from './assets/info-card-real.jpg';
 import historyReal from './assets/history-real.jpg';
 import polycamDemo from './assets/polycam-demo.mp4';
+import recognitionDemo from './assets/recognition-demo.mp4';
 
 export const design: DesignSystem = {
   palette: { bg: '#F4F8EF', text: '#22372A', accent: '#3B8E44' },
@@ -1136,6 +1137,28 @@ const InfoCard: Page = () => (
   </Shell>
 );
 
+const RecognitionDemo: Page = () => (
+  <Shell eyebrow="Demo · 即時辨識">
+    <Heading>實機:即時辨識植物</Heading>
+    <div style={{ marginTop: 24, flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
+      <div style={{ flex: 1, minHeight: 0, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <video
+          src={recognitionDemo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          controls
+          style={{ maxWidth: '82%', maxHeight: '100%', borderRadius: 'var(--osd-radius)', border: hairline, boxShadow: softShadow, display: 'block', background: '#000' }}
+        />
+      </div>
+      <span style={{ fontSize: 22, color: dim, lineHeight: 1.4 }}>
+        實機錄影:Vision Pro 對準植株,即時辨識並彈出資訊卡。
+      </span>
+    </div>
+  </Shell>
+);
+
 // ── 健康趨勢小卡 ──
 const TrendChip = ({ arrow, label, modifier, color }: { arrow: string; label: string; modifier: string; color: string }) => (
   <div style={{ flex: 1, background: surface, border: hairline, borderRadius: 18, padding: '24px 26px', display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -1216,6 +1239,7 @@ export const notes: (string | undefined)[] = [
   '每塊 tile 都會投一票,我們再把這些票聚合成一個答案。看最高票跟第二名差多少、有幾塊互相佐證,夠明確才下判斷,不夠就回報不確定。這些門檻不是隨便設的,是拿真實截圖一張一張調出來的。',
   '就算單張畫面判對了,連續看還是會跳動。所以我們在大約 0.7 秒的時間窗內做多數決,把單幀的閃爍壓掉。如果票數平手,我們寧可顯示不確定,也不要硬猜一個錯的答案。',
   '辨識出植物之後,系統會用這個 plantID 去對應本地的植物資料庫,組出一張資訊卡。像這裡的馬纓丹,會顯示中文名、學名、科屬、形態特徵、照護建議,還有辨識信心。使用者可以一鍵把它加入歷史紀錄。這些資料是本地內建的,網路上只傳一個 id 跟信心值。',
+  '這段是實機錄影,實際示範即時辨識:戴著 Vision Pro 對準植株,Mac 端抽幀跑分類,辨識結果穩定下來後,就在眼前彈出剛剛講的那張資訊卡。',
   '除了認出品種,我們還會判斷健康。我們把枯萎當成一個「面積比例」的問題:每塊 tile 判健康或枯萎,枯萎比例就是枯萎的塊數除以有植物的塊數,再分成四級。另外也會看時間上的趨勢,是在惡化、穩定還是好轉,給使用者更有用的提示。',
   '進入第二大段:擴增實境。這條流程完全在裝置端跑,不依賴 Mac。核心是用 ARKit 去追蹤固定那一株植物的位置和角度。',
   'ARKit 的 ObjectTrackingProvider 會去追我們事先建立好的參考物件。位置跟身分,都由當下追到哪個物件來決定,並持續更新它的六自由度位姿。這個功能需要實機跟空間感知權限,在模擬器上會退回我們做的合成場景。',
@@ -1245,6 +1269,7 @@ export default [
   Voting,
   Smoothing,
   InfoCard,
+  RecognitionDemo,
   Wither,
   ARDivider,
   ObjectTracking,
