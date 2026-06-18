@@ -9,6 +9,8 @@ import macRelay from './assets/mac-relay.jpg';
 import rcpAnchor from './assets/rcp-anchor.jpg';
 import mlClassifier from './assets/ml-classifier.jpg';
 import plantTracker from './assets/plant-tracker.jpg';
+import infoCardReal from './assets/info-card-real.jpg';
+import polycamDemo from './assets/polycam-demo.mp4';
 
 export const design: DesignSystem = {
   palette: { bg: '#F4F8EF', text: '#22372A', accent: '#3B8E44' },
@@ -710,7 +712,7 @@ const ObjectTracking: Page = () => (
   </Shell>
 );
 
-const PhoneFrame = ({ src, alt, island = true, sh = 664 }: { src: string; alt: string; island?: boolean; sh?: number }) => {
+const PhoneFrame = ({ src, videoSrc, alt, island = true, sh = 664 }: { src?: string; videoSrc?: string; alt: string; island?: boolean; sh?: number }) => {
   const sw = Math.round(sh * 0.467);
   const pad = Math.max(9, Math.round(sh * 0.0195));
   const sr = Math.round(sh * 0.075);
@@ -726,7 +728,19 @@ const PhoneFrame = ({ src, alt, island = true, sh = 664 }: { src: string; alt: s
       }}
     >
       <div style={{ position: 'relative', width: sw, height: sh, borderRadius: sr, overflow: 'hidden', background: '#000' }}>
-        <img src={src} alt={alt} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
+        {videoSrc ? (
+          <video
+            src={videoSrc}
+            autoPlay
+            loop
+            muted
+            playsInline
+            controls
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+          />
+        ) : (
+          <img src={src} alt={alt} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
+        )}
         {island ? (
           <div
             style={{
@@ -815,9 +829,31 @@ const ReferenceObject: Page = () => (
   </Shell>
 );
 
+const ModelStep = ({ n, t, d }: { n: string; t: string; d: string }) => (
+  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 6, background: surface, border: hairline, borderRadius: 16, boxShadow: softShadow, padding: '18px 26px' }}>
+    <span style={{ fontFamily: MONO, fontSize: 16, color: 'var(--osd-accent)', letterSpacing: '0.12em' }}>STEP {n}</span>
+    <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 26, fontWeight: 720 }}>{t}</span>
+    <span style={{ fontSize: 21, color: muted, lineHeight: 1.4 }}>{d}</span>
+  </div>
+);
+
+const VideoDemo: Page = () => (
+  <Shell eyebrow="Demo · 製作 3D 模型">
+    <Heading>用 Polycam 製作馬纓丹模型</Heading>
+    <div style={{ marginTop: 18, flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 24 }}>
+      <PhoneFrame videoSrc={polycamDemo} alt="馬纓丹 Polycam 掃描影片" island={false} sh={470} />
+      <div style={{ display: 'flex', gap: 20, alignSelf: 'stretch' }}>
+        <ModelStep n="1" t="環繞拍攝" d="繞著馬纓丹多角度拍攝整株與花盆" />
+        <ModelStep n="2" t="自動建模" d="Polycam 生成 3D 網格與材質" />
+        <ModelStep n="3" t="匯出 USDZ" d="供 Reality Composer Pro 與 ARKit 使用" />
+      </div>
+    </div>
+  </Shell>
+);
+
 const SpatialLabel: Page = () => (
   <Shell eyebrow="AR · Spatial Anchoring">
-    <Heading>把資訊卡釘進真實空間</Heading>
+    <Heading>把空間標籤釘進真實空間</Heading>
     <div style={{ marginTop: 52, display: 'flex', flexDirection: 'column', gap: 28 }}>
       <Point>在 <Code>ImmersiveSpace</Code> 內,把部位標籤錨在物件局部座標(來自 RCP 場景)</Point>
       <Point>新增可追蹤植物零程式碼:丟進 <Code>.referenceobject</Code> + 加一筆 profile 即可</Point>
@@ -1026,14 +1062,6 @@ const Closing: Page = () => (
   </div>
 );
 
-// ── 資訊卡的 key/value 列 ──
-const InfoRow = ({ k, v }: { k: string; v: ReactNode }) => (
-  <div style={{ display: 'flex', gap: 16, padding: '13px 0', borderTop: hairline, alignItems: 'baseline' }}>
-    <span style={{ fontFamily: MONO, fontSize: 19, color: 'var(--osd-accent)', minWidth: 76, flexShrink: 0 }}>{k}</span>
-    <span style={{ fontSize: 25, lineHeight: 1.45, color: 'var(--osd-text)' }}>{v}</span>
-  </div>
-);
-
 const InfoCard: Page = () => (
   <Shell eyebrow="CV · Result & Info">
     <Heading>辨識結果 → 資訊卡</Heading>
@@ -1048,25 +1076,15 @@ const InfoCard: Page = () => (
           <Point>資料本地內建,relay 只傳 id + 信心,不傳整包資料</Point>
         </div>
       </div>
-      <div
-        style={{
-          flex: 1,
-          background: surface,
-          border: hairline,
-          borderRadius: 'var(--osd-radius)',
-          boxShadow: softShadow,
-          padding: '30px 38px 34px',
-        }}
-      >
-        <span style={{ fontFamily: MONO, fontSize: 18, color: 'var(--osd-accent)', letterSpacing: '0.14em' }}>辨識結果</span>
-        <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 40, fontWeight: 800, color: '#1E5E2E', margin: '8px 0 6px' }}>馬纓丹</div>
-        <div style={{ marginTop: 8 }}>
-          <InfoRow k="學名" v="Lantana camara" />
-          <InfoRow k="科屬" v="馬鞭草科 Verbenaceae" />
-          <InfoRow k="形態" v="莖方形具逆刺、葉對生卵形粗糙、密集繖形花序" />
-          <InfoRow k="照護" v="喜全日照與高溫、耐旱排水佳、花後修剪、全株含毒勿食" />
-          <InfoRow k="信心" v={<span style={{ color: 'var(--osd-accent)', fontWeight: 700 }}>90%</span>} />
-        </div>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <img
+          src={infoCardReal}
+          alt="Vision Pro 上的植物資訊卡(馬纓丹)"
+          style={{ width: '100%', borderRadius: 'var(--osd-radius)', border: hairline, boxShadow: softShadow, display: 'block' }}
+        />
+        <span style={{ fontSize: 21, color: dim, lineHeight: 1.4 }}>
+          實機:Vision Pro 上的資訊卡(辨識 100% · 健康 · 枯萎 0%)
+        </span>
       </div>
     </div>
   </Shell>
@@ -1171,6 +1189,7 @@ export const notes: (string | undefined)[] = [
   '進入第二大段:擴增實境。這條流程完全在裝置端跑,不依賴 Mac。核心是用 ARKit 去追蹤固定那一株植物的位置和角度。',
   'ARKit 的 ObjectTrackingProvider 會去追我們事先建立好的參考物件。位置跟身分,都由當下追到哪個物件來決定,並持續更新它的六自由度位姿。這個功能需要實機跟空間感知權限,在模擬器上會退回我們做的合成場景。',
   '怎麼做出參考物件?我們用 Polycam 把整株馬纓丹連花盆掃描下來、匯出 USDZ;因為整株輪廓夠明顯,就直接拿花盆加植株當追蹤目標。再匯入 Reality Composer Pro,在模型上標出花、葉的部位錨點,最後餵給 ARKit。右邊就是我們真實掃出來的 3D 模型。',
+  '這段影片是用 Polycam 製作馬纓丹模型的過程:環繞拍攝整株與花盆、Polycam 自動生成 3D 網格與材質,再匯出 USDZ,給後面的 ARKit 追蹤用。',
   '追到位置之後,我們在沉浸式空間裡,把部位標籤錨定在物件的局部座標上,這些座標來自剛剛的 Reality Composer Pro 場景。要新增一種可追蹤的植物幾乎不用寫程式,丟進參考物件、加一筆設定就好。如果整株有固定偏移,可以用 frameCorrection 校正。',
   '另一個擴增實境的應用,是 3D 生長動畫,呈現植物從發芽、長葉、開花到成熟的過程。模型是用 RealityKit 程式生成的,不需要外部 3D 檔;靠 scale、opacity、position 的變化,讓莖長高、葉子慢慢淡入、花在開花階段才出現。使用者可以用手勢播放、暫停、切換階段跟重播。',
   '辨識過的植物會存進歷史紀錄。每一筆會記錄品種、學名、信心、來源跟時間,用 JSON 在本地保存,App 重開也還在。使用者可以在清單裡逐筆檢視,也可以清除。',
@@ -1198,6 +1217,7 @@ export default [
   ARDivider,
   ObjectTracking,
   ReferenceObject,
+  VideoDemo,
   SpatialLabel,
   Growth,
   History,
