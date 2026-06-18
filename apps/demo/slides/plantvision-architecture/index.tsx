@@ -14,6 +14,8 @@ import historyReal from './assets/history-real.jpg';
 import polycamDemo from './assets/polycam-demo.mp4';
 import recognitionDemo from './assets/recognition-demo.mp4';
 import plantClassifierModel from './assets/plant-classifier-model.png';
+import objectTrackingDemo from './assets/object-tracking-demo.mp4';
+import witherDemo from './assets/wither-demo.jpg';
 
 export const design: DesignSystem = {
   palette: { bg: '#F4F8EF', text: '#22372A', accent: '#3B8E44' },
@@ -508,7 +510,7 @@ const Agenda: Page = () => (
     <div style={{ marginTop: 34, display: 'flex', flexDirection: 'column' }}>
       <AgendaRow n="01" title="系統概觀" sub="核心決定:CV 與 AR 兩條獨立流程、面對的限制、Apple 框架與定位/尺度原理" />
       <AgendaRow n="02" title={<span style={{ color: 'var(--osd-accent)' }}>電腦視覺</span>} sub="tile 分類、投票、時間平滑、資訊卡、枯萎程度與趨勢" />
-      <AgendaRow n="03" title={<span style={{ color: sky }}>擴增實境</span>} sub="物件追蹤、reference object 掃描、空間標籤、3D 生長動畫" />
+      <AgendaRow n="03" title={<span style={{ color: sky }}>擴增實境</span>} sub="物件追蹤、reference object 掃描、空間標籤" />
       <AgendaRow n="04" title="收尾" sub="歷史紀錄、技術對應、實作畫面" />
     </div>
   </Shell>
@@ -532,7 +534,7 @@ const Overview: Page = () => (
           style={{ width: '100%', borderRadius: 'var(--osd-radius)', border: hairline, boxShadow: softShadow, display: 'block' }}
         />
         <span style={{ fontSize: 23, color: dim, lineHeight: 1.45 }}>
-          使用者透過 Vision Pro 即時辨識植物,並以空間標籤與 3D 生長動畫呈現。
+          使用者透過 Vision Pro 即時辨識植物,並以空間標籤呈現。
         </span>
       </div>
     </div>
@@ -541,7 +543,7 @@ const Overview: Page = () => (
 
 const CoreDecision: Page = () => (
   <Shell eyebrow="The Central Decision">
-    <Heading>辨識與追蹤,刻意解耦</Heading>
+    <Heading>辨識與追蹤,刻意拆開</Heading>
     <div style={{ marginTop: 48, display: 'flex', gap: 40 }}>
       <Card
         tag="RECOGNITION · CV"
@@ -603,7 +605,7 @@ const AppleStack: Page = () => (
         tag="3D 渲染 · RENDERING"
         name="RealityKit"
         gives="Entity / Anchor 場景、3D 模型載入、材質與動畫,並與 ARKit anchor 綁定。"
-        use="顯示空間標籤與植物 3D 生長動畫。"
+        use="顯示空間標籤。"
       />
       <FrameworkCard
         tag="影像分析 · IMAGE"
@@ -748,6 +750,18 @@ const Wither: Page = () => (
     </div>
   </Shell>
 );
+
+// 全版枯萎程度 Demo:實機資訊卡的健康/枯萎比例,整頁滿版呈現。
+const WitherDemo: Page = () => (
+  <div style={{ ...fill, position: 'relative', background: '#000', overflow: 'hidden' }}>
+    <img
+      src={witherDemo}
+      alt="Vision Pro 上的植物健康資訊卡:枯萎面積比例與健康等級"
+      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+    />
+  </div>
+);
+WitherDemo.transition = settle;
 
 const ARDivider: Page = () => (
   <SectionDivider
@@ -902,7 +916,7 @@ const VideoDemo: Page = () => (
         <ModelStep n="1" t="環繞拍攝" d="繞著馬纓丹多角度拍攝整株與花盆" />
         <ModelStep n="2" t="自動建模" d="Polycam 生成 3D 網格與材質" />
       </div>
-      <PhoneFrame videoSrc={polycamDemo} alt="馬纓丹 Polycam 掃描影片" island={false} sh={540} />
+      <PhoneFrame videoSrc={polycamDemo} alt="馬纓丹 Polycam 掃描影片" island={false} sh={660} />
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 22 }}>
         <ModelStep n="3" t="匯出 USDZ" d="取得標準 3D 模型檔" />
         <ModelStep n="4" t="用於追蹤" d="匯入 RCP、餵給 ARKit 追蹤" />
@@ -918,6 +932,28 @@ const SpatialLabel: Page = () => (
       <Point>在 <Code>ImmersiveSpace</Code> 內,把部位標籤錨在物件局部座標(來自 RCP 場景)</Point>
       <Point>新增可追蹤植物零程式碼:丟進 <Code>.referenceobject</Code> + 加一筆 profile 即可</Point>
       <Point><Code>frameCorrection</Code> 修整株固定偏移;形變漂移則修不了</Point>
+    </div>
+  </Shell>
+);
+
+const ObjectTrackingDemo: Page = () => (
+  <Shell eyebrow="Demo · 物件追蹤">
+    <Heading>實機:物件追蹤與空間標籤</Heading>
+    <div style={{ marginTop: 24, flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
+      <div style={{ flex: 1, minHeight: 0, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <video
+          src={objectTrackingDemo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          controls
+          style={{ maxWidth: '82%', maxHeight: '100%', borderRadius: 'var(--osd-radius)', border: hairline, boxShadow: softShadow, display: 'block', background: '#000' }}
+        />
+      </div>
+      <span style={{ fontSize: 22, color: dim, lineHeight: 1.4 }}>
+        實機錄影:ARKit 追到植株,花/葉標籤穩定錨定在真實空間。
+      </span>
     </div>
   </Shell>
 );
@@ -1195,32 +1231,6 @@ const TrendChip = ({ arrow, label, modifier, color }: { arrow: string; label: st
   </div>
 );
 
-// ── 生長階段卡 ──
-const StageCard = ({ pct, name, color }: { pct: string; name: string; color: string }) => (
-  <div style={{ flex: 1, background: surface, border: hairline, borderRadius: 18, boxShadow: softShadow, padding: '26px 24px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-    <span style={{ width: 46, height: 46, borderRadius: 12, background: color, boxShadow: `0 0 22px ${color}55` }} />
-    <span style={{ fontFamily: MONO, fontSize: 24, color: muted }}>{pct}</span>
-    <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 30, fontWeight: 720 }}>{name}</span>
-  </div>
-);
-
-const Growth: Page = () => (
-  <Shell eyebrow="AR · 3D Growth Animation">
-    <Heading>3D 生長動畫:發芽到成熟</Heading>
-    <div style={{ marginTop: 32, display: 'flex', gap: 22 }}>
-      <StageCard pct="20%" name="發芽" color="#BFE0AE" />
-      <StageCard pct="48%" name="長葉" color="#8FD08A" />
-      <StageCard pct="74%" name="開花" color="#57B36A" />
-      <StageCard pct="100%" name="成熟" color="#2E7D32" />
-    </div>
-    <div style={{ marginTop: 30, display: 'flex', flexDirection: 'column', gap: 18 }}>
-      <Point>RealityKit 程式生成各階段模型(花盆、莖、葉、花),不需外部 3D 檔</Point>
-      <Point>以 <Code>scale</Code> / <Code>opacity</Code> / <Code>position</Code> 內插:莖 y 由 0.25 長到 1.0、葉漸進淡入、花於開花後才出現</Point>
-      <Point>使用者用手勢控制播放、暫停、切換階段與重播(<Code>GrowthView</Code>)</Point>
-    </div>
-  </Shell>
-);
-
 const History: Page = () => (
   <Shell eyebrow="App · History">
     <Heading>歷史紀錄</Heading>
@@ -1254,11 +1264,11 @@ export const meta: SlideMeta = {
 
 export const notes: (string | undefined)[] = [
   '大家好,我們這組的專題是 PlantVision,一個在 Apple Vision Pro 上的植物辨識應用。它結合電腦視覺和擴增實境:用相機認出植物、判斷健不健康,再把資訊直接顯示在你眼前的真實植株旁邊。組員是蔡承曄、陳俊宇、曾柏諺,今天由我們一起報告。',
-  '先說明今天的順序。第一段講系統概觀,特別是我們最重要的一個設計決定。第二段講電腦視覺,也就是怎麼把畫面變成穩定的辨識結果。第三段講擴增實境,怎麼把資訊釘在空間裡,還有 3D 生長動畫。最後是歷史紀錄、技術對應跟實作畫面。',
+  '先說明今天的順序。第一段講系統概觀,特別是我們最重要的一個設計決定。第二段講電腦視覺,也就是怎麼把畫面變成穩定的辨識結果。第三段講擴增實境,怎麼把資訊釘在空間裡。最後是歷史紀錄、技術對應跟實作畫面。',
   '先給大家一個整體印象。PlantVision 要做的,是把一株真實植物,變成 Vision Pro 裡會跟著它移動的空間資訊卡。整個系統其實分成兩條獨立的流程:一條負責「這是什麼植物、健不健康」,另一條負責「它在空間中的哪裡」。右邊這張圖,就是使用者戴上裝置實際看到的樣子。',
   '這頁是我們最關鍵的設計決定:把辨識和空間追蹤刻意拆開。辨識在 Mac 端跑 Core ML,決定是什麼植物、多枯萎;空間追蹤在裝置端用 ARKit,決定它在哪、是哪一株。好處是兩邊各自獨立:辨識壞掉不會影響定位,定位斷了也不影響辨識,整個系統更穩。',
   '在進入細節前,先講我們遇到的限制,這也解釋了後面為什麼這樣設計。第一,visionOS 基於隱私不開放 App 取用裝置相機,所以我們改用 Mac 鏡像擷取畫面來跑辨識。第二,葉片會晃、會變形,所以我們追花盆而不是葉片。第三,枯萎樣本很少,得自己補拍。第四,畫面會閃,用多幀投票加時間平滑解決。',
-  '我們不是從零造輪子,而是站在 Apple 的框架上。ARKit 負責空間感知和物件追蹤,RealityKit 負責 3D 渲染、空間標籤和生長動畫,Vision 負責影像前處理,Core ML 負責在裝置端跑模型。我們做的,是把這四個能力組合起來。',
+  '我們不是從零造輪子,而是站在 Apple 的框架上。ARKit 負責空間感知和物件追蹤,RealityKit 負責 3D 渲染與空間標籤,Vision 負責影像前處理,Core ML 負責在裝置端跑模型。我們做的,是把這四個能力組合起來。',
   '先深入講框架怎麼幫我們定位。ARKit 的 ObjectTrackingProvider 會一直吐出 ObjectAnchor,每個都帶一個四乘四的位姿矩陣 originFromAnchorTransform,同時表達位置跟旋轉,也就是六個自由度。我們的做法是:花跟葉的部位錨點是先在模型的物件座標系裡用公尺烘好的固定值,runtime 把整株標籤的 root 對齊到這個矩陣,部位錨點就跟著被變換到眼前的世界座標。另外,只有 isTracked 為真才更新位置,暫時追丟就先把標籤藏起來;位姿每幀會抖,我們用 alpha 0.25 的指數平滑壓掉,使用者鎖定時則直接凍結。',
   '再來是大小怎麼抓。重點是:尺度不是 runtime 即時估的,而是掃描跟訓練的時候就把真實世界大小烘進 referenceobject 了。ARKit 追到後,每個 anchor 都附一個以公尺為單位的 boundingBox,有 min、max 兩個對角、中心 center,還有長寬高 extent。我們把 reference object 設成 gravity-aligned、排除底面,桌上的盆栽就站得穩、不會顛倒。因為一切都是真實公尺,部位錨點直接落在正確的實體位置跟大小,不需要另外用相機估距離。第一次追到時我們會把 boundingBox 印出來,核對追蹤框跟模型框是不是同一個座標系;如果整片標籤一致偏移一個常數,就用 frameCorrection 補,但變形造成的飄移修不了。',
   '接下來進入第一大段:電腦視覺。這段的目標,是把一張張會抖動的畫面,收斂成一個穩定可信的辨識結果。流程是:抽幀、切成小塊分類、投票、時間平滑,最後分級。',
@@ -1268,12 +1278,13 @@ export const notes: (string | undefined)[] = [
   '辨識出植物之後,系統會用這個 plantID 去對應本地的植物資料庫,組出一張資訊卡。像這裡的馬纓丹,會顯示中文名、學名、科屬、形態特徵、照護建議,還有辨識信心。使用者可以一鍵把它加入歷史紀錄。這些資料是本地內建的,網路上只傳一個 id 跟信心值。',
   '這段是實機錄影,實際示範即時辨識:戴著 Vision Pro 對準植株,Mac 端抽幀跑分類,辨識結果穩定下來後,就在眼前彈出剛剛講的那張資訊卡。',
   '除了認出品種,我們還會判斷健康。我們把枯萎當成一個「面積比例」的問題:每塊 tile 判健康或枯萎,枯萎比例就是枯萎的塊數除以有植物的塊數,再分成四級。另外也會看時間上的趨勢,是在惡化、穩定還是好轉,給使用者更有用的提示。',
+  '這頁是實機畫面:資訊卡下半部就是剛剛講的健康判斷,可以看到枯萎面積比例、健康等級,還有狀況是惡化、穩定還是好轉的趨勢提示。',
   '進入第二大段:擴增實境。這條流程完全在裝置端跑,不依賴 Mac。核心是用 ARKit 去追蹤固定那一株植物的位置和角度。',
   'ARKit 的 ObjectTrackingProvider 會去追我們事先建立好的參考物件。位置跟身分,都由當下追到哪個物件來決定,並持續更新它的六自由度位姿。這個功能需要實機跟空間感知權限,在模擬器上會退回我們做的合成場景。',
   '怎麼做出參考物件?我們用 Polycam 把整株馬纓丹連花盆掃描下來、匯出 USDZ;因為整株輪廓夠明顯,就直接拿花盆加植株當追蹤目標。再匯入 Reality Composer Pro,在模型上標出花、葉的部位錨點,最後餵給 ARKit。右邊就是我們真實掃出來的 3D 模型。',
   '這段影片是用 Polycam 製作馬纓丹模型的過程:環繞拍攝整株與花盆、Polycam 自動生成 3D 網格與材質,再匯出 USDZ,給後面的 ARKit 追蹤用。',
   '追到位置之後,我們在沉浸式空間裡,把部位標籤錨定在物件的局部座標上,這些座標來自剛剛的 Reality Composer Pro 場景。要新增一種可追蹤的植物幾乎不用寫程式,丟進參考物件、加一筆設定就好。如果整株有固定偏移,可以用 frameCorrection 校正。',
-  '另一個擴增實境的應用,是 3D 生長動畫,呈現植物從發芽、長葉、開花到成熟的過程。模型是用 RealityKit 程式生成的,不需要外部 3D 檔;靠 scale、opacity、position 的變化,讓莖長高、葉子慢慢淡入、花在開花階段才出現。使用者可以用手勢播放、暫停、切換階段跟重播。',
+  '這段是物件追蹤的實機錄影:戴上 Vision Pro,ARKit 一追到那株植物,花跟葉的標籤就穩定地錨定在真實空間裡;人走動、換角度,標籤都還貼在對應的位置上。',
   '辨識過的植物會存進歷史紀錄,右邊就是實機畫面。每一筆會記錄品種、學名、信心、來源跟時間,像這裡天竺葵和馬纓丹都是 100%、來源是 Mac Relay。資料用 JSON 在本地保存,App 重開也還在,使用者可以在清單裡逐筆檢視,也可以一鍵清除。',
   '這頁把課堂上的電腦視覺跟擴增實境名詞,對應到我們實際用在哪裡,方便大家對照:影像分類、滑動視窗切塊、投票聚合、時間濾波,還有六自由度物件追蹤跟空間錨定。',
   '這是實作畫面的掃描與錨點:左邊用 Polycam 實際掃描馬纓丹跟天竺葵,右邊在 Reality Composer Pro 把花、葉的部位錨點標在模型上。',
@@ -1299,12 +1310,13 @@ export default [
   InfoCard,
   RecognitionDemo,
   Wither,
+  WitherDemo,
   ARDivider,
   ObjectTracking,
   ReferenceObject,
   VideoDemo,
   SpatialLabel,
-  Growth,
+  ObjectTrackingDemo,
   History,
   TermMap,
   DemoSpatial,
