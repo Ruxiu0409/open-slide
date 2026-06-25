@@ -14,7 +14,6 @@ import historyReal from './assets/history-real.jpg';
 import polycamDemo from './assets/polycam-demo.mp4';
 import recognitionDemo from './assets/recognition-demo.mp4';
 import plantClassifierModel from './assets/plant-classifier-model.png';
-import objectTrackingDemo from './assets/object-tracking-demo.mp4';
 import witherDemo from './assets/wither-demo.jpg';
 import witherClassifierModel from './assets/wither-classifier-model.png';
 
@@ -999,28 +998,6 @@ const SpatialLabel: Page = () => (
   </Shell>
 );
 
-const ObjectTrackingDemo: Page = () => (
-  <Shell eyebrow="Demo · 物件追蹤">
-    <Heading>實機:物件追蹤與空間標籤</Heading>
-    <div style={{ marginTop: 24, flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
-      <div style={{ flex: 1, minHeight: 0, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <video
-          src={objectTrackingDemo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          controls
-          style={{ maxWidth: '82%', maxHeight: '100%', borderRadius: 'var(--osd-radius)', border: hairline, boxShadow: softShadow, display: 'block', background: '#000' }}
-        />
-      </div>
-      <span style={{ fontSize: 22, color: dim, lineHeight: 1.4 }}>
-        實機錄影:ARKit 追到植株,花/葉標籤穩定錨定在真實空間。
-      </span>
-    </div>
-  </Shell>
-);
-
 const TermMap: Page = () => (
   <Shell eyebrow="Concepts → PlantVision">
     <Heading>用到的 CV / AR 技術</Heading>
@@ -1414,7 +1391,6 @@ export const notes: (string | undefined)[] = [
   '這是實作畫面的掃描與錨點:左邊用 Polycam 實際掃描馬纓丹跟天竺葵,右邊在 Reality Composer Pro 把花、葉的部位錨點標在模型上。',
   '接著訓練追蹤模型:用 Create ML 的 Object Tracking 模板餵入掃描資料,產出右邊這個 PlantTracker.referenceobject。它就是 ARKit 實際拿來追蹤的物件,設定成 gravity-aligned、排除底面,很適合放在桌上的盆栽。',
   '追到位置之後,我們在沉浸式空間裡,把部位標籤錨定在物件的局部座標上,這些座標來自剛剛的 Reality Composer Pro 場景。要新增一種可追蹤的植物幾乎不用寫程式,丟進參考物件、加一筆設定就好。如果整株有固定偏移,可以用 frameCorrection 校正。',
-  '這段是物件追蹤的實機錄影:戴上 Vision Pro,ARKit 一追到那株植物,花跟葉的標籤就穩定地錨定在真實空間裡;人走動、換角度,標籤都還貼在對應的位置上。',
   '辨識過的植物會存進歷史紀錄,右邊就是實機畫面。每一筆會記錄品種、學名、信心、來源跟時間,像這裡天竺葵和馬纓丹都是 100%、來源是 Mac Relay。資料用 JSON 在本地保存,App 重開也還在,使用者可以在清單裡逐筆檢視,也可以一鍵清除。',
   '這頁把課堂上的電腦視覺跟擴增實境名詞,對應到我們實際用在哪裡,方便大家對照:影像分類、滑動視窗切塊、投票聚合、時間濾波,還有六自由度物件追蹤跟空間錨定。',
   '最後總結三點。第一,我們把辨識跟空間追蹤拆成兩條獨立流程,各自能單獨運作。第二,用 tile 投票加上時間平滑,把單幀的雜訊收斂成穩定的判斷。第三,我們很務實地面對真實世界的限制,像是追花盆而不是葉片、寧可說不確定。以上是我們的報告,謝謝大家。',
@@ -1450,7 +1426,6 @@ export default [
   DemoSpatial,
   DemoTracking,
   SpatialLabel,
-  ObjectTrackingDemo,
   History,
   TermMap,
   Closing,
