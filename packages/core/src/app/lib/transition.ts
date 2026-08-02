@@ -12,6 +12,13 @@ export type SlideTransition = {
   easing?: string;
   enter?: TransitionPhase;
   exit?: TransitionPhase;
+  morph?: boolean | MorphTransition;
+};
+
+export type MorphTransition = {
+  duration?: number;
+  easing?: string;
+  delay?: number;
 };
 
 export function resolveTransition(

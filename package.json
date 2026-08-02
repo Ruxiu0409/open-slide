@@ -17,6 +17,7 @@
     "check:fix": "biome check --write .",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:e2e": "pnpm --filter @open-slide/core test:e2e",
     "core": "pnpm --filter @open-slide/core",
     "cli": "pnpm --filter @open-slide/cli",
     "changeset": "changeset",
@@ -25,9 +26,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.12",
-    "@changesets/changelog-github": "^0.6.0",
+    "@changesets/changelog-github": "^0.7.0",
     "@changesets/cli": "^2.31.0",
-    "turbo": "^2.9.18",
+    "turbo": "^2.10.5",
     "vitest": "^2.1.9"
   }
 }
