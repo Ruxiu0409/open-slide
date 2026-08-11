@@ -984,7 +984,7 @@ const Cover: Page = () => (
         <div className="ace-fadeup" style={{ marginBottom: 28 }}>
           <AceMark size={64} />
         </div>
-        <Eyebrow delay={80}>AI Creators & Executors · 2026</Eyebrow>
+        <Eyebrow delay={80}>AI Creators & Executors · 2026–27</Eyebrow>
         <h1
           className="ace-fadeup"
           style={{
