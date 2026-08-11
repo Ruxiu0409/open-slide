@@ -177,7 +177,7 @@ const Eyebrow = ({ children, delay = 0 }: { children: React.ReactNode; delay?: n
       animationDelay: `${delay}ms`,
     }}
   >
-    <span style={{ color: 'var(--osd-accent)', fontSize: 20, lineHeight: 1 }}>♠AI Creators & Executors · 2026-27</span>
+    <span style={{ color: 'var(--osd-accent)', fontSize: 20, lineHeight: 1 }}>♠</span>
     {children}
   </div>
 );
@@ -400,12 +400,12 @@ const CredentialRow = ({
       animationDelay: `${delay}ms`,
     }}
   >
-    <span style={{ fontSize: compact ? 22 : 26 }}>{icon}</span>
+    <span style={{ fontSize: compact ? 24 : 26 }}>{icon}</span>
     <span>
-      <span style={{ fontSize: compact ? 20 : 24, fontWeight: 600, display: 'block' }}>{text}</span>
+      <span style={{ fontSize: compact ? 22 : 24, fontWeight: 600, display: 'block' }}>{text}</span>
       <span
         style={{
-          fontSize: compact ? 14 : 17,
+          fontSize: compact ? 15 : 17,
           color: palette.muted,
           display: 'block',
           marginTop: 3,
@@ -421,7 +421,7 @@ const CredGroupLabel = ({ children }: { children: React.ReactNode }) => (
   <div
     style={{
       fontFamily: fonts.mono,
-      fontSize: 15,
+      fontSize: 16,
       color: 'var(--osd-accent)',
       letterSpacing: '0.14em',
       textTransform: 'uppercase',
@@ -2718,15 +2718,15 @@ const GogolookPain: Page = () => (
           animationDelay: '140ms',
         }}
       >
-        你覺得，這三個<span style={gradText}>工程師</span>，
+        你接過<span style={gradText}>最煩的電話</span>，
         <br />
-        受夠了什麼？
+        是哪一種？
       </h1>
       <p
         className="ace-fadeup"
         style={{ fontSize: 26, color: palette.muted, margin: 0, animationDelay: '240ms' }}
       >
-        What do you think these three engineers were fed up with?
+        What's the most annoying call you've ever picked up?
       </p>
       <Steps>
         <Step>
@@ -2741,10 +2741,10 @@ const GogolookPain: Page = () => (
             }}
           >
             <div style={{ fontSize: 36, fontWeight: 700 }}>
-              📵 每天的<span style={gradText}>陌生來電</span>——詐騙、推銷，接不接都煩。
+              📵 詐騙、推銷、貸款——這三個工程師也<span style={gradText}>受夠了</span>。
             </div>
             <div style={{ fontSize: 19, color: palette.muted, marginTop: 8 }}>
-              Unknown calls every day — scams and spam; answer or not, you lose.
+              Scams, telemarketing, loan offers — these three engineers were fed up too.
             </div>
           </div>
         </Step>
