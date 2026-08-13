@@ -1972,7 +1972,7 @@ const SscPrizes: Page = () => (
               marginTop: 16,
             }}
           >
-            <PrizeItem text="AirPods Max 2" textEn="The ones pictured here" />
+            <PrizeItem text="AirPods Max" textEn="The ones pictured here" />
             <PrizeItem text="個人化證書" textEn="A personalized certificate" />
             <PrizeItem text="一年 Apple Developer Program" textEn="One-year membership, free" />
             <PrizeItem text="免費考 Swift 認證" textEn="Free Swift certification exam" />
