@@ -1237,7 +1237,7 @@ const DividerWhy: Page = () => (
   <Divider
     num="PART 01"
     title="Why ACE"
-    sub="一個名字，就是一份行動宣言。"
+    sub="名字裡就寫著我們要做的兩件事。"
     subEn="Solving problems. Impacting futures."
   />
 );
@@ -1275,7 +1275,7 @@ const NameMeaning: Page = () => (
           tag="EXECUTORS"
           name="落地執行"
           nameEn="Ship things"
-          sub="想法要變成上線的作品、真實的影響力——做完才算數。"
+          sub="想法要變成真的打得開的網站或 App。做完才算數。"
           subEn="Ideas only count once they ship and make real impact."
           delay={380}
         />
@@ -1681,9 +1681,9 @@ const Goals: Page = () => (
           animationDelay: '120ms',
         }}
       >
-        分兩組走，<span style={gradText}>各自定義成功。</span>
+        分兩組走，<span style={gradText}>兩組的達標線不一樣。</span>
       </h2>
-      <EnSub mb={36}>Two tracks — each defines its own win.</EnSub>
+      <EnSub mb={36}>Two tracks, two different finish lines.</EnSub>
       <div style={{ display: 'flex', gap: 28 }}>
         <TrackPanel
           tag="TRACK 01"
@@ -1691,7 +1691,7 @@ const Goals: Page = () => (
           icon="🛠️"
           name="創客組"
           nameEn="Maker"
-          desc="做出想做的東西，然後分享出去——沒有評審，只有你想不想做。"
+          desc="做出想做的東西，然後分享出去。沒有評審，只有你想不想做。"
           descEn="Build the thing you want, then share it. No judges — just whether you want it."
           goal="做出來，分享就達標"
           goalEn="Build it, share it — that's the win"
@@ -1704,7 +1704,7 @@ const Goals: Page = () => (
           icon="🏆"
           name="競賽組"
           nameEn="Competition"
-          desc="以賽促學——期末成品做成 App Playground，投稿 Swift Student Challenge。"
+          desc="期末成品做成 App Playground，投稿 Swift Student Challenge。有截止日，才會真的做完。"
           descEn="Learn by competing — ship an App Playground to the Swift Student Challenge."
           goal="投出去，履歷上多一行"
           goalEn="Submit it — earn a line on your résumé"
@@ -1972,7 +1972,7 @@ const SscPrizes: Page = () => (
               marginTop: 16,
             }}
           >
-            <PrizeItem text="AirPods Max 2" textEn="就是這副耳機" />
+            <PrizeItem text="AirPods Max 2" textEn="The ones pictured here" />
             <PrizeItem text="個人化證書" textEn="A personalized certificate" />
             <PrizeItem text="一年 Apple Developer Program" textEn="One-year membership, free" />
             <PrizeItem text="免費考 Swift 認證" textEn="Free Swift certification exam" />
@@ -2109,7 +2109,7 @@ const WhoWins: Page = () => (
         }}
       >
         2025 年 Distinguished Winners
-        來自印度、巴西、美國、日本、中國、德國——六個國家，六個不同的痛點。
+        來自印度、巴西、美國、日本、中國、德國。六個國家，六個不同的痛點。
         <br />
         developer.apple.com/swift-student-challenge/distinguished-winners
       </div>
@@ -2199,7 +2199,7 @@ const Roadmap: Page = () => (
                 num="PHASE 02"
                 name="Build & Design"
                 nameEn="打造與設計"
-                desc="做出可互動、可點擊的網頁原型——不需要程式背景。"
+                desc="做出可互動、可點擊的網頁原型，不需要程式背景。"
                 descEn="Create interactive, clickable web prototypes — no coding needed."
               />
             </Step>
@@ -2352,11 +2352,11 @@ const WinnerKeitaro: Page = () => (
     caption="照片 · Apple｜攝於 Apple Park，WWDC24"
     name="Keitaro Kawahara"
     country="日本 Japan"
-    school="東京・青山學院大學，經濟系——不是資工系。"
+    school="東京・青山學院大學，讀的是經濟，不是資工。"
     schoolEn="Aoyama Gakuin University, Tokyo — an economics major, not computer science."
     year="2024 · DISTINGUISHED WINNER"
     app="PuzzlePix"
-    appDesc="把你手機裡的照片自動變成拼圖，難度可以調，小孩到大人都能玩。靈感來自看妹妹翻出舊拼圖在玩——妹妹也是他的第一個測試者。"
+    appDesc="把你手機裡的照片自動變成拼圖，難度可以調，小孩到大人都能玩。靈感來自看妹妹翻出舊拼圖在玩。妹妹也是他的第一個測試者。"
     appDescEn="Turns your own photos into puzzles at adjustable difficulty. The idea came from watching his little sister play with an old puzzle — she became his main playtester."
     quote="軟體工程是一種團隊運動：反覆討論和失敗，都是成功的必要條件。"
     quoteEn="Software engineering is a team sport, where multiple discussions and failures are crucial to success."
@@ -2370,11 +2370,11 @@ const WinnerRuoshan: Page = () => (
     caption="照片 · Apple｜她與 Tim Cook 一起看自己的作品"
     name="Ruoshan Li"
     country="中國 China"
-    school="三年前在學校的 iOS 社團開始學程式和設計。本科讀社會工作。"
+    school="三年前在學校的 iOS 社團開始學程式和設計。大學主修社會工作。"
     schoolEn="Started coding and design three years ago in her school's iOS club. Social work major."
     year="DISTINGUISHED WINNER"
     app="Deep Blue Tangram"
-    appDesc="用 AR 做的海洋主題七巧板遊戲，給幼稚園和小學的孩子玩。她家有很多姪甥都在玩手機遊戲，她想做一個對他們有幫助的。"
+    appDesc="用 AR 做的海洋主題七巧板遊戲，給幼兒園和國小的孩子玩。她家一堆姪子姪女整天在玩手機遊戲，她想做一個對他們有幫助的。"
     appDescEn="An ocean-themed AR tangram game for young children — built for the many nephews and nieces in her family who all play mobile games."
     quote="我不是資工系的，我讀的是社會工作，所以我學了很多新東西。"
     quoteEn="I'm not a computer science major; I'm studying social work. So I've learned a lot of new skills."
@@ -2385,7 +2385,7 @@ const DividerHow: Page = () => (
   <Divider
     num="PART 02"
     title="How we run"
-    sub="好的社團不是靠熱情硬撐，是靠系統運轉。"
+    sub="社團靠系統運轉，不靠熱情硬撐。"
     subEn="Great clubs run on systems, not adrenaline."
   />
 );
@@ -2406,9 +2406,9 @@ const Roles: Page = () => (
           animationDelay: '120ms',
         }}
       >
-        每個位置，都是關鍵角色。
+        八個位置，沒有一個是來湊人數的。
       </h2>
-      <EnSub mb={32}>Every seat is a key role.</EnSub>
+      <EnSub mb={32}>Eight seats. None of them is filler.</EnSub>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 18 }}>
         <RoleCard
           sym="♠"
@@ -2478,7 +2478,7 @@ const Roles: Page = () => (
           name="美編"
           nameEn="Design"
           count="缺 OPEN"
-          desc="視覺與社群圖文——虛位以待，歡迎學弟妹。"
+          desc="視覺與社群圖文。虛位以待，歡迎學弟妹。"
           descEn="Visuals & graphics — open for juniors!"
           open
           delay={680}
@@ -2529,7 +2529,7 @@ const Collaboration: Page = () => (
           tag="03 · 互相補位"
           name="沒有孤軍"
           nameEn="No lone wolves"
-          sub="忙不過來就提早喊，任務有人接——這是團隊的默契。"
+          sub="忙不過來就提早喊，任務有人接。"
           subEn="Shout early when overloaded — someone will catch the task."
           delay={480}
         />
@@ -2625,8 +2625,8 @@ const DividerAI: Page = () => (
   <Divider
     num="PART 03"
     title="AI in action"
-    sub="工具不會讓社團變強，工作流才會。"
-    subEn="Tools don't make a club strong — workflows do."
+    sub="工具誰都會下載，難的是把它接進日常。"
+    subEn="Anyone can download the tools. Wiring them into the routine is the hard part."
   />
 );
 
@@ -2646,9 +2646,9 @@ const Mindset: Page = () => (
           animationDelay: '120ms',
         }}
       >
-        AI 不是取代你，<span style={gradText}>是放大你。</span>
+        AI 做初稿，<span style={gradText}>你做決定。</span>
       </h2>
-      <EnSub mb={40}>AI doesn't replace you. It amplifies you.</EnSub>
+      <EnSub mb={40}>AI drafts. You decide.</EnSub>
       <div
         style={{ display: 'grid', gridTemplateColumns: '1.15fr 1fr', gap: 40, alignItems: 'start' }}
       >
@@ -2955,9 +2955,9 @@ const Toolbox: Page = () => (
           animationDelay: '120ms',
         }}
       >
-        四類工具，覆蓋幹部 90% 的日常。
+        四類工具，幹部日常大概都在這裡面。
       </h2>
-      <EnSub mb={36}>Four tool families cover 90% of the job.</EnSub>
+      <EnSub mb={36}>Four tool families, and most of the job fits inside them.</EnSub>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 22 }}>
         <ToolCard
           icon="💬"
@@ -3226,7 +3226,7 @@ const ExperienceYourLife: Page = () => (
         className="ace-fadeup"
         style={{ fontSize: 24, color: palette.muted, margin: '0 0 26px', animationDelay: '200ms' }}
       >
-        靈感不會從螢幕裡長出來——先去把日子過得精彩，題目自己會找上你。
+        靈感不會從螢幕裡長出來。先去把日子過得精彩，題目自己會找上你。
       </p>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 18 }}>
         <LifePhoto src={life01} alt="社課帶大家拍片" delay={280} />
@@ -3582,7 +3582,7 @@ const HearOtherStories: Page = () => (
         className="ace-fadeup"
         style={{ fontSize: 26, lineHeight: 1.6, margin: '44px 0 0', animationDelay: '340ms' }}
       >
-        三個團隊、三個痛點——看他們怎麼把自己的煩惱，變成幾百萬人在用的產品。
+        三個團隊、三個痛點。看他們怎麼把自己的煩惱，變成幾百萬人在用的產品。
       </p>
       <p
         className="ace-fadeup"
@@ -4100,7 +4100,7 @@ const GogolookReveal: Page = () => (
           animationDelay: '220ms',
         }}
       >
-        "Let's see who's calling." — 名字就是態度。
+        "Let's see who's calling." — 走著瞧，看看是誰打來。
       </p>
       <div
         style={{
