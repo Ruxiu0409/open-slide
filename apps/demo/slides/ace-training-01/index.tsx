@@ -6,13 +6,32 @@ import {
   Steps,
   useSlidePageNumber,
 } from '@open-slide/core';
+import airpodsMax from './assets/airpods-max.jpeg';
+import appleLogo from './assets/apple.svg';
 import canvaLogo from './assets/canva.svg';
 import canvaMelanie from './assets/canva-melanie.jpg';
+import crestColumbia from './assets/crest-columbia.svg';
+import crestHarvard from './assets/crest-harvard.svg';
+import crestPenn from './assets/crest-penn.svg';
+import crestPrinceton from './assets/crest-princeton.svg';
+import crestStanford from './assets/crest-stanford.svg';
+import crestUC from './assets/crest-uc.svg';
+import crestYale from './assets/crest-yale.svg';
 import dcardLogo from './assets/dcard-logo.png';
 import gogolookFounders from './assets/gogolook-founders.jpg';
 import kytuPhoto from './assets/kytu-lin-dcard.jpg';
+import life01 from './assets/life-01.jpg';
+import life02 from './assets/life-02.jpg';
+import life03 from './assets/life-03.jpg';
+import life04 from './assets/life-04.jpg';
+import life05 from './assets/life-05.jpg';
+import life06 from './assets/life-06.jpg';
+import qrInstagram from './assets/qr-instagram.png';
+import qrLinkedin from './assets/qr-linkedin.png';
+import qrX from './assets/qr-x.png';
 import rayAvatar from './assets/ray-avatar.jpg';
 import raycastIcon from './assets/raycast.svg';
+import swiftLogo from './assets/swift.svg';
 import whoscallBrand from './assets/whoscall-brand.jpg';
 
 export const design: DesignSystem = {
@@ -80,6 +99,11 @@ const keyframes = `
   0%, 100% { opacity: 0.6; }
   50% { opacity: 1; }
 }
+@keyframes aceSwipe {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.ace-swipe { transform-origin: left center; animation: aceSwipe 360ms cubic-bezier(0.22, 1, 0.36, 1) both; }
 .ace-fadeup { animation: aceFadeUp 700ms cubic-bezier(0.22, 1, 0.36, 1) both; }
 .ace-fade { animation: aceFade 800ms ease-out both; }
 .ace-caret { animation: aceCaret 1.1s steps(1) infinite; }
@@ -429,46 +453,6 @@ const CredGroupLabel = ({ children }: { children: React.ReactNode }) => (
     }}
   >
     {children}
-  </div>
-);
-
-const StatCard = ({
-  kpi,
-  label,
-  labelEn,
-  delay = 0,
-}: {
-  kpi: string;
-  label: string;
-  labelEn: string;
-  delay?: number;
-}) => (
-  <div
-    className="ace-fadeup"
-    style={{
-      flex: 1,
-      padding: 32,
-      borderRadius: 'var(--osd-radius)',
-      background: palette.surface,
-      border: `1px solid ${palette.border}`,
-      boxShadow: cardShadow,
-      animationDelay: `${delay}ms`,
-    }}
-  >
-    <div
-      style={{
-        fontSize: 56,
-        fontWeight: 800,
-        ...gradText,
-        letterSpacing: '-0.02em',
-      }}
-    >
-      {kpi}
-    </div>
-    <div style={{ fontSize: 22, marginTop: 10, lineHeight: 1.45 }}>{label}</div>
-    <div style={{ fontSize: 17, color: palette.muted, marginTop: 6, lineHeight: 1.45 }}>
-      {labelEn}
-    </div>
   </div>
 );
 
@@ -1056,6 +1040,27 @@ const Cover: Page = () => (
   </div>
 );
 
+const QrChip = ({ src, label, handle }: { src: string; label: string; handle: string }) => (
+  <div style={{ width: 128 }}>
+    <img
+      src={src}
+      alt={`${label} QR code`}
+      style={{
+        width: 128,
+        height: 128,
+        display: 'block',
+        borderRadius: 12,
+        border: `1px solid ${palette.border}`,
+        background: palette.surface,
+      }}
+    />
+    <div style={{ fontSize: 16, fontWeight: 600, marginTop: 8 }}>{label}</div>
+    <div style={{ fontFamily: fonts.mono, fontSize: 13, color: palette.muted, marginTop: 2 }}>
+      {handle}
+    </div>
+  </div>
+);
+
 const AboutMe: Page = () => (
   <div style={fill}>
     <Style />
@@ -1122,6 +1127,14 @@ const AboutMe: Page = () => (
             }}
           />
         </div>
+        <div
+          className="ace-fadeup"
+          style={{ display: 'flex', gap: 14, marginTop: 26, animationDelay: '600ms' }}
+        >
+          <QrChip src={qrInstagram} label="Instagram" handle="@ruxiu0409" />
+          <QrChip src={qrLinkedin} label="LinkedIn" handle="Cheng-Yeh Tsai" />
+          <QrChip src={qrX} label="X" handle="@tsaicy0409" />
+        </div>
       </div>
       <div>
         <Eyebrow>指導老師 · Your Advisor</Eyebrow>
@@ -1159,8 +1172,8 @@ const AboutMe: Page = () => (
               <CredentialRow
                 compact
                 icon="📱"
-                text="iOS Club Lead（2025–26）· Advisor（2026–27）"
-                sub="iOS Club Lead 2025–26 · Advisor 2026–27"
+                text="iOS Club Lead（2025–26）"
+                sub="iOS Club Lead 2025–26"
                 delay={300}
               />
               <CredentialRow
@@ -1426,10 +1439,45 @@ const Positioning: Page = () => (
   </div>
 );
 
+const Crest = ({
+  src,
+  x,
+  y,
+  size,
+  rot = 0,
+}: {
+  src: string;
+  x: number;
+  y: number;
+  size: number;
+  rot?: number;
+}) => (
+  <img
+    src={src}
+    alt=""
+    aria-hidden="true"
+    style={{
+      position: 'absolute',
+      left: x,
+      top: y,
+      width: size,
+      opacity: 0.1,
+      transform: `rotate(${rot}deg)`,
+    }}
+  />
+);
+
 const TargetMembers: Page = () => (
   <div style={fill}>
     <Style />
     <Glow x="0%" y="0%" size={1000} opacity={0.24} />
+    <Crest src={crestUC} x={1600} y={110} size={150} rot={-6} />
+    <Crest src={crestHarvard} x={1360} y={60} size={100} rot={8} />
+    <Crest src={crestYale} x={1300} y={240} size={88} rot={-10} />
+    <Crest src={crestStanford} x={1735} y={310} size={105} rot={5} />
+    <Crest src={crestPrinceton} x={200} y={780} size={105} rot={-8} />
+    <Crest src={crestColumbia} x={720} y={820} size={92} rot={6} />
+    <Crest src={crestPenn} x={1520} y={775} size={100} rot={-4} />
     <div style={{ padding: '160px 160px 0' }}>
       <Eyebrow>為誰而開 · Who It's For</Eyebrow>
       <h2
@@ -1442,7 +1490,7 @@ const TargetMembers: Page = () => (
           animationDelay: '120ms',
         }}
       >
-        我們為這三種人而開。
+        這三種人，來對了。
       </h2>
       <EnSub mb={44}>Built for three kinds of people.</EnSub>
       <div style={{ display: 'flex', gap: 24 }}>
@@ -1450,24 +1498,24 @@ const TargetMembers: Page = () => (
           tag="TYPE 01"
           name="想解決痛點的人"
           nameEn="The fixer"
-          sub="被學校日常的小麻煩煩到，希望有人做個工具來解決——那個人可以是你。"
-          subEn="Annoyed by school hassles, wishing someone would build the fix — that someone can be you."
+          sub="學校那些小麻煩，你早就想有人做個東西來解決。那個人可以是你。"
+          subEn="Those school hassles? You've wanted someone to fix them. That someone can be you."
           delay={280}
         />
         <PillarCard
           tag="TYPE 02"
           name="想被看見的申請者"
           nameEn="The applicant"
-          sub="想要一段在 UC、Ivy League、M7 申請中真正突出的經歷。"
-          subEn="Wants an activity that actually stands out on UC / Ivy League / M7 applications."
+          sub="申請 UC、Ivy League、M7 時，想有一個別人複製不來的作品可以寫。"
+          subEn="Wants one project on the application that nobody else can copy."
           delay={380}
         />
         <PillarCard
           tag="TYPE 03"
           name="零基礎的好奇者"
           nameEn="The curious"
-          sub="對 AI、設計、科技好奇，但完全沒寫過程式——零基礎正是起點。"
-          subEn="Curious about AI, design or tech, with zero coding background — exactly where we start."
+          sub="對 AI、設計、科技好奇，但完全沒寫過程式。沒關係，我們就是從這裡開始。"
+          subEn="Curious about AI, design or tech, with zero coding. That's exactly where we start."
           delay={480}
         />
       </div>
@@ -1476,38 +1524,592 @@ const TargetMembers: Page = () => (
   </div>
 );
 
+const TrackPanel = ({
+  tag,
+  ghost,
+  icon,
+  name,
+  nameEn,
+  desc,
+  descEn,
+  goal,
+  goalEn,
+  featured = false,
+  delay = 0,
+}: {
+  tag: string;
+  ghost: string;
+  icon: string;
+  name: string;
+  nameEn: string;
+  desc: string;
+  descEn: string;
+  goal: string;
+  goalEn: string;
+  featured?: boolean;
+  delay?: number;
+}) => (
+  <div
+    className="ace-fadeup"
+    style={{
+      flex: 1,
+      position: 'relative',
+      overflow: 'hidden',
+      minHeight: 556,
+      padding: '44px 46px',
+      borderRadius: 28,
+      background: featured ? accentGrad : palette.surface,
+      border: featured ? 'none' : `1px solid ${palette.border}`,
+      boxShadow: featured
+        ? '0 32px 80px rgba(46, 111, 224, 0.32)'
+        : '0 18px 50px rgba(0, 0, 0, 0.08)',
+      color: featured ? '#FFFFFF' : 'var(--osd-text)',
+      animationDelay: `${delay}ms`,
+    }}
+  >
+    <div
+      aria-hidden="true"
+      style={{
+        position: 'absolute',
+        right: -18,
+        bottom: -78,
+        fontSize: 300,
+        fontWeight: 800,
+        lineHeight: 1,
+        letterSpacing: '-0.04em',
+        color: featured ? 'rgba(255, 255, 255, 0.16)' : 'rgba(46, 111, 224, 0.08)',
+      }}
+    >
+      {ghost}
+    </div>
+    <div style={{ position: 'relative' }}>
+      <div
+        style={{
+          width: 72,
+          height: 72,
+          borderRadius: 20,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: 36,
+          background: featured ? 'rgba(255, 255, 255, 0.2)' : palette.accentSoft,
+        }}
+      >
+        {icon}
+      </div>
+      <div
+        style={{
+          fontFamily: fonts.mono,
+          fontSize: 18,
+          letterSpacing: '0.16em',
+          marginTop: 26,
+          color: featured ? 'rgba(255, 255, 255, 0.82)' : 'var(--osd-accent)',
+        }}
+      >
+        {tag}
+      </div>
+      <div style={{ fontSize: 78, fontWeight: 800, lineHeight: 1.05, marginTop: 8 }}>{name}</div>
+      <div
+        style={{
+          fontSize: 26,
+          fontWeight: 500,
+          marginTop: 6,
+          color: featured ? 'rgba(255, 255, 255, 0.8)' : palette.muted,
+        }}
+      >
+        {nameEn}
+      </div>
+      <div style={{ fontSize: 23, lineHeight: 1.55, marginTop: 26, maxWidth: 620 }}>{desc}</div>
+      <div
+        style={{
+          fontSize: 17,
+          lineHeight: 1.5,
+          marginTop: 6,
+          maxWidth: 620,
+          color: featured ? 'rgba(255, 255, 255, 0.76)' : palette.muted,
+        }}
+      >
+        {descEn}
+      </div>
+      <div
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 12,
+          marginTop: 28,
+          padding: '12px 24px',
+          borderRadius: 999,
+          fontSize: 21,
+          fontWeight: 700,
+          background: featured ? 'rgba(255, 255, 255, 0.18)' : palette.accentSoft,
+          color: featured ? '#FFFFFF' : 'var(--osd-accent)',
+        }}
+      >
+        <span style={{ fontFamily: fonts.mono, fontSize: 15, opacity: 0.75 }}>GOAL</span>
+        {goal}
+      </div>
+      <div
+        style={{
+          fontSize: 16,
+          marginTop: 8,
+          color: featured ? 'rgba(255, 255, 255, 0.72)' : palette.muted,
+        }}
+      >
+        {goalEn}
+      </div>
+    </div>
+  </div>
+);
+
 const Goals: Page = () => (
   <div style={fill}>
     <Style />
-    <Glow x="100%" y="100%" size={1100} opacity={0.28} />
-    <div style={{ padding: '170px 160px 0' }}>
+    <Glow x="100%" y="100%" size={1100} opacity={0.3} />
+    <Glow x="0%" y="10%" size={900} opacity={0.22} />
+    <div style={{ padding: '128px 140px 0' }}>
       <Eyebrow>這學期的目標 · Semester Goals</Eyebrow>
       <h2
         className="ace-fadeup"
         style={{
-          fontSize: 80,
+          fontSize: 84,
           fontWeight: 800,
-          margin: '30px 0 10px',
+          margin: '28px 0 10px',
           lineHeight: 1.1,
+          letterSpacing: '-0.01em',
           animationDelay: '120ms',
         }}
       >
-        數字先說好，期末一起驗收。
+        分兩組走，<span style={gradText}>各自定義成功。</span>
       </h2>
-      <EnSub mb={48}>Lock the numbers now — review them at term end.</EnSub>
+      <EnSub mb={36}>Two tracks — each defines its own win.</EnSub>
+      <div style={{ display: 'flex', gap: 28 }}>
+        <TrackPanel
+          tag="TRACK 01"
+          ghost="01"
+          icon="🛠️"
+          name="創客組"
+          nameEn="Maker"
+          desc="做出想做的東西，然後分享出去——沒有評審，只有你想不想做。"
+          descEn="Build the thing you want, then share it. No judges — just whether you want it."
+          goal="做出來，分享就達標"
+          goalEn="Build it, share it — that's the win"
+          delay={260}
+        />
+        <TrackPanel
+          featured
+          tag="TRACK 02"
+          ghost="02"
+          icon="🏆"
+          name="競賽組"
+          nameEn="Competition"
+          desc="以賽促學——期末成品做成 App Playground，投稿 Swift Student Challenge。"
+          descEn="Learn by competing — ship an App Playground to the Swift Student Challenge."
+          goal="投出去，履歷上多一行"
+          goalEn="Submit it — earn a line on your résumé"
+          delay={360}
+        />
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
+const SscStat = ({
+  num,
+  unit,
+  name,
+  nameEn,
+  desc,
+  descEn,
+  featured = false,
+  delay = 0,
+}: {
+  num: string;
+  unit: string;
+  name: string;
+  nameEn: string;
+  desc: string;
+  descEn: string;
+  featured?: boolean;
+  delay?: number;
+}) => (
+  <div
+    className="ace-fadeup"
+    style={{
+      flex: 1,
+      padding: '30px 32px',
+      borderRadius: 'var(--osd-radius)',
+      background: featured ? accentGrad : palette.surface,
+      border: featured ? 'none' : `1px solid ${palette.border}`,
+      boxShadow: featured ? '0 20px 48px rgba(46, 111, 224, 0.26)' : cardShadow,
+      color: featured ? '#FFFFFF' : 'var(--osd-text)',
+      animationDelay: `${delay}ms`,
+    }}
+  >
+    <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
+      <span
+        style={{
+          fontSize: 88,
+          fontWeight: 800,
+          lineHeight: 1,
+          ...(featured ? {} : gradText),
+        }}
+      >
+        {num}
+      </span>
+      <span
+        style={{
+          fontSize: 24,
+          fontWeight: 600,
+          color: featured ? 'rgba(255, 255, 255, 0.86)' : palette.muted,
+        }}
+      >
+        {unit}
+      </span>
+    </div>
+    <div style={{ fontSize: 26, fontWeight: 700, marginTop: 12 }}>{name}</div>
+    <div
+      style={{
+        fontSize: 18,
+        color: featured ? 'rgba(255, 255, 255, 0.78)' : palette.muted,
+        marginTop: 4,
+      }}
+    >
+      {nameEn}
+    </div>
+    <div style={{ fontSize: 19, lineHeight: 1.45, marginTop: 12 }}>{desc}</div>
+    <div
+      style={{
+        fontSize: 16,
+        color: featured ? 'rgba(255, 255, 255, 0.78)' : palette.muted,
+        lineHeight: 1.45,
+        marginTop: 4,
+      }}
+    >
+      {descEn}
+    </div>
+  </div>
+);
+
+const PrizeItem = ({ text, textEn }: { text: string; textEn: string }) => (
+  <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
+    <span style={{ color: 'var(--osd-accent)', fontSize: 17, flexShrink: 0 }}>✓</span>
+    <div>
+      <span style={{ fontSize: 21, fontWeight: 600 }}>{text}</span>
+      <span style={{ fontSize: 16, color: palette.muted, marginLeft: 8 }}>{textEn}</span>
+    </div>
+  </div>
+);
+
+const SwiftStudentChallenge: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="70%" y="20%" size={1150} opacity={0.24} />
+    <div style={{ padding: '150px 160px 0' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Eyebrow>競賽組目標 · Swift Student Challenge</Eyebrow>
+        <div
+          className="ace-fade"
+          style={{ display: 'flex', alignItems: 'center', gap: 24, animationDelay: '240ms' }}
+        >
+          <img src={appleLogo} alt="Apple" style={{ height: 54, display: 'block' }} />
+          <div style={{ width: 1, height: 42, background: palette.chipBorder }} />
+          <img src={swiftLogo} alt="Swift" style={{ height: 62, display: 'block' }} />
+        </div>
+      </div>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 68,
+          fontWeight: 800,
+          margin: '30px 0 10px',
+          lineHeight: 1.15,
+          animationDelay: '120ms',
+        }}
+      >
+        Apple 官方的全球學生賽，<span style={gradText}>一年一次。</span>
+      </h2>
+      <EnSub mb={30}>
+        Apple's Swift Student Challenge — one shot a year, open to students worldwide.
+      </EnSub>
       <div style={{ display: 'flex', gap: 24 }}>
-        <StatCard
-          kpi="1"
-          label="一人一個作品，就這麼簡單"
-          labelEn="One person, one project — that's it"
+        <PillarCard
+          tag="THE BRIEF · 做什麼"
+          name="一個 App Playground"
+          nameEn="Build an App Playground"
+          sub="用 Swift 做一個三分鐘內玩完的互動作品。"
+          subEn="An interactive piece playable in three minutes."
           delay={280}
         />
-        <StatCard
-          kpi="Next"
-          label="下學期：強專案成員 fast-track 進競賽隊"
-          labelEn="Strong projects fast-track into competition teams"
+        <PillarCard
+          tag="THE BAR · 評什麼"
+          name="創意與影響力"
+          nameEn="How it's judged"
+          sub="評審看創新、創意、社會影響力與包容性，不是比誰程式碼多。"
+          subEn="Innovation, creativity, social impact, inclusivity."
           delay={380}
         />
+        <PillarCard
+          tag="WHO · 誰能投"
+          name="13 歲以上在學生"
+          nameEn="Students, 13 and up"
+          sub="在學就能投，只要你不是全職開發者。"
+          subEn="Enrolled students who aren't full-time developers."
+          delay={480}
+        />
+      </div>
+      <div
+        className="ace-fadeup"
+        style={{
+          marginTop: 22,
+          padding: '16px 26px',
+          borderRadius: 14,
+          background: palette.surface,
+          border: `1px solid ${palette.border}`,
+          fontFamily: fonts.mono,
+          fontSize: 18,
+          color: palette.muted,
+          animationDelay: '580ms',
+        }}
+      >
+        <div>
+          時程：每年 2 月開放投稿 · 3 月底公布得獎 · 規格：.swiftpm 專案、25 MB
+          以內、離線可跑、內容用英文
+        </div>
+        <div style={{ fontSize: 15, marginTop: 7, opacity: 0.85 }}>
+          Timeline: submissions open in February, winners announced late March · Specs: .swiftpm
+          project, under 25 MB, runs offline, content in English
+        </div>
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
+const SscPrizes: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="30%" y="25%" size={1150} opacity={0.24} />
+    <div style={{ padding: '150px 160px 0' }}>
+      <Eyebrow>得獎有什麼 · What You Win</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 68,
+          fontWeight: 800,
+          margin: '30px 0 10px',
+          lineHeight: 1.15,
+          animationDelay: '120ms',
+        }}
+      >
+        全世界只選 350 人，<span style={gradText}>50 人飛去 Apple Park。</span>
+      </h2>
+      <EnSub mb={30}>350 winners worldwide — 50 of them flown to Apple Park.</EnSub>
+      <div style={{ display: 'flex', gap: 22 }}>
+        <SscStat
+          num="350"
+          unit="人"
+          name="全球得獎者"
+          nameEn="Winners worldwide"
+          desc="今年 350 位得獎者來自 37 個國家與地區。"
+          descEn="This year's 350 came from 37 countries."
+          delay={280}
+        />
+        <SscStat
+          num="50"
+          unit="人"
+          name="飛去 Apple Park"
+          nameEn="Distinguished Winners"
+          desc="作品最出色的 50 位，Apple 招待三天。"
+          descEn="The standouts get a three-day visit."
+          featured
+          delay={380}
+        />
+        <SscStat
+          num="300"
+          unit="人"
+          name="抽籤有機會去"
+          nameEn="A shot at the trip"
+          desc="其餘得獎者抽籤，一樣有機會走一趟。"
+          descEn="The rest enter a draw for the same visit."
+          delay={480}
+        />
+      </div>
+      <div
+        className="ace-fadeup"
+        style={{
+          marginTop: 22,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 36,
+          padding: '24px 32px',
+          borderRadius: 'var(--osd-radius)',
+          background: palette.surface,
+          border: `1px solid ${palette.border}`,
+          boxShadow: cardShadow,
+          animationDelay: '580ms',
+        }}
+      >
+        <img
+          src={airpodsMax}
+          alt="AirPods Max"
+          style={{ height: 168, width: 'auto', flexShrink: 0 }}
+        />
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: 30, fontWeight: 700 }}>
+            每一位得獎者都拿到
+            <span style={{ fontSize: 19, fontWeight: 500, color: palette.muted, marginLeft: 10 }}>
+              Every winner gets
+            </span>
+          </div>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '12px 32px',
+              marginTop: 16,
+            }}
+          >
+            <PrizeItem text="AirPods Max 2" textEn="就是這副耳機" />
+            <PrizeItem text="個人化證書" textEn="A personalized certificate" />
+            <PrizeItem text="一年 Apple Developer Program" textEn="One-year membership, free" />
+            <PrizeItem text="免費考 Swift 認證" textEn="Free Swift certification exam" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
+const WinnerTrait = ({
+  icon,
+  name,
+  nameEn,
+  desc,
+  descEn,
+  example,
+  delay = 0,
+}: {
+  icon: string;
+  name: string;
+  nameEn: string;
+  desc: string;
+  descEn: string;
+  example: string;
+  delay?: number;
+}) => (
+  <div
+    className="ace-fadeup"
+    style={{
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      padding: '30px 28px',
+      borderRadius: 'var(--osd-radius)',
+      background: palette.surface,
+      border: `1px solid ${palette.border}`,
+      boxShadow: cardShadow,
+      animationDelay: `${delay}ms`,
+    }}
+  >
+    <div style={{ fontSize: 40, lineHeight: 1 }}>{icon}</div>
+    <div style={{ fontSize: 28, fontWeight: 700, marginTop: 18 }}>{name}</div>
+    <div style={{ fontSize: 17, color: palette.muted, marginTop: 3 }}>{nameEn}</div>
+    <div style={{ fontSize: 19, lineHeight: 1.5, marginTop: 14 }}>{desc}</div>
+    <div style={{ fontSize: 15, color: palette.muted, lineHeight: 1.45, marginTop: 5 }}>
+      {descEn}
+    </div>
+    <div
+      style={{
+        marginTop: 'auto',
+        paddingTop: 16,
+        borderTop: `1px solid ${palette.border}`,
+        fontFamily: fonts.mono,
+        fontSize: 14,
+        lineHeight: 1.45,
+        color: 'var(--osd-accent)',
+      }}
+    >
+      {example}
+    </div>
+  </div>
+);
+
+const WhoWins: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="80%" y="15%" size={1100} opacity={0.24} />
+    <div style={{ padding: '140px 140px 0' }}>
+      <Eyebrow>什麼樣的人會得獎 · Who Wins</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 68,
+          fontWeight: 800,
+          margin: '28px 0 10px',
+          lineHeight: 1.15,
+          animationDelay: '120ms',
+        }}
+      >
+        得獎的不是最會寫程式的人，<span style={gradText}>是最有話想說的人。</span>
+      </h2>
+      <EnSub mb={32}>
+        Winners aren't the best coders — they're the ones with something to say.
+      </EnSub>
+      <div style={{ display: 'flex', gap: 20, alignItems: 'stretch' }}>
+        <WinnerTrait
+          icon="🎯"
+          name="切身之痛"
+          nameEn="Personal motivation"
+          desc="題目來自自己或身邊人真的遇過的事，不是想像出來的。"
+          descEn="Problems they lived through themselves."
+          example="Fast Aid · 急救步驟即時指引（印度）"
+          delay={260}
+        />
+        <WinnerTrait
+          icon="🌍"
+          name="幫到別人"
+          nameEn="Social impact"
+          desc="讓被忽略的人被照顧、讓難懂的事變好懂。"
+          descEn="Care for the overlooked; clarity for the confused."
+          example="MyCycle · 用人話講生理健康（德國）"
+          delay={330}
+        />
+        <WinnerTrait
+          icon="🧩"
+          name="現學現做"
+          nameEn="Self-taught"
+          desc="為了把作品做出來，臨時去學一個全新的技能。"
+          descEn="Learned whatever it took to ship it."
+          example="Yume's Spellbook · 玩遊戲搞懂 LLM（巴西）"
+          delay={400}
+        />
+        <WinnerTrait
+          icon="🤝"
+          name="願意分享"
+          nameEn="Community"
+          desc="跟同伴一起學，也把學到的東西帶回去教別人。"
+          descEn="They learn with peers and pass it on."
+          example="和我們的第三個約定一樣：學到就分享"
+          delay={470}
+        />
+      </div>
+      <div
+        className="ace-fadeup"
+        style={{
+          marginTop: 24,
+          fontFamily: fonts.mono,
+          fontSize: 16,
+          color: palette.muted,
+          lineHeight: 1.5,
+          animationDelay: '560ms',
+        }}
+      >
+        2025 年 Distinguished Winners
+        來自印度、巴西、美國、日本、中國、德國——六個國家，六個不同的痛點。
+        <br />
+        developer.apple.com/swift-student-challenge/distinguished-winners
       </div>
     </div>
     <Footer />
@@ -2017,6 +2619,163 @@ const Mindset: Page = () => (
   </div>
 );
 
+const SpeakHumanCard = ({
+  zh,
+  en,
+  desc,
+  descEn,
+  delay = 0,
+}: {
+  zh: string;
+  en: string;
+  desc: string;
+  descEn: string;
+  delay?: number;
+}) => (
+  <div
+    className="ace-fadeup"
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 20,
+      padding: '18px 24px',
+      borderRadius: 14,
+      background: palette.surface,
+      border: `1px solid ${palette.border}`,
+      boxShadow: cardShadow,
+      animationDelay: `${delay}ms`,
+    }}
+  >
+    <div style={{ minWidth: 96 }}>
+      <div style={{ fontSize: 28, fontWeight: 800, color: 'var(--osd-accent)' }}>{zh}</div>
+      <div style={{ fontSize: 14, color: palette.muted }}>{en}</div>
+    </div>
+    <div>
+      <div style={{ fontSize: 20, lineHeight: 1.4 }}>{desc}</div>
+      <div style={{ fontSize: 16, color: palette.muted, lineHeight: 1.4, marginTop: 2 }}>
+        {descEn}
+      </div>
+    </div>
+  </div>
+);
+
+const SpeakHuman: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="80%" y="25%" size={1100} opacity={0.22} />
+    <div style={{ padding: '150px 160px 0' }}>
+      <Eyebrow>主講重點 · Key Message</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 72,
+          fontWeight: 800,
+          margin: '30px 0 10px',
+          lineHeight: 1.15,
+          animationDelay: '120ms',
+        }}
+      >
+        要讓 AI 不像 AI，<span style={gradText}>不然人家會反感。</span>
+      </h2>
+      <EnSub mb={36}>
+        Make AI not sound like AI — the moment it reads like a robot, people push back.
+      </EnSub>
+      <div
+        style={{ display: 'grid', gridTemplateColumns: '1.15fr 1fr', gap: 40, alignItems: 'start' }}
+      >
+        <div
+          className="ace-fadeup"
+          style={{
+            background: '#1D1D1F',
+            color: '#F5F5F7',
+            borderRadius: 'var(--osd-radius)',
+            padding: '28px 32px',
+            fontFamily: fonts.mono,
+            fontSize: 21,
+            lineHeight: 1.7,
+            boxShadow: '0 24px 60px rgba(0, 0, 0, 0.18)',
+            animationDelay: '280ms',
+          }}
+        >
+          <div style={{ color: '#86868B' }}>{'// 裝好之後，只要說 · once installed, just say'}</div>
+          <div style={{ marginTop: 10 }}>
+            <span style={{ color: '#6C9BF0' }}>&gt;</span> 幫這段去 AI 味
+            <span
+              className="ace-caret"
+              style={{
+                display: 'inline-block',
+                width: 2,
+                height: 21,
+                background: '#6C9BF0',
+                marginLeft: 6,
+                verticalAlign: 'middle',
+              }}
+            />
+          </div>
+          <div style={{ color: '#86868B', marginTop: 18 }}>{'// Before · AI 味'}</div>
+          <div style={{ color: '#B7B7BC' }}>
+            在快速發展的數位時代，我們致力於打造全方位的學習體驗。
+          </div>
+          <div style={{ color: '#86868B', marginTop: 12 }}>{'// After · 人話'}</div>
+          <div style={{ color: '#6C9BF0' }}>我們想讓每個社員，都真的學到東西。</div>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <SpeakHumanCard
+            zh="會反感"
+            en="Backfire"
+            desc="一眼認出是 AI，讀的人就先扣分"
+            descEn="Spot the AI, and the reader tunes out"
+            delay={360}
+          />
+          <SpeakHumanCard
+            zh="沒誠意"
+            en="Feels lazy"
+            desc="社團貼文像機器人寫的，很傷"
+            descEn="Robot-sounding club posts cost us trust"
+            delay={460}
+          />
+          <SpeakHumanCard
+            zh="有解法"
+            en="The fix"
+            desc="speak-human-tw 抓 38 種 AI 痕跡"
+            descEn="speak-human-tw flags 38 AI tells"
+            delay={560}
+          />
+        </div>
+      </div>
+      <a
+        className="ace-fadeup"
+        href="https://github.com/Raymondhou0917/speak-human-tw"
+        target="_blank"
+        rel="noreferrer"
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 14,
+          marginTop: 28,
+          padding: '14px 26px',
+          borderRadius: 999,
+          border: `1px solid ${palette.chipBorder}`,
+          background: palette.surface,
+          boxShadow: cardShadow,
+          fontFamily: fonts.mono,
+          fontSize: 20,
+          color: 'var(--osd-text)',
+          textDecoration: 'none',
+          animationDelay: '660ms',
+        }}
+      >
+        <span aria-hidden="true">⭐</span>
+        github.com/Raymondhou0917/speak-human-tw
+        <span style={{ color: palette.muted, fontFamily: fonts.sans, fontSize: 18 }}>
+          免費開源，回去就能試 · free & open source
+        </span>
+      </a>
+    </div>
+    <Footer />
+  </div>
+);
+
 const Toolbox: Page = () => (
   <div style={fill}>
     <Style />
@@ -2139,6 +2898,385 @@ const DividerThink: Page = () => (
   />
 );
 
+const WhatWouldYouBuild: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="45%" size={1400} opacity={0.34} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '0 160px',
+      }}
+    >
+      <Eyebrow>換你動腦 · Your Turn</Eyebrow>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 44,
+          fontWeight: 600,
+          lineHeight: 1.4,
+          margin: '44px 0 0',
+          animationDelay: '140ms',
+        }}
+      >
+        如果現在要讓你解決一個問題，
+        <br />
+        或是做出一個作品——
+      </p>
+      <h1
+        className="ace-fadeup"
+        style={{
+          fontSize: 104,
+          fontWeight: 800,
+          lineHeight: 1.1,
+          margin: '26px 0 0',
+          ...gradText,
+          animationDelay: '260ms',
+        }}
+      >
+        你會想做什麼？
+      </h1>
+      <p
+        className="ace-fadeup"
+        style={{ fontSize: 26, color: palette.muted, margin: '20px 0 0', animationDelay: '340ms' }}
+      >
+        If you could fix one problem or build one thing — what would it be?
+      </p>
+    </div>
+    <Footer />
+  </div>
+);
+
+const BelongsToYou: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="40%" size={1400} opacity={0.32} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '0 160px',
+      }}
+    >
+      <Eyebrow>為自己而做 · Make It Yours</Eyebrow>
+      <h1
+        className="ace-fadeup"
+        style={{
+          fontSize: 96,
+          fontWeight: 800,
+          lineHeight: 1.08,
+          letterSpacing: '-0.02em',
+          margin: '40px 0 0',
+          animationDelay: '140ms',
+        }}
+      >
+        Build something
+        <br />
+        <span style={gradText}>that belongs to you.</span>
+      </h1>
+      <p
+        className="ace-fadeup"
+        style={{ fontSize: 40, fontWeight: 600, margin: '30px 0 0', animationDelay: '260ms' }}
+      >
+        做一個真正屬於你的東西。
+      </p>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 26,
+          lineHeight: 1.6,
+          maxWidth: 1150,
+          margin: '30px 0 0',
+          animationDelay: '340ms',
+        }}
+      >
+        不是為了交作業，也不是為了分數。是那種你會主動想拿給朋友看、下課還想繼續改下去的東西。
+      </p>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 21,
+          color: palette.muted,
+          lineHeight: 1.55,
+          maxWidth: 1150,
+          margin: '14px 0 0',
+          animationDelay: '400ms',
+        }}
+      >
+        Not for a grade, not for homework — the kind of thing you'd show a friend unprompted, and
+        keep tinkering with after class.
+      </p>
+    </div>
+    <Footer />
+  </div>
+);
+
+const LifePhoto = ({ src, alt, delay = 0 }: { src: string; alt: string; delay?: number }) => (
+  <img
+    className="ace-fadeup"
+    src={src}
+    alt={alt}
+    style={{
+      width: '100%',
+      aspectRatio: '606 / 353',
+      objectFit: 'cover',
+      display: 'block',
+      borderRadius: 18,
+      border: `1px solid ${palette.border}`,
+      boxShadow: cardShadow,
+      animationDelay: `${delay}ms`,
+    }}
+  />
+);
+
+const ExperienceYourLife: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="0%" size={1100} opacity={0.24} />
+    <div style={{ padding: '104px 140px 0' }}>
+      <Eyebrow>但先去生活 · But First</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 76,
+          fontWeight: 800,
+          margin: '22px 0 8px',
+          lineHeight: 1.1,
+          letterSpacing: '-0.01em',
+          animationDelay: '120ms',
+        }}
+      >
+        But first, <span style={gradText}>experience your life.</span>
+      </h2>
+      <p
+        className="ace-fadeup"
+        style={{ fontSize: 24, color: palette.muted, margin: '0 0 26px', animationDelay: '200ms' }}
+      >
+        靈感不會從螢幕裡長出來——先去把日子過得精彩，題目自己會找上你。
+      </p>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 18 }}>
+        <LifePhoto src={life01} alt="社課帶大家拍片" delay={280} />
+        <LifePhoto src={life02} alt="電腦教室裡的工作坊" delay={330} />
+        <LifePhoto src={life03} alt="錄影訪談" delay={380} />
+        <LifePhoto src={life04} alt="教小朋友動手做" delay={430} />
+        <LifePhoto src={life05} alt="迪士尼樂園" delay={480} />
+        <LifePhoto src={life06} alt="體驗 eVTOL 載人飛行器" delay={530} />
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
+const CodePowerZh: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="45%" size={1400} opacity={0.26} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '0 160px',
+      }}
+    >
+      <div
+        className="ace-fadeup"
+        style={{ fontSize: 32, color: palette.muted, letterSpacing: '0.01em' }}
+      >
+        - The power of code drives change in the world -
+      </div>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 96,
+          fontWeight: 800,
+          lineHeight: 1.24,
+          letterSpacing: '-0.01em',
+          margin: '40px 0 0',
+          animationDelay: '80ms',
+        }}
+      >
+        <span style={{ position: 'relative', display: 'inline-block' }}>
+          程式碼
+          <span
+            className="ace-swipe"
+            style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              bottom: 2,
+              height: 8,
+              borderRadius: 4,
+              background: 'var(--osd-accent)',
+              animationDelay: '380ms',
+            }}
+          />
+        </span>
+        的力量，
+        <br />
+        推動
+        <span style={{ position: 'relative', display: 'inline-block', padding: '0 20px' }}>
+          <span
+            className="ace-swipe"
+            style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: -4,
+              bottom: -4,
+              borderRadius: 999,
+              background: 'rgba(46, 111, 224, 0.16)',
+              animationDelay: '540ms',
+            }}
+          />
+          <span style={{ position: 'relative' }}>世界的改變</span>
+        </span>
+        。
+      </h2>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 34,
+          lineHeight: 1.75,
+          maxWidth: 1180,
+          margin: '44px 0 0',
+          animationDelay: '600ms',
+        }}
+      >
+        學習編碼，有助於學生在一開始就建立信心，並培養解決問題的技能。用 Apple
+        編寫程式碼，為教育工作者帶來各種工具和資源，幫助學生表達自我，無論將來從事哪一行，都能做好充分準備。
+      </p>
+      <div
+        className="ace-fadeup"
+        style={{
+          fontFamily: fonts.mono,
+          fontSize: 20,
+          color: palette.muted,
+          marginTop: 20,
+          animationDelay: '680ms',
+        }}
+      >
+        — Apple 教育
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
+const CodePowerLine = ({ focus }: { focus?: string }) => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="50%" size={1400} opacity={0.2} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '0 160px',
+      }}
+    >
+      <div
+        className="ace-fadeup"
+        style={{ fontSize: 86, fontWeight: 800, lineHeight: 1.14, letterSpacing: '-0.02em' }}
+      >
+        The power of code drives change
+      </div>
+      <div
+        className="ace-fadeup"
+        style={{
+          fontSize: 104,
+          fontWeight: 800,
+          lineHeight: 1.14,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        in {focus ? <span style={{ color: 'var(--osd-accent)' }}>{focus}</span> : 'the'} world
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
+const CodeChangeWorld: Page = () => <CodePowerLine />;
+const CodeChangeFriend: Page = () => <CodePowerLine focus="your friend’s" />;
+const CodeChangeSchool: Page = () => <CodePowerLine focus="your school’s" />;
+const CodeChangeClub: Page = () => <CodePowerLine focus="your club’s" />;
+const CodeChangeYou: Page = () => <CodePowerLine focus="your" />;
+
+const IdentifyProblem: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="15%" y="55%" size={1200} opacity={0.3} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: '0 160px',
+      }}
+    >
+      <Eyebrow>第一步 · Step One</Eyebrow>
+      <h1
+        className="ace-fadeup"
+        style={{
+          fontSize: 100,
+          fontWeight: 800,
+          lineHeight: 1.08,
+          letterSpacing: '-0.02em',
+          margin: '36px 0 0',
+          animationDelay: '140ms',
+        }}
+      >
+        Identify the problem
+        <br />
+        <span style={gradText}>you want to solve.</span>
+      </h1>
+      <p
+        className="ace-fadeup"
+        style={{ fontSize: 40, fontWeight: 600, margin: '32px 0 0', animationDelay: '260ms' }}
+      >
+        先找出你想解決的那個問題。
+      </p>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 24,
+          color: palette.muted,
+          lineHeight: 1.6,
+          maxWidth: 1100,
+          margin: '14px 0 0',
+          animationDelay: '340ms',
+        }}
+      >
+        不用是大問題。越具體、越貼近你自己的生活，越好做。
+      </p>
+    </div>
+    <Footer />
+  </div>
+);
+
 const CoreValue: Page = () => (
   <div style={fill}>
     <Style />
@@ -2203,58 +3341,6 @@ const CoreValue: Page = () => (
   </div>
 );
 
-const Workshop: Page = () => (
-  <div style={fill}>
-    <Style />
-    <Glow x="0%" y="100%" size={1000} opacity={0.28} />
-    <div style={{ padding: '150px 160px 0' }}>
-      <Eyebrow>創意思考 · Creative Thinking</Eyebrow>
-      <h2
-        className="ace-fadeup"
-        style={{
-          fontSize: 76,
-          fontWeight: 800,
-          margin: '30px 0 10px',
-          lineHeight: 1.1,
-          animationDelay: '120ms',
-        }}
-      >
-        找一個值得解決的痛點。
-      </h2>
-      <EnSub mb={40}>Find a pain point worth solving.</EnSub>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 18, maxWidth: 1500 }}>
-        <Steps>
-          <Step>
-            <AgendaRow
-              num="01"
-              title="發散 Diverge"
-              sub="寫下 3 個讓你最煩的校園日常——5 分鐘，不評價"
-              subEn="List three school-life annoyances — five minutes, no judging"
-            />
-          </Step>
-          <Step>
-            <AgendaRow
-              num="02"
-              title="深挖 Dig"
-              sub="挑一個最有感的，用 5 Whys 連問五次為什麼"
-              subEn="Pick the one that stings; ask why five times (5 Whys)"
-            />
-          </Step>
-          <Step>
-            <AgendaRow
-              num="03"
-              title="命名 Name it"
-              sub="幫你的解法取名字，順便想它的 domain"
-              subEn="Name your fix — and give it a domain"
-            />
-          </Step>
-        </Steps>
-      </div>
-    </div>
-    <Footer />
-  </div>
-);
-
 const PainPrompt: Page = () => (
   <div style={fill}>
     <Style />
@@ -2289,6 +3375,66 @@ const PainPrompt: Page = () => (
         style={{ fontSize: 28, color: palette.muted, margin: 0, animationDelay: '240ms' }}
       >
         Call out a problem you're living with right now — a pain point.
+      </p>
+    </div>
+    <Footer />
+  </div>
+);
+
+const HearOtherStories: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="45%" size={1400} opacity={0.32} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '0 140px',
+      }}
+    >
+      <Eyebrow>案例時間 · Case Studies</Eyebrow>
+      <h1
+        className="ace-fadeup"
+        style={{
+          fontSize: 96,
+          fontWeight: 800,
+          margin: '48px 0 22px',
+          lineHeight: 1.2,
+          letterSpacing: '-0.01em',
+          animationDelay: '140ms',
+        }}
+      >
+        我們來聽聽<span style={gradText}>別人的故事。</span>
+      </h1>
+      <p
+        className="ace-fadeup"
+        style={{ fontSize: 28, color: palette.muted, margin: 0, animationDelay: '240ms' }}
+      >
+        Let's hear how other people did it.
+      </p>
+      <p
+        className="ace-fadeup"
+        style={{ fontSize: 26, lineHeight: 1.6, margin: '44px 0 0', animationDelay: '340ms' }}
+      >
+        三個團隊、三個痛點——看他們怎麼把自己的煩惱，變成幾百萬人在用的產品。
+      </p>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 21,
+          color: palette.muted,
+          lineHeight: 1.55,
+          margin: '12px 0 0',
+          animationDelay: '400ms',
+        }}
+      >
+        Three teams, three pain points — and how each turned a personal annoyance into a product
+        millions use.
       </p>
     </div>
     <Footer />
@@ -3236,6 +4382,66 @@ const ValueProp: Page = () => (
   </div>
 );
 
+const VercelDeploy: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="100%" y="0%" size={1000} opacity={0.28} />
+    <div style={{ padding: '150px 160px 0' }}>
+      <Eyebrow>上線 · Go Live</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 76,
+          fontWeight: 800,
+          margin: '30px 0 10px',
+          lineHeight: 1.1,
+          animationDelay: '120ms',
+        }}
+      >
+        網站做好了，先丟上 <span style={gradText}>Vercel</span> 測試。
+      </h2>
+      <EnSub mb={40}>Site's working? Put it on Vercel — for free.</EnSub>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 18, maxWidth: 1500 }}>
+        <Steps>
+          <Step>
+            <AgendaRow
+              num="01"
+              title="註冊帳號"
+              sub="到 vercel.com 用 Email 免費註冊"
+              subEn="Sign up free at vercel.com with your email"
+            />
+          </Step>
+          <Step>
+            <AgendaRow
+              num="02"
+              title="打開終端機"
+              sub="先裝好 Node.js，再 cd 進你的網站資料夾"
+              subEn="Install Node.js, then cd into your site folder"
+            />
+          </Step>
+          <Step>
+            <AgendaRow
+              num="03"
+              title="輸入 npx vercel"
+              sub="照提示一路按 Enter，電腦裡的檔案直接上傳"
+              subEn="Follow the prompts — your local files upload directly"
+            />
+          </Step>
+          <Step>
+            <AgendaRow
+              num="04"
+              title="拿到免費網址"
+              sub="「你的專案.vercel.app」上線！改完再跑一次就更新"
+              subEn="your-project.vercel.app is live — rerun after edits to update"
+            />
+          </Step>
+        </Steps>
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
 const Homework: Page = () => (
   <div style={fill}>
     <Style />
@@ -3263,13 +4469,13 @@ const Homework: Page = () => (
           animationDelay: '140ms',
         }}
       >
-        幫你的成果 Web，想一個 <span style={gradText}>domain</span>。
+        想長期上架的話，回家想一個 <span style={gradText}>domain</span>。
       </h1>
       <p
         className="ace-fadeup"
         style={{ fontSize: 28, color: palette.muted, margin: 0, animationDelay: '220ms' }}
       >
-        Pick a domain name for your project site.
+        If it's here to stay, pick a domain name for it.
       </p>
       <div
         className="ace-fadeup"
@@ -3408,19 +4614,34 @@ export default [
   WhatWeDo,
   Positioning,
   TargetMembers,
-  Goals,
   Roadmap,
+  Goals,
+  SwiftStudentChallenge,
+  SscPrizes,
+  WhoWins,
   DividerHow,
   Roles,
   Collaboration,
   Lifecycle,
   DividerAI,
   Mindset,
+  SpeakHuman,
   Toolbox,
   Expectations,
   DividerThink,
+  WhatWouldYouBuild,
+  BelongsToYou,
+  ExperienceYourLife,
+  CodePowerZh,
+  CodeChangeWorld,
+  CodeChangeFriend,
+  CodeChangeSchool,
+  CodeChangeClub,
+  CodeChangeYou,
+  IdentifyProblem,
   CoreValue,
   PainPrompt,
+  HearOtherStories,
   FounderMystery,
   DcardPain,
   DcardProduct,
@@ -3436,7 +4657,7 @@ export default [
   DesignThinking,
   GoldenCircle,
   ValueProp,
-  Workshop,
+  VercelDeploy,
   Homework,
   Closing,
 ] satisfies Page[];
