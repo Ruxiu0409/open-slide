@@ -4749,6 +4749,131 @@ const Homework: Page = () => (
   </div>
 );
 
+const GoalCriterion = ({
+  num,
+  title,
+  titleEn,
+  desc,
+  descEn,
+}: {
+  num: string;
+  title: string;
+  titleEn: string;
+  desc: string;
+  descEn: string;
+}) => (
+  <div
+    style={{
+      height: '100%',
+      boxSizing: 'border-box',
+      padding: '30px 32px',
+      borderRadius: 'var(--osd-radius)',
+      background: palette.surface,
+      border: `1px solid ${palette.border}`,
+      boxShadow: cardShadow,
+      textAlign: 'left',
+    }}
+  >
+    <div
+      style={{
+        fontFamily: fonts.mono,
+        fontSize: 17,
+        letterSpacing: '0.14em',
+        color: palette.muted,
+      }}
+    >
+      {num}
+    </div>
+    <div style={{ fontSize: 34, fontWeight: 700, marginTop: 14 }}>{title}</div>
+    <div style={{ fontSize: 19, color: palette.muted, marginTop: 4 }}>{titleEn}</div>
+    <div style={{ fontSize: 22, lineHeight: 1.5, marginTop: 16 }}>{desc}</div>
+    <div style={{ fontSize: 17, color: palette.muted, lineHeight: 1.45, marginTop: 8 }}>
+      {descEn}
+    </div>
+  </div>
+);
+
+const OurGoal: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="42%" size={1400} opacity={0.34} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '0 140px',
+      }}
+    >
+      <Eyebrow>我們的目標 · Our Goal</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 84,
+          fontWeight: 800,
+          margin: '40px 0 14px',
+          lineHeight: 1.15,
+          letterSpacing: '-0.01em',
+          animationDelay: '140ms',
+        }}
+      >
+        開學前，做出一個 <span style={gradText}>可以上架的專案</span>。
+      </h2>
+      <p
+        className="ace-fadeup"
+        style={{ fontSize: 28, color: palette.muted, margin: 0, animationDelay: '220ms' }}
+      >
+        Before school starts, ship one project people can actually use.
+      </p>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: 26,
+          width: '100%',
+          maxWidth: 1560,
+          marginTop: 56,
+        }}
+      >
+        <Steps>
+          <Step>
+            <GoalCriterion
+              num="CHECK 01"
+              title="別人打得開"
+              titleEn="Anyone can open it"
+              desc="一個網址或一個 App，別人點下去就能用。"
+              descEn="A link or an app, not just something that runs on your laptop."
+            />
+          </Step>
+          <Step>
+            <GoalCriterion
+              num="CHECK 02"
+              title="有人真的在用"
+              titleEn="Someone actually uses it"
+              desc="先找五個同學用一次，聽他們卡在哪裡。"
+              descEn="Get five classmates to try it and see where they get stuck."
+            />
+          </Step>
+          <Step>
+            <GoalCriterion
+              num="CHECK 03"
+              title="一句話講得完"
+              titleEn="One sentence explains it"
+              desc="幫誰解決什麼問題，講不出來就還沒做完。"
+              descEn="Who it helps, what it fixes. Can't say it yet? Not done."
+            />
+          </Step>
+        </Steps>
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
 const Closing: Page = () => (
   <div style={fill}>
     <Style />
@@ -4870,5 +4995,6 @@ export default [
   ValueProp,
   VercelDeploy,
   Homework,
+  OurGoal,
   Closing,
 ] satisfies Page[];
