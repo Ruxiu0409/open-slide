@@ -31,6 +31,8 @@ import qrLinkedin from './assets/qr-linkedin.png';
 import qrX from './assets/qr-x.png';
 import rayAvatar from './assets/ray-avatar.jpg';
 import raycastIcon from './assets/raycast.svg';
+import sscKeitaro from './assets/ssc-keitaro-kawahara.jpg';
+import sscRuoshan from './assets/ssc-ruoshan-li.jpg';
 import swiftLogo from './assets/swift.svg';
 import whoscallBrand from './assets/whoscall-brand.jpg';
 
@@ -2218,6 +2220,167 @@ const Roadmap: Page = () => (
   </div>
 );
 
+const WinnerStory = ({
+  photo,
+  alt,
+  caption,
+  name,
+  country,
+  school,
+  schoolEn,
+  year,
+  app,
+  appDesc,
+  appDescEn,
+  quote,
+  quoteEn,
+}: {
+  photo: string;
+  alt: string;
+  caption: string;
+  name: string;
+  country: string;
+  school: string;
+  schoolEn: string;
+  year: string;
+  app: string;
+  appDesc: string;
+  appDescEn: string;
+  quote: string;
+  quoteEn: string;
+}) => (
+  <div style={fill}>
+    <Style />
+    <Glow x="78%" y="30%" size={1100} opacity={0.22} />
+    <div style={{ padding: '150px 160px 0' }}>
+      <Eyebrow>真實案例 · Real Winner</Eyebrow>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '515px 1fr',
+          gap: 60,
+          alignItems: 'center',
+          marginTop: 30,
+        }}
+      >
+        <div className="ace-fadeup" style={{ animationDelay: '160ms' }}>
+          <img
+            src={photo}
+            alt={alt}
+            style={{
+              width: 515,
+              height: 620,
+              objectFit: 'cover',
+              borderRadius: 'var(--osd-radius)',
+              boxShadow: cardShadow,
+              display: 'block',
+            }}
+          />
+          <div
+            style={{
+              fontFamily: fonts.mono,
+              fontSize: 15,
+              color: palette.muted,
+              marginTop: 12,
+            }}
+          >
+            {caption}
+          </div>
+        </div>
+        <div>
+          <div
+            className="ace-fadeup"
+            style={{ fontSize: 54, fontWeight: 800, lineHeight: 1.15, animationDelay: '240ms' }}
+          >
+            {name}
+            <span style={{ fontSize: 26, fontWeight: 500, color: palette.muted, marginLeft: 16 }}>
+              {country}
+            </span>
+          </div>
+          <div
+            className="ace-fadeup"
+            style={{ fontSize: 24, marginTop: 14, lineHeight: 1.4, animationDelay: '300ms' }}
+          >
+            {school}
+            <div style={{ fontSize: 18, color: palette.muted, marginTop: 4 }}>{schoolEn}</div>
+          </div>
+          <div
+            className="ace-fadeup"
+            style={{
+              marginTop: 26,
+              padding: '20px 26px',
+              borderRadius: 14,
+              background: palette.surface,
+              border: `1px solid ${palette.border}`,
+              boxShadow: cardShadow,
+              animationDelay: '380ms',
+            }}
+          >
+            <div
+              style={{
+                fontFamily: fonts.mono,
+                fontSize: 17,
+                color: 'var(--osd-accent)',
+                letterSpacing: '0.08em',
+              }}
+            >
+              {year}
+            </div>
+            <div style={{ fontSize: 36, fontWeight: 700, marginTop: 8 }}>{app}</div>
+            <div style={{ fontSize: 22, marginTop: 8, lineHeight: 1.5 }}>{appDesc}</div>
+            <div style={{ fontSize: 17, color: palette.muted, marginTop: 4, lineHeight: 1.5 }}>
+              {appDescEn}
+            </div>
+          </div>
+          <div className="ace-fadeup" style={{ marginTop: 26, animationDelay: '470ms' }}>
+            <div style={{ fontSize: 32, fontWeight: 600, lineHeight: 1.55 }}>「{quote}」</div>
+            <div style={{ fontSize: 19, color: palette.muted, marginTop: 10, lineHeight: 1.5 }}>
+              “{quoteEn}”
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
+const WinnerKeitaro: Page = () => (
+  <WinnerStory
+    photo={sscKeitaro}
+    alt="Keitaro Kawahara 在 Apple Park 戶外與其他得獎者交談，胸前掛著 WWDC24 識別證"
+    caption="照片 · Apple｜攝於 Apple Park，WWDC24"
+    name="Keitaro Kawahara"
+    country="日本 Japan"
+    school="東京・青山學院大學，經濟系——不是資工系。"
+    schoolEn="Aoyama Gakuin University, Tokyo — an economics major, not computer science."
+    year="2024 · DISTINGUISHED WINNER"
+    app="PuzzlePix"
+    appDesc="把你手機裡的照片自動變成拼圖，難度可以調，小孩到大人都能玩。靈感來自看妹妹翻出舊拼圖在玩——妹妹也是他的第一個測試者。"
+    appDescEn="Turns your own photos into puzzles at adjustable difficulty. The idea came from watching his little sister play with an old puzzle — she became his main playtester."
+    quote="軟體工程是一種團隊運動：反覆討論和失敗，都是成功的必要條件。"
+    quoteEn="Software engineering is a team sport, where multiple discussions and failures are crucial to success."
+  />
+);
+
+const WinnerRuoshan: Page = () => (
+  <WinnerStory
+    photo={sscRuoshan}
+    alt="Ruoshan Li 拿著 iPad 和 Apple Pencil，與 Tim Cook 一起看她的作品"
+    caption="照片 · Apple｜她與 Tim Cook 一起看自己的作品"
+    name="Ruoshan Li"
+    country="中國 China"
+    school="三年前在學校的 iOS 社團開始學程式和設計。本科讀社會工作。"
+    schoolEn="Started coding and design three years ago in her school's iOS club. Social work major."
+    year="DISTINGUISHED WINNER"
+    app="Deep Blue Tangram"
+    appDesc="用 AR 做的海洋主題七巧板遊戲，給幼稚園和小學的孩子玩。她家有很多姪甥都在玩手機遊戲，她想做一個對他們有幫助的。"
+    appDescEn="An ocean-themed AR tangram game for young children — built for the many nephews and nieces in her family who all play mobile games."
+    quote="我不是資工系的，我讀的是社會工作，所以我學了很多新東西。"
+    quoteEn="I'm not a computer science major; I'm studying social work. So I've learned a lot of new skills."
+  />
+);
+
 const DividerHow: Page = () => (
   <Divider
     num="PART 02"
@@ -3194,23 +3357,21 @@ const CodePowerLine = ({ focus }: { focus?: string }) => (
         padding: '0 160px',
       }}
     >
-      <div
-        className="ace-fadeup"
-        style={{ fontSize: 86, fontWeight: 800, lineHeight: 1.14, letterSpacing: '-0.02em' }}
-      >
+      <div style={{ fontSize: 86, fontWeight: 800, lineHeight: 1.14, letterSpacing: '-0.02em' }}>
         The power of code drives change
       </div>
-      <div
-        className="ace-fadeup"
-        style={{
-          fontSize: 104,
-          fontWeight: 800,
-          lineHeight: 1.14,
-          letterSpacing: '-0.02em',
-          animationDelay: '120ms',
-        }}
-      >
-        in {focus ? <span style={{ color: 'var(--osd-accent)' }}>{focus}</span> : 'the'} world
+      <div style={{ fontSize: 104, fontWeight: 800, lineHeight: 1.14, letterSpacing: '-0.02em' }}>
+        in{' '}
+        <span
+          className="ace-fade"
+          style={{
+            color: focus ? 'var(--osd-accent)' : 'var(--osd-text)',
+            animationDelay: '80ms',
+          }}
+        >
+          {focus ?? 'the'}
+        </span>{' '}
+        world
       </div>
     </div>
     <Footer />
@@ -4665,6 +4826,8 @@ export default [
   Goals,
   SwiftStudentChallenge,
   SscPrizes,
+  WinnerKeitaro,
+  WinnerRuoshan,
   WhoWins,
   DividerHow,
   Roles,
@@ -4700,8 +4863,8 @@ export default [
   GogolookReveal,
   WhoscallBrand,
   StorySense,
-  KitchenVideo,
   JobsQuote,
+  KitchenVideo,
   DesignThinking,
   GoldenCircle,
   ValueProp,
