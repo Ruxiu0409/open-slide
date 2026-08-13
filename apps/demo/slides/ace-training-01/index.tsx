@@ -4041,6 +4041,53 @@ const StorySense: Page = () => (
   </div>
 );
 
+const KitchenVideo: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="10%" size={1000} opacity={0.2} />
+    <div style={{ padding: '56px 160px 0' }}>
+      <Eyebrow>影片時間 · Watch</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 46,
+          fontWeight: 800,
+          margin: '14px 0 4px',
+          lineHeight: 1.2,
+          animationDelay: '120ms',
+        }}
+      >
+        麥當勞的廚房，<span style={gradText}>是設計出來的。</span>
+      </h2>
+      <p
+        className="ace-fadeup"
+        style={{ fontSize: 19, color: palette.muted, margin: '0 0 14px', animationDelay: '180ms' }}
+      >
+        How McDonald's designed their kitchen
+      </p>
+      <iframe
+        className="ace-fade"
+        src="https://www.youtube.com/embed/vhHW9nXvoKM"
+        title="How McDonald's designed their kitchen"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        style={{
+          width: 1360,
+          aspectRatio: '16 / 9',
+          display: 'block',
+          margin: '0 auto',
+          border: 0,
+          borderRadius: 20,
+          background: '#000000',
+          boxShadow: '0 28px 70px rgba(0, 0, 0, 0.18)',
+          animationDelay: '260ms',
+        }}
+      />
+    </div>
+    <Footer />
+  </div>
+);
+
 const JobsQuote: Page = () => (
   <div style={fill}>
     <Style />
@@ -4653,6 +4700,7 @@ export default [
   GogolookReveal,
   WhoscallBrand,
   StorySense,
+  KitchenVideo,
   JobsQuote,
   DesignThinking,
   GoldenCircle,
