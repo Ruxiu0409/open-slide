@@ -7,6 +7,7 @@
     "dev": "turbo run dev",
     "dev:web": "turbo run dev --filter=web",
     "dev:demo": "turbo run dev --filter=demo",
+    "deploy:demo": "turbo run build --filter=demo && printf '/*  /index.html  200\\n' > apps/demo/dist/_redirects && npx --yes wrangler@4 pages deploy apps/demo/dist --project-name=open-slide --branch=main --commit-dirty=true",
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
     "format": "biome format --write .",
