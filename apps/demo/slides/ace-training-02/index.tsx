@@ -461,37 +461,6 @@ const Fill = ({ children }: { children: ReactNode }) => (
   </span>
 );
 
-const DiscoverExample: Page = () => (
-  <div style={fill}>
-    <Eyebrow>1D Discover · 範例</Eyebrow>
-    <SectionTag>Aida 行程規畫</SectionTag>
-    <Thesis size={52}>把四個空格填起來，就是一句定義。</Thesis>
-    <div
-      style={{
-        marginTop: 56,
-        fontSize: 38,
-        lineHeight: 2.05,
-        color: 'var(--osd-text)',
-        maxWidth: 1600,
-      }}
-    >
-      <div>
-        Aida 是給 <Fill>忙碌的人</Fill> 使用的 App。
-      </div>
-      <div>
-        它解決 <Fill>待辦事項和真實行事曆</Fill> 分開安排的問題。
-      </div>
-      <div>
-        使用者可以 <Fill>更清楚地規劃今天</Fill> ，
-      </div>
-      <div>
-        核心互動是把 <Fill>任務、行程與時間區塊</Fill> 放進每日議程。
-      </div>
-    </div>
-    <Footer />
-  </div>
-);
-
 const DiscoverTemplate: Page = () => (
   <div style={fill}>
     <Eyebrow>1D Discover · 換你填</Eyebrow>
@@ -749,10 +718,10 @@ const DevelopTools: Page = () => (
   <div style={fill}>
     <Eyebrow>4D Develop</Eyebrow>
     <SectionTag>工具</SectionTag>
-    <Thesis>Xcode 與 Codex：把 demo 做出來。</Thesis>
+    <Thesis>Codex 或 Claude Code：把 demo 做出來。</Thesis>
     <div style={{ display: 'flex', gap: 26, marginTop: 56 }}>
-      <ToolChip name="Xcode" does="看結果、跑起來、真機驗證" />
-      <ToolChip name="Codex" does="加速下一次修改" />
+      <ToolChip name="Codex" does="在既有專案裡分小步改、跑驗證" />
+      <ToolChip name="Claude Code" does="讀懂整個 repo，一路做到能跑" />
     </div>
     <h3
       style={{
@@ -768,7 +737,7 @@ const DevelopTools: Page = () => (
       AI writes. <span style={{ color: 'var(--osd-accent)' }}>You decide.</span>
     </h3>
     <div style={{ marginTop: 32 }}>
-      <Note>一邊在 Xcode 看結果，一邊用 Codex 加速下一次修改。</Note>
+      <Note>挑一個用就好。你負責看結果、決定下一步，讓它加速你的每一次修改。</Note>
     </div>
     <Footer />
   </div>
@@ -888,338 +857,6 @@ const Checklist: Page = () => (
   </div>
 );
 
-const DividerCase: Page = () => (
-  <Divider
-    chapter="02"
-    title="案例研究：Daily Journal"
-    sub="用一個每日記錄 App，看 6D 如何把模糊想法變成可以使用、測試、上架的產品。"
-  />
-);
-
-const CasePrompt: Page = () => (
-  <div style={fill}>
-    <Eyebrow>案例研究 · Prompt</Eyebrow>
-    <SectionTag>ChatGPT</SectionTag>
-    <Thesis size={52}>用清楚 Prompt 定義 Daily Journal App</Thesis>
-    <div
-      style={{
-        marginTop: 44,
-        background: surfaceCard,
-        border: `1px solid ${hairline}`,
-        borderLeft: `3px solid var(--osd-accent)`,
-        borderRadius: 'var(--osd-radius)',
-        padding: 36,
-        ...num,
-        fontSize: 21,
-        lineHeight: 1.65,
-        color: 'var(--osd-text)',
-      }}
-    >
-      <div style={{ marginBottom: 16 }}>
-        Build an iOS journal app in SwiftUI that tracks my day in a chronological timeline.
-      </div>
-      <div style={{ color: mutedStrong }}>
-        — Create a beautiful daily timeline where I can add notes, photos, expenses, locations,
-        events, and completed tasks, sorted by time.
-      </div>
-      <div style={{ color: mutedStrong }}>
-        — Use SwiftData for local storage, with clean models for journal entries, photos, expenses,
-        locations, events, tasks, and tags.
-      </div>
-      <div style={{ color: mutedStrong }}>
-        — Include quick add flows using sheets/modals, with support for PhotosPicker,
-        CoreLocation/MapKit, expense categories, and task completion.
-      </div>
-      <div style={{ color: mutedStrong }}>
-        — Add daily summary cards showing total entries, expenses, photos, places visited, events,
-        and tasks completed.
-      </div>
-      <div style={{ color: mutedStrong }}>
-        — Make the UI polished, Apple-like, privacy-focused, offline-first, with dark mode,
-        search/filtering, detail/edit/delete screens, and sample preview data.
-      </div>
-    </div>
-    <Footer />
-  </div>
-);
-
-const ToolPage = ({
-  step,
-  tool,
-  title,
-  prompt,
-  outputs,
-  judgement,
-  hint,
-}: {
-  step: string;
-  tool: string;
-  title: string;
-  prompt: string;
-  outputs: ReactNode;
-  judgement: string;
-  hint: string;
-}) => (
-  <div style={fill}>
-    <Eyebrow>{step}</Eyebrow>
-    <SectionTag>Case study tools</SectionTag>
-    <div style={{ display: 'flex', alignItems: 'baseline', gap: 28, marginTop: 22 }}>
-      <span
-        style={{
-          fontFamily: 'var(--osd-font-display)',
-          fontSize: 56,
-          fontWeight: 700,
-          letterSpacing: '-1.4px',
-          color: onDark,
-        }}
-      >
-        {tool}
-      </span>
-      <span style={{ fontSize: 31, color: mutedStrong }}>{title}</span>
-    </div>
-    <div style={{ display: 'flex', gap: 32, marginTop: 44, height: 470 }}>
-      <div style={{ width: 900, display: 'flex', flexDirection: 'column', gap: 26 }}>
-        <div
-          style={{
-            background: surfaceCard,
-            border: `1px solid ${hairline}`,
-            borderLeft: '3px solid var(--osd-accent)',
-            borderRadius: 'var(--osd-radius)',
-            padding: 28,
-            fontSize: 25,
-            lineHeight: 1.55,
-            color: 'var(--osd-text)',
-          }}
-        >
-          {prompt}
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>{outputs}</div>
-      </div>
-      <div style={{ flex: 1, display: 'flex' }}>
-        <ImagePlaceholder hint={hint} />
-      </div>
-    </div>
-    <div style={{ marginTop: 32 }}>
-      <Note>{judgement}</Note>
-    </div>
-    <Footer />
-  </div>
-);
-
-const ToolResult = ({
-  step,
-  tool,
-  title,
-  lede,
-  caption,
-  hint,
-}: {
-  step: string;
-  tool: string;
-  title: string;
-  lede: string;
-  caption: string;
-  hint: string;
-}) => (
-  <div style={fill}>
-    <Eyebrow>{step}</Eyebrow>
-    <SectionTag>{tool}</SectionTag>
-    <Thesis size={50}>{title}</Thesis>
-    <div style={{ marginTop: 24 }}>
-      <Note>{lede}</Note>
-    </div>
-    <div style={{ flex: 1, marginTop: 36, marginBottom: 130, display: 'flex' }}>
-      <ImagePlaceholder hint={hint} />
-    </div>
-    <div style={{ position: 'absolute', left: PAD, right: PAD, bottom: 104 }}>
-      <Note>{caption}</Note>
-    </div>
-    <Footer />
-  </div>
-);
-
-const ToolStitch: Page = () => (
-  <ToolPage
-    step="工具 demo 01 / Discover → Design"
-    tool="Stitch"
-    title="快速探索 Daily Journal 的 UI 方向"
-    prompt="設計一個每日記錄 App：今天摘要、快速新增、照片 / 心情 / 地點記錄，以及可以回看的時間線。"
-    outputs={
-      <>
-        <Bullet>產生多個畫面草稿</Bullet>
-        <Bullet>看到資訊架構與視覺語氣</Bullet>
-        <Bullet>提早討論核心體驗</Bullet>
-      </>
-    }
-    judgement="不要把第一版當答案；把它當成設計假設，拿來問更好的產品問題。"
-    hint="Stitch 產出的多個畫面草稿"
-  />
-);
-
-const ToolLovable: Page = () => (
-  <ToolPage
-    step="工具 demo 02 / Design → Develop"
-    tool="Lovable"
-    title="把流程做成可點擊的 Web prototype"
-    prompt="建立一個 Daily Journal prototype，包含 timeline、entry detail、quick add，讓使用者可以快速走完整條主流程。"
-    outputs={
-      <>
-        <Bullet>快速測試導航</Bullet>
-        <Bullet>驗證資料欄位</Bullet>
-        <Bullet>做出可分享 demo</Bullet>
-      </>
-    }
-    judgement="適合驗證流程與文案；不要把 Web prototype 直接等同最終 iOS 架構。"
-    hint="Lovable 產出的可點擊網頁原型"
-  />
-);
-
-const ToolRork: Page = () => (
-  <ToolPage
-    step="工具 demo 03 / Develop"
-    tool="Rork"
-    title="把 app idea 變成 mobile prototype"
-    prompt="把每日記錄、今日摘要、照片回憶、地點與任務紀錄放進同一個手機體驗，先測手感與主流程。"
-    outputs={
-      <>
-        <Bullet>看到手機版手感</Bullet>
-        <Bullet>補齊常見 app 畫面</Bullet>
-        <Bullet>測試新增 entry flow</Bullet>
-      </>
-    }
-    judgement="用它檢查使用情境與互動節奏；程式碼與架構仍然要回到你的標準。"
-    hint="Rork 產出的手機原型畫面"
-  />
-);
-
-const ToolRorkResult: Page = () => (
-  <ToolResult
-    step="工具 demo 03 補充 / Rork"
-    tool="Rork"
-    title="看 mobile prototype 的第一版成果"
-    lede="這一頁看 Rork 產出的手機介面是否已經能呈現 Daily Journal 的核心體驗。"
-    caption="Rork 已經把今日摘要、分類篩選、時間線與快速新增按鈕放進同一個手機畫面，適合用來檢查主流程和視覺方向。"
-    hint="Rork 手機原型的第一版成果畫面"
-  />
-);
-
-const ToolBitrig: Page = () => (
-  <ToolPage
-    step="工具 demo 04 / Develop → Deploy"
-    tool="Bitrig"
-    title="把需求推向原生 Swift 實作"
-    prompt="把 Daily Journal 的資料模型、SwiftUI 畫面、快速新增入口和本地儲存串起來，靠近可以實測的 native app。"
-    outputs={
-      <>
-        <Bullet>生成 SwiftUI 方向</Bullet>
-        <Bullet>靠近可上架 app 結構</Bullet>
-        <Bullet>縮短 native 實作距離</Bullet>
-      </>
-    }
-    judgement="AI 產出的 Swift 要經過 review、重構與真機驗證，才能變成可靠產品。"
-    hint="Bitrig 生成原生 Swift 專案的過程"
-  />
-);
-
-const ToolBitrigResult: Page = () => (
-  <ToolResult
-    step="工具 demo 04 補充 / Bitrig"
-    tool="Bitrig"
-    title="看 native app 是否真的跑起來"
-    lede="前一頁看生成過程；這一頁看它產出的 iOS app 是否已經能呈現核心畫面。"
-    caption="生成後的 native app 已經可以看到資料模型、快速新增與首頁體驗，下一步才是 review、重構與真機驗證。"
-    hint="Bitrig 產出的 iOS app 實際執行畫面"
-  />
-);
-
-const ToolCodex: Page = () => (
-  <ToolPage
-    step="工具 demo 05 / Develop → Distribute"
-    tool="Codex"
-    title="把 prototype 接進真實 repo"
-    prompt="在既有 iOS 專案裡讀懂結構，分小步加入 journal flow，修 build、跑驗證，準備給真人試用。"
-    outputs={
-      <>
-        <Bullet>讀現有架構</Bullet>
-        <Bullet>分小步修改與重構</Bullet>
-        <Bullet>跑 build / 修錯 / 驗證</Bullet>
-      </>
-    }
-    judgement="讓 AI 做工程推進；你負責 scope、取捨、品質和產品感覺。"
-    hint="Codex 在真實 repo 裡工作的畫面"
-  />
-);
-
-const ToolCodexResult: Page = () => (
-  <ToolResult
-    step="工具 demo 05 補充 / Codex"
-    tool="Codex"
-    title="看 repo 接手後的工程狀態"
-    lede="前一頁看 Codex 如何接進真實專案；這一頁看修改後如何回到 diff、build、驗證。"
-    caption="接進 repo 後，重點變成 review diff、修 build、確認檔案邊界，讓 prototype 真的進入可維護的產品流程。"
-    hint="Codex 修改後的 diff 與 build 結果"
-  />
-);
-
-const ToolJudgement: Page = () => (
-  <div style={fill}>
-    <Eyebrow>Case study tools</Eyebrow>
-    <SectionTag>總結</SectionTag>
-    <Thesis size={52}>工具會加速，但決定的人還是你。</Thesis>
-    <Row top={64}>
-      <Card rule="var(--osd-accent)" pad={44}>
-        <CardLabel>工具負責</CardLabel>
-        <CardTitle size={46}>Prompt</CardTitle>
-        <div style={{ marginTop: 8 }}>
-          <CardBody>把想法變成第一版可以看的東西</CardBody>
-        </div>
-      </Card>
-      <Card rule="var(--osd-accent)" pad={44}>
-        <CardLabel>你負責</CardLabel>
-        <CardTitle size={46}>人的判斷</CardTitle>
-        <div style={{ marginTop: 8 }}>
-          <CardBody>決定它有沒有更靠近核心體驗</CardBody>
-        </div>
-      </Card>
-    </Row>
-    <div style={{ marginTop: 56 }}>
-      <Note>
-        每個工具都能加速一段路，但你仍然要決定：它產出的東西是否真的讓產品更接近核心體驗。
-      </Note>
-    </div>
-    <Footer />
-  </div>
-);
-
-const NextStep: Page = () => (
-  <div style={fill}>
-    <Eyebrow>下一步 / Swift Playground</Eyebrow>
-    <SectionTag>起步</SectionTag>
-    <Thesis>先用 Swift Playground 把想法跑起來。</Thesis>
-    <Row>
-      <Card>
-        <CardLabel>01</CardLabel>
-        <CardTitle>降低開始成本</CardTitle>
-      </Card>
-      <Card>
-        <CardLabel>02</CardLabel>
-        <CardTitle>快速練 SwiftUI</CardTitle>
-      </Card>
-      <Card>
-        <CardLabel>03</CardLabel>
-        <CardTitle>再搬進 Xcode</CardTitle>
-      </Card>
-    </Row>
-    <div style={{ marginTop: 52 }}>
-      <Note>
-        如果你還不想一開始就處理完整 Xcode 專案，Swift Playground 很適合先做 SwiftUI
-        練習、互動原型和第一個可展示的 demo。
-      </Note>
-    </div>
-    <Footer />
-  </div>
-);
-
 const Summary: Page = () => (
   <div style={fill}>
     <Eyebrow>重點總結</Eyebrow>
@@ -1263,7 +900,7 @@ const OneLine: Page = () => (
   </div>
 );
 
-const DividerUs: Page = () => <Divider chapter="03" title="我們這學期怎麼跑" />;
+const DividerUs: Page = () => <Divider chapter="02" title="我們這學期怎麼跑" />;
 
 const RoleRow = ({ label, title, desc }: { label: string; title: string; desc: string }) => (
   <div
@@ -1465,7 +1102,6 @@ const sectionBreak: SlideTransition = {
 };
 
 Divider6D.transition = sectionBreak;
-DividerCase.transition = sectionBreak;
 DividerUs.transition = sectionBreak;
 
 export const meta: SlideMeta = {
@@ -1481,7 +1117,6 @@ export default [
   Divider6D,
   SixD,
   Discover,
-  DiscoverExample,
   DiscoverTemplate,
   DecideTrap,
   DecideScope,
@@ -1496,18 +1131,6 @@ export default [
   Feedback,
   Ship,
   Checklist,
-  DividerCase,
-  CasePrompt,
-  ToolStitch,
-  ToolLovable,
-  ToolRork,
-  ToolRorkResult,
-  ToolBitrig,
-  ToolBitrigResult,
-  ToolCodex,
-  ToolCodexResult,
-  ToolJudgement,
-  NextStep,
   Summary,
   OneLine,
   DividerUs,
