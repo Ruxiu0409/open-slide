@@ -17,7 +17,7 @@ import {
   Terminal,
 } from 'lucide-react';
 import { type RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { toast } from 'sonner';
 import { AssetView } from '@/components/asset-view';
 import { HistoryProvider } from '@/components/history-provider';
@@ -70,11 +70,24 @@ import { useSlideModule } from '../lib/use-slide-module';
 
 const { showSlideUi, showSlideBrowser, allowHtmlDownload } = config.build;
 
+const noop = () => {};
+
 export function Slide() {
   const { slideId = '' } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const { slide, error } = useSlideModule(slideId);
   const [playMode, setPlayMode] = useState<'window' | 'fullscreen' | null>(null);
+  // Last deck the Player showed. During a presenter-driven deck switch the
+  // route's slideId changes while the new module loads and warms; rendering
+  // from this cache keeps the Player mounted, which preserves fullscreen
+  // (re-entry needs a user gesture) and the elapsed timer.
+  const lastPresentedRef = useRef<{
+    slideId: string;
+    slide: SlideModule;
+    pages: SlideModule['default'];
+    index: number;
+  } | null>(null);
   const [exporting, setExporting] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
   const linkCopiedTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -119,6 +132,13 @@ export function Slide() {
       view,
     });
   }, [slideId, index, pageCount, slide, view]);
+
+  const switchPresentedSlide = useCallback(
+    (id: string) => {
+      navigate(`/s/${encodeURIComponent(id)}`, { replace: true });
+    },
+    [navigate],
+  );
 
   const goTo = useCallback(
     (i: number) => {
@@ -314,6 +334,45 @@ export function Slide() {
     );
   }
 
+  const presentReady = Boolean(slide) && pageCount > 0 && isDeckWarmed(slideId);
+  if (playMode && slide && presentReady) {
+    lastPresentedRef.current = { slideId, slide, pages, index };
+  }
+  const presented = playMode
+    ? slide && presentReady
+      ? { slideId, slide, pages, index }
+      : (lastPresentedRef.current ??
+        (slide && pageCount > 0 ? { slideId, slide, pages, index } : null))
+    : null;
+
+  if (playMode && presented) {
+    return (
+      <>
+        <Player
+          pages={presented.pages}
+          design={presented.slide.design}
+          transition={presented.slide.transition}
+          index={presented.index}
+          onIndexChange={presentReady ? goTo : noop}
+          onExit={() => setPlayMode(null)}
+          controls
+          slideId={presented.slideId}
+          onSwitchSlide={switchPresentedSlide}
+          fullscreen={playMode === 'fullscreen'}
+        />
+        {!presentReady && slide && pageCount > 0 && (
+          <SlidePreloadLayer
+            pages={pages}
+            index={index}
+            design={slide.design}
+            includeCurrent
+            onDone={handleAssetsWarmed}
+          />
+        )}
+      </>
+    );
+  }
+
   if (!slide) {
     return (
       <div className="grid min-h-dvh place-items-center px-8 text-muted-foreground">
@@ -397,22 +456,6 @@ export function Slide() {
         onIndexChange={goTo}
         onExit={() => {}}
         allowExit={false}
-      />
-    );
-  }
-
-  if (playMode) {
-    return (
-      <Player
-        pages={pages}
-        design={slide.design}
-        transition={slide.transition}
-        index={index}
-        onIndexChange={goTo}
-        onExit={() => setPlayMode(null)}
-        controls
-        slideId={slideId}
-        fullscreen={playMode === 'fullscreen'}
       />
     );
   }
@@ -546,9 +589,9 @@ export function Slide() {
     <HistoryProvider>
       <InspectorProvider slideId={slideId} pageIndex={index}>
         <SelectionReporter />
-        <div className="flex h-dvh flex-col overflow-hidden bg-background text-foreground">
-          {/* Editorial toolbar — three zones, hairline separators, mono-folio center */}
-          <header className="relative flex h-12 shrink-0 items-center gap-2 border-b border-hairline bg-sidebar/85 px-2 backdrop-blur-md md:px-3">
+        <div className="flex h-dvh flex-col overflow-hidden bg-sidebar text-foreground">
+          {/* Toolbar sits directly on the chrome ground — three zones, mono-folio center */}
+          <header className="relative flex h-12 shrink-0 items-center gap-2 px-2 md:px-3">
             <div className="flex flex-1 items-center gap-1.5 md:flex-none md:gap-2">
               {showSlideBrowser && (
                 <Link
@@ -635,7 +678,7 @@ export function Slide() {
                     )}
                   >
                     {exporting ? (
-                      <Loader2 className="size-4 animate-spin" />
+                      <Loader2 className="size-4 animate-spin motion-reduce:animate-none" />
                     ) : (
                       <Download className="size-4" />
                     )}
@@ -658,7 +701,7 @@ export function Slide() {
                     )}
                   >
                     {exporting ? (
-                      <Loader2 className="size-4 animate-spin" />
+                      <Loader2 className="size-4 animate-spin motion-reduce:animate-none" />
                     ) : (
                       <MoreHorizontal className="size-4" />
                     )}
@@ -692,9 +735,6 @@ export function Slide() {
                   >
                     <Play className="size-3.5 fill-current" />
                     <span className="hidden md:inline">{t.slide.present}</span>
-                    <kbd className="ml-1 hidden rounded-[3px] bg-brand-foreground/15 px-1 font-mono text-[9.5px] tracking-[0.04em] md:inline">
-                      F
-                    </kbd>
                   </Button>
                   <DropdownMenu>
                     <DropdownMenuTrigger
@@ -737,7 +777,7 @@ export function Slide() {
           </header>
 
           {view === 'assets' ? (
-            <div className="min-h-0 flex-1">
+            <div className="min-h-0 flex-1 overflow-hidden md:mx-2 md:mb-2 md:rounded-[10px] md:bg-background md:shadow-edge md:ring-1 md:ring-foreground/[0.06]">
               <AssetView slideId={slideId} />
             </div>
           ) : (
@@ -758,7 +798,7 @@ export function Slide() {
                     ref={slideViewportRef}
                     data-inspector-root
                     data-slide-id={slideId}
-                    className="relative min-h-0 min-w-0 flex-1 bg-canvas p-2 md:p-10"
+                    className="relative min-h-0 min-w-0 flex-1 bg-background p-2 md:mx-2 md:mb-2 md:rounded-[10px] md:p-10 md:shadow-edge md:ring-1 md:ring-foreground/[0.06]"
                   >
                     <SlideViewportNavigation
                       targetRef={slideViewportRef}
@@ -965,7 +1005,7 @@ function ResizableRail(props: {
         <span
           aria-hidden
           className={cn(
-            'pointer-events-none absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-brand opacity-0 transition-opacity',
+            'pointer-events-none absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-brand opacity-0 transition-opacity duration-150',
             'group-hover/resize:opacity-100 group-focus-visible/resize:opacity-100',
             resizing && 'opacity-100',
           )}
@@ -985,12 +1025,12 @@ function AgentConnectedBadge() {
           render={
             <button
               type="button"
-              className="ml-1 flex shrink-0 cursor-help items-center gap-1.5 rounded-[3px] border border-hairline bg-card px-1.5 py-0.5 text-[10.5px] text-foreground/85 outline-none focus-visible:ring-2 focus-visible:ring-ring/30"
+              className="ml-1 flex shrink-0 cursor-help items-center gap-1.5 rounded-[3px] border border-hairline bg-card px-1.5 py-0.5 text-[10.5px] text-foreground/85 outline-none transition-colors duration-150 hover:bg-muted/50 focus-visible:ring-2 focus-visible:ring-ring/30"
             >
               <span aria-hidden className="relative flex size-1.5 items-center justify-center">
                 {connected ? (
                   <>
-                    <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-500 opacity-60" />
+                    <span className="absolute inline-flex size-full rounded-full bg-emerald-500 opacity-60 motion-safe:animate-ping" />
                     <span className="relative inline-flex size-1.5 rounded-full bg-emerald-500" />
                   </>
                 ) : (
@@ -1172,7 +1212,7 @@ function InlineTitleEditor({
         onClick={() => setEditing(true)}
         aria-label={t.slide.renameSlide}
         className={cn(
-          'min-w-0 max-w-full cursor-text rounded-[5px] border border-transparent px-2 py-0.5 transition-colors',
+          'min-w-0 max-w-full cursor-text rounded-[5px] border border-transparent px-2 py-0.5 transition-colors duration-100',
           'hover:border-foreground/30 hover:bg-card focus-visible:border-foreground/30 focus-visible:bg-card focus-visible:outline-none',
         )}
       >

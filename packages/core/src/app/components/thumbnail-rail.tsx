@@ -320,7 +320,7 @@ export function ThumbnailRail({
   return (
     <TooltipProvider delay={200}>
       <div className="relative h-full">
-        <ScrollArea className="h-full border-r border-hairline bg-sidebar [&_[data-slot=scroll-area-scrollbar]]:z-20">
+        <ScrollArea className="h-full bg-sidebar [&_[data-slot=scroll-area-scrollbar]]:z-20">
           {scrollAreaContents}
         </ScrollArea>
         {currentPosition && (
@@ -396,8 +396,8 @@ function CurrentThumbnailButton({
 
 function thumbButtonClass(active: boolean): string {
   return cn(
-    'group/thumb flex w-full items-start gap-2.5 rounded-[6px] p-1.5 text-left outline-none motion-safe:transition-colors',
-    'hover:bg-muted/60',
+    'group/thumb flex w-full items-start gap-2.5 rounded-[6px] p-1.5 text-left outline-none motion-safe:transition-[background-color,scale] motion-safe:duration-100',
+    'hover:bg-muted/60 active:scale-[0.985]',
     'focus-visible:ring-1 focus-visible:ring-brand focus-visible:ring-offset-1 focus-visible:ring-offset-sidebar',
     active && 'bg-muted',
   );
@@ -499,7 +499,10 @@ function HorizontalVirtualThumbList({
         onClick={() => onSelect(i)}
         aria-label={format(t.thumbnailRail.goToPageAria, { n: i + 1 })}
         aria-current={active ? 'page' : undefined}
-        className={cn('group/thumb relative flex shrink-0 flex-col items-center gap-1.5')}
+        className={cn(
+          'group/thumb relative flex shrink-0 flex-col items-center gap-1.5 rounded-[6px] outline-none motion-safe:transition-[scale] motion-safe:duration-100 active:scale-[0.985]',
+          'focus-visible:ring-1 focus-visible:ring-brand focus-visible:ring-offset-1 focus-visible:ring-offset-sidebar',
+        )}
       >
         <span
           className={cn(
@@ -798,12 +801,6 @@ function ThumbContents({
             <PageComp />
           </SlidePageProvider>
         </SlideCanvas>
-        {active && (
-          <span
-            aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-0 w-[2px] bg-brand"
-          />
-        )}
       </div>
     </>
   );
@@ -939,6 +936,7 @@ function SortableThumb({
 >) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: index + 1,
+    transition: { duration: 180, easing: 'var(--ease-swift)' },
   });
 
   const setRef = (node: HTMLButtonElement | null) => {

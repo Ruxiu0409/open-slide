@@ -1,5 +1,35 @@
 # @open-slide/core
 
+## 1.19.1
+
+### Patch Changes
+
+- [#415](https://github.com/1weiho/open-slide/pull/415) [`40e2454`](https://github.com/1weiho/open-slide/commit/40e2454776ba97e1e47c67bdce6edd9671bbccf9) Thanks [@1weiho](https://github.com/1weiho)! - Fix the sidebar language and theme dropdowns not opening when clicked.
+
+- [#413](https://github.com/1weiho/open-slide/pull/413) [`b540f0b`](https://github.com/1weiho/open-slide/commit/b540f0be7db9978793fe06800aaee3d780c8a754) Thanks [@1weiho](https://github.com/1weiho)! - Polish viewer micro-interactions: shared motion curve, press and focus feedback across controls, animated enter/exit for overlays and the save bar, flick-to-swipe in present mode, grouped instant tooltips, reduced-motion coverage, tabular numerals, and a fix for the dark-mode boot flash.
+
+## 1.19.0
+
+### Minor Changes
+
+- [#336](https://github.com/1weiho/open-slide/pull/336) [`dad4c24`](https://github.com/1weiho/open-slide/commit/dad4c240136a640cb5cebf1e29b1e394ab0c62de) Thanks [@ridemountainpig](https://github.com/ridemountainpig)! - Add `allowedHosts` to `open-slide.config.ts` so proxied domains (Coder, Codespaces, reverse proxies) can reach the dev and preview servers.
+
+- [#389](https://github.com/1weiho/open-slide/pull/389) [`3473db2`](https://github.com/1weiho/open-slide/commit/3473db281832aeaebcb428573d3625305a5e36e7) Thanks [@ridemountainpig](https://github.com/ridemountainpig)! - Switch between decks from the presenter window — the projection follows without leaving present mode, keeping fullscreen and the elapsed timer.
+
+### Patch Changes
+
+- [#402](https://github.com/1weiho/open-slide/pull/402) [`7080023`](https://github.com/1weiho/open-slide/commit/7080023dcecaf0cc3615c63c64fd599f7d897288) Thanks [@sunnyyoung](https://github.com/sunnyyoung)! - HTML exports preserve video posters and rendered mute state, limit autoplay to visible pages, and pause and reset videos on hidden pages.
+
+## 1.18.0
+
+### Minor Changes
+
+- [#368](https://github.com/1weiho/open-slide/pull/368) [`35dc46c`](https://github.com/1weiho/open-slide/commit/35dc46ca27716ea86f8a76710bbd3640e9590628) Thanks [@1weiho](https://github.com/1weiho)! - Add a ⌘K command menu for searching decks, jumping to pages, and running slide actions.
+
+### Patch Changes
+
+- [#354](https://github.com/1weiho/open-slide/pull/354) [`3380558`](https://github.com/1weiho/open-slide/commit/3380558fb1c157ccbcbbeface024ea7b122dff31) Thanks [@1weiho](https://github.com/1weiho)! - Add a Playwright e2e suite covering the viewer, present mode, presenter sync, inspector editing, dev API, and static builds.
+
 ## 1.17.1
 
 ### Patch Changes
