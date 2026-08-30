@@ -1,4 +1,13 @@
-import { MoreHorizontal, Pencil, Trash2 } from 'lucide-react';
+import {
+  FolderOpen,
+  LayoutGrid,
+  type LucideIcon,
+  MoreHorizontal,
+  Palette,
+  Pencil,
+  PenLine,
+  Trash2,
+} from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import {
   DropdownMenu,
@@ -9,7 +18,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import type { Folder, FolderIcon } from '@/lib/sdk';
 import { useLocale } from '@/lib/use-locale';
-import { cn } from '@/lib/utils';
+import { cn, pad2 } from '@/lib/utils';
 import { IconPicker } from './icon-picker';
 
 export const SLIDE_DND_MIME = 'application/x-slide-id';
@@ -31,6 +40,24 @@ function useSlideDragActive() {
     };
   }, []);
   return active;
+}
+
+export type SystemViewKind = 'all' | 'draft' | 'themes' | 'assets';
+
+const SYSTEM_VIEW_ICONS: Record<SystemViewKind, LucideIcon> = {
+  all: LayoutGrid,
+  draft: PenLine,
+  themes: Palette,
+  assets: FolderOpen,
+};
+
+export function SystemViewIcon({ kind, className }: { kind: SystemViewKind; className?: string }) {
+  const Icon = SYSTEM_VIEW_ICONS[kind];
+  return (
+    <span aria-hidden className={cn('flex size-5 shrink-0 items-center justify-center', className)}>
+      <Icon className="size-4" strokeWidth={1.75} />
+    </span>
+  );
 }
 
 export function FolderIconChip({ icon, className }: { icon: FolderIcon; className?: string }) {
@@ -66,6 +93,9 @@ type Row =
       onDelete: () => void;
     }
   | {
+      kind: 'all';
+    }
+  | {
       kind: 'draft';
     }
   | {
@@ -95,7 +125,7 @@ export function FolderItem({
   const slideDragActive = useSlideDragActive();
   const t = useLocale();
 
-  const acceptsSlideDrop = row.kind !== 'themes' && row.kind !== 'assets';
+  const acceptsSlideDrop = row.kind === 'draft' || row.kind === 'folder';
   const isSlideDrag = (e: React.DragEvent) =>
     acceptsSlideDrop && e.dataTransfer.types.includes(SLIDE_DND_MIME);
   const handleDragEnter = (e: React.DragEvent) => {
@@ -123,22 +153,22 @@ export function FolderItem({
     onDropSlide(slideId);
   };
 
-  const icon: FolderIcon =
-    row.kind === 'draft'
-      ? { type: 'emoji', value: '📝' }
-      : row.kind === 'themes'
-        ? { type: 'emoji', value: '🎨' }
-        : row.kind === 'assets'
-          ? { type: 'emoji', value: '🗂️' }
-          : row.folder.icon;
+  const chip =
+    row.kind === 'folder' ? (
+      <FolderIconChip icon={row.folder.icon} />
+    ) : (
+      <SystemViewIcon kind={row.kind} className={cn(!selected && 'text-muted-foreground')} />
+    );
   const label =
-    row.kind === 'draft'
-      ? t.home.draft
-      : row.kind === 'themes'
-        ? t.home.themes
-        : row.kind === 'assets'
-          ? t.home.assets
-          : row.folder.name;
+    row.kind === 'all'
+      ? t.home.slides
+      : row.kind === 'draft'
+        ? t.home.draft
+        : row.kind === 'themes'
+          ? t.home.themes
+          : row.kind === 'assets'
+            ? t.home.assets
+            : row.folder.name;
 
   const commitRename = () => {
     if (row.kind !== 'folder') return;
@@ -151,13 +181,13 @@ export function FolderItem({
     // biome-ignore lint/a11y/noStaticElementInteractions: drag-and-drop target wraps interactive children
     <div
       className={cn(
-        'group relative flex items-center gap-2.5 rounded-[5px] px-2 py-[5px] text-[12.5px] transition-colors',
+        'group relative flex items-center gap-2.5 rounded-[5px] px-2 py-[5px] text-[12.5px] transition-[background-color,color,scale] duration-150',
         selected
-          ? 'bg-muted text-foreground before:absolute before:inset-y-1.5 before:-left-0.5 before:w-[2px] before:rounded-full before:bg-brand'
+          ? 'bg-background font-medium text-foreground shadow-edge ring-1 ring-foreground/[0.06]'
           : 'text-foreground/70 hover:bg-muted/60 hover:text-foreground',
         slideDragActive && acceptsSlideDrop && !dragOver && 'ring-1 ring-foreground/10',
         dragOver &&
-          'bg-brand/10 text-foreground ring-1 ring-brand ring-offset-1 ring-offset-sidebar motion-safe:scale-[1.01] motion-safe:transition-transform',
+          'bg-brand/10 text-foreground ring-1 ring-brand ring-offset-1 ring-offset-sidebar motion-safe:scale-[1.01]',
       )}
       onDragEnter={handleDragEnter}
       onDragOver={handleDragOver}
@@ -166,16 +196,18 @@ export function FolderItem({
     >
       {row.kind === 'folder' && import.meta.env.DEV ? (
         <Popover>
-          <PopoverTrigger asChild>
-            <button
-              type="button"
-              className="flex size-5 shrink-0 items-center justify-center rounded transition-transform hover:scale-110"
-              aria-label={t.home.changeIcon}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <FolderIconChip icon={icon} />
-            </button>
-          </PopoverTrigger>
+          <PopoverTrigger
+            render={
+              <button
+                type="button"
+                className="flex size-5 shrink-0 items-center justify-center rounded outline-none motion-safe:transition-transform motion-safe:duration-150 hover:scale-110 active:scale-95 focus-visible:ring-1 focus-visible:ring-brand"
+                aria-label={t.home.changeIcon}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {chip}
+              </button>
+            }
+          />
           <PopoverContent side="right" align="start" className="w-auto p-2">
             <IconPicker value={row.folder.icon} onChange={(next) => row.onChangeIcon(next)} />
           </PopoverContent>
@@ -187,7 +219,7 @@ export function FolderItem({
           aria-label={label}
           className="flex size-5 shrink-0 items-center justify-center"
         >
-          <FolderIconChip icon={icon} />
+          {chip}
         </button>
       )}
 
@@ -208,7 +240,11 @@ export function FolderItem({
           className="min-w-0 flex-1 rounded-[3px] bg-card px-1 text-[12.5px] outline-none ring-1 ring-foreground/20"
         />
       ) : (
-        <button type="button" onClick={onSelect} className="min-w-0 flex-1 truncate text-left">
+        <button
+          type="button"
+          onClick={onSelect}
+          className="min-w-0 flex-1 truncate rounded-[3px] text-left outline-none focus-visible:ring-1 focus-visible:ring-brand"
+        >
           {label}
         </button>
       )}
@@ -221,24 +257,26 @@ export function FolderItem({
             'group-hover:opacity-0 group-has-[[aria-expanded=true]]:opacity-0',
         )}
       >
-        {count.toString().padStart(2, '0')}
+        {pad2(count)}
       </span>
 
       {row.kind === 'folder' && import.meta.env.DEV && (
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button
-              type="button"
-              onClick={(e) => e.stopPropagation()}
-              className="absolute right-2 top-1/2 size-5 -translate-y-1/2 rounded opacity-0 transition-opacity hover:bg-foreground/10 group-hover:opacity-100 aria-expanded:opacity-100"
-              aria-label={t.home.folderActions}
-            >
-              <MoreHorizontal className="mx-auto size-3.5" />
-            </button>
-          </DropdownMenuTrigger>
+          <DropdownMenuTrigger
+            render={
+              <button
+                type="button"
+                onClick={(e) => e.stopPropagation()}
+                className="absolute right-2 top-1/2 size-5 -translate-y-1/2 rounded opacity-0 outline-none transition-opacity duration-150 hover:bg-foreground/10 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:ring-1 focus-visible:ring-brand aria-expanded:opacity-100"
+                aria-label={t.home.folderActions}
+              >
+                <MoreHorizontal className="mx-auto size-3.5" />
+              </button>
+            }
+          />
           <DropdownMenuContent align="end" className="min-w-[140px]">
             <DropdownMenuItem
-              onSelect={() => {
+              onClick={() => {
                 setDraftName(row.folder.name);
                 setRenaming(true);
               }}
@@ -246,7 +284,7 @@ export function FolderItem({
               <Pencil />
               {t.common.rename}
             </DropdownMenuItem>
-            <DropdownMenuItem variant="destructive" onSelect={() => row.onDelete()}>
+            <DropdownMenuItem variant="destructive" onClick={() => row.onDelete()}>
               <Trash2 />
               {t.common.delete}
             </DropdownMenuItem>

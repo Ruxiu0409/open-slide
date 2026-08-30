@@ -4,6 +4,9 @@ import path from 'node:path';
 import fg from 'fast-glob';
 import { loadConfigFromFile, normalizePath, type Plugin, type ViteDevServer } from 'vite';
 import type { OpenSlideConfig } from '../config.ts';
+import { SLIDE_ID_RE } from '../editing/slide-ops.ts';
+import { foldersManifestPath, readManifest } from '../files/folders.ts';
+import { hasRecentWrite } from './recent-writes.ts';
 
 export type { OpenSlideConfig };
 
@@ -18,30 +21,6 @@ const CONFIG_FILE = 'open-slide.config.ts';
 const SLIDES_VMOD = 'virtual:open-slide/slides';
 const CONFIG_VMOD = 'virtual:open-slide/config';
 const FOLDERS_VMOD = 'virtual:open-slide/folders';
-
-type FoldersManifest = {
-  folders: unknown[];
-  assignments: Record<string, string>;
-};
-
-async function readFoldersManifest(file: string): Promise<FoldersManifest> {
-  try {
-    const raw = await fs.readFile(file, 'utf8');
-    const parsed = JSON.parse(raw) as Partial<FoldersManifest>;
-    return {
-      folders: Array.isArray(parsed.folders) ? parsed.folders : [],
-      assignments:
-        parsed.assignments && typeof parsed.assignments === 'object'
-          ? (parsed.assignments as Record<string, string>)
-          : {},
-    };
-  } catch (err) {
-    if ((err as NodeJS.ErrnoException).code === 'ENOENT') {
-      return { folders: [], assignments: {} };
-    }
-    throw err;
-  }
-}
 
 function resolved(id: string): string {
   return `\0${id}`;
@@ -114,12 +93,16 @@ function parseCreatedAtMs(iso: string | null): number | null {
   return Number.isFinite(ms) ? ms : null;
 }
 
-async function generateSlidesModule(
+// Deduped across repeated virtual-module regenerations so dev HMR doesn't
+// re-log the same ignored folder on every slide change.
+const warnedInvalidSlideIds = new Set<string>();
+
+export async function generateSlidesModule(
   files: string[],
   slidesRoot: string,
   isDev: boolean,
-): Promise<string> {
-  const entries = await Promise.all(
+): Promise<{ code: string; ignored: string[] }> {
+  const scanned = await Promise.all(
     files.map(async (abs) => {
       const id = toId(abs, slidesRoot);
       const importPath = isDev ? `@fs/${normalizePath(abs).replace(/^\/+/, '')}` : abs;
@@ -127,6 +110,13 @@ async function generateSlidesModule(
       return { id, importPath, theme: meta.theme, createdAt: parseCreatedAtMs(meta.createdAt) };
     }),
   );
+
+  // Discovery globs every `slides/*/index.*`, but a slide id is used in URLs,
+  // filesystem paths, and the editing routes — all guarded by SLIDE_ID_RE. Drop
+  // folders with an unusable id instead of listing them as slides that then fail
+  // every folder/edit action; `load` warns about each ignored folder.
+  const entries = scanned.filter((e) => SLIDE_ID_RE.test(e.id));
+  const ignored = scanned.filter((e) => !SLIDE_ID_RE.test(e.id)).map((e) => e.id);
 
   const ids = JSON.stringify(entries.map((e) => e.id).sort());
   const themesMap: Record<string, string> = {};
@@ -143,7 +133,7 @@ async function generateSlidesModule(
 const slideImportTokens = ${importTokens};
 if (import.meta.hot) {
   import.meta.hot.on('open-slide:slide-changed', (data) => {
-    const ids = Array.isArray(data?.slideIds) ? data.slideIds : data?.slideId ? [data.slideId] : [];
+    const ids = Array.isArray(data?.slideIds) ? data.slideIds : [];
     const token = Date.now();
     for (const id of ids) {
       if (Object.prototype.hasOwnProperty.call(slideImportTokens, id)) slideImportTokens[id] = token;
@@ -161,7 +151,7 @@ if (import.meta.hot) {
     })
     .join('\n');
 
-  return `// virtual:open-slide/slides — generated
+  const code = `// virtual:open-slide/slides — generated
 export const slideIds = ${ids};
 export const slideThemes = ${themesJson};
 export const slideCreatedAt = ${createdAtJson};
@@ -174,13 +164,14 @@ ${cases}
   }
 }
 `;
+  return { code, ignored };
 }
 
 export function openSlidePlugin(opts: OpenSlidePluginOptions): Plugin {
   const { userCwd, config, coreVersion } = opts;
   const slidesDir = config.slidesDir ?? 'slides';
   const slidesRoot = path.resolve(userCwd, slidesDir);
-  const foldersManifestPath = path.join(slidesRoot, '.folders.json');
+  const manifestPath = foldersManifestPath(slidesRoot);
 
   let isDev = false;
   const slideIdForEntry = (p: string): string | null => {
@@ -214,9 +205,6 @@ export function openSlidePlugin(opts: OpenSlidePluginOptions): Plugin {
     name: 'open-slide',
     config(_c, env) {
       isDev = env.command === 'serve';
-      return {
-        server: { fs: { allow: [userCwd] } },
-      };
     },
     resolveId(id) {
       if (id === SLIDES_VMOD) return resolved(SLIDES_VMOD);
@@ -227,7 +215,15 @@ export function openSlidePlugin(opts: OpenSlidePluginOptions): Plugin {
     async load(id) {
       if (id === resolved(SLIDES_VMOD)) {
         const files = await findSlides(userCwd, slidesDir);
-        return await generateSlidesModule(files, slidesRoot, isDev);
+        const { code, ignored } = await generateSlidesModule(files, slidesRoot, isDev);
+        for (const slideId of ignored) {
+          if (warnedInvalidSlideIds.has(slideId)) continue;
+          warnedInvalidSlideIds.add(slideId);
+          this.warn(
+            `Ignoring slide folder "${slideId}": slide ids must match ${SLIDE_ID_RE} (lowercase/uppercase letters, digits, "-", "_"). Rename the folder under "${slidesDir}/" to a kebab-case id so it appears in the browser and can be moved into folders.`,
+          );
+        }
+        return code;
       }
       if (id === resolved(CONFIG_VMOD)) {
         const userBuild = config.build ?? {};
@@ -242,7 +238,7 @@ export function openSlidePlugin(opts: OpenSlidePluginOptions): Plugin {
         return `export default ${JSON.stringify(resolvedConfig)};\n`;
       }
       if (id === resolved(FOLDERS_VMOD)) {
-        const manifest = await readFoldersManifest(foldersManifestPath);
+        const manifest = await readManifest(manifestPath);
         return `export default ${JSON.stringify(manifest)};\n`;
       }
       return null;
@@ -250,6 +246,12 @@ export function openSlidePlugin(opts: OpenSlidePluginOptions): Plugin {
     handleHotUpdate(ctx) {
       const slideId = slideIdForEntry(ctx.file);
       if (!slideId) return;
+      // A speaker-note save writes the slide file itself. The notes plugin
+      // records that write so we can recognise it here and skip the
+      // `slide-changed` broadcast, which would otherwise bump the dev
+      // cache-bust token and remount the slide canvas. Genuine source edits
+      // are never recorded, so they keep full HMR behaviour.
+      if (hasRecentWrite(ctx.file)) return [];
       queueSlideChanged(ctx.server, slideId);
       return [];
     },
@@ -287,15 +289,15 @@ export function openSlidePlugin(opts: OpenSlidePluginOptions): Plugin {
           if (mod) server.moduleGraph.invalidateModule(mod);
         }, 100);
       };
-      server.watcher.add(foldersManifestPath);
+      server.watcher.add(manifestPath);
       server.watcher.on('change', (p) => {
-        if (p === foldersManifestPath) invalidateFolders();
+        if (p === manifestPath) invalidateFolders();
       });
       server.watcher.on('add', (p) => {
-        if (p === foldersManifestPath) invalidateFolders();
+        if (p === manifestPath) invalidateFolders();
       });
       server.watcher.on('unlink', (p) => {
-        if (p === foldersManifestPath) invalidateFolders();
+        if (p === manifestPath) invalidateFolders();
       });
     },
   };

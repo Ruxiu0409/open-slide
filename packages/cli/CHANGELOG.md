@@ -1,5 +1,27 @@
 # @open-slide/cli
 
+## 1.4.1
+
+### Patch Changes
+
+- [#356](https://github.com/1weiho/open-slide/pull/356) [`f182fbd`](https://github.com/1weiho/open-slide/commit/f182fbdf13b367c6245a8a14049b82dc830545cf) Thanks [@1weiho](https://github.com/1weiho)! - Restore React 18 and Vite 5 compatibility for existing and newly generated projects.
+
+## 1.4.0
+
+### Minor Changes
+
+- [#344](https://github.com/1weiho/open-slide/pull/344) [`4a4fa17`](https://github.com/1weiho/open-slide/commit/4a4fa17484a3caabf28cdd6885db3a1feaef356d) Thanks [@1weiho](https://github.com/1weiho)! - Upgrade to React 19 and Vite 8.
+
+## 1.3.3
+
+### Patch Changes
+
+- [#313](https://github.com/1weiho/open-slide/pull/313) [`afa9d8c`](https://github.com/1weiho/open-slide/commit/afa9d8c56fcf458403d746900b62fb27a4aec801) Thanks [@1weiho](https://github.com/1weiho)! - Document morph transitions in the slide-authoring skill.
+
+- [#328](https://github.com/1weiho/open-slide/pull/328) [`e850d8e`](https://github.com/1weiho/open-slide/commit/e850d8e2785a171c5d4fed6c43028699931f5f30) Thanks [@1weiho](https://github.com/1weiho)! - Split the slide-authoring skill into per-primitive reference files under `references/`.
+
+- [#335](https://github.com/1weiho/open-slide/pull/335) [`3b01fb3`](https://github.com/1weiho/open-slide/commit/3b01fb3e0213b42ecfc03bdde322b23d284e757e) Thanks [@1weiho](https://github.com/1weiho)! - Generate template skills from `@open-slide/core` at build time instead of committing a mirrored copy.
+
 ## 1.3.2
 
 ### Patch Changes

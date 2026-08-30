@@ -45,13 +45,13 @@ function readMetaTitleInSource(source: string): MetaTitleRead {
   for (const stmt of body) {
     if (stmt.type !== 'ExportNamedDeclaration') continue;
     const decl = stmt.declaration as Record<string, unknown> | undefined;
-    if (!decl || decl.type !== 'VariableDeclaration') continue;
+    if (decl?.type !== 'VariableDeclaration') continue;
     const declarations = (decl.declarations as Array<Record<string, unknown>> | undefined) ?? [];
     for (const d of declarations) {
       const id = d.id as Record<string, unknown> | undefined;
-      if (!id || id.type !== 'Identifier' || id.name !== 'meta') continue;
+      if (id?.type !== 'Identifier' || id.name !== 'meta') continue;
       const init = unwrapExpression(d.init as Record<string, unknown> | undefined);
-      if (!init || init.type !== 'ObjectExpression') return { kind: 'unsupported' };
+      if (init?.type !== 'ObjectExpression') return { kind: 'unsupported' };
       const properties = (init.properties as Array<Record<string, unknown>> | undefined) ?? [];
       for (const property of properties) {
         if (property.type !== 'ObjectProperty' || property.computed) continue;
@@ -276,7 +276,7 @@ function findDefaultExportArray(
     while (inner && (inner.type === 'TSAsExpression' || inner.type === 'TSSatisfiesExpression')) {
       inner = inner.expression as Record<string, unknown> | undefined;
     }
-    if (!inner || inner.type !== 'ArrayExpression') return null;
+    if (inner?.type !== 'ArrayExpression') return null;
     const arrayStart = inner.start as number;
     const arrayEnd = inner.end as number;
     const rawElements = (inner.elements as Array<Record<string, unknown> | null>) ?? [];
@@ -364,13 +364,13 @@ function findNotesArray(source: string): NotesArrayInfo | null | 'invalid' {
   for (const stmt of body) {
     if (stmt.type !== 'ExportNamedDeclaration') continue;
     const decl = stmt.declaration as Record<string, unknown> | undefined;
-    if (!decl || decl.type !== 'VariableDeclaration') continue;
+    if (decl?.type !== 'VariableDeclaration') continue;
     const declarations = (decl.declarations as Array<Record<string, unknown>> | undefined) ?? [];
     for (const d of declarations) {
       const id = d.id as Record<string, unknown> | undefined;
-      if (!id || id.type !== 'Identifier' || id.name !== 'notes') continue;
+      if (id?.type !== 'Identifier' || id.name !== 'notes') continue;
       const init = d.init as Record<string, unknown> | undefined;
-      if (!init || init.type !== 'ArrayExpression') return 'invalid';
+      if (init?.type !== 'ArrayExpression') return 'invalid';
       const arrayStart = init.start as number | undefined;
       const arrayEnd = init.end as number | undefined;
       if (typeof arrayStart !== 'number' || typeof arrayEnd !== 'number') return 'invalid';
@@ -417,15 +417,66 @@ export function reorderNotesArrayInSource(source: string, order: number[]): stri
   const { arrayStart, arrayEnd, elementTexts } = found;
   const pick = (i: number): string =>
     i >= 0 && i < elementTexts.length ? elementTexts[i] : 'undefined';
-  const reordered = order.map(pick);
-  while (reordered.length > 0 && reordered[reordered.length - 1] === 'undefined') {
-    reordered.pop();
+  return rebuildNotesArray(source, arrayStart, arrayEnd, order.map(pick));
+}
+
+/**
+ * Remove the note aligned with the page at `index` so the `notes` export stays
+ * index-aligned with `export default [...]` after a page deletion. Mirrors
+ * {@link removePageFromDefaultExportInSource}.
+ *
+ * Returns the rewritten source, the original source if no `notes` export exists
+ * or the index falls past the recorded notes, or `null` if the `notes` export's
+ * shape is too surprising to touch safely.
+ */
+export function removeNotesElementInSource(source: string, index: number): string | null {
+  if (!Number.isInteger(index) || index < 0) return null;
+  const found = findNotesArray(source);
+  if (found === 'invalid') return null;
+  if (found === null) return source;
+
+  const { arrayStart, arrayEnd, elementTexts } = found;
+  if (index >= elementTexts.length) return source;
+  const next = elementTexts.slice();
+  next.splice(index, 1);
+  return rebuildNotesArray(source, arrayStart, arrayEnd, next);
+}
+
+/**
+ * Duplicate the note aligned with the page at `index`, inserting the copy right
+ * after it so the `notes` export stays index-aligned with `export default [...]`
+ * after a page duplication. Mirrors {@link duplicatePageInDefaultExportInSource}.
+ *
+ * Returns the rewritten source, the original source if no `notes` export exists
+ * or the index falls past the recorded notes (the new slot and everything after
+ * it are absent, so nothing shifts), or `null` if the shape is too surprising.
+ */
+export function duplicateNotesElementInSource(source: string, index: number): string | null {
+  if (!Number.isInteger(index) || index < 0) return null;
+  const found = findNotesArray(source);
+  if (found === 'invalid') return null;
+  if (found === null) return source;
+
+  const { arrayStart, arrayEnd, elementTexts } = found;
+  if (index >= elementTexts.length) return source;
+  const next = elementTexts.slice();
+  next.splice(index + 1, 0, next[index]);
+  return rebuildNotesArray(source, arrayStart, arrayEnd, next);
+}
+
+function rebuildNotesArray(
+  source: string,
+  arrayStart: number,
+  arrayEnd: number,
+  elements: string[],
+): string {
+  const trimmed = elements.slice();
+  while (trimmed.length > 0 && trimmed[trimmed.length - 1] === 'undefined') {
+    trimmed.pop();
   }
-
   const replacement =
-    reordered.length === 0 ? '[]' : `[\n${reordered.map((s) => `  ${s},`).join('\n')}\n]`;
+    trimmed.length === 0 ? '[]' : `[\n${trimmed.map((s) => `  ${s},`).join('\n')}\n]`;
   if (replacement === source.slice(arrayStart, arrayEnd)) return source;
-
   return source.slice(0, arrayStart) + replacement + source.slice(arrayEnd);
 }
 

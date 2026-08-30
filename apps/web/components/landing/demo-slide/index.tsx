@@ -40,7 +40,7 @@ const palette = {
 
 const font = {
   sans: '"Inter", "SF Pro Display", system-ui, -apple-system, sans-serif',
-  mono: '"JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace',
+  mono: 'var(--font-geist-mono), "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace',
 };
 
 const fill = {
@@ -110,7 +110,6 @@ const styles = `
     50%      { box-shadow: 0 0 0 8px ${palette.inspect}22; }
   }
   .es-fadeUp { opacity: 0; animation: es-fadeUp 0.9s cubic-bezier(.2,.7,.2,1) forwards; }
-  .es-fadeIn { opacity: 0; animation: es-fadeIn 1.2s ease forwards; }
   .es-caret::after {
     content: '';
     display: inline-block;

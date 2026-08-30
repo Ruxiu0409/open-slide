@@ -17,16 +17,11 @@ export type Locale = {
     loadFailed: string;
     failedToLoadSlide: string;
     home: string;
-    backToHome: string;
-    preview: string;
     add: string;
     done: string;
     tryAgain: string;
     undo: string;
     redo: string;
-    light: string;
-    dark: string;
-    system: string;
     selected: string;
   };
 
@@ -42,6 +37,8 @@ export type Locale = {
     themes: string;
     assets: string;
     folders: string;
+    slides: string;
+    menu: string;
     newFolder: string;
     folderName: string;
     updateAvailable: string;
@@ -49,6 +46,9 @@ export type Locale = {
     updatingPackage: string;
     updatePackageDone: string;
     updatePackageFailed: string;
+    restartServer: string;
+    restartingServer: string;
+    restartServerFailed: string;
     changeIcon: string;
     iconEmojiTab: string;
     iconColorTab: string;
@@ -108,6 +108,7 @@ export type Locale = {
     agentDisconnectedTooltip: string;
     download: string;
     copyLink: string;
+    moreActions: string;
     toastCopyLinkSuccess: string;
     toastCopyLinkFailed: string;
     exportAsHtml: string;
@@ -128,9 +129,9 @@ export type Locale = {
     assetsTab: string;
     renameSlide: string;
     loadingEyebrow: string;
+    loadingAssetsEyebrow: string;
     emptyEyebrow: string;
     nothingToShow: string;
-    emptyHintPrefix: string;
     emptyHintMust: string;
     emptyHintSuffix: string;
   };
@@ -143,6 +144,8 @@ export type Locale = {
     lastSlide: string;
     endOfDeck: string;
     speakerNotes: string;
+    notesTextSmaller: string;
+    notesTextLarger: string;
     noNotesPrefix: string;
     noNotesSuffix: string;
     blackScreen: string;
@@ -158,6 +161,10 @@ export type Locale = {
     jump: string;
     /** template: "Loading {slideId}…" */
     loadingSlide: string;
+    loadingAssets: string;
+    switchDeck: string;
+    searchDecks: string;
+    noDecksFound: string;
   };
 
   present: {
@@ -236,7 +243,6 @@ export type Locale = {
     cropFitCover: string;
     cropFitContain: string;
     cropApply: string;
-    cropResetAria: string;
     leaveComment: string;
     commentPlaceholder: string;
     commentShortcutHint: string;
@@ -253,6 +259,8 @@ export type Locale = {
     commentDeleteAria: string;
     /** Prefix for the toast shown when one or more buffered edits fail to write to disk. */
     saveFailed: string;
+    decreaseFontSize: string;
+    increaseFontSize: string;
   };
 
   stylePanel: {
@@ -286,7 +294,37 @@ export type Locale = {
     scopeGlobal: string;
     /** templates: "{count} file" / "{count} files" */
     fileCount: Plural;
+    createdAt: string;
+    modifiedAt: string;
+    nameColumn: string;
+    typeColumn: string;
+    sizeColumn: string;
+    statusColumn: string;
+    sortAria: string;
+    /** template: "Sort by {column}" */
+    sortByColumn: string;
+    sortAscending: string;
+    sortDescending: string;
+    assetSearchPlaceholder: string;
+    clearAssetSearch: string;
+    usageFilterAria: string;
+    usageAll: string;
+    usageUsed: string;
     usageUnused: string;
+    typeFilterAria: string;
+    typeAll: string;
+    typeImage: string;
+    typeFont: string;
+    typeVideo: string;
+    typeOther: string;
+    gridViewAria: string;
+    listViewAria: string;
+    gridColumnsAria: string;
+    /** template: "{count} columns" */
+    gridColumnsValue: string;
+    noMatchingAssets: string;
+    noMatchingAssetsHint: string;
+    clearFilters: string;
     searchLogos: string;
     upload: string;
     dropToUpload: string;
@@ -371,6 +409,10 @@ export type Locale = {
     transitionIndicator: string;
     stepsIndicator: string;
     overviewAria: string;
+    /** template: "Scroll up to current page {n}" */
+    scrollUpToCurrentPage: string;
+    /** template: "Scroll down to current page {n}" */
+    scrollDownToCurrentPage: string;
   };
 
   pdfToast: {
@@ -387,6 +429,36 @@ export type Locale = {
     processing: string;
     generating: string;
     done: string;
+  };
+
+  commandMenu: {
+    trigger: string;
+    triggerAria: string;
+    triggerTooltip: string;
+    placeholder: string;
+    slidePlaceholder: string;
+    empty: string;
+    groupSlides: string;
+    groupFolders: string;
+    groupNavigation: string;
+    groupPresent: string;
+    groupDeck: string;
+    groupExport: string;
+    groupPages: string;
+    groupAppearance: string;
+    groupDeveloper: string;
+    /** template: "Page {n}" */
+    goToPage: string;
+    overview: string;
+    designPanel: string;
+    backToSlides: string;
+    /** template: "Theme: {name}" */
+    themeItem: string;
+    /** template: "Language: {name}" */
+    languageItem: string;
+    hintNavigate: string;
+    hintSelect: string;
+    hintClose: string;
   };
 
   themeToggle: {

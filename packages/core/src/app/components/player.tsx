@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { hasModifier, isBackwardKey, isForwardKey, isTypingTarget } from '@/lib/keys';
 import { useClickPageNavigation } from '@/lib/use-click-page-navigation';
 import { useWheelPageNavigation } from '@/lib/use-wheel-page-navigation';
 import { cn } from '@/lib/utils';
@@ -6,6 +7,7 @@ import type { DesignSystem } from '../lib/design';
 import type { Page } from '../lib/sdk';
 import type { EntryDirection, StepAggregate, StepController } from '../lib/step-context';
 import type { SlideTransition } from '../lib/transition';
+import { useIsMobile } from '../lib/use-is-mobile';
 import { usePrefersReducedMotion } from '../lib/use-prefers-reduced-motion';
 import { OverviewGrid } from './overview-grid';
 import { PresentBlackoutOverlay } from './present/blackout-overlay';
@@ -27,6 +29,7 @@ import { SlideTransitionLayer } from './slide-transition-layer';
 
 const IDLE_HIDE_MS = 2000;
 const BAR_HOTZONE_PX = 160;
+const MOBILE_CHROME_HIDE_MS = 2200;
 
 type Props = {
   pages: Page[];
@@ -38,6 +41,7 @@ type Props = {
   allowExit?: boolean;
   controls?: boolean;
   slideId?: string;
+  onSwitchSlide?: (slideId: string) => void;
   /**
    * When true, the Player enters the browser Fullscreen API on mount.
    * When false, it renders as a window-sized overlay (viewport-filling)
@@ -56,8 +60,10 @@ export function Player({
   allowExit = true,
   controls = false,
   slideId,
+  onSwitchSlide,
   fullscreen = true,
 }: Props) {
+  const isMobile = useIsMobile();
   const prefersReducedMotion = usePrefersReducedMotion();
   const rootRef = useRef<HTMLDivElement | null>(null);
   // Mirrored as state so descendants portaling *into* the player subtree
@@ -74,6 +80,8 @@ export function Player({
   const [blackout, setBlackout] = useState<'black' | 'white' | null>(null);
   const [laser, setLaser] = useState(false);
   const [keyboardDriven, setKeyboardDriven] = useState(false);
+  const [mobileChromeVisible, setMobileChromeVisible] = useState(false);
+  const [mobileChromeDeadline, setMobileChromeDeadline] = useState(0);
   const [startedAt] = useState(() => Date.now());
   const [windowed, setWindowed] = useState(!fullscreen);
   // Mirror windowed into a ref so the fullscreenchange listener can read the
@@ -118,6 +126,54 @@ export function Player({
   }, [index, pages.length, handleIndexChange]);
 
   const overlayActive = controls && (overviewOpen || helpOpen);
+  const overlayActiveRef = useRef(overlayActive);
+  const showMobileChrome = useCallback(() => {
+    if (!controls || !isMobile) return;
+    setMobileChromeVisible(true);
+    setMobileChromeDeadline(Date.now() + MOBILE_CHROME_HIDE_MS);
+  }, [controls, isMobile]);
+  const handleMobileViewportClick = useCallback(
+    ({ y }: { x: number; y: number }) => {
+      if (!controls || !isMobile || y < 0.5) return;
+      showMobileChrome();
+    },
+    [controls, isMobile, showMobileChrome],
+  );
+
+  useEffect(() => {
+    if (!controls || !isMobile) {
+      setMobileChromeVisible(false);
+      setMobileChromeDeadline(0);
+      return;
+    }
+    setMobileChromeVisible(true);
+    setMobileChromeDeadline(Date.now() + MOBILE_CHROME_HIDE_MS);
+  }, [controls, isMobile]);
+
+  useEffect(() => {
+    const wasOverlayActive = overlayActiveRef.current;
+    overlayActiveRef.current = overlayActive;
+    if (wasOverlayActive && !overlayActive) showMobileChrome();
+  }, [overlayActive, showMobileChrome]);
+
+  useEffect(() => {
+    if (
+      !controls ||
+      !isMobile ||
+      overlayActive ||
+      !mobileChromeVisible ||
+      mobileChromeDeadline === 0
+    ) {
+      return;
+    }
+    const id = window.setTimeout(
+      () => {
+        setMobileChromeVisible(false);
+      },
+      Math.max(0, mobileChromeDeadline - Date.now()),
+    );
+    return () => window.clearTimeout(id);
+  }, [controls, isMobile, mobileChromeDeadline, mobileChromeVisible, overlayActive]);
 
   useClickPageNavigation({
     ref: rootRef,
@@ -126,6 +182,7 @@ export function Player({
     canNext,
     onPrev: goPrev,
     onNext: goNext,
+    onViewportClick: controls && isMobile ? handleMobileViewportClick : undefined,
   });
 
   useWheelPageNavigation({
@@ -196,9 +253,11 @@ export function Player({
         setBlackout((cur) => (cur === msg.mode ? null : msg.mode));
       } else if (msg.type === 'request-state') {
         send({ type: 'state', state: presenterStateRef.current });
+      } else if (msg.type === 'switch-slide') {
+        if (msg.slideId !== slideId) onSwitchSlide?.(msg.slideId);
       }
     },
-    [goNext, goPrev, handleIndexChange, pages.length],
+    [goNext, goPrev, handleIndexChange, pages.length, slideId, onSwitchSlide],
   );
 
   const channel = usePresenterChannel(slideId ?? '__none__', (msg) => {
@@ -213,8 +272,7 @@ export function Player({
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      const tgt = e.target;
-      if (tgt instanceof HTMLElement && tgt.matches('input, textarea')) return;
+      if (isTypingTarget(e.target)) return;
 
       // While an overlay is open, only Esc and the toggle that owns it
       // should reach the Player. Overview installs its own capture-phase
@@ -242,9 +300,8 @@ export function Player({
         return;
       }
 
-      const isNext =
-        e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown';
-      const isPrev = e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp';
+      const isNext = isForwardKey(e);
+      const isPrev = isBackwardKey(e);
 
       if (isNext || isPrev) {
         if (controls && blackout) setBlackout(null);
@@ -276,7 +333,7 @@ export function Player({
       if (!controls) return;
       // Single-letter shortcuts only fire when no modifier is held — keeps
       // browser shortcuts (Cmd/Ctrl-something) from being hijacked.
-      if (e.altKey || e.ctrlKey || e.metaKey) return;
+      if (hasModifier(e)) return;
 
       if (e.key === 'b' || e.key === 'B') {
         e.preventDefault();
@@ -318,8 +375,11 @@ export function Player({
   // The control bar + progress strip only surface when the pointer is in
   // the bottom hot zone. Keyboard nav (arrows / space / PgDn) never reveals
   // them — intentional so the deck stays clean during a talk.
-  const pointerNearBottom = usePointerNearBottom(BAR_HOTZONE_PX, controls && !overlayActive);
-  const chromeVisible = pointerNearBottom || overlayActive;
+  const pointerNearBottom = usePointerNearBottom(
+    BAR_HOTZONE_PX,
+    controls && !overlayActive && !isMobile,
+  );
+  const chromeVisible = overlayActive || (isMobile ? mobileChromeVisible : pointerNearBottom);
   const idle = useIdle(IDLE_HIDE_MS, controls && !overlayActive);
 
   useEffect(() => {
@@ -330,7 +390,9 @@ export function Player({
   }, [keyboardDriven]);
 
   const hideCursor =
-    controls && (laser || keyboardDriven || (idle && !overlayActive && !pointerNearBottom));
+    controls &&
+    !isMobile &&
+    (laser || keyboardDriven || (idle && !overlayActive && !pointerNearBottom));
 
   return (
     <div
@@ -340,9 +402,13 @@ export function Player({
         controls && 'select-none',
         controls && (hideCursor ? 'cursor-none' : 'cursor-default'),
       )}
+      style={design ? { background: design.palette.bg } : undefined}
     >
       <SlideCanvas flat design={design}>
+        {/* Keyed per deck so a presenter-driven deck switch cuts instead of
+            animating a transition between two unrelated decks. */}
         <SlideTransitionLayer
+          key={slideId}
           pages={pages}
           index={index}
           total={pages.length}
@@ -372,6 +438,7 @@ export function Player({
             windowed={windowed}
             onPrev={goPrev}
             onNext={goNext}
+            onMobileInteraction={showMobileChrome}
             onOverview={() => setOverviewOpen(true)}
             onBlackout={(mode) => setBlackout((c) => (c === mode ? null : mode))}
             onLaser={() => setLaser((v) => !v)}
@@ -388,6 +455,8 @@ export function Player({
             onClose={() => setOverviewOpen(false)}
             onSelect={handleIndexChange}
             variant="present"
+            moduleTransition={transition}
+            tooltipContainer={rootEl}
           />
           <PresentHelpOverlay open={helpOpen} onOpenChange={setHelpOpen} container={rootEl} />
         </div>

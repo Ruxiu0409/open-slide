@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Field, NumberField, Section } from '@/components/panel/panel-fields';
 import { PanelShell, usePanelMount } from '@/components/panel/panel-shell';
 import { useLocale } from '@/lib/use-locale';
+import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
@@ -29,12 +30,14 @@ type DesignPanelProps = {
 
 export function DesignPanel({ open, onClose }: DesignPanelProps) {
   const { draft, exists, warning, loaded, dirty, update, shuffle } = useDesignPanelState();
-  const { mounted, animVisible } = usePanelMount(open);
+  // Gate the mount on data readiness so the first open still slides in
+  // instead of popping fully expanded once loading finishes.
+  const ready = loaded && draft != null;
+  const { mounted, animVisible } = usePanelMount(open && ready);
   const t = useLocale();
 
-  if (!loaded) return null;
+  if (!ready) return null;
   if (!mounted) return null;
-  if (!draft) return null;
 
   return (
     <PanelShell
@@ -52,13 +55,14 @@ export function DesignPanel({ open, onClose }: DesignPanelProps) {
                 {t.stylePanel.draftBadge}
               </span>
             )}
-            {dirty && (
-              <span
-                className="size-1.5 rounded-full bg-brand"
-                title={t.stylePanel.unsavedTitle}
-                aria-hidden
-              />
-            )}
+            <span
+              className={cn(
+                'size-1.5 rounded-full bg-brand transition-opacity duration-150',
+                dirty ? 'opacity-100' : 'opacity-0',
+              )}
+              title={dirty ? t.stylePanel.unsavedTitle : undefined}
+              aria-hidden
+            />
           </div>
           <div className="flex items-center gap-0.5">
             <Button
@@ -85,8 +89,8 @@ export function DesignPanel({ open, onClose }: DesignPanelProps) {
       }
       banner={
         warning && (
-          <div className="flex gap-2 border-b border-hairline bg-[oklch(0.97_0.04_85)] px-3 py-2 text-[11px] leading-relaxed text-[oklch(0.35_0.08_45)] dark:bg-[oklch(0.25_0.04_60)] dark:text-[oklch(0.85_0.08_85)]">
-            <span aria-hidden className="mt-0.5 size-1.5 shrink-0 rounded-full bg-brand" />
+          <div className="flex gap-2 border-b border-hairline bg-amber-500/10 px-3 py-2 text-[11px] leading-relaxed text-amber-800 dark:bg-amber-400/10 dark:text-amber-200">
+            <span aria-hidden className="mt-0.5 size-1.5 shrink-0 rounded-full bg-amber-500" />
             <span>{warning}</span>
           </div>
         )
@@ -232,7 +236,7 @@ function ColorField({
 
   return (
     <Field label={label}>
-      <label className="relative inline-flex size-8 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-md border bg-background shadow-xs">
+      <label className="relative inline-flex size-8 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-md border bg-background shadow-xs transition-[border-color,scale] duration-150 hover:border-foreground/20 active:scale-[0.96] has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring/40">
         <span className="size-5 rounded-sm" style={{ backgroundColor: value }} />
         <input
           type="color"
@@ -252,7 +256,7 @@ function ColorField({
         onBlur={() => {
           if (!/^#[0-9a-fA-F]{6}$/.test(hexDraft)) setHexDraft(value);
         }}
-        className="h-8 flex-1 font-mono text-[11px] uppercase"
+        className="nums h-8 flex-1 font-mono text-[11px] uppercase"
         spellCheck={false}
       />
     </Field>
@@ -273,9 +277,13 @@ function FontField({
   return (
     <Field label={label}>
       <Select
+        items={{
+          ...Object.fromEntries(FONT_PRESETS.map((p) => [p.value, p.label])),
+          __custom__: tFont.stylePanel.fontPresetCustom,
+        }}
         value={matched ? matched.value : '__custom__'}
         onValueChange={(v) => {
-          if (v !== '__custom__') onChange(v);
+          if (typeof v === 'string' && v !== '__custom__') onChange(v);
         }}
       >
         <SelectTrigger size="sm" className="h-8 flex-1 text-xs">
@@ -322,7 +330,7 @@ function SliderField({
         max={max}
         step={step}
         value={[value]}
-        onValueChange={([v]) => onChange(v ?? value)}
+        onValueChange={(next) => onChange((Array.isArray(next) ? next[0] : next) ?? value)}
         className="flex-1"
       />
       <NumberField

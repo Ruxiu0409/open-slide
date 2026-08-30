@@ -3,7 +3,7 @@
 import posthog from 'posthog-js';
 import { useState } from 'react';
 
-export function CopyCommand({ command, size = 'lg' }: { command: string; size?: 'lg' | 'md' }) {
+export function CopyCommand({ command }: { command: string }) {
   const [copied, setCopied] = useState(false);
 
   const onCopy = async () => {
@@ -17,19 +17,15 @@ export function CopyCommand({ command, size = 'lg' }: { command: string; size?: 
     }
   };
 
-  const height = size === 'lg' ? 'h-[48px] sm:h-[52px]' : 'h-10';
-  const pad = size === 'lg' ? 'px-4 sm:px-5' : 'px-4';
-  const text = size === 'lg' ? 'text-[13px] sm:text-[15px]' : 'text-[13px]';
+  const height = 'h-[48px] sm:h-[52px]';
+  const pad = 'px-4 sm:px-5';
+  const text = 'text-[13px] sm:text-[15px]';
 
   return (
     <button
       type="button"
       onClick={onCopy}
-      style={{
-        boxShadow:
-          '0 0 0 1px color-mix(in oklab, var(--color-accent) 15%, transparent), 0 20px 80px -20px color-mix(in oklab, var(--color-accent) 35%, transparent)',
-      }}
-      className={`group relative inline-flex items-center gap-3 ${height} ${pad} rounded-[6px] border border-[color:var(--color-accent)]/40 bg-[color:var(--color-panel)] text-[color:var(--color-text)] font-[family-name:var(--font-mono)] ${text} hover:border-[color:var(--color-accent)] transition`}
+      className={`group pressable floating relative inline-flex items-center gap-3 ${height} ${pad} rounded-[6px] border border-[color:var(--color-rule)] bg-[color:var(--color-panel)] text-[color:var(--color-text)] font-[family-name:var(--font-mono)] ${text} hover:border-[color:var(--color-accent)]/50`}
     >
       <span aria-hidden className="text-[color:var(--color-accent)]">
         $

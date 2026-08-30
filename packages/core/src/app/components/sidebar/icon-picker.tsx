@@ -4,14 +4,14 @@ import type { FolderIcon } from '@/lib/sdk';
 import { useLocale } from '@/lib/use-locale';
 
 export const PRESET_COLORS = [
-  '#c0392b', // vermillion
-  '#b8743e', // ochre
-  '#6f7a3a', // olive
-  '#2f6a4f', // forest
-  '#3a5a7c', // ink blue
-  '#6b4675', // plum
-  '#a3543b', // terracotta
-  '#3a3a3a', // graphite
+  '#e5484d', // red
+  '#f76b15', // orange
+  '#ffb224', // amber
+  '#30a46c', // green
+  '#12a594', // teal
+  '#0091ff', // blue
+  '#6e56cf', // violet
+  '#60646c', // gray
 ];
 
 export function IconPicker({
@@ -49,7 +49,7 @@ export function IconPicker({
               key={c}
               type="button"
               onClick={() => onChange({ type: 'color', value: c })}
-              className="size-6 rounded-[4px] ring-1 ring-foreground/10 shadow-[inset_0_1px_0_oklch(1_0_0/0.18)] transition-transform hover:scale-110"
+              className="size-6 rounded-[4px] ring-1 ring-foreground/10 shadow-[inset_0_1px_0_oklch(1_0_0/0.18)] outline-none motion-safe:transition-transform motion-safe:duration-100 hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-brand"
               style={{ background: c }}
               aria-label={c}
             />
