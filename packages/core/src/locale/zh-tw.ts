@@ -17,16 +17,11 @@ export const zhTW: Locale = {
     loadFailed: '載入失敗',
     failedToLoadSlide: '無法載入投影片',
     home: '首頁',
-    backToHome: '返回首頁',
-    preview: '預覽',
     add: '新增',
     done: '完成',
     tryAgain: '重試',
     undo: '復原',
     redo: '重做',
-    light: '淺色',
-    dark: '深色',
-    system: '系統',
     selected: '已選取',
   },
 
@@ -135,7 +130,6 @@ export const zhTW: Locale = {
     loadingAssetsEyebrow: '載入資源中',
     emptyEyebrow: '空白',
     nothingToShow: '沒有可顯示的內容。',
-    emptyHintPrefix: '',
     emptyHintMust: ' 必須 ',
     emptyHintSuffix: ' 一個非空的元件陣列。',
   },
@@ -165,6 +159,9 @@ export const zhTW: Locale = {
     jump: '跳至',
     loadingSlide: '正在載入 {slideId}…',
     loadingAssets: '正在載入資源…',
+    switchDeck: '切換簡報',
+    searchDecks: '搜尋簡報…',
+    noDecksFound: '沒有符合的簡報',
   },
 
   present: {
@@ -237,7 +234,6 @@ export const zhTW: Locale = {
     cropFitCover: '填滿',
     cropFitContain: '完整顯示',
     cropApply: '套用',
-    cropResetAria: '重設裁切',
     agentWatching: 'Agent 正在關注',
     agentWatchingTooltip: '選取的元素會即時同步給 agent。',
     agentNotWatching: 'Agent 沒在關注',
@@ -261,6 +257,8 @@ export const zhTW: Locale = {
     commentsApplyHintSuffix: ' 以套用這些變更。',
     commentDeleteAria: '刪除',
     saveFailed: '儲存失敗：',
+    decreaseFontSize: '縮小字級',
+    increaseFontSize: '放大字級',
   },
 
   stylePanel: {

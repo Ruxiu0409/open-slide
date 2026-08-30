@@ -17,16 +17,11 @@ export const en: Locale = {
     loadFailed: 'Load failed',
     failedToLoadSlide: 'Failed to load slide',
     home: 'Home',
-    backToHome: 'Back to home',
-    preview: 'Preview',
     add: 'Add',
     done: 'Done',
     tryAgain: 'Try again',
     undo: 'Undo',
     redo: 'Redo',
-    light: 'Light',
-    dark: 'Dark',
-    system: 'System',
     selected: 'Selected',
   },
 
@@ -137,7 +132,6 @@ export const en: Locale = {
     loadingAssetsEyebrow: 'Loading assets',
     emptyEyebrow: 'Empty',
     nothingToShow: 'Nothing to show.',
-    emptyHintPrefix: '',
     emptyHintMust: ' must ',
     emptyHintSuffix: ' a non-empty array of components.',
   },
@@ -167,6 +161,9 @@ export const en: Locale = {
     jump: 'Jump',
     loadingSlide: 'Loading {slideId}…',
     loadingAssets: 'Loading assets…',
+    switchDeck: 'Switch presentation',
+    searchDecks: 'Search presentations…',
+    noDecksFound: 'No presentations match',
   },
 
   present: {
@@ -244,7 +241,6 @@ export const en: Locale = {
     cropFitCover: 'Fill',
     cropFitContain: 'Fit',
     cropApply: 'Apply',
-    cropResetAria: 'Reset crop',
     leaveComment: 'Leave a comment',
     commentPlaceholder: 'Describe a change for the agent…',
     commentShortcutHint: '⌘/ to focus · ⌘↵ to add',
@@ -263,6 +259,8 @@ export const en: Locale = {
     commentsApplyHintSuffix: ' in your agent to apply these.',
     commentDeleteAria: 'Delete',
     saveFailed: "Couldn't save:",
+    decreaseFontSize: 'Decrease font size',
+    increaseFontSize: 'Increase font size',
   },
 
   stylePanel: {
