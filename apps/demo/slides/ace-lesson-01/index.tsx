@@ -1070,8 +1070,7 @@ const Closing: Page = () => (
 const slido = {
   code: '3173 378',
   joinUrl: 'slido.com',
-  embedUrl:
-    'https://wall.sli.do/event/guKaZqkHmn7ipbhLNFn6xR?section=929cdf81-e630-4ba1-9c20-4c607430a061&integration=slido-admin&utm_source=slidoadmin',
+  embedUrl: 'https://app.sli.do/event/guKaZqkHmn7ipbhLNFn6xR',
 };
 
 const QA: Page = () => (
