@@ -1,4 +1,5 @@
 import { type DesignSystem, type Page, type SlideMeta, useSlidePageNumber } from '@open-slide/core';
+import oddOneOutPreview from './assets/oddoneout-preview.jpg';
 import qrInstagram from './assets/qr-instagram.png';
 import qrLinkedin from './assets/qr-linkedin.png';
 import qrOddOneOut from './assets/qr-oddoneout.svg';
@@ -673,6 +674,110 @@ const AboutMe: Page = () => (
   </div>
 );
 
+const Divider = ({
+  num,
+  title,
+  sub,
+  subEn,
+}: {
+  num: string;
+  title: string;
+  sub: string;
+  subEn: string;
+}) => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="55%" size={1500} opacity={0.36} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '0 160px',
+      }}
+    >
+      <div
+        className="ace-fadeup"
+        style={{
+          fontFamily: fonts.mono,
+          fontSize: 26,
+          color: 'var(--osd-accent)',
+          letterSpacing: '0.3em',
+        }}
+      >
+        {num}
+      </div>
+      <h1
+        className="ace-fadeup"
+        style={{
+          fontSize: 150,
+          fontWeight: 800,
+          margin: '36px 0 28px',
+          lineHeight: 1.05,
+          letterSpacing: '-0.02em',
+          ...gradText,
+          animationDelay: '120ms',
+        }}
+      >
+        {title}
+      </h1>
+      <p
+        className="ace-fadeup"
+        style={{ fontSize: 30, lineHeight: 1.5, margin: 0, animationDelay: '220ms' }}
+      >
+        {sub}
+      </p>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 24,
+          color: palette.muted,
+          lineHeight: 1.5,
+          margin: '12px 0 0',
+          animationDelay: '300ms',
+        }}
+      >
+        {subEn}
+      </p>
+    </div>
+    <Footer />
+  </div>
+);
+
+const Blank = () => (
+  <div style={fill}>
+    <Style />
+    <Footer />
+  </div>
+);
+
+const DividerClub: Page = () => (
+  <Divider
+    num="PART 01"
+    title="社團介紹"
+    sub="我們是誰、在做什麼、這學期要去哪。"
+    subEn="Who we are, what we do, where we're heading."
+  />
+);
+
+const ClubIntro1: Page = () => <Blank />;
+const ClubIntro2: Page = () => <Blank />;
+const ClubIntro3: Page = () => <Blank />;
+const ClubIntro4: Page = () => <Blank />;
+
+const DividerIcebreaker: Page = () => (
+  <Divider
+    num="PART 02"
+    title="破冰時間"
+    sub="別急著聽我講，我們先來玩一場。"
+    subEn="Icebreaker — let's play something first."
+  />
+);
+
 const game = {
   url: 'https://artsandculture.google.com/experiment/odd-one-out/wAHNn4JsVTFOiw?hl=zh-TW',
   displayUrl: 'artsandculture.google.com/experiment/odd-one-out/wAHNn4JsVTFOiw',
@@ -681,16 +786,37 @@ const game = {
 const GameIntro: Page = () => (
   <div style={fill}>
     <Style />
-    <Glow x="75%" y="25%" size={1100} opacity={0.26} />
-    <div style={{ padding: '150px 140px 0' }}>
+    <img
+      src={oddOneOutPreview}
+      alt="Odd One Out"
+      className="ace-fade"
+      style={{
+        position: 'absolute',
+        inset: 0,
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        display: 'block',
+      }}
+    />
+    <div
+      aria-hidden="true"
+      style={{
+        position: 'absolute',
+        inset: 0,
+        background:
+          'linear-gradient(100deg, rgba(245,245,247,0.97) 0%, rgba(245,245,247,0.94) 36%, rgba(245,245,247,0.6) 52%, rgba(245,245,247,0) 70%)',
+      }}
+    />
+    <div style={{ position: 'absolute', inset: 0, padding: '150px 140px 0', width: 900 }}>
       <Eyebrow>破冰 · Icebreaker</Eyebrow>
       <h2
         className="ace-fadeup"
         style={{
-          fontSize: 84,
+          fontSize: 76,
           fontWeight: 800,
-          margin: '30px 0 14px',
-          lineHeight: 1.1,
+          margin: '28px 0 14px',
+          lineHeight: 1.12,
           letterSpacing: '-0.02em',
           animationDelay: '120ms',
         }}
@@ -702,60 +828,63 @@ const GameIntro: Page = () => (
       <p
         className="ace-fadeup"
         style={{
-          fontSize: 26,
+          fontSize: 23,
           color: palette.muted,
-          lineHeight: 1.5,
-          margin: '0 0 52px',
-          maxWidth: 1100,
+          lineHeight: 1.55,
+          margin: '0 0 36px',
+          maxWidth: 620,
           animationDelay: '200ms',
         }}
       >
         Odd One Out — Google
         藝術與文化的小實驗。一幅名畫裡藏了一樣不屬於那個年代的東西，你要在時間內把它抓出來。
       </p>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 14, maxWidth: 620 }}>
         {[
-          {
-            n: '01',
-            t: '看一幅名畫',
-            d: '每一關丟給你一幅世界名畫，先看清楚裡面有什麼。',
-          },
-          {
-            n: '02',
-            t: '找出那個外來者',
-            d: '畫裡有一樣東西是後來被塞進去的，跟那個年代格格不入。',
-          },
-          {
-            n: '03',
-            t: '限時，點下去',
-            d: '時間會跑。看你多快抓到，也看你敢不敢賭。',
-          },
+          { n: '01', t: '看一幅名畫', d: '每一關丟給你一幅世界名畫，先看清楚裡面有什麼。' },
+          { n: '02', t: '找出那個外來者', d: '有一樣東西是後來被塞進去的，跟那個年代格格不入。' },
+          { n: '03', t: '限時，點下去', d: '時間會跑。看你多快抓到，也看你敢不敢賭。' },
         ].map((c, i) => (
           <div
             key={c.n}
             className="ace-fadeup"
             style={{
-              padding: '32px 34px',
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: 20,
+              padding: '20px 26px',
               borderRadius: 'var(--osd-radius)',
-              background: palette.surface,
+              background: 'rgba(255, 255, 255, 0.92)',
               border: `1px solid ${palette.border}`,
               boxShadow: cardShadow,
               animationDelay: `${300 + i * 110}ms`,
             }}
           >
-            <div
+            <span
               style={{
                 fontFamily: fonts.mono,
-                fontSize: 18,
-                letterSpacing: '0.14em',
+                fontSize: 20,
+                letterSpacing: '0.1em',
                 color: 'var(--osd-accent)',
-                marginBottom: 16,
+                paddingTop: 4,
               }}
             >
               {c.n}
-            </div>
-            <div style={{ fontSize: 32, fontWeight: 700, marginBottom: 12 }}>{c.t}</div>
-            <div style={{ fontSize: 21, color: palette.muted, lineHeight: 1.5 }}>{c.d}</div>
+            </span>
+            <span>
+              <span style={{ fontSize: 26, fontWeight: 700, display: 'block' }}>{c.t}</span>
+              <span
+                style={{
+                  fontSize: 20,
+                  color: palette.muted,
+                  lineHeight: 1.45,
+                  display: 'block',
+                  marginTop: 4,
+                }}
+              >
+                {c.d}
+              </span>
+            </span>
           </div>
         ))}
       </div>
@@ -1040,4 +1169,17 @@ export const meta: SlideMeta = {
   createdAt: '2026-08-25T07:18:48+08:00',
 };
 
-export default [Cover, AboutMe, GameIntro, GamePlay, QA, Closing] satisfies Page[];
+export default [
+  Cover,
+  AboutMe,
+  DividerClub,
+  ClubIntro1,
+  ClubIntro2,
+  ClubIntro3,
+  ClubIntro4,
+  DividerIcebreaker,
+  GameIntro,
+  GamePlay,
+  QA,
+  Closing,
+] satisfies Page[];
