@@ -1,6 +1,7 @@
 import { type DesignSystem, type Page, type SlideMeta, useSlidePageNumber } from '@open-slide/core';
 import qrInstagram from './assets/qr-instagram.png';
 import qrLinkedin from './assets/qr-linkedin.png';
+import qrOddOneOut from './assets/qr-oddoneout.svg';
 import qrSlido from './assets/qr-slido.svg';
 import qrX from './assets/qr-x.png';
 import rayAvatar from './assets/ray-avatar.jpg';
@@ -672,6 +673,202 @@ const AboutMe: Page = () => (
   </div>
 );
 
+const game = {
+  url: 'https://artsandculture.google.com/experiment/odd-one-out/wAHNn4JsVTFOiw?hl=zh-TW',
+  displayUrl: 'artsandculture.google.com/experiment/odd-one-out/wAHNn4JsVTFOiw',
+};
+
+const GameIntro: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="75%" y="25%" size={1100} opacity={0.26} />
+    <div style={{ padding: '150px 140px 0' }}>
+      <Eyebrow>破冰 · Icebreaker</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 84,
+          fontWeight: 800,
+          margin: '30px 0 14px',
+          lineHeight: 1.1,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        找出那個
+        <br />
+        <span style={gradText}>不對勁的東西</span>
+      </h2>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 26,
+          color: palette.muted,
+          lineHeight: 1.5,
+          margin: '0 0 52px',
+          maxWidth: 1100,
+          animationDelay: '200ms',
+        }}
+      >
+        Odd One Out — Google
+        藝術與文化的小實驗。一幅名畫裡藏了一樣不屬於那個年代的東西，你要在時間內把它抓出來。
+      </p>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }}>
+        {[
+          {
+            n: '01',
+            t: '看一幅名畫',
+            d: '每一關丟給你一幅世界名畫，先看清楚裡面有什麼。',
+          },
+          {
+            n: '02',
+            t: '找出那個外來者',
+            d: '畫裡有一樣東西是後來被塞進去的，跟那個年代格格不入。',
+          },
+          {
+            n: '03',
+            t: '限時，點下去',
+            d: '時間會跑。看你多快抓到，也看你敢不敢賭。',
+          },
+        ].map((c, i) => (
+          <div
+            key={c.n}
+            className="ace-fadeup"
+            style={{
+              padding: '32px 34px',
+              borderRadius: 'var(--osd-radius)',
+              background: palette.surface,
+              border: `1px solid ${palette.border}`,
+              boxShadow: cardShadow,
+              animationDelay: `${300 + i * 110}ms`,
+            }}
+          >
+            <div
+              style={{
+                fontFamily: fonts.mono,
+                fontSize: 18,
+                letterSpacing: '0.14em',
+                color: 'var(--osd-accent)',
+                marginBottom: 16,
+              }}
+            >
+              {c.n}
+            </div>
+            <div style={{ fontSize: 32, fontWeight: 700, marginBottom: 12 }}>{c.t}</div>
+            <div style={{ fontSize: 21, color: palette.muted, lineHeight: 1.5 }}>{c.d}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
+const GamePlay: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="50%" size={1500} opacity={0.28} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        alignItems: 'center',
+        padding: '0 140px',
+        gap: 90,
+      }}
+    >
+      <div>
+        <Eyebrow>Play now</Eyebrow>
+        <h2
+          className="ace-fadeup"
+          style={{
+            fontSize: 96,
+            fontWeight: 800,
+            margin: '30px 0 20px',
+            lineHeight: 1.08,
+            letterSpacing: '-0.02em',
+            animationDelay: '120ms',
+          }}
+        >
+          <span style={gradText}>開始玩</span>
+        </h2>
+        <p
+          className="ace-fadeup"
+          style={{
+            fontSize: 28,
+            color: palette.muted,
+            lineHeight: 1.5,
+            margin: '0 0 32px',
+            animationDelay: '200ms',
+          }}
+        >
+          拿手機掃右邊的 QR，各玩各的。
+          <br />
+          玩完講一下你卡在哪一關。
+        </p>
+        <a
+          className="ace-fadeup"
+          href={game.url}
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 14,
+            padding: '20px 34px',
+            borderRadius: 999,
+            backgroundImage: accentGrad,
+            color: '#FFFFFF',
+            fontSize: 26,
+            fontWeight: 700,
+            textDecoration: 'none',
+            boxShadow: '0 10px 30px rgba(46, 111, 224, 0.32)',
+            animationDelay: '280ms',
+          }}
+        >
+          在新分頁開始玩
+          <span style={{ fontSize: 22 }}>↗</span>
+        </a>
+        <div
+          className="ace-fadeup"
+          style={{
+            marginTop: 20,
+            fontFamily: fonts.mono,
+            fontSize: 17,
+            color: palette.muted,
+            animationDelay: '340ms',
+          }}
+        >
+          {game.displayUrl}
+        </div>
+      </div>
+      <div
+        className="ace-fade"
+        style={{ display: 'flex', justifyContent: 'center', animationDelay: '300ms' }}
+      >
+        <div
+          style={{
+            padding: 36,
+            borderRadius: 28,
+            background: palette.surface,
+            border: `1px solid ${palette.border}`,
+            boxShadow: '0 24px 60px rgba(0, 0, 0, 0.12)',
+          }}
+        >
+          <img
+            src={qrOddOneOut}
+            alt="掃描開始玩 Odd One Out"
+            style={{ width: 420, height: 420, display: 'block', borderRadius: 10 }}
+          />
+        </div>
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
 const Closing: Page = () => (
   <div style={fill}>
     <Style />
@@ -843,4 +1040,4 @@ export const meta: SlideMeta = {
   createdAt: '2026-08-25T07:18:48+08:00',
 };
 
-export default [Cover, AboutMe, QA, Closing] satisfies Page[];
+export default [Cover, AboutMe, GameIntro, GamePlay, QA, Closing] satisfies Page[];
