@@ -1,5 +1,9 @@
 import { type DesignSystem, type Page, type SlideMeta, useSlidePageNumber } from '@open-slide/core';
+import qrInstagram from './assets/qr-instagram.png';
+import qrLinkedin from './assets/qr-linkedin.png';
 import qrSlido from './assets/qr-slido.svg';
+import qrX from './assets/qr-x.png';
+import rayAvatar from './assets/ray-avatar.jpg';
 import raycastIcon from './assets/raycast.svg';
 
 export const design: DesignSystem = {
@@ -150,38 +154,6 @@ const AceMark = ({ size = 64 }: { size?: number }) => (
   </div>
 );
 
-const BrandLockup = ({ delay = 0 }: { delay?: number }) => (
-  <div
-    className="ace-fadeup"
-    style={{
-      display: 'flex',
-      alignItems: 'center',
-      gap: 18,
-      marginBottom: 28,
-      animationDelay: `${delay}ms`,
-    }}
-  >
-    <AceMark />
-    <span style={{ fontSize: 30, color: palette.muted, lineHeight: 1 }}>×</span>
-    <div
-      style={{
-        width: 64,
-        height: 64,
-        borderRadius: 15,
-        background: palette.surface,
-        border: `1px solid ${palette.border}`,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        boxShadow: cardShadow,
-        flexShrink: 0,
-      }}
-    >
-      <img src={raycastIcon} alt="Raycast" style={{ width: 38, height: 38, display: 'block' }} />
-    </div>
-  </div>
-);
-
 const Eyebrow = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
   <div
     className="ace-fadeup"
@@ -224,7 +196,7 @@ const Footer = () => {
         letterSpacing: '0.04em',
       }}
     >
-      <span>ACE Club · 社課 Lesson 01 · Raycast API</span>
+      <span>ACE Club · 社課 Lesson 01</span>
       <span>
         {String(current).padStart(2, '0')}{' '}
         <span style={{ opacity: 0.45 }}>/ {String(total).padStart(2, '0')}</span>
@@ -233,151 +205,143 @@ const Footer = () => {
   );
 };
 
-const CommandBar = ({
-  query,
-  results,
+const LauncherRow = ({
+  icon,
+  title,
+  sub,
+  kbd,
+  active = false,
+  delay = 0,
 }: {
-  query: string;
-  results: { icon: string; title: string; sub: string; kbd?: string }[];
+  icon: string;
+  title: string;
+  sub: string;
+  kbd?: string;
+  active?: boolean;
+  delay?: number;
 }) => (
-  <div style={{ position: 'relative', width: 820 }}>
-    <div
-      aria-hidden="true"
-      style={{
-        position: 'absolute',
-        top: -40,
-        left: -100,
-        right: -100,
-        bottom: -140,
-        background:
-          'radial-gradient(ellipse 50% 50% at 50% 70%, rgba(46,111,224,0.16) 0%, rgba(46,111,224,0.06) 35%, rgba(46,111,224,0) 65%)',
-        pointerEvents: 'none',
-      }}
-    />
+  <div
+    className="ace-fadeup"
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 14,
+      padding: '14px 12px',
+      borderRadius: 12,
+      background: active ? palette.accentSoft : 'transparent',
+      animationDelay: `${delay}ms`,
+    }}
+  >
     <div
       style={{
-        position: 'relative',
-        width: 820,
-        borderRadius: 16,
-        background: palette.surface,
-        border: `1px solid ${palette.border}`,
-        boxShadow: cardShadow,
-        overflow: 'hidden',
+        width: 36,
+        height: 36,
+        borderRadius: 8,
+        background: palette.surfaceHi,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: 19,
+        flexShrink: 0,
       }}
     >
-      <div
+      {icon}
+    </div>
+    <div style={{ flex: 1 }}>
+      <div style={{ fontSize: 21, fontWeight: 600 }}>{title}</div>
+      <div style={{ fontSize: 16, color: palette.muted, marginTop: 2 }}>{sub}</div>
+    </div>
+    {kbd && (
+      <span
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 14,
-          padding: '18px 22px',
-          borderBottom: `1px solid ${palette.border}`,
+          fontFamily: fonts.mono,
+          fontSize: 14,
+          padding: '4px 8px',
+          borderRadius: 6,
+          background: palette.surfaceHi,
+          color: palette.muted,
+          border: `1px solid ${palette.chipBorder}`,
         }}
       >
-        <img
-          src={raycastIcon}
-          alt="Raycast"
+        {kbd}
+      </span>
+    )}
+  </div>
+);
+
+const Launcher = ({
+  query,
+  label,
+  width = 820,
+  children,
+}: {
+  query: string;
+  label: string;
+  width?: number;
+  children: React.ReactNode;
+}) => (
+  <div
+    style={{
+      position: 'relative',
+      width,
+      borderRadius: 20,
+      background: palette.surface,
+      border: `1px solid ${palette.border}`,
+      boxShadow: '0 24px 60px rgba(0, 0, 0, 0.12)',
+      overflow: 'hidden',
+    }}
+  >
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 14,
+        padding: '18px 22px',
+        borderBottom: `1px solid ${palette.border}`,
+      }}
+    >
+      <AceMark size={32} />
+      <div style={{ fontSize: 24, fontWeight: 600, flex: 1, color: 'var(--osd-text)' }}>
+        {query}
+        <span
+          className="ace-caret"
           style={{
-            width: 32,
-            height: 32,
-            display: 'block',
+            display: 'inline-block',
+            width: 2,
+            height: 24,
+            background: 'var(--osd-accent)',
+            marginLeft: 6,
+            verticalAlign: 'middle',
           }}
         />
-        <div style={{ fontSize: 24, fontWeight: 500, flex: 1, color: 'var(--osd-text)' }}>
-          {query}
-          <span
-            className="ace-caret"
-            style={{
-              display: 'inline-block',
-              width: 2,
-              height: 24,
-              background: 'var(--osd-accent)',
-              marginLeft: 6,
-              verticalAlign: 'middle',
-            }}
-          />
-        </div>
-        <div style={{ display: 'flex', gap: 6 }}>
-          {['⌘', 'K'].map((k) => (
-            <span
-              key={k}
-              style={{
-                fontFamily: fonts.mono,
-                fontSize: 16,
-                padding: '4px 10px',
-                borderRadius: 6,
-                background: palette.surfaceHi,
-                color: palette.muted,
-                border: `1px solid ${palette.border}`,
-              }}
-            >
-              {k}
-            </span>
-          ))}
-        </div>
       </div>
-      <div style={{ padding: '10px 12px' }}>
-        <div
-          style={{
-            fontSize: 14,
-            color: palette.muted,
-            padding: '6px 12px',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-          }}
-        >
-          Results
-        </div>
-        {results.map((r, i) => (
-          <div
-            key={i}
-            className="ace-fadeup"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 12,
-              padding: '12px',
-              borderRadius: 8,
-              background: i === 0 ? palette.accentSoft : 'transparent',
-              animationDelay: `${600 + i * 90}ms`,
-            }}
-          >
-            <div
-              style={{
-                width: 32,
-                height: 32,
-                borderRadius: 6,
-                background: palette.surfaceHi,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: 18,
-              }}
-            >
-              {r.icon}
-            </div>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 18, fontWeight: 500 }}>{r.title}</div>
-              <div style={{ fontSize: 15, color: palette.muted, marginTop: 2 }}>{r.sub}</div>
-            </div>
-            {r.kbd && (
-              <span
-                style={{
-                  fontFamily: fonts.mono,
-                  fontSize: 14,
-                  padding: '4px 8px',
-                  borderRadius: 5,
-                  background: palette.surfaceHi,
-                  color: palette.muted,
-                  border: `1px solid ${palette.border}`,
-                }}
-              >
-                {r.kbd}
-              </span>
-            )}
-          </div>
-        ))}
+      <span
+        style={{
+          fontFamily: fonts.mono,
+          fontSize: 16,
+          padding: '4px 10px',
+          borderRadius: 6,
+          background: palette.surfaceHi,
+          color: palette.muted,
+          border: `1px solid ${palette.chipBorder}`,
+        }}
+      >
+        ACE
+      </span>
+    </div>
+    <div style={{ padding: '10px 12px' }}>
+      <div
+        style={{
+          fontSize: 14,
+          color: palette.muted,
+          padding: '6px 12px',
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+        }}
+      >
+        {label}
       </div>
+      {children}
     </div>
   </div>
 );
@@ -385,628 +349,323 @@ const CommandBar = ({
 const Cover: Page = () => (
   <div style={fill}>
     <Style />
-    <Glow x="30%" y="40%" size={1200} opacity={0.16} />
+    <Glow x="28%" y="42%" size={1300} opacity={0.3} />
     <div
       style={{
         position: 'absolute',
         inset: 0,
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
+        gridTemplateColumns: '1fr 820px',
         alignItems: 'center',
         padding: '0 120px',
         gap: 80,
       }}
     >
       <div>
-        <BrandLockup />
-        <Eyebrow delay={80}>Developer Platform</Eyebrow>
+        <div className="ace-fadeup" style={{ marginBottom: 28 }}>
+          <AceMark size={64} />
+        </div>
+        <Eyebrow delay={80}>AI Creators &amp; Executors · 2026–27</Eyebrow>
         <h1
           className="ace-fadeup"
           style={{
             fontSize: 'var(--osd-size-hero)',
             fontWeight: 800,
-            margin: '28px 0 24px',
-            lineHeight: 1.02,
-            letterSpacing: '-0.03em',
+            margin: '28px 0 16px',
+            lineHeight: 1.1,
+            letterSpacing: '-0.02em',
             animationDelay: '160ms',
           }}
         >
-          Raycast
+          社課第一堂
           <br />
-          <span style={{ color: 'var(--osd-accent)' }}>Developer API</span>
+          <span style={gradText}>先來聊聊天</span>
         </h1>
         <p
           className="ace-fadeup"
           style={{
-            fontSize: 'var(--osd-size-body)',
+            fontSize: 32,
             color: palette.muted,
-            maxWidth: 620,
-            lineHeight: 1.5,
+            margin: '0 0 24px',
+            animationDelay: '200ms',
+          }}
+        >
+          ACE Club · Lesson 01 · <span style={{ fontFamily: fonts.mono }}>9/3</span>
+        </p>
+        <p
+          className="ace-fadeup"
+          style={{
+            fontSize: 22,
+            color: palette.muted,
+            maxWidth: 720,
+            lineHeight: 1.55,
+            margin: 0,
             animationDelay: '240ms',
           }}
         >
-          Build extensions for the launcher people already live in — with TypeScript, React, and a
-          strongly-typed API.
+          今天不寫程式。認識彼此、聽幾個故事，然後想想這學期你想做出什麼。
+          <br />
+          No code today — meet each other, hear a few stories, figure out what you want to build.
         </p>
       </div>
       <div
         className="ace-fade"
         style={{ animationDelay: '300ms', display: 'flex', justifyContent: 'flex-end' }}
       >
-        <CommandBar
-          query="Create Extension"
-          results={[
-            {
-              icon: '⚡',
-              title: 'Create Extension',
-              sub: 'Scaffold a new Raycast extension',
-              kbd: '↵',
-            },
-            { icon: '📦', title: 'Manage Extensions', sub: 'View installed and local extensions' },
-            { icon: '📚', title: 'Open Documentation', sub: 'developers.raycast.com' },
-          ]}
-        />
+        <Launcher query="今天不寫程式" label="Today · 今天的流程">
+          <LauncherRow
+            icon="👋"
+            title="認識指導老師"
+            sub="Meet your advisor — Ray"
+            kbd="↵"
+            active
+            delay={600}
+          />
+          <LauncherRow icon="🧊" title="破冰" sub="Icebreaker — 先認識彼此" delay={690} />
+          <LauncherRow icon="📖" title="聽幾個故事" sub="Stories worth telling" delay={780} />
+          <LauncherRow
+            icon="💬"
+            title="聊聊你想做什麼"
+            sub="What do you want to build"
+            delay={870}
+          />
+          <LauncherRow icon="📅" title="這學期怎麼跑" sub="What this term looks like" delay={960} />
+        </Launcher>
       </div>
     </div>
     <Footer />
   </div>
 );
 
-const Pitch: Page = () => (
-  <div style={fill}>
-    <Style />
-    <Glow x="100%" y="0%" size={900} opacity={0.18} />
-    <div style={{ padding: '180px 160px 0' }}>
-      <Eyebrow>What is it</Eyebrow>
-      <h2
-        className="ace-fadeup"
-        style={{
-          fontSize: 84,
-          fontWeight: 800,
-          margin: '32px 0 56px',
-          lineHeight: 1.1,
-          letterSpacing: '-0.02em',
-          maxWidth: 1400,
-          animationDelay: '120ms',
-        }}
-      >
-        A platform to extend the macOS launcher you
-        <br />
-        already use <span style={{ color: 'var(--osd-accent)' }}>40 times a day.</span>
-      </h2>
-      <div style={{ display: 'flex', gap: 24 }}>
-        {[
-          { kpi: '2,500+', label: 'Public extensions in the Store' },
-          { kpi: '50+', label: 'AI models, zero API keys' },
-          { kpi: '100%', label: 'Keyboard-first, mouse optional' },
-        ].map((s, i) => (
-          <div
-            key={s.label}
-            className="ace-fadeup"
-            style={{
-              flex: 1,
-              padding: 32,
-              borderRadius: 'var(--osd-radius)',
-              background: palette.surface,
-              border: `1px solid ${palette.border}`,
-              animationDelay: `${280 + i * 100}ms`,
-            }}
-          >
-            <div
-              style={{
-                fontSize: 56,
-                fontWeight: 800,
-                color: 'var(--osd-accent)',
-                letterSpacing: '-0.02em',
-              }}
-            >
-              {s.kpi}
-            </div>
-            <div style={{ fontSize: 22, color: palette.muted, marginTop: 8 }}>{s.label}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-    <Footer />
+const CredentialRow = ({
+  icon,
+  text,
+  sub,
+  delay = 0,
+}: {
+  icon: React.ReactNode;
+  text: string;
+  sub: string;
+  delay?: number;
+}) => (
+  <div
+    className="ace-fadeup"
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 14,
+      padding: '12px 18px',
+      borderRadius: 14,
+      background: palette.surface,
+      border: `1px solid ${palette.border}`,
+      boxShadow: cardShadow,
+      animationDelay: `${delay}ms`,
+    }}
+  >
+    <span style={{ fontSize: 24 }}>{icon}</span>
+    <span>
+      <span style={{ fontSize: 22, fontWeight: 600, display: 'block' }}>{text}</span>
+      <span style={{ fontSize: 15, color: palette.muted, display: 'block', marginTop: 3 }}>
+        {sub}
+      </span>
+    </span>
   </div>
 );
 
-const Stack: Page = () => (
-  <div style={fill}>
-    <Style />
-    <Glow x="0%" y="100%" size={1000} opacity={0.16} />
-    <div style={{ padding: '180px 160px 0' }}>
-      <Eyebrow>The stack</Eyebrow>
-      <h2
-        className="ace-fadeup"
-        style={{
-          fontSize: 84,
-          fontWeight: 800,
-          margin: '32px 0 56px',
-          letterSpacing: '-0.02em',
-          lineHeight: 1.1,
-          animationDelay: '120ms',
-        }}
-      >
-        Tools you already know.
-      </h2>
-      <div style={{ display: 'flex', gap: 24 }}>
-        {[
-          {
-            tag: '01',
-            name: 'TypeScript',
-            sub: 'Strongly-typed end-to-end. Autocomplete every API surface.',
-          },
-          {
-            tag: '02',
-            name: 'React',
-            sub: 'Declarative UI. The same components you write for the web.',
-          },
-          {
-            tag: '03',
-            name: 'Node + npm',
-            sub: 'The full ecosystem. Bring any package along for the ride.',
-          },
-        ].map((t, i) => (
-          <div
-            key={t.name}
-            className="ace-fadeup"
-            style={{
-              flex: 1,
-              padding: 36,
-              borderRadius: 'var(--osd-radius)',
-              background: palette.surface,
-              border: `1px solid ${palette.border}`,
-              animationDelay: `${260 + i * 110}ms`,
-            }}
-          >
-            <div
-              style={{
-                fontFamily: fonts.mono,
-                fontSize: 18,
-                color: 'var(--osd-accent)',
-                letterSpacing: '0.1em',
-              }}
-            >
-              {t.tag}
-            </div>
-            <div style={{ fontSize: 40, fontWeight: 700, marginTop: 16, letterSpacing: '-0.02em' }}>
-              {t.name}
-            </div>
-            <div style={{ fontSize: 22, color: palette.muted, marginTop: 14, lineHeight: 1.5 }}>
-              {t.sub}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-    <Footer />
+const CredGroupLabel = ({ children }: { children: React.ReactNode }) => (
+  <div
+    style={{
+      fontFamily: fonts.mono,
+      fontSize: 16,
+      color: 'var(--osd-accent)',
+      letterSpacing: '0.14em',
+      textTransform: 'uppercase',
+      marginBottom: 10,
+    }}
+  >
+    {children}
   </div>
 );
 
-const UIPrimitives: Page = () => {
-  const items = [
-    { name: '<List />', desc: 'Searchable rows. The bread and butter.' },
-    { name: '<Grid />', desc: 'Visual layouts — icon picks, image sets.' },
-    { name: '<Detail />', desc: 'Markdown views for one focused item.' },
-    { name: '<Form />', desc: 'Native inputs for capturing user data.' },
-  ];
-  return (
-    <div style={fill}>
-      <Style />
-      <Glow x="50%" y="50%" size={1400} opacity={0.1} />
-      <div style={{ padding: '160px 160px 0' }}>
-        <Eyebrow>UI primitives</Eyebrow>
-        <h2
-          className="ace-fadeup"
-          style={{
-            fontSize: 80,
-            fontWeight: 800,
-            margin: '32px 0 48px',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.1,
-            animationDelay: '120ms',
-          }}
-        >
-          Four components. Most extensions need nothing else.
-        </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
-          {items.map((it, i) => (
-            <div
-              key={it.name}
-              className="ace-fadeup"
-              style={{
-                padding: '36px 40px',
-                borderRadius: 16,
-                background: palette.surface,
-                border: `1px solid ${palette.border}`,
-                display: 'flex',
-                alignItems: 'center',
-                gap: 32,
-                animationDelay: `${260 + i * 90}ms`,
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: fonts.mono,
-                  fontSize: 32,
-                  fontWeight: 600,
-                  color: 'var(--osd-accent)',
-                  width: 220,
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {it.name}
-              </div>
-              <div style={{ fontSize: 28, color: 'var(--osd-text)', lineHeight: 1.4 }}>
-                {it.desc}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      <Footer />
+const QrChip = ({ src, label, handle }: { src: string; label: string; handle: string }) => (
+  <div style={{ width: 128 }}>
+    <img
+      src={src}
+      alt={`${label} QR code`}
+      style={{
+        width: 128,
+        height: 128,
+        display: 'block',
+        borderRadius: 12,
+        border: `1px solid ${palette.border}`,
+        background: palette.surface,
+      }}
+    />
+    <div style={{ fontSize: 16, fontWeight: 600, marginTop: 8 }}>{label}</div>
+    <div style={{ fontFamily: fonts.mono, fontSize: 13, color: palette.muted, marginTop: 2 }}>
+      {handle}
     </div>
-  );
-};
+  </div>
+);
 
-const ActionPanel: Page = () => (
+const AboutMe: Page = () => (
   <div style={fill}>
     <Style />
-    <Glow x="80%" y="50%" size={1100} opacity={0.18} />
+    <Glow x="85%" y="20%" size={1000} opacity={0.28} />
     <div
       style={{
         position: 'absolute',
         inset: 0,
         display: 'grid',
-        gridTemplateColumns: '1.05fr 1fr',
+        gridTemplateColumns: '440px 1fr',
         alignItems: 'center',
-        padding: '0 160px',
-        gap: 80,
+        padding: '0 140px',
+        gap: 70,
       }}
     >
+      <div style={{ position: 'relative', width: 440 }}>
+        <div
+          className="ace-fade"
+          style={{
+            borderRadius: 24,
+            overflow: 'hidden',
+            border: `1px solid ${palette.border}`,
+            background: palette.surface,
+            boxShadow: '0 24px 60px rgba(0, 0, 0, 0.12)',
+            animationDelay: '200ms',
+          }}
+        >
+          <img
+            src={rayAvatar}
+            alt="瑞瑞（Ray）"
+            style={{ width: 440, height: 440, objectFit: 'cover', display: 'block' }}
+          />
+        </div>
+        <div
+          className="ace-fadeup"
+          style={{
+            position: 'absolute',
+            top: -26,
+            right: -30,
+            transform: 'rotate(6deg)',
+            background: palette.surface,
+            border: `1.5px solid var(--osd-accent)`,
+            borderRadius: 18,
+            padding: '12px 22px',
+            fontSize: 24,
+            fontWeight: 700,
+            boxShadow: cardShadow,
+            animationDelay: '520ms',
+          }}
+        >
+          ✈️ 參加過 Apple WWDC26
+          <div
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              bottom: -8,
+              left: 30,
+              width: 14,
+              height: 14,
+              background: palette.surface,
+              borderRight: `1.5px solid var(--osd-accent)`,
+              borderBottom: `1.5px solid var(--osd-accent)`,
+              transform: 'rotate(45deg)',
+            }}
+          />
+        </div>
+        <div
+          className="ace-fadeup"
+          style={{ display: 'flex', gap: 14, marginTop: 26, animationDelay: '600ms' }}
+        >
+          <QrChip src={qrInstagram} label="Instagram" handle="@ruxiu0409" />
+          <QrChip src={qrLinkedin} label="LinkedIn" handle="Cheng-Yeh Tsai" />
+          <QrChip src={qrX} label="X" handle="@tsaicy0409" />
+        </div>
+      </div>
       <div>
-        <Eyebrow>Keyboard-first</Eyebrow>
+        <Eyebrow>指導老師 · Your Advisor</Eyebrow>
         <h2
           className="ace-fadeup"
           style={{
-            fontSize: 76,
+            fontSize: 68,
             fontWeight: 800,
-            margin: '28px 0 28px',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.1,
+            margin: '26px 0 14px',
+            lineHeight: 1.15,
             animationDelay: '120ms',
           }}
         >
-          ActionPanel:
-          <br />
-          <span style={{ color: 'var(--osd-accent)' }}>every action,</span> a shortcut.
+          嗨，我是 <span style={gradText}>瑞瑞（Ray）</span>
         </h2>
         <p
           className="ace-fadeup"
           style={{
-            fontSize: 'var(--osd-size-body)',
+            fontSize: 22,
             color: palette.muted,
             lineHeight: 1.5,
-            maxWidth: 600,
-            animationDelay: '220ms',
+            maxWidth: 940,
+            margin: '0 0 30px',
+            animationDelay: '200ms',
           }}
         >
-          Bind any action to a key combo. Power users navigate without lifting their hands — and
-          your extension feels native to Raycast.
+          叫我 CY 也可以。我是 ACE Club 的指導老師，今天這堂帶大家做出第一個 Raycast 擴充。
+          <br />
+          Call me CY — I'm the club advisor. Today we ship your first Raycast extension.
         </p>
-      </div>
-      <div className="ace-fade" style={{ animationDelay: '300ms', position: 'relative' }}>
-        <div
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            top: -30,
-            left: -80,
-            right: -80,
-            bottom: -110,
-            background:
-              'radial-gradient(ellipse 50% 50% at 50% 70%, rgba(46,111,224,0.14) 0%, rgba(46,111,224,0.05) 35%, rgba(46,111,224,0) 65%)',
-            pointerEvents: 'none',
-          }}
-        />
-        <div
-          style={{
-            position: 'relative',
-            width: 540,
-            borderRadius: 'var(--osd-radius)',
-            background: palette.surface,
-            border: `1px solid ${palette.border}`,
-            padding: 14,
-          }}
-        >
-          <div
-            style={{
-              fontSize: 14,
-              color: palette.muted,
-              padding: '6px 12px',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-            }}
-          >
-            Actions
-          </div>
-          {[
-            { icon: '↗', name: 'Open in Browser', kbd: '↵' },
-            { icon: '⧉', name: 'Copy URL', kbd: '⌘ ⇧ C' },
-            { icon: '★', name: 'Add to Favorites', kbd: '⌘ F' },
-            { icon: '⌫', name: 'Delete', kbd: '⌃ X' },
-          ].map((a, i) => (
-            <div
-              key={a.name}
-              className="ace-fadeup"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 14,
-                padding: '12px',
-                borderRadius: 8,
-                background: i === 0 ? palette.accentSoft : 'transparent',
-                animationDelay: `${500 + i * 90}ms`,
-              }}
-            >
-              <div
-                style={{
-                  width: 30,
-                  height: 30,
-                  borderRadius: 6,
-                  background: palette.surfaceHi,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: 16,
-                  color: palette.muted,
-                }}
-              >
-                {a.icon}
-              </div>
-              <div style={{ flex: 1, fontSize: 19, fontWeight: 500 }}>{a.name}</div>
-              <span
-                style={{
-                  fontFamily: fonts.mono,
-                  fontSize: 14,
-                  padding: '4px 8px',
-                  borderRadius: 5,
-                  background: palette.surfaceHi,
-                  color: palette.muted,
-                  border: `1px solid ${palette.border}`,
-                }}
-              >
-                {a.kbd}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-    <Footer />
-  </div>
-);
-
-const AIApi: Page = () => (
-  <div style={fill}>
-    <Style />
-    <Glow x="30%" y="30%" size={1000} opacity={0.14} />
-    <div style={{ padding: '160px 160px 0' }}>
-      <Eyebrow>AI API</Eyebrow>
-      <h2
-        className="ace-fadeup"
-        style={{
-          fontSize: 84,
-          fontWeight: 800,
-          margin: '32px 0 48px',
-          letterSpacing: '-0.02em',
-          lineHeight: 1.1,
-          animationDelay: '120ms',
-        }}
-      >
-        Call any model.
-        <br />
-        <span style={{ color: 'var(--osd-accent)' }}>No keys. No setup.</span>
-      </h2>
-      <div
-        style={{ display: 'grid', gridTemplateColumns: '1.15fr 1fr', gap: 40, alignItems: 'start' }}
-      >
-        <div
-          className="ace-fadeup"
-          style={{
-            background: palette.surface,
-            border: `1px solid ${palette.border}`,
-            borderRadius: 'var(--osd-radius)',
-            padding: '24px 28px',
-            fontFamily: fonts.mono,
-            fontSize: 22,
-            lineHeight: 1.6,
-            animationDelay: '280ms',
-          }}
-        >
-          <div style={{ color: palette.muted }}>{'// import { AI } from "@raycast/api"'}</div>
-          <div style={{ marginTop: 8 }}>
-            <span style={{ color: '#AD3DA4' }}>const</span> answer ={' '}
-            <span style={{ color: '#AD3DA4' }}>await</span> AI.
-            <span style={{ color: 'var(--osd-accent)' }}>ask</span>(
-          </div>
-          <div style={{ paddingLeft: 28, color: '#D12F1B' }}>"Summarize my selected text",</div>
-          <div style={{ paddingLeft: 28 }}>
-            {'{ '}
-            <span style={{ color: '#3900A0' }}>model</span>: AI.Model[
-            <span style={{ color: '#D12F1B' }}>"Anthropic_Claude_Sonnet"</span>]{' }'}
-          </div>
-          <div>);</div>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-          {[
-            { k: '50+', v: 'models — OpenAI, Anthropic, Google, Mistral…' },
-            { k: 'Stream', v: 'real-time tokens via "data" events' },
-            { k: 'Tune', v: 'creativity from none → maximum' },
-          ].map((b, i) => (
-            <div
-              key={b.k}
-              className="ace-fadeup"
-              style={{
-                display: 'flex',
-                alignItems: 'baseline',
-                gap: 20,
-                padding: '20px 24px',
-                borderRadius: 12,
-                background: palette.surface,
-                border: `1px solid ${palette.border}`,
-                animationDelay: `${360 + i * 100}ms`,
-              }}
-            >
-              <div
-                style={{ fontSize: 30, fontWeight: 800, color: 'var(--osd-accent)', minWidth: 100 }}
-              >
-                {b.k}
-              </div>
-              <div style={{ fontSize: 20, color: 'var(--osd-text)', lineHeight: 1.4 }}>{b.v}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-    <Footer />
-  </div>
-);
-
-const Platform: Page = () => {
-  const apis = [
-    { sym: '◐', name: 'LocalStorage', desc: 'Persist data across sessions.' },
-    { sym: '⚿', name: 'OAuth', desc: 'Built-in PKCE flow with token storage.' },
-    { sym: '⚙', name: 'Preferences', desc: 'Typed user settings, declared in package.json.' },
-    { sym: '⌘', name: 'Clipboard', desc: 'Read, write, and watch the system clipboard.' },
-    { sym: '⌗', name: 'Browser Tabs', desc: 'Read open tabs across major browsers.' },
-    { sym: '⏻', name: 'Window & Apps', desc: 'Inspect or focus any running app.' },
-  ];
-  return (
-    <div style={fill}>
-      <Style />
-      <Glow x="50%" y="0%" size={1300} opacity={0.14} />
-      <div style={{ padding: '160px 160px 0' }}>
-        <Eyebrow>Platform APIs</Eyebrow>
-        <h2
-          className="ace-fadeup"
-          style={{
-            fontSize: 76,
-            fontWeight: 800,
-            margin: '32px 0 44px',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.1,
-            animationDelay: '120ms',
-          }}
-        >
-          Reach into the OS — safely.
-        </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
-          {apis.map((a, i) => (
-            <div
-              key={a.name}
-              className="ace-fadeup"
-              style={{
-                padding: 28,
-                borderRadius: 'var(--osd-radius)',
-                background: palette.surface,
-                border: `1px solid ${palette.border}`,
-                animationDelay: `${260 + i * 70}ms`,
-              }}
-            >
-              <div
-                style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: 10,
-                  background: palette.accentSoft,
-                  color: 'var(--osd-accent)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: 24,
-                  marginBottom: 16,
-                }}
-              >
-                {a.sym}
-              </div>
-              <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-0.01em' }}>
-                {a.name}
-              </div>
-              <div style={{ fontSize: 19, color: palette.muted, marginTop: 8, lineHeight: 1.45 }}>
-                {a.desc}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      <Footer />
-    </div>
-  );
-};
-
-const DX: Page = () => (
-  <div style={fill}>
-    <Style />
-    <Glow x="100%" y="100%" size={1100} opacity={0.16} />
-    <div style={{ padding: '180px 160px 0' }}>
-      <Eyebrow>Developer experience</Eyebrow>
-      <h2
-        className="ace-fadeup"
-        style={{
-          fontSize: 84,
-          fontWeight: 800,
-          margin: '32px 0 48px',
-          letterSpacing: '-0.02em',
-          lineHeight: 1.1,
-          animationDelay: '120ms',
-        }}
-      >
-        Ship in an afternoon.
-      </h2>
-      <div style={{ display: 'flex', gap: 24 }}>
-        {[
-          {
-            tag: 'Hot reload',
-            desc: 'Save the file. Raycast reloads. No build step in your loop.',
-          },
-          {
-            tag: 'Strongly typed',
-            desc: 'Every component, prop, and event lights up in your editor.',
-          },
-          {
-            tag: 'Zero config',
-            desc: '`ray develop` and you’re running. The CLI handles the rest.',
-          },
-        ].map((d, i) => (
-          <div
-            key={d.tag}
-            className="ace-fadeup"
-            style={{
-              flex: 1,
-              padding: 32,
-              borderRadius: 'var(--osd-radius)',
-              background: palette.surface,
-              border: `1px solid ${palette.border}`,
-              animationDelay: `${280 + i * 100}ms`,
-            }}
-          >
-            <div
-              style={{
-                fontSize: 32,
-                fontWeight: 700,
-                color: 'var(--osd-accent)',
-                letterSpacing: '-0.02em',
-              }}
-            >
-              {d.tag}
-            </div>
-            <div style={{ fontSize: 21, color: palette.muted, marginTop: 14, lineHeight: 1.5 }}>
-              {d.desc}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+          <div>
+            <CredGroupLabel>稱號 · Roles</CredGroupLabel>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <CredentialRow
+                icon="📱"
+                text="iOS Club Lead（2025–26）"
+                sub="iOS Club Lead 2025–26"
+                delay={300}
+              />
+              <CredentialRow
+                icon="🚀"
+                text="GDG on Campus Associated Lead（2025–26）"
+                sub="Google Developer Group 校園副負責人"
+                delay={390}
+              />
+              <CredentialRow
+                icon={
+                  <img
+                    src={raycastIcon}
+                    alt=""
+                    style={{ width: 24, height: 24, display: 'block' }}
+                  />
+                }
+                text="Raycast Ambassador"
+                sub="Raycast 官方大使"
+                delay={480}
+              />
             </div>
           </div>
-        ))}
+          <div>
+            <CredGroupLabel>認證與獲獎 · Certs & Awards</CredGroupLabel>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <CredentialRow
+                icon="🏆"
+                text="全國電子設計與 App 競賽第一名"
+                sub="1st place · National Electronic Design & App Competition"
+                delay={330}
+              />
+              <CredentialRow
+                icon="🍎"
+                text="Apple Teacher Swift Playgrounds"
+                sub="Apple 教師認證 · Swift Playgrounds"
+                delay={420}
+              />
+              <CredentialRow
+                icon="✨"
+                text="GenAI · Gemini · Vertex AI Prompt Design 認證"
+                sub="Certified in GenAI, Gemini & Vertex AI Prompt Design"
+                delay={510}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <Footer />
@@ -1184,15 +843,4 @@ export const meta: SlideMeta = {
   createdAt: '2026-08-25T07:18:48+08:00',
 };
 
-export default [
-  Cover,
-  Pitch,
-  Stack,
-  UIPrimitives,
-  ActionPanel,
-  AIApi,
-  Platform,
-  DX,
-  QA,
-  Closing,
-] satisfies Page[];
+export default [Cover, AboutMe, QA, Closing] satisfies Page[];
