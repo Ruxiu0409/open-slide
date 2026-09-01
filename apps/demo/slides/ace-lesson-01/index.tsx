@@ -1,4 +1,8 @@
 import { type DesignSystem, type Page, type SlideMeta, useSlidePageNumber } from '@open-slide/core';
+import life01 from './assets/life-01.jpg';
+import life02 from './assets/life-02.jpg';
+import life04 from './assets/life-04.jpg';
+import nickPhoto from './assets/nick-daloisio.jpg';
 import oddOneOutPreview from './assets/oddoneout-preview.jpg';
 import qrInstagram from './assets/qr-instagram.png';
 import qrLinkedin from './assets/qr-linkedin.png';
@@ -770,50 +774,60 @@ const Divider = ({
 );
 
 const PillarCard = ({
+  photo,
+  photoAlt,
   tag,
   name,
   nameEn,
   sub,
-  subEn,
   delay = 0,
 }: {
+  photo: string;
+  photoAlt: string;
   tag: string;
   name: string;
   nameEn: string;
   sub: string;
-  subEn: string;
   delay?: number;
 }) => (
   <div
     className="ace-fadeup"
     style={{
       flex: 1,
-      padding: 36,
       borderRadius: 'var(--osd-radius)',
+      overflow: 'hidden',
       background: palette.surface,
       border: `1px solid ${palette.border}`,
       boxShadow: cardShadow,
       animationDelay: `${delay}ms`,
     }}
   >
-    <div
-      style={{
-        fontFamily: fonts.mono,
-        fontSize: 17,
-        color: 'var(--osd-accent)',
-        letterSpacing: '0.1em',
-      }}
-    >
-      {tag}
+    <img
+      src={photo}
+      alt={photoAlt}
+      style={{ width: '100%', height: 260, objectFit: 'cover', display: 'block' }}
+    />
+    <div style={{ padding: '26px 30px 30px' }}>
+      <div
+        style={{
+          fontFamily: fonts.mono,
+          fontSize: 17,
+          color: 'var(--osd-accent)',
+          letterSpacing: '0.1em',
+        }}
+      >
+        {tag}
+      </div>
+      <div style={{ fontSize: 34, fontWeight: 700, marginTop: 12 }}>
+        {name}{' '}
+        <span style={{ fontSize: 19, fontWeight: 500, color: palette.muted, marginLeft: 4 }}>
+          {nameEn}
+        </span>
+      </div>
+      <div style={{ fontSize: 20, marginTop: 12, lineHeight: 1.5, color: palette.muted }}>
+        {sub}
+      </div>
     </div>
-    <div style={{ fontSize: 36, fontWeight: 700, marginTop: 14 }}>
-      {name}{' '}
-      <span style={{ fontSize: 20, fontWeight: 500, color: palette.muted, marginLeft: 4 }}>
-        {nameEn}
-      </span>
-    </div>
-    <div style={{ fontSize: 21, marginTop: 12, lineHeight: 1.5 }}>{sub}</div>
-    <div style={{ fontSize: 17, color: palette.muted, marginTop: 8, lineHeight: 1.5 }}>{subEn}</div>
   </div>
 );
 
@@ -837,7 +851,22 @@ const ClubIntro1: Page = () => (
   <div style={fill}>
     <Style />
     <Glow x="0%" y="100%" size={1000} opacity={0.28} />
-    <div style={{ padding: '170px 160px 0' }}>
+    <div
+      aria-hidden="true"
+      style={{
+        position: 'absolute',
+        right: -60,
+        top: -80,
+        fontSize: 620,
+        lineHeight: 1,
+        color: 'var(--osd-accent)',
+        opacity: 0.06,
+        pointerEvents: 'none',
+      }}
+    >
+      ♠
+    </div>
+    <div style={{ padding: '120px 160px 0' }}>
       <Eyebrow>名字的意思 · The Name</Eyebrow>
       <h2
         className="ace-fadeup"
@@ -858,7 +887,7 @@ const ClubIntro1: Page = () => (
           fontSize: 26,
           color: palette.muted,
           lineHeight: 1.4,
-          margin: '0 0 48px',
+          margin: '0 0 40px',
           animationDelay: '200ms',
         }}
       >
@@ -866,27 +895,30 @@ const ClubIntro1: Page = () => (
       </p>
       <div style={{ display: 'flex', gap: 24 }}>
         <PillarCard
+          photo={life02}
+          photoAlt="電腦教室裡的社課工作坊"
           tag="A · AI"
           name="AI as the tool"
           nameEn="用 AI"
           sub="不用先會寫程式。AI 是我們的工具，不是入場門檻。"
-          subEn="No coding required — AI is the tool, not the barrier."
           delay={280}
         />
         <PillarCard
+          photo={life01}
+          photoAlt="社課帶大家拍片"
           tag="C · CREATORS"
           name="Make things"
           nameEn="動手創作"
           sub="不只學工具，每堂社課都要親手做出一個東西。"
-          subEn="Every session ends with something you made yourself."
           delay={380}
         />
         <PillarCard
+          photo={life04}
+          photoAlt="帶著作品去教小朋友動手做"
           tag="E · EXECUTORS"
           name="Ship things"
           nameEn="落地執行"
-          sub="想法要變成真的打得開的網站或 App。做完才算數。"
-          subEn="Ideas only count once they ship."
+          sub="做出來還要用出去。帶到真的人面前，才算完成。"
           delay={480}
         />
       </div>
@@ -915,211 +947,145 @@ const game = {
 const GameIntro: Page = () => (
   <div style={fill}>
     <Style />
-    <img
-      src={oddOneOutPreview}
-      alt="Odd One Out"
-      className="ace-fade"
-      style={{
-        position: 'absolute',
-        inset: 0,
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover',
-        display: 'block',
-      }}
-    />
-    <div
-      aria-hidden="true"
-      style={{
-        position: 'absolute',
-        inset: 0,
-        background:
-          'linear-gradient(100deg, rgba(245,245,247,0.97) 0%, rgba(245,245,247,0.94) 36%, rgba(245,245,247,0.6) 52%, rgba(245,245,247,0) 70%)',
-      }}
-    />
-    <div style={{ position: 'absolute', inset: 0, padding: '150px 140px 0', width: 900 }}>
-      <Eyebrow>破冰 · Icebreaker</Eyebrow>
-      <h2
-        className="ace-fadeup"
-        style={{
-          fontSize: 76,
-          fontWeight: 800,
-          margin: '28px 0 14px',
-          lineHeight: 1.12,
-          letterSpacing: '-0.02em',
-          animationDelay: '120ms',
-        }}
-      >
-        找出那個
-        <br />
-        <span style={gradText}>不對勁的東西</span>
-      </h2>
-      <p
-        className="ace-fadeup"
-        style={{
-          fontSize: 23,
-          color: palette.muted,
-          lineHeight: 1.55,
-          margin: '0 0 36px',
-          maxWidth: 620,
-          animationDelay: '200ms',
-        }}
-      >
-        Odd One Out — Google
-        藝術與文化的小實驗。一幅名畫裡藏了一樣不屬於那個年代的東西，你要在時間內把它抓出來。
-      </p>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 14, maxWidth: 620 }}>
-        {[
-          { n: '01', t: '看一幅名畫', d: '每一關丟給你一幅世界名畫，先看清楚裡面有什麼。' },
-          { n: '02', t: '找出那個外來者', d: '有一樣東西是後來被塞進去的，跟那個年代格格不入。' },
-          { n: '03', t: '限時，點下去', d: '時間會跑。看你多快抓到，也看你敢不敢賭。' },
-        ].map((c, i) => (
-          <div
-            key={c.n}
-            className="ace-fadeup"
-            style={{
-              display: 'flex',
-              alignItems: 'flex-start',
-              gap: 20,
-              padding: '20px 26px',
-              borderRadius: 'var(--osd-radius)',
-              background: 'rgba(255, 255, 255, 0.92)',
-              border: `1px solid ${palette.border}`,
-              boxShadow: cardShadow,
-              animationDelay: `${300 + i * 110}ms`,
-            }}
-          >
-            <span
-              style={{
-                fontFamily: fonts.mono,
-                fontSize: 20,
-                letterSpacing: '0.1em',
-                color: 'var(--osd-accent)',
-                paddingTop: 4,
-              }}
-            >
-              {c.n}
-            </span>
-            <span>
-              <span style={{ fontSize: 26, fontWeight: 700, display: 'block' }}>{c.t}</span>
-              <span
-                style={{
-                  fontSize: 20,
-                  color: palette.muted,
-                  lineHeight: 1.45,
-                  display: 'block',
-                  marginTop: 4,
-                }}
-              >
-                {c.d}
-              </span>
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-    <Footer />
-  </div>
-);
-
-const GamePlay: Page = () => (
-  <div style={fill}>
-    <Style />
-    <Glow x="50%" y="50%" size={1500} opacity={0.28} />
+    <Glow x="10%" y="70%" size={1200} opacity={0.26} />
     <div
       style={{
         position: 'absolute',
         inset: 0,
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
+        gridTemplateColumns: '1fr 560px',
+        gap: 80,
         alignItems: 'center',
         padding: '0 140px',
-        gap: 90,
       }}
     >
       <div>
-        <Eyebrow>Play now</Eyebrow>
+        <Eyebrow>破冰 · Icebreaker</Eyebrow>
         <h2
           className="ace-fadeup"
           style={{
-            fontSize: 96,
+            fontSize: 76,
             fontWeight: 800,
-            margin: '30px 0 20px',
-            lineHeight: 1.08,
+            margin: '28px 0 16px',
+            lineHeight: 1.12,
             letterSpacing: '-0.02em',
             animationDelay: '120ms',
           }}
         >
-          <span style={gradText}>開始玩</span>
+          找出那個
+          <br />
+          <span style={gradText}>不對勁的東西</span>
         </h2>
         <p
           className="ace-fadeup"
           style={{
-            fontSize: 28,
+            fontSize: 23,
             color: palette.muted,
-            lineHeight: 1.5,
-            margin: '0 0 32px',
+            lineHeight: 1.55,
+            margin: '0 0 44px',
+            maxWidth: 640,
             animationDelay: '200ms',
           }}
         >
-          拿手機掃右邊的 QR，各玩各的。
-          <br />
-          玩完講一下你卡在哪一關。
+          Odd One Out — Google 藝術與文化的小實驗。一幅名畫裡藏了一樣不屬於那個年代的東西。
         </p>
-        <a
-          className="ace-fadeup"
-          href={game.url}
-          target="_blank"
-          rel="noreferrer"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 14,
-            padding: '20px 34px',
-            borderRadius: 999,
-            backgroundImage: accentGrad,
-            color: '#FFFFFF',
-            fontSize: 26,
-            fontWeight: 700,
-            textDecoration: 'none',
-            boxShadow: '0 10px 30px rgba(46, 111, 224, 0.32)',
-            animationDelay: '280ms',
-          }}
-        >
-          在新分頁開始玩
-          <span style={{ fontSize: 22 }}>↗</span>
-        </a>
-        <div
-          className="ace-fadeup"
-          style={{
-            marginTop: 20,
-            fontFamily: fonts.mono,
-            fontSize: 17,
-            color: palette.muted,
-            animationDelay: '340ms',
-          }}
-        >
-          {game.displayUrl}
+        <div style={{ maxWidth: 640 }}>
+          {[
+            { n: '01', t: '看一幅名畫', d: '每一關丟給你一幅世界名畫，先看清楚裡面有什麼。' },
+            { n: '02', t: '找出那個外來者', d: '有一樣東西是後來被塞進去的，跟那個年代格格不入。' },
+            { n: '03', t: '限時，點下去', d: '時間會跑。看你多快抓到，也看你敢不敢賭。' },
+          ].map((c, i) => (
+            <div
+              key={c.n}
+              className="ace-fadeup"
+              style={{
+                display: 'flex',
+                alignItems: 'baseline',
+                gap: 22,
+                padding: '20px 0',
+                borderTop: i === 0 ? 'none' : `1px solid ${palette.border}`,
+                animationDelay: `${300 + i * 110}ms`,
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: fonts.mono,
+                  fontSize: 19,
+                  letterSpacing: '0.1em',
+                  color: 'var(--osd-accent)',
+                }}
+              >
+                {c.n}
+              </span>
+              <span>
+                <span style={{ fontSize: 26, fontWeight: 700, display: 'block' }}>{c.t}</span>
+                <span
+                  style={{
+                    fontSize: 20,
+                    color: palette.muted,
+                    lineHeight: 1.45,
+                    display: 'block',
+                    marginTop: 4,
+                  }}
+                >
+                  {c.d}
+                </span>
+              </span>
+            </div>
+          ))}
         </div>
       </div>
       <div
         className="ace-fade"
-        style={{ display: 'flex', justifyContent: 'center', animationDelay: '300ms' }}
+        style={{
+          borderRadius: 26,
+          overflow: 'hidden',
+          background: palette.surface,
+          border: `1px solid ${palette.border}`,
+          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.12)',
+          animationDelay: '260ms',
+        }}
       >
+        <img
+          src={oddOneOutPreview}
+          alt="Odd One Out"
+          style={{ width: 560, height: 300, objectFit: 'cover', display: 'block' }}
+        />
         <div
           style={{
-            padding: 36,
-            borderRadius: 28,
-            background: palette.surface,
-            border: `1px solid ${palette.border}`,
-            boxShadow: '0 24px 60px rgba(0, 0, 0, 0.12)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 20,
+            padding: '28px 28px 32px',
           }}
         >
           <img
             src={qrOddOneOut}
             alt="掃描開始玩 Odd One Out"
-            style={{ width: 420, height: 420, display: 'block', borderRadius: 10 }}
+            style={{ width: 240, height: 240, display: 'block', borderRadius: 8 }}
           />
+          <a
+            href={game.url}
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 12,
+              padding: '16px 32px',
+              borderRadius: 999,
+              backgroundImage: accentGrad,
+              color: '#FFFFFF',
+              fontSize: 22,
+              fontWeight: 700,
+              textDecoration: 'none',
+              boxShadow: '0 10px 30px rgba(46, 111, 224, 0.32)',
+            }}
+          >
+            在新分頁開始玩
+            <span style={{ fontSize: 19 }}>↗</span>
+          </a>
         </div>
       </div>
     </div>
@@ -1251,6 +1217,171 @@ const StoryVideo: Page = () => (
   </div>
 );
 
+const StatCard = ({
+  value,
+  label,
+  labelEn,
+  delay = 0,
+}: {
+  value: string;
+  label: string;
+  labelEn: string;
+  delay?: number;
+}) => (
+  <div
+    className="ace-fadeup"
+    style={{
+      flex: 1,
+      padding: '30px 34px',
+      borderRadius: 'var(--osd-radius)',
+      background: palette.surface,
+      border: `1px solid ${palette.border}`,
+      boxShadow: cardShadow,
+      animationDelay: `${delay}ms`,
+    }}
+  >
+    <div style={{ fontSize: 64, fontWeight: 800, lineHeight: 1, ...gradText }}>{value}</div>
+    <div style={{ fontSize: 22, fontWeight: 600, marginTop: 16 }}>{label}</div>
+    <div style={{ fontSize: 17, color: palette.muted, marginTop: 4 }}>{labelEn}</div>
+  </div>
+);
+
+const StoryNick: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="80%" y="30%" size={1100} opacity={0.26} />
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 460px',
+        gap: 70,
+        alignItems: 'start',
+        padding: '150px 140px 0',
+      }}
+    >
+      <div>
+        <Eyebrow>Summly · 2013</Eyebrow>
+        <h2
+          className="ace-fadeup"
+          style={{
+            fontSize: 76,
+            fontWeight: 800,
+            margin: '28px 0 16px',
+            lineHeight: 1.12,
+            letterSpacing: '-0.02em',
+            animationDelay: '120ms',
+          }}
+        >
+          17 歲，把自己寫的 App
+          <br />
+          <span style={gradText}>賣給了 Yahoo</span>
+        </h2>
+        <p
+          className="ace-fadeup"
+          style={{
+            fontSize: 24,
+            color: palette.muted,
+            lineHeight: 1.55,
+            margin: '0 0 44px',
+            maxWidth: 1040,
+            animationDelay: '200ms',
+          }}
+        >
+          Nick D’Aloisio 在倫敦的臥室裡做出 Summly，一個把長新聞壓成幾句話的 App。2013 年 Yahoo
+          買下它，媒體報導的金額大約三千萬美金。那年他 17 歲，還在念書。
+          <br />
+          He built Summly in his bedroom. Yahoo acquired it in 2013 — reportedly around $30M. He was
+          17.
+        </p>
+        <div style={{ display: 'flex', gap: 24 }}>
+          <StatCard value="17" label="收購時的年紀" labelEn="Age at acquisition" delay={300} />
+          <StatCard value="約 $30M" label="媒體報導金額" labelEn="Reported price" delay={400} />
+          <StatCard value="2013" label="Yahoo 收購" labelEn="Acquired by Yahoo" delay={500} />
+        </div>
+      </div>
+      <div
+        className="ace-fade"
+        style={{
+          borderRadius: 24,
+          overflow: 'hidden',
+          border: `1px solid ${palette.border}`,
+          background: palette.surface,
+          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.12)',
+          animationDelay: '240ms',
+        }}
+      >
+        <img
+          src={nickPhoto}
+          alt="Nick D’Aloisio"
+          style={{ width: 460, height: 460, objectFit: 'cover', display: 'block' }}
+        />
+        <div style={{ padding: '18px 24px 22px' }}>
+          <div style={{ fontSize: 24, fontWeight: 700 }}>Nick D’Aloisio</div>
+          <div style={{ fontSize: 17, color: palette.muted, marginTop: 4 }}>
+            Summly 創辦人 · 照片攝於 2021
+          </div>
+        </div>
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
+const wwdcStory = {
+  embedUrl: 'https://www.youtube-nocookie.com/embed/9l5rsLOT1ww?rel=0&modestbranding=1',
+  title: '蘋果 WWDC 挑戰賽 台灣 8 名學生獲獎創新高',
+  channel: '三立財經 iNEWS',
+};
+
+const StoryWWDC: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="45%" size={1500} opacity={0.22} />
+    <div style={{ position: 'absolute', top: 64, left: 240, right: 240 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Eyebrow>台灣的大學生也在做</Eyebrow>
+        <span
+          className="ace-fadeup"
+          style={{
+            fontFamily: fonts.mono,
+            fontSize: 19,
+            color: palette.muted,
+            letterSpacing: '0.04em',
+            animationDelay: '120ms',
+          }}
+        >
+          {wwdcStory.channel} · WWDC Swift Student Challenge
+        </span>
+      </div>
+    </div>
+    <div
+      className="ace-fade"
+      style={{
+        position: 'absolute',
+        top: 150,
+        left: 240,
+        width: 1440,
+        height: 810,
+        borderRadius: 20,
+        overflow: 'hidden',
+        border: `1px solid ${palette.border}`,
+        boxShadow: '0 24px 60px rgba(0, 0, 0, 0.14)',
+        background: '#000000',
+        animationDelay: '200ms',
+      }}
+    >
+      <iframe
+        src={wwdcStory.embedUrl}
+        title={wwdcStory.title}
+        allow="accelerometer; encrypted-media; picture-in-picture; fullscreen"
+        allowFullScreen
+        style={{ width: '100%', height: '100%', border: 0, display: 'block' }}
+      />
+    </div>
+    <Footer />
+  </div>
+);
+
 const QA: Page = () => (
   <div style={fill}>
     <Style />
@@ -1372,9 +1503,10 @@ export default [
   ClubIntro4,
   DividerIcebreaker,
   GameIntro,
-  GamePlay,
   DividerStories,
   StoryVideo,
+  StoryNick,
+  StoryWWDC,
   QA,
   Closing,
 ] satisfies Page[];
