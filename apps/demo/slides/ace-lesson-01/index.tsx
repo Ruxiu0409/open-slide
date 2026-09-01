@@ -1082,10 +1082,10 @@ const QA: Page = () => (
         position: 'absolute',
         inset: 0,
         display: 'grid',
-        gridTemplateColumns: '1fr 820px',
+        gridTemplateColumns: '1fr 1040px',
         alignItems: 'center',
         padding: '0 120px',
-        gap: 80,
+        gap: 56,
       }}
     >
       <div>
@@ -1156,8 +1156,8 @@ const QA: Page = () => (
         className="ace-fade"
         style={{
           position: 'relative',
-          width: 820,
-          height: 760,
+          width: 1040,
+          height: 820,
           borderRadius: 'var(--osd-radius)',
           background: palette.surface,
           border: `1px solid ${palette.border}`,
