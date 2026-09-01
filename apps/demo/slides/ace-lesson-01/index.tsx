@@ -353,6 +353,20 @@ const Cover: Page = () => (
     <Style />
     <Glow x="28%" y="42%" size={1300} opacity={0.3} />
     <div
+      className="ace-fade"
+      style={{
+        position: 'absolute',
+        top: 56,
+        right: 120,
+        fontFamily: fonts.mono,
+        fontSize: 21,
+        color: palette.muted,
+        letterSpacing: '0.04em',
+      }}
+    >
+      9/3
+    </div>
+    <div
       style={{
         position: 'absolute',
         inset: 0,
@@ -367,21 +381,22 @@ const Cover: Page = () => (
         <div className="ace-fadeup" style={{ marginBottom: 28 }}>
           <AceMark size={64} />
         </div>
-        <Eyebrow delay={80}>AI Creators &amp; Executors · 2026–27</Eyebrow>
+        <Eyebrow delay={80}>FHJH Thursday Club</Eyebrow>
         <h1
           className="ace-fadeup"
           style={{
-            fontSize: 'var(--osd-size-hero)',
+            fontSize: 76,
             fontWeight: 800,
             margin: '28px 0 16px',
-            lineHeight: 1.1,
+            lineHeight: 1.12,
             letterSpacing: '-0.02em',
+            ...gradText,
             animationDelay: '160ms',
           }}
         >
-          社課第一堂
+          AI Creators
           <br />
-          <span style={gradText}>先來聊聊天</span>
+          &amp; Executors
         </h1>
         <p
           className="ace-fadeup"
@@ -392,23 +407,29 @@ const Cover: Page = () => (
             animationDelay: '200ms',
           }}
         >
-          ACE Club · Lesson 01 · <span style={{ fontFamily: fonts.mono }}>9/3</span>
+          ACE Club · 社課第一堂 · Lesson 01
         </p>
-        <p
-          className="ace-fadeup"
-          style={{
-            fontSize: 22,
-            color: palette.muted,
-            maxWidth: 720,
-            lineHeight: 1.55,
-            margin: 0,
-            animationDelay: '240ms',
-          }}
-        >
-          今天不寫程式。認識彼此、聽幾個故事，然後想想這學期你想做出什麼。
-          <br />
-          No code today — meet each other, hear a few stories, figure out what you want to build.
-        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {['Discover ✕ Create ✕ Execute', 'Zero Coding Needed. Just Bring Ideas.'].map(
+            (line, i) => (
+              <div
+                key={line}
+                className="ace-fadeup"
+                style={{
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  gap: 14,
+                  fontSize: 26,
+                  color: 'var(--osd-text)',
+                  animationDelay: `${240 + i * 80}ms`,
+                }}
+              >
+                <span style={{ color: 'var(--osd-accent)', fontSize: 20 }}>◉</span>
+                {line}
+              </div>
+            ),
+          )}
+        </div>
       </div>
       <div
         className="ace-fade"
@@ -748,6 +769,54 @@ const Divider = ({
   </div>
 );
 
+const PillarCard = ({
+  tag,
+  name,
+  nameEn,
+  sub,
+  subEn,
+  delay = 0,
+}: {
+  tag: string;
+  name: string;
+  nameEn: string;
+  sub: string;
+  subEn: string;
+  delay?: number;
+}) => (
+  <div
+    className="ace-fadeup"
+    style={{
+      flex: 1,
+      padding: 36,
+      borderRadius: 'var(--osd-radius)',
+      background: palette.surface,
+      border: `1px solid ${palette.border}`,
+      boxShadow: cardShadow,
+      animationDelay: `${delay}ms`,
+    }}
+  >
+    <div
+      style={{
+        fontFamily: fonts.mono,
+        fontSize: 17,
+        color: 'var(--osd-accent)',
+        letterSpacing: '0.1em',
+      }}
+    >
+      {tag}
+    </div>
+    <div style={{ fontSize: 36, fontWeight: 700, marginTop: 14 }}>
+      {name}{' '}
+      <span style={{ fontSize: 20, fontWeight: 500, color: palette.muted, marginLeft: 4 }}>
+        {nameEn}
+      </span>
+    </div>
+    <div style={{ fontSize: 21, marginTop: 12, lineHeight: 1.5 }}>{sub}</div>
+    <div style={{ fontSize: 17, color: palette.muted, marginTop: 8, lineHeight: 1.5 }}>{subEn}</div>
+  </div>
+);
+
 const Blank = () => (
   <div style={fill}>
     <Style />
@@ -764,7 +833,67 @@ const DividerClub: Page = () => (
   />
 );
 
-const ClubIntro1: Page = () => <Blank />;
+const ClubIntro1: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="0%" y="100%" size={1000} opacity={0.28} />
+    <div style={{ padding: '170px 160px 0' }}>
+      <Eyebrow>名字的意思 · The Name</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 78,
+          fontWeight: 800,
+          margin: '30px 0 10px',
+          lineHeight: 1.1,
+          animationDelay: '120ms',
+        }}
+      >
+        <span style={gradText}>A</span>I <span style={gradText}>C</span>reators &amp;{' '}
+        <span style={gradText}>E</span>xecutors
+      </h2>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 26,
+          color: palette.muted,
+          lineHeight: 1.4,
+          margin: '0 0 48px',
+          animationDelay: '200ms',
+        }}
+      >
+        AI 創作者 × 執行者
+      </p>
+      <div style={{ display: 'flex', gap: 24 }}>
+        <PillarCard
+          tag="A · AI"
+          name="AI as the tool"
+          nameEn="用 AI"
+          sub="不用先會寫程式。AI 是我們的工具，不是入場門檻。"
+          subEn="No coding required — AI is the tool, not the barrier."
+          delay={280}
+        />
+        <PillarCard
+          tag="C · CREATORS"
+          name="Make things"
+          nameEn="動手創作"
+          sub="不只學工具，每堂社課都要親手做出一個東西。"
+          subEn="Every session ends with something you made yourself."
+          delay={380}
+        />
+        <PillarCard
+          tag="E · EXECUTORS"
+          name="Ship things"
+          nameEn="落地執行"
+          sub="想法要變成真的打得開的網站或 App。做完才算數。"
+          subEn="Ideas only count once they ship."
+          delay={480}
+        />
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
 const ClubIntro2: Page = () => <Blank />;
 const ClubIntro3: Page = () => <Blank />;
 const ClubIntro4: Page = () => <Blank />;
@@ -1001,7 +1130,7 @@ const GamePlay: Page = () => (
 const Closing: Page = () => (
   <div style={fill}>
     <Style />
-    <Glow x="50%" y="50%" size={1600} opacity={0.22} />
+    <Glow x="50%" y="50%" size={1600} opacity={0.3} />
     <div
       style={{
         position: 'absolute',
@@ -1016,20 +1145,20 @@ const Closing: Page = () => (
     >
       <AceMark size={80} />
       <div style={{ height: 32 }} />
-      <Eyebrow delay={80}>Start building</Eyebrow>
+      <Eyebrow delay={80}>下週見 · See you next week</Eyebrow>
       <h1
         className="ace-fadeup"
         style={{
-          fontSize: 88,
+          fontSize: 104,
           fontWeight: 800,
-          margin: '32px 0 20px',
+          margin: '32px 0 0',
           lineHeight: 1.1,
           letterSpacing: '-0.02em',
+          ...gradText,
           animationDelay: '160ms',
         }}
       >
-        npm i{' '}
-        <span style={{ color: 'var(--osd-accent)', fontFamily: fonts.mono }}>@raycast/api</span>
+        記得帶電腦
       </h1>
       <p
         className="ace-fadeup"
@@ -1037,15 +1166,14 @@ const Closing: Page = () => (
           fontSize: 'var(--osd-size-body)',
           color: palette.muted,
           maxWidth: 900,
-          marginTop: 32,
+          marginTop: 28,
           lineHeight: 1.5,
           animationDelay: '240ms',
         }}
       >
-        Or open Raycast → <span style={{ color: 'var(--osd-text)' }}>Create Extension</span> → pick
-        a template.
+        下週開始動手做，沒帶電腦只能在旁邊看。
         <br />
-        Docs at <span style={{ color: 'var(--osd-text)' }}>developers.raycast.com</span>
+        Bring your laptop — next week we actually build something.
       </p>
     </div>
     <Footer />
@@ -1057,6 +1185,71 @@ const slido = {
   joinUrl: 'slido.com',
   embedUrl: 'https://app.sli.do/event/guKaZqkHmn7ipbhLNFn6xR',
 };
+
+const DividerStories: Page = () => (
+  <Divider
+    num="PART 03"
+    title="其他人的故事"
+    sub="有人跟你一樣是高中生，然後做出了幾百萬人在用的東西。"
+    subEn="Someone your age built something millions of people rely on."
+  />
+);
+
+const story = {
+  embedUrl:
+    'https://www.youtube-nocookie.com/embed/ljq3KK-nccQ?start=0&end=107&rel=0&modestbranding=1',
+  title: '當地震來襲，百萬台灣人手機同時響起！背後推手竟是一位高中生?',
+  channel: '青春發言人',
+};
+
+const StoryVideo: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="45%" size={1500} opacity={0.22} />
+    <div style={{ position: 'absolute', top: 64, left: 240, right: 240 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Eyebrow>他也是高中生</Eyebrow>
+        <span
+          className="ace-fadeup"
+          style={{
+            fontFamily: fonts.mono,
+            fontSize: 19,
+            color: palette.muted,
+            letterSpacing: '0.04em',
+            animationDelay: '120ms',
+          }}
+        >
+          {story.channel} · 0:00–1:47
+        </span>
+      </div>
+    </div>
+    <div
+      className="ace-fade"
+      style={{
+        position: 'absolute',
+        top: 150,
+        left: 240,
+        width: 1440,
+        height: 810,
+        borderRadius: 20,
+        overflow: 'hidden',
+        border: `1px solid ${palette.border}`,
+        boxShadow: '0 24px 60px rgba(0, 0, 0, 0.14)',
+        background: '#000000',
+        animationDelay: '200ms',
+      }}
+    >
+      <iframe
+        src={story.embedUrl}
+        title={story.title}
+        allow="accelerometer; encrypted-media; picture-in-picture; fullscreen"
+        allowFullScreen
+        style={{ width: '100%', height: '100%', border: 0, display: 'block' }}
+      />
+    </div>
+    <Footer />
+  </div>
+);
 
 const QA: Page = () => (
   <div style={fill}>
@@ -1180,6 +1373,8 @@ export default [
   DividerIcebreaker,
   GameIntro,
   GamePlay,
+  DividerStories,
+  StoryVideo,
   QA,
   Closing,
 ] satisfies Page[];
