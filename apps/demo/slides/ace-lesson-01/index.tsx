@@ -878,8 +878,7 @@ const ClubIntro1: Page = () => (
           animationDelay: '120ms',
         }}
       >
-        <span style={gradText}>A</span>I <span style={gradText}>C</span>reators &amp;{' '}
-        <span style={gradText}>E</span>xecutors
+        AI Creators &amp; Executors
       </h2>
       <p
         className="ace-fadeup"
