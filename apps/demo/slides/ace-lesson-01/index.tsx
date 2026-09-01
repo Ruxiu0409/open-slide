@@ -1,4 +1,5 @@
 import { type DesignSystem, type Page, type SlideMeta, useSlidePageNumber } from '@open-slide/core';
+import qrSlido from './assets/qr-slido.svg';
 import raycastIcon from './assets/raycast.svg';
 
 export const design: DesignSystem = {
@@ -1066,6 +1067,117 @@ const Closing: Page = () => (
   </div>
 );
 
+const slido = {
+  code: '3173 378',
+  joinUrl: 'slido.com',
+  embedUrl: 'https://app.sli.do/event/guKaZqkHmn7ipbhLNFn6xR',
+};
+
+const QA: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="15%" y="60%" size={1200} opacity={0.16} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'grid',
+        gridTemplateColumns: '1fr 820px',
+        alignItems: 'center',
+        padding: '0 120px',
+        gap: 80,
+      }}
+    >
+      <div>
+        <Eyebrow>Q &amp; A</Eyebrow>
+        <h2
+          className="ace-fadeup"
+          style={{
+            fontSize: 88,
+            fontWeight: 800,
+            margin: '28px 0 20px',
+            lineHeight: 1.05,
+            letterSpacing: '-0.03em',
+            animationDelay: '120ms',
+          }}
+        >
+          有問題
+          <br />
+          <span style={gradText}>隨時丟上來</span>
+        </h2>
+        <p
+          className="ace-fadeup"
+          style={{
+            fontSize: 'var(--osd-size-body)',
+            color: palette.muted,
+            lineHeight: 1.5,
+            margin: '0 0 44px',
+            animationDelay: '200ms',
+          }}
+        >
+          匿名也可以，按讚多的我先回答。
+        </p>
+        <div
+          className="ace-fadeup"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 32,
+            padding: 32,
+            borderRadius: 'var(--osd-radius)',
+            background: palette.surface,
+            border: `1px solid ${palette.border}`,
+            boxShadow: cardShadow,
+            animationDelay: '280ms',
+          }}
+        >
+          <img
+            src={qrSlido}
+            alt="掃描加入 Slido"
+            style={{ width: 220, height: 220, display: 'block', borderRadius: 8 }}
+          />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <div style={{ fontSize: 40, fontWeight: 700, letterSpacing: '-0.01em' }}>掃描加入</div>
+            <div style={{ fontSize: 24, color: palette.muted, fontFamily: fonts.mono }}>
+              {slido.joinUrl}
+            </div>
+            {slido.code && (
+              <div style={{ fontSize: 24, color: palette.muted, marginTop: 6 }}>
+                或輸入代碼{' '}
+                <span style={{ fontFamily: fonts.mono, fontWeight: 700, ...gradText }}>
+                  {slido.code}
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      <div
+        className="ace-fade"
+        style={{
+          position: 'relative',
+          width: 820,
+          height: 760,
+          borderRadius: 'var(--osd-radius)',
+          background: palette.surface,
+          border: `1px solid ${palette.border}`,
+          boxShadow: cardShadow,
+          overflow: 'hidden',
+          animationDelay: '360ms',
+        }}
+      >
+        <iframe
+          src={slido.embedUrl}
+          title="Slido Q&A"
+          allow="clipboard-write"
+          style={{ width: '100%', height: '100%', border: 0, display: 'block' }}
+        />
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
 export const meta: SlideMeta = {
   title: '第一堂課',
   theme: 'aurora',
@@ -1081,5 +1193,6 @@ export default [
   AIApi,
   Platform,
   DX,
+  QA,
   Closing,
 ] satisfies Page[];
