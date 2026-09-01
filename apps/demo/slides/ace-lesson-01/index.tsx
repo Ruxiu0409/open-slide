@@ -2,30 +2,42 @@ import { type DesignSystem, type Page, type SlideMeta, useSlidePageNumber } from
 import raycastIcon from './assets/raycast.svg';
 
 export const design: DesignSystem = {
-  palette: { bg: '#0E0E0E', text: '#F5F5F5', accent: '#FF6363' },
+  palette: { bg: '#F5F5F7', text: '#1D1D1F', accent: '#2E6FE0' },
   fonts: {
-    display: '-apple-system, BlinkMacSystemFont, "Inter", "SF Pro Display", system-ui, sans-serif',
-    body: '-apple-system, BlinkMacSystemFont, "Inter", "SF Pro Display", system-ui, sans-serif',
+    display: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, sans-serif',
+    body: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, sans-serif',
   },
-  typeScale: { hero: 112, body: 24 },
-  radius: 14,
+  typeScale: { hero: 112, body: 28 },
+  radius: 18,
 };
 
 const palette = {
-  bg: '#0E0E0E',
-  surface: '#1A1A1A',
-  surfaceHi: '#222222',
-  border: '#2A2A2A',
-  text: '#F5F5F5',
-  muted: '#8B8B8B',
-  accent: '#FF6363',
-  accentSoft: 'rgba(255, 99, 99, 0.12)',
+  bg: '#F5F5F7',
+  surface: '#FFFFFF',
+  surfaceHi: '#F5F5F7',
+  border: '#E8E8ED',
+  chipBorder: '#D2D2D7',
+  text: '#1D1D1F',
+  muted: '#6E6E73',
+  accent: '#2E6FE0',
+  accentSoft: 'rgba(46, 111, 224, 0.1)',
 };
 
 const fonts = {
-  sans: '-apple-system, BlinkMacSystemFont, "Inter", "SF Pro Display", system-ui, sans-serif',
+  sans: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, sans-serif',
   mono: '"SF Mono", "JetBrains Mono", "Menlo", monospace',
 };
+
+const cardShadow = '0 8px 28px rgba(0, 0, 0, 0.07)';
+
+const accentGrad = 'linear-gradient(135deg, #8AA2C6 0%, #4A80DB 50%, #2E6FE0 100%)';
+
+const gradText = {
+  backgroundImage: accentGrad,
+  WebkitBackgroundClip: 'text',
+  backgroundClip: 'text',
+  color: 'transparent',
+} as const;
 
 const fill = {
   width: '100%',
@@ -38,26 +50,31 @@ const fill = {
 } as const;
 
 const keyframes = `
-@keyframes rcFadeUp {
+@keyframes aceFadeUp {
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
-@keyframes rcFade {
+@keyframes aceFade {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-@keyframes rcCaret {
+@keyframes aceCaret {
   0%, 60% { opacity: 1; }
   61%, 100% { opacity: 0; }
 }
-@keyframes rcGlow {
-  0%, 100% { opacity: 0.55; }
-  50% { opacity: 0.85; }
+@keyframes aceGlow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
-.rc-fadeup { animation: rcFadeUp 700ms cubic-bezier(0.22, 1, 0.36, 1) both; }
-.rc-fade { animation: rcFade 800ms ease-out both; }
-.rc-caret { animation: rcCaret 1.1s steps(1) infinite; }
-.rc-glow { animation: rcGlow 4s ease-in-out infinite; }
+@keyframes aceSwipe {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.ace-swipe { transform-origin: left center; animation: aceSwipe 360ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.ace-fadeup { animation: aceFadeUp 700ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.ace-fade { animation: aceFade 800ms ease-out both; }
+.ace-caret { animation: aceCaret 1.1s steps(1) infinite; }
+.ace-glow { animation: aceGlow 5s ease-in-out infinite; }
 `;
 
 const Style = () => <style>{keyframes}</style>;
@@ -66,11 +83,15 @@ const Glow = ({
   x = '50%',
   y = '50%',
   size = 1200,
-  color = 'var(--osd-accent)',
-  opacity = 0.18,
+  opacity = 0.28,
+}: {
+  x?: string;
+  y?: string;
+  size?: number;
+  opacity?: number;
 }) => (
   <div
-    className="rc-glow"
+    aria-hidden="true"
     style={{
       position: 'absolute',
       left: x,
@@ -78,17 +99,91 @@ const Glow = ({
       width: size,
       height: size,
       transform: 'translate(-50%, -50%)',
-      background: `radial-gradient(circle, ${color} 0%, transparent 60%)`,
       opacity,
-      filter: 'blur(40px)',
       pointerEvents: 'none',
     }}
-  />
+  >
+    <div
+      className="ace-glow"
+      style={{
+        width: '100%',
+        height: '100%',
+        background: 'radial-gradient(circle, var(--osd-accent) 0%, transparent 60%)',
+        filter: 'blur(40px)',
+      }}
+    />
+  </div>
+);
+
+const AceMark = ({ size = 64 }: { size?: number }) => (
+  <div
+    style={{
+      position: 'relative',
+      width: size,
+      height: size,
+      borderRadius: size * 0.24,
+      background: palette.surface,
+      border: `1px solid ${palette.border}`,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      boxShadow: '0 6px 18px rgba(46, 111, 224, 0.2)',
+      flexShrink: 0,
+    }}
+  >
+    <span
+      style={{
+        position: 'absolute',
+        top: size * 0.08,
+        left: size * 0.14,
+        fontFamily: fonts.mono,
+        fontSize: size * 0.2,
+        fontWeight: 700,
+        ...gradText,
+        lineHeight: 1,
+      }}
+    >
+      A
+    </span>
+    <span style={{ fontSize: size * 0.48, ...gradText, lineHeight: 1 }}>♠</span>
+  </div>
+);
+
+const BrandLockup = ({ delay = 0 }: { delay?: number }) => (
+  <div
+    className="ace-fadeup"
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 18,
+      marginBottom: 28,
+      animationDelay: `${delay}ms`,
+    }}
+  >
+    <AceMark />
+    <span style={{ fontSize: 30, color: palette.muted, lineHeight: 1 }}>×</span>
+    <div
+      style={{
+        width: 64,
+        height: 64,
+        borderRadius: 15,
+        background: palette.surface,
+        border: `1px solid ${palette.border}`,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        boxShadow: cardShadow,
+        flexShrink: 0,
+      }}
+    >
+      <img src={raycastIcon} alt="Raycast" style={{ width: 38, height: 38, display: 'block' }} />
+    </div>
+  </div>
 );
 
 const Eyebrow = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
   <div
-    className="rc-fadeup"
+    className="ace-fadeup"
     style={{
       display: 'inline-flex',
       alignItems: 'center',
@@ -97,25 +192,15 @@ const Eyebrow = ({ children, delay = 0 }: { children: React.ReactNode; delay?: n
       borderRadius: 999,
       border: `1px solid ${palette.border}`,
       background: palette.surface,
-      fontSize: 22,
-      letterSpacing: '0.18em',
+      fontSize: 21,
+      letterSpacing: '0.16em',
       textTransform: 'uppercase',
       color: palette.muted,
+      boxShadow: '0 2px 10px rgba(0, 0, 0, 0.04)',
       animationDelay: `${delay}ms`,
     }}
   >
-    <svg
-      width={32}
-      height={32}
-      viewBox="0 0 32 32"
-      style={{ display: 'block', flexShrink: 0, marginLeft: -8, marginRight: -4 }}
-      aria-hidden="true"
-    >
-      <circle cx={16} cy={16} r={14} fill="var(--osd-accent)" opacity={0.12} />
-      <circle cx={16} cy={16} r={10} fill="var(--osd-accent)" opacity={0.22} />
-      <circle cx={16} cy={16} r={6} fill="var(--osd-accent)" opacity={0.45} />
-      <circle cx={16} cy={16} r={4} fill="var(--osd-accent)" />
-    </svg>
+    <span style={{ color: 'var(--osd-accent)', fontSize: 20, lineHeight: 1 }}>♠</span>
     {children}
   </div>
 );
@@ -132,16 +217,16 @@ const Footer = () => {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        fontSize: 22,
+        fontSize: 21,
         color: palette.muted,
         fontFamily: fonts.mono,
         letterSpacing: '0.04em',
       }}
     >
-      <span>raycast.com / developers</span>
+      <span>ACE Club · 社課 Lesson 01 · Raycast API</span>
       <span>
         {String(current).padStart(2, '0')}{' '}
-        <span style={{ opacity: 0.4 }}>/ {String(total).padStart(2, '0')}</span>
+        <span style={{ opacity: 0.45 }}>/ {String(total).padStart(2, '0')}</span>
       </span>
     </div>
   );
@@ -164,7 +249,7 @@ const CommandBar = ({
         right: -100,
         bottom: -140,
         background:
-          'radial-gradient(ellipse 50% 50% at 50% 70%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0) 65%)',
+          'radial-gradient(ellipse 50% 50% at 50% 70%, rgba(46,111,224,0.16) 0%, rgba(46,111,224,0.06) 35%, rgba(46,111,224,0) 65%)',
         pointerEvents: 'none',
       }}
     />
@@ -175,7 +260,7 @@ const CommandBar = ({
         borderRadius: 16,
         background: palette.surface,
         border: `1px solid ${palette.border}`,
-        boxShadow: '0 0 0 1px rgba(255,255,255,0.03) inset',
+        boxShadow: cardShadow,
         overflow: 'hidden',
       }}
     >
@@ -200,7 +285,7 @@ const CommandBar = ({
         <div style={{ fontSize: 24, fontWeight: 500, flex: 1, color: 'var(--osd-text)' }}>
           {query}
           <span
-            className="rc-caret"
+            className="ace-caret"
             style={{
               display: 'inline-block',
               width: 2,
@@ -245,7 +330,7 @@ const CommandBar = ({
         {results.map((r, i) => (
           <div
             key={i}
-            className="rc-fadeup"
+            className="ace-fadeup"
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -312,21 +397,10 @@ const Cover: Page = () => (
       }}
     >
       <div>
-        <img
-          src={raycastIcon}
-          alt="Raycast"
-          className="rc-fadeup"
-          style={{
-            width: 64,
-            height: 64,
-            display: 'block',
-            marginBottom: 28,
-            filter: `drop-shadow(0 0 28px var(--osd-accent))`,
-          }}
-        />
+        <BrandLockup />
         <Eyebrow delay={80}>Developer Platform</Eyebrow>
         <h1
-          className="rc-fadeup"
+          className="ace-fadeup"
           style={{
             fontSize: 'var(--osd-size-hero)',
             fontWeight: 800,
@@ -341,7 +415,7 @@ const Cover: Page = () => (
           <span style={{ color: 'var(--osd-accent)' }}>Developer API</span>
         </h1>
         <p
-          className="rc-fadeup"
+          className="ace-fadeup"
           style={{
             fontSize: 'var(--osd-size-body)',
             color: palette.muted,
@@ -355,7 +429,7 @@ const Cover: Page = () => (
         </p>
       </div>
       <div
-        className="rc-fade"
+        className="ace-fade"
         style={{ animationDelay: '300ms', display: 'flex', justifyContent: 'flex-end' }}
       >
         <CommandBar
@@ -384,7 +458,7 @@ const Pitch: Page = () => (
     <div style={{ padding: '180px 160px 0' }}>
       <Eyebrow>What is it</Eyebrow>
       <h2
-        className="rc-fadeup"
+        className="ace-fadeup"
         style={{
           fontSize: 84,
           fontWeight: 800,
@@ -407,7 +481,7 @@ const Pitch: Page = () => (
         ].map((s, i) => (
           <div
             key={s.label}
-            className="rc-fadeup"
+            className="ace-fadeup"
             style={{
               flex: 1,
               padding: 32,
@@ -443,7 +517,7 @@ const Stack: Page = () => (
     <div style={{ padding: '180px 160px 0' }}>
       <Eyebrow>The stack</Eyebrow>
       <h2
-        className="rc-fadeup"
+        className="ace-fadeup"
         style={{
           fontSize: 84,
           fontWeight: 800,
@@ -475,7 +549,7 @@ const Stack: Page = () => (
         ].map((t, i) => (
           <div
             key={t.name}
-            className="rc-fadeup"
+            className="ace-fadeup"
             style={{
               flex: 1,
               padding: 36,
@@ -523,7 +597,7 @@ const UIPrimitives: Page = () => {
       <div style={{ padding: '160px 160px 0' }}>
         <Eyebrow>UI primitives</Eyebrow>
         <h2
-          className="rc-fadeup"
+          className="ace-fadeup"
           style={{
             fontSize: 80,
             fontWeight: 800,
@@ -539,7 +613,7 @@ const UIPrimitives: Page = () => {
           {items.map((it, i) => (
             <div
               key={it.name}
-              className="rc-fadeup"
+              className="ace-fadeup"
               style={{
                 padding: '36px 40px',
                 borderRadius: 16,
@@ -593,7 +667,7 @@ const ActionPanel: Page = () => (
       <div>
         <Eyebrow>Keyboard-first</Eyebrow>
         <h2
-          className="rc-fadeup"
+          className="ace-fadeup"
           style={{
             fontSize: 76,
             fontWeight: 800,
@@ -608,7 +682,7 @@ const ActionPanel: Page = () => (
           <span style={{ color: 'var(--osd-accent)' }}>every action,</span> a shortcut.
         </h2>
         <p
-          className="rc-fadeup"
+          className="ace-fadeup"
           style={{
             fontSize: 'var(--osd-size-body)',
             color: palette.muted,
@@ -621,7 +695,7 @@ const ActionPanel: Page = () => (
           your extension feels native to Raycast.
         </p>
       </div>
-      <div className="rc-fade" style={{ animationDelay: '300ms', position: 'relative' }}>
+      <div className="ace-fade" style={{ animationDelay: '300ms', position: 'relative' }}>
         <div
           aria-hidden="true"
           style={{
@@ -631,7 +705,7 @@ const ActionPanel: Page = () => (
             right: -80,
             bottom: -110,
             background:
-              'radial-gradient(ellipse 50% 50% at 50% 70%, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.22) 35%, rgba(0,0,0,0) 65%)',
+              'radial-gradient(ellipse 50% 50% at 50% 70%, rgba(46,111,224,0.14) 0%, rgba(46,111,224,0.05) 35%, rgba(46,111,224,0) 65%)',
             pointerEvents: 'none',
           }}
         />
@@ -664,7 +738,7 @@ const ActionPanel: Page = () => (
           ].map((a, i) => (
             <div
               key={a.name}
-              className="rc-fadeup"
+              className="ace-fadeup"
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -720,7 +794,7 @@ const AIApi: Page = () => (
     <div style={{ padding: '160px 160px 0' }}>
       <Eyebrow>AI API</Eyebrow>
       <h2
-        className="rc-fadeup"
+        className="ace-fadeup"
         style={{
           fontSize: 84,
           fontWeight: 800,
@@ -738,7 +812,7 @@ const AIApi: Page = () => (
         style={{ display: 'grid', gridTemplateColumns: '1.15fr 1fr', gap: 40, alignItems: 'start' }}
       >
         <div
-          className="rc-fadeup"
+          className="ace-fadeup"
           style={{
             background: palette.surface,
             border: `1px solid ${palette.border}`,
@@ -752,15 +826,15 @@ const AIApi: Page = () => (
         >
           <div style={{ color: palette.muted }}>{'// import { AI } from "@raycast/api"'}</div>
           <div style={{ marginTop: 8 }}>
-            <span style={{ color: '#C792EA' }}>const</span> answer ={' '}
-            <span style={{ color: '#C792EA' }}>await</span> AI.
+            <span style={{ color: '#AD3DA4' }}>const</span> answer ={' '}
+            <span style={{ color: '#AD3DA4' }}>await</span> AI.
             <span style={{ color: 'var(--osd-accent)' }}>ask</span>(
           </div>
-          <div style={{ paddingLeft: 28, color: '#A5E844' }}>"Summarize my selected text",</div>
+          <div style={{ paddingLeft: 28, color: '#D12F1B' }}>"Summarize my selected text",</div>
           <div style={{ paddingLeft: 28 }}>
             {'{ '}
-            <span style={{ color: '#82AAFF' }}>model</span>: AI.Model[
-            <span style={{ color: '#A5E844' }}>"Anthropic_Claude_Sonnet"</span>]{' }'}
+            <span style={{ color: '#3900A0' }}>model</span>: AI.Model[
+            <span style={{ color: '#D12F1B' }}>"Anthropic_Claude_Sonnet"</span>]{' }'}
           </div>
           <div>);</div>
         </div>
@@ -772,7 +846,7 @@ const AIApi: Page = () => (
           ].map((b, i) => (
             <div
               key={b.k}
-              className="rc-fadeup"
+              className="ace-fadeup"
               style={{
                 display: 'flex',
                 alignItems: 'baseline',
@@ -815,7 +889,7 @@ const Platform: Page = () => {
       <div style={{ padding: '160px 160px 0' }}>
         <Eyebrow>Platform APIs</Eyebrow>
         <h2
-          className="rc-fadeup"
+          className="ace-fadeup"
           style={{
             fontSize: 76,
             fontWeight: 800,
@@ -831,7 +905,7 @@ const Platform: Page = () => {
           {apis.map((a, i) => (
             <div
               key={a.name}
-              className="rc-fadeup"
+              className="ace-fadeup"
               style={{
                 padding: 28,
                 borderRadius: 'var(--osd-radius)',
@@ -878,7 +952,7 @@ const DX: Page = () => (
     <div style={{ padding: '180px 160px 0' }}>
       <Eyebrow>Developer experience</Eyebrow>
       <h2
-        className="rc-fadeup"
+        className="ace-fadeup"
         style={{
           fontSize: 84,
           fontWeight: 800,
@@ -907,7 +981,7 @@ const DX: Page = () => (
         ].map((d, i) => (
           <div
             key={d.tag}
-            className="rc-fadeup"
+            className="ace-fadeup"
             style={{
               flex: 1,
               padding: 32,
@@ -954,21 +1028,11 @@ const Closing: Page = () => (
         textAlign: 'center',
       }}
     >
-      <img
-        src={raycastIcon}
-        alt="Raycast"
-        className="rc-fadeup"
-        style={{
-          width: 80,
-          height: 80,
-          display: 'block',
-          marginBottom: 32,
-          filter: `drop-shadow(0 0 36px var(--osd-accent))`,
-        }}
-      />
+      <AceMark size={80} />
+      <div style={{ height: 32 }} />
       <Eyebrow delay={80}>Start building</Eyebrow>
       <h1
-        className="rc-fadeup"
+        className="ace-fadeup"
         style={{
           fontSize: 88,
           fontWeight: 800,
@@ -982,7 +1046,7 @@ const Closing: Page = () => (
         <span style={{ color: 'var(--osd-accent)', fontFamily: fonts.mono }}>@raycast/api</span>
       </h1>
       <p
-        className="rc-fadeup"
+        className="ace-fadeup"
         style={{
           fontSize: 'var(--osd-size-body)',
           color: palette.muted,
