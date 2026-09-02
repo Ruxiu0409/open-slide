@@ -1,4 +1,6 @@
 import { type DesignSystem, type Page, type SlideMeta, useSlidePageNumber } from '@open-slide/core';
+import focusLoop from './assets/focusloop.png';
+import focusLoopScreens from './assets/focusloop-screens.png';
 import life01 from './assets/life-01.jpg';
 import life02 from './assets/life-02.jpg';
 import life04 from './assets/life-04.jpg';
@@ -450,13 +452,7 @@ const Cover: Page = () => (
           />
           <LauncherRow icon="🧊" title="破冰" sub="Icebreaker — 先認識彼此" delay={690} />
           <LauncherRow icon="📖" title="聽幾個故事" sub="Stories worth telling" delay={780} />
-          <LauncherRow
-            icon="💬"
-            title="聊聊你想做什麼"
-            sub="What do you want to build"
-            delay={870}
-          />
-          <LauncherRow icon="📅" title="這學期怎麼跑" sub="What this term looks like" delay={960} />
+          <LauncherRow icon="📅" title="這學期怎麼跑" sub="What this term looks like" delay={870} />
         </Launcher>
       </div>
     </div>
@@ -818,13 +814,19 @@ const PillarCard = ({
       >
         {tag}
       </div>
-      <div style={{ fontSize: 34, fontWeight: 700, marginTop: 12 }}>
-        {name}{' '}
-        <span style={{ fontSize: 19, fontWeight: 500, color: palette.muted, marginLeft: 4 }}>
-          {nameEn}
-        </span>
+      <div
+        style={{
+          fontSize: 56,
+          fontWeight: 800,
+          marginTop: 10,
+          lineHeight: 1.05,
+          letterSpacing: '-0.02em',
+        }}
+      >
+        {name}
       </div>
-      <div style={{ fontSize: 20, marginTop: 12, lineHeight: 1.5, color: palette.muted }}>
+      <div style={{ fontSize: 22, color: palette.muted, marginTop: 8 }}>{nameEn}</div>
+      <div style={{ fontSize: 19, marginTop: 16, lineHeight: 1.5, color: palette.muted }}>
         {sub}
       </div>
     </div>
@@ -896,17 +898,17 @@ const ClubIntro1: Page = () => (
         <PillarCard
           photo={life02}
           photoAlt="電腦教室裡的社課工作坊"
-          tag="A · AI"
-          name="AI as the tool"
-          nameEn="用 AI"
+          tag="A"
+          name="AI"
+          nameEn="artificial intelligence"
           sub="不用先會寫程式。AI 是我們的工具，不是入場門檻。"
           delay={280}
         />
         <PillarCard
           photo={life01}
           photoAlt="社課帶大家拍片"
-          tag="C · CREATORS"
-          name="Make things"
+          tag="C"
+          name="Creators"
           nameEn="動手創作"
           sub="不只學工具，每堂社課都要親手做出一個東西。"
           delay={380}
@@ -914,8 +916,8 @@ const ClubIntro1: Page = () => (
         <PillarCard
           photo={life04}
           photoAlt="帶著作品去教小朋友動手做"
-          tag="E · EXECUTORS"
-          name="Ship things"
+          tag="E"
+          name="Executors"
           nameEn="落地執行"
           sub="做出來還要用出去。帶到真的人面前，才算完成。"
           delay={480}
@@ -1245,6 +1247,105 @@ const StatCard = ({
   </div>
 );
 
+const StoryFocusLoop: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="80%" y="30%" size={1100} opacity={0.26} />
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 700px',
+        gap: 70,
+        alignItems: 'start',
+        padding: '150px 140px 0',
+      }}
+    >
+      <div>
+        <Eyebrow>FocusLoop · 專注迴圈</Eyebrow>
+        <h2
+          className="ace-fadeup"
+          style={{
+            fontSize: 72,
+            fontWeight: 800,
+            margin: '28px 0 16px',
+            lineHeight: 1.12,
+            letterSpacing: '-0.02em',
+            animationDelay: '120ms',
+          }}
+        >
+          三個大學生，一個 App
+          <br />
+          <span style={gradText}>1,377 件裡的第一名</span>
+        </h2>
+        <p
+          className="ace-fadeup"
+          style={{
+            fontSize: 22,
+            color: palette.muted,
+            lineHeight: 1.55,
+            margin: '0 0 40px',
+            animationDelay: '200ms',
+          }}
+        >
+          逢甲大學資工系的林永富、陳宥蓁、陳瑞昌，也是校內 iOS Club 的社員。他們做的《FocusLoop
+          專注迴圈》用遊戲訓練兒童專注力，再讓 AI 分析訓練數據，家長一眼就看得懂孩子的狀況。2026 年
+          AIGC 創新賽，從 1,377 件作品裡拿下應用賽道一等獎和藍心設計獎。
+        </p>
+        <div style={{ display: 'flex', gap: 20 }}>
+          <StatCard value="1,377" label="初賽作品數" labelEn="Entries in round one" delay={300} />
+          <StatCard value="35" label="進決賽的隊伍" labelEn="Teams in the final" delay={400} />
+          <StatCard value="一等獎" label="應用賽道" labelEn="First prize" delay={500} />
+        </div>
+      </div>
+      <div
+        className="ace-fade"
+        style={{
+          borderRadius: 24,
+          overflow: 'hidden',
+          border: `1px solid ${palette.border}`,
+          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.12)',
+          animationDelay: '240ms',
+        }}
+      >
+        <img src={focusLoop} alt="FocusLoop 專注迴圈" style={{ width: 700, display: 'block' }} />
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
+const StoryFocusLoopScreens: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="50%" size={1500} opacity={0.2} />
+    <div style={{ position: 'absolute', top: 76, left: 320, right: 320 }}>
+      <Eyebrow>FocusLoop · 八種專注力訓練</Eyebrow>
+    </div>
+    <div
+      className="ace-fade"
+      style={{
+        position: 'absolute',
+        top: 190,
+        left: 320,
+        width: 1280,
+        height: 720,
+        borderRadius: 24,
+        overflow: 'hidden',
+        border: `1px solid ${palette.border}`,
+        boxShadow: '0 24px 60px rgba(0, 0, 0, 0.12)',
+        animationDelay: '160ms',
+      }}
+    >
+      <img
+        src={focusLoopScreens}
+        alt="FocusLoop 的八個小遊戲畫面"
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+      />
+    </div>
+    <Footer />
+  </div>
+);
+
 const StoryNick: Page = () => (
   <div style={fill}>
     <Style />
@@ -1504,6 +1605,8 @@ export default [
   GameIntro,
   DividerStories,
   StoryVideo,
+  StoryFocusLoop,
+  StoryFocusLoopScreens,
   StoryNick,
   StoryWWDC,
   QA,
