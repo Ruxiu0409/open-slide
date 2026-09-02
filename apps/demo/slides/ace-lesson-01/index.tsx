@@ -927,7 +927,100 @@ const ClubIntro1: Page = () => (
     <Footer />
   </div>
 );
-const ClubIntro2: Page = () => <Blank />;
+const wishes = [
+  { t: '學到技術', x: '10%', y: '14%', r: -4, size: 25 },
+  { t: '做出作品', x: '28%', y: '9%', r: 3, size: 27 },
+  { t: '增加履歷', x: '48%', y: '15%', r: -2, size: 24 },
+  { t: '出國比賽', x: '68%', y: '9%', r: 4, size: 23 },
+  { t: '比賽拿獎', x: '87%', y: '15%', r: -3, size: 26 },
+  { t: '學習歷程', x: '8%', y: '31%', r: 2, size: 26 },
+  { t: '交到同好', x: '6%', y: '47%', r: -5, size: 23 },
+  { t: '找到方向', x: '9%', y: '63%', r: 3, size: 25 },
+  { t: '用 AI 做東西', x: '87%', y: '33%', r: 4, size: 24 },
+  { t: '做一個 App', x: '89%', y: '49%', r: -4, size: 26 },
+  { t: '被看見', x: '86%', y: '65%', r: 2, size: 23 },
+  { t: '認識朋友', x: '16%', y: '81%', r: -2, size: 27 },
+  { t: '有人一起做', x: '37%', y: '86%', r: 4, size: 24 },
+  { t: '還沒想好', x: '56%', y: '81%', r: -3, size: 25 },
+  { t: '朋友揪的', x: '74%', y: '86%', r: 2, size: 23 },
+  { t: '打發時間', x: '90%', y: '80%', r: -5, size: 22 },
+];
+
+const ClubIntro2: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="52%" size={1500} opacity={0.32} />
+    <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+      {wishes.map((w, i) => (
+        <span
+          key={w.t}
+          className="ace-fadeup"
+          style={{
+            position: 'absolute',
+            left: w.x,
+            top: w.y,
+            transform: `translate(-50%, -50%) rotate(${w.r}deg)`,
+            whiteSpace: 'nowrap',
+            padding: '12px 26px',
+            borderRadius: 999,
+            background: palette.surface,
+            border: `1px solid ${palette.chipBorder}`,
+            fontSize: w.size,
+            color: palette.muted,
+            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.05)',
+            animationDelay: `${340 + i * 55}ms`,
+          }}
+        >
+          {w.t}
+        </span>
+      ))}
+    </div>
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '0 160px',
+        pointerEvents: 'none',
+      }}
+    >
+      <Eyebrow>換你說 · Your turn</Eyebrow>
+      <h1
+        className="ace-fadeup"
+        style={{
+          fontSize: 104,
+          fontWeight: 800,
+          margin: '36px 0 24px',
+          lineHeight: 1.1,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        你想從這裡
+        <br />
+        <span style={gradText}>帶走什麼？</span>
+      </h1>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 26,
+          color: palette.muted,
+          lineHeight: 1.5,
+          margin: 0,
+          animationDelay: '220ms',
+        }}
+      >
+        What do you want to take away from ACE Club?
+      </p>
+    </div>
+    <Footer />
+  </div>
+);
+
 const ClubIntro3: Page = () => <Blank />;
 const ClubIntro4: Page = () => <Blank />;
 
