@@ -1285,7 +1285,7 @@ const StatCard = ({
     className="ace-fadeup"
     style={{
       flex: 1,
-      padding: '30px 34px',
+      padding: '22px 22px 24px',
       borderRadius: 'var(--osd-radius)',
       background: palette.surface,
       border: `1px solid ${palette.border}`,
@@ -1293,23 +1293,25 @@ const StatCard = ({
       animationDelay: `${delay}ms`,
     }}
   >
-    <div style={{ fontSize: 64, fontWeight: 800, lineHeight: 1, ...gradText }}>{value}</div>
-    <div style={{ fontSize: 22, fontWeight: 600, marginTop: 16 }}>{label}</div>
-    <div style={{ fontSize: 17, color: palette.muted, marginTop: 4 }}>{labelEn}</div>
+    <div style={{ fontSize: 42, fontWeight: 800, lineHeight: 1, ...gradText }}>{value}</div>
+    <div style={{ fontSize: 19, fontWeight: 600, marginTop: 12 }}>{label}</div>
+    <div style={{ fontSize: 15, color: palette.muted, marginTop: 3 }}>{labelEn}</div>
   </div>
 );
 
 const StoryFocusLoop: Page = () => (
   <div style={fill}>
     <Style />
-    <Glow x="80%" y="30%" size={1100} opacity={0.26} />
+    <Glow x="78%" y="42%" size={1200} opacity={0.26} />
     <div
       style={{
+        position: 'absolute',
+        inset: 0,
         display: 'grid',
-        gridTemplateColumns: '1fr 700px',
-        gap: 70,
-        alignItems: 'start',
-        padding: '150px 140px 0',
+        gridTemplateColumns: '1fr 980px',
+        gap: 60,
+        alignItems: 'center',
+        padding: '0 120px',
       }}
     >
       <div>
@@ -1317,49 +1319,50 @@ const StoryFocusLoop: Page = () => (
         <h2
           className="ace-fadeup"
           style={{
-            fontSize: 72,
+            fontSize: 60,
             fontWeight: 800,
-            margin: '28px 0 16px',
-            lineHeight: 1.12,
+            margin: '26px 0 14px',
+            lineHeight: 1.14,
             letterSpacing: '-0.02em',
             animationDelay: '120ms',
           }}
         >
-          三個大學生，一個 App
+          三個大學生
+          <br />
+          一個 App
           <br />
           <span style={gradText}>1,377 件裡的第一名</span>
         </h2>
         <p
           className="ace-fadeup"
           style={{
-            fontSize: 22,
+            fontSize: 20,
             color: palette.muted,
-            lineHeight: 1.55,
-            margin: '0 0 40px',
+            lineHeight: 1.6,
+            margin: '0 0 32px',
             animationDelay: '200ms',
           }}
         >
           逢甲大學資工系的林永富、陳宥蓁、陳瑞昌，也是校內 iOS Club 的社員。他們做的《FocusLoop
-          專注迴圈》用遊戲訓練兒童專注力，再讓 AI 分析訓練數據，家長一眼就看得懂孩子的狀況。2026 年
-          AIGC 創新賽，從 1,377 件作品裡拿下應用賽道一等獎和藍心設計獎。
+          專注迴圈》用遊戲訓練兒童專注力，再讓 AI 分析數據，家長一眼看得懂孩子的狀況。
         </p>
-        <div style={{ display: 'flex', gap: 20 }}>
-          <StatCard value="1,377" label="初賽作品數" labelEn="Entries in round one" delay={300} />
-          <StatCard value="35" label="進決賽的隊伍" labelEn="Teams in the final" delay={400} />
+        <div style={{ display: 'flex', gap: 14 }}>
+          <StatCard value="1,377" label="初賽作品" labelEn="Entries" delay={300} />
+          <StatCard value="35" label="進決賽" labelEn="Finalists" delay={400} />
           <StatCard value="一等獎" label="應用賽道" labelEn="First prize" delay={500} />
         </div>
       </div>
       <div
         className="ace-fade"
         style={{
-          borderRadius: 24,
+          borderRadius: 26,
           overflow: 'hidden',
           border: `1px solid ${palette.border}`,
-          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.12)',
+          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.14)',
           animationDelay: '240ms',
         }}
       >
-        <img src={focusLoop} alt="FocusLoop 專注迴圈" style={{ width: 700, display: 'block' }} />
+        <img src={focusLoop} alt="FocusLoop 專注迴圈" style={{ width: 980, display: 'block' }} />
       </div>
     </div>
     <Footer />
