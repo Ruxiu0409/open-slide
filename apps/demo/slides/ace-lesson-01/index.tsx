@@ -1048,14 +1048,35 @@ const game = {
 const GameIntro: Page = () => (
   <div style={fill}>
     <Style />
-    <Glow x="10%" y="70%" size={1200} opacity={0.26} />
+    <img
+      src={oddOneOutPreview}
+      alt="Odd One Out"
+      className="ace-fade"
+      style={{
+        position: 'absolute',
+        inset: 0,
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        display: 'block',
+      }}
+    />
+    <div
+      aria-hidden="true"
+      style={{
+        position: 'absolute',
+        inset: 0,
+        background:
+          'linear-gradient(100deg, rgba(245,245,247,0.96) 0%, rgba(245,245,247,0.9) 46%, rgba(245,245,247,0.5) 64%, rgba(245,245,247,0.12) 82%)',
+      }}
+    />
     <div
       style={{
         position: 'absolute',
         inset: 0,
         display: 'grid',
-        gridTemplateColumns: '1fr 560px',
-        gap: 80,
+        gridTemplateColumns: '1fr 460px',
+        gap: 70,
         alignItems: 'center',
         padding: '0 140px',
       }}
@@ -1065,7 +1086,7 @@ const GameIntro: Page = () => (
         <h2
           className="ace-fadeup"
           style={{
-            fontSize: 76,
+            fontSize: 72,
             fontWeight: 800,
             margin: '28px 0 16px',
             lineHeight: 1.12,
@@ -1080,11 +1101,11 @@ const GameIntro: Page = () => (
         <p
           className="ace-fadeup"
           style={{
-            fontSize: 23,
+            fontSize: 22,
             color: palette.muted,
             lineHeight: 1.55,
-            margin: '0 0 44px',
-            maxWidth: 640,
+            margin: '0 0 36px',
+            maxWidth: 620,
             animationDelay: '200ms',
           }}
         >
@@ -1103,7 +1124,7 @@ const GameIntro: Page = () => (
                 display: 'flex',
                 alignItems: 'baseline',
                 gap: 22,
-                padding: '20px 0',
+                padding: '18px 0',
                 borderTop: i === 0 ? 'none' : `1px solid ${palette.border}`,
                 animationDelay: `${300 + i * 110}ms`,
               }}
@@ -1119,10 +1140,10 @@ const GameIntro: Page = () => (
                 {c.n}
               </span>
               <span>
-                <span style={{ fontSize: 26, fontWeight: 700, display: 'block' }}>{c.t}</span>
+                <span style={{ fontSize: 25, fontWeight: 700, display: 'block' }}>{c.t}</span>
                 <span
                   style={{
-                    fontSize: 20,
+                    fontSize: 19,
                     color: palette.muted,
                     lineHeight: 1.45,
                     display: 'block',
@@ -1139,119 +1160,50 @@ const GameIntro: Page = () => (
       <div
         className="ace-fade"
         style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 20,
+          padding: '28px 28px 32px',
           borderRadius: 26,
-          overflow: 'hidden',
           background: palette.surface,
           border: `1px solid ${palette.border}`,
-          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.12)',
-          animationDelay: '260ms',
+          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.16)',
+          animationDelay: '300ms',
         }}
       >
+        <div style={{ fontSize: 25, fontWeight: 700 }}>掃描開始玩</div>
         <img
-          src={oddOneOutPreview}
-          alt="Odd One Out"
-          style={{ width: 560, height: 300, objectFit: 'cover', display: 'block' }}
+          src={qrOddOneOut}
+          alt="掃描開始玩 Odd One Out"
+          style={{ width: 260, height: 260, display: 'block', borderRadius: 8 }}
         />
-        <div
+        <a
+          href={game.url}
+          target="_blank"
+          rel="noreferrer"
           style={{
-            display: 'flex',
-            flexDirection: 'column',
+            display: 'inline-flex',
             alignItems: 'center',
-            gap: 20,
-            padding: '28px 28px 32px',
+            gap: 12,
+            padding: '15px 28px',
+            borderRadius: 999,
+            backgroundImage: accentGrad,
+            color: '#FFFFFF',
+            fontSize: 21,
+            fontWeight: 700,
+            textDecoration: 'none',
+            boxShadow: '0 10px 30px rgba(46, 111, 224, 0.32)',
           }}
         >
-          <img
-            src={qrOddOneOut}
-            alt="掃描開始玩 Odd One Out"
-            style={{ width: 240, height: 240, display: 'block', borderRadius: 8 }}
-          />
-          <a
-            href={game.url}
-            target="_blank"
-            rel="noreferrer"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 12,
-              padding: '16px 32px',
-              borderRadius: 999,
-              backgroundImage: accentGrad,
-              color: '#FFFFFF',
-              fontSize: 22,
-              fontWeight: 700,
-              textDecoration: 'none',
-              boxShadow: '0 10px 30px rgba(46, 111, 224, 0.32)',
-            }}
-          >
-            在新分頁開始玩
-            <span style={{ fontSize: 19 }}>↗</span>
-          </a>
-        </div>
+          在新分頁開始玩
+          <span style={{ fontSize: 18 }}>↗</span>
+        </a>
       </div>
     </div>
     <Footer />
   </div>
 );
-
-const Closing: Page = () => (
-  <div style={fill}>
-    <Style />
-    <Glow x="50%" y="50%" size={1600} opacity={0.3} />
-    <div
-      style={{
-        position: 'absolute',
-        inset: 0,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '0 160px',
-        textAlign: 'center',
-      }}
-    >
-      <AceMark size={80} />
-      <div style={{ height: 32 }} />
-      <Eyebrow delay={80}>下週見 · See you next week</Eyebrow>
-      <h1
-        className="ace-fadeup"
-        style={{
-          fontSize: 104,
-          fontWeight: 800,
-          margin: '32px 0 0',
-          lineHeight: 1.1,
-          letterSpacing: '-0.02em',
-          ...gradText,
-          animationDelay: '160ms',
-        }}
-      >
-        記得帶電腦
-      </h1>
-      <p
-        className="ace-fadeup"
-        style={{
-          fontSize: 'var(--osd-size-body)',
-          color: palette.muted,
-          maxWidth: 900,
-          marginTop: 28,
-          lineHeight: 1.5,
-          animationDelay: '240ms',
-        }}
-      >
-        下週開始動手做，沒帶電腦只能在旁邊看。
-        <br />
-        Bring your laptop — next week we actually build something.
-      </p>
-    </div>
-    <Footer />
-  </div>
-);
-
-const slido = {
-  code: '3173 378',
-  joinUrl: 'slido.com',
-  embedUrl: 'https://app.sli.do/event/guKaZqkHmn7ipbhLNFn6xR',
-};
 
 const DividerStories: Page = () => (
   <Divider
@@ -1417,30 +1369,21 @@ const StoryFocusLoop: Page = () => (
 const StoryFocusLoopScreens: Page = () => (
   <div style={fill}>
     <Style />
-    <Glow x="50%" y="50%" size={1500} opacity={0.2} />
-    <div style={{ position: 'absolute', top: 76, left: 320, right: 320 }}>
-      <Eyebrow>FocusLoop · 八種專注力訓練</Eyebrow>
-    </div>
-    <div
+    <img
+      src={focusLoopScreens}
+      alt="FocusLoop 的八個小遊戲畫面"
       className="ace-fade"
       style={{
         position: 'absolute',
-        top: 190,
-        left: 320,
-        width: 1280,
-        height: 720,
-        borderRadius: 24,
-        overflow: 'hidden',
-        border: `1px solid ${palette.border}`,
-        boxShadow: '0 24px 60px rgba(0, 0, 0, 0.12)',
-        animationDelay: '160ms',
+        inset: 0,
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        display: 'block',
       }}
-    >
-      <img
-        src={focusLoopScreens}
-        alt="FocusLoop 的八個小遊戲畫面"
-        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-      />
+    />
+    <div style={{ position: 'absolute', top: 76, left: 140 }}>
+      <Eyebrow>FocusLoop · 八種專注力訓練</Eyebrow>
     </div>
     <Footer />
   </div>
@@ -1686,6 +1629,65 @@ const QA: Page = () => (
     <Footer />
   </div>
 );
+
+const Closing: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="50%" size={1600} opacity={0.3} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '0 160px',
+        textAlign: 'center',
+      }}
+    >
+      <AceMark size={80} />
+      <div style={{ height: 32 }} />
+      <Eyebrow delay={80}>下週見 · See you next week</Eyebrow>
+      <h1
+        className="ace-fadeup"
+        style={{
+          fontSize: 104,
+          fontWeight: 800,
+          margin: '32px 0 0',
+          lineHeight: 1.1,
+          letterSpacing: '-0.02em',
+          ...gradText,
+          animationDelay: '160ms',
+        }}
+      >
+        記得帶電腦
+      </h1>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 'var(--osd-size-body)',
+          color: palette.muted,
+          maxWidth: 900,
+          marginTop: 28,
+          lineHeight: 1.5,
+          animationDelay: '240ms',
+        }}
+      >
+        下週開始動手做，沒帶電腦只能在旁邊看。
+        <br />
+        Bring your laptop — next week we actually build something.
+      </p>
+    </div>
+    <Footer />
+  </div>
+);
+
+const slido = {
+  code: '3173 378',
+  joinUrl: 'slido.com',
+  embedUrl: 'https://app.sli.do/event/guKaZqkHmn7ipbhLNFn6xR',
+};
 
 export const meta: SlideMeta = {
   title: '第一堂課',
