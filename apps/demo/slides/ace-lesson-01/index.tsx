@@ -565,7 +565,7 @@ const AboutMe: Page = () => (
           />
         </div>
         <div
-          className="ace-fadeup"
+          className="ace-fade"
           style={{
             position: 'absolute',
             top: -26,
@@ -928,22 +928,22 @@ const ClubIntro1: Page = () => (
   </div>
 );
 const wishes = [
-  { t: '學到技術', x: '10%', y: '14%', r: -4, size: 25 },
-  { t: '做出作品', x: '28%', y: '9%', r: 3, size: 27 },
-  { t: '增加履歷', x: '48%', y: '15%', r: -2, size: 24 },
-  { t: '出國比賽', x: '68%', y: '9%', r: 4, size: 23 },
-  { t: '比賽拿獎', x: '87%', y: '15%', r: -3, size: 26 },
-  { t: '學習歷程', x: '8%', y: '31%', r: 2, size: 26 },
-  { t: '交到同好', x: '6%', y: '47%', r: -5, size: 23 },
-  { t: '找到方向', x: '9%', y: '63%', r: 3, size: 25 },
-  { t: '用 AI 做東西', x: '87%', y: '33%', r: 4, size: 24 },
-  { t: '做一個 App', x: '89%', y: '49%', r: -4, size: 26 },
-  { t: '被看見', x: '86%', y: '65%', r: 2, size: 23 },
-  { t: '認識朋友', x: '16%', y: '81%', r: -2, size: 27 },
-  { t: '有人一起做', x: '37%', y: '86%', r: 4, size: 24 },
-  { t: '還沒想好', x: '56%', y: '81%', r: -3, size: 25 },
-  { t: '朋友揪的', x: '74%', y: '86%', r: 2, size: 23 },
-  { t: '打發時間', x: '90%', y: '80%', r: -5, size: 22 },
+  { t: '學到技術', x: '8%', y: '12%', r: -10, size: 26, o: 1 },
+  { t: '做出作品', x: '25%', y: '21%', r: 7, size: 24, o: 0.9 },
+  { t: '增加履歷', x: '44%', y: '10%', r: -6, size: 28, o: 1 },
+  { t: '出國比賽', x: '62%', y: '20%', r: 12, size: 23, o: 0.88 },
+  { t: '比賽拿獎', x: '82%', y: '11%', r: -9, size: 25, o: 1 },
+  { t: '學習歷程', x: '91%', y: '25%', r: 11, size: 24, o: 0.92 },
+  { t: '交到同好', x: '7%', y: '28%', r: 6, size: 23, o: 0.88 },
+  { t: '找到方向', x: '14%', y: '44%', r: -13, size: 26, o: 1 },
+  { t: '用 AI 做東西', x: '86%', y: '42%', r: 8, size: 25, o: 1 },
+  { t: '做一個 App', x: '10%', y: '60%', r: 10, size: 24, o: 0.9 },
+  { t: '被看見', x: '90%', y: '58%', r: -8, size: 27, o: 1 },
+  { t: '認識朋友', x: '19%', y: '73%', r: 7, size: 25, o: 0.94 },
+  { t: '有人一起做', x: '38%', y: '82%', r: -11, size: 23, o: 0.88 },
+  { t: '還沒想好', x: '57%', y: '75%', r: 9, size: 26, o: 1 },
+  { t: '朋友揪的', x: '76%', y: '83%', r: -7, size: 24, o: 0.9 },
+  { t: '打發時間', x: '89%', y: '72%', r: 14, size: 22, o: 0.86 },
 ];
 
 const ClubIntro2: Page = () => (
@@ -954,24 +954,31 @@ const ClubIntro2: Page = () => (
       {wishes.map((w, i) => (
         <span
           key={w.t}
-          className="ace-fadeup"
           style={{
             position: 'absolute',
             left: w.x,
             top: w.y,
             transform: `translate(-50%, -50%) rotate(${w.r}deg)`,
-            whiteSpace: 'nowrap',
-            padding: '12px 26px',
-            borderRadius: 999,
-            background: palette.surface,
-            border: `1px solid ${palette.chipBorder}`,
-            fontSize: w.size,
-            color: palette.muted,
-            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.05)',
-            animationDelay: `${340 + i * 55}ms`,
+            opacity: w.o,
           }}
         >
-          {w.t}
+          <span
+            className="ace-fadeup"
+            style={{
+              display: 'inline-block',
+              whiteSpace: 'nowrap',
+              padding: '12px 26px',
+              borderRadius: 999,
+              background: palette.surface,
+              border: `1px solid ${palette.chipBorder}`,
+              fontSize: w.size,
+              color: palette.muted,
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.05)',
+              animationDelay: `${340 + i * 55}ms`,
+            }}
+          >
+            {w.t}
+          </span>
         </span>
       ))}
     </div>
