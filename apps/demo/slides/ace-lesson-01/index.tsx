@@ -1,7 +1,7 @@
 import { type DesignSystem, type Page, type SlideMeta, useSlidePageNumber } from '@open-slide/core';
 import claudeIcon from './assets/claude-ai-icon.svg';
 import codexIcon from './assets/codex_light.svg';
-import cursorLogo from './assets/cursor.svg';
+import cursorLogo from './assets/cursor_light.svg';
 import focusLoop from './assets/focusloop.png';
 import focusLoopScreens from './assets/focusloop-screens.png';
 import geminiIcon from './assets/gemini.svg';
@@ -1149,7 +1149,7 @@ const aiTools = [
   },
   {
     icon: cursorLogo,
-    wordmark: true,
+    wordmark: false,
     maker: 'Anysphere',
     name: 'Cursor',
     zh: '內建 AI 的編輯器',
