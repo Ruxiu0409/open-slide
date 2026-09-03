@@ -1956,7 +1956,7 @@ export const StoryEarlyGraduationTrip: Page = () => (
 );
 
 export const StoryContestCanBeFun: Page = () => (
-  <PageShell section="Competition mood" accent={palette.lime} showHeader={false}>
+  <PageShell section="Competition mood" accent={'rgba(46, 111, 224, 0.14)'} showHeader={false}>
     <div
       style={{
         flex: 1,
@@ -1971,9 +1971,9 @@ export const StoryContestCanBeFun: Page = () => (
           position: 'absolute',
           inset: '0 0 10px',
           borderRadius: 42,
-          border: `2px solid ${palette.black}`,
+          border: `2px solid ${'#1D1D1F'}`,
           background:
-            'radial-gradient(circle at 12% 16%, rgba(220,238,177,0.9), transparent 30%), radial-gradient(circle at 84% 24%, rgba(197,176,244,0.54), transparent 26%), linear-gradient(135deg, #fffdf4 0%, #eef8d9 46%, #f7e6ed 100%)',
+            'radial-gradient(circle at 12% 16%, rgba(46,111,224,0.10), transparent 30%), radial-gradient(circle at 84% 24%, rgba(46,111,224,0.10), transparent 26%), linear-gradient(135deg, #FFFFFF 0%, #F5F5F7 46%, #F5F5F7 100%)',
           overflow: 'hidden',
           boxShadow: '18px 18px 0 rgba(0,0,0,0.12)',
         }}
@@ -1987,8 +1987,8 @@ export const StoryContestCanBeFun: Page = () => (
             width: 560,
             height: 150,
             borderRadius: 999,
-            background: palette.lime,
-            border: `2px solid ${palette.black}`,
+            background: 'rgba(46, 111, 224, 0.14)',
+            border: `2px solid ${'#1D1D1F'}`,
             transform: 'rotate(-8deg)',
           }}
         />
@@ -2001,7 +2001,7 @@ export const StoryContestCanBeFun: Page = () => (
             width: 300,
             height: 300,
             borderRadius: '50%',
-            background: palette.primary,
+            background: 'var(--osd-accent)',
             opacity: 0.9,
           }}
         />
@@ -2017,11 +2017,11 @@ export const StoryContestCanBeFun: Page = () => (
             height: 470,
             margin: 0,
             borderRadius: 34,
-            border: `2px solid ${palette.black}`,
+            border: `2px solid ${'#1D1D1F'}`,
             overflow: 'hidden',
             background: '#fff',
             transform: 'rotate(2deg)',
-            boxShadow: '18px 18px 0 rgba(255,61,139,0.22)',
+            boxShadow: '18px 18px 0 rgba(46,111,224,0.24)',
             zIndex: 1,
           }}
         >
@@ -2049,7 +2049,7 @@ export const StoryContestCanBeFun: Page = () => (
             height: 252,
             margin: 0,
             borderRadius: 30,
-            border: `2px solid ${palette.black}`,
+            border: `2px solid ${'#1D1D1F'}`,
             overflow: 'hidden',
             background: '#fff',
             transform: 'rotate(-2.5deg)',
@@ -2081,11 +2081,11 @@ export const StoryContestCanBeFun: Page = () => (
             height: 132,
             margin: 0,
             borderRadius: 30,
-            border: `2px solid ${palette.black}`,
+            border: `2px solid ${'#1D1D1F'}`,
             overflow: 'hidden',
             background: '#fff',
             transform: 'rotate(8deg)',
-            boxShadow: '12px 12px 0 rgba(197,176,244,0.42)',
+            boxShadow: '12px 12px 0 rgba(46,111,224,0.08)',
             zIndex: 4,
           }}
         >
@@ -2106,7 +2106,7 @@ export const StoryContestCanBeFun: Page = () => (
               left: 14,
               bottom: 14,
               borderRadius: 999,
-              background: palette.black,
+              background: '#1D1D1F',
               color: '#fff',
               padding: '7px 10px',
               fontSize: 14,
@@ -2134,9 +2134,9 @@ export const StoryContestCanBeFun: Page = () => (
               alignItems: 'center',
               gap: 12,
               borderRadius: 999,
-              border: `2px solid ${palette.black}`,
+              border: `2px solid ${'#1D1D1F'}`,
               background: '#fff',
-              color: palette.primary,
+              color: 'var(--osd-accent)',
               fontFamily: '"SF Mono", "Figma Mono", ui-monospace, monospace',
               fontSize: 18,
               lineHeight: 1,
@@ -2149,14 +2149,19 @@ export const StoryContestCanBeFun: Page = () => (
             }}
           >
             <span
-              style={{ width: 10, height: 10, borderRadius: '50%', background: palette.lime }}
+              style={{
+                width: 10,
+                height: 10,
+                borderRadius: '50%',
+                background: 'rgba(46, 111, 224, 0.14)',
+              }}
             />
             loosen up
           </div>
           <h1
             style={{
               fontFamily: 'var(--osd-font-display)',
-              color: palette.black,
+              color: '#1D1D1F',
               fontSize: 96,
               lineHeight: 1.03,
               letterSpacing: -1.2,
@@ -2181,16 +2186,16 @@ export const StoryContestCanBeFun: Page = () => (
             bottom: 76,
             width: 560,
             borderRadius: 28,
-            border: `2px solid ${palette.black}`,
-            background: palette.black,
+            border: `2px solid ${'#1D1D1F'}`,
+            background: '#1D1D1F',
             color: '#fff',
             padding: '28px 32px',
-            boxShadow: '12px 12px 0 rgba(220,238,177,0.36)',
+            boxShadow: '12px 12px 0 rgba(46,111,224,0.06)',
           }}
         >
           <div
             style={{
-              color: palette.lime,
+              color: 'rgba(46, 111, 224, 0.14)',
               fontSize: 20,
               fontWeight: 950,
               letterSpacing: '0.08em',
@@ -2203,7 +2208,7 @@ export const StoryContestCanBeFun: Page = () => (
             <div>
               <div
                 style={{
-                  color: palette.lime,
+                  color: 'rgba(46, 111, 224, 0.14)',
                   fontSize: 22,
                   lineHeight: 1,
                   fontWeight: 900,
@@ -2219,7 +2224,7 @@ export const StoryContestCanBeFun: Page = () => (
             <div>
               <div
                 style={{
-                  color: palette.lime,
+                  color: 'rgba(46, 111, 224, 0.14)',
                   fontSize: 22,
                   lineHeight: 1,
                   fontWeight: 900,
@@ -2236,9 +2241,9 @@ export const StoryContestCanBeFun: Page = () => (
         </div>
 
         {[
-          { text: '不是考試', left: 404, top: 240, color: palette.lime },
-          { text: '不是上戰場', left: 486, top: 322, color: palette.lilac },
-          { text: '是跟一群人一起完成一件事', left: 330, top: 404, color: palette.primary },
+          { text: '不是考試', left: 404, top: 240, color: 'rgba(46, 111, 224, 0.14)' },
+          { text: '不是上戰場', left: 486, top: 322, color: 'rgba(46, 111, 224, 0.08)' },
+          { text: '是跟一群人一起完成一件事', left: 330, top: 404, color: 'var(--osd-accent)' },
         ].map(({ text, left, top, color }, i) => (
           <div
             key={text}
@@ -2249,9 +2254,9 @@ export const StoryContestCanBeFun: Page = () => (
               left,
               top,
               borderRadius: 999,
-              border: `2px solid ${palette.black}`,
+              border: `2px solid ${'#1D1D1F'}`,
               background: color,
-              color: i === 2 ? '#fff' : palette.black,
+              color: i === 2 ? '#fff' : '#1D1D1F',
               padding: '14px 20px',
               fontSize: i === 2 ? 21 : 24,
               lineHeight: 1,
@@ -2641,7 +2646,7 @@ export const StoryHalfFcuTopia: Page = () => (
               }}
             >
               <div style={{ fontSize: 30, lineHeight: 1.28, fontWeight: 880 }}>
-                這頁可以講：我開始把「社團服務」變成「真的有人使用的工具」。
+                我開始把「社團服務」變成「真的有人使用的工具」。
               </div>
             </div>
           </div>
@@ -2940,7 +2945,7 @@ export const StoryHungryAfterAward: Page = () => (
 );
 
 export const StoryClosingDream: Page = () => (
-  <PageShell section="Closing" accent={palette.primary} showHeader={false}>
+  <PageShell section="Closing" accent={'var(--osd-accent)'} showHeader={false}>
     <div
       style={{
         flex: 1,
@@ -2955,9 +2960,9 @@ export const StoryClosingDream: Page = () => (
           position: 'absolute',
           inset: '0 0 10px',
           borderRadius: 42,
-          border: `2px solid ${palette.black}`,
+          border: `2px solid ${'#1D1D1F'}`,
           background:
-            'linear-gradient(90deg, rgba(0,0,0,0.055) 1px, transparent 1px), linear-gradient(0deg, rgba(0,0,0,0.045) 1px, transparent 1px), linear-gradient(135deg, #fffdf6 0%, #f6f0ff 52%, #f0ffd2 100%)',
+            'linear-gradient(90deg, rgba(0,0,0,0.055) 1px, transparent 1px), linear-gradient(0deg, rgba(0,0,0,0.045) 1px, transparent 1px), linear-gradient(135deg, #FFFFFF 0%, #F5F5F7 52%, #F5F5F7 100%)',
           backgroundSize: '52px 52px, 52px 52px, 100% 100%',
           overflow: 'hidden',
           boxShadow: '18px 18px 0 rgba(0,0,0,0.12)',
@@ -2972,8 +2977,8 @@ export const StoryClosingDream: Page = () => (
             width: 410,
             height: 410,
             borderRadius: '50%',
-            background: palette.primary,
-            border: `2px solid ${palette.black}`,
+            background: 'var(--osd-accent)',
+            border: `2px solid ${'#1D1D1F'}`,
           }}
         />
         <div
@@ -2985,8 +2990,8 @@ export const StoryClosingDream: Page = () => (
             width: 430,
             height: 430,
             borderRadius: '50%',
-            background: palette.lime,
-            border: `2px solid ${palette.black}`,
+            background: 'rgba(46, 111, 224, 0.14)',
+            border: `2px solid ${'#1D1D1F'}`,
           }}
         />
         <div
@@ -2998,8 +3003,8 @@ export const StoryClosingDream: Page = () => (
             width: 240,
             height: 240,
             borderRadius: '50%',
-            background: palette.lilac,
-            border: `2px solid ${palette.black}`,
+            background: 'rgba(46, 111, 224, 0.08)',
+            border: `2px solid ${'#1D1D1F'}`,
             transform: 'rotate(8deg)',
           }}
         />
@@ -3021,9 +3026,9 @@ export const StoryClosingDream: Page = () => (
               alignItems: 'center',
               gap: 12,
               borderRadius: 999,
-              border: `2px solid ${palette.black}`,
-              background: palette.black,
-              color: palette.lime,
+              border: `2px solid ${'#1D1D1F'}`,
+              background: '#1D1D1F',
+              color: 'rgba(46, 111, 224, 0.14)',
               fontFamily: '"SF Mono", "Figma Mono", ui-monospace, monospace',
               fontSize: 18,
               lineHeight: 1,
@@ -3032,18 +3037,23 @@ export const StoryClosingDream: Page = () => (
               textTransform: 'uppercase',
               padding: '14px 18px',
               marginBottom: 34,
-              boxShadow: '7px 7px 0 rgba(255,61,139,0.22)',
+              boxShadow: '7px 7px 0 rgba(46,111,224,0.24)',
             }}
           >
             <span
-              style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }}
+              style={{
+                width: 10,
+                height: 10,
+                borderRadius: '50%',
+                background: 'var(--osd-accent)',
+              }}
             />
             back to the first question
           </div>
           <h1
             style={{
               fontFamily: 'var(--osd-font-display)',
-              color: palette.black,
+              color: '#1D1D1F',
               fontSize: 92,
               lineHeight: 1.01,
               letterSpacing: -1.7,
@@ -3068,7 +3078,7 @@ export const StoryClosingDream: Page = () => (
             width: 760,
             zIndex: 4,
             borderRadius: 34,
-            border: `2px solid ${palette.black}`,
+            border: `2px solid ${'#1D1D1F'}`,
             background: '#fff',
             padding: '32px 36px',
             boxShadow: '12px 12px 0 rgba(0,0,0,0.12)',
@@ -3076,7 +3086,7 @@ export const StoryClosingDream: Page = () => (
         >
           <div
             style={{
-              color: palette.primary,
+              color: 'var(--osd-accent)',
               fontSize: 20,
               lineHeight: 1,
               fontWeight: 950,
@@ -3086,7 +3096,7 @@ export const StoryClosingDream: Page = () => (
           >
             WHAT I WANT TO LEAVE WITH YOU
           </div>
-          <div style={{ color: palette.black, fontSize: 37, lineHeight: 1.32, fontWeight: 850 }}>
+          <div style={{ color: '#1D1D1F', fontSize: 37, lineHeight: 1.32, fontWeight: 850 }}>
             如果現在還不知道自己要去哪裡，也沒關係。先把眼前的機會接住，先讓自己進到現場，經驗會慢慢把方向推近。
           </div>
         </div>
@@ -3105,9 +3115,9 @@ export const StoryClosingDream: Page = () => (
           }}
         >
           {[
-            ['01', '先參與', palette.lime],
-            ['02', '先累積', palette.cream],
-            ['03', '再回答', palette.pink],
+            ['01', '先參與', 'rgba(46, 111, 224, 0.14)'],
+            ['02', '先累積', '#F5F5F7'],
+            ['03', '再回答', 'rgba(46, 111, 224, 0.06)'],
           ].map(([num, label, color], index) => (
             <div
               key={num}
@@ -3115,9 +3125,9 @@ export const StoryClosingDream: Page = () => (
               style={{
                 animationDelay: `${380 + index * 80}ms`,
                 borderRadius: 26,
-                border: `2px solid ${palette.black}`,
+                border: `2px solid ${'#1D1D1F'}`,
                 background: color,
-                color: palette.black,
+                color: '#1D1D1F',
                 padding: '22px 26px',
                 boxShadow: '7px 7px 0 rgba(0,0,0,0.12)',
                 transform: `rotate(${[-2, 1, -1][index]}deg)`,
@@ -3131,7 +3141,7 @@ export const StoryClosingDream: Page = () => (
                   width: 44,
                   height: 44,
                   borderRadius: '50%',
-                  border: `2px solid ${palette.black}`,
+                  border: `2px solid ${'#1D1D1F'}`,
                   background: '#fff',
                   display: 'grid',
                   placeItems: 'center',
@@ -3156,8 +3166,8 @@ export const StoryClosingDream: Page = () => (
             top: 74,
             zIndex: 4,
             borderRadius: 28,
-            border: `2px solid ${palette.black}`,
-            background: palette.black,
+            border: `2px solid ${'#1D1D1F'}`,
+            background: '#1D1D1F',
             color: '#fff',
             padding: '20px 26px',
             fontSize: 31,
