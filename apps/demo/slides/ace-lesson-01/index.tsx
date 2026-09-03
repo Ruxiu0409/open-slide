@@ -2705,7 +2705,6 @@ export default [
   StoryAbroadWithFriends,
   StoryEarlyGraduationTrip,
   StoryContestCanBeFun,
-  StoryHalfFcuTopia,
   StoryClosingDream,
   ClubIntro1,
   ClubIntro2,
@@ -2737,6 +2736,7 @@ export default [
   StoryFocusLoopScreens,
   StoryNick,
   StoryWWDC,
+  StoryHalfFcuTopia,
   QA,
   Closing,
 ] satisfies Page[];
