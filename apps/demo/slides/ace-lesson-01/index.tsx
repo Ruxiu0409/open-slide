@@ -478,9 +478,16 @@ const Cover: Page = () => (
             active
             delay={600}
           />
-          <LauncherRow icon="🧊" title="破冰" sub="Icebreaker — 先認識彼此" delay={690} />
-          <LauncherRow icon="📖" title="聽幾個故事" sub="Stories worth telling" delay={780} />
-          <LauncherRow icon="📅" title="這學期怎麼跑" sub="What this term looks like" delay={870} />
+          <LauncherRow icon="📖" title="我的故事" sub="How I got here" delay={690} />
+          <LauncherRow icon="♠" title="社團介紹" sub="What ACE Club is" delay={780} />
+          <LauncherRow
+            icon="🤖"
+            title="AI 工具與課程導讀"
+            sub="Tools and the term ahead"
+            delay={870}
+          />
+          <LauncherRow icon="🧊" title="破冰時間" sub="Icebreaker — 一起玩一場" delay={960} />
+          <LauncherRow icon="💡" title="其他人的故事" sub="Stories worth telling" delay={1050} />
         </Launcher>
       </div>
     </div>
@@ -830,13 +837,6 @@ const PillarCard = ({
         {sub}
       </div>
     </div>
-  </div>
-);
-
-const Blank = () => (
-  <div style={fill}>
-    <Style />
-    <Footer />
   </div>
 );
 
@@ -1237,7 +1237,6 @@ const ClubIntro2: Page = () => (
   />
 );
 
-const ClubIntro3: Page = () => <Blank />;
 const heardTools: Scatter[] = [
   { t: 'ChatGPT', x: '9%', y: '11%', r: -9, size: 28, o: 1 },
   { t: 'Gemini', x: '26%', y: '19%', r: 7, size: 25, o: 0.9 },
@@ -1282,9 +1281,9 @@ const usedTools: Scatter[] = [
 const ClubIntro5: Page = () => (
   <ScatterQuestion
     eyebrow="再問一次 · Be honest"
-    line1="哪些你真的"
-    line2="打開來用過？"
-    sub="And which of them have you actually used?"
+    line1="這些工具"
+    line2="你都用來做什麼？"
+    sub="And what do you actually use them for?"
     chips={usedTools}
   />
 );
@@ -1459,7 +1458,7 @@ const ToolPage = ({ tool }: { tool: (typeof aiTools)[number] }) => (
           className="ace-fadeup"
           style={{
             display: 'inline-block',
-            padding: '22px 28px 24px',
+            padding: '30px 38px 34px',
             borderRadius: 'var(--osd-radius)',
             background: palette.surface,
             border: `1px solid ${palette.border}`,
@@ -1470,19 +1469,19 @@ const ToolPage = ({ tool }: { tool: (typeof aiTools)[number] }) => (
           <div
             style={{
               fontFamily: fonts.mono,
-              fontSize: 15,
+              fontSize: 17,
               letterSpacing: '0.12em',
               color: 'var(--osd-accent)',
             }}
           >
             誰做的 · WHO BUILDS IT
           </div>
-          <div style={{ fontSize: 28, fontWeight: 700, marginTop: 10 }}>{tool.org}</div>
-          <div style={{ fontSize: 17, color: palette.muted, marginTop: 4 }}>{tool.orgNote}</div>
+          <div style={{ fontSize: 36, fontWeight: 700, marginTop: 12 }}>{tool.org}</div>
+          <div style={{ fontSize: 20, color: palette.muted, marginTop: 6 }}>{tool.orgNote}</div>
           <div
             style={{
-              marginTop: 16,
-              paddingTop: 16,
+              marginTop: 20,
+              paddingTop: 20,
               borderTop: `1px solid ${palette.border}`,
               display: 'flex',
               flexDirection: 'column',
@@ -1491,8 +1490,8 @@ const ToolPage = ({ tool }: { tool: (typeof aiTools)[number] }) => (
           >
             {tool.people.map((pr) => (
               <div key={pr.n} style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
-                <span style={{ fontSize: 22, fontWeight: 600 }}>{pr.n}</span>
-                <span style={{ fontSize: 17, color: palette.muted }}>{pr.r}</span>
+                <span style={{ fontSize: 27, fontWeight: 600 }}>{pr.n}</span>
+                <span style={{ fontSize: 20, color: palette.muted }}>{pr.r}</span>
               </div>
             ))}
           </div>
@@ -2102,7 +2101,7 @@ const Icebreak4: Page = () => (
       <h2
         className="ace-fadeup"
         style={{
-          fontSize: 64,
+          fontSize: 72,
           fontWeight: 800,
           margin: '26px 0 20px',
           lineHeight: 1.12,
@@ -2115,7 +2114,7 @@ const Icebreak4: Page = () => (
       <p
         className="ace-fadeup"
         style={{
-          fontSize: 23,
+          fontSize: 26,
           color: palette.muted,
           lineHeight: 1.55,
           margin: '0 0 44px',
@@ -2159,7 +2158,7 @@ const Icebreak4: Page = () => (
             <div
               style={{
                 fontFamily: fonts.mono,
-                fontSize: 18,
+                fontSize: 20,
                 letterSpacing: '0.14em',
                 color: 'var(--osd-accent)',
                 marginBottom: 16,
@@ -2167,8 +2166,8 @@ const Icebreak4: Page = () => (
             >
               {c.n}
             </div>
-            <div style={{ fontSize: 32, fontWeight: 700, marginBottom: 14 }}>{c.t}</div>
-            <div style={{ fontSize: 20, color: palette.muted, lineHeight: 1.55 }}>{c.d}</div>
+            <div style={{ fontSize: 36, fontWeight: 700, marginBottom: 14 }}>{c.t}</div>
+            <div style={{ fontSize: 23, color: palette.muted, lineHeight: 1.55 }}>{c.d}</div>
           </div>
         ))}
       </div>
@@ -2500,6 +2499,16 @@ const StoryWWDC: Page = () => (
   </div>
 );
 
+const Blank: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Footer />
+  </div>
+);
+
+const Closing2: Page = () => <Blank />;
+const Closing3: Page = () => <Blank />;
+
 const QA: Page = () => (
   <div style={fill}>
     <Style />
@@ -2708,7 +2717,7 @@ export default [
   StoryClosingDream,
   ClubIntro1,
   ClubIntro2,
-  ClubIntro3,
+  TrainingTargetMembers,
   ClubIntro4,
   ClubIntro5,
   ClubIntro6,
@@ -2717,7 +2726,6 @@ export default [
   ToolGemini,
   ToolCursor,
   ClubIntro8,
-  TrainingTargetMembers,
   TrainingRoadmap,
   TrainingGoals,
   TrainingSwiftStudentChallenge,
@@ -2737,6 +2745,8 @@ export default [
   StoryNick,
   StoryWWDC,
   StoryHalfFcuTopia,
+  Closing2,
+  Closing3,
   QA,
   Closing,
 ] satisfies Page[];

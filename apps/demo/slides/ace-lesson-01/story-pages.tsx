@@ -888,7 +888,15 @@ export const StoryAwardMoment: Page = () => (
             >
               2024 全國電子設計創意競賽
             </div>
-            <div style={{ color: '#fff', fontSize: 46, lineHeight: 1.02, fontWeight: 900 }}>
+            <div
+              style={{
+                color: '#fff',
+                fontSize: 42,
+                lineHeight: 1.02,
+                fontWeight: 900,
+                whiteSpace: 'nowrap',
+              }}
+            >
               智慧大數據及行動 APP 類冠軍
             </div>
           </div>
@@ -1116,7 +1124,7 @@ export const StoryActivityHunt: Page = () => (
             position: 'absolute',
             left: 46,
             top: 86,
-            width: 318,
+            width: 620,
             borderRadius: 28,
             border: `2px solid ${palette.black}`,
             background: palette.cream,
@@ -2195,7 +2203,7 @@ export const StoryContestCanBeFun: Page = () => (
         >
           <div
             style={{
-              color: 'rgba(46, 111, 224, 0.14)',
+              color: '#8FB4F2',
               fontSize: 20,
               fontWeight: 950,
               letterSpacing: '0.08em',
@@ -2208,7 +2216,7 @@ export const StoryContestCanBeFun: Page = () => (
             <div>
               <div
                 style={{
-                  color: 'rgba(46, 111, 224, 0.14)',
+                  color: '#8FB4F2',
                   fontSize: 22,
                   lineHeight: 1,
                   fontWeight: 900,
@@ -2224,7 +2232,7 @@ export const StoryContestCanBeFun: Page = () => (
             <div>
               <div
                 style={{
-                  color: 'rgba(46, 111, 224, 0.14)',
+                  color: '#8FB4F2',
                   fontSize: 22,
                   lineHeight: 1,
                   fontWeight: 900,
@@ -2241,9 +2249,9 @@ export const StoryContestCanBeFun: Page = () => (
         </div>
 
         {[
-          { text: '不是考試', left: 404, top: 240, color: 'rgba(46, 111, 224, 0.14)' },
-          { text: '不是上戰場', left: 486, top: 322, color: 'rgba(46, 111, 224, 0.08)' },
-          { text: '是跟一群人一起完成一件事', left: 330, top: 404, color: 'var(--osd-accent)' },
+          { text: '不是考試', left: 404, top: 178, color: '#C7DAF7' },
+          { text: '不是上戰場', left: 486, top: 260, color: '#E3ECFB' },
+          { text: '是跟一群人一起完成一件事', left: 330, top: 342, color: 'var(--osd-accent)' },
         ].map(({ text, left, top, color }, i) => (
           <div
             key={text}
@@ -2397,9 +2405,9 @@ export const StoryHalfFcuTopia: Page = () => (
                   margin: 0,
                 }}
               >
-                我還開發了
+                我開發了
                 <br />
-                半逢遇甲。
+                半逢遇甲
               </h1>
               <p
                 style={{
@@ -2646,7 +2654,7 @@ export const StoryHalfFcuTopia: Page = () => (
               }}
             >
               <div style={{ fontSize: 30, lineHeight: 1.28, fontWeight: 880 }}>
-                我開始把「社團服務」變成「真的有人使用的工具」。
+                把「社團服務」變成「真的有人使用的工具」。
               </div>
             </div>
           </div>
@@ -3028,7 +3036,7 @@ export const StoryClosingDream: Page = () => (
               borderRadius: 999,
               border: `2px solid ${'#1D1D1F'}`,
               background: '#1D1D1F',
-              color: 'rgba(46, 111, 224, 0.14)',
+              color: '#FFFFFF',
               fontFamily: '"SF Mono", "Figma Mono", ui-monospace, monospace',
               fontSize: 18,
               lineHeight: 1,
@@ -3059,7 +3067,7 @@ export const StoryClosingDream: Page = () => (
               letterSpacing: -1.7,
               fontWeight: 950,
               margin: 0,
-              maxWidth: 1120,
+              maxWidth: 1360,
             }}
           >
             所以，夢想不是一開始就知道。

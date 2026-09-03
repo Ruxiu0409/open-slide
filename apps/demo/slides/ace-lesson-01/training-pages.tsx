@@ -11,6 +11,7 @@ import crestYale from '../ace-training-01/assets/crest-yale.svg';
 import sscKeitaro from '../ace-training-01/assets/ssc-keitaro-kawahara.jpg';
 import sscRuoshan from '../ace-training-01/assets/ssc-ruoshan-li.jpg';
 import swiftLogo from '../ace-training-01/assets/swift.svg';
+import whoWinsBg from './assets/who-wins-bg.jpg';
 
 const palette = {
   bg: '#F5F5F7',
@@ -887,6 +888,24 @@ export const TrainingWhoWins: Page = () => (
   <div style={fill}>
     <Style />
     <Glow x="80%" y="15%" size={1100} opacity={0.24} />
+    <div
+      aria-hidden="true"
+      style={{ position: 'absolute', inset: 0, left: '50%', overflow: 'hidden' }}
+    >
+      <img
+        src={whoWinsBg}
+        alt=""
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background:
+            'linear-gradient(90deg, #F5F5F7 0%, rgba(245,245,247,0.82) 26%, rgba(245,245,247,0.55) 100%)',
+        }}
+      />
+    </div>
     <div style={{ padding: '140px 140px 0' }}>
       <Eyebrow>什麼樣的人會得獎 · Who Wins</Eyebrow>
       <h2
