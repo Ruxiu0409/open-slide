@@ -1,6 +1,6 @@
 import {
-  ImagePlaceholder,
   type DesignSystem,
+  ImagePlaceholder,
   type Page,
   type SlideMeta,
   useSlidePageNumber,
@@ -17,6 +17,8 @@ import contestCanBeFunJudging from './assets/contest-can-be-fun-judging.jpeg';
 import contestCanBeFunTeam from './assets/contest-can-be-fun-team.jpeg';
 import contestCanBeFunTrophy from './assets/contest-can-be-fun-trophy.jpeg';
 import coverPortrait from './assets/cover-portrait.jpeg';
+import crossStraitProcessFlag from './assets/cross-strait-process-flag.jpeg';
+import crossStraitProcessShip from './assets/cross-strait-process-ship.jpeg';
 import highSchoolClubPhoto from './assets/high-school-club.jpeg';
 import maicDiscussionWhiteboard from './assets/maic-discussion-whiteboard.jpeg';
 import maicThirdPrizePhoto from './assets/maic-third-prize.jpeg';
@@ -25,7 +27,6 @@ import awardTeamPhoto from './assets/national-electronic-design-award.jpg';
 import nedcc2025FcuAwards from './assets/nedcc-2025-fcu-awards.jpg';
 import niceeAppIcon from './assets/nicee-app-icon.jpg';
 import realRouteMap from './assets/real-route-map.png';
-import shanghaiLuggagePhoto from './assets/shanghai-luggage.jpeg';
 import shanghaiFunCalligraphy from './assets/shanghai-fun-calligraphy.jpeg';
 import shanghaiFunCityModel from './assets/shanghai-fun-citymodel.jpeg';
 import shanghaiFunDrinks from './assets/shanghai-fun-drinks.jpeg';
@@ -35,16 +36,16 @@ import shanghaiFunYuyuan from './assets/shanghai-fun-yuyuan.jpeg';
 import shanghaiGradTrip01 from './assets/shanghai-grad-trip-01.mp4';
 import shanghaiGradTrip02 from './assets/shanghai-grad-trip-02.mp4';
 import shanghaiGradTrip03 from './assets/shanghai-grad-trip-03.mp4';
-import crossStraitProcessFlag from './assets/cross-strait-process-flag.jpeg';
-import crossStraitProcessShip from './assets/cross-strait-process-ship.jpeg';
-import zhongliClubBeforeCrossStrait from './assets/zhongli-club-before-cross-strait.mp4';
+import shanghaiLuggagePhoto from './assets/shanghai-luggage.jpeg';
 import sportsClassPhoto from './assets/sports-class.jpeg';
 import tcs12Badge from './assets/tcs12-badge.svg';
+import zhongliClubBeforeCrossStrait from './assets/zhongli-club-before-cross-strait.mp4';
 
 export const design: DesignSystem = {
   palette: { bg: '#ffffff', text: '#000000', accent: '#ff3d8b' },
   fonts: {
-    display: '"Figma Sans", "Inter", -apple-system, BlinkMacSystemFont, "Noto Sans TC", system-ui, sans-serif',
+    display:
+      '"Figma Sans", "Inter", -apple-system, BlinkMacSystemFont, "Noto Sans TC", system-ui, sans-serif',
     body: '"Figma Sans", "Inter", -apple-system, BlinkMacSystemFont, "Noto Sans TC", system-ui, sans-serif',
   },
   typeScale: { hero: 128, body: 28 },
@@ -201,7 +202,9 @@ const PageShell = ({
         ) : null}
         {children}
       </div>
-      {showNumber ? <PageNumber accent={pageAccent} muted={isDark ? 'rgba(245,245,247,0.38)' : palette.faint} /> : null}
+      {showNumber ? (
+        <PageNumber accent={pageAccent} muted={isDark ? 'rgba(245,245,247,0.38)' : palette.faint} />
+      ) : null}
     </div>
   );
 };
@@ -255,6 +258,7 @@ const HugeTitle = ({
   const fittedMinSize = minSize ?? Math.max(36, Math.floor(size * 0.45));
   const [fittedSize, setFittedSize] = useState(size);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: children must stay a dependency so the auto-fit remeasures when the title text changes
   useLayoutEffect(() => {
     const frame = frameRef.current;
     const title = titleRef.current;
@@ -366,7 +370,13 @@ const Lead = ({
   </p>
 );
 
-const AccentLine = ({ color = palette.mint, delay = 120 }: { color?: string; delay?: number }) => (
+const AccentLine = ({
+  color: _color = palette.mint,
+  delay = 120,
+}: {
+  color?: string;
+  delay?: number;
+}) => (
   <div
     className="story-line"
     style={{
@@ -405,7 +415,7 @@ const TopBottomLayout = ({
   </div>
 );
 
-const QuoteMark = ({ color }: { color: string }) => (
+const _QuoteMark = ({ color: _color }: { color: string }) => (
   <div
     className="story-fade"
     style={{
@@ -425,7 +435,7 @@ const QuoteMark = ({ color }: { color: string }) => (
 
 const Card = ({
   children,
-  color = palette.mint,
+  color: _color = palette.mint,
   delay = 0,
   minHeight = 210,
   padding = 36,
@@ -454,16 +464,21 @@ const Card = ({
   </div>
 );
 
-const CardTitle = ({ children }: { children: React.ReactNode }) => (
-  <div style={{ color: palette.text, fontSize: 34, fontWeight: 600, marginBottom: 16 }}>{children}</div>
+const _CardTitle = ({ children }: { children: React.ReactNode }) => (
+  <div style={{ color: palette.text, fontSize: 34, fontWeight: 600, marginBottom: 16 }}>
+    {children}
+  </div>
 );
 
-const CardText = ({ children }: { children: React.ReactNode }) => (
+const _CardText = ({ children }: { children: React.ReactNode }) => (
   <div style={{ fontSize: 27, lineHeight: 1.5, color: palette.muted }}>{children}</div>
 );
 
 const ChatDivider = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
-  <div className="story-fadeup" style={{ animationDelay: `${delay}ms`, display: 'flex', justifyContent: 'center' }}>
+  <div
+    className="story-fadeup"
+    style={{ animationDelay: `${delay}ms`, display: 'flex', justifyContent: 'center' }}
+  >
     <div
       style={{
         padding: '10px 18px',
@@ -529,7 +544,9 @@ const ChatBubble = ({
             background: isRight ? palette.black : palette.lilac,
             color: isRight ? '#ffffff' : palette.text,
             border: `1px solid ${palette.black}`,
-            boxShadow: isRight ? '10px 10px 0 rgba(255,61,139,0.3)' : '10px 10px 0 rgba(220,238,177,0.95)',
+            boxShadow: isRight
+              ? '10px 10px 0 rgba(255,61,139,0.3)'
+              : '10px 10px 0 rgba(220,238,177,0.95)',
             fontSize: 30,
             lineHeight: 1.45,
             fontWeight: isRight ? 600 : 500,
@@ -568,18 +585,22 @@ const MiniCard = ({
       minHeight,
     }}
   >
-    <div style={{ color: palette.text, fontSize: titleSize, fontWeight: 700, marginBottom: 12, lineHeight: 1.12 }}>{title}</div>
+    <div
+      style={{
+        color: palette.text,
+        fontSize: titleSize,
+        fontWeight: 700,
+        marginBottom: 12,
+        lineHeight: 1.12,
+      }}
+    >
+      {title}
+    </div>
     <div style={{ fontSize: bodySize, lineHeight: 1.34, color: palette.muted }}>{children}</div>
   </div>
 );
 
-const RouteMap = ({
-  height = 250,
-  delay = 260,
-}: {
-  height?: number | string;
-  delay?: number;
-}) => {
+const RouteMap = ({ height = 250, delay = 260 }: { height?: number | string; delay?: number }) => {
   const routeD =
     'M 594 18 C 540 18 492 20 440 24 C 390 28 344 34 318 54 C 298 70 282 96 260 123 C 232 158 202 196 150 238';
 
@@ -856,8 +877,23 @@ const Cover: Page = () => (
 
 const AboutMe: Page = () => (
   <PageShell section="About me" accent={palette.blue}>
-    <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: 62, alignItems: 'stretch' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 0 }}>
+    <div
+      style={{
+        flex: 1,
+        display: 'grid',
+        gridTemplateColumns: '0.9fr 1.1fr',
+        gap: 62,
+        alignItems: 'stretch',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          minHeight: 0,
+        }}
+      >
         <div
           className="story-fadeup"
           style={{
@@ -874,7 +910,8 @@ const AboutMe: Page = () => (
         </HugeTitle>
         <AccentLine />
         <Lead maxWidth={820}>
-          你也可以叫我瑞瑞或 CY。我是資訊三乙，曾經擔任 iOS Club 9th 社長，現在也持續在社群裡學習、分享和串起更多人。
+          你也可以叫我瑞瑞或 CY。我是資訊三乙，曾經擔任 iOS Club 9th
+          社長，現在也持續在社群裡學習、分享和串起更多人。
         </Lead>
         <div
           className="story-fadeup"
@@ -914,8 +951,12 @@ const AboutMe: Page = () => (
                 paddingTop: 16,
               }}
             >
-              <div style={{ color: palette.text, fontSize: 27, fontWeight: 700, lineHeight: 1.12 }}>{label}</div>
-              <div style={{ marginTop: 8, color: palette.muted, fontSize: 18, fontWeight: 600 }}>{value}</div>
+              <div style={{ color: palette.text, fontSize: 27, fontWeight: 700, lineHeight: 1.12 }}>
+                {label}
+              </div>
+              <div style={{ marginTop: 8, color: palette.muted, fontSize: 18, fontWeight: 600 }}>
+                {value}
+              </div>
             </div>
           ))}
         </div>
@@ -993,7 +1034,8 @@ const Promise: Page = () => (
         </HugeTitle>
         <AccentLine color={palette.coral} />
         <Lead maxWidth={980} size={38} lineHeight={1.4} opacity={0.82}>
-          如果你問以前的我，我其實答不太出來。這 30 分鐘，我想分享的是：我怎麼在一次次嘗試、失敗、被信任和重新站起來的過程裡，慢慢靠近自己的答案。
+          如果你問以前的我，我其實答不太出來。這 30
+          分鐘，我想分享的是：我怎麼在一次次嘗試、失敗、被信任和重新站起來的過程裡，慢慢靠近自己的答案。
         </Lead>
       </div>
 
@@ -1046,17 +1088,61 @@ const Promise: Page = () => (
           </div>
         </div>
 
-        <div style={{ marginTop: 28, paddingBottom: 8, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 22 }}>
+        <div
+          style={{
+            marginTop: 28,
+            paddingBottom: 8,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: 22,
+          }}
+        >
           {[
-            ['01', '一開始沒有答案', '我不是從小就知道自己要成為誰，也不是一開始就很會寫程式。', palette.gold],
-            ['02', '先把機會接住', '有些機會出現時，我其實還沒準備好，但我先答應、先開始做。', palette.coral],
-            ['03', '跌倒後才看清楚', '沒有得獎、沒有入圍、被比較的時候，反而讓我更確定自己想變強。', palette.mint],
-            ['04', '夢想變成方向', '後來我才發現，夢想不是一句漂亮的話，而是我願意一直投入的方向。', palette.blue],
+            [
+              '01',
+              '一開始沒有答案',
+              '我不是從小就知道自己要成為誰，也不是一開始就很會寫程式。',
+              palette.gold,
+            ],
+            [
+              '02',
+              '先把機會接住',
+              '有些機會出現時，我其實還沒準備好，但我先答應、先開始做。',
+              palette.coral,
+            ],
+            [
+              '03',
+              '跌倒後才看清楚',
+              '沒有得獎、沒有入圍、被比較的時候，反而讓我更確定自己想變強。',
+              palette.mint,
+            ],
+            [
+              '04',
+              '夢想變成方向',
+              '後來我才發現，夢想不是一句漂亮的話，而是我願意一直投入的方向。',
+              palette.blue,
+            ],
           ].map(([num, title, text, color], i) => (
-            <Card key={num} color={color} delay={220 + i * 90} minHeight={226} padding="30px 28px 26px">
+            <Card
+              key={num}
+              color={color}
+              delay={220 + i * 90}
+              minHeight={226}
+              padding="30px 28px 26px"
+            >
               <div style={{ fontSize: 21, color, fontWeight: 800 }}>{num}</div>
               <div>
-                <div style={{ color: palette.text, fontSize: 30, fontWeight: 600, marginBottom: 14, lineHeight: 1.18 }}>{title}</div>
+                <div
+                  style={{
+                    color: palette.text,
+                    fontSize: 30,
+                    fontWeight: 600,
+                    marginBottom: 14,
+                    lineHeight: 1.18,
+                  }}
+                >
+                  {title}
+                </div>
                 <div style={{ fontSize: 22, lineHeight: 1.48, color: palette.muted }}>{text}</div>
               </div>
             </Card>
@@ -1069,8 +1155,18 @@ const Promise: Page = () => (
 
 const Roots: Page = () => (
   <PageShell section="My roots" accent={palette.gold}>
-    <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '0.8fr 1.2fr', gap: 56, alignItems: 'stretch' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 0 }}>
+    <div
+      style={{
+        flex: 1,
+        display: 'grid',
+        gridTemplateColumns: '0.8fr 1.2fr',
+        gap: 56,
+        alignItems: 'stretch',
+      }}
+    >
+      <div
+        style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 0 }}
+      >
         <div>
           <div
             className="story-fadeup"
@@ -1083,7 +1179,9 @@ const Roots: Page = () => (
           >
             在介紹以前的我之前
           </div>
-          <HugeTitle size={88} maxWidth={760}>我其實是從體育班開始的。</HugeTitle>
+          <HugeTitle size={88} maxWidth={760}>
+            我其實是從體育班開始的。
+          </HugeTitle>
           <AccentLine color={palette.gold} />
           <Lead maxWidth={660}>
             我想先打破一個想像：我不是從小就很會寫程式，也不是一開始就知道自己要走資訊。我的起點跟大家想像的不太一樣，但改變就是從這種普通又不確定的地方開始。
@@ -1100,7 +1198,9 @@ const Roots: Page = () => (
               paddingLeft: 22,
             }}
           >
-            <div style={{ color: palette.gold, fontSize: 18, fontWeight: 800, marginBottom: 12 }}>真正想說的是</div>
+            <div style={{ color: palette.gold, fontSize: 18, fontWeight: 800, marginBottom: 12 }}>
+              真正想說的是
+            </div>
             <div style={{ fontSize: 33, fontWeight: 650, lineHeight: 1.28 }}>
               改變不一定從很遠的地方開始。
             </div>
@@ -1151,7 +1251,9 @@ const HighSchoolClub: Page = () => (
         >
           高中：台中二中
         </div>
-        <HugeTitle size={76} maxWidth={1460}>高中社團，現代視覺文化同人社。</HugeTitle>
+        <HugeTitle size={76} maxWidth={1460}>
+          高中社團，現代視覺文化同人社。
+        </HugeTitle>
         <AccentLine color={palette.coral} />
         <Lead maxWidth={1460}>
           它叫「現代視覺文化同人社」。不是資訊社、不是競賽隊，也不是看起來會直接變成成果的地方。但那時候的我，就是被創作、視覺文化和同人作品吸引。
@@ -1235,7 +1337,7 @@ const HighSchoolClub: Page = () => (
   </PageShell>
 );
 
-const Before: Page = () => (
+const _Before: Page = () => (
   <PageShell section="Chapter 1" accent={palette.gold}>
     <Split
       left={
@@ -1249,7 +1351,7 @@ const Before: Page = () => (
           }
           bottom={
             <Lead size={38} lineHeight={1.42}>
-            我曾經很在意別人的看法，也常常不知道自己到底擅長什麼。那時候的我，比起答案，更常遇到的是不確定。
+              我曾經很在意別人的看法，也常常不知道自己到底擅長什麼。那時候的我，比起答案，更常遇到的是不確定。
             </Lead>
           }
         />
@@ -1284,13 +1386,15 @@ const BrandBadge = ({
       overflow: 'hidden',
     }}
   >
-    <img src={src} alt={alt} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
+    <img
+      src={src}
+      alt={alt}
+      style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
+    />
   </div>
 );
 
-const FestivalBadge = () => (
-  <BrandBadge src={tcs12Badge} alt="TCS12 活動卡片" radius={22} />
-);
+const FestivalBadge = () => <BrandBadge src={tcs12Badge} alt="TCS12 活動卡片" radius={22} />;
 
 const ModelIcon = () => (
   <svg viewBox="0 0 120 92" width="112" height="86" aria-hidden="true">
@@ -1349,7 +1453,10 @@ const ThreeWords: Page = () => (
         delay={120}
         tags={['活動企劃', '跨組協調', '現場節奏']}
         takeaway="學到：管理團隊跟大型專案，靠的是把人、流程和進度都接住。"
-        lines={['不是只在台下參加，而是真的開始扛起一部分責任。', '我也第一次更完整地學會協調、溝通，和把事情推動下去。']}
+        lines={[
+          '不是只在台下參加，而是真的開始扛起一部分責任。',
+          '我也第一次更完整地學會協調、溝通，和把事情推動下去。',
+        ]}
       />
       <ExperienceQuadrant
         title="陪玩師"
@@ -1376,7 +1483,9 @@ const ThreeWords: Page = () => (
       <ExperienceQuadrant
         title="麥當勞店員"
         count="04"
-        icon={<BrandBadge src={mcdonaldsGoldenArches} alt="McDonald's Golden Arches" padding={10} />}
+        icon={
+          <BrandBadge src={mcdonaldsGoldenArches} alt="McDonald's Golden Arches" padding={10} />
+        }
         subtitle="因為好奇，所以進到很快的工作節奏裡。"
         delay={420}
         tags={['SOP', '速度', '抗壓']}
@@ -1433,7 +1542,9 @@ const ExperienceQuadrant = ({
           height: 58,
         }}
       >
-        <span style={{ color: dark ? '#8ab4ff' : palette.primary, fontSize: 22, fontWeight: 800 }}>{count}</span>
+        <span style={{ color: dark ? '#8ab4ff' : palette.primary, fontSize: 22, fontWeight: 800 }}>
+          {count}
+        </span>
         {icon ? (
           <span
             style={{
@@ -1460,8 +1571,18 @@ const ExperienceQuadrant = ({
       >
         {title}
       </div>
-      <div style={{ marginTop: 12, fontSize: 23, lineHeight: 1.26, opacity: dark ? 0.86 : 0.68 }}>{subtitle}</div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignContent: 'flex-start', gap: 7, marginTop: 12 }}>
+      <div style={{ marginTop: 12, fontSize: 23, lineHeight: 1.26, opacity: dark ? 0.86 : 0.68 }}>
+        {subtitle}
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignContent: 'flex-start',
+          gap: 7,
+          marginTop: 12,
+        }}
+      >
         {tags.map((tag) => (
           <span
             key={tag}
@@ -1571,7 +1692,9 @@ const ExperienceWall: Page = () => (
           textAlign: 'center',
         }}
       >
-        <HugeTitle size={70} maxWidth={1180}>那現在的我，是什麼樣子？</HugeTitle>
+        <HugeTitle size={70} maxWidth={1180}>
+          那現在的我，是什麼樣子？
+        </HugeTitle>
         <p
           className="story-fadeup"
           style={{
@@ -1588,7 +1711,15 @@ const ExperienceWall: Page = () => (
         </p>
       </div>
 
-      <div style={{ flex: 1, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridTemplateRows: 'repeat(2, minmax(0, 1fr))', gap: 20 }}>
+      <div
+        style={{
+          flex: 1,
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateRows: 'repeat(2, minmax(0, 1fr))',
+          gap: 20,
+        }}
+      >
         {experienceStats.map(({ title, count, detail, focus }, i) => (
           <div
             key={title}
@@ -1606,9 +1737,29 @@ const ExperienceWall: Page = () => (
             }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 18 }}>
-                <div style={{ color: palette.text, fontSize: 38, fontWeight: 800, lineHeight: 1.08 }}>{title}</div>
-                <div style={{ color: palette.primary, fontSize: 54, fontWeight: 800, lineHeight: 0.95 }}>{count}</div>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'flex-start',
+                  gap: 18,
+                }}
+              >
+                <div
+                  style={{ color: palette.text, fontSize: 38, fontWeight: 800, lineHeight: 1.08 }}
+                >
+                  {title}
+                </div>
+                <div
+                  style={{
+                    color: palette.primary,
+                    fontSize: 54,
+                    fontWeight: 800,
+                    lineHeight: 0.95,
+                  }}
+                >
+                  {count}
+                </div>
               </div>
               <div style={{ color: palette.muted, fontSize: 27, lineHeight: 1.32 }}>{detail}</div>
             </div>
@@ -1690,7 +1841,14 @@ const FreshmanIntro: Page = () => (
             大一開始講。
           </h1>
         </div>
-        <div style={{ color: 'rgba(255,255,255,0.68)', fontSize: 31, lineHeight: 1.42, fontWeight: 520 }}>
+        <div
+          style={{
+            color: 'rgba(255,255,255,0.68)',
+            fontSize: 31,
+            lineHeight: 1.42,
+            fontWeight: 520,
+          }}
+        >
           現在看到的經歷很多，但它們不是一開始就排好的路線。
         </div>
       </div>
@@ -1739,8 +1897,18 @@ const FreshmanIntro: Page = () => (
         />
 
         <div style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ color: palette.primary, fontSize: 24, fontWeight: 900, marginBottom: 24 }}>為什麼要倒回去？</div>
-          <div style={{ color: palette.black, fontSize: 52, lineHeight: 1.16, fontWeight: 820, maxWidth: 760 }}>
+          <div style={{ color: palette.primary, fontSize: 24, fontWeight: 900, marginBottom: 24 }}>
+            為什麼要倒回去？
+          </div>
+          <div
+            style={{
+              color: palette.black,
+              fontSize: 52,
+              lineHeight: 1.16,
+              fontWeight: 820,
+              maxWidth: 760,
+            }}
+          >
             因為如果只看現在，很容易以為我是一路順順地走到這裡。
           </div>
         </div>
@@ -1796,10 +1964,21 @@ const TurningPoint: Page = () => (
       }}
     >
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <HugeTitle size={150} maxWidth={1580} animationClass="">寒假時，我接到了一通電話。</HugeTitle>
+        <HugeTitle size={150} maxWidth={1580} animationClass="">
+          寒假時，我接到了一通電話。
+        </HugeTitle>
       </div>
 
-      <div style={{ position: 'absolute', left: 0, right: 0, bottom: 24, display: 'flex', justifyContent: 'center' }}>
+      <div
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          bottom: 24,
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
         <p
           style={{
             color: 'currentColor',
@@ -1830,9 +2009,19 @@ const TheCall: Page = () => (
         alignItems: 'stretch',
       }}
     >
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 24, height: '100%' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          gap: 24,
+          height: '100%',
+        }}
+      >
         <div>
-          <HugeTitle size={70} maxWidth={860}>那通電話，其實是我第一次走進比賽。</HugeTitle>
+          <HugeTitle size={70} maxWidth={860}>
+            那通電話，其實是我第一次走進比賽。
+          </HugeTitle>
           <AccentLine color={palette.coral} />
           <Lead maxWidth={620}>
             左邊是楷祐學長，右邊是當時心裡其實超慌的我。機會不是等我準備好才出現，而是先問我願不願意走進去。
@@ -1851,7 +2040,9 @@ const TheCall: Page = () => (
             alignSelf: 'flex-start',
           }}
         >
-          <div style={{ color: palette.muted, fontSize: 19, fontWeight: 750, marginBottom: 14 }}>最後讓我答應的，不是我突然變厲害</div>
+          <div style={{ color: palette.muted, fontSize: 19, fontWeight: 750, marginBottom: 14 }}>
+            最後讓我答應的，不是我突然變厲害
+          </div>
           <div style={{ fontSize: 38, lineHeight: 1.32, fontWeight: 760, letterSpacing: 0 }}>
             而是有人先告訴我：
             <br />
@@ -1866,7 +2057,8 @@ const TheCall: Page = () => (
           animationDelay: '120ms',
           borderRadius: 34,
           border: `1px solid ${palette.line}`,
-          background: 'linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(248,250,252,0.92) 100%)',
+          background:
+            'linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(248,250,252,0.92) 100%)',
           boxShadow: '0 30px 72px rgba(29,29,31,0.08)',
           padding: '22px 24px 28px',
           display: 'flex',
@@ -1885,7 +2077,16 @@ const TheCall: Page = () => (
         >
           <div style={{ display: 'flex', gap: 8 }}>
             {['#ff5f57', '#ffbd2e', '#28c840'].map((color) => (
-              <span key={color} style={{ width: 12, height: 12, borderRadius: '50%', background: color, display: 'block' }} />
+              <span
+                key={color}
+                style={{
+                  width: 12,
+                  height: 12,
+                  borderRadius: '50%',
+                  background: color,
+                  display: 'block',
+                }}
+              />
             ))}
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
@@ -1894,7 +2095,15 @@ const TheCall: Page = () => (
           </div>
         </div>
 
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 18 }}>
+        <div
+          style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            gap: 18,
+          }}
+        >
           <ChatDivider delay={180}>寒假某一天</ChatDivider>
           <ChatBubble side="left" speaker="楷祐學長" delay={250}>
             有沒有興趣一起比賽？
@@ -1950,11 +2159,16 @@ const FirstStep: Page = () => (
             right: 54,
             bottom: 0,
             height: 2,
-            background: 'linear-gradient(90deg, transparent 0%, rgba(255,61,139,0.1) 24%, rgba(255,61,139,0.64) 50%, rgba(197,176,244,0.3) 76%, transparent 100%)',
+            background:
+              'linear-gradient(90deg, transparent 0%, rgba(255,61,139,0.1) 24%, rgba(255,61,139,0.64) 50%, rgba(197,176,244,0.3) 76%, transparent 100%)',
           }}
         />
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 20 }}>
-          <div style={{ color: palette.primary, fontSize: 22, fontWeight: 850 }}>第一步其實很小</div>
+        <div
+          style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 20 }}
+        >
+          <div style={{ color: palette.primary, fontSize: 22, fontWeight: 850 }}>
+            第一步其實很小
+          </div>
           <HugeTitle size={76} maxWidth={820} animationClass="story-fade">
             我以為，我只是去幫忙。
           </HugeTitle>
@@ -1965,8 +2179,18 @@ const FirstStep: Page = () => (
             padding: '8px 0 8px 34px',
           }}
         >
-          <div style={{ color: palette.primary, fontSize: 22, fontWeight: 850, marginBottom: 14 }}>一開始能做的事</div>
-          <div style={{ color: palette.text, fontSize: 45, lineHeight: 1.08, fontWeight: 850, marginBottom: 16 }}>
+          <div style={{ color: palette.primary, fontSize: 22, fontWeight: 850, marginBottom: 14 }}>
+            一開始能做的事
+          </div>
+          <div
+            style={{
+              color: palette.text,
+              fontSize: 45,
+              lineHeight: 1.08,
+              fontWeight: 850,
+              marginBottom: 16,
+            }}
+          >
             文書、海報、整理資料。
           </div>
           <div style={{ color: palette.muted, fontSize: 27, lineHeight: 1.36 }}>
@@ -1995,7 +2219,8 @@ const FirstStep: Page = () => (
             bottom: -10,
             width: 2,
             transform: 'translateX(-50%)',
-            background: 'linear-gradient(180deg, rgba(255,61,139,0.12), rgba(255,61,139,0.58), rgba(197,176,244,0.16))',
+            background:
+              'linear-gradient(180deg, rgba(255,61,139,0.12), rgba(255,61,139,0.58), rgba(197,176,244,0.16))',
           }}
         />
         <div
@@ -2056,14 +2281,32 @@ const FirstStep: Page = () => (
           position: 'relative',
         }}
       >
-        <div style={{ display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: 40, alignItems: 'end' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '0.9fr 1.1fr',
+            gap: 40,
+            alignItems: 'end',
+          }}
+        >
           <div>
-            <div style={{ color: palette.primary, fontSize: 24, fontWeight: 850, marginBottom: 16 }}>結果</div>
+            <div
+              style={{ color: palette.primary, fontSize: 24, fontWeight: 850, marginBottom: 16 }}
+            >
+              結果
+            </div>
             <HugeTitle size={62} maxWidth={620} animationClass="story-fade">
               但我真的走進了比賽。
             </HugeTitle>
           </div>
-          <div style={{ color: 'rgba(245,245,247,0.68)', fontSize: 28, lineHeight: 1.36, fontWeight: 650 }}>
+          <div
+            style={{
+              color: 'rgba(245,245,247,0.68)',
+              fontSize: 28,
+              lineHeight: 1.36,
+              fontWeight: 650,
+            }}
+          >
             不是突然變強，而是從一個能貢獻的位置，慢慢靠近核心。
           </div>
         </div>
@@ -2087,7 +2330,8 @@ const FirstStep: Page = () => (
               right: '10%',
               top: 50,
               height: 2,
-              background: 'linear-gradient(90deg, rgba(255,61,139,0.15), rgba(255,61,139,0.7), rgba(255,61,139,0.15))',
+              background:
+                'linear-gradient(90deg, rgba(255,61,139,0.15), rgba(255,61,139,0.7), rgba(255,61,139,0.15))',
             }}
           />
           {[
@@ -2127,8 +2371,12 @@ const FirstStep: Page = () => (
                 {count}
               </div>
               <div>
-                <div style={{ fontSize: 34, lineHeight: 1.14, fontWeight: 850, marginBottom: 12 }}>{title}</div>
-                <div style={{ color: 'rgba(245,245,247,0.7)', fontSize: 25, lineHeight: 1.36 }}>{text}</div>
+                <div style={{ fontSize: 34, lineHeight: 1.14, fontWeight: 850, marginBottom: 12 }}>
+                  {title}
+                </div>
+                <div style={{ color: 'rgba(245,245,247,0.7)', fontSize: 25, lineHeight: 1.36 }}>
+                  {text}
+                </div>
               </div>
             </div>
           ))}
@@ -2193,7 +2441,14 @@ const AwardMoment: Page = () => (
           }}
         >
           <div>
-            <div style={{ color: 'rgba(255,255,255,0.76)', fontSize: 22, fontWeight: 800, marginBottom: 10 }}>
+            <div
+              style={{
+                color: 'rgba(255,255,255,0.76)',
+                fontSize: 22,
+                fontWeight: 800,
+                marginBottom: 10,
+              }}
+            >
               2024 全國電子設計創意競賽
             </div>
             <div style={{ color: '#fff', fontSize: 46, lineHeight: 1.02, fontWeight: 900 }}>
@@ -2383,17 +2638,38 @@ const CaptainQuestion: Page = () => (
             maxWidth: 1280,
           }}
         >
-          <div style={{ color: 'rgba(255,255,255,0.68)', fontSize: 32, lineHeight: 1.4, fontWeight: 650 }}>
+          <div
+            style={{
+              color: 'rgba(255,255,255,0.68)',
+              fontSize: 32,
+              lineHeight: 1.4,
+              fontWeight: 650,
+            }}
+          >
             得獎沒有讓我突然變勇敢，反而讓我第一次感覺到責任真的來了。
           </div>
           <div style={{ width: 1, height: 62, background: 'rgba(255,61,139,0.52)' }} />
-          <div style={{ color: 'rgba(255,255,255,0.74)', fontSize: 32, lineHeight: 1.4, fontWeight: 720 }}>
+          <div
+            style={{
+              color: 'rgba(255,255,255,0.74)',
+              fontSize: 32,
+              lineHeight: 1.4,
+              fontWeight: 720,
+            }}
+          >
             那一瞬間，我想到的不是榮耀，而是三個很重的問題。
           </div>
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 22, minHeight: 0 }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+          gap: 22,
+          minHeight: 0,
+        }}
+      >
         {[
           ['01', '我要帶人？', '以前我只是把自己的事情做好，現在要開始接住別人的節奏。'],
           ['02', '我夠格嗎？', '剛剛才覺得自己有位置，下一秒就要站到更前面。'],
@@ -2432,12 +2708,18 @@ const CaptainQuestion: Page = () => (
               {count}
             </div>
             <div>
-              <div style={{ color: palette.black, fontSize: 44, lineHeight: 1.12, fontWeight: 900, marginBottom: 16 }}>
+              <div
+                style={{
+                  color: palette.black,
+                  fontSize: 44,
+                  lineHeight: 1.12,
+                  fontWeight: 900,
+                  marginBottom: 16,
+                }}
+              >
                 {title}
               </div>
-              <div style={{ color: palette.muted, fontSize: 28, lineHeight: 1.36 }}>
-                {text}
-              </div>
+              <div style={{ color: palette.muted, fontSize: 28, lineHeight: 1.36 }}>{text}</div>
             </div>
           </div>
         ))}
@@ -2548,10 +2830,21 @@ const TakingResponsibility: Page = () => (
               {count}
             </div>
             <div>
-              <div style={{ color: palette.text, fontSize: 50, lineHeight: 1.08, fontWeight: 600, letterSpacing: '-0.28px', marginBottom: 14 }}>
+              <div
+                style={{
+                  color: palette.text,
+                  fontSize: 50,
+                  lineHeight: 1.08,
+                  fontWeight: 600,
+                  letterSpacing: '-0.28px',
+                  marginBottom: 14,
+                }}
+              >
                 {title}
               </div>
-              <div style={{ color: palette.muted, fontSize: 31, lineHeight: 1.47, fontWeight: 400 }}>
+              <div
+                style={{ color: palette.muted, fontSize: 31, lineHeight: 1.47, fontWeight: 400 }}
+              >
                 {text}
               </div>
             </div>
@@ -2667,12 +2960,27 @@ const FullContextCaptain: Page = () => (
               minHeight: 0,
             }}
           >
-            <div style={{ color: palette.black, fontSize: 34, lineHeight: 1, fontWeight: 900 }}>{count}</div>
+            <div style={{ color: palette.black, fontSize: 34, lineHeight: 1, fontWeight: 900 }}>
+              {count}
+            </div>
             <div>
-              <div style={{ color: palette.black, fontSize: 46, lineHeight: 1.1, fontWeight: 760, letterSpacing: '-0.28px', marginBottom: 14 }}>
+              <div
+                style={{
+                  color: palette.black,
+                  fontSize: 46,
+                  lineHeight: 1.1,
+                  fontWeight: 760,
+                  letterSpacing: '-0.28px',
+                  marginBottom: 14,
+                }}
+              >
                 {title}
               </div>
-              <div style={{ color: palette.muted, fontSize: 29, lineHeight: 1.47, fontWeight: 520 }}>{text}</div>
+              <div
+                style={{ color: palette.muted, fontSize: 29, lineHeight: 1.47, fontWeight: 520 }}
+              >
+                {text}
+              </div>
             </div>
           </div>
         ))}
@@ -2683,8 +2991,24 @@ const FullContextCaptain: Page = () => (
 
 const MessyMiddle: Page = () => (
   <PageShell section="The messy middle" accent={palette.primary}>
-    <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '0.78fr 1.22fr', gap: 42, alignItems: 'stretch', minHeight: 0 }}>
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 0 }}>
+    <div
+      style={{
+        flex: 1,
+        display: 'grid',
+        gridTemplateColumns: '0.78fr 1.22fr',
+        gap: 42,
+        alignItems: 'stretch',
+        minHeight: 0,
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          minHeight: 0,
+        }}
+      >
         <div>
           <div
             className="story-fadeup"
@@ -2769,7 +3093,13 @@ const MessyMiddle: Page = () => (
         <svg
           aria-hidden
           viewBox="0 0 980 620"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            pointerEvents: 'none',
+          }}
         >
           <path
             d="M168 188 C 310 118, 448 194, 580 142 S 794 92, 846 214"
@@ -2788,8 +3118,26 @@ const MessyMiddle: Page = () => (
             strokeLinecap="round"
             opacity="0.36"
           />
-          <ellipse cx="370" cy="250" rx="126" ry="48" fill="none" stroke={palette.primary} strokeWidth="4" opacity="0.62" transform="rotate(-8 370 250)" />
-          <path d="M810 252 l28 20 l-32 14" fill="none" stroke={palette.black} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
+          <ellipse
+            cx="370"
+            cy="250"
+            rx="126"
+            ry="48"
+            fill="none"
+            stroke={palette.primary}
+            strokeWidth="4"
+            opacity="0.62"
+            transform="rotate(-8 370 250)"
+          />
+          <path
+            d="M810 252 l28 20 l-32 14"
+            fill="none"
+            stroke={palette.black}
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity="0.5"
+          />
         </svg>
 
         <div
@@ -2808,9 +3156,31 @@ const MessyMiddle: Page = () => (
             boxShadow: '10px 12px 0 rgba(0,0,0,0.1)',
           }}
         >
-          <div style={{ color: palette.primary, fontSize: 18, fontWeight: 900, letterSpacing: '0.06em', marginBottom: 18 }}>STUCK / 01</div>
-          <div style={{ color: palette.black, fontSize: 55, lineHeight: 1, fontWeight: 900, marginBottom: 20 }}>卡住</div>
-          <div style={{ color: palette.muted, fontSize: 25, lineHeight: 1.36, fontWeight: 560 }}>不是努力一天就會變好，更多時候是先承認自己還不會。</div>
+          <div
+            style={{
+              color: palette.primary,
+              fontSize: 18,
+              fontWeight: 900,
+              letterSpacing: '0.06em',
+              marginBottom: 18,
+            }}
+          >
+            STUCK / 01
+          </div>
+          <div
+            style={{
+              color: palette.black,
+              fontSize: 55,
+              lineHeight: 1,
+              fontWeight: 900,
+              marginBottom: 20,
+            }}
+          >
+            卡住
+          </div>
+          <div style={{ color: palette.muted, fontSize: 25, lineHeight: 1.36, fontWeight: 560 }}>
+            不是努力一天就會變好，更多時候是先承認自己還不會。
+          </div>
         </div>
 
         <div
@@ -2851,9 +3221,32 @@ const MessyMiddle: Page = () => (
             padding: '32px 34px',
           }}
         >
-          <div style={{ color: palette.black, fontSize: 46, lineHeight: 1, fontWeight: 900, marginBottom: 16 }}>比較</div>
-          <div style={{ color: palette.muted, fontSize: 25, lineHeight: 1.36, fontWeight: 560 }}>看到別人跑很快，會懷疑自己是不是太慢。</div>
-          <div style={{ marginTop: 20, display: 'inline-flex', borderRadius: 999, background: palette.black, color: '#fff', padding: '9px 15px', fontSize: 17, fontWeight: 850 }}>
+          <div
+            style={{
+              color: palette.black,
+              fontSize: 46,
+              lineHeight: 1,
+              fontWeight: 900,
+              marginBottom: 16,
+            }}
+          >
+            比較
+          </div>
+          <div style={{ color: palette.muted, fontSize: 25, lineHeight: 1.36, fontWeight: 560 }}>
+            看到別人跑很快，會懷疑自己是不是太慢。
+          </div>
+          <div
+            style={{
+              marginTop: 20,
+              display: 'inline-flex',
+              borderRadius: 999,
+              background: palette.black,
+              color: '#fff',
+              padding: '9px 15px',
+              fontSize: 17,
+              fontWeight: 850,
+            }}
+          >
             comment: 看自己的進度
           </div>
         </div>
@@ -2875,8 +3268,20 @@ const MessyMiddle: Page = () => (
             zIndex: 1,
           }}
         >
-          <div style={{ color: palette.black, fontSize: 52, lineHeight: 1, fontWeight: 900, marginBottom: 16 }}>重來</div>
-          <div style={{ color: palette.muted, fontSize: 26, lineHeight: 1.34, fontWeight: 560 }}>重來不等於前面都白費，而是把走錯的地方拿回來用。</div>
+          <div
+            style={{
+              color: palette.black,
+              fontSize: 52,
+              lineHeight: 1,
+              fontWeight: 900,
+              marginBottom: 16,
+            }}
+          >
+            重來
+          </div>
+          <div style={{ color: palette.muted, fontSize: 26, lineHeight: 1.34, fontWeight: 560 }}>
+            重來不等於前面都白費，而是把走錯的地方拿回來用。
+          </div>
         </div>
 
         <div
@@ -2933,7 +3338,14 @@ const CompetitionLowPoint: Page = () => (
         minHeight: 0,
       }}
     >
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 0 }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          minHeight: 0,
+        }}
+      >
         <div>
           <div
             className="story-fadeup"
@@ -3042,10 +3454,20 @@ const CompetitionLowPoint: Page = () => (
             boxShadow: '14px 16px 0 rgba(255,61,139,0.25)',
           }}
         >
-          <div style={{ color: palette.primary, fontSize: 18, fontWeight: 900, letterSpacing: '0.06em', marginBottom: 22 }}>
+          <div
+            style={{
+              color: palette.primary,
+              fontSize: 18,
+              fontWeight: 900,
+              letterSpacing: '0.06em',
+              marginBottom: 22,
+            }}
+          >
             RESULT / TEAM LEAD 01
           </div>
-          <div style={{ fontSize: 58, lineHeight: 1, fontWeight: 930, marginBottom: 20 }}>未入圍決賽</div>
+          <div style={{ fontSize: 58, lineHeight: 1, fontWeight: 930, marginBottom: 20 }}>
+            未入圍決賽
+          </div>
           <div style={{ color: palette.muted, fontSize: 27, lineHeight: 1.36, fontWeight: 560 }}>
             第一次真正站到前面，結果沒有像想像中往前。
           </div>
@@ -3069,10 +3491,20 @@ const CompetitionLowPoint: Page = () => (
             boxShadow: '14px 16px 0 rgba(220,238,177,0.2)',
           }}
         >
-          <div style={{ color: palette.primary, fontSize: 18, fontWeight: 900, letterSpacing: '0.06em', marginBottom: 22 }}>
+          <div
+            style={{
+              color: palette.primary,
+              fontSize: 18,
+              fontWeight: 900,
+              letterSpacing: '0.06em',
+              marginBottom: 22,
+            }}
+          >
             RESULT / TEAM LEAD 02
           </div>
-          <div style={{ fontSize: 58, lineHeight: 1, fontWeight: 930, marginBottom: 20 }}>還是沒有得獎</div>
+          <div style={{ fontSize: 58, lineHeight: 1, fontWeight: 930, marginBottom: 20 }}>
+            還是沒有得獎
+          </div>
           <div style={{ color: palette.muted, fontSize: 27, lineHeight: 1.36, fontWeight: 560 }}>
             連續兩場都沒有結果，壓力開始變成很真實的重量。
           </div>
@@ -3182,7 +3614,13 @@ const KeepLearning: Page = () => (
         <svg
           aria-hidden
           viewBox="0 0 900 620"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            pointerEvents: 'none',
+          }}
         >
           <path
             d="M100 470 C 220 404, 236 280, 364 278 C 504 276, 532 168, 704 132"
@@ -3204,9 +3642,30 @@ const KeepLearning: Page = () => (
         </svg>
 
         {[
-          { title: '新的東西', text: '每一次準備，都讓我補上一塊以前不懂的能力。', bg: palette.cream, left: 70, top: 86, rotate: -4 },
-          { title: '新的想法', text: '看到不同做法後，我開始知道還能怎麼改。', bg: palette.lilac, left: 330, top: 246, rotate: 3 },
-          { title: '做得到', text: '我想把學到的東西展現出來，讓大家知道我做得到。', bg: palette.pink, left: 180, top: 412, rotate: -2 },
+          {
+            title: '新的東西',
+            text: '每一次準備，都讓我補上一塊以前不懂的能力。',
+            bg: palette.cream,
+            left: 70,
+            top: 86,
+            rotate: -4,
+          },
+          {
+            title: '新的想法',
+            text: '看到不同做法後，我開始知道還能怎麼改。',
+            bg: palette.lilac,
+            left: 330,
+            top: 246,
+            rotate: 3,
+          },
+          {
+            title: '做得到',
+            text: '我想把學到的東西展現出來，讓大家知道我做得到。',
+            bg: palette.pink,
+            left: 180,
+            top: 412,
+            rotate: -2,
+          },
         ].map(({ title, text, bg, left, top, rotate }, i) => (
           <div
             key={title}
@@ -3222,13 +3681,29 @@ const KeepLearning: Page = () => (
               background: bg,
               padding: '30px 34px',
               transform: `rotate(${rotate}deg)`,
-              boxShadow: i === 2 ? '12px 12px 0 rgba(255,61,139,0.18)' : '8px 10px 0 rgba(0,0,0,0.08)',
+              boxShadow:
+                i === 2 ? '12px 12px 0 rgba(255,61,139,0.18)' : '8px 10px 0 rgba(0,0,0,0.08)',
             }}
           >
-            <div style={{ color: palette.black, fontSize: i === 2 ? 48 : 42, lineHeight: 1, fontWeight: 930, marginBottom: 16 }}>
+            <div
+              style={{
+                color: palette.black,
+                fontSize: i === 2 ? 48 : 42,
+                lineHeight: 1,
+                fontWeight: 930,
+                marginBottom: 16,
+              }}
+            >
               {title}
             </div>
-            <div style={{ color: palette.muted, fontSize: i === 2 ? 28 : 25, lineHeight: 1.36, fontWeight: 560 }}>
+            <div
+              style={{
+                color: palette.muted,
+                fontSize: i === 2 ? 28 : 25,
+                lineHeight: 1.36,
+                fontWeight: 560,
+              }}
+            >
               {text}
             </div>
           </div>
@@ -3348,12 +3823,18 @@ const MaicDecision: Page = () => (
             boxShadow: '10px 10px 0 rgba(0,0,0,0.12)',
           }}
         >
-          <div style={{ color: palette.primary, fontSize: 18, fontWeight: 900, letterSpacing: '0.06em', marginBottom: 16 }}>
+          <div
+            style={{
+              color: palette.primary,
+              fontSize: 18,
+              fontWeight: 900,
+              letterSpacing: '0.06em',
+              marginBottom: 16,
+            }}
+          >
             後來，我換了一個新團隊。
           </div>
-          <div style={{ fontSize: 42, lineHeight: 1.18, fontWeight: 850 }}>
-            這次要怎麼分工？
-          </div>
+          <div style={{ fontSize: 42, lineHeight: 1.18, fontWeight: 850 }}>這次要怎麼分工？</div>
         </div>
 
         <div
@@ -3372,7 +3853,15 @@ const MaicDecision: Page = () => (
             boxShadow: '12px 12px 0 rgba(197,176,244,0.32)',
           }}
         >
-          <div style={{ color: palette.lime, fontSize: 20, fontWeight: 900, letterSpacing: '0.06em', marginBottom: 18 }}>
+          <div
+            style={{
+              color: palette.lime,
+              fontSize: 20,
+              fontWeight: 900,
+              letterSpacing: '0.06em',
+              marginBottom: 18,
+            }}
+          >
             我主動跟學長說
           </div>
           <div style={{ fontSize: 68, lineHeight: 1.02, fontWeight: 930, letterSpacing: -0.6 }}>
@@ -3397,7 +3886,15 @@ const MaicDecision: Page = () => (
             boxShadow: '12px 12px 0 rgba(255,61,139,0.2)',
           }}
         >
-          <div style={{ color: palette.primary, fontSize: 20, fontWeight: 900, letterSpacing: '0.06em', marginBottom: 18 }}>
+          <div
+            style={{
+              color: palette.primary,
+              fontSize: 20,
+              fontWeight: 900,
+              letterSpacing: '0.06em',
+              marginBottom: 18,
+            }}
+          >
             我又補了一句
           </div>
           <div style={{ fontSize: 58, lineHeight: 1.08, fontWeight: 930, letterSpacing: -0.4 }}>
@@ -3577,10 +4074,26 @@ const MeetingCadence: Page = () => (
             transform: 'rotate(-2deg)',
           }}
         >
-          <div style={{ color: palette.primary, fontSize: 20, fontWeight: 900, letterSpacing: '0.06em', marginBottom: 18 }}>
+          <div
+            style={{
+              color: palette.primary,
+              fontSize: 20,
+              fontWeight: 900,
+              letterSpacing: '0.06em',
+              marginBottom: 18,
+            }}
+          >
             我跟學長姐說
           </div>
-          <div style={{ color: palette.black, fontSize: 62, lineHeight: 1.04, fontWeight: 930, letterSpacing: -0.8 }}>
+          <div
+            style={{
+              color: palette.black,
+              fontSize: 62,
+              lineHeight: 1.04,
+              fontWeight: 930,
+              letterSpacing: -0.8,
+            }}
+          >
             我們可以每 1-2 天
             <br />
             就開一次會嗎？
@@ -3652,7 +4165,15 @@ const MeetingCadence: Page = () => (
             boxShadow: '12px 12px 0 rgba(197,176,244,0.32)',
           }}
         >
-          <div style={{ color: palette.lime, fontSize: 22, fontWeight: 900, letterSpacing: '0.05em', marginBottom: 18 }}>
+          <div
+            style={{
+              color: palette.lime,
+              fontSize: 22,
+              fontWeight: 900,
+              letterSpacing: '0.05em',
+              marginBottom: 18,
+            }}
+          >
             我當時的想法
           </div>
           <div style={{ fontSize: 42, lineHeight: 1.16, fontWeight: 860 }}>
@@ -3799,15 +4320,39 @@ const ActivityHunt: Page = () => (
             zIndex: 5,
           }}
         >
-          <div style={{ color: palette.primary, fontSize: 17, fontWeight: 950, letterSpacing: '0.06em', marginBottom: 14 }}>
+          <div
+            style={{
+              color: palette.primary,
+              fontSize: 17,
+              fontWeight: 950,
+              letterSpacing: '0.06em',
+              marginBottom: 14,
+            }}
+          >
             我開始瘋狂參與活動
           </div>
-          <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 46, lineHeight: 1.03, fontWeight: 920, letterSpacing: -0.4 }}>
+          <div
+            style={{
+              fontFamily: 'var(--osd-font-display)',
+              fontSize: 46,
+              lineHeight: 1.03,
+              fontWeight: 920,
+              letterSpacing: -0.4,
+            }}
+          >
             只要跟比賽有關，
             <br />
             我就去。
           </div>
-          <div style={{ marginTop: 16, color: palette.muted, fontSize: 20, lineHeight: 1.34, fontWeight: 560 }}>
+          <div
+            style={{
+              marginTop: 16,
+              color: palette.muted,
+              fontSize: 20,
+              lineHeight: 1.34,
+              fontWeight: 560,
+            }}
+          >
             講座、工作坊、分享、團隊討論，只要能讓我離比賽更近一點，我都想去看、去聽、去學。
           </div>
           <div
@@ -3819,7 +4364,9 @@ const ActivityHunt: Page = () => (
               gap: 6,
             }}
           >
-            <div style={{ color: palette.primary, fontSize: 18, lineHeight: 1.2, fontWeight: 900 }}>有關就去，去了就學。</div>
+            <div style={{ color: palette.primary, fontSize: 18, lineHeight: 1.2, fontWeight: 900 }}>
+              有關就去，去了就學。
+            </div>
             <div style={{ color: palette.black, fontSize: 17, lineHeight: 1.28, fontWeight: 760 }}>
               不是刷履歷，是把自己丟進更多方法裡。
             </div>
@@ -3837,7 +4384,10 @@ const ActivityHunt: Page = () => (
               border: `2px solid ${palette.black}`,
               background: '#fff',
               padding: 4,
-              boxShadow: i % 2 === 0 ? '7px 7px 0 rgba(255,255,255,0.13)' : '7px 7px 0 rgba(255,61,139,0.17)',
+              boxShadow:
+                i % 2 === 0
+                  ? '7px 7px 0 rgba(255,255,255,0.13)'
+                  : '7px 7px 0 rgba(255,61,139,0.17)',
               zIndex: 3,
               ...style,
             }}
@@ -3857,7 +4407,6 @@ const ActivityHunt: Page = () => (
             />
           </div>
         ))}
-
       </div>
     </div>
   </PageShell>
@@ -4000,7 +4549,8 @@ const SummerScheduleClash: Page = () => (
               maxWidth: 720,
             }}
           >
-            MAIC 行動應用創新賽和海峽兩岸青少年創客大賽時間衝突。同學已經飛到上海，而我晚了幾天，只有同隊的夥伴跟我一起飛。
+            MAIC
+            行動應用創新賽和海峽兩岸青少年創客大賽時間衝突。同學已經飛到上海，而我晚了幾天，只有同隊的夥伴跟我一起飛。
           </div>
         </div>
 
@@ -4041,7 +4591,15 @@ const SummerScheduleClash: Page = () => (
               ['上海', '晚幾天接上創客大賽'],
               ['同行', '只剩同隊夥伴一起飛'],
             ].map(([label, text], i) => (
-              <div key={label} style={{ display: 'grid', gridTemplateColumns: '96px 1fr', gap: 18, alignItems: 'center' }}>
+              <div
+                key={label}
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '96px 1fr',
+                  gap: 18,
+                  alignItems: 'center',
+                }}
+              >
                 <div
                   style={{
                     width: 82,
@@ -4057,7 +4615,11 @@ const SummerScheduleClash: Page = () => (
                 >
                   {label}
                 </div>
-                <div style={{ color: palette.black, fontSize: 28, lineHeight: 1.25, fontWeight: 840 }}>{text}</div>
+                <div
+                  style={{ color: palette.black, fontSize: 28, lineHeight: 1.25, fontWeight: 840 }}
+                >
+                  {text}
+                </div>
               </div>
             ))}
           </div>
@@ -4165,7 +4727,9 @@ const AbroadWithFriends: Page = () => (
               backdropFilter: 'blur(14px)',
             }}
           >
-            <span style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }} />
+            <span
+              style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }}
+            />
             Shanghai / after contest
           </div>
           <h1
@@ -4207,7 +4771,15 @@ const AbroadWithFriends: Page = () => (
             backdropFilter: 'blur(16px)',
           }}
         >
-          <div style={{ color: palette.lilac, fontSize: 19, fontWeight: 950, letterSpacing: '0.08em', marginBottom: 16 }}>
+          <div
+            style={{
+              color: palette.lilac,
+              fontSize: 19,
+              fontWeight: 950,
+              letterSpacing: '0.08em',
+              marginBottom: 16,
+            }}
+          >
             TRAVEL LOG
           </div>
           <div style={{ fontSize: 34, lineHeight: 1.25, fontWeight: 820 }}>
@@ -4407,7 +4979,9 @@ const EarlyGraduationTrip: Page = () => (
               backdropFilter: 'blur(14px)',
             }}
           >
-            <span style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }} />
+            <span
+              style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }}
+            />
             freshman summer
           </div>
           <h1
@@ -4446,7 +5020,15 @@ const EarlyGraduationTrip: Page = () => (
             zIndex: 2,
           }}
         >
-          <div style={{ color: palette.lilac, fontSize: 20, fontWeight: 950, letterSpacing: '0.08em', marginBottom: 18 }}>
+          <div
+            style={{
+              color: palette.lilac,
+              fontSize: 20,
+              fontWeight: 950,
+              letterSpacing: '0.08em',
+              marginBottom: 18,
+            }}
+          >
             PLOT TWIST
           </div>
           <div style={{ fontSize: 38, lineHeight: 1.26, fontWeight: 850 }}>
@@ -4760,7 +5342,9 @@ const ContestCanBeFun: Page = () => (
               boxShadow: '7px 7px 0 rgba(0,0,0,0.1)',
             }}
           >
-            <span style={{ width: 10, height: 10, borderRadius: '50%', background: palette.lime }} />
+            <span
+              style={{ width: 10, height: 10, borderRadius: '50%', background: palette.lime }}
+            />
             loosen up
           </div>
           <h1
@@ -4798,12 +5382,28 @@ const ContestCanBeFun: Page = () => (
             boxShadow: '12px 12px 0 rgba(220,238,177,0.36)',
           }}
         >
-          <div style={{ color: palette.lime, fontSize: 20, fontWeight: 950, letterSpacing: '0.08em', marginBottom: 16 }}>
+          <div
+            style={{
+              color: palette.lime,
+              fontSize: 20,
+              fontWeight: 950,
+              letterSpacing: '0.08em',
+              marginBottom: 16,
+            }}
+          >
             MINDSET SHIFT
           </div>
           <div style={{ display: 'grid', gap: 16 }}>
             <div>
-              <div style={{ color: palette.lime, fontSize: 22, lineHeight: 1, fontWeight: 900, marginBottom: 8 }}>
+              <div
+                style={{
+                  color: palette.lime,
+                  fontSize: 22,
+                  lineHeight: 1,
+                  fontWeight: 900,
+                  marginBottom: 8,
+                }}
+              >
                 以前以為
               </div>
               <div style={{ fontSize: 30, lineHeight: 1.28, fontWeight: 820 }}>
@@ -4811,7 +5411,15 @@ const ContestCanBeFun: Page = () => (
               </div>
             </div>
             <div>
-              <div style={{ color: palette.lime, fontSize: 22, lineHeight: 1, fontWeight: 900, marginBottom: 8 }}>
+              <div
+                style={{
+                  color: palette.lime,
+                  fontSize: 22,
+                  lineHeight: 1,
+                  fontWeight: 900,
+                  marginBottom: 8,
+                }}
+              >
                 後來發現
               </div>
               <div style={{ fontSize: 30, lineHeight: 1.28, fontWeight: 820 }}>
@@ -4919,7 +5527,9 @@ const WeeklyTeachingLead: Page = () => (
                 boxShadow: '7px 7px 0 rgba(197,176,244,0.42)',
               }}
             >
-              <span style={{ width: 10, height: 10, borderRadius: '50%', background: palette.lime }} />
+              <span
+                style={{ width: 10, height: 10, borderRadius: '50%', background: palette.lime }}
+              />
               sophomore year
             </div>
             <h1
@@ -4985,7 +5595,16 @@ const WeeklyTeachingLead: Page = () => (
               backgroundSize: '32px 32px',
             }}
           />
-          <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'grid', gridTemplateRows: 'auto 1fr auto', gap: 26 }}>
+          <div
+            style={{
+              position: 'relative',
+              zIndex: 1,
+              height: '100%',
+              display: 'grid',
+              gridTemplateRows: 'auto 1fr auto',
+              gap: 26,
+            }}
+          >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
                 <div
@@ -5001,7 +5620,9 @@ const WeeklyTeachingLead: Page = () => (
                 >
                   weekly delivery board
                 </div>
-                <div style={{ fontSize: 42, lineHeight: 1.08, fontWeight: 920 }}>每週上架，不是偶爾準備。</div>
+                <div style={{ fontSize: 42, lineHeight: 1.08, fontWeight: 920 }}>
+                  每週上架，不是偶爾準備。
+                </div>
               </div>
               <div
                 style={{
@@ -5057,8 +5678,19 @@ const WeeklyTeachingLead: Page = () => (
                     boxShadow: '8px 8px 0 rgba(255,255,255,0.13)',
                   }}
                 >
-                  <div style={{ fontSize: 39, lineHeight: 1, fontWeight: 950, marginBottom: 18 }}>{title}</div>
-                  <div style={{ color: palette.muted, fontSize: 25, lineHeight: 1.34, fontWeight: 650 }}>{text}</div>
+                  <div style={{ fontSize: 39, lineHeight: 1, fontWeight: 950, marginBottom: 18 }}>
+                    {title}
+                  </div>
+                  <div
+                    style={{
+                      color: palette.muted,
+                      fontSize: 25,
+                      lineHeight: 1.34,
+                      fontWeight: 650,
+                    }}
+                  >
+                    {text}
+                  </div>
                 </div>
               ))}
             </div>
@@ -5078,8 +5710,25 @@ const WeeklyTeachingLead: Page = () => (
                 gap: 22,
               }}
             >
-              <span style={{ color: palette.lilac, fontSize: 21, fontWeight: 950, letterSpacing: '0.08em' }}>QUALITY BAR</span>
-              <span style={{ flex: 1, height: 13, borderRadius: 999, background: 'rgba(255,255,255,0.16)', overflow: 'hidden' }}>
+              <span
+                style={{
+                  color: palette.lilac,
+                  fontSize: 21,
+                  fontWeight: 950,
+                  letterSpacing: '0.08em',
+                }}
+              >
+                QUALITY BAR
+              </span>
+              <span
+                style={{
+                  flex: 1,
+                  height: 13,
+                  borderRadius: 999,
+                  background: 'rgba(255,255,255,0.16)',
+                  overflow: 'hidden',
+                }}
+              >
                 <span
                   style={{
                     display: 'block',
@@ -5181,7 +5830,9 @@ const BeyondWeeklyClass: Page = () => (
               boxShadow: '7px 7px 0 rgba(255,61,139,0.24)',
             }}
           >
-            <span style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }} />
+            <span
+              style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }}
+            />
             not only classes
           </div>
           <h1
@@ -5220,7 +5871,15 @@ const BeyondWeeklyClass: Page = () => (
             boxShadow: '12px 12px 0 rgba(0,0,0,0.12)',
           }}
         >
-          <div style={{ color: palette.primary, fontSize: 20, fontWeight: 950, letterSpacing: '0.08em', marginBottom: 16 }}>
+          <div
+            style={{
+              color: palette.primary,
+              fontSize: 20,
+              fontWeight: 950,
+              letterSpacing: '0.08em',
+              marginBottom: 16,
+            }}
+          >
             REAL CLUB WORK
           </div>
           <div style={{ fontSize: 35, lineHeight: 1.28, fontWeight: 820 }}>
@@ -5245,7 +5904,14 @@ const BeyondWeeklyClass: Page = () => (
             boxShadow: '14px 14px 0 rgba(197,176,244,0.35)',
           }}
         >
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 28 }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'flex-start',
+              marginBottom: 28,
+            }}
+          >
             <div>
               <div
                 style={{
@@ -5260,7 +5926,9 @@ const BeyondWeeklyClass: Page = () => (
               >
                 2024.09 → 2025.05
               </div>
-              <div style={{ fontSize: 42, lineHeight: 1.08, fontWeight: 930 }}>真的辦過的活動。</div>
+              <div style={{ fontSize: 42, lineHeight: 1.08, fontWeight: 930 }}>
+                真的辦過的活動。
+              </div>
             </div>
             <div
               style={{
@@ -5281,7 +5949,9 @@ const BeyondWeeklyClass: Page = () => (
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 10 }}>
+          <div
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 10 }}
+          >
             {[
               ['08/30-09/01', '社團旅遊(宜蘭)'],
               ['09/02', '社團博覽會'],
@@ -5319,7 +5989,14 @@ const BeyondWeeklyClass: Page = () => (
                 <div
                   style={{
                     borderRadius: 999,
-                    background: i >= 12 ? palette.primary : i >= 10 ? palette.lime : i >= 8 ? palette.cream : palette.lilac,
+                    background:
+                      i >= 12
+                        ? palette.primary
+                        : i >= 10
+                          ? palette.lime
+                          : i >= 8
+                            ? palette.cream
+                            : palette.lilac,
                     color: i >= 12 ? '#fff' : palette.black,
                     padding: '9px 0',
                     textAlign: 'center',
@@ -5332,7 +6009,14 @@ const BeyondWeeklyClass: Page = () => (
                 >
                   {date}
                 </div>
-                <div style={{ color: 'rgba(255,255,255,0.88)', fontSize: 19, lineHeight: 1.12, fontWeight: 800 }}>
+                <div
+                  style={{
+                    color: 'rgba(255,255,255,0.88)',
+                    fontSize: 19,
+                    lineHeight: 1.12,
+                    fontWeight: 800,
+                  }}
+                >
                   {title}
                 </div>
               </div>
@@ -5382,8 +6066,7 @@ const HalfFcuTopia: Page = () => (
           inset: '0 0 10px',
           borderRadius: 42,
           border: `2px solid ${palette.black}`,
-          background:
-            'linear-gradient(135deg, #ffffff 0%, #dceeb1 46%, #c5b0f4 100%)',
+          background: 'linear-gradient(135deg, #ffffff 0%, #dceeb1 46%, #c5b0f4 100%)',
           overflow: 'hidden',
           boxShadow: '18px 18px 0 rgba(0,0,0,0.12)',
         }}
@@ -5468,7 +6151,14 @@ const HalfFcuTopia: Page = () => (
                   boxShadow: '7px 7px 0 rgba(255,61,139,0.24)',
                 }}
               >
-                <span style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }} />
+                <span
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: '50%',
+                    background: palette.primary,
+                  }}
+                />
                 side project to product
               </div>
               <h1
@@ -5512,7 +6202,15 @@ const HalfFcuTopia: Page = () => (
                 boxShadow: '10px 10px 0 rgba(0,0,0,0.12)',
               }}
             >
-              <div style={{ color: palette.primary, fontSize: 20, fontWeight: 950, letterSpacing: '0.08em', marginBottom: 14 }}>
+              <div
+                style={{
+                  color: palette.primary,
+                  fontSize: 20,
+                  fontWeight: 950,
+                  letterSpacing: '0.08em',
+                  marginBottom: 14,
+                }}
+              >
                 APP STORE
               </div>
               <div style={{ fontSize: 34, lineHeight: 1.28, fontWeight: 850 }}>
@@ -5598,7 +6296,15 @@ const HalfFcuTopia: Page = () => (
                 <div style={{ fontSize: 35, lineHeight: 1.08, fontWeight: 940, marginBottom: 12 }}>
                   半逢遇甲
                 </div>
-                <div style={{ color: palette.muted, fontSize: 20, lineHeight: 1.3, fontWeight: 700, marginBottom: 26 }}>
+                <div
+                  style={{
+                    color: palette.muted,
+                    fontSize: 20,
+                    lineHeight: 1.3,
+                    fontWeight: 700,
+                    marginBottom: 26,
+                  }}
+                >
                   提供逢甲學生方便的校務體驗
                 </div>
 
@@ -5636,7 +6342,16 @@ const HalfFcuTopia: Page = () => (
                       >
                         {label}
                       </div>
-                      <div style={{ color: palette.black, fontSize: 19, lineHeight: 1.22, fontWeight: 760 }}>{text}</div>
+                      <div
+                        style={{
+                          color: palette.black,
+                          fontSize: 19,
+                          lineHeight: 1.22,
+                          fontWeight: 760,
+                        }}
+                      >
+                        {text}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -5676,7 +6391,14 @@ const HalfFcuTopia: Page = () => (
                 <br />
                 變成產品。
               </div>
-              <div style={{ color: 'rgba(255,255,255,0.78)', fontSize: 25, lineHeight: 1.34, fontWeight: 620 }}>
+              <div
+                style={{
+                  color: 'rgba(255,255,255,0.78)',
+                  fontSize: 25,
+                  lineHeight: 1.34,
+                  fontWeight: 620,
+                }}
+              >
                 我不只是辦一次活動，而是開始思考：能不能做一個東西，長期改善大家每天遇到的小麻煩？
               </div>
             </div>
@@ -5842,10 +6564,26 @@ const MaicThirdPrize: Page = () => (
           }}
         >
           <div>
-            <div style={{ color: palette.primary, fontSize: 22, fontWeight: 950, letterSpacing: '0.08em', marginBottom: 24 }}>
+            <div
+              style={{
+                color: palette.primary,
+                fontSize: 22,
+                fontWeight: 950,
+                letterSpacing: '0.08em',
+                marginBottom: 24,
+              }}
+            >
               RESULT
             </div>
-            <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 104, lineHeight: 0.88, fontWeight: 950, letterSpacing: -2 }}>
+            <div
+              style={{
+                fontFamily: 'var(--osd-font-display)',
+                fontSize: 104,
+                lineHeight: 0.88,
+                fontWeight: 950,
+                letterSpacing: -2,
+              }}
+            >
               三等獎
             </div>
           </div>
@@ -5967,7 +6705,14 @@ const HungryAfterAward: Page = () => (
             </h1>
           </div>
           <div style={{ display: 'grid', gap: 20 }}>
-            <div style={{ color: 'rgba(255,255,255,0.76)', fontSize: 34, lineHeight: 1.36, fontWeight: 620 }}>
+            <div
+              style={{
+                color: 'rgba(255,255,255,0.76)',
+                fontSize: 34,
+                lineHeight: 1.36,
+                fontWeight: 620,
+              }}
+            >
               我花了很多時間，可不是為了只拿到一個三等獎。
             </div>
             <div
@@ -6084,7 +6829,8 @@ const HungryAfterAward: Page = () => (
                   background: color,
                   color: palette.black,
                   padding: '24px 26px',
-                  boxShadow: i === 1 ? '10px 10px 0 rgba(255,61,139,0.18)' : '10px 10px 0 rgba(0,0,0,0.1)',
+                  boxShadow:
+                    i === 1 ? '10px 10px 0 rgba(255,61,139,0.18)' : '10px 10px 0 rgba(0,0,0,0.1)',
                   ...style,
                 }}
               >
@@ -6168,12 +6914,22 @@ const HungryAfterAward: Page = () => (
   </PageShell>
 );
 
-const People: Page = () => (
+const _People: Page = () => (
   <PageShell section="People" accent={palette.coral}>
-    <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '0.86fr 1.14fr', gap: 72, alignItems: 'stretch' }}>
+    <div
+      style={{
+        flex: 1,
+        display: 'grid',
+        gridTemplateColumns: '0.86fr 1.14fr',
+        gap: 72,
+        alignItems: 'stretch',
+      }}
+    >
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
         <div>
-          <HugeTitle size={82} maxWidth={760}>我不是自己一個人變成現在這樣。</HugeTitle>
+          <HugeTitle size={82} maxWidth={760}>
+            我不是自己一個人變成現在這樣。
+          </HugeTitle>
           <AccentLine color={palette.coral} />
         </div>
         <Lead size={36} lineHeight={1.42}>
@@ -6200,7 +6956,15 @@ const People: Page = () => (
           我開始
           <span style={{ color: '#7dd3fc' }}>往前</span>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gridTemplateRows: 'repeat(2, minmax(0, 1fr))', gap: 18, minHeight: 0 }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+            gridTemplateRows: 'repeat(2, minmax(0, 1fr))',
+            gap: 18,
+            minHeight: 0,
+          }}
+        >
           {[
             ['給我機會的人', '先相信我可以試一次'],
             ['拉我一把的人', '在我卡住時幫我把問題拆小'],
@@ -6224,7 +6988,9 @@ const People: Page = () => (
               }}
             >
               <div style={{ color: palette.primary, fontSize: 24, fontWeight: 800 }}>{title}</div>
-              <div style={{ color: palette.text, fontSize: 30, lineHeight: 1.32, fontWeight: 700 }}>{text}</div>
+              <div style={{ color: palette.text, fontSize: 30, lineHeight: 1.32, fontWeight: 700 }}>
+                {text}
+              </div>
             </div>
           ))}
         </div>
@@ -6233,13 +6999,28 @@ const People: Page = () => (
   </PageShell>
 );
 
-const WhatChanged: Page = () => (
+const _WhatChanged: Page = () => (
   <PageShell section="Change" accent={palette.mint}>
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 46, justifyContent: 'center' }}>
+    <div
+      style={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 46,
+        justifyContent: 'center',
+      }}
+    >
       <div style={{ maxWidth: 1280 }}>
         <HugeTitle size={84}>後來真正改變的，不是我突然變厲害。</HugeTitle>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 96px 1fr', gap: 34, alignItems: 'stretch' }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 96px 1fr',
+          gap: 34,
+          alignItems: 'stretch',
+        }}
+      >
         <div
           className="story-fadeup"
           style={{
@@ -6250,8 +7031,12 @@ const WhatChanged: Page = () => (
             minHeight: 390,
           }}
         >
-          <div style={{ color: palette.muted, fontSize: 24, fontWeight: 800, marginBottom: 28 }}>以前</div>
-          <div style={{ color: palette.text, fontSize: 62, lineHeight: 1.08, fontWeight: 800 }}>等有把握，才敢開始。</div>
+          <div style={{ color: palette.muted, fontSize: 24, fontWeight: 800, marginBottom: 28 }}>
+            以前
+          </div>
+          <div style={{ color: palette.text, fontSize: 62, lineHeight: 1.08, fontWeight: 800 }}>
+            等有把握，才敢開始。
+          </div>
           <div style={{ color: palette.muted, fontSize: 28, lineHeight: 1.42, marginTop: 34 }}>
             所以很多事情還沒開始，就先被我自己擋在門口。
           </div>
@@ -6286,8 +7071,12 @@ const WhatChanged: Page = () => (
             minHeight: 390,
           }}
         >
-          <div style={{ color: palette.primary, fontSize: 24, fontWeight: 800, marginBottom: 28 }}>現在</div>
-          <div style={{ color: palette.text, fontSize: 62, lineHeight: 1.08, fontWeight: 800 }}>先做一版，再從回饋裡修正。</div>
+          <div style={{ color: palette.primary, fontSize: 24, fontWeight: 800, marginBottom: 28 }}>
+            現在
+          </div>
+          <div style={{ color: palette.text, fontSize: 62, lineHeight: 1.08, fontWeight: 800 }}>
+            先做一版，再從回饋裡修正。
+          </div>
           <div style={{ color: palette.muted, fontSize: 28, lineHeight: 1.42, marginTop: 34 }}>
             自信不是先有才行動，是行動之後慢慢長出來。
           </div>
@@ -6297,17 +7086,37 @@ const WhatChanged: Page = () => (
   </PageShell>
 );
 
-const Work: Page = () => (
+const _Work: Page = () => (
   <PageShell section="What I am building" accent={palette.blue}>
-    <div style={{ flex: 1, display: 'grid', gridTemplateRows: 'auto 1fr', gap: 38, paddingTop: 24, paddingBottom: 8 }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 0.96fr', gap: 64, alignItems: 'end' }}>
-        <HugeTitle size={78} maxWidth={960}>現在的我，正在把興趣變成作品。</HugeTitle>
+    <div
+      style={{
+        flex: 1,
+        display: 'grid',
+        gridTemplateRows: 'auto 1fr',
+        gap: 38,
+        paddingTop: 24,
+        paddingBottom: 8,
+      }}
+    >
+      <div
+        style={{ display: 'grid', gridTemplateColumns: '1fr 0.96fr', gap: 64, alignItems: 'end' }}
+      >
+        <HugeTitle size={78} maxWidth={960}>
+          現在的我，正在把興趣變成作品。
+        </HugeTitle>
         <Lead size={32} lineHeight={1.38} maxWidth={760}>
           我還不是最強，但我越來越知道怎麼把想法推進：先做出可以被看見的版本，再把它交給真實的人使用。
         </Lead>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 22, minHeight: 0 }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+          gap: 22,
+          minHeight: 0,
+        }}
+      >
         {[
           ['半逢遇甲', '把校園裡分散的資訊，整理成更好理解的入口。', '產品整理'],
           ['行動逢甲', '讓日常需求可以被手機接住，練習把功能做進生活場景。', '行動開發'],
@@ -6330,8 +7139,18 @@ const Work: Page = () => (
             }}
           >
             <div>
-              <div style={{ fontSize: 48, fontWeight: 800, lineHeight: 1.08, marginBottom: 24 }}>{title}</div>
-              <div style={{ color: i === 0 ? 'rgba(245,245,247,0.68)' : palette.muted, fontSize: 29, lineHeight: 1.34 }}>{text}</div>
+              <div style={{ fontSize: 48, fontWeight: 800, lineHeight: 1.08, marginBottom: 24 }}>
+                {title}
+              </div>
+              <div
+                style={{
+                  color: i === 0 ? 'rgba(245,245,247,0.68)' : palette.muted,
+                  fontSize: 29,
+                  lineHeight: 1.34,
+                }}
+              >
+                {text}
+              </div>
             </div>
             <div
               style={{
@@ -6339,7 +7158,8 @@ const Work: Page = () => (
                 marginTop: 34,
                 borderRadius: 999,
                 padding: '13px 20px',
-                border: i === 0 ? '1px solid rgba(245,245,247,0.22)' : '1px solid rgba(0,102,204,0.18)',
+                border:
+                  i === 0 ? '1px solid rgba(245,245,247,0.22)' : '1px solid rgba(0,102,204,0.18)',
                 color: i === 0 ? '#7dd3fc' : palette.primary,
                 fontSize: 22,
                 fontWeight: 800,
@@ -6354,9 +7174,17 @@ const Work: Page = () => (
   </PageShell>
 );
 
-const Lessons: Page = () => (
+const _Lessons: Page = () => (
   <PageShell section="Lessons" accent={palette.gold}>
-    <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '0.74fr 1.26fr', gap: 62, alignItems: 'center' }}>
+    <div
+      style={{
+        flex: 1,
+        display: 'grid',
+        gridTemplateColumns: '0.74fr 1.26fr',
+        gap: 62,
+        alignItems: 'center',
+      }}
+    >
       <HugeTitle size={88}>到目前為止，我最想留下三件事。</HugeTitle>
       <div style={{ display: 'grid', gap: 18 }}>
         {[
@@ -6382,7 +7210,9 @@ const Lessons: Page = () => (
           >
             <div style={{ color: palette.primary, fontSize: 54, fontWeight: 800 }}>{count}</div>
             <div>
-              <div style={{ color: palette.text, fontSize: 40, fontWeight: 800, marginBottom: 10 }}>{title}</div>
+              <div style={{ color: palette.text, fontSize: 40, fontWeight: 800, marginBottom: 10 }}>
+                {title}
+              </div>
               <div style={{ color: palette.muted, fontSize: 28, lineHeight: 1.38 }}>{text}</div>
             </div>
           </div>
@@ -6392,11 +7222,21 @@ const Lessons: Page = () => (
   </PageShell>
 );
 
-const Next: Page = () => (
+const _Next: Page = () => (
   <PageShell section="Next" accent={palette.mint}>
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 54 }}>
+    <div
+      style={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        gap: 54,
+      }}
+    >
       <div style={{ maxWidth: 1420 }}>
-        <HugeTitle size={88} maxWidth={1420}>接下來，我想成為一個更能把想法做出來的人。</HugeTitle>
+        <HugeTitle size={88} maxWidth={1420}>
+          接下來，我想成為一個更能把想法做出來的人。
+        </HugeTitle>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 22 }}>
         {[
@@ -6420,10 +7260,28 @@ const Next: Page = () => (
               justifyContent: 'space-between',
             }}
           >
-            <div style={{ color: i === 1 ? '#7dd3fc' : palette.primary, fontSize: 22, fontWeight: 800 }}>{period}</div>
+            <div
+              style={{
+                color: i === 1 ? '#7dd3fc' : palette.primary,
+                fontSize: 22,
+                fontWeight: 800,
+              }}
+            >
+              {period}
+            </div>
             <div>
-              <div style={{ fontSize: 42, fontWeight: 800, lineHeight: 1.16, marginBottom: 18 }}>{title}</div>
-              <div style={{ color: i === 1 ? 'rgba(245,245,247,0.68)' : palette.muted, fontSize: 27, lineHeight: 1.4 }}>{text}</div>
+              <div style={{ fontSize: 42, fontWeight: 800, lineHeight: 1.16, marginBottom: 18 }}>
+                {title}
+              </div>
+              <div
+                style={{
+                  color: i === 1 ? 'rgba(245,245,247,0.68)' : palette.muted,
+                  fontSize: 27,
+                  lineHeight: 1.4,
+                }}
+              >
+                {text}
+              </div>
             </div>
           </div>
         ))}
@@ -6435,9 +7293,17 @@ const Next: Page = () => (
   </PageShell>
 );
 
-const Closing: Page = () => (
+const _Closing: Page = () => (
   <PageShell section="Closing" accent="#7dd3fc" showNumber={false} mode="dark">
-    <div style={{ flex: 1, display: 'grid', placeItems: 'center', textAlign: 'center', position: 'relative' }}>
+    <div
+      style={{
+        flex: 1,
+        display: 'grid',
+        placeItems: 'center',
+        textAlign: 'center',
+        position: 'relative',
+      }}
+    >
       <div
         className="story-fade"
         style={{
@@ -6448,8 +7314,18 @@ const Closing: Page = () => (
           background: 'radial-gradient(circle, rgba(125,211,252,0.2) 0%, rgba(17,17,20,0) 68%)',
         }}
       />
-      <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <HugeTitle size={150} maxWidth={1300}>謝謝大家。</HugeTitle>
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <HugeTitle size={150} maxWidth={1300}>
+          謝謝大家。
+        </HugeTitle>
         <p
           className="story-fadeup"
           style={{
@@ -6500,8 +7376,7 @@ const Nedcc2025LeadingJuniors: Page = () => (
           inset: '0 0 10px',
           borderRadius: 42,
           border: `2px solid ${palette.black}`,
-          background:
-            'linear-gradient(135deg, #ffffff 0%, #f4ecd6 42%, #dceeb1 100%)',
+          background: 'linear-gradient(135deg, #ffffff 0%, #f4ecd6 42%, #dceeb1 100%)',
           overflow: 'hidden',
           boxShadow: '18px 18px 0 rgba(0,0,0,0.1)',
         }}
@@ -6588,7 +7463,14 @@ const Nedcc2025LeadingJuniors: Page = () => (
                   boxShadow: '7px 7px 0 rgba(255,61,139,0.24)',
                 }}
               >
-                <span style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }} />
+                <span
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: '50%',
+                    background: palette.primary,
+                  }}
+                />
                 role handoff
               </div>
               <h1
@@ -6618,7 +7500,8 @@ const Nedcc2025LeadingJuniors: Page = () => (
                   maxWidth: 640,
                 }}
               >
-                以前是學長帶著我進比賽；到了 2025，我開始把前面學到的流程、節奏和標準，帶進下一個團隊。
+                以前是學長帶著我進比賽；到了
+                2025，我開始把前面學到的流程、節奏和標準，帶進下一個團隊。
               </p>
             </div>
 
@@ -6767,7 +7650,16 @@ const Nedcc2025LeadingJuniors: Page = () => (
                   >
                     {label}
                   </div>
-                  <div style={{ color: palette.black, fontSize: 25, lineHeight: 1.28, fontWeight: 850 }}>{value}</div>
+                  <div
+                    style={{
+                      color: palette.black,
+                      fontSize: 25,
+                      lineHeight: 1.28,
+                      fontWeight: 850,
+                    }}
+                  >
+                    {value}
+                  </div>
                 </div>
               ))}
             </div>
@@ -7139,8 +8031,7 @@ const MoeaCompetition: Page = () => (
           inset: '0 0 10px',
           borderRadius: 42,
           border: `2px solid ${palette.black}`,
-          background:
-            'linear-gradient(135deg, #fff 0%, #f4ecd6 48%, rgba(220,238,177,0.72) 100%)',
+          background: 'linear-gradient(135deg, #fff 0%, #f4ecd6 48%, rgba(220,238,177,0.72) 100%)',
           overflow: 'hidden',
           boxShadow: '18px 18px 0 rgba(0,0,0,0.1)',
         }}
@@ -7216,7 +8107,9 @@ const MoeaCompetition: Page = () => (
               boxShadow: '7px 7px 0 rgba(255,61,139,0.24)',
             }}
           >
-            <span style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }} />
+            <span
+              style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }}
+            />
             field observation
           </div>
           <h1
@@ -7265,11 +8158,20 @@ const MoeaCompetition: Page = () => (
             boxShadow: '12px 12px 0 rgba(255,255,255,0.62)',
           }}
         >
-          <div style={{ color: palette.lime, fontSize: 20, fontWeight: 950, letterSpacing: '0.08em', marginBottom: 14 }}>
+          <div
+            style={{
+              color: palette.lime,
+              fontSize: 20,
+              fontWeight: 950,
+              letterSpacing: '0.08em',
+              marginBottom: 14,
+            }}
+          >
             WHAT I SAW
           </div>
           <div style={{ fontSize: 31, lineHeight: 1.26, fontWeight: 820 }}>
-            產業組的作品很像已經準備進場，學生組的作品則充滿想法和衝勁；我開始理解，作品不是只有能不能 Demo，而是能不能被真實世界接住。
+            產業組的作品很像已經準備進場，學生組的作品則充滿想法和衝勁；我開始理解，作品不是只有能不能
+            Demo，而是能不能被真實世界接住。
           </div>
         </div>
 
@@ -7333,7 +8235,9 @@ const MoeaCompetition: Page = () => (
                 >
                   competition floor
                 </div>
-                <div style={{ color: palette.black, fontSize: 37, lineHeight: 1.08, fontWeight: 940 }}>
+                <div
+                  style={{ color: palette.black, fontSize: 37, lineHeight: 1.08, fontWeight: 940 }}
+                >
                   兩種作品，
                   <br />
                   兩種成熟度。
@@ -7397,7 +8301,16 @@ const MoeaCompetition: Page = () => (
                   >
                     {label}
                   </div>
-                  <div style={{ color: palette.black, fontSize: 24, lineHeight: 1.22, fontWeight: 780 }}>{text}</div>
+                  <div
+                    style={{
+                      color: palette.black,
+                      fontSize: 24,
+                      lineHeight: 1.22,
+                      fontWeight: 780,
+                    }}
+                  >
+                    {text}
+                  </div>
                 </div>
               ))}
             </div>
@@ -7515,7 +8428,9 @@ const NoAwardUntilCrossStrait: Page = () => (
               marginBottom: 34,
             }}
           >
-            <span style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }} />
+            <span
+              style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }}
+            />
             no trophy yet
           </div>
           <h1
@@ -7556,7 +8471,16 @@ const NoAwardUntilCrossStrait: Page = () => (
             boxShadow: '12px 12px 0 rgba(255,255,255,0.18)',
           }}
         >
-          <div style={{ color: palette.primary, fontSize: 20, lineHeight: 1, fontWeight: 950, letterSpacing: '0.08em', marginBottom: 24 }}>
+          <div
+            style={{
+              color: palette.primary,
+              fontSize: 20,
+              lineHeight: 1,
+              fontWeight: 950,
+              letterSpacing: '0.08em',
+              marginBottom: 24,
+            }}
+          >
             SUMMER 2025
           </div>
           <div style={{ fontSize: 44, lineHeight: 1.08, fontWeight: 940, letterSpacing: -0.3 }}>
@@ -7733,7 +8657,9 @@ const ZhongliClubInterlude: Page = () => (
               marginBottom: 34,
             }}
           >
-            <span style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }} />
+            <span
+              style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }}
+            />
             plot twist
           </div>
           <h1
@@ -7788,7 +8714,16 @@ const ZhongliClubInterlude: Page = () => (
             zIndex: 3,
           }}
         >
-          <div style={{ color: palette.lime, fontSize: 19, lineHeight: 1, fontWeight: 950, letterSpacing: '0.1em', marginBottom: 14 }}>
+          <div
+            style={{
+              color: palette.lime,
+              fontSize: 19,
+              lineHeight: 1,
+              fontWeight: 950,
+              letterSpacing: '0.1em',
+              marginBottom: 14,
+            }}
+          >
             BEFORE THE NEXT COMPETITION
           </div>
           <div style={{ fontSize: 32, lineHeight: 1.32, fontWeight: 790 }}>
@@ -7974,7 +8909,9 @@ const CrossStraitProcess: Page = () => (
               marginBottom: 30,
             }}
           >
-            <span style={{ width: 10, height: 10, borderRadius: '50%', background: palette.lime }} />
+            <span
+              style={{ width: 10, height: 10, borderRadius: '50%', background: palette.lime }}
+            />
             finally on the way
           </div>
           <h1
@@ -8024,7 +8961,16 @@ const CrossStraitProcess: Page = () => (
             boxShadow: '10px 10px 0 rgba(255,61,139,0.18)',
           }}
         >
-          <div style={{ color: palette.lime, fontSize: 18, lineHeight: 1, fontWeight: 950, letterSpacing: '0.1em', marginBottom: 14 }}>
+          <div
+            style={{
+              color: palette.lime,
+              fontSize: 18,
+              lineHeight: 1,
+              fontWeight: 950,
+              letterSpacing: '0.1em',
+              marginBottom: 14,
+            }}
+          >
             PROCESS, NOT JUST RESULT
           </div>
           <div style={{ fontSize: 32, lineHeight: 1.32, fontWeight: 820 }}>
@@ -8095,7 +9041,14 @@ const CrossStraitProcess: Page = () => (
           <img
             src={crossStraitProcessFlag}
             alt="拿著逢甲大學旗幟準備出發"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 42%', borderRadius: 24, display: 'block' }}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center 42%',
+              borderRadius: 24,
+              display: 'block',
+            }}
           />
           <div
             style={{
@@ -8137,7 +9090,14 @@ const CrossStraitProcess: Page = () => (
           <img
             src={crossStraitProcessShip}
             alt="旅程途中看到的船"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 54%', borderRadius: 22, display: 'block' }}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center 54%',
+              borderRadius: 22,
+              display: 'block',
+            }}
           />
           <div
             style={{
@@ -8166,7 +9126,7 @@ const CrossStraitProcess: Page = () => (
   </PageShell>
 );
 
-const CrossStraitBestRecommendation: Page = () => (
+const _CrossStraitBestRecommendation: Page = () => (
   <PageShell section="Best recommendation" accent={palette.lime} showHeader={false}>
     <div
       style={{
@@ -8262,7 +9222,9 @@ const CrossStraitBestRecommendation: Page = () => (
               boxShadow: '7px 7px 0 rgba(255,61,139,0.24)',
             }}
           >
-            <span style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }} />
+            <span
+              style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }}
+            />
             highly recommended
           </div>
           <h1
@@ -8292,7 +9254,8 @@ const CrossStraitBestRecommendation: Page = () => (
               fontWeight: 720,
             }}
           >
-            2025 海峽兩岸青少年創客大賽，不只是比賽。它更像是一段把創作、交流、旅行和團隊記憶全部混在一起的經驗。
+            2025
+            海峽兩岸青少年創客大賽，不只是比賽。它更像是一段把創作、交流、旅行和團隊記憶全部混在一起的經驗。
           </p>
         </div>
 
@@ -8364,10 +9327,22 @@ const CrossStraitBestRecommendation: Page = () => (
                     boxShadow: '6px 6px 0 rgba(0,0,0,0.1)',
                   }}
                 >
-                  <div style={{ color: palette.black, fontSize: 28, lineHeight: 1.05, fontWeight: 950, marginBottom: 9 }}>
+                  <div
+                    style={{
+                      color: palette.black,
+                      fontSize: 28,
+                      lineHeight: 1.05,
+                      fontWeight: 950,
+                      marginBottom: 9,
+                    }}
+                  >
                     {title}
                   </div>
-                  <div style={{ color: palette.muted, fontSize: 22, lineHeight: 1.3, fontWeight: 720 }}>{text}</div>
+                  <div
+                    style={{ color: palette.muted, fontSize: 22, lineHeight: 1.3, fontWeight: 720 }}
+                  >
+                    {text}
+                  </div>
                 </div>
               ))}
             </div>
@@ -8413,7 +9388,15 @@ const CrossStraitBestRecommendation: Page = () => (
             boxShadow: '12px 12px 0 rgba(255,255,255,0.5)',
           }}
         >
-          <div style={{ color: palette.lime, fontSize: 20, fontWeight: 950, letterSpacing: '0.08em', marginBottom: 14 }}>
+          <div
+            style={{
+              color: palette.lime,
+              fontSize: 20,
+              fontWeight: 950,
+              letterSpacing: '0.08em',
+              marginBottom: 14,
+            }}
+          >
             THE POINT
           </div>
           <div style={{ fontSize: 35, lineHeight: 1.3, fontWeight: 830 }}>
@@ -8521,7 +9504,9 @@ const ClosingDream: Page = () => (
               boxShadow: '7px 7px 0 rgba(255,61,139,0.22)',
             }}
           >
-            <span style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }} />
+            <span
+              style={{ width: 10, height: 10, borderRadius: '50%', background: palette.primary }}
+            />
             back to the first question
           </div>
           <h1
@@ -8558,7 +9543,16 @@ const ClosingDream: Page = () => (
             boxShadow: '12px 12px 0 rgba(0,0,0,0.12)',
           }}
         >
-          <div style={{ color: palette.primary, fontSize: 20, lineHeight: 1, fontWeight: 950, letterSpacing: '0.09em', marginBottom: 18 }}>
+          <div
+            style={{
+              color: palette.primary,
+              fontSize: 20,
+              lineHeight: 1,
+              fontWeight: 950,
+              letterSpacing: '0.09em',
+              marginBottom: 18,
+            }}
+          >
             WHAT I WANT TO LEAVE WITH YOU
           </div>
           <div style={{ color: palette.black, fontSize: 37, lineHeight: 1.32, fontWeight: 850 }}>
