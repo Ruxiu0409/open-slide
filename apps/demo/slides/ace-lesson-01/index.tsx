@@ -1550,6 +1550,236 @@ const GameIntro: Page = () => (
   </div>
 );
 
+const Icebreak2: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="55%" size={1600} opacity={0.34} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '0 160px',
+      }}
+    >
+      <Eyebrow>心態 · Mindset</Eyebrow>
+      <h1
+        className="ace-fadeup"
+        style={{
+          fontSize: 92,
+          fontWeight: 800,
+          margin: '36px 0 26px',
+          lineHeight: 1.14,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        AI 什麼都做得出來
+        <br />
+        <span style={gradText}>但它不知道你想做什麼</span>
+      </h1>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 26,
+          color: palette.muted,
+          lineHeight: 1.5,
+          margin: 0,
+          maxWidth: 1100,
+          animationDelay: '220ms',
+        }}
+      >
+        AI can build almost anything. It just doesn't know what you want to build.
+      </p>
+    </div>
+    <Footer />
+  </div>
+);
+const Icebreak3: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="70%" y="70%" size={1200} opacity={0.24} />
+    <div style={{ padding: '140px 140px 0' }}>
+      <Eyebrow>兩種用法 · Two ways</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 64,
+          fontWeight: 800,
+          margin: '26px 0 44px',
+          lineHeight: 1.12,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        同樣一個 AI，<span style={gradText}>誰在決定？</span>
+      </h2>
+      <div style={{ display: 'flex', gap: 28, alignItems: 'stretch' }}>
+        {[
+          {
+            tag: '讓 AI 決定',
+            tagEn: 'It decides',
+            prompt: '「幫我做一個作品」',
+            lines: [
+              '它給你一個你看不懂的東西。',
+              '你不知道為什麼要這樣做。',
+              '下次沒有它，你還是不會。',
+            ],
+            primary: false,
+          },
+          {
+            tag: '你來決定',
+            tagEn: 'You decide',
+            prompt: '「我想解決＿＿，幫我做＿＿」',
+            lines: [
+              '你知道要解決什麼問題。',
+              '它幫你把想法變成真的東西。',
+              '做完你說得出每一步在幹嘛。',
+            ],
+            primary: true,
+          },
+        ].map((c, i) => (
+          <div
+            key={c.tag}
+            className="ace-fadeup"
+            style={{
+              flex: 1,
+              padding: '34px 38px 38px',
+              borderRadius: 'var(--osd-radius)',
+              background: palette.surface,
+              border: `1px solid ${c.primary ? 'var(--osd-accent)' : palette.border}`,
+              boxShadow: cardShadow,
+              opacity: c.primary ? 1 : 0.82,
+              animationDelay: `${260 + i * 130}ms`,
+            }}
+          >
+            <div
+              style={{
+                fontFamily: fonts.mono,
+                fontSize: 16,
+                letterSpacing: '0.12em',
+                color: c.primary ? 'var(--osd-accent)' : palette.muted,
+              }}
+            >
+              {c.tagEn}
+            </div>
+            <div style={{ fontSize: 40, fontWeight: 800, marginTop: 10 }}>{c.tag}</div>
+            <div
+              style={{
+                marginTop: 22,
+                marginBottom: 24,
+                padding: '18px 22px',
+                borderRadius: 14,
+                background: c.primary ? palette.accentSoft : palette.surfaceHi,
+                fontSize: 24,
+                fontWeight: 600,
+              }}
+            >
+              {c.prompt}
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {c.lines.map((l) => (
+                <div key={l} style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
+                  <span style={{ color: 'var(--osd-accent)', fontSize: 16 }}>◉</span>
+                  <span style={{ fontSize: 21, lineHeight: 1.5, color: palette.muted }}>{l}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+const Icebreak4: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="20%" y="75%" size={1200} opacity={0.24} />
+    <div style={{ padding: '150px 140px 0' }}>
+      <Eyebrow>怎麼開始 · Where to start</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 64,
+          fontWeight: 800,
+          margin: '26px 0 20px',
+          lineHeight: 1.12,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        先找到 <span style={gradText}>你的那件事</span>
+      </h2>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 23,
+          color: palette.muted,
+          lineHeight: 1.55,
+          margin: '0 0 44px',
+          maxWidth: 1100,
+          animationDelay: '200ms',
+        }}
+      >
+        工具誰都拿得到，題目只有你自己有。這學期我們要做的，是幫你把題目找出來，再用 AI 把它做完。
+      </p>
+      <div style={{ display: 'flex', gap: 24 }}>
+        {[
+          {
+            n: '01',
+            t: '從你的不爽開始',
+            d: '每天有什麼事讓你覺得麻煩？那就是題目。別人的痛點你不痛，做不久。',
+          },
+          {
+            n: '02',
+            t: '講清楚你要什麼',
+            d: '講不清楚，AI 只能用猜的。把要什麼想明白，這一步沒有人能幫你。',
+          },
+          {
+            n: '03',
+            t: '自己看得懂才算數',
+            d: 'AI 給的東西，你要說得出哪裡對、哪裡不對。看不懂就不是你的作品。',
+          },
+        ].map((c, i) => (
+          <div
+            key={c.n}
+            className="ace-fadeup"
+            style={{
+              flex: 1,
+              padding: '32px 34px 36px',
+              borderRadius: 'var(--osd-radius)',
+              background: palette.surface,
+              border: `1px solid ${palette.border}`,
+              boxShadow: cardShadow,
+              animationDelay: `${300 + i * 110}ms`,
+            }}
+          >
+            <div
+              style={{
+                fontFamily: fonts.mono,
+                fontSize: 18,
+                letterSpacing: '0.14em',
+                color: 'var(--osd-accent)',
+                marginBottom: 16,
+              }}
+            >
+              {c.n}
+            </div>
+            <div style={{ fontSize: 32, fontWeight: 700, marginBottom: 14 }}>{c.t}</div>
+            <div style={{ fontSize: 20, color: palette.muted, lineHeight: 1.55 }}>{c.d}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
 const DividerStories: Page = () => (
   <Divider
     num="PART 03"
@@ -2076,6 +2306,9 @@ export default [
   ClubIntro8,
   DividerIcebreaker,
   GameIntro,
+  Icebreak2,
+  Icebreak3,
+  Icebreak4,
   DividerStories,
   StoryVideo,
   StoryFocusLoop,
