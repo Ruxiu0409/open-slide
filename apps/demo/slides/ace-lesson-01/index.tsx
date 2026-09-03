@@ -31,6 +31,16 @@ import {
   StoryRoots,
   StorySummerScheduleClash,
 } from './story-pages';
+import {
+  TrainingGoals,
+  TrainingRoadmap,
+  TrainingSscPrizes,
+  TrainingSwiftStudentChallenge,
+  TrainingTargetMembers,
+  TrainingWhoWins,
+  TrainingWinnerKeitaro,
+  TrainingWinnerRuoshan,
+} from './training-pages';
 
 export const design: DesignSystem = {
   palette: { bg: '#F5F5F7', text: '#1D1D1F', accent: '#2E6FE0' },
@@ -642,6 +652,40 @@ const AboutMe: Page = () => (
             >
               <div style={{ fontSize: 26, fontWeight: 700, lineHeight: 1.15 }}>{c.k}</div>
               <div style={{ marginTop: 8, fontSize: 18, color: palette.muted }}>{c.v}</div>
+            </div>
+          ))}
+        </div>
+        <div
+          style={{
+            marginTop: 26,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+            gap: 14,
+            maxWidth: 1100,
+          }}
+        >
+          {[
+            { k: '技術', v: '用 iOS、Swift 和 AI 工具，把想法推到可以 demo 的狀態。' },
+            { k: '設計', v: '在意介面、敘事和使用者第一眼看到的感覺。' },
+            { k: '社群', v: '從活動籌備、帶社團，到把人和資源串在一起。' },
+            { k: '分享', v: '把做過的事整理成脈絡，讓下一個人比較容易開始。' },
+          ].map((c, i) => (
+            <div
+              key={c.k}
+              className="ace-fadeup"
+              style={{
+                padding: '20px 22px 22px',
+                borderRadius: 14,
+                background: palette.surface,
+                border: `1px solid ${palette.border}`,
+                boxShadow: cardShadow,
+                animationDelay: `${600 + i * 80}ms`,
+              }}
+            >
+              <div style={{ fontSize: 24, fontWeight: 700 }}>{c.k}</div>
+              <div style={{ fontSize: 17, color: palette.muted, marginTop: 8, lineHeight: 1.5 }}>
+                {c.v}
+              </div>
             </div>
           ))}
         </div>
@@ -2640,7 +2684,7 @@ const slido = {
 };
 
 export const meta: SlideMeta = {
-  title: '第一堂課',
+  title: '2026/9/3 ACE Club Lesson 1',
   theme: 'aurora',
   createdAt: '2026-08-25T07:18:48+08:00',
 };
@@ -2674,6 +2718,14 @@ export default [
   ToolGemini,
   ToolCursor,
   ClubIntro8,
+  TrainingTargetMembers,
+  TrainingRoadmap,
+  TrainingGoals,
+  TrainingSwiftStudentChallenge,
+  TrainingSscPrizes,
+  TrainingWinnerKeitaro,
+  TrainingWinnerRuoshan,
+  TrainingWhoWins,
   DividerIcebreaker,
   GameIntro,
   Icebreak2,

@@ -1145,11 +1145,10 @@ export const StoryActivityHunt: Page = () => (
               lineHeight: 1.03,
               fontWeight: 920,
               letterSpacing: -0.4,
+              whiteSpace: 'nowrap',
             }}
           >
-            只要跟比賽有關，
-            <br />
-            我就去。
+            只要跟比賽有關，我就去。
           </div>
           <div
             style={{
@@ -2237,9 +2236,9 @@ export const StoryContestCanBeFun: Page = () => (
         </div>
 
         {[
-          { text: '不是考試', left: 420, top: 318, color: palette.lime },
-          { text: '不是上戰場', left: 466, top: 374, color: palette.lilac },
-          { text: '是跟一群人一起完成一件事', left: 340, top: 430, color: palette.primary },
+          { text: '不是考試', left: 404, top: 240, color: palette.lime },
+          { text: '不是上戰場', left: 486, top: 322, color: palette.lilac },
+          { text: '是跟一群人一起完成一件事', left: 330, top: 404, color: palette.primary },
         ].map(({ text, left, top, color }, i) => (
           <div
             key={text}
