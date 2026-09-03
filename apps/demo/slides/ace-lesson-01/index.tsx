@@ -412,9 +412,7 @@ const Cover: Page = () => (
             margin: '0 0 24px',
             animationDelay: '200ms',
           }}
-        >
-          ACE Club · 社課第一堂 · Lesson 01
-        </p>
+        >社課第一堂 · Lesson 01</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {['Discover ✕ Create ✕ Execute', 'Zero Coding Needed. Just Bring Ideas.'].map(
             (line, i) => (
@@ -927,7 +925,103 @@ const ClubIntro1: Page = () => (
     <Footer />
   </div>
 );
-const wishes = [
+type Scatter = { t: string; x: string; y: string; r: number; size: number; o: number };
+
+const ScatterQuestion = ({
+  eyebrow,
+  line1,
+  line2,
+  sub,
+  chips,
+}: {
+  eyebrow: string;
+  line1: string;
+  line2: string;
+  sub: string;
+  chips: Scatter[];
+}) => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="52%" size={1500} opacity={0.32} />
+    <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+      {chips.map((c, i) => (
+        <span
+          key={c.t}
+          style={{
+            position: 'absolute',
+            left: c.x,
+            top: c.y,
+            transform: `translate(-50%, -50%) rotate(${c.r}deg)`,
+            opacity: c.o,
+          }}
+        >
+          <span
+            className="ace-fadeup"
+            style={{
+              display: 'inline-block',
+              whiteSpace: 'nowrap',
+              padding: '12px 26px',
+              borderRadius: 999,
+              background: palette.surface,
+              border: `1px solid ${palette.chipBorder}`,
+              fontSize: c.size,
+              color: palette.muted,
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.05)',
+              animationDelay: `${340 + i * 55}ms`,
+            }}
+          >
+            {c.t}
+          </span>
+        </span>
+      ))}
+    </div>
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '0 160px',
+        pointerEvents: 'none',
+      }}
+    >
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h1
+        className="ace-fadeup"
+        style={{
+          fontSize: 104,
+          fontWeight: 800,
+          margin: '36px 0 24px',
+          lineHeight: 1.1,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        {line1}
+        <br />
+        <span style={gradText}>{line2}</span>
+      </h1>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 26,
+          color: palette.muted,
+          lineHeight: 1.5,
+          margin: 0,
+          animationDelay: '220ms',
+        }}
+      >
+        {sub}
+      </p>
+    </div>
+    <Footer />
+  </div>
+);
+
+const wishes: Scatter[] = [
   { t: '學到技術', x: '8%', y: '12%', r: -10, size: 26, o: 1 },
   { t: '做出作品', x: '25%', y: '21%', r: 7, size: 24, o: 0.9 },
   { t: '增加履歷', x: '44%', y: '10%', r: -6, size: 28, o: 1 },
@@ -947,89 +1041,69 @@ const wishes = [
 ];
 
 const ClubIntro2: Page = () => (
-  <div style={fill}>
-    <Style />
-    <Glow x="50%" y="52%" size={1500} opacity={0.32} />
-    <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
-      {wishes.map((w, i) => (
-        <span
-          key={w.t}
-          style={{
-            position: 'absolute',
-            left: w.x,
-            top: w.y,
-            transform: `translate(-50%, -50%) rotate(${w.r}deg)`,
-            opacity: w.o,
-          }}
-        >
-          <span
-            className="ace-fadeup"
-            style={{
-              display: 'inline-block',
-              whiteSpace: 'nowrap',
-              padding: '12px 26px',
-              borderRadius: 999,
-              background: palette.surface,
-              border: `1px solid ${palette.chipBorder}`,
-              fontSize: w.size,
-              color: palette.muted,
-              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.05)',
-              animationDelay: `${340 + i * 55}ms`,
-            }}
-          >
-            {w.t}
-          </span>
-        </span>
-      ))}
-    </div>
-    <div
-      style={{
-        position: 'absolute',
-        inset: 0,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        padding: '0 160px',
-        pointerEvents: 'none',
-      }}
-    >
-      <Eyebrow>換你說 · Your turn</Eyebrow>
-      <h1
-        className="ace-fadeup"
-        style={{
-          fontSize: 104,
-          fontWeight: 800,
-          margin: '36px 0 24px',
-          lineHeight: 1.1,
-          letterSpacing: '-0.02em',
-          animationDelay: '120ms',
-        }}
-      >
-        你想從這裡
-        <br />
-        <span style={gradText}>帶走什麼？</span>
-      </h1>
-      <p
-        className="ace-fadeup"
-        style={{
-          fontSize: 26,
-          color: palette.muted,
-          lineHeight: 1.5,
-          margin: 0,
-          animationDelay: '220ms',
-        }}
-      >
-        What do you want to take away from ACE Club?
-      </p>
-    </div>
-    <Footer />
-  </div>
+  <ScatterQuestion
+    eyebrow="換你說 · Your turn"
+    line1="你想從這裡"
+    line2="帶走什麼？"
+    sub="What do you want to take away from ACE Club?"
+    chips={wishes}
+  />
 );
 
 const ClubIntro3: Page = () => <Blank />;
-const ClubIntro4: Page = () => <Blank />;
+const heardTools: Scatter[] = [
+  { t: 'ChatGPT', x: '9%', y: '11%', r: -9, size: 28, o: 1 },
+  { t: 'Gemini', x: '26%', y: '19%', r: 7, size: 25, o: 0.9 },
+  { t: 'Claude', x: '43%', y: '9%', r: -6, size: 27, o: 1 },
+  { t: 'Copilot', x: '60%', y: '18%', r: 11, size: 24, o: 0.88 },
+  { t: 'Midjourney', x: '80%', y: '10%', r: -8, size: 26, o: 1 },
+  { t: 'Perplexity', x: '92%', y: '22%', r: 9, size: 23, o: 0.9 },
+  { t: 'Canva AI', x: '6%', y: '26%', r: 6, size: 25, o: 0.92 },
+  { t: 'Notion AI', x: '14%', y: '41%', r: -12, size: 24, o: 0.9 },
+  { t: 'Grok', x: '89%', y: '38%', r: 8, size: 26, o: 1 },
+  { t: 'Sora', x: '8%', y: '55%', r: 10, size: 27, o: 1 },
+  { t: 'Suno', x: '92%', y: '52%', r: -7, size: 25, o: 0.94 },
+  { t: 'NotebookLM', x: '13%', y: '68%', r: 5, size: 23, o: 0.88 },
+  { t: 'Cursor', x: '88%', y: '66%', r: -10, size: 26, o: 1 },
+  { t: 'DeepSeek', x: '22%', y: '80%', r: 8, size: 24, o: 0.9 },
+  { t: 'CapCut AI', x: '40%', y: '87%', r: -11, size: 23, o: 0.86 },
+  { t: 'ElevenLabs', x: '58%', y: '79%', r: 9, size: 25, o: 0.92 },
+  { t: 'Runway', x: '75%', y: '87%', r: -6, size: 24, o: 0.88 },
+  { t: 'Firefly', x: '91%', y: '79%', r: 12, size: 22, o: 0.86 },
+];
+
+const ClubIntro4: Page = () => (
+  <ScatterQuestion
+    eyebrow="暖身 · Warm-up"
+    line1="你聽過哪些"
+    line2="AI 工具？"
+    sub="Which AI tools have you heard of?"
+    chips={heardTools}
+  />
+);
+const usedTools: Scatter[] = [
+  { t: 'ChatGPT', x: '14%', y: '20%', r: -7, size: 34, o: 1 },
+  { t: '每天都在用', x: '57%', y: '13%', r: -8, size: 28, o: 0.9 },
+  { t: 'Gemini', x: '84%', y: '17%', r: 8, size: 32, o: 1 },
+  { t: 'Claude', x: '8%', y: '46%', r: 6, size: 33, o: 1 },
+  { t: 'Copilot', x: '90%', y: '44%', r: -9, size: 31, o: 0.94 },
+  { t: 'Canva AI', x: '16%', y: '74%', r: 9, size: 32, o: 1 },
+  { t: '一個都沒有', x: '44%', y: '86%', r: 7, size: 30, o: 0.9 },
+  { t: 'Notion AI', x: '86%', y: '72%', r: -6, size: 30, o: 0.94 },
+];
+
+const ClubIntro5: Page = () => (
+  <ScatterQuestion
+    eyebrow="再問一次 · Be honest"
+    line1="哪些你真的"
+    line2="打開來用過？"
+    sub="And which of them have you actually used?"
+    chips={usedTools}
+  />
+);
+const ClubIntro6: Page = () => <Blank />;
+const ClubIntro7: Page = () => <Blank />;
+const ClubIntro8: Page = () => <Blank />;
 
 const DividerIcebreaker: Page = () => (
   <Divider
@@ -1681,6 +1755,25 @@ const Closing: Page = () => (
         <br />
         Bring your laptop — next week we actually build something.
       </p>
+      <div
+        className="ace-fadeup"
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 14,
+          marginTop: 40,
+          padding: '18px 34px',
+          borderRadius: 999,
+          background: palette.surface,
+          border: `1px solid ${palette.chipBorder}`,
+          boxShadow: cardShadow,
+          animationDelay: '320ms',
+        }}
+      >
+        <span style={{ color: 'var(--osd-accent)', fontSize: 22, lineHeight: 1 }}>♠</span>
+        <span style={{ fontFamily: fonts.mono, fontSize: 30, fontWeight: 700 }}>9/10（四）</span>
+        <span style={{ fontSize: 22, color: palette.muted }}>下次社課</span>
+      </div>
     </div>
     <Footer />
   </div>
@@ -1706,6 +1799,10 @@ export default [
   ClubIntro2,
   ClubIntro3,
   ClubIntro4,
+  ClubIntro5,
+  ClubIntro6,
+  ClubIntro7,
+  ClubIntro8,
   DividerIcebreaker,
   GameIntro,
   DividerStories,
