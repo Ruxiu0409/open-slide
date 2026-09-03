@@ -1,6 +1,9 @@
 import { type DesignSystem, type Page, type SlideMeta, useSlidePageNumber } from '@open-slide/core';
+import claudeIcon from './assets/claude-ai-icon.svg';
+import codexIcon from './assets/codex_light.svg';
 import focusLoop from './assets/focusloop.png';
 import focusLoopScreens from './assets/focusloop-screens.png';
+import geminiIcon from './assets/gemini.svg';
 import life01 from './assets/life-01.jpg';
 import life02 from './assets/life-02.jpg';
 import life04 from './assets/life-04.jpg';
@@ -412,7 +415,9 @@ const Cover: Page = () => (
             margin: '0 0 24px',
             animationDelay: '200ms',
           }}
-        >社課第一堂 · Lesson 01</p>
+        >
+          社課第一堂 · Lesson 01
+        </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {['Discover ✕ Create ✕ Execute', 'Zero Coding Needed. Just Bring Ideas.'].map(
             (line, i) => (
@@ -1101,9 +1106,275 @@ const ClubIntro5: Page = () => (
     chips={usedTools}
   />
 );
-const ClubIntro6: Page = () => <Blank />;
+const aiTools = [
+  {
+    icon: codexIcon,
+    maker: 'OpenAI',
+    name: 'Codex',
+    zh: '終端機裡的工程師',
+    desc: '給它一句話，它自己讀專案、改檔案、跑測試。',
+  },
+  {
+    icon: claudeIcon,
+    maker: 'Anthropic',
+    name: 'Claude Code',
+    zh: '會動手的助理',
+    desc: '在你的資料夾裡直接改程式、找 bug，也有桌面版和編輯器外掛。',
+  },
+  {
+    icon: geminiIcon,
+    maker: 'Google',
+    name: 'Gemini',
+    zh: '什麼都能問',
+    desc: '查資料、寫文件、寫程式都行，終端機也有 Gemini CLI 可以跑。',
+  },
+  {
+    icon: null,
+    maker: 'Cursor',
+    name: 'Cursor',
+    zh: '內建 AI 的編輯器',
+    desc: '長得像 VS Code，按 Tab 補完整段，也能把整個專案交給它改。',
+  },
+];
+
+const ClubIntro6: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="85%" y="75%" size={1200} opacity={0.24} />
+    <div style={{ padding: '130px 140px 0' }}>
+      <Eyebrow>現在的 AI 工具 · The tools we use</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 64,
+          fontWeight: 800,
+          margin: '26px 0 40px',
+          lineHeight: 1.12,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        現在的 AI <span style={gradText}>會自己動手</span>
+      </h2>
+      <div style={{ display: 'flex', gap: 20, alignItems: 'stretch' }}>
+        {aiTools.map((t, i) => (
+          <div
+            key={t.name}
+            className="ace-fadeup"
+            style={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              padding: '28px 28px 30px',
+              borderRadius: 'var(--osd-radius)',
+              background: palette.surface,
+              border: `1px solid ${palette.border}`,
+              boxShadow: cardShadow,
+              animationDelay: `${240 + i * 100}ms`,
+            }}
+          >
+            <div
+              style={{
+                width: 64,
+                height: 64,
+                borderRadius: 16,
+                background: palette.surfaceHi,
+                border: `1px solid ${palette.border}`,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: 20,
+              }}
+            >
+              {t.icon ? (
+                <img src={t.icon} alt="" style={{ width: 34, height: 34, display: 'block' }} />
+              ) : (
+                <span
+                  style={{
+                    fontFamily: fonts.mono,
+                    fontSize: 30,
+                    fontWeight: 700,
+                    color: 'var(--osd-accent)',
+                  }}
+                >
+                  ▮
+                </span>
+              )}
+            </div>
+            <div
+              style={{
+                fontFamily: fonts.mono,
+                fontSize: 15,
+                letterSpacing: '0.12em',
+                color: 'var(--osd-accent)',
+              }}
+            >
+              {t.maker}
+            </div>
+            <div style={{ fontSize: 32, fontWeight: 700, marginTop: 8 }}>{t.name}</div>
+            <div style={{ fontSize: 20, marginTop: 10 }}>{t.zh}</div>
+            <div style={{ fontSize: 18, color: palette.muted, marginTop: 12, lineHeight: 1.5 }}>
+              {t.desc}
+            </div>
+          </div>
+        ))}
+      </div>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 20,
+          color: palette.muted,
+          marginTop: 32,
+          animationDelay: '680ms',
+        }}
+      >
+        這份簡報就是用 Claude Code 做出來的。
+      </p>
+    </div>
+    <Footer />
+  </div>
+);
 const ClubIntro7: Page = () => <Blank />;
-const ClubIntro8: Page = () => <Blank />;
+const schedule = [
+  {
+    tag: '實體 · IN PERSON',
+    title: '實體上課日',
+    note: '教室見',
+    primary: true,
+    rows: [
+      { d: '9/3', t: '講師介紹、故事分享、課程導讀', today: true },
+      { d: '9/10', t: '創意發想、分組討論、軟體安裝' },
+      { d: '9/17', t: '實作測試' },
+      { d: '10/8', t: '發表準備' },
+      { d: '10/15', t: '發表日' },
+    ],
+  },
+  {
+    tag: '線上 · ONLINE',
+    title: '線上討論日',
+    note: '各自在家',
+    primary: false,
+    rows: [
+      { d: '9/24', t: '線上分組討論' },
+      { d: '10/1', t: '線上分組討論' },
+    ],
+  },
+  {
+    tag: '自習 · STUDY',
+    title: '讀書日',
+    note: '不會到',
+    primary: false,
+    rows: [{ d: '10/22', t: '自習準備考試' }],
+  },
+];
+
+const ClubIntro8: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="15%" y="80%" size={1200} opacity={0.24} />
+    <div style={{ padding: '130px 140px 0' }}>
+      <Eyebrow>課程導讀 · The term ahead</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 64,
+          fontWeight: 800,
+          margin: '26px 0 40px',
+          lineHeight: 1.12,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        這學期 <span style={gradText}>八次社課</span>，這樣跑
+      </h2>
+      <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start' }}>
+        {schedule.map((col, ci) => (
+          <div
+            key={col.title}
+            className="ace-fadeup"
+            style={{
+              flex: col.rows.length > 2 ? 1.5 : 1,
+              padding: '28px 30px 30px',
+              borderRadius: 'var(--osd-radius)',
+              background: palette.surface,
+              border: `1px solid ${col.primary ? 'var(--osd-accent)' : palette.border}`,
+              boxShadow: cardShadow,
+              animationDelay: `${240 + ci * 120}ms`,
+            }}
+          >
+            <div
+              style={{
+                fontFamily: fonts.mono,
+                fontSize: 16,
+                letterSpacing: '0.12em',
+                color: col.primary ? 'var(--osd-accent)' : palette.muted,
+              }}
+            >
+              {col.tag}
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'baseline',
+                gap: 12,
+                marginTop: 10,
+                marginBottom: 20,
+              }}
+            >
+              <span style={{ fontSize: 32, fontWeight: 700 }}>{col.title}</span>
+              <span style={{ fontSize: 18, color: palette.muted }}>{col.note}</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {col.rows.map((r) => (
+                <div
+                  key={r.d}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    gap: 16,
+                    padding: '12px 16px',
+                    borderRadius: 12,
+                    background: r.today ? palette.accentSoft : palette.surfaceHi,
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: fonts.mono,
+                      fontSize: 24,
+                      fontWeight: 700,
+                      minWidth: 76,
+                      color: r.today ? 'var(--osd-accent)' : 'var(--osd-text)',
+                    }}
+                  >
+                    {r.d}
+                  </span>
+                  <span style={{ fontSize: 19, lineHeight: 1.4 }}>{r.t}</span>
+                  {r.today && (
+                    <span
+                      style={{
+                        marginLeft: 'auto',
+                        fontFamily: fonts.mono,
+                        fontSize: 14,
+                        padding: '3px 10px',
+                        borderRadius: 999,
+                        background: 'var(--osd-accent)',
+                        color: '#FFFFFF',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      今天
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
 
 const DividerIcebreaker: Page = () => (
   <Divider
