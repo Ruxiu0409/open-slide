@@ -874,25 +874,25 @@ const AboutMe2: Page = () => (
               animationDelay: `${240 + ci * 120}ms`,
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 20 }}>
-              <span style={{ fontSize: 30, fontWeight: 700, ...gradText }}>{col.issuer}</span>
-              <span style={{ fontSize: 17, color: palette.muted }}>{col.note}</span>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 22 }}>
+              <span style={{ fontSize: 34, fontWeight: 700, ...gradText }}>{col.issuer}</span>
+              <span style={{ fontSize: 20, color: palette.muted }}>{col.note}</span>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               {col.rows.map((r) => (
                 <div
                   key={r}
                   style={{
                     display: 'flex',
                     alignItems: 'baseline',
-                    gap: 14,
-                    padding: '14px 18px',
+                    gap: 16,
+                    padding: '18px 22px',
                     borderRadius: 12,
                     background: palette.surfaceHi,
                   }}
                 >
-                  <span style={{ color: 'var(--osd-accent)', fontSize: 16 }}>◉</span>
-                  <span style={{ fontSize: 19, lineHeight: 1.4 }}>{r}</span>
+                  <span style={{ color: 'var(--osd-accent)', fontSize: 18 }}>◉</span>
+                  <span style={{ fontSize: 23, lineHeight: 1.4 }}>{r}</span>
                 </div>
               ))}
             </div>
@@ -920,7 +920,6 @@ const competitions = [
       { t: '亞洲青少年腦神經科學大賽', p: '亞軍', top: true },
       { t: '海峽兩岸青少年創客大賽', p: '二等獎 · 優秀展覽獎' },
       { t: '全國電子設計創意競賽 · 智慧大數據及行動 APP 類', p: 'IEEE Tainan Section 特別獎' },
-      { t: '逢甲大學英文簡報比賽', p: '佳作' },
     ],
   },
   {
@@ -950,7 +949,7 @@ const AboutMe3: Page = () => (
           animationDelay: '120ms',
         }}
       >
-        三年 <span style={gradText}>十一座獎</span>
+        三年 <span style={gradText}>十座獎</span>
       </h2>
       <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start' }}>
         {competitions.map((col, ci) => (
@@ -970,9 +969,9 @@ const AboutMe3: Page = () => (
             <div
               style={{
                 fontFamily: fonts.mono,
-                fontSize: 32,
+                fontSize: 38,
                 fontWeight: 700,
-                marginBottom: 20,
+                marginBottom: 22,
                 ...gradText,
               }}
             >
@@ -981,14 +980,14 @@ const AboutMe3: Page = () => (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {col.rows.map((r) => (
                 <div key={r.t + r.p}>
-                  <div style={{ fontSize: 19, lineHeight: 1.4, color: palette.muted }}>{r.t}</div>
+                  <div style={{ fontSize: 22, lineHeight: 1.4, color: palette.muted }}>{r.t}</div>
                   <div
                     style={{
                       display: 'inline-block',
-                      marginTop: 8,
-                      padding: '5px 14px',
+                      marginTop: 10,
+                      padding: '7px 18px',
                       borderRadius: 999,
-                      fontSize: 18,
+                      fontSize: 21,
                       fontWeight: 700,
                       background: r.top ? palette.accentSoft : palette.surfaceHi,
                       color: r.top ? 'var(--osd-accent)' : 'var(--osd-text)',
@@ -1009,15 +1008,6 @@ const AboutMe3: Page = () => (
 );
 const AboutMe4: Page = () => <Blank />;
 const AboutMe5: Page = () => <Blank />;
-
-const DividerClub: Page = () => (
-  <Divider
-    num="PART 01"
-    title="社團介紹"
-    sub="我們是誰、在做什麼、這學期要去哪。"
-    subEn="Who we are, what we do, where we're heading."
-  />
-);
 
 const ClubIntro1: Page = () => (
   <div style={fill}>
@@ -2681,7 +2671,6 @@ export default [
   AboutMe3,
   AboutMe4,
   AboutMe5,
-  DividerClub,
   ClubIntro1,
   ClubIntro2,
   ClubIntro3,
