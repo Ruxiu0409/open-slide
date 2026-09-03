@@ -639,59 +639,28 @@ const AboutMe: Page = () => (
           <br />
           Call me CY — I'm the club advisor. Today we ship your first Raycast extension.
         </p>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
-          <div>
-            <CredGroupLabel>稱號 · Roles</CredGroupLabel>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <CredentialRow
-                icon="📱"
-                text="iOS Club Lead（2025–26）"
-                sub="iOS Club Lead 2025–26"
-                delay={300}
-              />
-              <CredentialRow
-                icon="🚀"
-                text="GDG on Campus Associated Lead（2025–26）"
-                sub="Google Developer Group 校園副負責人"
-                delay={390}
-              />
-              <CredentialRow
-                icon={
-                  <img
-                    src={raycastIcon}
-                    alt=""
-                    style={{ width: 24, height: 24, display: 'block' }}
-                  />
-                }
-                text="Raycast Ambassador"
-                sub="Raycast 官方大使"
-                delay={480}
-              />
-            </div>
-          </div>
-          <div>
-            <CredGroupLabel>認證與獲獎 · Certs & Awards</CredGroupLabel>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <CredentialRow
-                icon="🏆"
-                text="全國電子設計與 App 競賽第一名"
-                sub="1st place · National Electronic Design & App Competition"
-                delay={330}
-              />
-              <CredentialRow
-                icon="🍎"
-                text="Apple Teacher Swift Playgrounds"
-                sub="Apple 教師認證 · Swift Playgrounds"
-                delay={420}
-              />
-              <CredentialRow
-                icon="✨"
-                text="GenAI · Gemini · Vertex AI Prompt Design 認證"
-                sub="Certified in GenAI, Gemini & Vertex AI Prompt Design"
-                delay={510}
-              />
-            </div>
-          </div>
+        <CredGroupLabel>稱號 · Roles</CredGroupLabel>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <CredentialRow
+            icon="📱"
+            text="iOS Club Lead（2025–26）"
+            sub="iOS Club Lead 2025–26"
+            delay={300}
+          />
+          <CredentialRow
+            icon="🚀"
+            text="GDG on Campus Associated Lead（2025–26）"
+            sub="Google Developer Group 校園副負責人"
+            delay={390}
+          />
+          <CredentialRow
+            icon={
+              <img src={raycastIcon} alt="" style={{ width: 24, height: 24, display: 'block' }} />
+            }
+            text="Raycast Ambassador"
+            sub="Raycast 官方大使"
+            delay={480}
+          />
         </div>
       </div>
     </div>
@@ -843,6 +812,203 @@ const Blank = () => (
     <Footer />
   </div>
 );
+
+const certs = [
+  {
+    issuer: 'Apple',
+    note: '教學與開發',
+    rows: [
+      'Apple Teacher',
+      'Apple Teacher Swift Playgrounds',
+      'App Development with Swift Associate',
+      'App Development with Swift Certified User',
+    ],
+  },
+  {
+    issuer: 'Google Cloud',
+    note: 'AI 與生成式應用',
+    rows: [
+      'Develop GenAI Apps with Gemini and Streamlit',
+      'Multimodality and Multimodal RAG',
+      'Prompt Design in Vertex AI',
+    ],
+  },
+  {
+    issuer: '國內認證',
+    note: '系統與 AI 規劃',
+    rows: ['TQC Linux System Administration Professional', 'iPas AI 應用規劃師 初級'],
+  },
+];
+
+const AboutMe2: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="80%" y="72%" size={1200} opacity={0.22} />
+    <div style={{ padding: '120px 140px 0' }}>
+      <Eyebrow>指導老師 · Your Advisor</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 60,
+          fontWeight: 800,
+          margin: '24px 0 34px',
+          lineHeight: 1.12,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        九張 <span style={gradText}>專業認證</span>
+      </h2>
+      <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start' }}>
+        {certs.map((col, ci) => (
+          <div
+            key={col.issuer}
+            className="ace-fadeup"
+            style={{
+              flex: 1,
+              padding: '26px 28px 30px',
+              borderRadius: 'var(--osd-radius)',
+              background: palette.surface,
+              border: `1px solid ${palette.border}`,
+              boxShadow: cardShadow,
+              animationDelay: `${240 + ci * 120}ms`,
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 20 }}>
+              <span style={{ fontSize: 30, fontWeight: 700, ...gradText }}>{col.issuer}</span>
+              <span style={{ fontSize: 17, color: palette.muted }}>{col.note}</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {col.rows.map((r) => (
+                <div
+                  key={r}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    gap: 14,
+                    padding: '14px 18px',
+                    borderRadius: 12,
+                    background: palette.surfaceHi,
+                  }}
+                >
+                  <span style={{ color: 'var(--osd-accent)', fontSize: 16 }}>◉</span>
+                  <span style={{ fontSize: 19, lineHeight: 1.4 }}>{r}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
+const competitions = [
+  {
+    year: '2024',
+    rows: [
+      { t: '全國電子設計創意競賽 · 智慧大數據及行動 APP 類', p: '冠軍', top: true },
+      { t: 'App 行動應用創新賽', p: '三等獎' },
+      { t: '海峽兩岸青少年創客大賽', p: '三等獎' },
+      { t: '南投山城數位黑客松', p: '銅獎' },
+    ],
+  },
+  {
+    year: '2025',
+    rows: [
+      { t: '亞洲青少年腦神經科學大賽', p: '亞軍', top: true },
+      { t: '海峽兩岸青少年創客大賽', p: '二等獎 · 優秀展覽獎' },
+      { t: '全國電子設計創意競賽 · 智慧大數據及行動 APP 類', p: 'IEEE Tainan Section 特別獎' },
+      { t: '逢甲大學英文簡報比賽', p: '佳作' },
+    ],
+  },
+  {
+    year: '2026',
+    rows: [
+      { t: '全國電子設計創意競賽 · 智慧大數據及行動 APP 類', p: '亞軍', top: true },
+      { t: '全國電子設計創意競賽 · 資通類', p: '佳作' },
+      { t: 'App 行動應用創新賽', p: '三等獎' },
+    ],
+  },
+];
+
+const AboutMe3: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="20%" y="80%" size={1200} opacity={0.22} />
+    <div style={{ padding: '120px 140px 0' }}>
+      <Eyebrow>指導老師 · Your Advisor</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 60,
+          fontWeight: 800,
+          margin: '24px 0 34px',
+          lineHeight: 1.12,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        三年 <span style={gradText}>十一座獎</span>
+      </h2>
+      <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start' }}>
+        {competitions.map((col, ci) => (
+          <div
+            key={col.year}
+            className="ace-fadeup"
+            style={{
+              flex: 1,
+              padding: '26px 28px 30px',
+              borderRadius: 'var(--osd-radius)',
+              background: palette.surface,
+              border: `1px solid ${palette.border}`,
+              boxShadow: cardShadow,
+              animationDelay: `${240 + ci * 120}ms`,
+            }}
+          >
+            <div
+              style={{
+                fontFamily: fonts.mono,
+                fontSize: 32,
+                fontWeight: 700,
+                marginBottom: 20,
+                ...gradText,
+              }}
+            >
+              {col.year}
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              {col.rows.map((r) => (
+                <div key={r.t + r.p}>
+                  <div style={{ fontSize: 19, lineHeight: 1.4, color: palette.muted }}>{r.t}</div>
+                  <div
+                    style={{
+                      display: 'inline-block',
+                      marginTop: 8,
+                      padding: '5px 14px',
+                      borderRadius: 999,
+                      fontSize: 18,
+                      fontWeight: 700,
+                      background: r.top ? palette.accentSoft : palette.surfaceHi,
+                      color: r.top ? 'var(--osd-accent)' : 'var(--osd-text)',
+                      border: r.top ? 'none' : `1px solid ${palette.chipBorder}`,
+                    }}
+                  >
+                    {r.p}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+const AboutMe4: Page = () => <Blank />;
+const AboutMe5: Page = () => <Blank />;
 
 const DividerClub: Page = () => (
   <Divider
@@ -2511,6 +2677,10 @@ export const meta: SlideMeta = {
 export default [
   Cover,
   AboutMe,
+  AboutMe2,
+  AboutMe3,
+  AboutMe4,
+  AboutMe5,
   DividerClub,
   ClubIntro1,
   ClubIntro2,
