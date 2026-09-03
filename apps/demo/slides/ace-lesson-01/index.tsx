@@ -1,6 +1,7 @@
 import { type DesignSystem, type Page, type SlideMeta, useSlidePageNumber } from '@open-slide/core';
 import claudeIcon from './assets/claude-ai-icon.svg';
 import codexIcon from './assets/codex_light.svg';
+import cursorLogo from './assets/cursor.svg';
 import focusLoop from './assets/focusloop.png';
 import focusLoopScreens from './assets/focusloop-screens.png';
 import geminiIcon from './assets/gemini.svg';
@@ -1109,33 +1110,196 @@ const ClubIntro5: Page = () => (
 const aiTools = [
   {
     icon: codexIcon,
+    wordmark: false,
     maker: 'OpenAI',
     name: 'Codex',
     zh: '終端機裡的工程師',
     desc: '給它一句話，它自己讀專案、改檔案、跑測試。',
+    points: [
+      '在終端機裡跑，也可以丟到雲端讓它自己做',
+      '讀得懂整個專案，不是只看你貼的那一段',
+      '改完會自己跑測試，錯了再回去改',
+    ],
   },
   {
     icon: claudeIcon,
+    wordmark: false,
     maker: 'Anthropic',
     name: 'Claude Code',
     zh: '會動手的助理',
     desc: '在你的資料夾裡直接改程式、找 bug，也有桌面版和編輯器外掛。',
+    points: [
+      '在你的資料夾裡直接動手改檔案',
+      '終端機、桌面版、VS Code 外掛都有',
+      '可以一路做到幫你送出 PR',
+    ],
   },
   {
     icon: geminiIcon,
+    wordmark: false,
     maker: 'Google',
     name: 'Gemini',
     zh: '什麼都能問',
     desc: '查資料、寫文件、寫程式都行，終端機也有 Gemini CLI 可以跑。',
+    points: [
+      '一次讀得進很長的文件、圖片和影片',
+      '查資料、寫報告、寫程式都能問',
+      '終端機也有 Gemini CLI 可以跑',
+    ],
   },
   {
-    icon: null,
-    maker: 'Cursor',
+    icon: cursorLogo,
+    wordmark: true,
+    maker: 'Anysphere',
     name: 'Cursor',
     zh: '內建 AI 的編輯器',
     desc: '長得像 VS Code，按 Tab 補完整段，也能把整個專案交給它改。',
+    points: [
+      '長得跟 VS Code 一樣，會用就會用',
+      '按 Tab 補完的是整段，不是只有一行',
+      '也可以把整個專案交給它改',
+    ],
   },
 ];
+
+const ToolMark = ({ tool, size }: { tool: (typeof aiTools)[number]; size: number }) => (
+  <div
+    style={{
+      width: size,
+      height: size,
+      borderRadius: size * 0.26,
+      background: palette.surfaceHi,
+      border: `1px solid ${palette.border}`,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden',
+      flexShrink: 0,
+    }}
+  >
+    <img
+      src={tool.icon}
+      alt=""
+      style={{
+        width: size * 0.54,
+        height: size * 0.54,
+        display: 'block',
+        objectFit: tool.wordmark ? 'cover' : 'contain',
+        objectPosition: 'left center',
+      }}
+    />
+  </div>
+);
+
+const ToolPage = ({ tool }: { tool: (typeof aiTools)[number] }) => (
+  <div style={fill}>
+    <Style />
+    <Glow x="78%" y="60%" size={1200} opacity={0.26} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: 90,
+        alignItems: 'center',
+        padding: '0 140px',
+      }}
+    >
+      <div>
+        <div className="ace-fadeup" style={{ marginBottom: 30 }}>
+          <ToolMark tool={tool} size={130} />
+        </div>
+        <div
+          className="ace-fadeup"
+          style={{
+            fontFamily: fonts.mono,
+            fontSize: 18,
+            letterSpacing: '0.14em',
+            color: 'var(--osd-accent)',
+            animationDelay: '100ms',
+          }}
+        >
+          {tool.maker}
+        </div>
+        <h2
+          className="ace-fadeup"
+          style={{
+            fontSize: 78,
+            fontWeight: 800,
+            margin: '12px 0 14px',
+            lineHeight: 1.08,
+            letterSpacing: '-0.02em',
+            animationDelay: '160ms',
+          }}
+        >
+          {tool.name}
+        </h2>
+        <p
+          className="ace-fadeup"
+          style={{
+            fontSize: 32,
+            margin: '0 0 18px',
+            ...gradText,
+            animationDelay: '220ms',
+          }}
+        >
+          {tool.zh}
+        </p>
+        <p
+          className="ace-fadeup"
+          style={{
+            fontSize: 22,
+            color: palette.muted,
+            lineHeight: 1.6,
+            margin: 0,
+            maxWidth: 620,
+            animationDelay: '280ms',
+          }}
+        >
+          {tool.desc}
+        </p>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+        {tool.points.map((pt, i) => (
+          <div
+            key={pt}
+            className="ace-fadeup"
+            style={{
+              display: 'flex',
+              alignItems: 'baseline',
+              gap: 20,
+              padding: '26px 30px',
+              borderRadius: 'var(--osd-radius)',
+              background: palette.surface,
+              border: `1px solid ${palette.border}`,
+              boxShadow: cardShadow,
+              animationDelay: `${340 + i * 110}ms`,
+            }}
+          >
+            <span
+              style={{
+                fontFamily: fonts.mono,
+                fontSize: 18,
+                letterSpacing: '0.1em',
+                color: 'var(--osd-accent)',
+              }}
+            >
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <span style={{ fontSize: 24, lineHeight: 1.5 }}>{pt}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
+const ToolCodex: Page = () => <ToolPage tool={aiTools[0]} />;
+const ToolClaude: Page = () => <ToolPage tool={aiTools[1]} />;
+const ToolGemini: Page = () => <ToolPage tool={aiTools[2]} />;
+const ToolCursor: Page = () => <ToolPage tool={aiTools[3]} />;
 
 const ClubIntro6: Page = () => (
   <div style={fill}>
@@ -1173,33 +1337,8 @@ const ClubIntro6: Page = () => (
               animationDelay: `${240 + i * 100}ms`,
             }}
           >
-            <div
-              style={{
-                width: 64,
-                height: 64,
-                borderRadius: 16,
-                background: palette.surfaceHi,
-                border: `1px solid ${palette.border}`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: 20,
-              }}
-            >
-              {t.icon ? (
-                <img src={t.icon} alt="" style={{ width: 34, height: 34, display: 'block' }} />
-              ) : (
-                <span
-                  style={{
-                    fontFamily: fonts.mono,
-                    fontSize: 30,
-                    fontWeight: 700,
-                    color: 'var(--osd-accent)',
-                  }}
-                >
-                  ▮
-                </span>
-              )}
+            <div style={{ marginBottom: 20 }}>
+              <ToolMark tool={t} size={64} />
             </div>
             <div
               style={{
@@ -1234,7 +1373,7 @@ const ClubIntro6: Page = () => (
     <Footer />
   </div>
 );
-const ClubIntro7: Page = () => <Blank />;
+
 const schedule = [
   {
     tag: '實體 · IN PERSON',
@@ -2302,7 +2441,10 @@ export default [
   ClubIntro4,
   ClubIntro5,
   ClubIntro6,
-  ClubIntro7,
+  ToolCodex,
+  ToolClaude,
+  ToolGemini,
+  ToolCursor,
   ClubIntro8,
   DividerIcebreaker,
   GameIntro,
