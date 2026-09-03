@@ -1291,6 +1291,8 @@ const aiTools = [
   {
     icon: codexIcon,
     wordmark: false,
+    tags: ['新手友好', '有免費額度'],
+    note: '',
     maker: 'OpenAI',
     org: 'OpenAI',
     orgNote: '2015 年成立 · 美國舊金山',
@@ -1307,6 +1309,8 @@ const aiTools = [
   {
     icon: claudeIcon,
     wordmark: false,
+    tags: ['目前公認最聰明'],
+    note: '',
     maker: 'Anthropic',
     org: 'Anthropic',
     orgNote: '2021 年成立 · 由前 OpenAI 成員創辦',
@@ -1323,6 +1327,8 @@ const aiTools = [
   {
     icon: geminiIcon,
     wordmark: false,
+    tags: ['搜尋最強'],
+    note: '查資料很行，但真的動手做事有點笨，複雜的任務要盯著它。',
     maker: 'Google',
     org: 'Google DeepMind',
     orgNote: 'Alphabet 旗下 · Gemini 由 DeepMind 開發',
@@ -1342,10 +1348,12 @@ const aiTools = [
   {
     icon: cursorLogo,
     wordmark: false,
+    tags: ['被 SpaceX 收購'],
+    note: '2026 年 8 月以 600 億美金全股票成交，併進新設的 SpaceXAI 部門，是史上最大的新創收購案。未來走向還看不出來。',
     maker: 'Anysphere',
     org: 'Anysphere',
-    orgNote: '2022 年成立 · 由四位 MIT 學生創辦',
-    people: [{ n: 'Michael Truell', r: '共同創辦人暨執行長' }],
+    orgNote: '2022 年由四位 MIT 學生創辦 · 2026 年併入 SpaceX',
+    people: [{ n: 'Michael Truell', r: '共同創辦人' }],
     name: 'Cursor',
     zh: '內建 AI 的編輯器',
     desc: '長得像 VS Code，按 Tab 補完整段，也能把整個專案交給它改。',
@@ -1434,30 +1442,73 @@ const ToolPage = ({ tool }: { tool: (typeof aiTools)[number] }) => (
           className="ace-fadeup"
           style={{
             fontSize: 32,
-            margin: '0 0 18px',
+            margin: '0 0 16px',
             ...gradText,
             animationDelay: '220ms',
           }}
         >
           {tool.zh}
         </p>
+        {tool.tags.length > 0 && (
+          <div
+            className="ace-fadeup"
+            style={{
+              display: 'flex',
+              gap: 10,
+              marginBottom: 18,
+              animationDelay: '250ms',
+            }}
+          >
+            {tool.tags.map((tag) => (
+              <span
+                key={tag}
+                style={{
+                  padding: '8px 18px',
+                  borderRadius: 999,
+                  background: palette.accentSoft,
+                  color: 'var(--osd-accent)',
+                  fontSize: 20,
+                  fontWeight: 700,
+                }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
         <p
           className="ace-fadeup"
           style={{
             fontSize: 22,
             color: palette.muted,
             lineHeight: 1.6,
-            margin: '0 0 30px',
+            margin: tool.note ? '0 0 14px' : '0 0 30px',
             maxWidth: 620,
             animationDelay: '280ms',
           }}
         >
           {tool.desc}
         </p>
+        {tool.note && (
+          <div
+            className="ace-fadeup"
+            style={{
+              display: 'flex',
+              alignItems: 'baseline',
+              gap: 12,
+              maxWidth: 620,
+              marginBottom: 30,
+              animationDelay: '300ms',
+            }}
+          >
+            <span style={{ color: 'var(--osd-accent)', fontSize: 18 }}>※</span>
+            <span style={{ fontSize: 21, lineHeight: 1.55 }}>{tool.note}</span>
+          </div>
+        )}
         <div
           className="ace-fadeup"
           style={{
-            display: 'inline-block',
+            display: 'block',
             padding: '30px 38px 34px',
             borderRadius: 'var(--osd-radius)',
             background: palette.surface,
@@ -2499,15 +2550,104 @@ const StoryWWDC: Page = () => (
   </div>
 );
 
-const Blank: Page = () => (
+const Closing2: Page = () => (
   <div style={fill}>
     <Style />
+    <Glow x="50%" y="52%" size={1500} opacity={0.32} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '0 160px',
+      }}
+    >
+      <Eyebrow>給你的一句話 · Just do it</Eyebrow>
+      <h1
+        className="ace-fadeup"
+        style={{
+          fontSize: 88,
+          fontWeight: 800,
+          margin: '36px 0 26px',
+          lineHeight: 1.16,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        想要改變什麼，想要做什麼
+        <br />
+        <span style={gradText}>就去做</span>
+      </h1>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 26,
+          color: palette.muted,
+          lineHeight: 1.5,
+          margin: 0,
+          maxWidth: 1200,
+          animationDelay: '220ms',
+        }}
+      >
+        If you want to change something — go make it.
+      </p>
+    </div>
     <Footer />
   </div>
 );
-
-const Closing2: Page = () => <Blank />;
-const Closing3: Page = () => <Blank />;
+const Closing3: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="52%" size={1600} opacity={0.32} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '0 160px',
+      }}
+    >
+      <Eyebrow>最後一句 · One last thing</Eyebrow>
+      <h1
+        className="ace-fadeup"
+        style={{
+          fontSize: 92,
+          fontWeight: 800,
+          margin: '36px 0 26px',
+          lineHeight: 1.16,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        你不用很厲害才能開始
+        <br />
+        <span style={gradText}>你要開始才能很厲害</span>
+      </h1>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 26,
+          color: palette.muted,
+          lineHeight: 1.5,
+          margin: 0,
+          maxWidth: 1200,
+          animationDelay: '220ms',
+        }}
+      >
+        You don't have to be great to start. You have to start to be great.
+      </p>
+    </div>
+    <Footer />
+  </div>
+);
 
 const QA: Page = () => (
   <div style={fill}>
@@ -2614,6 +2754,56 @@ const QA: Page = () => (
   </div>
 );
 
+const Closing4: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="52%" size={1600} opacity={0.34} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '0 160px',
+      }}
+    >
+      <Eyebrow>既然來了 · All in</Eyebrow>
+      <h1
+        className="ace-fadeup"
+        style={{
+          fontSize: 92,
+          fontWeight: 800,
+          margin: '36px 0 26px',
+          lineHeight: 1.16,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        來都來了
+        <br />
+        <span style={gradText}>那就全心的投入，看看結果吧</span>
+      </h1>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 26,
+          color: palette.muted,
+          lineHeight: 1.5,
+          margin: 0,
+          maxWidth: 1200,
+          animationDelay: '220ms',
+        }}
+      >
+        You're already here — go all in and see where it takes you.
+      </p>
+    </div>
+    <Footer />
+  </div>
+);
+
 const Closing: Page = () => (
   <div style={fill}>
     <Style />
@@ -2658,9 +2848,9 @@ const Closing: Page = () => (
           animationDelay: '240ms',
         }}
       >
-        下週開始動手做，沒帶電腦只能在旁邊看。
+        下週開始動手做。沒有電腦的話，就找一組有電腦的同學一起。
         <br />
-        Bring your laptop — next week we actually build something.
+        No laptop? Team up with a group that has one.
       </p>
       <div
         className="ace-fadeup"
@@ -2748,5 +2938,6 @@ export default [
   Closing2,
   Closing3,
   QA,
+  Closing4,
   Closing,
 ] satisfies Page[];
