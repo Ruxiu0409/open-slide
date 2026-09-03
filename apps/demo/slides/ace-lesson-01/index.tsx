@@ -16,7 +16,21 @@ import qrOddOneOut from './assets/qr-oddoneout.svg';
 import qrSlido from './assets/qr-slido.svg';
 import qrX from './assets/qr-x.png';
 import rayAvatar from './assets/ray-avatar.jpg';
-import raycastIcon from './assets/raycast.svg';
+import {
+  StoryAbroadWithFriends,
+  StoryActivityHunt,
+  StoryAwardMoment,
+  StoryClosingDream,
+  StoryContestCanBeFun,
+  StoryEarlyGraduationTrip,
+  StoryExperienceWall,
+  StoryFirstTimeAbroad,
+  StoryHalfFcuTopia,
+  StoryHighSchoolClub,
+  StoryHungryAfterAward,
+  StoryRoots,
+  StorySummerScheduleClash,
+} from './story-pages';
 
 export const design: DesignSystem = {
   palette: { bg: '#F5F5F7', text: '#1D1D1F', accent: '#2E6FE0' },
@@ -464,56 +478,6 @@ const Cover: Page = () => (
   </div>
 );
 
-const CredentialRow = ({
-  icon,
-  text,
-  sub,
-  delay = 0,
-}: {
-  icon: React.ReactNode;
-  text: string;
-  sub: string;
-  delay?: number;
-}) => (
-  <div
-    className="ace-fadeup"
-    style={{
-      display: 'flex',
-      alignItems: 'center',
-      gap: 14,
-      padding: '12px 18px',
-      borderRadius: 14,
-      background: palette.surface,
-      border: `1px solid ${palette.border}`,
-      boxShadow: cardShadow,
-      animationDelay: `${delay}ms`,
-    }}
-  >
-    <span style={{ fontSize: 24 }}>{icon}</span>
-    <span>
-      <span style={{ fontSize: 22, fontWeight: 600, display: 'block' }}>{text}</span>
-      <span style={{ fontSize: 15, color: palette.muted, display: 'block', marginTop: 3 }}>
-        {sub}
-      </span>
-    </span>
-  </div>
-);
-
-const CredGroupLabel = ({ children }: { children: React.ReactNode }) => (
-  <div
-    style={{
-      fontFamily: fonts.mono,
-      fontSize: 16,
-      color: 'var(--osd-accent)',
-      letterSpacing: '0.14em',
-      textTransform: 'uppercase',
-      marginBottom: 10,
-    }}
-  >
-    {children}
-  </div>
-);
-
 const QrChip = ({ src, label, handle }: { src: string; label: string; handle: string }) => (
   <div style={{ width: 128 }}>
     <img
@@ -611,56 +575,75 @@ const AboutMe: Page = () => (
         </div>
       </div>
       <div>
-        <Eyebrow>指導老師 · Your Advisor</Eyebrow>
+        <Eyebrow>先快速認識我 · About me</Eyebrow>
         <h2
           className="ace-fadeup"
           style={{
             fontSize: 68,
             fontWeight: 800,
-            margin: '26px 0 14px',
-            lineHeight: 1.15,
+            margin: '26px 0 16px',
+            lineHeight: 1.14,
+            letterSpacing: '-0.02em',
             animationDelay: '120ms',
           }}
         >
-          嗨，我是 <span style={gradText}>瑞瑞（Ray）</span>
+          我是 <span style={gradText}>蔡承曄</span>。
         </h2>
         <p
           className="ace-fadeup"
           style={{
             fontSize: 22,
             color: palette.muted,
-            lineHeight: 1.5,
-            maxWidth: 940,
-            margin: '0 0 30px',
+            lineHeight: 1.6,
+            margin: '0 0 28px',
+            maxWidth: 900,
             animationDelay: '200ms',
           }}
         >
-          叫我 CY 也可以。我是 ACE Club 的指導老師，今天這堂帶大家做出第一個 Raycast 擴充。
-          <br />
-          Call me CY — I'm the club advisor. Today we ship your first Raycast extension.
+          你也可以叫我瑞瑞或 CY。逢甲大學資工系，曾經擔任 iOS Club 9th
+          社長，現在也持續在社群裡學習、分享和串起更多人。
         </p>
-        <CredGroupLabel>稱號 · Roles</CredGroupLabel>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <CredentialRow
-            icon="📱"
-            text="iOS Club Lead（2025–26）"
-            sub="iOS Club Lead 2025–26"
-            delay={300}
-          />
-          <CredentialRow
-            icon="🚀"
-            text="GDG on Campus Associated Lead（2025–26）"
-            sub="Google Developer Group 校園副負責人"
-            delay={390}
-          />
-          <CredentialRow
-            icon={
-              <img src={raycastIcon} alt="" style={{ width: 24, height: 24, display: 'block' }} />
-            }
-            text="Raycast Ambassador"
-            sub="Raycast 官方大使"
-            delay={480}
-          />
+        <div
+          className="ace-fadeup"
+          style={{
+            borderLeft: `4px solid var(--osd-accent)`,
+            paddingLeft: 22,
+            fontSize: 25,
+            fontWeight: 600,
+            lineHeight: 1.45,
+            maxWidth: 900,
+            animationDelay: '260ms',
+          }}
+        >
+          我想被記住的不是某一個職稱，而是我怎麼把技術、設計和社群經驗變成可以被看見的作品。
+        </div>
+        <div
+          style={{
+            marginTop: 34,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+            gap: 16,
+            maxWidth: 900,
+          }}
+        >
+          {[
+            { k: '逢甲資工', v: 'FCU · Computer Science' },
+            { k: 'iOS Club', v: '9th 社長' },
+            { k: 'GDG on Campus', v: 'Associated Lead' },
+          ].map((c, i) => (
+            <div
+              key={c.k}
+              className="ace-fadeup"
+              style={{
+                borderTop: `3px solid var(--osd-accent)`,
+                paddingTop: 16,
+                animationDelay: `${320 + i * 90}ms`,
+              }}
+            >
+              <div style={{ fontSize: 26, fontWeight: 700, lineHeight: 1.15 }}>{c.k}</div>
+              <div style={{ marginTop: 8, fontSize: 18, color: palette.muted }}>{c.v}</div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -1006,8 +989,6 @@ const AboutMe3: Page = () => (
     <Footer />
   </div>
 );
-const AboutMe4: Page = () => <Blank />;
-const AboutMe5: Page = () => <Blank />;
 
 const ClubIntro1: Page = () => (
   <div style={fill}>
@@ -2669,8 +2650,19 @@ export default [
   AboutMe,
   AboutMe2,
   AboutMe3,
-  AboutMe4,
-  AboutMe5,
+  StoryRoots,
+  StoryHighSchoolClub,
+  StoryExperienceWall,
+  StoryAwardMoment,
+  StoryHungryAfterAward,
+  StoryActivityHunt,
+  StorySummerScheduleClash,
+  StoryFirstTimeAbroad,
+  StoryAbroadWithFriends,
+  StoryEarlyGraduationTrip,
+  StoryContestCanBeFun,
+  StoryHalfFcuTopia,
+  StoryClosingDream,
   ClubIntro1,
   ClubIntro2,
   ClubIntro3,
