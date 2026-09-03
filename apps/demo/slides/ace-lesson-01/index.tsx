@@ -1112,6 +1112,9 @@ const aiTools = [
     icon: codexIcon,
     wordmark: false,
     maker: 'OpenAI',
+    org: 'OpenAI',
+    orgNote: '2015 年成立 · 美國舊金山',
+    people: [{ n: 'Sam Altman', r: '執行長' }],
     name: 'Codex',
     zh: '終端機裡的工程師',
     desc: '給它一句話，它自己讀專案、改檔案、跑測試。',
@@ -1125,6 +1128,9 @@ const aiTools = [
     icon: claudeIcon,
     wordmark: false,
     maker: 'Anthropic',
+    org: 'Anthropic',
+    orgNote: '2021 年成立 · 由前 OpenAI 成員創辦',
+    people: [{ n: 'Dario Amodei', r: '共同創辦人暨執行長' }],
     name: 'Claude Code',
     zh: '會動手的助理',
     desc: '在你的資料夾裡直接改程式、找 bug，也有桌面版和編輯器外掛。',
@@ -1138,6 +1144,12 @@ const aiTools = [
     icon: geminiIcon,
     wordmark: false,
     maker: 'Google',
+    org: 'Google DeepMind',
+    orgNote: 'Alphabet 旗下 · Gemini 由 DeepMind 開發',
+    people: [
+      { n: 'Sundar Pichai', r: 'Google 執行長' },
+      { n: 'Demis Hassabis', r: 'DeepMind 執行長' },
+    ],
     name: 'Gemini',
     zh: '什麼都能問',
     desc: '查資料、寫文件、寫程式都行，終端機也有 Gemini CLI 可以跑。',
@@ -1151,6 +1163,9 @@ const aiTools = [
     icon: cursorLogo,
     wordmark: false,
     maker: 'Anysphere',
+    org: 'Anysphere',
+    orgNote: '2022 年成立 · 由四位 MIT 學生創辦',
+    people: [{ n: 'Michael Truell', r: '共同創辦人暨執行長' }],
     name: 'Cursor',
     zh: '內建 AI 的編輯器',
     desc: '長得像 VS Code，按 Tab 補完整段，也能把整個專案交給它改。',
@@ -1252,13 +1267,55 @@ const ToolPage = ({ tool }: { tool: (typeof aiTools)[number] }) => (
             fontSize: 22,
             color: palette.muted,
             lineHeight: 1.6,
-            margin: 0,
+            margin: '0 0 30px',
             maxWidth: 620,
             animationDelay: '280ms',
           }}
         >
           {tool.desc}
         </p>
+        <div
+          className="ace-fadeup"
+          style={{
+            display: 'inline-block',
+            padding: '22px 28px 24px',
+            borderRadius: 'var(--osd-radius)',
+            background: palette.surface,
+            border: `1px solid ${palette.border}`,
+            boxShadow: cardShadow,
+            animationDelay: '340ms',
+          }}
+        >
+          <div
+            style={{
+              fontFamily: fonts.mono,
+              fontSize: 15,
+              letterSpacing: '0.12em',
+              color: 'var(--osd-accent)',
+            }}
+          >
+            誰做的 · WHO BUILDS IT
+          </div>
+          <div style={{ fontSize: 28, fontWeight: 700, marginTop: 10 }}>{tool.org}</div>
+          <div style={{ fontSize: 17, color: palette.muted, marginTop: 4 }}>{tool.orgNote}</div>
+          <div
+            style={{
+              marginTop: 16,
+              paddingTop: 16,
+              borderTop: `1px solid ${palette.border}`,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 8,
+            }}
+          >
+            {tool.people.map((pr) => (
+              <div key={pr.n} style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
+                <span style={{ fontSize: 22, fontWeight: 600 }}>{pr.n}</span>
+                <span style={{ fontSize: 17, color: palette.muted }}>{pr.r}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
         {tool.points.map((pt, i) => (
@@ -1350,9 +1407,9 @@ const ClubIntro6: Page = () => (
             >
               {t.maker}
             </div>
-            <div style={{ fontSize: 32, fontWeight: 700, marginTop: 8 }}>{t.name}</div>
-            <div style={{ fontSize: 20, marginTop: 10 }}>{t.zh}</div>
-            <div style={{ fontSize: 18, color: palette.muted, marginTop: 12, lineHeight: 1.5 }}>
+            <div style={{ fontSize: 34, fontWeight: 700, marginTop: 8 }}>{t.name}</div>
+            <div style={{ fontSize: 24, marginTop: 12 }}>{t.zh}</div>
+            <div style={{ fontSize: 22, color: palette.muted, marginTop: 14, lineHeight: 1.55 }}>
               {t.desc}
             </div>
           </div>
@@ -1361,9 +1418,9 @@ const ClubIntro6: Page = () => (
       <p
         className="ace-fadeup"
         style={{
-          fontSize: 20,
+          fontSize: 22,
           color: palette.muted,
-          marginTop: 32,
+          marginTop: 36,
           animationDelay: '680ms',
         }}
       >
@@ -1374,141 +1431,161 @@ const ClubIntro6: Page = () => (
   </div>
 );
 
-const schedule = [
-  {
-    tag: '實體 · IN PERSON',
-    title: '實體上課日',
-    note: '教室見',
-    primary: true,
-    rows: [
-      { d: '9/3', t: '講師介紹、故事分享、課程導讀', today: true },
-      { d: '9/10', t: '創意發想、分組討論、軟體安裝' },
-      { d: '9/17', t: '實作測試' },
-      { d: '10/8', t: '發表準備' },
-      { d: '10/15', t: '發表日' },
-    ],
-  },
-  {
-    tag: '線上 · ONLINE',
-    title: '線上討論日',
-    note: '各自在家',
-    primary: false,
-    rows: [
-      { d: '9/24', t: '線上分組討論' },
-      { d: '10/1', t: '線上分組討論' },
-    ],
-  },
-  {
-    tag: '自習 · STUDY',
-    title: '讀書日',
-    note: '不會到',
-    primary: false,
-    rows: [{ d: '10/22', t: '自習準備考試' }],
-  },
+const kindStyle = {
+  實體: { bg: 'rgba(46, 111, 224, 0.12)', fg: 'var(--osd-accent)' },
+  線上: { bg: '#F5F5F7', fg: '#6E6E73' },
+  不用到: { bg: 'transparent', fg: '#8E8E93' },
+} as const;
+
+type Session = { d: string; k: keyof typeof kindStyle; t: string; today?: boolean };
+
+const term1: Session[] = [
+  { d: '9/3', k: '實體', t: '講師介紹、故事分享、課程導讀', today: true },
+  { d: '9/10', k: '實體', t: '創意發想、分組討論、軟體安裝' },
+  { d: '9/17', k: '實體', t: '實作測試' },
+  { d: '9/24', k: '線上', t: '線上分組討論' },
+  { d: '10/1', k: '線上', t: '線上分組討論' },
+  { d: '10/8', k: '實體', t: '發表準備' },
+  { d: '10/15', k: '實體', t: '發表日' },
+  { d: '10/22', k: '不用到', t: '讀書日 · 自習準備考試' },
 ];
+
+const term2: Session[] = [
+  { d: '11/12', k: '實體', t: '分組、創意發想' },
+  { d: '11/19', k: '線上', t: 'UI/UX、AI 應用' },
+  { d: '11/26', k: '實體', t: '世界咖啡館、分組討論實作' },
+  { d: '12/3', k: '線上', t: '線上分組討論' },
+  { d: '12/24', k: '實體', t: '發表日' },
+  { d: '12/31', k: '不用到', t: '慶功日' },
+];
+
+const TermCard = ({
+  title,
+  titleEn,
+  rows,
+  delay,
+}: {
+  title: string;
+  titleEn: string;
+  rows: Session[];
+  delay: number;
+}) => (
+  <div
+    className="ace-fadeup"
+    style={{
+      flex: 1,
+      padding: '28px 30px 30px',
+      borderRadius: 'var(--osd-radius)',
+      background: palette.surface,
+      border: `1px solid ${palette.border}`,
+      boxShadow: cardShadow,
+      animationDelay: `${delay}ms`,
+    }}
+  >
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'baseline',
+        gap: 14,
+        marginBottom: 18,
+      }}
+    >
+      <span style={{ fontSize: 32, fontWeight: 700 }}>{title}</span>
+      <span
+        style={{
+          fontFamily: fonts.mono,
+          fontSize: 15,
+          letterSpacing: '0.12em',
+          color: 'var(--osd-accent)',
+        }}
+      >
+        {titleEn} · {rows.length} 次
+      </span>
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+      {rows.map((r) => (
+        <div
+          key={r.d}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 14,
+            padding: '10px 14px',
+            borderRadius: 10,
+            background: r.today ? palette.accentSoft : 'transparent',
+            opacity: r.k === '不用到' ? 0.62 : 1,
+          }}
+        >
+          <span
+            style={{
+              fontFamily: fonts.mono,
+              fontSize: 21,
+              fontWeight: 700,
+              minWidth: 74,
+              color: r.today ? 'var(--osd-accent)' : 'var(--osd-text)',
+            }}
+          >
+            {r.d}
+          </span>
+          <span
+            style={{
+              fontSize: 15,
+              padding: '4px 12px',
+              borderRadius: 999,
+              minWidth: 62,
+              textAlign: 'center',
+              background: kindStyle[r.k].bg,
+              color: kindStyle[r.k].fg,
+              border: r.k === '不用到' ? `1px dashed ${palette.chipBorder}` : 'none',
+            }}
+          >
+            {r.k}
+          </span>
+          <span style={{ fontSize: 19, lineHeight: 1.4 }}>{r.t}</span>
+          {r.today && (
+            <span
+              style={{
+                marginLeft: 'auto',
+                fontFamily: fonts.mono,
+                fontSize: 13,
+                padding: '3px 10px',
+                borderRadius: 999,
+                background: 'var(--osd-accent)',
+                color: '#FFFFFF',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              今天
+            </span>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 const ClubIntro8: Page = () => (
   <div style={fill}>
     <Style />
-    <Glow x="15%" y="80%" size={1200} opacity={0.24} />
-    <div style={{ padding: '130px 140px 0' }}>
-      <Eyebrow>課程導讀 · The term ahead</Eyebrow>
+    <Glow x="15%" y="85%" size={1200} opacity={0.22} />
+    <div style={{ padding: '110px 140px 0' }}>
+      <Eyebrow>課程導讀 · The year ahead</Eyebrow>
       <h2
         className="ace-fadeup"
         style={{
-          fontSize: 64,
+          fontSize: 56,
           fontWeight: 800,
-          margin: '26px 0 40px',
+          margin: '22px 0 32px',
           lineHeight: 1.12,
           letterSpacing: '-0.02em',
           animationDelay: '120ms',
         }}
       >
-        這學期 <span style={gradText}>八次社課</span>，這樣跑
+        這一年 <span style={gradText}>十四次社課</span>，這樣跑
       </h2>
-      <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start' }}>
-        {schedule.map((col, ci) => (
-          <div
-            key={col.title}
-            className="ace-fadeup"
-            style={{
-              flex: col.rows.length > 2 ? 1.5 : 1,
-              padding: '28px 30px 30px',
-              borderRadius: 'var(--osd-radius)',
-              background: palette.surface,
-              border: `1px solid ${col.primary ? 'var(--osd-accent)' : palette.border}`,
-              boxShadow: cardShadow,
-              animationDelay: `${240 + ci * 120}ms`,
-            }}
-          >
-            <div
-              style={{
-                fontFamily: fonts.mono,
-                fontSize: 16,
-                letterSpacing: '0.12em',
-                color: col.primary ? 'var(--osd-accent)' : palette.muted,
-              }}
-            >
-              {col.tag}
-            </div>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'baseline',
-                gap: 12,
-                marginTop: 10,
-                marginBottom: 20,
-              }}
-            >
-              <span style={{ fontSize: 32, fontWeight: 700 }}>{col.title}</span>
-              <span style={{ fontSize: 18, color: palette.muted }}>{col.note}</span>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {col.rows.map((r) => (
-                <div
-                  key={r.d}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'baseline',
-                    gap: 16,
-                    padding: '12px 16px',
-                    borderRadius: 12,
-                    background: r.today ? palette.accentSoft : palette.surfaceHi,
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: fonts.mono,
-                      fontSize: 24,
-                      fontWeight: 700,
-                      minWidth: 76,
-                      color: r.today ? 'var(--osd-accent)' : 'var(--osd-text)',
-                    }}
-                  >
-                    {r.d}
-                  </span>
-                  <span style={{ fontSize: 19, lineHeight: 1.4 }}>{r.t}</span>
-                  {r.today && (
-                    <span
-                      style={{
-                        marginLeft: 'auto',
-                        fontFamily: fonts.mono,
-                        fontSize: 14,
-                        padding: '3px 10px',
-                        borderRadius: 999,
-                        background: 'var(--osd-accent)',
-                        color: '#FFFFFF',
-                        whiteSpace: 'nowrap',
-                      }}
-                    >
-                      今天
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
+      <div style={{ display: 'flex', gap: 28, alignItems: 'flex-start' }}>
+        <TermCard title="上半學期" titleEn="TERM 1" rows={term1} delay={240} />
+        <TermCard title="下半學期" titleEn="TERM 2" rows={term2} delay={360} />
       </div>
     </div>
     <Footer />
