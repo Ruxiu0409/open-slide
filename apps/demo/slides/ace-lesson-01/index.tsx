@@ -604,7 +604,7 @@ const AboutMe: Page = () => (
             animationDelay: '120ms',
           }}
         >
-          我是 <span style={gradText}>蔡承曄</span>。
+          我是 <span style={gradText}>瑞瑞</span>。
         </h2>
         <p
           className="ace-fadeup"
@@ -617,7 +617,7 @@ const AboutMe: Page = () => (
             animationDelay: '200ms',
           }}
         >
-          你也可以叫我瑞瑞或 CY。逢甲大學資工系，曾經擔任 iOS Club 9th
+          本名蔡承曄，叫我 CY 也可以。逢甲大學資工系，曾經擔任 iOS Club 9th
           社長，現在也持續在社群裡學習、分享和串起更多人。
         </p>
         <div
