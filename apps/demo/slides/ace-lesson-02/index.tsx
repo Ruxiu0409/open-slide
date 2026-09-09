@@ -1,10 +1,10 @@
 import { type DesignSystem, type Page, type SlideMeta, useSlidePageNumber } from '@open-slide/core';
 import claudeIcon from './assets/claude-ai-icon.svg';
-import codexIcon from './assets/codex_light.svg';
-import cursorLogo from './assets/cursor_light.svg';
+import codexSite from './assets/codex-site.png';
 import focusLoop from './assets/focusloop.png';
 import focusLoopScreens from './assets/focusloop-screens.png';
 import geminiIcon from './assets/gemini.svg';
+import openaiIcon from './assets/openai.svg';
 import qrClassroom from './assets/qr-classroom.svg';
 import { StoryHalfFcuTopia } from './story-pages';
 
@@ -315,8 +315,8 @@ const Cover: Page = () => (
           >
             上課第一步 · STEP ONE
           </div>
-          <div style={{ fontSize: 38, fontWeight: 800, marginTop: 12, letterSpacing: '-0.01em' }}>
-            先加入 Classroom
+          <div style={{ fontSize: 34, fontWeight: 800, marginTop: 12, letterSpacing: '-0.01em' }}>
+            加入 Google Classroom
           </div>
           <img
             src={qrClassroom}
@@ -606,7 +606,7 @@ const ScatterQuestion = ({
   </div>
 );
 
-const heardTools: Scatter[] = [
+const usedTools: Scatter[] = [
   { t: 'ChatGPT', x: '9%', y: '11%', r: -9, size: 28, o: 1 },
   { t: 'Gemini', x: '26%', y: '19%', r: 7, size: 25, o: 0.9 },
   { t: 'Claude', x: '43%', y: '9%', r: -6, size: 27, o: 1 },
@@ -630,15 +630,15 @@ const heardTools: Scatter[] = [
 const ClubIntro4: Page = () => (
   <ScatterQuestion
     eyebrow="暖身 · Warm-up"
-    line1="你聽過哪些"
-    line2="AI 工具？"
-    sub="Which AI tools have you heard of?"
-    chips={heardTools}
+    line1="你用過哪些"
+    line2="AI？"
+    sub="Which AI tools have you actually used?"
+    chips={usedTools}
   />
 );
 const aiTools = [
   {
-    icon: codexIcon,
+    icon: openaiIcon,
     wordmark: false,
     tags: ['新手友好', '有免費額度'],
     note: '',
@@ -692,24 +692,6 @@ const aiTools = [
       '一次讀得進很長的文件、圖片和影片',
       '查資料、寫報告、寫程式都能問',
       '終端機也有 Gemini CLI 可以跑',
-    ],
-  },
-  {
-    icon: cursorLogo,
-    wordmark: false,
-    tags: ['被 SpaceX 收購'],
-    note: '2026 年 8 月以 600 億美金全股票成交，併進新設的 SpaceXAI 部門，是史上最大的新創收購案。未來走向還看不出來。',
-    maker: 'Anysphere',
-    org: 'Anysphere',
-    orgNote: '2022 年由四位 MIT 學生創辦 · 2026 年併入 SpaceX',
-    people: [{ n: 'Michael Truell', r: '共同創辦人' }],
-    name: 'Cursor',
-    zh: '內建 AI 的編輯器',
-    desc: '長得像 VS Code，按 Tab 補完整段，也能把整個專案交給它改。',
-    points: [
-      '長得跟 VS Code 一樣，會用就會用',
-      '按 Tab 補完的是整段，不是只有一行',
-      '也可以把整個專案交給它改',
     ],
   },
 ];
@@ -934,9 +916,423 @@ const ToolPage = ({ tool }: { tool: (typeof aiTools)[number] }) => (
 );
 
 const ToolCodex: Page = () => <ToolPage tool={aiTools[0]} />;
+const InstallPage = ({
+  heading,
+  accent,
+  gui,
+  cmds,
+  shot,
+  shotAlt,
+  children,
+}: {
+  heading: string;
+  accent: string;
+  gui: string[];
+  cmds: { os: string; cmd: string }[];
+  shot?: string;
+  shotAlt?: string;
+  children: React.ReactNode;
+}) => (
+  <div style={fill}>
+    <Style />
+    <Glow x="20%" y="80%" size={1200} opacity={0.22} />
+    <div style={{ padding: '100px 140px 0' }}>
+      <Eyebrow>安裝 · Install</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 54,
+          fontWeight: 800,
+          margin: '24px 0 30px',
+          lineHeight: 1.12,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        {heading}
+        <span style={gradText}>{accent}</span>
+      </h2>
+      <div
+        style={
+          shot
+            ? { display: 'grid', gridTemplateColumns: '1fr 800px', gap: 36, alignItems: 'center' }
+            : { display: 'flex', gap: 28, alignItems: 'stretch' }
+        }
+      >
+        <div
+          style={
+            shot ? { display: 'flex', flexDirection: 'column', gap: 20 } : { display: 'contents' }
+          }
+        >
+          <div
+            className="ace-fadeup"
+            style={{
+              flex: 1,
+              padding: 28,
+              borderRadius: 'var(--osd-radius)',
+              background: palette.surface,
+              border: '1px solid var(--osd-accent)',
+              boxShadow: cardShadow,
+              animationDelay: '240ms',
+            }}
+          >
+            <div
+              style={{
+                fontFamily: fonts.mono,
+                fontSize: 17,
+                color: 'var(--osd-accent)',
+                letterSpacing: '0.12em',
+              }}
+            >
+              比較簡單
+            </div>
+            <div style={{ fontSize: 30, fontWeight: 800, marginTop: 10 }}>去官網點下載</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 22 }}>
+              {gui.map((g) => (
+                <div key={g} style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
+                  <span style={{ color: 'var(--osd-accent)', fontSize: 16 }}>◉</span>
+                  <span style={{ fontSize: 21, lineHeight: 1.5 }}>{g}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div
+            className="ace-fadeup"
+            style={{
+              flex: 1,
+              padding: 28,
+              borderRadius: 'var(--osd-radius)',
+              background: palette.surface,
+              border: `1px solid ${palette.border}`,
+              boxShadow: cardShadow,
+              animationDelay: '360ms',
+            }}
+          >
+            <div
+              style={{
+                fontFamily: fonts.mono,
+                fontSize: 17,
+                color: palette.muted,
+                letterSpacing: '0.12em',
+              }}
+            >
+              進階
+            </div>
+            <div style={{ fontSize: 30, fontWeight: 800, marginTop: 10 }}>用終端機一行裝完</div>
+            {cmds.map((c) => (
+              <div key={c.os} style={{ marginTop: 18 }}>
+                <div style={{ fontSize: 19, color: palette.muted }}>{c.os}</div>
+                <div
+                  style={{
+                    marginTop: 8,
+                    padding: '14px 18px',
+                    borderRadius: 14,
+                    background: palette.surfaceHi,
+                    border: `1px solid ${palette.border}`,
+                    fontFamily: fonts.mono,
+                    fontSize: 18,
+                    lineHeight: 1.5,
+                    whiteSpace: 'pre-wrap',
+                    wordBreak: 'break-all',
+                  }}
+                >
+                  {c.cmd}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        {shot && (
+          <img
+            src={shot}
+            alt={shotAlt}
+            className="ace-fade"
+            style={{
+              width: 800,
+              display: 'block',
+              borderRadius: 'var(--osd-radius)',
+              border: `1px solid ${palette.border}`,
+              boxShadow: cardShadow,
+              animationDelay: '420ms',
+            }}
+          />
+        )}
+      </div>
+      <Strip label="裝完之後" delay={500}>
+        {children}
+      </Strip>
+    </div>
+    <Footer />
+  </div>
+);
+
+const CodexInstall: Page = () => (
+  <InstallPage
+    heading="先把 Codex "
+    accent="裝起來"
+    shot={codexSite}
+    shotAlt="Codex 官網，中間有「下載 macOS 版」按鈕"
+    gui={[
+      'VS Code 的擴充商店搜「ChatGPT」，裝 OpenAI 出的那個',
+      '或直接用 ChatGPT 桌面 App，不用開終端機',
+    ]}
+    cmds={[
+      { os: 'macOS', cmd: 'curl -fsSL https://chatgpt.com/codex/install.sh | sh' },
+      {
+        os: 'Windows',
+        cmd: 'powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"',
+      },
+    ]}
+  >
+    在擴充套件或 App 裡登入 ChatGPT 帳號就可以開始。用終端機的話，打{' '}
+    <span style={{ fontFamily: fonts.mono, fontWeight: 700 }}>codex</span> 按 Enter 再登入。
+  </InstallPage>
+);
+
+const ClaudeCodeInstall: Page = () => (
+  <InstallPage
+    heading="再把 Claude Code "
+    accent="裝起來"
+    gui={['到 claude.ai 下載 Claude 桌面版，Mac 和 Windows 都有', '登入後點上面的 Code 分頁就是了']}
+    cmds={[
+      { os: 'macOS', cmd: 'curl -fsSL https://claude.ai/install.sh | bash' },
+      { os: 'Windows', cmd: 'irm https://claude.ai/install.ps1 | iex' },
+    ]}
+  >
+    桌面版登入後直接用。用終端機的話，打{' '}
+    <span style={{ fontFamily: fonts.mono, fontWeight: 700 }}>claude</span> 按
+    Enter，瀏覽器會跳出來讓你登入。
+  </InstallPage>
+);
+
+const Strip = ({
+  label,
+  children,
+  delay = 0,
+}: {
+  label: string;
+  children: React.ReactNode;
+  delay?: number;
+}) => (
+  <div
+    className="ace-fadeup"
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 20,
+      marginTop: 24,
+      padding: '22px 28px',
+      borderRadius: 'var(--osd-radius)',
+      background: palette.surfaceHi,
+      border: `1px solid ${palette.border}`,
+      animationDelay: `${delay}ms`,
+    }}
+  >
+    <span
+      style={{
+        fontFamily: fonts.mono,
+        fontSize: 17,
+        color: 'var(--osd-accent)',
+        letterSpacing: '0.12em',
+        flexShrink: 0,
+      }}
+    >
+      {label}
+    </span>
+    <span style={{ fontSize: 22, lineHeight: 1.5 }}>{children}</span>
+  </div>
+);
+
+const codexModels = [
+  {
+    id: 'gpt-5.6-luna',
+    tier: '最快',
+    desc: '便宜、反應快。清楚又重複的小事交給它。',
+  },
+  {
+    id: 'gpt-5.6-terra',
+    tier: '平衡',
+    desc: '日常大部分的工作都用這個就夠了。',
+  },
+  {
+    id: 'gpt-5.6-sol',
+    tier: '想得深',
+    desc: '題目很模糊、要多想一下的時候換它。',
+  },
+  {
+    id: 'gpt-6-astra',
+    tier: '最強',
+    desc: '從頭到尾的複雜任務，但它想得比較久。',
+  },
+];
+
+const CodexModels: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="80%" y="20%" size={1200} opacity={0.22} />
+    <div style={{ padding: '120px 140px 0' }}>
+      <Eyebrow>模型 · Models</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 56,
+          fontWeight: 800,
+          margin: '26px 0 14px',
+          lineHeight: 1.12,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        同一個工具，<span style={gradText}>可以換不同的腦</span>
+      </h2>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 24,
+          color: palette.muted,
+          lineHeight: 1.4,
+          margin: '0 0 40px',
+          animationDelay: '200ms',
+        }}
+      >
+        Codex 裡面可以切換模型。越強的想得越久，越快的適合簡單的事。
+      </p>
+      <div style={{ display: 'flex', gap: 20, alignItems: 'stretch' }}>
+        {codexModels.map((m, i) => (
+          <div
+            key={m.id}
+            className="ace-fadeup"
+            style={{
+              flex: 1,
+              padding: 28,
+              borderRadius: 'var(--osd-radius)',
+              background: palette.surface,
+              border: `1px solid ${palette.border}`,
+              boxShadow: cardShadow,
+              animationDelay: `${300 + i * 100}ms`,
+            }}
+          >
+            <div style={{ fontSize: 32, fontWeight: 800 }}>{m.tier}</div>
+            <div
+              style={{
+                fontFamily: fonts.mono,
+                fontSize: 19,
+                color: 'var(--osd-accent)',
+                marginTop: 10,
+                wordBreak: 'break-all',
+              }}
+            >
+              {m.id}
+            </div>
+            <div style={{ fontSize: 20, color: palette.muted, marginTop: 16, lineHeight: 1.5 }}>
+              {m.desc}
+            </div>
+          </div>
+        ))}
+      </div>
+      <Strip label="訂閱方案" delay={720}>
+        Codex 在 Free、Go、Plus、Pro 方案裡都有。Plus 一個月 20 美金，Pro 100 美金是 Plus 的 5
+        倍用量、200 美金是 20 倍。
+      </Strip>
+      <div
+        className="ace-fadeup"
+        style={{ fontSize: 20, color: palette.muted, marginTop: 18, animationDelay: '800ms' }}
+      >
+        不確定選哪個就用預設 —— Codex 會依你的帳號自動挑一個。
+      </div>
+    </div>
+    <Footer />
+  </div>
+);
+
 const ToolClaude: Page = () => <ToolPage tool={aiTools[1]} />;
+
+const claudeModels = [
+  { id: 'claude-opus-5', tier: '最強', desc: '難的、要想很久的事情交給它。' },
+  { id: 'claude-sonnet-5', tier: '平衡', desc: '日常大部分的工作用這個就夠。' },
+  { id: 'claude-haiku-4-5', tier: '最快', desc: '簡單、重複的小事，快又省。' },
+];
+
+const ClaudeCodeModels: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="80%" y="20%" size={1200} opacity={0.22} />
+    <div style={{ padding: '110px 140px 0' }}>
+      <Eyebrow>模型與方案 · Models &amp; plans</Eyebrow>
+      <h2
+        className="ace-fadeup"
+        style={{
+          fontSize: 54,
+          fontWeight: 800,
+          margin: '24px 0 12px',
+          lineHeight: 1.12,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        三個模型，<span style={gradText}>五段思考深度</span>
+      </h2>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 23,
+          color: palette.muted,
+          lineHeight: 1.4,
+          margin: '0 0 32px',
+          animationDelay: '200ms',
+        }}
+      >
+        跟 Codex 一樣可以換模型，另外還能決定它要想多久。
+      </p>
+      <div style={{ display: 'flex', gap: 20, alignItems: 'stretch' }}>
+        {claudeModels.map((m, i) => (
+          <div
+            key={m.id}
+            className="ace-fadeup"
+            style={{
+              flex: 1,
+              padding: 26,
+              borderRadius: 'var(--osd-radius)',
+              background: palette.surface,
+              border: `1px solid ${palette.border}`,
+              boxShadow: cardShadow,
+              animationDelay: `${300 + i * 100}ms`,
+            }}
+          >
+            <div style={{ fontSize: 30, fontWeight: 800 }}>{m.tier}</div>
+            <div
+              style={{
+                fontFamily: fonts.mono,
+                fontSize: 19,
+                color: 'var(--osd-accent)',
+                marginTop: 10,
+                wordBreak: 'break-all',
+              }}
+            >
+              {m.id}
+            </div>
+            <div style={{ fontSize: 20, color: palette.muted, marginTop: 14, lineHeight: 1.5 }}>
+              {m.desc}
+            </div>
+          </div>
+        ))}
+      </div>
+      <Strip label="EFFORT" delay={620}>
+        <span style={{ fontFamily: fonts.mono, fontWeight: 700 }}>
+          low → medium → high → xhigh → max
+        </span>
+        ，越後面想得越久、也越花錢。Claude Code 預設 xhigh。
+      </Strip>
+      <Strip label="訂閱方案" delay={700}>
+        免費方案<strong>沒有</strong> Claude Code。Pro 一個月 20 美金（年繳等於 17）就有；Max 從 100
+        美金起，用量是 Pro 的 5 倍或 20 倍。
+      </Strip>
+    </div>
+    <Footer />
+  </div>
+);
+
 const ToolGemini: Page = () => <ToolPage tool={aiTools[2]} />;
-const ToolCursor: Page = () => <ToolPage tool={aiTools[3]} />;
 
 const ClubIntro6: Page = () => (
   <div style={fill}>
@@ -1742,9 +2138,12 @@ export default [
   ClubIntro4,
   ClubIntro6,
   ToolCodex,
+  CodexInstall,
+  CodexModels,
   ToolClaude,
+  ClaudeCodeInstall,
+  ClaudeCodeModels,
   ToolGemini,
-  ToolCursor,
   Icebreak2,
   Icebreak3,
   ActionThink,
