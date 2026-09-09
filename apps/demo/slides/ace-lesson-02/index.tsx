@@ -5,6 +5,7 @@ import cursorLogo from './assets/cursor_light.svg';
 import focusLoop from './assets/focusloop.png';
 import focusLoopScreens from './assets/focusloop-screens.png';
 import geminiIcon from './assets/gemini.svg';
+import qrClassroom from './assets/qr-classroom.svg';
 import { StoryHalfFcuTopia } from './story-pages';
 
 export const design: DesignSystem = {
@@ -206,147 +207,6 @@ const Footer = () => {
   );
 };
 
-const LauncherRow = ({
-  icon,
-  title,
-  sub,
-  kbd,
-  active = false,
-  delay = 0,
-}: {
-  icon: string;
-  title: string;
-  sub: string;
-  kbd?: string;
-  active?: boolean;
-  delay?: number;
-}) => (
-  <div
-    className="ace-fadeup"
-    style={{
-      display: 'flex',
-      alignItems: 'center',
-      gap: 14,
-      padding: '14px 12px',
-      borderRadius: 12,
-      background: active ? palette.accentSoft : 'transparent',
-      animationDelay: `${delay}ms`,
-    }}
-  >
-    <div
-      style={{
-        width: 36,
-        height: 36,
-        borderRadius: 8,
-        background: palette.surfaceHi,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: 19,
-        flexShrink: 0,
-      }}
-    >
-      {icon}
-    </div>
-    <div style={{ flex: 1 }}>
-      <div style={{ fontSize: 21, fontWeight: 600 }}>{title}</div>
-      <div style={{ fontSize: 16, color: palette.muted, marginTop: 2 }}>{sub}</div>
-    </div>
-    {kbd && (
-      <span
-        style={{
-          fontFamily: fonts.mono,
-          fontSize: 14,
-          padding: '4px 8px',
-          borderRadius: 6,
-          background: palette.surfaceHi,
-          color: palette.muted,
-          border: `1px solid ${palette.chipBorder}`,
-        }}
-      >
-        {kbd}
-      </span>
-    )}
-  </div>
-);
-
-const Launcher = ({
-  query,
-  label,
-  width = 820,
-  children,
-}: {
-  query: string;
-  label: string;
-  width?: number;
-  children: React.ReactNode;
-}) => (
-  <div
-    style={{
-      position: 'relative',
-      width,
-      borderRadius: 20,
-      background: palette.surface,
-      border: `1px solid ${palette.border}`,
-      boxShadow: '0 24px 60px rgba(0, 0, 0, 0.12)',
-      overflow: 'hidden',
-    }}
-  >
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 14,
-        padding: '18px 22px',
-        borderBottom: `1px solid ${palette.border}`,
-      }}
-    >
-      <AceMark size={32} />
-      <div style={{ fontSize: 24, fontWeight: 600, flex: 1, color: 'var(--osd-text)' }}>
-        {query}
-        <span
-          className="ace-caret"
-          style={{
-            display: 'inline-block',
-            width: 2,
-            height: 24,
-            background: 'var(--osd-accent)',
-            marginLeft: 6,
-            verticalAlign: 'middle',
-          }}
-        />
-      </div>
-      <span
-        style={{
-          fontFamily: fonts.mono,
-          fontSize: 16,
-          padding: '4px 10px',
-          borderRadius: 6,
-          background: palette.surfaceHi,
-          color: palette.muted,
-          border: `1px solid ${palette.chipBorder}`,
-        }}
-      >
-        ACE
-      </span>
-    </div>
-    <div style={{ padding: '10px 12px' }}>
-      <div
-        style={{
-          fontSize: 14,
-          color: palette.muted,
-          padding: '6px 12px',
-          letterSpacing: '0.12em',
-          textTransform: 'uppercase',
-        }}
-      >
-        {label}
-      </div>
-      {children}
-    </div>
-  </div>
-);
-
 const Cover: Page = () => (
   <div style={fill}>
     <Style />
@@ -370,7 +230,7 @@ const Cover: Page = () => (
         position: 'absolute',
         inset: 0,
         display: 'grid',
-        gridTemplateColumns: '1fr 820px',
+        gridTemplateColumns: '1fr 520px',
         alignItems: 'center',
         padding: '0 120px',
         gap: 80,
@@ -434,26 +294,46 @@ const Cover: Page = () => (
         className="ace-fade"
         style={{ animationDelay: '300ms', display: 'flex', justifyContent: 'flex-end' }}
       >
-        <Launcher query="今天不寫程式" label="Today · 今天的流程">
-          <LauncherRow
-            icon="👋"
-            title="認識指導老師"
-            sub="Meet your advisor — Ray"
-            kbd="↵"
-            active
-            delay={600}
+        <div
+          style={{
+            width: 520,
+            padding: 44,
+            borderRadius: 'var(--osd-radius)',
+            background: palette.surface,
+            border: `1px solid ${palette.border}`,
+            boxShadow: cardShadow,
+            textAlign: 'center',
+          }}
+        >
+          <div
+            style={{
+              fontFamily: fonts.mono,
+              fontSize: 17,
+              color: 'var(--osd-accent)',
+              letterSpacing: '0.12em',
+            }}
+          >
+            上課第一步 · STEP ONE
+          </div>
+          <div style={{ fontSize: 38, fontWeight: 800, marginTop: 12, letterSpacing: '-0.01em' }}>
+            先加入 Classroom
+          </div>
+          <img
+            src={qrClassroom}
+            alt="掃描加入 Google Classroom"
+            style={{
+              width: 340,
+              height: 340,
+              display: 'block',
+              margin: '28px auto 0',
+              borderRadius: 8,
+            }}
           />
-          <LauncherRow icon="📖" title="我的故事" sub="How I got here" delay={690} />
-          <LauncherRow icon="♠" title="社團介紹" sub="What ACE Club is" delay={780} />
-          <LauncherRow
-            icon="🤖"
-            title="AI 工具與課程導讀"
-            sub="Tools and the term ahead"
-            delay={870}
-          />
-          <LauncherRow icon="🧊" title="破冰時間" sub="Icebreaker — 一起玩一場" delay={960} />
-          <LauncherRow icon="💡" title="其他人的故事" sub="Stories worth telling" delay={1050} />
-        </Launcher>
+          <div style={{ fontSize: 22, color: palette.muted, marginTop: 22 }}>
+            或輸入課程代碼{' '}
+            <span style={{ fontFamily: fonts.mono, fontWeight: 700, ...gradText }}>ate3hzxx</span>
+          </div>
+        </div>
       </div>
     </div>
     <Footer />
@@ -1651,10 +1531,10 @@ const Closing2: Page = () => (
     <Footer />
   </div>
 );
-const Closing3: Page = () => (
+const ActionThink: Page = () => (
   <div style={fill}>
     <Style />
-    <Glow x="50%" y="52%" size={1600} opacity={0.32} />
+    <Glow x="50%" y="55%" size={1400} opacity={0.3} />
     <div
       style={{
         position: 'absolute',
@@ -1667,11 +1547,11 @@ const Closing3: Page = () => (
         padding: '0 160px',
       }}
     >
-      <Eyebrow>最後一句 · One last thing</Eyebrow>
+      <Eyebrow>換你了 · Your turn</Eyebrow>
       <h1
         className="ace-fadeup"
         style={{
-          fontSize: 92,
+          fontSize: 88,
           fontWeight: 800,
           margin: '36px 0 26px',
           lineHeight: 1.16,
@@ -1679,9 +1559,74 @@ const Closing3: Page = () => (
           animationDelay: '120ms',
         }}
       >
-        你不用很厲害才能開始
+        現在開始想
         <br />
-        <span style={gradText}>你要開始才能很厲害</span>
+        <span style={gradText}>你要解決什麼問題</span>
+      </h1>
+      <div
+        className="ace-fadeup"
+        style={{
+          padding: '26px 44px',
+          borderRadius: 'var(--osd-radius)',
+          background: palette.accentSoft,
+          border: `1px solid ${palette.border}`,
+          fontSize: 34,
+          fontWeight: 600,
+          margin: '0 0 22px',
+          animationDelay: '220ms',
+        }}
+      >
+        我想解決＿＿＿，幫我做＿＿＿
+      </div>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 26,
+          color: palette.muted,
+          lineHeight: 1.5,
+          margin: 0,
+          maxWidth: 1200,
+          animationDelay: '300ms',
+        }}
+      >
+        從你每天覺得麻煩的事開始。越小、越具體越好。
+        <br />
+        Start with something that actually annoys you.
+      </p>
+    </div>
+    <Footer />
+  </div>
+);
+
+const ActionBuild: Page = () => (
+  <div style={fill}>
+    <Style />
+    <Glow x="50%" y="52%" size={1500} opacity={0.32} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '0 160px',
+      }}
+    >
+      <Eyebrow>動手 · Build it</Eyebrow>
+      <h1
+        className="ace-fadeup"
+        style={{
+          fontSize: 96,
+          fontWeight: 800,
+          margin: '36px 0 26px',
+          lineHeight: 1.14,
+          letterSpacing: '-0.02em',
+          animationDelay: '120ms',
+        }}
+      >
+        然後，<span style={gradText}>開始實作</span>
       </h1>
       <p
         className="ace-fadeup"
@@ -1694,17 +1639,19 @@ const Closing3: Page = () => (
           animationDelay: '220ms',
         }}
       >
-        You don't have to be great to start. You have to start to be great.
+        想法不會在腦子裡變清楚，會在你做出來之後。先做出第一版，再回頭改。
+        <br />
+        Ideas get clear after you build them, not before.
       </p>
     </div>
     <Footer />
   </div>
 );
 
-const QA: Page = () => (
+const ClosingNextWeek: Page = () => (
   <div style={fill}>
     <Style />
-    <Glow x="50%" y="55%" size={1500} opacity={0.28} />
+    <Glow x="50%" y="50%" size={1600} opacity={0.3} />
     <div
       style={{
         position: 'absolute',
@@ -1717,22 +1664,59 @@ const QA: Page = () => (
         padding: '0 160px',
       }}
     >
-      <Eyebrow>Q &amp; A</Eyebrow>
+      <AceMark size={80} />
+      <div style={{ height: 32 }} />
+      <Eyebrow delay={80}>下週前 · Before next week</Eyebrow>
       <h1
         className="ace-fadeup"
         style={{
-          fontSize: 104,
+          fontSize: 96,
           fontWeight: 800,
-          margin: '36px 0 0',
-          lineHeight: 1.1,
-          letterSpacing: '-0.03em',
-          animationDelay: '120ms',
+          margin: '32px 0 0',
+          lineHeight: 1.12,
+          letterSpacing: '-0.02em',
+          ...gradText,
+          animationDelay: '160ms',
         }}
       >
-        有問題
+        想出你要做什麼
         <br />
-        <span style={gradText}>隨時丟上來</span>
+        然後開始做
       </h1>
+      <p
+        className="ace-fadeup"
+        style={{
+          fontSize: 'var(--osd-size-body)',
+          color: palette.muted,
+          maxWidth: 1000,
+          marginTop: 28,
+          lineHeight: 1.5,
+          animationDelay: '240ms',
+        }}
+      >
+        不用完美，但下週要有一個東西可以講。
+        <br />
+        It doesn't have to be good. It has to exist.
+      </p>
+      <div
+        className="ace-fadeup"
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 14,
+          marginTop: 40,
+          padding: '18px 34px',
+          borderRadius: 999,
+          background: palette.surface,
+          border: `1px solid ${palette.chipBorder}`,
+          boxShadow: cardShadow,
+          animationDelay: '320ms',
+        }}
+      >
+        <span style={{ color: 'var(--osd-accent)', fontSize: 22, lineHeight: 1 }}>♠</span>
+        <span style={{ fontFamily: fonts.mono, fontSize: 30, fontWeight: 700 }}>9/17（四）</span>
+        <span style={{ fontSize: 22, color: palette.muted }}>下次社課</span>
+      </div>
     </div>
     <Footer />
   </div>
@@ -1755,8 +1739,6 @@ export default [
   StoryWWDC,
   StoryHalfFcuTopia,
   Closing2,
-  Closing3,
-  QA,
   ClubIntro4,
   ClubIntro6,
   ToolCodex,
@@ -1765,4 +1747,7 @@ export default [
   ToolCursor,
   Icebreak2,
   Icebreak3,
+  ActionThink,
+  ActionBuild,
+  ClosingNextWeek,
 ] satisfies Page[];
