@@ -329,7 +329,11 @@ const Cover: Page = () => (
           />
           <div style={{ fontSize: 22, color: palette.muted, marginTop: 22 }}>
             或輸入課程代碼{' '}
-            <span style={{ fontFamily: fonts.mono, fontWeight: 700, ...gradText }}>ate3hzxx</span>
+            <span style={{ fontFamily: fonts.mono, fontWeight: 700, ...gradText }}>
+              ate3hzxx
+              <br />
+              聽說要用自己的帳號
+            </span>
           </div>
         </div>
       </div>
