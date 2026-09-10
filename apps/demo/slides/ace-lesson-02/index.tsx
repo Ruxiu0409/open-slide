@@ -1,9 +1,7 @@
 import { type DesignSystem, type Page, type SlideMeta, useSlidePageNumber } from '@open-slide/core';
 import claudeIcon from './assets/claude-ai-icon.svg';
+import claudeCodeSite from './assets/claude-code-site.png';
 import codexSite from './assets/codex-site.png';
-import focusLoop from './assets/focusloop.png';
-import focusLoopScreens from './assets/focusloop-screens.png';
-import geminiIcon from './assets/gemini.svg';
 import openaiIcon from './assets/openai.svg';
 import qrClassroom from './assets/qr-classroom.svg';
 import { StoryHalfFcuTopia } from './story-pages';
@@ -673,27 +671,6 @@ const aiTools = [
       '可以一路做到幫你送出 PR',
     ],
   },
-  {
-    icon: geminiIcon,
-    wordmark: false,
-    tags: ['搜尋最強'],
-    note: '查資料很行，但真的動手做事有點笨，複雜的任務要盯著它。',
-    maker: 'Google',
-    org: 'Google DeepMind',
-    orgNote: 'Alphabet 旗下 · Gemini 由 DeepMind 開發',
-    people: [
-      { n: 'Sundar Pichai', r: 'Google 執行長' },
-      { n: 'Demis Hassabis', r: 'DeepMind 執行長' },
-    ],
-    name: 'Gemini',
-    zh: '什麼都能問',
-    desc: '查資料、寫文件、寫程式都行，終端機也有 Gemini CLI 可以跑。',
-    points: [
-      '一次讀得進很長的文件、圖片和影片',
-      '查資料、寫報告、寫程式都能問',
-      '終端機也有 Gemini CLI 可以跑',
-    ],
-  },
 ];
 
 const ToolMark = ({ tool, size }: { tool: (typeof aiTools)[number]; size: number }) => (
@@ -922,7 +899,6 @@ const InstallPage = ({
   gui,
   cmds,
   shot,
-  shotAlt,
   children,
 }: {
   heading: string;
@@ -930,13 +906,37 @@ const InstallPage = ({
   gui: string[];
   cmds: { os: string; cmd: string }[];
   shot?: string;
-  shotAlt?: string;
   children: React.ReactNode;
 }) => (
   <div style={fill}>
     <Style />
-    <Glow x="20%" y="80%" size={1200} opacity={0.22} />
-    <div style={{ padding: '100px 140px 0' }}>
+    {shot ? (
+      <>
+        <img
+          src={shot}
+          alt=""
+          aria-hidden="true"
+          className="ace-fade"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            display: 'block',
+            filter: 'blur(3px)',
+            transform: 'scale(1.04)',
+          }}
+        />
+        <div
+          aria-hidden="true"
+          style={{ position: 'absolute', inset: 0, background: 'rgba(245, 245, 247, 0.84)' }}
+        />
+      </>
+    ) : (
+      <Glow x="20%" y="80%" size={1200} opacity={0.22} />
+    )}
+    <div style={{ position: 'relative', padding: '100px 140px 0' }}>
       <Eyebrow>安裝 · Install</Eyebrow>
       <h2
         className="ace-fadeup"
@@ -952,111 +952,84 @@ const InstallPage = ({
         {heading}
         <span style={gradText}>{accent}</span>
       </h2>
-      <div
-        style={
-          shot
-            ? { display: 'grid', gridTemplateColumns: '1fr 800px', gap: 36, alignItems: 'center' }
-            : { display: 'flex', gap: 28, alignItems: 'stretch' }
-        }
-      >
+      <div style={{ display: 'flex', gap: 28, alignItems: 'stretch' }}>
         <div
-          style={
-            shot ? { display: 'flex', flexDirection: 'column', gap: 20 } : { display: 'contents' }
-          }
+          className="ace-fadeup"
+          style={{
+            flex: 1,
+            padding: 28,
+            borderRadius: 'var(--osd-radius)',
+            background: palette.surface,
+            border: '1px solid var(--osd-accent)',
+            boxShadow: cardShadow,
+            animationDelay: '240ms',
+          }}
         >
           <div
-            className="ace-fadeup"
             style={{
-              flex: 1,
-              padding: 28,
-              borderRadius: 'var(--osd-radius)',
-              background: palette.surface,
-              border: '1px solid var(--osd-accent)',
-              boxShadow: cardShadow,
-              animationDelay: '240ms',
+              fontFamily: fonts.mono,
+              fontSize: 17,
+              color: 'var(--osd-accent)',
+              letterSpacing: '0.12em',
             }}
           >
-            <div
-              style={{
-                fontFamily: fonts.mono,
-                fontSize: 17,
-                color: 'var(--osd-accent)',
-                letterSpacing: '0.12em',
-              }}
-            >
-              比較簡單
-            </div>
-            <div style={{ fontSize: 30, fontWeight: 800, marginTop: 10 }}>去官網點下載</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 22 }}>
-              {gui.map((g) => (
-                <div key={g} style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
-                  <span style={{ color: 'var(--osd-accent)', fontSize: 16 }}>◉</span>
-                  <span style={{ fontSize: 21, lineHeight: 1.5 }}>{g}</span>
-                </div>
-              ))}
-            </div>
+            比較簡單
           </div>
-          <div
-            className="ace-fadeup"
-            style={{
-              flex: 1,
-              padding: 28,
-              borderRadius: 'var(--osd-radius)',
-              background: palette.surface,
-              border: `1px solid ${palette.border}`,
-              boxShadow: cardShadow,
-              animationDelay: '360ms',
-            }}
-          >
-            <div
-              style={{
-                fontFamily: fonts.mono,
-                fontSize: 17,
-                color: palette.muted,
-                letterSpacing: '0.12em',
-              }}
-            >
-              進階
-            </div>
-            <div style={{ fontSize: 30, fontWeight: 800, marginTop: 10 }}>用終端機一行裝完</div>
-            {cmds.map((c) => (
-              <div key={c.os} style={{ marginTop: 18 }}>
-                <div style={{ fontSize: 19, color: palette.muted }}>{c.os}</div>
-                <div
-                  style={{
-                    marginTop: 8,
-                    padding: '14px 18px',
-                    borderRadius: 14,
-                    background: palette.surfaceHi,
-                    border: `1px solid ${palette.border}`,
-                    fontFamily: fonts.mono,
-                    fontSize: 18,
-                    lineHeight: 1.5,
-                    whiteSpace: 'pre-wrap',
-                    wordBreak: 'break-all',
-                  }}
-                >
-                  {c.cmd}
-                </div>
+          <div style={{ fontSize: 30, fontWeight: 800, marginTop: 10 }}>去官網點下載</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 22 }}>
+            {gui.map((g) => (
+              <div key={g} style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
+                <span style={{ color: 'var(--osd-accent)', fontSize: 16 }}>◉</span>
+                <span style={{ fontSize: 21, lineHeight: 1.5 }}>{g}</span>
               </div>
             ))}
           </div>
         </div>
-        {shot && (
-          <img
-            src={shot}
-            alt={shotAlt}
-            className="ace-fade"
+        <div
+          className="ace-fadeup"
+          style={{
+            flex: 1,
+            padding: 28,
+            borderRadius: 'var(--osd-radius)',
+            background: palette.surface,
+            border: `1px solid ${palette.border}`,
+            boxShadow: cardShadow,
+            animationDelay: '360ms',
+          }}
+        >
+          <div
             style={{
-              width: 800,
-              display: 'block',
-              borderRadius: 'var(--osd-radius)',
-              border: `1px solid ${palette.border}`,
-              boxShadow: cardShadow,
-              animationDelay: '420ms',
+              fontFamily: fonts.mono,
+              fontSize: 17,
+              color: palette.muted,
+              letterSpacing: '0.12em',
             }}
-          />
-        )}
+          >
+            進階
+          </div>
+          <div style={{ fontSize: 30, fontWeight: 800, marginTop: 10 }}>用終端機一行裝完</div>
+          {cmds.map((c) => (
+            <div key={c.os} style={{ marginTop: 18 }}>
+              <div style={{ fontSize: 19, color: palette.muted }}>{c.os}</div>
+              <div
+                style={{
+                  marginTop: 8,
+                  padding: '14px 18px',
+                  borderRadius: 14,
+                  background: palette.surfaceHi,
+                  border: `1px solid ${palette.border}`,
+                  fontFamily: fonts.mono,
+                  fontSize: 18,
+                  lineHeight: 1.5,
+                  whiteSpace: 'pre-wrap',
+                  wordBreak: 'break-all',
+                }}
+              >
+                {c.cmd}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
       <Strip label="裝完之後" delay={500}>
         {children}
@@ -1071,7 +1044,6 @@ const CodexInstall: Page = () => (
     heading="先把 Codex "
     accent="裝起來"
     shot={codexSite}
-    shotAlt="Codex 官網，中間有「下載 macOS 版」按鈕"
     gui={[
       'VS Code 的擴充商店搜「ChatGPT」，裝 OpenAI 出的那個',
       '或直接用 ChatGPT 桌面 App，不用開終端機',
@@ -1093,7 +1065,11 @@ const ClaudeCodeInstall: Page = () => (
   <InstallPage
     heading="再把 Claude Code "
     accent="裝起來"
-    gui={['到 claude.ai 下載 Claude 桌面版，Mac 和 Windows 都有', '登入後點上面的 Code 分頁就是了']}
+    shot={claudeCodeSite}
+    gui={[
+      'claude.com/product/claude-code 點 Download，macOS、Windows、Linux 都有',
+      '打開後登入，點上面的 Code 分頁就是了',
+    ]}
     cmds={[
       { os: 'macOS', cmd: 'curl -fsSL https://claude.ai/install.sh | bash' },
       { os: 'Windows', cmd: 'irm https://claude.ai/install.ps1 | iex' },
@@ -1248,9 +1224,10 @@ const CodexModels: Page = () => (
 const ToolClaude: Page = () => <ToolPage tool={aiTools[1]} />;
 
 const claudeModels = [
-  { id: 'claude-opus-5', tier: '最強', desc: '難的、要想很久的事情交給它。' },
-  { id: 'claude-sonnet-5', tier: '平衡', desc: '日常大部分的工作用這個就夠。' },
-  { id: 'claude-haiku-4-5', tier: '最快', desc: '簡單、重複的小事，快又省。' },
+  { alias: '/model fable', tier: '最強', desc: '最難的題目才用，可能另外扣用量。' },
+  { alias: '/model opus', tier: '很強', desc: '要想很久的事情交給它。' },
+  { alias: '/model sonnet', tier: '平衡', desc: '日常大部分的工作夠用。' },
+  { alias: '/model haiku', tier: '最快', desc: '簡單、重複的小事，快又省。' },
 ];
 
 const ClaudeCodeModels: Page = () => (
@@ -1270,7 +1247,7 @@ const ClaudeCodeModels: Page = () => (
           animationDelay: '120ms',
         }}
       >
-        三個模型，<span style={gradText}>五段思考深度</span>
+        四個模型，<span style={gradText}>五段思考深度</span>
       </h2>
       <p
         className="ace-fadeup"
@@ -1282,12 +1259,12 @@ const ClaudeCodeModels: Page = () => (
           animationDelay: '200ms',
         }}
       >
-        跟 Codex 一樣可以換模型，另外還能決定它要想多久。
+        在 Claude Code 裡打 /model 換模型，另外還能決定它要想多久。
       </p>
       <div style={{ display: 'flex', gap: 20, alignItems: 'stretch' }}>
         {claudeModels.map((m, i) => (
           <div
-            key={m.id}
+            key={m.alias}
             className="ace-fadeup"
             style={{
               flex: 1,
@@ -1309,7 +1286,7 @@ const ClaudeCodeModels: Page = () => (
                 wordBreak: 'break-all',
               }}
             >
-              {m.id}
+              {m.alias}
             </div>
             <div style={{ fontSize: 20, color: palette.muted, marginTop: 14, lineHeight: 1.5 }}>
               {m.desc}
@@ -1324,15 +1301,14 @@ const ClaudeCodeModels: Page = () => (
         ，越後面想得越久、也越花錢。Claude Code 預設 xhigh。
       </Strip>
       <Strip label="訂閱方案" delay={700}>
-        免費方案<strong>沒有</strong> Claude Code。Pro 一個月 20 美金（年繳等於 17）就有；Max 從 100
-        美金起，用量是 Pro 的 5 倍或 20 倍。
+        免費方案<strong>沒有</strong> Claude Code。Pro 一個月 20 美金（年繳等於 17），預設 Sonnet
+        5；Max 從 100 美金起、用量是 Pro 的 5 倍或 20 倍，預設 Opus 5。Fable 不是任何方案的預設，
+        切過去會先問你一次。
       </Strip>
     </div>
     <Footer />
   </div>
 );
-
-const ToolGemini: Page = () => <ToolPage tool={aiTools[2]} />;
 
 const ClubIntro6: Page = () => (
   <div style={fill}>
@@ -1701,128 +1677,6 @@ const StoryVideo: Page = () => (
   </div>
 );
 
-const StatCard = ({
-  value,
-  label,
-  labelEn,
-  delay = 0,
-}: {
-  value: string;
-  label: string;
-  labelEn: string;
-  delay?: number;
-}) => (
-  <div
-    className="ace-fadeup"
-    style={{
-      flex: 1,
-      padding: '22px 22px 24px',
-      borderRadius: 'var(--osd-radius)',
-      background: palette.surface,
-      border: `1px solid ${palette.border}`,
-      boxShadow: cardShadow,
-      animationDelay: `${delay}ms`,
-    }}
-  >
-    <div style={{ fontSize: 42, fontWeight: 800, lineHeight: 1, ...gradText }}>{value}</div>
-    <div style={{ fontSize: 19, fontWeight: 600, marginTop: 12 }}>{label}</div>
-    <div style={{ fontSize: 15, color: palette.muted, marginTop: 3 }}>{labelEn}</div>
-  </div>
-);
-
-const StoryFocusLoop: Page = () => (
-  <div style={fill}>
-    <Style />
-    <Glow x="78%" y="42%" size={1200} opacity={0.26} />
-    <div
-      style={{
-        position: 'absolute',
-        inset: 0,
-        display: 'grid',
-        gridTemplateColumns: '1fr 980px',
-        gap: 60,
-        alignItems: 'center',
-        padding: '0 120px',
-      }}
-    >
-      <div>
-        <Eyebrow>FocusLoop · 專注迴圈</Eyebrow>
-        <h2
-          className="ace-fadeup"
-          style={{
-            fontSize: 60,
-            fontWeight: 800,
-            margin: '26px 0 14px',
-            lineHeight: 1.14,
-            letterSpacing: '-0.02em',
-            animationDelay: '120ms',
-          }}
-        >
-          三個大學生
-          <br />
-          一個 App
-          <br />
-          <span style={gradText}>1,377 件裡的第一名</span>
-        </h2>
-        <p
-          className="ace-fadeup"
-          style={{
-            fontSize: 20,
-            color: palette.muted,
-            lineHeight: 1.6,
-            margin: '0 0 32px',
-            animationDelay: '200ms',
-          }}
-        >
-          逢甲大學資工系的林永富、陳宥蓁、陳瑞昌，也是校內 iOS Club 的社員。他們做的《FocusLoop
-          專注迴圈》用遊戲訓練兒童專注力，再讓 AI 分析數據，家長一眼看得懂孩子的狀況。
-        </p>
-        <div style={{ display: 'flex', gap: 14 }}>
-          <StatCard value="1,377" label="初賽作品" labelEn="Entries" delay={300} />
-          <StatCard value="35" label="進決賽" labelEn="Finalists" delay={400} />
-          <StatCard value="一等獎" label="應用賽道" labelEn="First prize" delay={500} />
-        </div>
-      </div>
-      <div
-        className="ace-fade"
-        style={{
-          borderRadius: 26,
-          overflow: 'hidden',
-          border: `1px solid ${palette.border}`,
-          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.14)',
-          animationDelay: '240ms',
-        }}
-      >
-        <img src={focusLoop} alt="FocusLoop 專注迴圈" style={{ width: 980, display: 'block' }} />
-      </div>
-    </div>
-    <Footer />
-  </div>
-);
-
-const StoryFocusLoopScreens: Page = () => (
-  <div style={fill}>
-    <Style />
-    <img
-      src={focusLoopScreens}
-      alt="FocusLoop 的八個小遊戲畫面"
-      className="ace-fade"
-      style={{
-        position: 'absolute',
-        inset: 0,
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover',
-        display: 'block',
-      }}
-    />
-    <div style={{ position: 'absolute', top: 76, left: 140 }}>
-      <Eyebrow>FocusLoop · 八種專注力訓練</Eyebrow>
-    </div>
-    <Footer />
-  </div>
-);
-
 const wwdcStory = {
   embedUrl: 'https://www.youtube-nocookie.com/embed/9l5rsLOT1ww?rel=0&modestbranding=1',
   title: '蘋果 WWDC 挑戰賽 台灣 8 名學生獲獎創新高',
@@ -2130,8 +1984,6 @@ export default [
   Icebreak4,
   DividerStories,
   StoryVideo,
-  StoryFocusLoop,
-  StoryFocusLoopScreens,
   StoryWWDC,
   StoryHalfFcuTopia,
   Closing2,
@@ -2143,7 +1995,6 @@ export default [
   ToolClaude,
   ClaudeCodeInstall,
   ClaudeCodeModels,
-  ToolGemini,
   Icebreak2,
   Icebreak3,
   ActionThink,
