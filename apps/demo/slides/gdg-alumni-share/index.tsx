@@ -5,8 +5,6 @@ import adIconDrop from './assets/ad-icon-drop.mp4';
 import adPhones from './assets/ad-phones.mp4';
 import bridge from './assets/bridge.jpg';
 import coverPortrait from './assets/cover-portrait.jpg';
-import lastPhoto from './assets/last-photo.jpg';
-import lastQr from './assets/last-qr.png';
 
 export const design: DesignSystem = {
   palette: { bg: '#f0f1f2', text: '#111113', accent: '#e8492b' },
@@ -24,7 +22,7 @@ const SANS = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Ne
 const MUTED = '#a3a3a8';
 
 const FONT_TEXT =
-  '、世中享來內分力動半問喜國團外大姐子學實專己師式很得復想成我所手教斜是未槓樣歡獎獲瑞生用甲界畫發的研碼社私程究立競績者自興舉行要覺計語讀變讓賽逢遇部重量長開雙項顧驗高';
+  '、下不中享代以來僅入內分動半問國團外大姐學實專己師很得復想成我所手教斜星是未槓獎獲瑞生甲畫發的研社私究立競績繁者自興舉行表要覺言計語論讀賽逢進遇部重長開雙靠項顧驗高';
 const FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap&text=${encodeURIComponent(FONT_TEXT)}`;
 const FONT_LINK_ID = 'osd-webfont-gdg-alumni-share';
 
@@ -273,54 +271,27 @@ const GradSchool: Page = () => (
   </Ask>
 );
 
+const StarPlan: Page = () => (
+  <Ask>
+    靠繁星進入逢甲的<A>舉手</A>
+  </Ask>
+);
+
 const GradesMatter: Page = () => (
   <Ask>
     覺得成績很重要的<A>舉手</A>
   </Ask>
 );
 
-const Closing: Page = () => (
-  <div
-    style={{
-      ...canvas,
-      display: 'grid',
-      gridTemplateColumns: '480px 1fr',
-      alignItems: 'center',
-      gap: 110,
-      padding: '90px 140px',
-    }}
-  >
-    <img
-      src={lastPhoto}
-      alt=""
-      style={{
-        width: '100%',
-        height: 900,
-        objectFit: 'cover',
-        borderRadius: 40,
-        boxShadow: '0 26px 70px rgba(0,0,0,0.18)',
-      }}
-    />
-    <div style={{ textAlign: 'center' }}>
-      <div style={{ fontSize: 54, color: MUTED }}>用程式碼的力量</div>
-      <div
-        style={{
-          fontSize: 92,
-          fontWeight: 700,
-          marginTop: 24,
-          lineHeight: 1.35,
-          textWrap: 'balance',
-        }}
-      >
-        讓<A>世界</A>變成自己喜歡樣子
-      </div>
-      <img src={lastQr} alt="" style={{ width: 300, marginTop: 66, borderRadius: 28 }} />
-      <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 34, color: MUTED, marginTop: 20 }}>
-        @cy_4.9
-      </div>
-    </div>
-  </div>
+const Disclaimer: Page = () => (
+  <Ask>
+    以下言論僅代表我自己
+    <br />
+    不代表社團
+  </Ask>
 );
+
+const Blank: Page = () => <div style={canvas} />;
 
 export const meta: SlideMeta = {
   title: 'GDG 學長姐分享',
@@ -333,7 +304,17 @@ export default [
   AdPhones,
   BridgeFull,
   Intro,
+  StarPlan,
   GradesMatter,
   GradSchool,
-  Closing,
+  Disclaimer,
+  Blank,
+  Blank,
+  Blank,
+  Blank,
+  Blank,
+  Blank,
+  Blank,
+  Blank,
+  Blank,
 ] satisfies Page[];
