@@ -3,7 +3,6 @@ import type { CSSProperties, ReactNode } from 'react';
 
 import adIconDrop from './assets/ad-icon-drop.mp4';
 import adPhones from './assets/ad-phones.mp4';
-import awardsBg from './assets/awards-bg.jpg';
 import bridge from './assets/bridge.jpg';
 import coverPortrait from './assets/cover-portrait.jpg';
 import lastPhoto from './assets/last-photo.jpg';
@@ -25,7 +24,7 @@ const SANS = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Ne
 const MUTED = '#a3a3a8';
 
 const FONT_TEXT =
-  '、一三上下不且世中也了事二亞享人今以任但位作你佳來信個們做備優入內全兩其具冠出分別到創力加努勇動半南卻參及受只可同吧員問喜國圍團在城域報士外夢大天奮好姊始姐子學定客家實專對少尼展山岸峽州工己已師帶幫年幹座式強待很後得從復心情想意慧應成我戰找把投拿挑揮搞據教敢數文斜新是智最會有期杭松案極槓樣歡每比求沒法洲海漫為然特獎獲班現瑞生用甲界畫當病發的盡直碼社神秀私科程積立站競等簡累組經群者而育能腦自興英蘇行表被裡要覺覽計設誒語說讀變讓資賽贏超跟身軍迪追這通逢遇遊過達部都量銅錯長開限隊雖雙難電青項領願類顧飛驗體高黑，？';
+  '、世中享來內分力動半問喜國團外大姐子學實專己師式很得復想成我所手教斜是未槓樣歡獎獲瑞生用甲界畫發的研碼社私程究立競績者自興舉行要覺計語讀變讓賽逢遇部重量長開雙項顧驗高';
 const FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap&text=${encodeURIComponent(FONT_TEXT)}`;
 const FONT_LINK_ID = 'osd-webfont-gdg-alumni-share';
 
@@ -99,7 +98,7 @@ function Media({
   return (
     <>
       {video ? (
-        <video src={src} style={style} autoPlay muted loop playsInline />
+        <video src={src} style={style} autoPlay muted playsInline />
       ) : (
         <img src={src} alt="" style={style} />
       )}
@@ -249,53 +248,35 @@ const Intro: Page = () => (
   </div>
 );
 
-const PeClass: Page = () => <FullMedia src={bridge} dim={0.42} caption="我國中讀體育班" />;
-
-const AWARDS: [string, string][] = [
-  ['2024 全國電子設計創意競賽 智慧大數據及行動 APP 類', '冠軍'],
-  ['2024 App 行動應用創新賽', '三等獎'],
-  ['2024 海峽兩岸青少年創客大賽', '三等獎'],
-  ['2024 南投山城數位黑客松', '銅獎'],
-  ['2025 全國電子設計創意競賽 智慧大數據及行動 APP 類', 'IEEE Tainan Section 特別獎'],
-  ['2025 海峽兩岸青少年創客大賽', '二等獎、優秀展覽獎'],
-  ['2025 逢甲大學英文簡報比賽', '佳作'],
-  ['2025 亞洲青少年腦神經科學大賽', '亞軍'],
-  ['2026 全國電子設計創意競賽 智慧大數據及行動 APP 類', '亞軍'],
-  ['2026 全國電子設計創意競賽 資通類', '佳作'],
-  ['2026 App 行動應用創新賽', '三等獎'],
-];
-
-const ElevenAwards: Page = () => (
-  <div style={canvas}>
-    <Media src={awardsBg} dim={0.62} />
+function Ask({ children }: { children: ReactNode }) {
+  return (
     <div
       style={{
-        position: 'absolute',
-        inset: 0,
+        ...canvas,
         display: 'flex',
-        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '110px 130px',
-        color: '#fff',
+        padding: '0 140px',
         textAlign: 'center',
       }}
     >
-      <div style={{ fontSize: 76, fontWeight: 700, marginBottom: 34, textWrap: 'balance' }}>
-        最後累積贏得 <S>11</S> 座獎項
+      <div style={{ fontSize: 104, fontWeight: 700, lineHeight: 1.3, textWrap: 'balance' }}>
+        {children}
       </div>
-      <div style={{ fontSize: 28, lineHeight: 1.95 }}>
-        {AWARDS.map(([name, prize]) => (
-          <div key={name}>
-            <span style={{ fontFamily: SANS, fontWeight: 600 }}>{name}</span>
-            <span style={{ opacity: 0.5 }}>｜</span>
-            <A>{prize}</A>
-          </div>
-        ))}
-      </div>
-      <div style={{ fontSize: 56, marginTop: 40 }}>成為可以站在這裡分享的人</div>
     </div>
-  </div>
+  );
+}
+
+const GradSchool: Page = () => (
+  <Ask>
+    未來想讀研究所的<A>舉手</A>
+  </Ask>
+);
+
+const GradesMatter: Page = () => (
+  <Ask>
+    覺得成績很重要的<A>舉手</A>
+  </Ask>
 );
 
 const Closing: Page = () => (
@@ -352,7 +333,7 @@ export default [
   AdPhones,
   BridgeFull,
   Intro,
-  PeClass,
-  ElevenAwards,
+  GradesMatter,
+  GradSchool,
   Closing,
 ] satisfies Page[];
