@@ -3,8 +3,8 @@ import type { CSSProperties, ReactNode } from 'react';
 
 import adIconDrop from './assets/ad-icon-drop.mp4';
 import adPhones from './assets/ad-phones.mp4';
-import bridge from './assets/bridge.jpg';
 import coverPortrait from './assets/cover-portrait.jpg';
+import sunsetSea from './assets/sunset-sea.jpg';
 
 export const design: DesignSystem = {
   palette: { bg: '#f0f1f2', text: '#111113', accent: '#e8492b' },
@@ -22,7 +22,7 @@ const SANS = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Ne
 const MUTED = '#a3a3a8';
 
 const FONT_TEXT =
-  '、下不中享代以來僅入內分動半問國團外大姐學實專己師很得復想成我所手教斜星是未槓獎獲瑞生甲畫發的研社私究立競績繁者自興舉行表要覺言計語論讀賽逢進遇部重長開雙靠項顧驗高';
+  '下不享代以來僅入分團姐學己很得想成我所手星未生甲發的研社究績繁者自舉表要覺言論讀逢進重長開靠';
 const FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap&text=${encodeURIComponent(FONT_TEXT)}`;
 const FONT_LINK_ID = 'osd-webfont-gdg-alumni-share';
 
@@ -49,10 +49,6 @@ const canvas: CSSProperties = {
 
 const A = ({ children }: { children: ReactNode }) => (
   <span style={{ color: 'var(--osd-accent)' }}>{children}</span>
-);
-
-const S = ({ children }: { children: ReactNode }) => (
-  <span style={{ fontFamily: SANS, fontWeight: 700 }}>{children}</span>
 );
 
 function Crumb({ children, light }: { children: ReactNode; light?: boolean }) {
@@ -177,7 +173,7 @@ const Cover: Page = () => (
         Google 開發者學生社團
       </div>
       <div style={{ fontSize: 176, fontWeight: 700, lineHeight: 1.1 }}>學長姐分享</div>
-      <div style={{ fontSize: 56, marginTop: 56 }}>瑞瑞</div>
+      <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 56, marginTop: 56 }}>TSAI CY</div>
       <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 32, marginTop: 16 }}>
         GDG on Campus FCU · 2025-26 Associate Lead
       </div>
@@ -201,50 +197,7 @@ const Cover: Page = () => (
 const AdIconDrop: Page = () => <FullMedia src={adIconDrop} video fit="contain" />;
 const AdPhones: Page = () => <FullMedia src={adPhones} video fit="contain" />;
 
-const BridgeFull: Page = () => <FullMedia src={bridge} />;
-
-const Intro: Page = () => (
-  <div style={canvas}>
-    <Media src={bridge} />
-    <div
-      style={{
-        position: 'absolute',
-        top: 190,
-        right: 90,
-        width: 840,
-        padding: '56px 60px',
-        borderRadius: 44,
-        background: 'rgba(233,242,250,0.82)',
-        backdropFilter: 'blur(24px)',
-        boxShadow: '0 24px 70px rgba(0,0,0,0.2)',
-      }}
-    >
-      <div style={{ fontSize: 36, color: 'rgba(17,17,19,0.55)' }}>我是</div>
-      <div style={{ fontSize: 60, marginTop: 6 }}>
-        斜槓 <S>UI/UX Designer</S>
-      </div>
-      <div
-        style={{
-          height: 1,
-          background: 'rgba(17,17,19,0.16)',
-          margin: '34px 0 30px',
-        }}
-      />
-      <div style={{ fontSize: 34, lineHeight: 1.85 }}>
-        <div>
-          <S>GDG on Campus FCU</S> 2025-26 Associate Lead
-        </div>
-        <div>
-          <S>iOS Club 8th</S> 教學長・<S>9th</S> 社長・<S>10th</S> 顧問
-        </div>
-        <div>私立復興實驗高中雙語部社團教師</div>
-        <div>半逢遇甲、行動逢甲開發者</div>
-        <div>1 項大專生計畫</div>
-        <div>11 項國內外競賽獲獎</div>
-      </div>
-    </div>
-  </div>
-);
+const SeaSunset: Page = () => <FullMedia src={sunsetSea} />;
 
 function Ask({ children }: { children: ReactNode }) {
   return (
@@ -302,8 +255,7 @@ export default [
   Cover,
   AdIconDrop,
   AdPhones,
-  BridgeFull,
-  Intro,
+  SeaSunset,
   StarPlan,
   GradesMatter,
   GradSchool,
