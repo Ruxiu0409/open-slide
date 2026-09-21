@@ -3,6 +3,7 @@ import type { CSSProperties, ReactNode } from 'react';
 
 import adIconDrop from './assets/ad-icon-drop.mp4';
 import adPhones from './assets/ad-phones.mp4';
+import appStoreRank from './assets/app-store-rank.png';
 import coverPortrait from './assets/cover-portrait.jpg';
 import sunsetSea from './assets/sunset-sea.jpg';
 
@@ -22,7 +23,7 @@ const SANS = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Ne
 const MUTED = '#a3a3a8';
 
 const FONT_TEXT =
-  '下不享代以來僅入分團姐學己很得想成我所手星未生甲發的研社究績繁者自舉表要覺言論讀逢進重長開靠';
+  '上下不二享代以來僅入具分取名單團大天始姐學工己式很得想成我所手才排攻星是會未架榜機爭生甲當發的研社程究第績繁者自舉行表裝要覺言論讀跟逢進重長開靠，';
 const FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap&text=${encodeURIComponent(FONT_TEXT)}`;
 const FONT_LINK_ID = 'osd-webfont-gdg-alumni-share';
 
@@ -197,7 +198,39 @@ const Cover: Page = () => (
 const AdIconDrop: Page = () => <FullMedia src={adIconDrop} video fit="contain" />;
 const AdPhones: Page = () => <FullMedia src={adPhones} video fit="contain" />;
 
-const SeaSunset: Page = () => <FullMedia src={sunsetSea} />;
+const SeaSunset: Page = () => (
+  <div style={canvas}>
+    <Media src={sunsetSea} />
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        background:
+          'linear-gradient(90deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.3) 44%, rgba(0,0,0,0) 72%)',
+      }}
+    />
+    <div
+      style={{
+        position: 'absolute',
+        left: 140,
+        top: '34%',
+        transform: 'translateY(-50%)',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 40,
+        width: 960,
+        color: '#fff',
+        fontSize: 96,
+        fontWeight: 700,
+        lineHeight: 1.2,
+        textShadow: '0 4px 40px rgba(0,0,0,0.45)',
+      }}
+    >
+      <div>成績單裝不下的</div>
+      <div style={{ marginLeft: 460 }}>才是大學</div>
+    </div>
+  </div>
+);
 
 function Ask({ children }: { children: ReactNode }) {
   return (
@@ -237,11 +270,78 @@ const GradesMatter: Page = () => (
 );
 
 const Disclaimer: Page = () => (
+  <div
+    style={{
+      ...canvas,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 44,
+      padding: '0 140px',
+      textAlign: 'center',
+    }}
+  >
+    <div style={{ fontSize: 104, fontWeight: 700, lineHeight: 1.3 }}>以下言論僅代表我自己</div>
+    <div style={{ fontSize: 60, lineHeight: 1.4, color: MUTED }}>
+      不代表 Google 開發者學生社團 跟 iOS Club
+    </div>
+  </div>
+);
+
+const Closing: Page = () => (
   <Ask>
-    以下言論僅代表我自己
-    <br />
-    不代表社團
+    大學開始，機會得<A>自己爭取</A>
   </Ask>
+);
+
+const AppStoreRank: Page = () => (
+  <div style={{ ...canvas, background: '#000', color: '#fff' }}>
+    <img
+      src={appStoreRank}
+      alt=""
+      style={{ position: 'absolute', left: 197, top: 68, width: 436, height: 944 }}
+    />
+    <div
+      style={{
+        position: 'absolute',
+        left: 134,
+        top: 297,
+        width: 563,
+        height: 106,
+        boxSizing: 'border-box',
+        border: '6px solid #fff',
+      }}
+    />
+    <div
+      style={{
+        position: 'absolute',
+        left: 1105,
+        top: 255,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+      }}
+    >
+      <div style={{ fontSize: 56, lineHeight: 1.35 }}>上架當天攻上 App Store</div>
+      <div style={{ fontSize: 56, lineHeight: 1.35, marginTop: 38 }}>工具程式排行榜</div>
+      <div
+        style={{
+          marginTop: 111,
+          fontSize: 180,
+          fontWeight: 700,
+          lineHeight: 1.1,
+          background: 'linear-gradient(90deg, #f2ab74 0%, #d182a0 48%, #62afe1 100%)',
+          WebkitBackgroundClip: 'text',
+          backgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          color: 'transparent',
+        }}
+      >
+        第二名
+      </div>
+    </div>
+  </div>
 );
 
 const Blank: Page = () => <div style={canvas} />;
@@ -260,6 +360,7 @@ export default [
   GradesMatter,
   GradSchool,
   Disclaimer,
+  AppStoreRank,
   Blank,
   Blank,
   Blank,
@@ -267,6 +368,5 @@ export default [
   Blank,
   Blank,
   Blank,
-  Blank,
-  Blank,
+  Closing,
 ] satisfies Page[];
