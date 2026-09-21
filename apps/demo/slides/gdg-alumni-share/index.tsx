@@ -23,7 +23,7 @@ const SANS = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Ne
 const MUTED = '#a3a3a8';
 
 const FONT_TEXT =
-  '上下不二享代以來僅入具分取名單團大天始姐學工己式很得想成我所手才排攻星是會未架榜機爭生甲當發的研社程究第績繁者自舉行表裝要覺言論讀跟逢進重長開靠，';
+  '一上下不二享代以來僅入具分切勤取名單團在大天始姐學定工己式很得想成我所手才排攻星是會有未架榜機決沒爭生甲當發的研社程究第系統績繁考者自舉行表裝要覺言論讀跟逢進選都重長開靠，';
 const FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap&text=${encodeURIComponent(FONT_TEXT)}`;
 const FONT_LINK_ID = 'osd-webfont-gdg-alumni-share';
 
@@ -289,6 +289,27 @@ const Disclaimer: Page = () => (
   </div>
 );
 
+const ClubIsYourChoice: Page = () => (
+  <div
+    style={{
+      ...canvas,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '0 140px',
+      textAlign: 'center',
+    }}
+  >
+    <div style={{ fontSize: 56, color: MUTED }}>大學</div>
+    <div style={{ marginTop: 40, fontSize: 104, fontWeight: 700, lineHeight: 1.35 }}>
+      沒有選社系統，沒有考勤
+      <br />
+      在社團的一切都是<A>自己決定</A>
+    </div>
+  </div>
+);
+
 const Closing: Page = () => (
   <Ask>
     大學開始，機會得<A>自己爭取</A>
@@ -366,7 +387,7 @@ export default [
   Blank,
   Blank,
   Blank,
-  Blank,
+  ClubIsYourChoice,
   Blank,
   Closing,
 ] satisfies Page[];
