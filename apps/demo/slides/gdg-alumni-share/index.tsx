@@ -79,6 +79,16 @@ import sh25Mms from './assets/sh25-mms.jpg';
 import sh25Pearl from './assets/sh25-pearl.jpg';
 import sh25Robes from './assets/sh25-robes.jpg';
 import sh25Rooftop from './assets/sh25-rooftop.jpg';
+import sh25bApple from './assets/sh25b-apple.jpg';
+import sh25bDuck from './assets/sh25b-duck.jpg';
+import sh25bGarden from './assets/sh25b-garden.jpg';
+import sh25bGreenwall from './assets/sh25b-greenwall.jpg';
+import sh25bMirror from './assets/sh25b-mirror.jpg';
+import sh25bRedwall from './assets/sh25b-redwall.jpg';
+import sh25bRocks from './assets/sh25b-rocks.jpg';
+import sh25bStreet from './assets/sh25b-street.jpg';
+import sh25bTemple from './assets/sh25b-temple.jpg';
+import sh25bYuyuan from './assets/sh25b-yuyuan.jpg';
 import sunsetSea from './assets/sunset-sea.jpg';
 import tripBreakfast from './assets/trip-breakfast.jpg';
 import tripClaw from './assets/trip-claw.jpg';
@@ -1268,6 +1278,29 @@ const ShanghaiTrip2025: Page = () => (
   </div>
 );
 
+const ShanghaiStreets: Page = () => (
+  <div
+    style={{
+      ...canvas,
+      display: 'grid',
+      gridTemplateColumns: 'repeat(5, 1fr)',
+      gridTemplateRows: 'repeat(2, 1fr)',
+      gap: 10,
+    }}
+  >
+    <WallShot src={sh25bYuyuan} position="center" />
+    <WallShot src={sh25bRedwall} position="center" />
+    <WallShot src={sh25bDuck} position="center" />
+    <WallShot src={sh25bGarden} position="center" />
+    <WallShot src={sh25bGreenwall} position="center" />
+    <WallShot src={sh25bRocks} position="center" />
+    <WallShot src={sh25bStreet} position="center" />
+    <WallShot src={sh25bApple} position="center" />
+    <WallShot src={sh25bTemple} position="center" />
+    <WallShot src={sh25bMirror} position="center" />
+  </div>
+);
+
 const Blank: Page = () => <div style={canvas} />;
 
 export const meta: SlideMeta = {
@@ -1302,7 +1335,7 @@ export default [
   ContestMaker,
   ShanghaiTrip,
   ShanghaiTrip2025,
-  Blank,
+  ShanghaiStreets,
   NeverGiveUp,
   Community,
   NoLife,
