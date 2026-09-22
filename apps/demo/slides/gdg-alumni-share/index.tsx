@@ -1178,6 +1178,7 @@ export default [
   Blank,
   NoLife,
   PinkParty,
+  Blank,
   ClubIsYourChoice,
   Closing,
 ] satisfies Page[];
