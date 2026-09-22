@@ -16,6 +16,9 @@ import contestMeme from './assets/contest-meme.jpg';
 import contestNight from './assets/contest-night.mp4';
 import contestPoster from './assets/contest-poster.jpg';
 import coverPortrait from './assets/cover-portrait.jpg';
+import eda2025Stage from './assets/eda-2025-stage.jpg';
+import edaMrPoster from './assets/eda-mr-poster.jpg';
+import edaParcelPoster from './assets/eda-parcel-poster.jpg';
 import fcuAdmission from './assets/fcu-admission.jpg';
 import gsatScore from './assets/gsat-score.jpg';
 import hackathonBooth from './assets/hackathon-booth.jpg';
@@ -59,7 +62,7 @@ const SANS = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Ne
 const MUTED = '#a3a3a8';
 
 const FONT_TEXT =
-  '一三上下不中了二亞享他代以但位作佳來個候僅像優入全兩具冠出分切別到創加動勤南原厲去參及友取只名單國圖團在城報多大天始姐子學定客害導少就展山岸峽工己師年度式很後得從心恂想意慧應成我所手才投排接據攻數文新星是時晚智更會有未松架校梗榜樣機次每比決沒洲活海測為然爭爽特獎玩班生用甲當發的看研社神秀科程究競第等簡系級統經網績繁群老考者聞胡能腦自與舉舞英融行表被裝要見覺覽言計訊設說課請論讀資賽軍通逢進過選邀還都重量金銅錄長開電青靠類高黑，';
+  '一三上下不中了二亞享他代以但位作佳來個們候僅像優入全兩具冠出分切別到創加動勤南原厲去參及友取只名單國圖團在城報多大天始姐子學完定客害導少就展山岸峽工己師年度式很後得從心恂想意慧應成我所手才投排接換據攻數文新星是時晚智更會有未松架校梗榜樣機次每比決沒洲活海測為然爭爽特獎玩班生用甲當發的看研社神秀科程究競第等簡系級統經網績繁群老考者聞胡能腦自與舉舞英融行表被裝要見覺覽言計訊設說課請論讀資賽軍通逢進過選邀還都重量金銅錄長開電青靠類高黑，';
 const FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap&text=${encodeURIComponent(FONT_TEXT)}`;
 const FONT_LINK_ID = 'osd-webfont-gdg-alumni-share';
 
@@ -757,18 +760,61 @@ const Contest = ({
   </div>
 );
 
+const EdaRow = ({ year, prize, note }: { year: string; prize: string; note?: string }) => (
+  <div style={{ display: 'flex', alignItems: 'baseline', gap: 40 }}>
+    <div
+      style={{
+        flex: 'none',
+        width: 140,
+        fontFamily: SANS,
+        fontSize: 36,
+        fontWeight: 700,
+        color: MUTED,
+      }}
+    >
+      {year}
+    </div>
+    <div style={{ fontSize: 56, fontWeight: 700, lineHeight: 1.25, color: 'var(--osd-accent)' }}>
+      {prize}
+    </div>
+    {note ? <div style={{ fontSize: 28, color: MUTED }}>{note}</div> : null}
+  </div>
+);
+
 const ContestEda: Page = () => (
-  <Contest name="全國電子設計創意競賽">
-    <AwardRow year="2024" category="智慧大數據及行動 APP 類" prize="冠軍" prizeSize={64} />
-    <AwardRow
-      year="2025"
-      category="智慧大數據及行動 APP 類"
-      prize="IEEE Tainan Section 特別獎"
-      prizeSize={64}
-    />
-    <AwardRow year="2026" category="智慧大數據及行動 APP 類" prize="亞軍" prizeSize={64} />
-    <AwardRow year="2026" category="資通類" prize="佳作" prizeSize={64} />
-  </Contest>
+  <div style={{ ...canvas, display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+      <div
+        style={{
+          flex: 1,
+          minWidth: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          padding: '0 60px 0 140px',
+        }}
+      >
+        <div style={{ fontSize: 80, fontWeight: 700, lineHeight: 1.25 }}>全國電子設計創意競賽</div>
+        <div style={{ marginTop: 8, fontSize: 32, color: MUTED }}>智慧大數據及行動 APP 類</div>
+        <div style={{ marginTop: 36, display: 'flex', flexDirection: 'column', gap: 18 }}>
+          <EdaRow year="2024" prize="冠軍" />
+          <EdaRow year="2025" prize="IEEE Tainan Section 特別獎" />
+          <EdaRow year="2026" prize="亞軍" />
+          <EdaRow year="2026" prize="佳作" note="資通類" />
+        </div>
+      </div>
+      <img
+        src={awardStage}
+        alt=""
+        style={{ flex: 'none', width: 713, height: '100%', objectFit: 'cover', display: 'block' }}
+      />
+    </div>
+    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+      <Shot src={eda2025Stage} ratio={1.333} />
+      <Shot src={edaMrPoster} ratio={1.333} />
+      <Shot src={edaParcelPoster} ratio={1.333} />
+    </div>
+  </div>
 );
 
 const ContestApp: Page = () => (
@@ -999,6 +1045,12 @@ const MoreThanContests: Page = () => (
   </Ask>
 );
 
+const GoingOut: Page = () => (
+  <Ask>
+    比完賽，就換我們<A>出去玩</A>
+  </Ask>
+);
+
 const Blank: Page = () => <div style={canvas} />;
 
 export const meta: SlideMeta = {
@@ -1026,8 +1078,9 @@ export default [
   NotOnlyGrades,
   ManyContests,
   ContestOthers,
-  MoreThanContests,
   ContestEda,
+  MoreThanContests,
+  GoingOut,
   ContestApp,
   ContestMaker,
   PinkParty,
