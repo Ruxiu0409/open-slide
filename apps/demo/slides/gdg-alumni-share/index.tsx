@@ -28,6 +28,12 @@ import hackathonBooth from './assets/hackathon-booth.jpg';
 import hackathonDisplay from './assets/hackathon-display.jpg';
 import hackathonJudges from './assets/hackathon-judges.jpg';
 import hackathonPrize from './assets/hackathon-prize.jpg';
+import hzApple from './assets/hz-apple.jpg';
+import hzLakeside from './assets/hz-lakeside.jpg';
+import hzNightview from './assets/hz-nightview.jpg';
+import hzPavilion from './assets/hz-pavilion.jpg';
+import hzStone from './assets/hz-stone.jpg';
+import hzSunset from './assets/hz-sunset.jpg';
 import koreanDinner from './assets/korean-dinner.jpg';
 import lastQr from './assets/last-qr.png';
 import lifeBilliards from './assets/life-billiards.jpg';
@@ -1334,6 +1340,19 @@ const SuzhouTrip: Page = () => (
   </div>
 );
 
+const HangzhouTrip: Page = () => (
+  <div style={{ ...canvas, display: 'flex', alignItems: 'center' }}>
+    <div style={{ display: 'flex', gap: 10, width: '100%', height: 525 }}>
+      <Shot src={hzNightview} ratio={0.75} />
+      <Shot src={hzPavilion} ratio={0.562} />
+      <Shot src={hzStone} ratio={0.562} />
+      <Shot src={hzApple} ratio={0.562} />
+      <Shot src={hzLakeside} ratio={0.562} />
+      <Shot src={hzSunset} ratio={0.562} />
+    </div>
+  </div>
+);
+
 const Blank: Page = () => <div style={canvas} />;
 
 export const meta: SlideMeta = {
@@ -1370,6 +1389,7 @@ export default [
   ShanghaiTrip2025,
   ShanghaiStreets,
   SuzhouTrip,
+  HangzhouTrip,
   NeverGiveUp,
   Community,
   NoLife,
