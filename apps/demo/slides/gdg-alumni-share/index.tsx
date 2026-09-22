@@ -1082,9 +1082,9 @@ export default [
   MoreThanContests,
   GoingOut,
   ContestApp,
+  Blank,
   ContestMaker,
   PinkParty,
   ClubIsYourChoice,
-  Blank,
   Closing,
 ] satisfies Page[];
