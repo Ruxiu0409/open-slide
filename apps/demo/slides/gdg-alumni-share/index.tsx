@@ -783,7 +783,7 @@ const EdaRow = ({ year, prize, note }: { year: string; prize: string; note?: str
 
 const ContestEda: Page = () => (
   <div style={{ ...canvas, display: 'flex', flexDirection: 'column', gap: 10 }}>
-    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+    <div style={{ display: 'flex', gap: 10, flex: '0 0 640px', minHeight: 0 }}>
       <div
         style={{
           flex: 1,
@@ -796,7 +796,7 @@ const ContestEda: Page = () => (
       >
         <div style={{ fontSize: 80, fontWeight: 700, lineHeight: 1.25 }}>全國電子設計創意競賽</div>
         <div style={{ marginTop: 8, fontSize: 32, color: MUTED }}>智慧大數據及行動 APP 類</div>
-        <div style={{ marginTop: 36, display: 'flex', flexDirection: 'column', gap: 18 }}>
+        <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 24 }}>
           <EdaRow year="2024" prize="冠軍" />
           <EdaRow year="2025" prize="IEEE Tainan Section 特別獎" />
           <EdaRow year="2026" prize="亞軍" />
@@ -806,7 +806,7 @@ const ContestEda: Page = () => (
       <img
         src={awardStage}
         alt=""
-        style={{ flex: 'none', width: 713, height: '100%', objectFit: 'cover', display: 'block' }}
+        style={{ flex: 'none', width: 852, height: '100%', objectFit: 'cover', display: 'block' }}
       />
     </div>
     <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
