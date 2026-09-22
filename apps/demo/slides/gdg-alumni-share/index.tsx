@@ -18,6 +18,10 @@ import contestPoster from './assets/contest-poster.jpg';
 import coverPortrait from './assets/cover-portrait.jpg';
 import fcuAdmission from './assets/fcu-admission.jpg';
 import gsatScore from './assets/gsat-score.jpg';
+import hackathonBooth from './assets/hackathon-booth.jpg';
+import hackathonJudges from './assets/hackathon-judges.jpg';
+import hackathonPrize from './assets/hackathon-prize.jpg';
+import hackathonVenue from './assets/hackathon-venue.jpg';
 import lifeBilliards from './assets/life-billiards.jpg';
 import lifeCampusGroup from './assets/life-campus-group.jpg';
 import lifeDinner from './assets/life-dinner.jpg';
@@ -26,6 +30,17 @@ import lifeFrisbee from './assets/life-frisbee.jpg';
 import lifeHallwayGroup from './assets/life-hallway-group.jpg';
 import lifeNightGroup from './assets/life-night-group.jpg';
 import lifeSelfieFilter from './assets/life-selfie-filter.jpg';
+import maicFloorCode from './assets/maic-floor-code.jpg';
+import maicPlush from './assets/maic-plush.jpg';
+import maicRoom from './assets/maic-room.jpg';
+import maicSelfie from './assets/maic-selfie.jpg';
+import maicStage from './assets/maic-stage.jpg';
+import makerBooth from './assets/maker-booth.jpg';
+import makerPennant from './assets/maker-pennant.jpg';
+import neuroCertificate from './assets/neuro-certificate.png';
+import pinkCrowd from './assets/pink-crowd.jpg';
+import pinkNeon from './assets/pink-neon.jpg';
+import pinkSeated from './assets/pink-seated.jpg';
 import sunsetSea from './assets/sunset-sea.jpg';
 
 export const design: DesignSystem = {
@@ -44,7 +59,7 @@ const SANS = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Ne
 const MUTED = '#a3a3a8';
 
 const FONT_TEXT =
-  '一上下不中了二享他代以來個候僅像入全具冠出分切到創動勤厲去及取名單國圖團在多大天始姐子學定害導就工己師度式很後得心想意慧成我所手才排接據攻數文新星是時晚智更會有未架校梗榜樣機次每比決沒活測為然爭爽獎玩班生甲當發的看研社程究競第系級統網績繁群老考者聞腦自與舉英行表裝要覺言計訊設說課論讀資賽軍逢進過選都重錄長開電靠類高，';
+  '一三上下不中了二亞享他代以但位作佳來個候僅像優入全兩具冠出分切別到創加動勤南原厲去參及友取只名單國圖團在城報多大天始姐子學定客害導少就展山岸峽工己師年度式很後得從心恂想意慧應成我所手才投排接據攻數文新星是時晚智更會有未松架校梗榜樣機次每比決沒洲活海測為然爭爽特獎玩班生用甲當發的看研社神秀科程究競第等簡系級統經網績繁群老考者聞胡能腦自與舉舞英融行表被裝要見覺覽言計訊設說課請論讀資賽軍通逢進過選邀還都重量金銅錄長開電青靠類高黑，';
 const FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap&text=${encodeURIComponent(FONT_TEXT)}`;
 const FONT_LINK_ID = 'osd-webfont-gdg-alumni-share';
 
@@ -659,6 +674,331 @@ const TeachersNoticed: Page = () => (
   </div>
 );
 
+const NotOnlyGrades: Page = () => (
+  <Ask>
+    原來能被看見的，不只有<A>成績單</A>
+  </Ask>
+);
+
+const ManyContests: Page = () => (
+  <Ask>
+    我開始參加<A>大量</A>的競賽
+  </Ask>
+);
+
+const AwardRow = ({
+  year,
+  category,
+  prize,
+  prizeSize,
+}: {
+  year: string;
+  category?: string;
+  prize: ReactNode;
+  prizeSize: number;
+}) => (
+  <div style={{ display: 'flex', gap: 40 }}>
+    <div
+      style={{
+        flex: 'none',
+        width: 140,
+        fontFamily: SANS,
+        fontSize: 44,
+        fontWeight: 700,
+        lineHeight: 1.4,
+        color: MUTED,
+      }}
+    >
+      {year}
+    </div>
+    <div>
+      {category ? (
+        <div style={{ fontSize: 32, lineHeight: 1.3, color: MUTED }}>{category}</div>
+      ) : null}
+      <div
+        style={{
+          fontSize: prizeSize,
+          fontWeight: 700,
+          lineHeight: 1.25,
+          color: 'var(--osd-accent)',
+        }}
+      >
+        {prize}
+      </div>
+    </div>
+  </div>
+);
+
+const Contest = ({
+  name,
+  media,
+  children,
+}: {
+  name: ReactNode;
+  media?: ReactNode;
+  children: ReactNode;
+}) => (
+  <div
+    style={{
+      ...canvas,
+      display: 'flex',
+      alignItems: 'center',
+      gap: 90,
+      padding: '0 140px',
+    }}
+  >
+    <div style={media ? { flex: 'none', width: 640 } : { flex: 1 }}>
+      <div style={{ fontSize: 88, fontWeight: 700, lineHeight: 1.25 }}>{name}</div>
+      <div style={{ marginTop: 48, display: 'flex', flexDirection: 'column', gap: 24 }}>
+        {children}
+      </div>
+    </div>
+    {media}
+  </div>
+);
+
+const ContestEda: Page = () => (
+  <Contest name="全國電子設計創意競賽">
+    <AwardRow year="2024" category="智慧大數據及行動 APP 類" prize="冠軍" prizeSize={64} />
+    <AwardRow
+      year="2025"
+      category="智慧大數據及行動 APP 類"
+      prize="IEEE Tainan Section 特別獎"
+      prizeSize={64}
+    />
+    <AwardRow year="2026" category="智慧大數據及行動 APP 類" prize="亞軍" prizeSize={64} />
+    <AwardRow year="2026" category="資通類" prize="佳作" prizeSize={64} />
+  </Contest>
+);
+
+const ContestApp: Page = () => (
+  <div style={{ ...canvas, display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+      <div
+        style={{
+          flex: 1,
+          minWidth: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          padding: '0 40px 0 120px',
+        }}
+      >
+        <div style={{ fontSize: 80, fontWeight: 700, lineHeight: 1.25 }}>App 行動應用創新賽</div>
+        <div style={{ marginTop: 48, display: 'flex', flexDirection: 'column', gap: 24 }}>
+          <AwardRow year="2024" prize="三等獎" prizeSize={96} />
+          <AwardRow year="2026" prize="三等獎" prizeSize={96} />
+        </div>
+      </div>
+      <img
+        src={maicStage}
+        alt=""
+        style={{ flex: 'none', width: 951, height: '100%', objectFit: 'cover', display: 'block' }}
+      />
+    </div>
+    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+      <Shot src={maicRoom} ratio={1.333} />
+      <Shot src={maicFloorCode} ratio={0.562} />
+      <Shot src={maicPlush} ratio={1.333} />
+      <Shot src={maicSelfie} ratio={0.562} />
+    </div>
+  </div>
+);
+
+const ContestMaker: Page = () => (
+  <Contest
+    name={
+      <>
+        海峽兩岸青少年
+        <br />
+        創客大賽
+      </>
+    }
+    media={
+      <div style={{ flex: 1, display: 'flex', gap: 20, height: 427 }}>
+        <img
+          src={makerPennant}
+          alt=""
+          style={{
+            flex: '1.335 1 0',
+            minWidth: 0,
+            height: '100%',
+            objectFit: 'cover',
+            borderRadius: 20,
+            boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
+          }}
+        />
+        <img
+          src={makerBooth}
+          alt=""
+          style={{
+            flex: '0.75 1 0',
+            minWidth: 0,
+            height: '100%',
+            objectFit: 'cover',
+            borderRadius: 20,
+            boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
+          }}
+        />
+      </div>
+    }
+  >
+    <AwardRow year="2024" prize="三等獎" prizeSize={88} />
+    <AwardRow
+      year="2025"
+      prize={
+        <>
+          二等獎
+          <br />
+          優秀展覽獎
+        </>
+      }
+      prizeSize={88}
+    />
+  </Contest>
+);
+
+const StripShot = ({ src, ratio, position }: { src: string; ratio: number; position?: string }) => (
+  <img
+    src={src}
+    alt=""
+    style={{
+      flex: `${ratio} 1 0`,
+      minWidth: 0,
+      height: 340,
+      objectFit: 'cover',
+      objectPosition: position ?? 'center',
+      borderRadius: 18,
+      display: 'block',
+      boxShadow: '0 18px 48px rgba(0,0,0,0.14)',
+    }}
+  />
+);
+
+const ContestCell = ({
+  name,
+  year,
+  prize,
+  divided,
+}: {
+  name: string;
+  year: string;
+  prize: string;
+  divided?: boolean;
+}) => (
+  <div
+    style={{
+      flex: 1,
+      minWidth: 0,
+      paddingLeft: divided ? 44 : 0,
+      paddingRight: 44,
+      borderLeft: divided ? '1px solid rgba(17,17,19,0.14)' : undefined,
+    }}
+  >
+    <div style={{ height: 130, fontSize: 48, fontWeight: 700, lineHeight: 1.3 }}>{name}</div>
+    <div style={{ fontFamily: SANS, fontSize: 32, fontWeight: 700, color: MUTED }}>{year}</div>
+    <div
+      style={{
+        marginTop: 6,
+        fontSize: 96,
+        fontWeight: 700,
+        lineHeight: 1.15,
+        color: 'var(--osd-accent)',
+      }}
+    >
+      {prize}
+    </div>
+  </div>
+);
+
+const ContestOthers: Page = () => (
+  <div
+    style={{
+      ...canvas,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      gap: 80,
+      padding: '0 140px',
+    }}
+  >
+    <div style={{ display: 'flex', gap: 20 }}>
+      <StripShot src={hackathonBooth} ratio={1.333} />
+      <StripShot src={hackathonJudges} ratio={0.75} position="center 32%" />
+      <StripShot src={hackathonVenue} ratio={1.333} />
+      <StripShot src={hackathonPrize} ratio={1.333} />
+      <img
+        src={neuroCertificate}
+        alt=""
+        style={{
+          flex: 'none',
+          width: 240,
+          height: 340,
+          objectFit: 'cover',
+          borderRadius: 18,
+          display: 'block',
+          boxShadow: '0 18px 48px rgba(0,0,0,0.14)',
+        }}
+      />
+    </div>
+    <div style={{ display: 'flex' }}>
+      <ContestCell name="南投山城數位黑客松" year="2024" prize="銅獎" />
+      <ContestCell name="逢甲大學英文簡報比賽" year="2025" prize="佳作" divided />
+      <ContestCell name="亞洲青少年腦神經科學大賽" year="2025" prize="亞軍" divided />
+    </div>
+  </div>
+);
+
+const PartyShot = ({ src, width }: { src: string; width: number }) => (
+  <img
+    src={src}
+    alt=""
+    style={{
+      flex: 'none',
+      width,
+      height: 480,
+      objectFit: 'cover',
+      borderRadius: 20,
+      display: 'block',
+      boxShadow: '0 20px 56px rgba(0,0,0,0.16)',
+    }}
+  />
+);
+
+const PinkParty: Page = () => (
+  <div
+    style={{
+      ...canvas,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      gap: 60,
+      padding: '0 140px',
+    }}
+  >
+    <div>
+      <div style={{ fontSize: 40, color: MUTED }}>不是比賽</div>
+      <div style={{ marginTop: 16, fontSize: 88, fontWeight: 700, lineHeight: 1.25 }}>
+        金融研究社的 Pink Party
+      </div>
+      <div style={{ marginTop: 16, fontSize: 40, color: MUTED }}>
+        邀請友社，還請到 Sabrina 胡恂舞
+      </div>
+    </div>
+    <div style={{ display: 'flex', gap: 20 }}>
+      <PartyShot src={pinkNeon} width={360} />
+      <PartyShot src={pinkSeated} width={360} />
+      <PartyShot src={pinkCrowd} width={640} />
+    </div>
+  </div>
+);
+
+const MoreThanContests: Page = () => (
+  <Ask>
+    但比賽，從來就<A>不只是比賽</A>
+  </Ask>
+);
+
 const Blank: Page = () => <div style={canvas} />;
 
 export const meta: SlideMeta = {
@@ -683,14 +1023,14 @@ export default [
   FirstContest,
   AwardWin,
   TeachersNoticed,
-  Blank,
-  Blank,
-  Blank,
-  Blank,
-  Blank,
-  Blank,
-  Blank,
-  Blank,
+  NotOnlyGrades,
+  ManyContests,
+  ContestOthers,
+  MoreThanContests,
+  ContestEda,
+  ContestApp,
+  ContestMaker,
+  PinkParty,
   ClubIsYourChoice,
   Blank,
   Closing,
