@@ -1390,6 +1390,7 @@ export default [
   ShanghaiStreets,
   SuzhouTrip,
   HangzhouTrip,
+  Blank,
   NeverGiveUp,
   Community,
   NoLife,
