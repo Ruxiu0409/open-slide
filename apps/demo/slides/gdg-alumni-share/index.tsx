@@ -5,9 +5,23 @@ import type { CSSProperties, ReactNode } from 'react';
 import adIconDrop from './assets/ad-icon-drop.mp4';
 import adPhones from './assets/ad-phones.mp4';
 import appStoreRank from './assets/app-store-rank.png';
+import contestBadge from './assets/contest-badge.jpg';
+import contestBooth from './assets/contest-booth.jpg';
+import contestIpad from './assets/contest-ipad.jpg';
+import contestMeme from './assets/contest-meme.jpg';
+import contestNight from './assets/contest-night.mp4';
+import contestPoster from './assets/contest-poster.jpg';
 import coverPortrait from './assets/cover-portrait.jpg';
 import fcuAdmission from './assets/fcu-admission.jpg';
 import gsatScore from './assets/gsat-score.jpg';
+import lifeBilliards from './assets/life-billiards.jpg';
+import lifeCampusGroup from './assets/life-campus-group.jpg';
+import lifeDinner from './assets/life-dinner.jpg';
+import lifeEscapeRoom from './assets/life-escape-room.jpg';
+import lifeFrisbee from './assets/life-frisbee.jpg';
+import lifeHallwayGroup from './assets/life-hallway-group.jpg';
+import lifeNightGroup from './assets/life-night-group.jpg';
+import lifeSelfieFilter from './assets/life-selfie-filter.jpg';
 import sunsetSea from './assets/sunset-sea.jpg';
 
 export const design: DesignSystem = {
@@ -26,7 +40,7 @@ const SANS = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Ne
 const MUTED = '#a3a3a8';
 
 const FONT_TEXT =
-  '一上下不中二享代以來個僅像入具出分切勤去取名單國圖團在多大天始姐學定就工己度式很後得心想成我所手才排接攻數文星是晚更會有未架梗榜樣機每決沒活測為然爭爽玩生甲當發的研社程究第系級統績繁考者腦自與舉英行表裝要覺言訊課論讀資逢進過選都重錄長開電靠高，';
+  '一上下不中二享代以來個僅像入全具出分切創動勤去及取名單國圖團在多大天始姐子學定就工己度式很後得心想意慧成我所手才排接據攻數文星是晚智更會有未架梗榜樣機次每比決沒活測為然爭爽玩生甲當發的研社程究競第系級統績繁考者腦自與舉英行表裝要覺言計訊設課論讀資賽逢進過選都重錄長開電靠類高，';
 const FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap&text=${encodeURIComponent(FONT_TEXT)}`;
 const FONT_LINK_ID = 'osd-webfont-gdg-alumni-share';
 
@@ -479,6 +493,99 @@ const ExpectedCollege: Page = () => (
   </div>
 );
 
+const Shot = ({ src, ratio }: { src: string; ratio: number }) => (
+  <img
+    src={src}
+    alt=""
+    style={{
+      flex: `${ratio} 1 0`,
+      minWidth: 0,
+      height: '100%',
+      objectFit: 'cover',
+      display: 'block',
+    }}
+  />
+);
+
+const RealCollege: Page = () => (
+  <div style={{ ...canvas, display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+      <Shot src={lifeFrisbee} ratio={0.75} />
+      <Shot src={lifeEscapeRoom} ratio={1.335} />
+      <Shot src={lifeSelfieFilter} ratio={0.562} />
+      <Shot src={lifeDinner} ratio={1.333} />
+      <Shot src={lifeHallwayGroup} ratio={0.562} />
+    </div>
+    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+      <Shot src={lifeCampusGroup} ratio={1.778} />
+      <Shot src={lifeNightGroup} ratio={1.333} />
+      <Shot src={lifeBilliards} ratio={1.335} />
+    </div>
+  </div>
+);
+
+const ShotVideo = ({ src, ratio }: { src: string; ratio: number }) => (
+  <video
+    src={src}
+    autoPlay
+    muted
+    loop
+    playsInline
+    style={{
+      flex: `${ratio} 1 0`,
+      minWidth: 0,
+      height: '100%',
+      objectFit: 'cover',
+      display: 'block',
+    }}
+  />
+);
+
+const FirstContest: Page = () => (
+  <div style={{ ...canvas, display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+      <div
+        style={{
+          flex: 1,
+          minWidth: 0,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 40,
+          padding: '0 60px 0 100px',
+        }}
+      >
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 36, color: MUTED }}>2024 全國電子設計創意競賽</div>
+          <div style={{ marginTop: 20, fontSize: 96, fontWeight: 700, lineHeight: 1.15 }}>
+            第一次比賽
+          </div>
+          <div style={{ marginTop: 24, fontSize: 40, color: MUTED }}>智慧大數據及行動 APP 類</div>
+        </div>
+        <img
+          src={contestMeme}
+          alt=""
+          style={{ flex: 'none', width: 450, height: 339, objectFit: 'cover', borderRadius: 12 }}
+        />
+      </div>
+      <img
+        src={contestPoster}
+        alt=""
+        style={{ flex: 'none', width: 364, height: '100%', objectFit: 'cover', display: 'block' }}
+      />
+      <img
+        src={contestBadge}
+        alt=""
+        style={{ flex: 'none', width: 401, height: '100%', objectFit: 'cover', display: 'block' }}
+      />
+    </div>
+    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+      <ShotVideo src={contestNight} ratio={1.778} />
+      <Shot src={contestIpad} ratio={1.386} />
+      <Shot src={contestBooth} ratio={1.333} />
+    </div>
+  </div>
+);
+
 const Blank: Page = () => <div style={canvas} />;
 
 export const meta: SlideMeta = {
@@ -499,6 +606,16 @@ export default [
   GsatScore,
   FcuAdmission,
   ExpectedCollege,
+  RealCollege,
+  FirstContest,
+  Blank,
+  Blank,
+  Blank,
+  Blank,
+  Blank,
+  Blank,
+  Blank,
+  Blank,
   Blank,
   Blank,
   ClubIsYourChoice,
