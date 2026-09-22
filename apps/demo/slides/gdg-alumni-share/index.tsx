@@ -39,6 +39,7 @@ import maicRoom from './assets/maic-room.jpg';
 import maicSelfie from './assets/maic-selfie.jpg';
 import maicStage from './assets/maic-stage.jpg';
 import makerBooth from './assets/maker-booth.jpg';
+import makerTrophy from './assets/maker-trophy.jpg';
 import neuroCertificate from './assets/neuro-certificate.png';
 import pinkCrowd from './assets/pink-crowd.jpg';
 import pinkNeon from './assets/pink-neon.jpg';
@@ -874,14 +875,26 @@ const ContestMaker: Page = () => (
       </>
     }
     media={
-      <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+      <div style={{ flex: 1, display: 'flex', justifyContent: 'center', gap: 20 }}>
+        <img
+          src={makerTrophy}
+          alt=""
+          style={{
+            flex: 'none',
+            width: 435,
+            height: 580,
+            objectFit: 'cover',
+            borderRadius: 20,
+            boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
+          }}
+        />
         <img
           src={makerBooth}
           alt=""
           style={{
             flex: 'none',
-            width: 480,
-            height: 640,
+            width: 435,
+            height: 580,
             objectFit: 'cover',
             borderRadius: 20,
             boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
