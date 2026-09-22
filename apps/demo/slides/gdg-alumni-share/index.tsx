@@ -21,6 +21,8 @@ import eda2025Stage from './assets/eda-2025-stage.jpg';
 import edaMrPoster from './assets/eda-mr-poster.jpg';
 import edaParcelPoster from './assets/eda-parcel-poster.jpg';
 import fcuAdmission from './assets/fcu-admission.jpg';
+import googleBadges from './assets/google-badges.jpg';
+import googleOffice from './assets/google-office.jpg';
 import gsatScore from './assets/gsat-score.jpg';
 import hackathonBooth from './assets/hackathon-booth.jpg';
 import hackathonDisplay from './assets/hackathon-display.jpg';
@@ -1206,6 +1208,35 @@ const AfterParty: Page = () => (
   </div>
 );
 
+const Community: Page = () => (
+  <div
+    style={{ ...canvas, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 40 }}
+  >
+    <img
+      src={googleOffice}
+      alt=""
+      style={{
+        width: 540,
+        height: 720,
+        objectFit: 'cover',
+        borderRadius: 24,
+        boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
+      }}
+    />
+    <img
+      src={googleBadges}
+      alt=""
+      style={{
+        width: 540,
+        height: 720,
+        objectFit: 'cover',
+        borderRadius: 24,
+        boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
+      }}
+    />
+  </div>
+);
+
 const Blank: Page = () => <div style={canvas} />;
 
 export const meta: SlideMeta = {
@@ -1241,7 +1272,7 @@ export default [
   ContestMaker,
   ShanghaiTrip,
   NeverGiveUp,
-  Blank,
+  Community,
   NoLife,
   PinkParty,
   AfterParty,
