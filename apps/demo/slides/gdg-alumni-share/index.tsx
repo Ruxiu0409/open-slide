@@ -76,7 +76,7 @@ const SANS = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Ne
 const MUTED = '#a3a3a8';
 
 const FONT_TEXT =
-  '、一三上下不中了二亞享他代以但位作佳來個們候僅像優入全兩具冠出分切別到創加動勤南原厲去參及友取只名單嗎國圖團在城報多大天始姐子學完定客害導少就展山岸峽工己師年度式很後得從心恂想意慧應成我所手才投排接換擇據攻數文新星是時晚智更會有未松架校梗榜樣機次每比決沒洲活海測為然爭爽特獎玩班生用甲當發的看真研社神秀科程究競第等簡系級統經網績繁群老考者聞胡能腦自與舉舞英融行表被裝要見覺覽言計訊設說課請論讀資賽軍通逢進過選邀還都重量金銅錄長開電青靠類高黑，？';
+  '一三上下不中了二亞享他代以任但位何作佳來個們候僅像優入全兩具冠出分切別到創力加努動勤南原厲去參及友取只可名單嗎國圖團在城報多大天好始姐子學完定客害導少就展山岸峽工己師年度式很後得從心恂想意慧應成我所手才投排接換擇據攻放數文新星是時晚智更會有未松架校梗棄榜樣機次每比決沒洲活海測為然爭爽特獎玩班生用甲當發的看真研社神秀科程究競第等簡系級統經網績繁群老考者聞胡能腦自與舉舞英融行表被裝要見覺覽言計訊設說課請論讀變資賽軍通逢進過選邀還都重量金銅錄長開電青靠類高黑，？';
 const FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap&text=${encodeURIComponent(FONT_TEXT)}`;
 const FONT_LINK_ID = 'osd-webfont-gdg-alumni-share';
 
@@ -1130,7 +1130,13 @@ const ShanghaiTrip: Page = () => (
 
 const NoLife: Page = () => (
   <Ask>
-    選擇社團、比賽，真的沒有<A>生活</A>嗎？
+    選擇努力，真的沒有<A>生活</A>嗎？
+  </Ask>
+);
+
+const NeverGiveUp: Page = () => (
+  <Ask>
+    不放棄任何可以<A>變好</A>的機會
   </Ask>
 );
 
@@ -1168,6 +1174,7 @@ export default [
   Blank,
   ContestMaker,
   ShanghaiTrip,
+  NeverGiveUp,
   Blank,
   NoLife,
   PinkParty,
