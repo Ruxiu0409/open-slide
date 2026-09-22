@@ -1353,8 +1353,6 @@ const HangzhouTrip: Page = () => (
   </div>
 );
 
-const Blank: Page = () => <div style={canvas} />;
-
 export const meta: SlideMeta = {
   title: 'GDG 學長姐分享',
   createdAt: '2026-09-20T07:48:07.514Z',
@@ -1390,7 +1388,6 @@ export default [
   ShanghaiStreets,
   SuzhouTrip,
   HangzhouTrip,
-  Blank,
   NeverGiveUp,
   Community,
   NoLife,
