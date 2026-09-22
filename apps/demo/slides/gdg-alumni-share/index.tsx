@@ -1274,6 +1274,7 @@ export default [
   NeverGiveUp,
   Community,
   NoLife,
+  Blank,
   PinkParty,
   AfterParty,
   ClubIsYourChoice,
