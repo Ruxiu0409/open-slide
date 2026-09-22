@@ -1,10 +1,13 @@
 import type { DesignSystem, Page, SlideMeta } from '@open-slide/core';
+import { ImagePlaceholder } from '@open-slide/core';
 import type { CSSProperties, ReactNode } from 'react';
 
 import adIconDrop from './assets/ad-icon-drop.mp4';
 import adPhones from './assets/ad-phones.mp4';
 import appStoreRank from './assets/app-store-rank.png';
 import coverPortrait from './assets/cover-portrait.jpg';
+import fcuAdmission from './assets/fcu-admission.jpg';
+import gsatScore from './assets/gsat-score.jpg';
 import sunsetSea from './assets/sunset-sea.jpg';
 
 export const design: DesignSystem = {
@@ -23,7 +26,7 @@ const SANS = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Ne
 const MUTED = '#a3a3a8';
 
 const FONT_TEXT =
-  '一上下不二享代以來僅入具分切勤取名單團在大天始姐學定工己式很得想成我所手才排攻星是會有未架榜機決沒爭生甲當發的研社程究第系統績繁考者自舉行表裝要覺言論讀跟逢進選都重長開靠，';
+  '一上下不中二享代以來個僅像入具出分切勤去取名單國圖團在多大天始姐學定就工己度式很後得心想成我所手才排接攻數文星是晚更會有未架梗榜樣機每決沒活測為然爭爽玩生甲當發的研社程究第系級統績繁考者腦自與舉英行表裝要覺言訊課論讀資逢進過選都重錄長開電靠高，';
 const FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap&text=${encodeURIComponent(FONT_TEXT)}`;
 const FONT_LINK_ID = 'osd-webfont-gdg-alumni-share';
 
@@ -284,7 +287,7 @@ const Disclaimer: Page = () => (
   >
     <div style={{ fontSize: 104, fontWeight: 700, lineHeight: 1.3 }}>以下言論僅代表我自己</div>
     <div style={{ fontSize: 60, lineHeight: 1.4, color: MUTED }}>
-      不代表 Google 開發者學生社團 跟 iOS Club
+      不代表 Google 開發者學生社團 與 iOS Club
     </div>
   </div>
 );
@@ -365,6 +368,117 @@ const AppStoreRank: Page = () => (
   </div>
 );
 
+const Score = ({ subject, grade }: { subject: string; grade: string }) => (
+  <div>
+    <div style={{ fontSize: 36, color: MUTED }}>{subject}</div>
+    <div style={{ marginTop: 8, fontFamily: SANS, fontSize: 96, fontWeight: 700, lineHeight: 1.1 }}>
+      {grade}
+      <span
+        style={{ fontFamily: HAND, fontSize: 32, fontWeight: 400, color: MUTED, marginLeft: 14 }}
+      >
+        級分
+      </span>
+    </div>
+  </div>
+);
+
+const GsatScore: Page = () => (
+  <div
+    style={{
+      ...canvas,
+      display: 'grid',
+      gridTemplateColumns: '640px 1fr',
+      alignItems: 'center',
+      gap: 110,
+      padding: '0 140px',
+    }}
+  >
+    <img
+      src={gsatScore}
+      alt=""
+      style={{
+        width: 640,
+        height: 853,
+        objectFit: 'cover',
+        borderRadius: 24,
+        boxShadow: '0 30px 80px rgba(0,0,0,0.18)',
+      }}
+    />
+    <div>
+      <div style={{ fontSize: 56, color: MUTED }}>我的學測成績</div>
+      <div
+        style={{
+          marginTop: 56,
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          rowGap: 44,
+          columnGap: 80,
+        }}
+      >
+        <Score subject="國文" grade="12" />
+        <Score subject="英文" grade="8" />
+        <Score subject="數學A" grade="10" />
+        <Score subject="數學B" grade="11" />
+        <Score subject="社會" grade="8" />
+        <Score subject="自然" grade="10" />
+      </div>
+    </div>
+  </div>
+);
+
+const FcuAdmission: Page = () => (
+  <div
+    style={{
+      ...canvas,
+      display: 'grid',
+      gridTemplateColumns: '1fr 920px',
+      alignItems: 'center',
+      gap: 90,
+      padding: '0 140px',
+    }}
+  >
+    <div>
+      <div style={{ fontSize: 56, color: MUTED }}>一樣分發錄取</div>
+      <div style={{ marginTop: 32, fontSize: 88, fontWeight: 700, lineHeight: 1.25 }}>
+        逢甲大學
+        <br />
+        <A>資訊工程學系</A>
+      </div>
+    </div>
+    <img
+      src={fcuAdmission}
+      alt=""
+      style={{
+        width: 920,
+        height: 690,
+        objectFit: 'cover',
+        borderRadius: 24,
+        boxShadow: '0 30px 80px rgba(0,0,0,0.18)',
+      }}
+    />
+  </div>
+);
+
+const ExpectedCollege: Page = () => (
+  <div
+    style={{
+      ...canvas,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 56,
+      padding: '0 140px',
+      textAlign: 'center',
+    }}
+  >
+    <div style={{ fontSize: 64, fontWeight: 700, lineHeight: 1.45, textWrap: 'balance' }}>
+      我以為接下來就是更多的高中電腦課，然後每天晚上出去玩，度過一個很爽很開心的大學生活
+    </div>
+    <ImagePlaceholder hint="想像中的爽大學生活梗圖" width={800} height={450} />
+  </div>
+);
+
 const Blank: Page = () => <div style={canvas} />;
 
 export const meta: SlideMeta = {
@@ -382,9 +496,9 @@ export default [
   GradSchool,
   Disclaimer,
   AppStoreRank,
-  Blank,
-  Blank,
-  Blank,
+  GsatScore,
+  FcuAdmission,
+  ExpectedCollege,
   Blank,
   Blank,
   ClubIsYourChoice,
