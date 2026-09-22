@@ -59,6 +59,9 @@ import shSkewers from './assets/sh-skewers.jpg';
 import shYuyuanDay from './assets/sh-yuyuan-day.jpg';
 import shYuyuanNight from './assets/sh-yuyuan-night.jpg';
 import sunsetSea from './assets/sunset-sea.jpg';
+import tripBreakfast from './assets/trip-breakfast.jpg';
+import tripClaw from './assets/trip-claw.jpg';
+import tripNightmarket from './assets/trip-nightmarket.jpg';
 import tripTrain from './assets/trip-train.jpg';
 
 export const design: DesignSystem = {
@@ -1060,34 +1063,42 @@ const MoreThanContests: Page = () => (
   </Ask>
 );
 
+const TripShot = ({ src }: { src: string }) => (
+  <img
+    src={src}
+    alt=""
+    style={{
+      flex: 'none',
+      width: 390,
+      height: 520,
+      objectFit: 'cover',
+      borderRadius: 20,
+      display: 'block',
+      boxShadow: '0 20px 56px rgba(0,0,0,0.16)',
+    }}
+  />
+);
+
 const GoingOut: Page = () => (
   <div
     style={{
       ...canvas,
       display: 'flex',
-      alignItems: 'center',
+      flexDirection: 'column',
       justifyContent: 'center',
-      gap: 110,
+      gap: 60,
       padding: '0 140px',
     }}
   >
-    <div style={{ flex: 'none', width: 800, fontSize: 96, fontWeight: 700, lineHeight: 1.3 }}>
-      比完賽，就換我們
-      <br />
-      <A>出去玩</A>
+    <div style={{ fontSize: 88, fontWeight: 700, lineHeight: 1.3 }}>
+      比完賽，就換我們<A>出去玩</A>
     </div>
-    <img
-      src={tripTrain}
-      alt=""
-      style={{
-        flex: 'none',
-        width: 600,
-        height: 800,
-        objectFit: 'cover',
-        borderRadius: 24,
-        boxShadow: '0 30px 80px rgba(0,0,0,0.18)',
-      }}
-    />
+    <div style={{ display: 'flex', gap: 20 }}>
+      <TripShot src={tripTrain} />
+      <TripShot src={tripBreakfast} />
+      <TripShot src={tripClaw} />
+      <TripShot src={tripNightmarket} />
+    </div>
   </div>
 );
 
