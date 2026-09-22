@@ -425,9 +425,33 @@ const ClubIsYourChoice: Page = () => (
 );
 
 const Closing: Page = () => (
-  <Ask>
-    大學開始，機會得<A>自己爭取</A>
-  </Ask>
+  <div
+    style={{
+      ...canvas,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 64,
+    }}
+  >
+    <div style={{ fontSize: 96, fontWeight: 700, lineHeight: 1.3 }}>
+      大學開始，機會得<A>自己爭取</A>
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24 }}>
+      <img
+        src={lastQr}
+        alt=""
+        style={{
+          width: 360,
+          height: 360,
+          display: 'block',
+          filter: 'drop-shadow(0 20px 48px rgba(0,0,0,0.16))',
+        }}
+      />
+      <div style={{ fontFamily: SANS, fontSize: 56, fontWeight: 700 }}>@cy_4.9</div>
+    </div>
+  </div>
 );
 
 const AppStoreRank: Page = () => (
@@ -1203,24 +1227,35 @@ const NeverGiveUp: Page = () => (
   </Ask>
 );
 
-const Blank: Page = () => <div style={canvas} />;
+const Reel = ({ id, width }: { id: string; width: number }) => (
+  <iframe
+    src={`https://www.instagram.com/reel/${id}/embed`}
+    title="Instagram reel"
+    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+    allowFullScreen
+    style={{
+      width,
+      height: 880,
+      border: 0,
+      borderRadius: 24,
+      background: '#fff',
+      boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
+    }}
+  />
+);
 
 const ReelEmbed: Page = () => (
   <div style={{ ...canvas, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-    <iframe
-      src="https://www.instagram.com/reel/DVdg7OZk0z2/embed"
-      title="Instagram reel"
-      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
-      allowFullScreen
-      style={{
-        width: 500,
-        height: 880,
-        border: 0,
-        borderRadius: 24,
-        background: '#fff',
-        boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
-      }}
-    />
+    <Reel id="DVdg7OZk0z2" width={500} />
+  </div>
+);
+
+const ReelPair: Page = () => (
+  <div
+    style={{ ...canvas, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 60 }}
+  >
+    <Reel id="DbNyHtBv9k8" width={480} />
+    <Reel id="DbVf_hxPb9b" width={480} />
   </div>
 );
 
@@ -1240,31 +1275,6 @@ const GoogleCampus: Page = () => (
       <Shot src={ggMenu} ratio={1.778} />
       <Shot src={ggCafe} ratio={1.778} />
     </div>
-  </div>
-);
-
-const Contact: Page = () => (
-  <div
-    style={{
-      ...canvas,
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: 48,
-    }}
-  >
-    <img
-      src={lastQr}
-      alt=""
-      style={{
-        width: 460,
-        height: 460,
-        display: 'block',
-        filter: 'drop-shadow(0 20px 48px rgba(0,0,0,0.16))',
-      }}
-    />
-    <div style={{ fontFamily: SANS, fontSize: 64, fontWeight: 700 }}>@cy_4.9</div>
   </div>
 );
 
@@ -1437,7 +1447,7 @@ export default [
   SuzhouTrip,
   HangzhouTrip,
   ReelEmbed,
-  Blank,
+  ReelPair,
   NeverGiveUp,
   Community,
   GoogleCampus,
@@ -1446,5 +1456,4 @@ export default [
   AfterParty,
   ClubIsYourChoice,
   Closing,
-  Contact,
 ] satisfies Page[];
