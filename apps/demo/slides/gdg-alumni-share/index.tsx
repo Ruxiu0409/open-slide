@@ -76,6 +76,7 @@ import sh25Library from './assets/sh25-library.jpg';
 import sh25Lights from './assets/sh25-lights.jpg';
 import sh25Mms from './assets/sh25-mms.jpg';
 import sh25Pearl from './assets/sh25-pearl.jpg';
+import sh25Robes from './assets/sh25-robes.jpg';
 import sh25Rooftop from './assets/sh25-rooftop.jpg';
 import sunsetSea from './assets/sunset-sea.jpg';
 import tripBreakfast from './assets/trip-breakfast.jpg';
@@ -1246,25 +1247,22 @@ const Community: Page = () => (
 );
 
 const ShanghaiTrip2025: Page = () => (
-  <div
-    style={{
-      ...canvas,
-      display: 'grid',
-      gridTemplateColumns: 'repeat(5, 1fr)',
-      gridTemplateRows: 'repeat(2, 1fr)',
-      gap: 10,
-    }}
-  >
-    <WallShot src={sh25Desk} position="center" />
-    <WallShot src={sh25Library} position="center" />
-    <WallShot src={sh25InsEntrance} position="center" />
-    <WallShot src={sh25InsNight} position="center" />
-    <WallShot src={sh25InsStreet} position="center" />
-    <WallShot src={sh25Mms} position="center" />
-    <WallShot src={sh25Rooftop} position="center" />
-    <WallShot src={sh25Badge} position="center" />
-    <WallShot src={sh25Lights} position="center" />
-    <WallShot src={sh25Pearl} position="center" />
+  <div style={{ ...canvas, display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div style={{ display: 'flex', gap: 10, flex: '0 0 452px', minHeight: 0 }}>
+      <Shot src={sh25Robes} ratio={1.333} />
+      <Shot src={sh25Desk} ratio={0.75} />
+      <Shot src={sh25Library} ratio={0.75} />
+      <Shot src={sh25InsEntrance} ratio={0.75} />
+      <Shot src={sh25InsNight} ratio={0.75} />
+      <Shot src={sh25InsStreet} ratio={0.75} />
+    </div>
+    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+      <Shot src={sh25Mms} ratio={0.75} />
+      <Shot src={sh25Rooftop} ratio={0.75} />
+      <Shot src={sh25Badge} ratio={0.75} />
+      <Shot src={sh25Lights} ratio={0.75} />
+      <Shot src={sh25Pearl} ratio={0.75} />
+    </div>
   </div>
 );
 
