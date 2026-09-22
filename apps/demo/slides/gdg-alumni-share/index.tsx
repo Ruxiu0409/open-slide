@@ -1203,6 +1203,8 @@ const NeverGiveUp: Page = () => (
   </Ask>
 );
 
+const Blank: Page = () => <div style={canvas} />;
+
 const ReelEmbed: Page = () => (
   <div style={{ ...canvas, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
     <iframe
@@ -1435,6 +1437,7 @@ export default [
   SuzhouTrip,
   HangzhouTrip,
   ReelEmbed,
+  Blank,
   NeverGiveUp,
   Community,
   GoogleCampus,
