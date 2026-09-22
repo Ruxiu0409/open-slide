@@ -1168,6 +1168,7 @@ export default [
   Blank,
   ContestMaker,
   ShanghaiTrip,
+  Blank,
   NoLife,
   PinkParty,
   ClubIsYourChoice,
