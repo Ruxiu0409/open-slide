@@ -90,6 +90,18 @@ import sh25bStreet from './assets/sh25b-street.jpg';
 import sh25bTemple from './assets/sh25b-temple.jpg';
 import sh25bYuyuan from './assets/sh25b-yuyuan.jpg';
 import sunsetSea from './assets/sunset-sea.jpg';
+import szArch from './assets/sz-arch.jpg';
+import szBracelets from './assets/sz-bracelets.jpg';
+import szCeiling from './assets/sz-ceiling.jpg';
+import szCity from './assets/sz-city.jpg';
+import szCourtyard from './assets/sz-courtyard.jpg';
+import szFanNight from './assets/sz-fan-night.jpg';
+import szGroup from './assets/sz-group.jpg';
+import szLanterns from './assets/sz-lanterns.jpg';
+import szPond from './assets/sz-pond.jpg';
+import szStairs from './assets/sz-stairs.jpg';
+import szTeahouse from './assets/sz-teahouse.jpg';
+import szTemple from './assets/sz-temple.jpg';
 import tripBreakfast from './assets/trip-breakfast.jpg';
 import tripClaw from './assets/trip-claw.jpg';
 import tripNightmarket from './assets/trip-nightmarket.jpg';
@@ -1301,6 +1313,27 @@ const ShanghaiStreets: Page = () => (
   </div>
 );
 
+const SuzhouTrip: Page = () => (
+  <div style={{ ...canvas, display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+      <Shot src={szGroup} ratio={1.333} />
+      <Shot src={szStairs} ratio={0.666} />
+      <Shot src={szTemple} ratio={0.562} />
+      <Shot src={szFanNight} ratio={0.562} />
+      <Shot src={szLanterns} ratio={0.562} />
+      <Shot src={szCourtyard} ratio={0.562} />
+    </div>
+    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+      <Shot src={szBracelets} ratio={1.333} />
+      <Shot src={szCeiling} ratio={0.666} />
+      <Shot src={szTeahouse} ratio={0.562} />
+      <Shot src={szCity} ratio={0.562} />
+      <Shot src={szArch} ratio={0.562} />
+      <Shot src={szPond} ratio={0.562} />
+    </div>
+  </div>
+);
+
 const Blank: Page = () => <div style={canvas} />;
 
 export const meta: SlideMeta = {
@@ -1336,6 +1369,7 @@ export default [
   ShanghaiTrip,
   ShanghaiTrip2025,
   ShanghaiStreets,
+  SuzhouTrip,
   NeverGiveUp,
   Community,
   NoLife,
