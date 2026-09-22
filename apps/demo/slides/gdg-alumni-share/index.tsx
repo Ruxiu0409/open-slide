@@ -67,6 +67,16 @@ import shMuseum from './assets/sh-museum.jpg';
 import shSkewers from './assets/sh-skewers.jpg';
 import shYuyuanDay from './assets/sh-yuyuan-day.jpg';
 import shYuyuanNight from './assets/sh-yuyuan-night.jpg';
+import sh25Badge from './assets/sh25-badge.jpg';
+import sh25Desk from './assets/sh25-desk.jpg';
+import sh25InsEntrance from './assets/sh25-ins-entrance.jpg';
+import sh25InsNight from './assets/sh25-ins-night.jpg';
+import sh25InsStreet from './assets/sh25-ins-street.jpg';
+import sh25Library from './assets/sh25-library.jpg';
+import sh25Lights from './assets/sh25-lights.jpg';
+import sh25Mms from './assets/sh25-mms.jpg';
+import sh25Pearl from './assets/sh25-pearl.jpg';
+import sh25Rooftop from './assets/sh25-rooftop.jpg';
 import sunsetSea from './assets/sunset-sea.jpg';
 import tripBreakfast from './assets/trip-breakfast.jpg';
 import tripClaw from './assets/trip-claw.jpg';
@@ -1235,6 +1245,29 @@ const Community: Page = () => (
   </div>
 );
 
+const ShanghaiTrip2025: Page = () => (
+  <div
+    style={{
+      ...canvas,
+      display: 'grid',
+      gridTemplateColumns: 'repeat(5, 1fr)',
+      gridTemplateRows: 'repeat(2, 1fr)',
+      gap: 10,
+    }}
+  >
+    <WallShot src={sh25Desk} position="center" />
+    <WallShot src={sh25Library} position="center" />
+    <WallShot src={sh25InsEntrance} position="center" />
+    <WallShot src={sh25InsNight} position="center" />
+    <WallShot src={sh25InsStreet} position="center" />
+    <WallShot src={sh25Mms} position="center" />
+    <WallShot src={sh25Rooftop} position="center" />
+    <WallShot src={sh25Badge} position="center" />
+    <WallShot src={sh25Lights} position="center" />
+    <WallShot src={sh25Pearl} position="center" />
+  </div>
+);
+
 const Blank: Page = () => <div style={canvas} />;
 
 export const meta: SlideMeta = {
@@ -1268,7 +1301,7 @@ export default [
   ContestApp,
   ContestMaker,
   ShanghaiTrip,
-  Blank,
+  ShanghaiTrip2025,
   Blank,
   NeverGiveUp,
   Community,
