@@ -39,11 +39,24 @@ import maicRoom from './assets/maic-room.jpg';
 import maicSelfie from './assets/maic-selfie.jpg';
 import maicStage from './assets/maic-stage.jpg';
 import makerBooth from './assets/maker-booth.jpg';
-import makerPennant from './assets/maker-pennant.jpg';
 import neuroCertificate from './assets/neuro-certificate.png';
 import pinkCrowd from './assets/pink-crowd.jpg';
 import pinkNeon from './assets/pink-neon.jpg';
 import pinkSeated from './assets/pink-seated.jpg';
+import shBridge from './assets/sh-bridge.jpg';
+import shCave from './assets/sh-cave.jpg';
+import shClocktower from './assets/sh-clocktower.jpg';
+import shCostume from './assets/sh-costume.jpg';
+import shCrayfish from './assets/sh-crayfish.jpg';
+import shDinner from './assets/sh-dinner.jpg';
+import shKfc from './assets/sh-kfc.jpg';
+import shKtv from './assets/sh-ktv.jpg';
+import shMcdonalds from './assets/sh-mcdonalds.jpg';
+import shMilktea from './assets/sh-milktea.jpg';
+import shMuseum from './assets/sh-museum.jpg';
+import shSkewers from './assets/sh-skewers.jpg';
+import shYuyuanDay from './assets/sh-yuyuan-day.jpg';
+import shYuyuanNight from './assets/sh-yuyuan-night.jpg';
 import sunsetSea from './assets/sunset-sea.jpg';
 
 export const design: DesignSystem = {
@@ -62,7 +75,7 @@ const SANS = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Ne
 const MUTED = '#a3a3a8';
 
 const FONT_TEXT =
-  '一三上下不中了二亞享他代以但位作佳來個們候僅像優入全兩具冠出分切別到創加動勤南原厲去參及友取只名單國圖團在城報多大天始姐子學完定客害導少就展山岸峽工己師年度式很後得從心恂想意慧應成我所手才投排接換據攻數文新星是時晚智更會有未松架校梗榜樣機次每比決沒洲活海測為然爭爽特獎玩班生用甲當發的看研社神秀科程究競第等簡系級統經網績繁群老考者聞胡能腦自與舉舞英融行表被裝要見覺覽言計訊設說課請論讀資賽軍通逢進過選邀還都重量金銅錄長開電青靠類高黑，';
+  '、一三上下不中了二亞享他代以但位作佳來個們候僅像優入全兩具冠出分切別到創加動勤南原厲去參及友取只名單嗎國圖團在城報多大天始姐子學完定客害導少就展山岸峽工己師年度式很後得從心恂想意慧應成我所手才投排接換擇據攻數文新星是時晚智更會有未松架校梗榜樣機次每比決沒洲活海測為然爭爽特獎玩班生用甲當發的看真研社神秀科程究競第等簡系級統經網績繁群老考者聞胡能腦自與舉舞英融行表被裝要見覺覽言計訊設說課請論讀資賽軍通逢進過選邀還都重量金銅錄長開電青靠類高黑，？';
 const FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap&text=${encodeURIComponent(FONT_TEXT)}`;
 const FONT_LINK_ID = 'osd-webfont-gdg-alumni-share';
 
@@ -861,26 +874,14 @@ const ContestMaker: Page = () => (
       </>
     }
     media={
-      <div style={{ flex: 1, display: 'flex', gap: 20, height: 427 }}>
-        <img
-          src={makerPennant}
-          alt=""
-          style={{
-            flex: '1.335 1 0',
-            minWidth: 0,
-            height: '100%',
-            objectFit: 'cover',
-            borderRadius: 20,
-            boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
-          }}
-        />
+      <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
         <img
           src={makerBooth}
           alt=""
           style={{
-            flex: '0.75 1 0',
-            minWidth: 0,
-            height: '100%',
+            flex: 'none',
+            width: 480,
+            height: 640,
             objectFit: 'cover',
             borderRadius: 20,
             boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
@@ -1051,6 +1052,75 @@ const GoingOut: Page = () => (
   </Ask>
 );
 
+const WallShot = ({ src, position }: { src: string; position?: string }) => (
+  <img
+    src={src}
+    alt=""
+    style={{
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      objectPosition: position ?? 'center 38%',
+      display: 'block',
+    }}
+  />
+);
+
+const ShanghaiTrip: Page = () => (
+  <div style={{ ...canvas, display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(5, 1fr)',
+        gap: 10,
+        flex: 1,
+        minHeight: 0,
+      }}
+    >
+      <WallShot src={shBridge} />
+      <WallShot src={shYuyuanNight} />
+      <WallShot src={shMuseum} />
+      <WallShot src={shClocktower} />
+      <WallShot src={shCostume} />
+    </div>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(5, 1fr)',
+        gap: 10,
+        flex: 1,
+        minHeight: 0,
+      }}
+    >
+      <WallShot src={shMcdonalds} />
+      <WallShot src={shKfc} />
+      <WallShot src={shCave} />
+      <WallShot src={shMilktea} />
+      <WallShot src={shSkewers} />
+    </div>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(4, 1fr)',
+        gap: 10,
+        flex: 1,
+        minHeight: 0,
+      }}
+    >
+      <WallShot src={shYuyuanDay} position="center" />
+      <WallShot src={shDinner} position="center" />
+      <WallShot src={shKtv} position="center" />
+      <WallShot src={shCrayfish} position="center" />
+    </div>
+  </div>
+);
+
+const NoLife: Page = () => (
+  <Ask>
+    選擇社團、比賽，真的沒有<A>生活</A>嗎？
+  </Ask>
+);
+
 const Blank: Page = () => <div style={canvas} />;
 
 export const meta: SlideMeta = {
@@ -1084,7 +1154,8 @@ export default [
   ContestApp,
   Blank,
   ContestMaker,
-  Blank,
+  ShanghaiTrip,
+  NoLife,
   PinkParty,
   ClubIsYourChoice,
   Closing,
