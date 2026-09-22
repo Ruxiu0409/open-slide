@@ -21,6 +21,14 @@ import eda2025Stage from './assets/eda-2025-stage.jpg';
 import edaMrPoster from './assets/eda-mr-poster.jpg';
 import edaParcelPoster from './assets/eda-parcel-poster.jpg';
 import fcuAdmission from './assets/fcu-admission.jpg';
+import ggBikes from './assets/gg-bikes.jpg';
+import ggCafe from './assets/gg-cafe.jpg';
+import ggInterior from './assets/gg-interior.jpg';
+import ggMenu from './assets/gg-menu.jpg';
+import ggShelf1 from './assets/gg-shelf1.jpg';
+import ggShelf2 from './assets/gg-shelf2.jpg';
+import ggShelf3 from './assets/gg-shelf3.jpg';
+import ggStore from './assets/gg-store.jpg';
 import googleBadges from './assets/google-badges.jpg';
 import googleOffice from './assets/google-office.jpg';
 import gsatScore from './assets/gsat-score.jpg';
@@ -1195,6 +1203,44 @@ const NeverGiveUp: Page = () => (
   </Ask>
 );
 
+const ReelEmbed: Page = () => (
+  <div style={{ ...canvas, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <iframe
+      src="https://www.instagram.com/reel/DVdg7OZk0z2/embed"
+      title="Instagram reel"
+      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+      allowFullScreen
+      style={{
+        width: 500,
+        height: 880,
+        border: 0,
+        borderRadius: 24,
+        background: '#fff',
+        boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
+      }}
+    />
+  </div>
+);
+
+const GoogleCampus: Page = () => (
+  <div style={{ ...canvas, display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div style={{ display: 'flex', gap: 10, flex: '0 0 360px', minHeight: 0 }}>
+      <Shot src={ggBikes} ratio={0.562} />
+      <Shot src={ggStore} ratio={1.778} />
+      <Shot src={ggInterior} ratio={1.778} />
+    </div>
+    <div style={{ display: 'flex', gap: 10, flex: '0 0 278px', minHeight: 0 }}>
+      <Shot src={ggShelf1} ratio={1.778} />
+      <Shot src={ggShelf2} ratio={1.778} />
+      <Shot src={ggShelf3} ratio={1.778} />
+    </div>
+    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+      <Shot src={ggMenu} ratio={1.778} />
+      <Shot src={ggCafe} ratio={1.778} />
+    </div>
+  </div>
+);
+
 const Contact: Page = () => (
   <div
     style={{
@@ -1388,8 +1434,10 @@ export default [
   ShanghaiStreets,
   SuzhouTrip,
   HangzhouTrip,
+  ReelEmbed,
   NeverGiveUp,
   Community,
+  GoogleCampus,
   NoLife,
   PinkParty,
   AfterParty,
