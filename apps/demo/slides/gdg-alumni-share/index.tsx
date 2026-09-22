@@ -22,9 +22,9 @@ import edaParcelPoster from './assets/eda-parcel-poster.jpg';
 import fcuAdmission from './assets/fcu-admission.jpg';
 import gsatScore from './assets/gsat-score.jpg';
 import hackathonBooth from './assets/hackathon-booth.jpg';
+import hackathonDisplay from './assets/hackathon-display.jpg';
 import hackathonJudges from './assets/hackathon-judges.jpg';
 import hackathonPrize from './assets/hackathon-prize.jpg';
-import hackathonVenue from './assets/hackathon-venue.jpg';
 import lifeBilliards from './assets/life-billiards.jpg';
 import lifeCampusGroup from './assets/life-campus-group.jpg';
 import lifeDinner from './assets/life-dinner.jpg';
@@ -985,7 +985,7 @@ const ContestOthers: Page = () => (
     <div style={{ display: 'flex', gap: 20 }}>
       <StripShot src={hackathonBooth} ratio={1.333} />
       <StripShot src={hackathonJudges} ratio={0.75} position="center 32%" />
-      <StripShot src={hackathonVenue} ratio={1.333} />
+      <StripShot src={hackathonDisplay} ratio={1.333} />
       <StripShot src={hackathonPrize} ratio={1.333} />
       <img
         src={neuroCertificate}
