@@ -5,6 +5,10 @@ import type { CSSProperties, ReactNode } from 'react';
 import adIconDrop from './assets/ad-icon-drop.mp4';
 import adPhones from './assets/ad-phones.mp4';
 import appStoreRank from './assets/app-store-rank.png';
+import awardBoard from './assets/award-board.jpg';
+import awardDessert from './assets/award-dessert.jpg';
+import awardNews from './assets/award-news.jpg';
+import awardStage from './assets/award-stage.jpg';
 import contestBadge from './assets/contest-badge.jpg';
 import contestBooth from './assets/contest-booth.jpg';
 import contestIpad from './assets/contest-ipad.jpg';
@@ -40,7 +44,7 @@ const SANS = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Ne
 const MUTED = '#a3a3a8';
 
 const FONT_TEXT =
-  '一上下不中二享代以來個僅像入全具出分切創動勤去及取名單國圖團在多大天始姐子學定就工己度式很後得心想意慧成我所手才排接據攻數文星是晚智更會有未架梗榜樣機次每比決沒活測為然爭爽玩生甲當發的研社程究競第系級統績繁考者腦自與舉英行表裝要覺言計訊設課論讀資賽逢進過選都重錄長開電靠類高，';
+  '一上下不中了二享他代以來個候僅像入全具冠出分切到創動勤厲去及取名單國圖團在多大天始姐子學定害導就工己師度式很後得心想意慧成我所手才排接據攻數文新星是時晚智更會有未架校梗榜樣機次每比決沒活測為然爭爽獎玩班生甲當發的看研社程究競第系級統網績繁群老考者聞腦自與舉英行表裝要覺言計訊設說課論讀資賽軍逢進過選都重錄長開電靠類高，';
 const FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap&text=${encodeURIComponent(FONT_TEXT)}`;
 const FONT_LINK_ID = 'osd-webfont-gdg-alumni-share';
 
@@ -586,6 +590,75 @@ const FirstContest: Page = () => (
   </div>
 );
 
+const AwardWin: Page = () => (
+  <div style={{ ...canvas, display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+      <div
+        style={{
+          flex: 1,
+          minWidth: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          padding: '0 60px 0 140px',
+        }}
+      >
+        <div style={{ fontSize: 34, lineHeight: 1.45, color: MUTED }}>
+          2024 全國電子設計創意競賽
+          <br />
+          智慧大數據及行動 APP 類
+        </div>
+        <div style={{ marginTop: 32, fontSize: 96, fontWeight: 700, lineHeight: 1.15 }}>
+          我得獎了
+        </div>
+        <div style={{ marginTop: 8, fontSize: 168, fontWeight: 700, lineHeight: 1.1 }}>
+          <A>冠軍</A>
+        </div>
+      </div>
+      <img
+        src={awardNews}
+        alt=""
+        style={{ flex: 'none', width: 951, height: '100%', objectFit: 'cover', display: 'block' }}
+      />
+    </div>
+    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+      <Shot src={awardStage} ratio={1.333} />
+      <Shot src={awardBoard} ratio={1.333} />
+      <Shot src={awardDessert} ratio={0.75} />
+    </div>
+  </div>
+);
+
+const Moment = ({ who, what }: { who: string; what: ReactNode }) => (
+  <div>
+    <div style={{ fontSize: 36, color: MUTED }}>{who}</div>
+    <div style={{ marginTop: 16, fontSize: 80, fontWeight: 700, lineHeight: 1.3 }}>{what}</div>
+  </div>
+);
+
+const TeachersNoticed: Page = () => (
+  <div
+    style={{
+      ...canvas,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      gap: 96,
+      padding: '0 140px',
+    }}
+  >
+    <Moment who="班導" what="在班群發我上校網新聞" />
+    <Moment
+      who="英文老師"
+      what={
+        <>
+          下課的時候說他有看到，<A>很厲害</A>
+        </>
+      }
+    />
+  </div>
+);
+
 const Blank: Page = () => <div style={canvas} />;
 
 export const meta: SlideMeta = {
@@ -608,8 +681,8 @@ export default [
   ExpectedCollege,
   RealCollege,
   FirstContest,
-  Blank,
-  Blank,
+  AwardWin,
+  TeachersNoticed,
   Blank,
   Blank,
   Blank,
