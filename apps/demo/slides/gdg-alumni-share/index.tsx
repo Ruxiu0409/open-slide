@@ -9,6 +9,7 @@ import awardBoard from './assets/award-board.jpg';
 import awardDessert from './assets/award-dessert.jpg';
 import awardNews from './assets/award-news.jpg';
 import awardStage from './assets/award-stage.jpg';
+import coinwLoss from './assets/coinw-loss.jpg';
 import contestBadge from './assets/contest-badge.jpg';
 import contestBooth from './assets/contest-booth.jpg';
 import contestIpad from './assets/contest-ipad.jpg';
@@ -25,6 +26,7 @@ import hackathonBooth from './assets/hackathon-booth.jpg';
 import hackathonDisplay from './assets/hackathon-display.jpg';
 import hackathonJudges from './assets/hackathon-judges.jpg';
 import hackathonPrize from './assets/hackathon-prize.jpg';
+import koreanDinner from './assets/korean-dinner.jpg';
 import lastQr from './assets/last-qr.png';
 import lifeBilliards from './assets/life-billiards.jpg';
 import lifeCampusGroup from './assets/life-campus-group.jpg';
@@ -39,7 +41,10 @@ import maicPlush from './assets/maic-plush.jpg';
 import maicRoom from './assets/maic-room.jpg';
 import maicSelfie from './assets/maic-selfie.jpg';
 import maicStage from './assets/maic-stage.jpg';
+import makerAllgroup from './assets/maker-allgroup.jpg';
 import makerBooth from './assets/maker-booth.jpg';
+import makerPhotobooth from './assets/maker-photobooth.jpg';
+import makerTeam from './assets/maker-team.jpg';
 import makerTrophy from './assets/maker-trophy.jpg';
 import neuroCertificate from './assets/neuro-certificate.png';
 import pinkCrowd from './assets/pink-crowd.jpg';
@@ -751,34 +756,6 @@ const AwardRow = ({
   </div>
 );
 
-const Contest = ({
-  name,
-  media,
-  children,
-}: {
-  name: ReactNode;
-  media?: ReactNode;
-  children: ReactNode;
-}) => (
-  <div
-    style={{
-      ...canvas,
-      display: 'flex',
-      alignItems: 'center',
-      gap: 90,
-      padding: '0 140px',
-    }}
-  >
-    <div style={media ? { flex: 'none', width: 640 } : { flex: 1 }}>
-      <div style={{ fontSize: 88, fontWeight: 700, lineHeight: 1.25 }}>{name}</div>
-      <div style={{ marginTop: 48, display: 'flex', flexDirection: 'column', gap: 24 }}>
-        {children}
-      </div>
-    </div>
-    {media}
-  </div>
-);
-
 const EdaRow = ({ year, prize, note }: { year: string; prize: string; note?: string }) => (
   <div style={{ display: 'flex', alignItems: 'baseline', gap: 40 }}>
     <div
@@ -871,56 +848,53 @@ const ContestApp: Page = () => (
 );
 
 const ContestMaker: Page = () => (
-  <Contest
-    name={
-      <>
-        海峽兩岸青少年
-        <br />
-        創客大賽
-      </>
-    }
-    media={
-      <div style={{ flex: 1, display: 'flex', justifyContent: 'center', gap: 20 }}>
-        <img
-          src={makerTrophy}
-          alt=""
-          style={{
-            flex: 'none',
-            width: 435,
-            height: 580,
-            objectFit: 'cover',
-            borderRadius: 20,
-            boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
-          }}
-        />
-        <img
-          src={makerBooth}
-          alt=""
-          style={{
-            flex: 'none',
-            width: 435,
-            height: 580,
-            objectFit: 'cover',
-            borderRadius: 20,
-            boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
-          }}
-        />
+  <div style={{ ...canvas, display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+      <div
+        style={{
+          flex: 1,
+          minWidth: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          padding: '0 60px 0 140px',
+        }}
+      >
+        <div style={{ fontSize: 80, fontWeight: 700, lineHeight: 1.25 }}>
+          海峽兩岸青少年創客大賽
+        </div>
+        <div style={{ marginTop: 48, display: 'flex', flexDirection: 'column', gap: 24 }}>
+          <AwardRow year="2024" prize="三等獎" prizeSize={88} />
+          <AwardRow
+            year="2025"
+            prize={
+              <>
+                二等獎
+                <br />
+                優秀展覽獎
+              </>
+            }
+            prizeSize={88}
+          />
+        </div>
       </div>
-    }
-  >
-    <AwardRow year="2024" prize="三等獎" prizeSize={88} />
-    <AwardRow
-      year="2025"
-      prize={
-        <>
-          二等獎
-          <br />
-          優秀展覽獎
-        </>
-      }
-      prizeSize={88}
-    />
-  </Contest>
+      <img
+        src={makerTrophy}
+        alt=""
+        style={{ flex: 'none', width: 401, height: '100%', objectFit: 'cover', display: 'block' }}
+      />
+      <img
+        src={makerBooth}
+        alt=""
+        style={{ flex: 'none', width: 401, height: '100%', objectFit: 'cover', display: 'block' }}
+      />
+    </div>
+    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+      <Shot src={makerTeam} ratio={1.5} />
+      <Shot src={makerPhotobooth} ratio={1.5} />
+      <Shot src={makerAllgroup} ratio={1.5} />
+    </div>
+  </div>
 );
 
 const StripShot = ({ src, ratio, position }: { src: string; ratio: number; position?: string }) => (
@@ -1203,6 +1177,35 @@ const Contact: Page = () => (
   </div>
 );
 
+const AfterParty: Page = () => (
+  <div
+    style={{ ...canvas, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 40 }}
+  >
+    <img
+      src={koreanDinner}
+      alt=""
+      style={{
+        width: 540,
+        height: 720,
+        objectFit: 'cover',
+        borderRadius: 24,
+        boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
+      }}
+    />
+    <img
+      src={coinwLoss}
+      alt=""
+      style={{
+        width: 472,
+        height: 720,
+        objectFit: 'cover',
+        borderRadius: 24,
+        boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
+      }}
+    />
+  </div>
+);
+
 const Blank: Page = () => <div style={canvas} />;
 
 export const meta: SlideMeta = {
@@ -1241,7 +1244,7 @@ export default [
   Blank,
   NoLife,
   PinkParty,
-  Blank,
+  AfterParty,
   ClubIsYourChoice,
   Closing,
   Contact,
