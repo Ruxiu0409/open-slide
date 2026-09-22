@@ -68,6 +68,7 @@ import shSkewers from './assets/sh-skewers.jpg';
 import shYuyuanDay from './assets/sh-yuyuan-day.jpg';
 import shYuyuanNight from './assets/sh-yuyuan-night.jpg';
 import sh25Badge from './assets/sh25-badge.jpg';
+import sh25Cart from './assets/sh25-cart.jpg';
 import sh25Desk from './assets/sh25-desk.jpg';
 import sh25InsEntrance from './assets/sh25-ins-entrance.jpg';
 import sh25InsNight from './assets/sh25-ins-night.jpg';
@@ -1248,7 +1249,7 @@ const Community: Page = () => (
 
 const ShanghaiTrip2025: Page = () => (
   <div style={{ ...canvas, display: 'flex', flexDirection: 'column', gap: 10 }}>
-    <div style={{ display: 'flex', gap: 10, flex: '0 0 452px', minHeight: 0 }}>
+    <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
       <Shot src={sh25Robes} ratio={1.333} />
       <Shot src={sh25Desk} ratio={0.75} />
       <Shot src={sh25Library} ratio={0.75} />
@@ -1257,6 +1258,7 @@ const ShanghaiTrip2025: Page = () => (
       <Shot src={sh25InsStreet} ratio={0.75} />
     </div>
     <div style={{ display: 'flex', gap: 10, flex: 1, minHeight: 0 }}>
+      <Shot src={sh25Cart} ratio={1.333} />
       <Shot src={sh25Mms} ratio={0.75} />
       <Shot src={sh25Rooftop} ratio={0.75} />
       <Shot src={sh25Badge} ratio={0.75} />
