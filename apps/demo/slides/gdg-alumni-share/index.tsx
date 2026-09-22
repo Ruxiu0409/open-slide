@@ -59,6 +59,7 @@ import shSkewers from './assets/sh-skewers.jpg';
 import shYuyuanDay from './assets/sh-yuyuan-day.jpg';
 import shYuyuanNight from './assets/sh-yuyuan-night.jpg';
 import sunsetSea from './assets/sunset-sea.jpg';
+import tripTrain from './assets/trip-train.jpg';
 
 export const design: DesignSystem = {
   palette: { bg: '#f0f1f2', text: '#111113', accent: '#e8492b' },
@@ -1060,9 +1061,34 @@ const MoreThanContests: Page = () => (
 );
 
 const GoingOut: Page = () => (
-  <Ask>
-    比完賽，就換我們<A>出去玩</A>
-  </Ask>
+  <div
+    style={{
+      ...canvas,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 110,
+      padding: '0 140px',
+    }}
+  >
+    <div style={{ flex: 'none', width: 800, fontSize: 96, fontWeight: 700, lineHeight: 1.3 }}>
+      比完賽，就換我們
+      <br />
+      <A>出去玩</A>
+    </div>
+    <img
+      src={tripTrain}
+      alt=""
+      style={{
+        flex: 'none',
+        width: 600,
+        height: 800,
+        objectFit: 'cover',
+        borderRadius: 24,
+        boxShadow: '0 30px 80px rgba(0,0,0,0.18)',
+      }}
+    />
+  </div>
 );
 
 const WallShot = ({ src, position }: { src: string; position?: string }) => (
