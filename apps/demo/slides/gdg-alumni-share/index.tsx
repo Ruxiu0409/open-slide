@@ -25,6 +25,7 @@ import hackathonBooth from './assets/hackathon-booth.jpg';
 import hackathonDisplay from './assets/hackathon-display.jpg';
 import hackathonJudges from './assets/hackathon-judges.jpg';
 import hackathonPrize from './assets/hackathon-prize.jpg';
+import lastQr from './assets/last-qr.png';
 import lifeBilliards from './assets/life-billiards.jpg';
 import lifeCampusGroup from './assets/life-campus-group.jpg';
 import lifeDinner from './assets/life-dinner.jpg';
@@ -1177,6 +1178,31 @@ const NeverGiveUp: Page = () => (
   </Ask>
 );
 
+const Contact: Page = () => (
+  <div
+    style={{
+      ...canvas,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 48,
+    }}
+  >
+    <img
+      src={lastQr}
+      alt=""
+      style={{
+        width: 460,
+        height: 460,
+        display: 'block',
+        filter: 'drop-shadow(0 20px 48px rgba(0,0,0,0.16))',
+      }}
+    />
+    <div style={{ fontFamily: SANS, fontSize: 64, fontWeight: 700 }}>@cy_4.9</div>
+  </div>
+);
+
 const Blank: Page = () => <div style={canvas} />;
 
 export const meta: SlideMeta = {
@@ -1218,4 +1244,5 @@ export default [
   Blank,
   ClubIsYourChoice,
   Closing,
+  Contact,
 ] satisfies Page[];
