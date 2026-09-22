@@ -38,6 +38,7 @@ import lifeFrisbee from './assets/life-frisbee.jpg';
 import lifeHallwayGroup from './assets/life-hallway-group.jpg';
 import lifeNightGroup from './assets/life-night-group.jpg';
 import lifeSelfieFilter from './assets/life-selfie-filter.jpg';
+import liveShow from './assets/live-show.jpg';
 import maicFloorCode from './assets/maic-floor-code.jpg';
 import maicPlush from './assets/maic-plush.jpg';
 import maicRoom from './assets/maic-room.jpg';
@@ -1179,32 +1180,29 @@ const Contact: Page = () => (
   </div>
 );
 
+const PartyPhoto = ({ src, width }: { src: string; width: number }) => (
+  <img
+    src={src}
+    alt=""
+    style={{
+      flex: 'none',
+      width,
+      height: 792,
+      objectFit: 'cover',
+      borderRadius: 24,
+      display: 'block',
+      boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
+    }}
+  />
+);
+
 const AfterParty: Page = () => (
   <div
     style={{ ...canvas, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 40 }}
   >
-    <img
-      src={koreanDinner}
-      alt=""
-      style={{
-        width: 540,
-        height: 720,
-        objectFit: 'cover',
-        borderRadius: 24,
-        boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
-      }}
-    />
-    <img
-      src={coinwLoss}
-      alt=""
-      style={{
-        width: 472,
-        height: 720,
-        objectFit: 'cover',
-        borderRadius: 24,
-        boxShadow: '0 24px 64px rgba(0,0,0,0.16)',
-      }}
-    />
+    <PartyPhoto src={koreanDinner} width={594} />
+    <PartyPhoto src={liveShow} width={446} />
+    <PartyPhoto src={coinwLoss} width={520} />
   </div>
 );
 
@@ -1268,9 +1266,10 @@ export default [
   MoreThanContests,
   GoingOut,
   ContestApp,
-  Blank,
   ContestMaker,
   ShanghaiTrip,
+  Blank,
+  Blank,
   NeverGiveUp,
   Community,
   NoLife,
