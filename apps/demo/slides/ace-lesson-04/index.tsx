@@ -1,4 +1,11 @@
-import { type DesignSystem, type Page, type SlideMeta, useSlidePageNumber } from '@open-slide/core';
+import {
+  type DesignSystem,
+  type Page,
+  type SlideMeta,
+  useIsActivePage,
+  useSlidePageNumber,
+} from '@open-slide/core';
+import { useEffect, useState } from 'react';
 
 export const design: DesignSystem = {
   palette: { bg: '#F5F5F7', text: '#1D1D1F', accent: '#2E6FE0' },
@@ -382,6 +389,30 @@ const Quote = ({ children, muted = false }: { children: React.ReactNode; muted?:
   </div>
 );
 
+const useCountUp = (target: number, delay: number) => {
+  const active = useIsActivePage();
+  const [n, setN] = useState(target);
+  useEffect(() => {
+    if (!active || target <= 1) {
+      setN(target);
+      return;
+    }
+    setN(1);
+    const duration = target <= 10 ? 900 : 1500;
+    const start = performance.now() + delay;
+    let raf = 0;
+    const tick = (now: number) => {
+      const t = Math.min(Math.max((now - start) / duration, 0), 1);
+      const eased = 1 - (1 - t) ** 3;
+      setN(Math.round(1 + (target - 1) * eased));
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [active, target, delay]);
+  return n;
+};
+
 const Stat = ({
   value,
   unit,
@@ -394,38 +425,51 @@ const Stat = ({
   size?: number;
   dim?: boolean;
   delay?: number;
-}) => (
-  <div
-    className="ace-fadeup"
-    style={{
-      display: 'flex',
-      alignItems: 'baseline',
-      justifyContent: 'center',
-      gap: size * 0.04,
-      fontFamily: fonts.sans,
-      fontWeight: 800,
-      lineHeight: 0.9,
-      animationDelay: `${delay}ms`,
-    }}
-  >
-    <span
+}) => {
+  const n = useCountUp(Number(value), delay);
+  const numStyle = {
+    fontSize: size,
+    letterSpacing: '-0.05em',
+    fontVariantNumeric: 'tabular-nums',
+    paddingRight: '0.05em',
+  } as const;
+  return (
+    <div
+      className="ace-fadeup"
       style={{
-        fontSize: size,
-        letterSpacing: '-0.05em',
-        fontVariantNumeric: 'tabular-nums',
-        paddingRight: '0.05em',
-        ...(dim ? { color: palette.text } : gradText),
+        display: 'flex',
+        alignItems: 'baseline',
+        justifyContent: 'center',
+        gap: size * 0.04,
+        fontFamily: fonts.sans,
+        fontWeight: 800,
+        lineHeight: 0.9,
+        animationDelay: `${delay}ms`,
       }}
     >
-      {value}
-    </span>
-    {unit && (
-      <span style={{ fontSize: Math.max(size * 0.2, 40), color: palette.text, letterSpacing: 0 }}>
-        {unit}
+      {/* Invisible final value reserves the width so the unit doesn't shift while counting. */}
+      <span style={{ position: 'relative', display: 'inline-block' }}>
+        <span style={{ ...numStyle, visibility: 'hidden' }}>{value}</span>
+        <span
+          style={{
+            ...numStyle,
+            position: 'absolute',
+            right: 0,
+            bottom: 0,
+            ...(dim ? { color: palette.text } : gradText),
+          }}
+        >
+          {n}
+        </span>
       </span>
-    )}
-  </div>
-);
+      {unit && (
+        <span style={{ fontSize: Math.max(size * 0.2, 40), color: palette.text, letterSpacing: 0 }}>
+          {unit}
+        </span>
+      )}
+    </div>
+  );
+};
 
 const StatCaption = ({ children, delay = 240 }: { children: React.ReactNode; delay?: number }) => (
   <p
