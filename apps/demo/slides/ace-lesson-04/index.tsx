@@ -382,6 +382,109 @@ const Quote = ({ children, muted = false }: { children: React.ReactNode; muted?:
   </div>
 );
 
+const Stat = ({
+  value,
+  unit,
+  size = 440,
+  dim = false,
+  delay = 120,
+}: {
+  value: string;
+  unit?: string;
+  size?: number;
+  dim?: boolean;
+  delay?: number;
+}) => (
+  <div
+    className="ace-fadeup"
+    style={{
+      display: 'flex',
+      alignItems: 'baseline',
+      justifyContent: 'center',
+      gap: size * 0.04,
+      fontFamily: fonts.sans,
+      fontWeight: 800,
+      lineHeight: 0.9,
+      animationDelay: `${delay}ms`,
+    }}
+  >
+    <span
+      style={{
+        fontSize: size,
+        letterSpacing: '-0.05em',
+        fontVariantNumeric: 'tabular-nums',
+        paddingRight: '0.05em',
+        ...(dim ? { color: palette.text } : gradText),
+      }}
+    >
+      {value}
+    </span>
+    {unit && (
+      <span style={{ fontSize: Math.max(size * 0.2, 40), color: palette.text, letterSpacing: 0 }}>
+        {unit}
+      </span>
+    )}
+  </div>
+);
+
+const StatCaption = ({ children, delay = 240 }: { children: React.ReactNode; delay?: number }) => (
+  <p
+    className="ace-fadeup"
+    style={{
+      fontSize: 34,
+      fontWeight: 600,
+      color: palette.text,
+      margin: '48px 0 0',
+      lineHeight: 1.45,
+      animationDelay: `${delay}ms`,
+    }}
+  >
+    {children}
+  </p>
+);
+
+const StatNote = ({ children, delay = 320 }: { children: React.ReactNode; delay?: number }) => (
+  <p
+    className="ace-fadeup"
+    style={{
+      fontSize: 24,
+      color: palette.muted,
+      margin: '18px 0 0',
+      lineHeight: 1.5,
+      animationDelay: `${delay}ms`,
+    }}
+  >
+    {children}
+  </p>
+);
+
+const StatLabel = ({
+  title,
+  body,
+  accent = false,
+}: {
+  title: string;
+  body?: string;
+  accent?: boolean;
+}) => (
+  <div style={{ marginTop: 28, textAlign: 'center' }}>
+    <div
+      style={{
+        fontSize: 36,
+        fontWeight: 700,
+        color: accent ? 'var(--osd-accent)' : palette.text,
+      }}
+    >
+      {title}
+    </div>
+    {body && (
+      <div style={{ fontSize: 22, color: palette.muted, marginTop: 10, lineHeight: 1.5 }}>
+        {body}
+      </div>
+    )}
+  </div>
+);
+
 const Cover: Page = () => (
   <div style={fill}>
     <Style />
@@ -514,47 +617,8 @@ const Cover: Page = () => (
 
 const Countdown: Page = () => (
   <Centered>
-    <Eyebrow>倒數 · Countdown</Eyebrow>
-    <div
-      className="ace-fadeup"
-      style={{
-        fontFamily: fonts.mono,
-        fontSize: 280,
-        fontWeight: 800,
-        lineHeight: 1,
-        margin: '40px 0 10px',
-        letterSpacing: '-0.04em',
-        ...gradText,
-        animationDelay: '120ms',
-      }}
-    >
-      7
-    </div>
-    <h1
-      className="ace-fadeup"
-      style={{
-        fontSize: 64,
-        fontWeight: 800,
-        margin: 0,
-        lineHeight: 1.2,
-        letterSpacing: '-0.02em',
-        animationDelay: '200ms',
-      }}
-    >
-      天後，換你們站上台
-    </h1>
-    <p
-      className="ace-fadeup"
-      style={{
-        fontSize: 26,
-        color: palette.muted,
-        marginTop: 26,
-        lineHeight: 1.5,
-        animationDelay: '260ms',
-      }}
-    >
-      10/15（四）社課時間 · 發表日
-    </p>
+    <Stat value="7" unit="天" size={560} />
+    <StatCaption>10/15（四）換你們站上台。</StatCaption>
   </Centered>
 );
 
@@ -629,42 +693,32 @@ const NoNewFeatures: Page = () => (
 const DividerFormat: Page = () => <Divider eyebrow="第一段 · Demo Day" title="發表日長什麼樣" />;
 
 const DemoDayFormat: Page = () => (
-  <div style={fill}>
-    <Style />
-    <Glow x="22%" y="70%" size={1200} opacity={0.24} />
-    <div style={{ padding: '130px 140px 0' }}>
-      <Eyebrow>10/15 · Format</Eyebrow>
-      <Heading>
-        每組<span style={gradText}>五分鐘</span>
-      </Heading>
-      <div style={{ display: 'flex', gap: 22, alignItems: 'stretch' }}>
-        <Card delay={220}>
-          <BigNum>03′</BigNum>
-          <CardTitle>發表 + Demo</CardTitle>
-          <CardBody>時間到就停，沒講完的就不講了。</CardBody>
-        </Card>
-        <Card delay={300}>
-          <BigNum>02′</BigNum>
-          <CardTitle>問答</CardTitle>
-          <CardBody>台下和老師會問，全組都可以回答。</CardBody>
-        </Card>
-        <Card delay={380}>
-          <BigNum>全組</BigNum>
-          <CardTitle>一起上台</CardTitle>
-          <CardBody>每個人都要有事做，不是站在後面陪。</CardBody>
-        </Card>
-        <Card delay={460} primary>
-          <BigNum>抽籤</BigNum>
-          <CardTitle>現場決定順序</CardTitle>
-          <CardBody>每一組都要當作自己第一個上。</CardBody>
-        </Card>
+  <Centered>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 90 }}>
+      <div>
+        <Stat value="3" unit="分鐘" size={380} />
+        <StatLabel title="發表 + Demo" body="時間到就停" />
       </div>
-      <FootNote delay={560}>
-        要用自己電腦 Demo 的組，記得帶設備。細節如果有調整，會再公告在 Classroom。
-      </FootNote>
+      <div
+        className="ace-fade"
+        style={{
+          fontSize: 140,
+          fontWeight: 300,
+          color: palette.chipBorder,
+          animationDelay: '200ms',
+        }}
+      >
+        +
+      </div>
+      <div>
+        <Stat value="2" unit="分鐘" size={380} dim delay={200} />
+        <StatLabel title="問答" body="全組都可以回答" />
+      </div>
     </div>
-    <Footer />
-  </div>
+    <div style={{ marginTop: 40 }}>
+      <StatNote delay={360}>全組一起上台 · 順序現場抽籤 · 有調整會公告在 Classroom</StatNote>
+    </div>
+  </Centered>
 );
 
 const TwoWaysToPresent: Page = () => (
@@ -769,73 +823,45 @@ const PeopleRemember: Page = () => (
 const DividerPitch: Page = () => <Divider eyebrow="第二段 · Pitch" title="三分鐘怎麼講" />;
 
 const pitchBlocks = [
-  { t: '0:30', label: '問題', en: 'Problem', body: '誰、在什麼時候、遇到什麼麻煩。' },
-  { t: '0:30', label: '做法', en: 'Idea', body: '我們做了什麼，一句話講完。' },
-  { t: '1:30', label: 'Demo', en: 'Show', body: '現場打開，走一遍給大家看。', primary: true },
-  { t: '0:30', label: '下一步', en: 'Next', body: '還缺什麼、接下來想做什麼。' },
+  { sec: '30', label: '問題', body: '誰遇到什麼麻煩' },
+  { sec: '30', label: '做法', body: '一句話講完' },
+  { sec: '90', label: 'Demo', body: '現場走一遍', primary: true },
+  { sec: '30', label: '下一步', body: '還缺什麼' },
 ];
 
 const PitchStructure: Page = () => (
-  <div style={fill}>
-    <Style />
-    <Glow x="70%" y="72%" size={1200} opacity={0.24} />
-    <div style={{ padding: '130px 140px 0' }}>
-      <Eyebrow>三分鐘 · Structure</Eyebrow>
-      <Heading>
-        四段，<span style={gradText}>一半時間給 Demo</span>
-      </Heading>
-      <div
-        className="ace-fadeup"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr 3fr 1fr',
-          gap: 14,
-          animationDelay: '220ms',
-        }}
-      >
-        {pitchBlocks.map((b) => (
-          <div
-            key={b.label}
-            style={{
-              height: 18,
-              borderRadius: 999,
-              background: b.primary ? accentGrad : palette.chipBorder,
-            }}
+  <Centered>
+    <Eyebrow>180 秒 · Structure</Eyebrow>
+    <div style={{ display: 'flex', alignItems: 'flex-end', gap: 80, marginTop: 70 }}>
+      {pitchBlocks.map((b, i) => (
+        <div key={b.label}>
+          <Stat
+            value={b.sec}
+            unit="秒"
+            size={b.primary ? 300 : 170}
+            dim={!b.primary}
+            delay={160 + i * 80}
           />
-        ))}
-      </div>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr 3fr 1fr',
-          gap: 14,
-          marginTop: 24,
-        }}
-      >
-        {pitchBlocks.map((b, i) => (
-          <div
-            key={b.label}
-            className="ace-fadeup"
-            style={{
-              padding: '26px 26px 30px',
-              borderRadius: 'var(--osd-radius)',
-              background: b.primary ? palette.accentSoft : palette.surface,
-              border: `1px solid ${b.primary ? 'rgba(46, 111, 224, 0.28)' : palette.border}`,
-              boxShadow: cardShadow,
-              animationDelay: `${300 + i * 80}ms`,
-            }}
-          >
-            <BigNum>{b.t}</BigNum>
-            <CardTitle>{b.label}</CardTitle>
-            <CardTag>{b.en}</CardTag>
-            <CardBody>{b.body}</CardBody>
-          </div>
-        ))}
-      </div>
-      <FootNote delay={640}>用講的說服不了人，用看的可以。Demo 是整場最值錢的九十秒。</FootNote>
+          <StatLabel title={b.label} body={b.body} accent={b.primary} />
+        </div>
+      ))}
     </div>
-    <Footer />
-  </div>
+  </Centered>
+);
+
+const DemoNinety: Page = () => (
+  <Centered>
+    <Stat value="90" unit="秒" size={520} />
+    <StatCaption>Demo 是整場最值錢的九十秒。</StatCaption>
+    <StatNote>用講的說服不了人，用看的可以。</StatNote>
+  </Centered>
+);
+
+const FirstTen: Page = () => (
+  <Centered>
+    <Stat value="10" unit="秒" size={520} />
+    <StatCaption>台下要不要聽，開場前十秒就決定了。</StatCaption>
+  </Centered>
 );
 
 const TwoOpenings: Page = () => (
@@ -1087,41 +1113,34 @@ const Roles: Page = () => (
 
 const DividerHandsOn: Page = () => <Divider eyebrow="第四段 · Rehearsal" title="換你們了" />;
 
+const sessionBlocks = [
+  { min: '5', label: '分工', body: '誰講、誰操作、誰回答' },
+  { min: '10', label: '寫講稿', body: '先填那兩句' },
+  { min: '10', label: '組內練', body: '超過三分鐘就砍' },
+  { min: '15', label: '兩組互看', body: '輪流講給對方聽', primary: true },
+];
+
 const WorkSession: Page = () => (
-  <div style={fill}>
-    <Style />
-    <Glow x="22%" y="70%" size={1200} opacity={0.24} />
-    <div style={{ padding: '130px 140px 0' }}>
-      <Eyebrow>分組排練 · Work session</Eyebrow>
-      <Heading>
-        接下來這段，<span style={gradText}>照這個順序走</span>
-      </Heading>
-      <div style={{ display: 'flex', gap: 22, alignItems: 'stretch' }}>
-        <Card delay={220}>
-          <BigNum>05′</BigNum>
-          <CardTitle>分工</CardTitle>
-          <CardBody>誰講、誰操作、誰計時、誰回答，現在決定。</CardBody>
-        </Card>
-        <Card delay={300}>
-          <BigNum>10′</BigNum>
-          <CardTitle>寫講稿</CardTitle>
-          <CardBody>先填那兩句，再照四段排出三分鐘。</CardBody>
-        </Card>
-        <Card delay={380}>
-          <BigNum>10′</BigNum>
-          <CardTitle>組內練一次</CardTitle>
-          <CardBody>開手機計時，超過三分鐘就砍內容。</CardBody>
-        </Card>
-        <Card delay={460} primary>
-          <BigNum>15′</BigNum>
-          <CardTitle>兩組互看</CardTitle>
-          <CardBody>跟隔壁組輪流講給對方聽，互相給回饋。</CardBody>
-        </Card>
-      </div>
-      <FootNote delay={560}>我會一組一組走過去。想先試講給我聽的，舉手。</FootNote>
+  <Centered>
+    <Eyebrow>40 分鐘 · Work session</Eyebrow>
+    <div style={{ display: 'flex', alignItems: 'flex-end', gap: 90, marginTop: 70 }}>
+      {sessionBlocks.map((b, i) => (
+        <div key={b.label}>
+          <Stat
+            value={b.min}
+            unit="分"
+            size={b.primary ? 260 : 200}
+            dim={!b.primary}
+            delay={160 + i * 80}
+          />
+          <StatLabel title={b.label} body={b.body} accent={b.primary} />
+        </div>
+      ))}
     </div>
-    <Footer />
-  </div>
+    <div style={{ marginTop: 40 }}>
+      <StatNote delay={520}>我會一組一組走過去。想先試講給我聽的，舉手。</StatNote>
+    </div>
+  </Centered>
 );
 
 const PeerFeedback: Page = () => (
@@ -1277,6 +1296,8 @@ export default [
   PeopleRemember,
   DividerPitch,
   PitchStructure,
+  DemoNinety,
+  FirstTen,
   TwoOpenings,
   PitchTemplate,
   DemoOnePath,
