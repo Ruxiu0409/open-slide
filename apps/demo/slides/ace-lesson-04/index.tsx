@@ -829,39 +829,6 @@ const WhatWeLookAt: Page = () => (
   </div>
 );
 
-const PeopleRemember: Page = () => (
-  <Centered glowY="55%">
-    <Eyebrow>記住這句 · Remember</Eyebrow>
-    <h1
-      className="ace-fadeup"
-      style={{
-        fontSize: 88,
-        fontWeight: 800,
-        margin: '36px 0 26px',
-        lineHeight: 1.16,
-        letterSpacing: '-0.02em',
-        animationDelay: '120ms',
-      }}
-    >
-      沒有人記得你用了什麼技術
-      <br />
-      <span style={gradText}>大家記得你幫了誰</span>
-    </h1>
-    <p
-      className="ace-fadeup"
-      style={{
-        fontSize: 26,
-        color: palette.muted,
-        lineHeight: 1.5,
-        margin: 0,
-        animationDelay: '220ms',
-      }}
-    >
-      所以開場不要講「我們用了 Claude 跟 Vercel」，先講那個人。
-    </p>
-  </Centered>
-);
-
 const DividerPitch: Page = () => <Divider eyebrow="第二段 · Pitch" title="三分鐘怎麼講" />;
 
 const pitchBlocks = [
@@ -1046,42 +1013,6 @@ const DemoChecklist: Page = () => (
   </div>
 );
 
-const WhenItBreaks: Page = () => (
-  <Centered glowY="55%">
-    <Eyebrow>真的壞了 · If it breaks</Eyebrow>
-    <h1
-      className="ace-fadeup"
-      style={{
-        fontSize: 88,
-        fontWeight: 800,
-        margin: '36px 0 26px',
-        lineHeight: 1.16,
-        letterSpacing: '-0.02em',
-        animationDelay: '120ms',
-      }}
-    >
-      不要在台上修 bug
-      <br />
-      <span style={gradText}>切影片，繼續講</span>
-    </h1>
-    <p
-      className="ace-fadeup"
-      style={{
-        fontSize: 26,
-        color: palette.muted,
-        lineHeight: 1.5,
-        margin: 0,
-        maxWidth: 1100,
-        animationDelay: '220ms',
-      }}
-    >
-      「現場網路不太穩，我們放錄好的版本。」講完就切，台下不會在意。
-      <br />
-      大家在意的是你站在那裡慌了三十秒。
-    </p>
-  </Centered>
-);
-
 const QnA: Page = () => (
   <div style={fill}>
     <Style />
@@ -1154,15 +1085,14 @@ const SoloStage: Page = () => (
 const DividerHandsOn: Page = () => <Divider eyebrow="第四段 · Rehearsal" title="換你們了" />;
 
 const sessionBlocks = [
-  { min: '5', label: '畫路線', body: 'Demo 要點哪幾下' },
-  { min: '10', label: '寫講稿', body: '先填那兩句' },
-  { min: '10', label: '自己練', body: '超過三分鐘就砍' },
-  { min: '15', label: '兩兩互看', body: '輪流講給對方聽', primary: true },
+  { min: '3', label: '畫路線', body: 'Demo 要點哪幾下' },
+  { min: '5', label: '自己練', body: '計時，超過三分鐘就砍' },
+  { min: '10', label: '兩兩互看', body: '輪流講給對方聽', primary: true },
 ];
 
 const WorkSession: Page = () => (
   <Centered>
-    <Eyebrow>40 分鐘 · Work session</Eyebrow>
+    <Eyebrow>18 分鐘 · Work session</Eyebrow>
     <div style={{ display: 'flex', alignItems: 'flex-end', gap: 90, marginTop: 70 }}>
       {sessionBlocks.map((b, i) => (
         <div key={b.label}>
@@ -1333,7 +1263,6 @@ export default [
   DemoDayFormat,
   TwoWaysToPresent,
   WhatWeLookAt,
-  PeopleRemember,
   DividerPitch,
   PitchStructure,
   DemoNinety,
@@ -1343,7 +1272,6 @@ export default [
   DemoOnePath,
   DividerDemo,
   DemoChecklist,
-  WhenItBreaks,
   QnA,
   SoloStage,
   DividerHandsOn,
