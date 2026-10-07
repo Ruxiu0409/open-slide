@@ -629,7 +629,7 @@ const Cover: Page = () => (
             今天的流程 · RUNDOWN
           </div>
           <div style={{ marginTop: 26, display: 'flex', flexDirection: 'column', gap: 22 }}>
-            {['發表日長什麼樣', '三分鐘怎麼講', 'Demo 不翻車', '分組排練'].map((t, i) => (
+            {['發表日長什麼樣', '三分鐘怎麼講', 'Demo 不翻車', '上台排練'].map((t, i) => (
               <div key={t} style={{ display: 'flex', gap: 18, alignItems: 'baseline' }}>
                 <span style={{ fontFamily: fonts.mono, fontSize: 22, ...gradText }}>
                   {String(i + 1).padStart(2, '0')}
@@ -648,7 +648,7 @@ const Cover: Page = () => (
               lineHeight: 1.5,
             }}
           >
-            下課前，每組要計時
+            下課前，每個人都要計時
             <br />
             完整講過一次。
           </div>
@@ -673,7 +673,7 @@ const Recap: Page = () => (
     <div style={{ padding: '130px 140px 0' }}>
       <Eyebrow>線上兩週之後 · Check-in</Eyebrow>
       <Heading>
-        你們這組<span style={gradText}>在哪一格？</span>
+        你現在<span style={gradText}>在哪一格？</span>
       </Heading>
       <div style={{ display: 'flex', gap: 24, alignItems: 'stretch' }}>
         <Card delay={240}>
@@ -756,11 +756,11 @@ const DemoDayFormat: Page = () => (
       </div>
       <div>
         <Stat value="2" unit="分鐘" size={380} dim delay={200} />
-        <StatLabel title="問答" body="全組都可以回答" />
+        <StatLabel title="問答" body="台下和老師都會問" />
       </div>
     </div>
     <div style={{ marginTop: 40 }}>
-      <StatNote delay={360}>全組一起上台 · 順序現場抽籤 · 有調整會公告在 Classroom</StatNote>
+      <StatNote delay={360}>一人一組為主 · 順序現場抽籤 · 有調整會公告在 Classroom</StatNote>
     </div>
   </Centered>
 );
@@ -779,7 +779,7 @@ const TwoWaysToPresent: Page = () => (
           <CardTag>Option A</CardTag>
           <CardTitle>準備簡報</CardTitle>
           <CardBody>幾頁投影片講問題和做法，中間切到網站 Demo。</CardBody>
-          <CardBody>適合想把故事講完整的組。頁數不用多，五頁以內就夠。</CardBody>
+          <CardBody>適合想把故事講完整的人。頁數不用多，五頁以內就夠。</CardBody>
         </Card>
         <Card delay={360} primary>
           <CardTag>Option B</CardTag>
@@ -791,9 +791,7 @@ const TwoWaysToPresent: Page = () => (
           </CardBody>
         </Card>
       </div>
-      <FootNote delay={560}>
-        兩種都可以，選你們講得最順的那個。今天排練就用你們選的方式跑。
-      </FootNote>
+      <FootNote delay={560}>兩種都可以，選你講得最順的那個。今天排練就用你選的方式跑。</FootNote>
     </div>
     <Footer />
   </div>
@@ -822,7 +820,7 @@ const WhatWeLookAt: Page = () => (
         <Card delay={440} primary>
           <CardTag>Pitch</CardTag>
           <CardTitle>講得清楚嗎</CardTitle>
-          <CardBody>聽完之後，別人能用一句話轉述你們做了什麼。</CardBody>
+          <CardBody>聽完之後，別人能用一句話轉述你做了什麼。</CardBody>
         </Card>
       </div>
       <FootNote delay={560}>三樣都普通，比一樣很強、兩樣很弱，更容易讓人記住。</FootNote>
@@ -915,13 +913,13 @@ const TwoOpenings: Page = () => (
     <div style={{ padding: '130px 140px 0' }}>
       <Eyebrow>開場 · First 10 seconds</Eyebrow>
       <Heading>
-        同一組，<span style={gradText}>兩種開場</span>
+        同一個作品，<span style={gradText}>兩種開場</span>
       </Heading>
       <div style={{ display: 'flex', gap: 28, alignItems: 'stretch' }}>
         <Card delay={240}>
           <div style={{ fontSize: 30, color: palette.muted }}>✕</div>
           <Quote muted>
-            「大家好，我們是第三組，我們這組做的是一個作業管理的網站，那我們先介紹一下組員⋯⋯」
+            「大家好，我是第三組的王小明，我做的是一個作業管理的網站，那我先講一下我的動機⋯⋯」
           </Quote>
           <CardBody>台下這時候已經在滑手機了。</CardBody>
         </Card>
@@ -931,7 +929,7 @@ const TwoOpenings: Page = () => (
           <CardBody>台下舉手的那一刻，大家就在聽了。</CardBody>
         </Card>
       </div>
-      <FootNote delay={560}>組員介紹可以放最後，或乾脆不講。大家想知道的是你們做了什麼。</FootNote>
+      <FootNote delay={560}>自我介紹一句帶過就好。大家想知道的是你做了什麼。</FootNote>
     </div>
     <Footer />
   </div>
@@ -954,7 +952,7 @@ const PitchTemplate: Page = () => (
           <span style={{ color: palette.inkMuted }}>」</span>
         </TermLine>
         <TermLine sign="02">
-          <span style={{ color: palette.inkMuted }}>「</span>所以我們做了{' '}
+          <span style={{ color: palette.inkMuted }}>「</span>所以我做了{' '}
           <span style={{ color: palette.inkGreen }}>______</span>，讓他們可以{' '}
           <span style={{ color: palette.inkGreen }}>______</span>。
           <span style={{ color: palette.inkMuted }}>」</span>
@@ -964,7 +962,7 @@ const PitchTemplate: Page = () => (
           例：住校的同學常常不知道今天餐廳吃什麼，
         </TermLine>
         <TermLine sign="#" dim>
-          所以我們做了一個每日菜單頁，讓他們出門前就能決定要不要訂外送。
+          所以我做了一個每日菜單頁，讓他們出門前就能決定要不要訂外送。
         </TermLine>
       </Terminal>
       <FootNote delay={420}>
@@ -1079,7 +1077,7 @@ const WhenItBreaks: Page = () => (
     >
       「現場網路不太穩，我們放錄好的版本。」講完就切，台下不會在意。
       <br />
-      大家在意的是你們站在那裡慌了三十秒。
+      大家在意的是你站在那裡慌了三十秒。
     </p>
   </Centered>
 );
@@ -1097,7 +1095,7 @@ const QnA: Page = () => (
         <Card delay={240}>
           <CardTag>還沒做</CardTag>
           <Quote>「這個我們還沒做，下一步就是它。」</Quote>
-          <CardBody>誠實講，順便告訴大家你們有想過。</CardBody>
+          <CardBody>誠實講，順便告訴大家你有想過。</CardBody>
         </Card>
         <Card delay={340}>
           <CardTag>有取捨</CardTag>
@@ -1110,46 +1108,44 @@ const QnA: Page = () => (
           <CardBody>不要硬掰。掰錯比不知道更扣分。</CardBody>
         </Card>
       </div>
-      <FootNote delay={560}>今天排練的時候，請隔壁組幫你們想三個最難的問題。</FootNote>
+      <FootNote delay={560}>今天排練的時候，請旁邊的同學幫你想三個最難的問題。</FootNote>
     </div>
     <Footer />
   </div>
 );
 
-const Roles: Page = () => (
+const SoloStage: Page = () => (
   <div style={fill}>
     <Style />
     <Glow x="22%" y="70%" size={1200} opacity={0.24} />
     <div style={{ padding: '130px 140px 0' }}>
-      <Eyebrow>分工 · Roles</Eyebrow>
+      <Eyebrow>一個人上台 · Solo</Eyebrow>
       <Heading>
-        上台前，<span style={gradText}>每個人都要知道自己做什麼</span>
+        又要講又要點，<span style={gradText}>把兩件事分開</span>
       </Heading>
       <div style={{ display: 'flex', gap: 22, alignItems: 'stretch' }}>
         <Card delay={220}>
           <CardTag>講</CardTag>
-          <CardTitle>主講</CardTitle>
-          <CardBody>負責開場和收尾。最好是組裡最敢講的那個。</CardBody>
+          <CardTitle>先講，再點</CardTitle>
+          <CardBody>一句話講完再動滑鼠。邊講邊找按鈕，兩邊都會卡。</CardBody>
         </Card>
         <Card delay={300}>
-          <CardTag>操作</CardTag>
-          <CardTitle>Demo 手</CardTitle>
-          <CardBody>只管電腦。主講講到哪，畫面就跟到哪。</CardBody>
+          <CardTag>點</CardTag>
+          <CardTitle>路線寫下來</CardTitle>
+          <CardBody>要點哪幾下、停在哪個畫面，寫在便利貼上，貼在螢幕旁邊。</CardBody>
         </Card>
         <Card delay={380}>
-          <CardTag>計時</CardTag>
-          <CardTitle>時間管理</CardTitle>
-          <CardBody>剩一分鐘、剩三十秒，用手勢提醒主講。</CardBody>
+          <CardTag>時間</CardTag>
+          <CardTitle>計時放眼前</CardTitle>
+          <CardBody>手機計時器放桌上。剩一分鐘還沒進 Demo，就直接跳過去。</CardBody>
         </Card>
         <Card delay={460} primary>
-          <CardTag>回答</CardTag>
-          <CardTitle>問答主力</CardTitle>
-          <CardBody>最懂這個東西怎麼做的人，問答時站前面。</CardBody>
+          <CardTag>幫手</CardTag>
+          <CardTitle>找一個朋友</CardTitle>
+          <CardBody>坐第一排幫你比時間。壞掉的時候，也有人幫你切影片。</CardBody>
         </Card>
       </div>
-      <FootNote delay={560}>
-        人數不夠就一人兼兩個。但主講和 Demo 手最好分開，不然很容易手忙腳亂。
-      </FootNote>
+      <FootNote delay={560}>兩個人一組的話，一個講、一個點，問答時最懂的那個站前面。</FootNote>
     </div>
     <Footer />
   </div>
@@ -1158,10 +1154,10 @@ const Roles: Page = () => (
 const DividerHandsOn: Page = () => <Divider eyebrow="第四段 · Rehearsal" title="換你們了" />;
 
 const sessionBlocks = [
-  { min: '5', label: '分工', body: '誰講、誰操作、誰回答' },
+  { min: '5', label: '畫路線', body: 'Demo 要點哪幾下' },
   { min: '10', label: '寫講稿', body: '先填那兩句' },
-  { min: '10', label: '組內練', body: '超過三分鐘就砍' },
-  { min: '15', label: '兩組互看', body: '輪流講給對方聽', primary: true },
+  { min: '10', label: '自己練', body: '超過三分鐘就砍' },
+  { min: '15', label: '兩兩互看', body: '輪流講給對方聽', primary: true },
 ];
 
 const WorkSession: Page = () => (
@@ -1182,7 +1178,7 @@ const WorkSession: Page = () => (
       ))}
     </div>
     <div style={{ marginTop: 40 }}>
-      <StatNote delay={520}>我會一組一組走過去。想先試講給我聽的，舉手。</StatNote>
+      <StatNote delay={520}>我會一個一個走過去。想先試講給我聽的，舉手。</StatNote>
     </div>
   </Centered>
 );
@@ -1194,12 +1190,12 @@ const PeerFeedback: Page = () => (
     <div style={{ padding: '130px 140px 0' }}>
       <Eyebrow>互看的時候 · Feedback</Eyebrow>
       <Heading>
-        聽完，<span style={gradText}>回答他們三題</span>
+        聽完，<span style={gradText}>回答他三題</span>
       </Heading>
       <div style={{ display: 'flex', gap: 24, alignItems: 'stretch' }}>
         <Card delay={240}>
           <CardTag>Q1</CardTag>
-          <CardTitle>他們在幫誰？</CardTitle>
+          <CardTitle>他在幫誰？</CardTitle>
           <CardBody>答不出來，代表開場沒講清楚。</CardBody>
         </Card>
         <Card delay={340}>
@@ -1231,8 +1227,8 @@ const DefinitionOfDone: Page = () => (
       <div style={{ display: 'flex', gap: 24, alignItems: 'stretch' }}>
         <Card delay={240}>
           <CardTag>Check 01</CardTag>
-          <CardTitle>分工定了</CardTitle>
-          <CardBody>每個人講得出自己上台要做什麼。</CardBody>
+          <CardTitle>路線定了</CardTitle>
+          <CardBody>Demo 要點哪幾下、停在哪個畫面，寫下來了。</CardBody>
         </Card>
         <Card delay={340}>
           <CardTag>Check 02</CardTag>
@@ -1242,7 +1238,7 @@ const DefinitionOfDone: Page = () => (
         <Card delay={440}>
           <CardTag>Check 03</CardTag>
           <CardTitle>知道要改哪裡</CardTitle>
-          <CardBody>從隔壁組的回饋裡，挑出一件這週要改的事。</CardBody>
+          <CardBody>從互看同學的回饋裡，挑出一件這週要改的事。</CardBody>
         </Card>
       </div>
       <FootNote delay={560}>三個都打勾就可以走。卡住的話留下來，我陪你們再跑一次。</FootNote>
@@ -1274,11 +1270,11 @@ const ThisWeek: Page = () => (
         <Card delay={440} primary>
           <CardTag>練</CardTag>
           <CardTitle>再練兩次</CardTitle>
-          <CardBody>線上約一次也可以，至少要計時跑兩遍。</CardBody>
+          <CardBody>講給家人或朋友聽也可以，至少要計時跑兩遍。</CardBody>
         </Card>
       </div>
       <FootNote delay={560}>
-        網址和影片 10/14（三）晚上前貼到 Classroom。要自己 Demo 的組，設備前一晚先充飽電。
+        網址和影片 10/14（三）晚上前貼到 Classroom。用自己設備 Demo 的人，前一晚先充飽電。
       </FootNote>
     </div>
     <Footer />
@@ -1317,7 +1313,7 @@ const Closing: Page = () => (
         animationDelay: '240ms',
       }}
     >
-      三分鐘不長，但夠讓別人記住你們。
+      三分鐘不長，但夠讓別人記住你。
     </p>
   </Centered>
 );
@@ -1349,7 +1345,7 @@ export default [
   DemoChecklist,
   WhenItBreaks,
   QnA,
-  Roles,
+  SoloStage,
   DividerHandsOn,
   WorkSession,
   PeerFeedback,
