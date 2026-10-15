@@ -628,7 +628,7 @@ const SiteAgenda: Page = () => {
           }}
         />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
-          <AgendaItem i={0} time="2 分鐘" title="開場" body="領取資本、抽路演順序" />
+          <AgendaItem i={0} time="2 分鐘" title="開場" body="領取資本、公布上台順序" />
           <AgendaItem i={1} time="每人 4 分鐘" title="創辦人路演" body="3 分鐘 Pitch + 1 分鐘提問">
             <div style={{ display: 'flex', gap: 6, width: 300, marginTop: 22 }}>
               <SplitSeg delay={1.1} />
@@ -863,12 +863,14 @@ const SitePrize: Page = () => (
   </div>
 );
 
-const founderCount = 5;
+const founders = ['Cho Neil', '戴君翰', 'Kate Shen', 'Ian Huang', 'Emily', 'Charlotte'];
+const founderCount = founders.length;
 const pitchSeconds = 180;
 const qaSeconds = 60;
 const investSeconds = 240;
 
-const founderSlots = Array.from({ length: founderCount }, (_, i) => i + 1);
+const founderSlots = founders.map((_, i) => i + 1);
+const founderName = (n: number) => founders[n - 1];
 
 const siteFill = { ...fill, background: site.bg, color: site.text, fontFamily: siteFont };
 
@@ -1087,9 +1089,9 @@ const DrawOrder: Page = () => {
   return (
     <SitePage>
       <SiteHead
-        label="開場 · 抽籤"
-        title="抽路演順序"
-        sub="抽到幾號，就第幾個上台。抽完記住自己的號碼。"
+        label="開場 · 上台順序"
+        title="今天的上台順序"
+        sub="記住自己的號碼，注資時要寫在鈔票背面。"
       />
       <div style={{ display: 'flex', gap, marginTop: 72 }}>
         {founderSlots.map((n) => (
@@ -1121,7 +1123,7 @@ const DrawOrder: Page = () => {
             >
               {n}
             </div>
-            <div style={{ fontSize: 24, color: site.muted }}>第 {n} 位上台</div>
+            <div style={{ fontSize: 30, fontWeight: 600 }}>{founderName(n)}</div>
           </div>
         ))}
       </div>
@@ -1184,7 +1186,7 @@ const OnDeck = ({ n }: { n: number }) => (
         <PresenterArt height={200} />
       </div>
       <div className="ace-fadeup" style={{ fontSize: 28, color: site.muted, marginTop: 44 }}>
-        下一位 · {n} / {founderCount}
+        下一位 · 第 {n} 位創辦人 · {n} / {founderCount}
       </div>
       <h1
         className="ace-fadeup"
@@ -1197,7 +1199,7 @@ const OnDeck = ({ n }: { n: number }) => (
           animationDelay: '120ms',
         }}
       >
-        第 {n} 位創辦人
+        {founderName(n)}
       </h1>
       <p
         className="ace-fadeup"
@@ -1222,12 +1224,12 @@ const PitchTimer = ({ n }: { n: number }) => {
       hint: warn ? '最後 30 秒，準備收尾。' : '三分鐘，時間到就停。',
     },
     qa: { title: '投資人提問', hint: '想問的舉手，創辦人回答。' },
-    done: { title: '時間到', hint: `掌聲送給第 ${n} 位創辦人。` },
+    done: { title: '時間到', hint: `掌聲送給 ${founderName(n)}。` },
   }[phase];
   return (
     <SitePage>
       <div className="ace-fadeup" style={{ fontSize: 28, color: site.muted }}>
-        第 {n} 位創辦人 · {n} / {founderCount}
+        第 {n} 位創辦人 · {founderName(n)} · {n} / {founderCount}
       </div>
       <Phase color={color}>{copy.title}</Phase>
       <div style={{ marginTop: 30 }}>
@@ -1311,7 +1313,7 @@ const Tally: Page = () => (
           }}
         >
           <BillBackArt height={120} n={n} />
-          <div style={{ fontSize: 32, fontWeight: 600, marginTop: 24 }}>第 {n} 位</div>
+          <div style={{ fontSize: 30, fontWeight: 600, marginTop: 24 }}>{founderName(n)}</div>
           <div style={{ fontSize: 24, color: site.muted, marginTop: 10 }}>
             <span style={{ display: 'inline-block', filter: 'blur(8px)' }}>888,888</span> ACE 幣
           </div>
@@ -1319,6 +1321,91 @@ const Tally: Page = () => (
       ))}
     </div>
   </SitePage>
+);
+
+const ConsolationPrize: Page = () => (
+  <div style={siteFill}>
+    <Style />
+    <div
+      className="ace-fadeup"
+      style={{
+        position: 'absolute',
+        left: 120,
+        right: 120,
+        top: 90,
+        bottom: 130,
+        borderRadius: 44,
+        background: site.cream,
+        border: `1px solid ${site.line}`,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+      }}
+    >
+      <div
+        style={{
+          width: 190,
+          height: 190,
+          borderRadius: 48,
+          background: site.claude,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Clawd width={130} />
+      </div>
+      <div style={{ fontSize: 26, color: site.muted, marginTop: 44 }}>安慰獎</div>
+      <div
+        style={{
+          fontSize: 76,
+          fontWeight: 500,
+          letterSpacing: '-0.025em',
+          lineHeight: 1.1,
+          marginTop: 14,
+        }}
+      >
+        Claude Team Standard
+      </div>
+      <div style={{ fontSize: 30, color: site.muted, marginTop: 22 }}>
+        今天有上台的每一位，都有一份。
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          gap: 14,
+          marginTop: 40,
+          maxWidth: 1300,
+        }}
+      >
+        {founders.map((name, i) => (
+          <div
+            key={name}
+            className="ace-fadeup"
+            style={{
+              height: 58,
+              padding: '0 26px',
+              borderRadius: 999,
+              background: '#fff',
+              border: `1px solid ${site.line}`,
+              display: 'inline-flex',
+              alignItems: 'center',
+              fontSize: 26,
+              fontWeight: 500,
+              animationDelay: `${300 + i * 80}ms`,
+            }}
+          >
+            {name}
+          </div>
+        ))}
+      </div>
+    </div>
+    <SiteFooter />
+  </div>
 );
 
 const Closing: Page = () => (
@@ -1353,5 +1440,6 @@ export default [
   Invest,
   Tally,
   SitePrize,
+  ConsolationPrize,
   Closing,
 ] satisfies Page[];
