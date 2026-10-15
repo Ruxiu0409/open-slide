@@ -272,35 +272,53 @@ const PresenterArt = ({ height }: { height: number }) => (
   </svg>
 );
 
-const BallotArt = ({ height }: { height: number }) => (
+const BillBackArt = ({ height, n }: { height: number; n: number }) => (
   <svg
     viewBox="0 0 160 100"
     style={{ height, width: 'auto', overflow: 'visible' }}
     aria-hidden="true"
   >
-    <g className="site-drop">
-      <g transform="rotate(8 80 26)">
-        <rect
-          x="56"
-          y="8"
-          width="48"
-          height="34"
-          rx="3"
-          fill={site.billFill}
-          stroke={site.billInk}
-          strokeWidth="1.5"
-        />
-        <text x="80" y="30" fontSize="11" fill={site.billInk} textAnchor="middle">
-          ♠
-        </text>
+    <g transform="rotate(-6 80 50)">
+      <rect
+        x="22"
+        y="16"
+        width="116"
+        height="68"
+        rx="5"
+        fill={site.billFill}
+        stroke={site.billInk}
+        strokeWidth="1.5"
+      />
+      <rect
+        x="28"
+        y="22"
+        width="104"
+        height="56"
+        rx="3"
+        fill="none"
+        stroke={site.billInk}
+        strokeOpacity=".35"
+      />
+      <text
+        x="80"
+        y="66"
+        fontSize="40"
+        fontWeight="700"
+        fill={site.text}
+        textAnchor="middle"
+        style={{ fontFamily: '"Bradley Hand", "Marker Felt", "Comic Sans MS", cursive' }}
+      >
+        {n}
+      </text>
+    </g>
+    <g className="site-float">
+      <g transform="rotate(35 128 30)">
+        <rect x="112" y="24" width="40" height="10" rx="2" fill={site.claude} />
+        <rect x="146" y="24" width="6" height="10" rx="1" fill={site.line} />
+        <path d="M112 24 L102 29 L112 34 Z" fill="#F2D3B8" />
+        <path d="M105 27.5 L102 29 L105 30.5 Z" fill={site.text} />
       </g>
     </g>
-    <rect x="34" y="44" width="92" height="52" rx="6" fill={site.text} />
-    <rect x="28" y="36" width="104" height="12" rx="4" fill={site.text} />
-    <rect x="58" y="40" width="44" height="4" rx="2" fill={site.muted} />
-    <text x="80" y="82" fontSize="22" fill={site.claude} textAnchor="middle">
-      ♠
-    </text>
   </svg>
 );
 
@@ -1124,8 +1142,12 @@ const InvestorTerms: Page = () => (
       }}
     >
       <TermRow k="注資時機" v="所有路演結束才開放注資" small="聽的時候，先記下你想投誰" />
-      <TermRow k="不能投自己" v="自己的投資箱，一塊都不能放" />
-      <TermRow k="怎麼投" v="全押一家，或分散投資都可以" small="把 ACE 幣放進創辦人的投資箱" />
+      <TermRow k="不能投自己" v="不能寫自己的號碼" />
+      <TermRow
+        k="怎麼投"
+        v="在鈔票背面寫上創辦人的號碼"
+        small="全押一家，或分成幾張投給不同人都可以"
+      />
       <TermRow k="提問" v="每位路演完有 1 分鐘，舉手發問" />
       <TermRow k="同分" v="由評審決定" />
     </div>
@@ -1250,7 +1272,7 @@ const Invest: Page = () => {
       </div>
       <Phase color={color}>{done ? '注資截止' : '開放注資'}</Phase>
       <div style={{ display: 'flex', alignItems: 'center', gap: 80, marginTop: 30 }}>
-        <BallotArt height={260} />
+        <BillBackArt height={260} n={3} />
         <ClockFace color={color}>{clock(investSeconds - elapsed)}</ClockFace>
       </div>
       <div style={{ display: 'flex', width: 1400, marginTop: 56 }}>
@@ -1258,8 +1280,8 @@ const Invest: Page = () => {
       </div>
       <Hint>
         {done
-          ? '手上的 ACE 幣先收好，準備開箱。'
-          : '把 ACE 幣投進你看好的新創。可以全押、可以分散，就是不能投自己。'}
+          ? '筆放下，寫好的鈔票交上來。'
+          : '在鈔票背面寫上你要投的創辦人號碼。可以全押、可以分散，就是不能寫自己。'}
       </Hint>
     </SitePage>
   );
@@ -1269,8 +1291,8 @@ const Tally: Page = () => (
   <SitePage>
     <SiteHead
       label="結算"
-      title="清點每個投資箱"
-      sub="募到最多 ACE 幣的創辦人勝出。同分的話，由評審決定。"
+      title="照號碼加總 ACE 幣"
+      sub="翻到背面看號碼，分堆加起來。募到最多的勝出，同分由評審決定。"
     />
     <div style={{ display: 'flex', gap: 24, width: 1600, marginTop: 64 }}>
       {founderSlots.map((n) => (
@@ -1288,7 +1310,7 @@ const Tally: Page = () => (
             animationDelay: `${120 + n * 80}ms`,
           }}
         >
-          <BallotArt height={120} />
+          <BillBackArt height={120} n={n} />
           <div style={{ fontSize: 32, fontWeight: 600, marginTop: 24 }}>第 {n} 位</div>
           <div style={{ fontSize: 24, color: site.muted, marginTop: 10 }}>
             <span style={{ display: 'inline-block', filter: 'blur(8px)' }}>888,888</span> ACE 幣
