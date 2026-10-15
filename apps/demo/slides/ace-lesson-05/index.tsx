@@ -1412,12 +1412,7 @@ const Closing: Page = () => (
   <div style={siteFill}>
     <Style />
     <HeroGlow />
-    <HeroText
-      label="ACE Pitch Day · 2026.10.15"
-      title="謝謝每一位創辦人"
-      titleSize={150}
-      sub="今天被問倒的地方，就是下一版要改的。"
-    />
+    <HeroText label="下週 10/22（四）" title="考前自習" sub="考試靠自己，掰掰。" />
     <SiteFooter />
   </div>
 );
