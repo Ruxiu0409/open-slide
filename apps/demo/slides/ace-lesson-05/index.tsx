@@ -1091,7 +1091,7 @@ const DrawOrder: Page = () => {
       <SiteHead
         label="開場 · 上台順序"
         title="今天的上台順序"
-        sub="記住自己的號碼，注資時要寫在鈔票背面。"
+        sub="記住每個人的號碼，注資時要把想投的人的號碼寫在鈔票背面。"
       />
       <div style={{ display: 'flex', gap, marginTop: 72 }}>
         {founderSlots.map((n) => (
