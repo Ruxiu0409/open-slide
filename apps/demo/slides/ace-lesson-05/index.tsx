@@ -597,7 +597,7 @@ const SiteAgenda: Page = () => {
       <SiteHead
         label="議程"
         title="路演當天怎麼進行"
-        sub="全程約 30 分鐘，計時器會跟著投影片跑。"
+        sub="全程約 32 分鐘，計時器會跟著投影片跑。"
       />
       <div
         key={active ? 'on' : 'off'}
@@ -643,7 +643,7 @@ const SiteAgenda: Page = () => {
               <LegendDot color={site.blue} label="提問" />
             </div>
           </AgendaItem>
-          <AgendaItem i={2} time="4 分鐘" title="開放注資" body="把資金投進你看好的新創" />
+          <AgendaItem i={2} time="2 分鐘" title="開放注資" body="把資金投進你看好的新創" />
           <AgendaItem i={3} time="4 分鐘" title="結算募資、頒獎" body="募資金額最高者勝出" />
         </div>
       </div>
@@ -867,7 +867,7 @@ const founders = ['Cho Neil', '戴君翰', 'Kate Shen', 'Ian Huang', 'Emily', 'C
 const founderCount = founders.length;
 const pitchSeconds = 180;
 const qaSeconds = 60;
-const investSeconds = 240;
+const investSeconds = 120;
 
 const founderSlots = founders.map((_, i) => i + 1);
 const founderName = (n: number) => founders[n - 1];
