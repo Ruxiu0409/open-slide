@@ -999,8 +999,6 @@ const ClosingLayout = ({ children }: { children?: ReactNode }) => (
   </div>
 );
 
-const Closing: Page = () => <ClosingLayout />;
-
 const ClosingWithLinks: Page = () => (
   <ClosingLayout>
     <div style={{ position: 'absolute', left: 1210, bottom: 60, display: 'flex', gap: 100 }}>
@@ -1043,6 +1041,5 @@ export default [
   BaseOrder,
   ColorTools,
   QandA,
-  Closing,
   ClosingWithLinks,
 ] satisfies Page[];
