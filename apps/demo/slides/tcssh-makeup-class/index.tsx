@@ -254,20 +254,6 @@ const TROPHY = [
   '..333333..',
 ];
 
-const WIG = [
-  '...1111...',
-  '.11111111.',
-  '1111111111',
-  '11ssssss11',
-  '11s0ss0s11',
-  '11ssssss11',
-  '11ssppss11',
-  '111ssss111',
-  '11......11',
-  '11......11',
-  '1........1',
-];
-
 const PINE = [
   '....7....',
   '...777...',
@@ -1142,68 +1128,6 @@ const Speaker: Page = () => (
       <Achievement y={304}>現代視覺文化同人社 16 屆公關</Achievement>
       <Achievement y={488}>TCS 中部動漫文化祭 12 屆副召集人</Achievement>
     </PixelBox>
-  </Screen>
-);
-
-const StageCard = ({
-  x,
-  label,
-  stage,
-  art,
-  selected = false,
-}: {
-  x: number;
-  label: string;
-  stage: string;
-  art: readonly string[];
-  selected?: boolean;
-}) => (
-  <PixelBox
-    x={x}
-    y={312}
-    w={760}
-    h={600}
-    fill={selected ? C.deep : C.ink}
-    edge={selected ? C.yellow : C.slate}
-  >
-    <div
-      style={abs(40, 40, {
-        width: 680,
-        height: 296,
-        background: DARK,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      })}
-    >
-      <Sprite art={art} px={16} />
-    </div>
-    <div style={abs(40, 384, { ...LABEL, color: selected ? C.yellow : C.slate })}>{stage}</div>
-    <div
-      style={{
-        ...PIXEL_TC,
-        ...abs(40, 432),
-        fontSize: 110,
-        color: selected ? C.white : C.silver,
-      }}
-    >
-      {label}
-    </div>
-  </PixelBox>
-);
-
-const Topics: Page = () => (
-  <Screen>
-    <Kicker world="0-2">選擇關卡</Kicker>
-    <Title>社課兩大主題</Title>
-    <Meta>115學年度 第一學期</Meta>
-    <StageCard x={120} label="假髮" stage="Stage A" art={WIG} />
-    <StageCard x={1040} label="化妝" stage="Stage B · 今天" art={LIPSTICK} selected />
-    <div style={abs(944, 584)}>
-      <Blink>
-        <Sprite art={ARROW_RIGHT} px={10} swap={{ c: C.yellow }} />
-      </Blink>
-    </div>
   </Screen>
 );
 
@@ -2113,7 +2037,6 @@ export const meta: SlideMeta = {
 export default [
   TermCover,
   Speaker,
-  Topics,
   BasicCover,
   CanYouMakeup,
   CosmeticsLaw,
