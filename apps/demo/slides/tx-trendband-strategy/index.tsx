@@ -231,7 +231,7 @@ const Page01: Page = () => (
       {'2026年10月20日'}
     </div>
     <div style={{ position: 'absolute', left: 112, bottom: 70, fontSize: 25, color: '#77726A' }}>
-      公開資料歷史研究，MultiCharts正式驗證待完成
+      公開資料歷史研究＋MultiCharts TXF1實測（2020–2025）
     </div>
   </section>
 );
@@ -239,16 +239,18 @@ const Page01: Page = () => (
 const Page02: Page = () => (
   <Frame
     title={'研究問題與目前結果'}
-    source={'2019–2025，初始100萬元，固定一口，已扣講義固定費用與模型滑價'}
-    takeaway={'Python歷史比較通過；正式平台數值與獨立新資料仍待驗證'}
+    source={
+      'MultiCharts TXF1日K日盤，2020–2025，初始100萬元，固定一口，手續費每邊500元、滑價每邊200元'
+    }
+    takeaway={'MultiCharts實測三項門檻都通過；獲利因子1.86，未達2的加分線'}
   >
     <p style={{ fontSize: 42, lineHeight: 1.5, margin: '0 0 145px' }}>
       {'一口台指期的趨勢交易，能否同時符合獲利與回撤門檻？'}
     </p>
     <div style={{ display: 'flex', gap: 75 }}>
-      <Metric label={'七年淨利'} value={'301.92'} unit={'萬元'} />
-      <Metric label={'日盤OHLC回撤界線'} value={'78.40'} unit={'萬元'} gold />
-      <Metric label={'最大年平倉獲利'} value={'108.38'} unit={'萬元'} />
+      <Metric label={'MultiCharts淨利'} value={'224.32'} unit={'萬元'} />
+      <Metric label={'最大策略虧損'} value={'60.58'} unit={'萬元'} gold />
+      <Metric label={'最大年獲利（2024）'} value={'69.82'} unit={'萬元'} />
     </div>
   </Frame>
 );
@@ -1441,9 +1443,9 @@ const Page12: Page = () => (
 
 const Page13: Page = () => (
   <Frame
-    title={'結算與MultiCharts對照口徑'}
-    source={''}
-    takeaway={'官方最後結算價不能直接當成可下單成交的歷史市價'}
+    title={'Python研究與MultiCharts實測對照'}
+    source={'TXF1與研究CSV的換月及價差處理可能不同；MultiCharts資料起點較晚，2019年沒有交易'}
+    takeaway={'兩邊行情與結算口徑不同，淨利差距不是設定錯誤'}
   >
     <table
       data-evidence="table"
@@ -1497,7 +1499,7 @@ const Page13: Page = () => (
               border: '1px solid #D8D2C4',
             }}
           >
-            {'MultiCharts待驗證版'}
+            {'MultiCharts實測版'}
           </th>
         </tr>
       </thead>
@@ -1531,7 +1533,7 @@ const Page13: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'先匯入相同CSV，確認每點200元'}
+            {'內建TXF1日盤日K，每點200元'}
           </td>
         </tr>
         <tr style={{ background: '#EAE5D8' }}>
@@ -1563,7 +1565,7 @@ const Page13: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'原始碼採日K收盤代理'}
+            {'日K收盤代理（This Bar On Close）'}
           </td>
         </tr>
         <tr style={{ background: '#FAF8F2' }}>
@@ -1575,7 +1577,7 @@ const Page13: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'七年淨利'}
+            {'回測淨利'}
           </td>
           <td
             style={{
@@ -1585,7 +1587,7 @@ const Page13: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'301.92萬元'}
+            {'301.92萬元（2019–2025）'}
           </td>
           <td
             style={{
@@ -1595,7 +1597,7 @@ const Page13: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'先對照Python收盤代理300.60萬元'}
+            {'224.32萬元（2020–2025，72筆）'}
           </td>
         </tr>
         <tr style={{ background: '#EAE5D8' }}>
@@ -1627,7 +1629,7 @@ const Page13: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'日K、IOG關閉，逐筆檢查'}
+            {'日K、IOG關閉，已完成回測'}
           </td>
         </tr>
         <tr style={{ background: '#FAF8F2' }}>
@@ -1659,7 +1661,7 @@ const Page13: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'原始碼已備，未編譯、未產生.pla'}
+            {'四支程式編譯成功，已匯出.pla'}
           </td>
         </tr>
       </tbody>
@@ -2355,8 +2357,8 @@ const Page16: Page = () => (
 const Page17: Page = () => (
   <Frame
     title={'三種回撤的差別'}
-    source={'2019–2025，單位：萬元；不含夜盤逐筆路徑與無法成交情況'}
-    takeaway={'78.40萬元＜108.38萬元，但正式欄位仍須在MultiCharts核對'}
+    source={'Python研究，2019–2025，單位：萬元；不含夜盤逐筆路徑與無法成交情況'}
+    takeaway={'Python界線78.40萬＜108.38萬；MultiCharts最大策略虧損60.58萬＜69.82萬'}
   >
     <div style={{ display: 'flex', gap: 70 }}>
       <svg
@@ -2954,7 +2956,7 @@ const Page19: Page = () => (
 const Page20: Page = () => (
   <Frame
     title={'作業門檻的核對結果'}
-    source={'Python歷史比較通過，不代表已完成MultiCharts正式驗證或.pla繳交'}
+    source={'MultiCharts TXF1策略績效報告，2020–2025；Python七年數字見第13頁'}
   >
     <table
       data-evidence="table"
@@ -2996,7 +2998,7 @@ const Page20: Page = () => (
               border: '1px solid #D8D2C4',
             }}
           >
-            {'目前證據'}
+            {'MultiCharts實測'}
           </th>
           <th
             style={{
@@ -3008,7 +3010,7 @@ const Page20: Page = () => (
               border: '1px solid #D8D2C4',
             }}
           >
-            {'判定範圍'}
+            {'判定'}
           </th>
         </tr>
       </thead>
@@ -3032,7 +3034,7 @@ const Page20: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'七年，82筆完成交易；一次最多1口'}
+            {'2020–2025六年，72筆；一次最多1口'}
           </td>
           <td
             style={{
@@ -3042,7 +3044,7 @@ const Page20: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'Python核對通過'}
+            {'通過'}
           </td>
         </tr>
         <tr style={{ background: '#EAE5D8' }}>
@@ -3064,7 +3066,7 @@ const Page20: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'七年51次結算退出；每邊500元＋滑價'}
+            {'結算日收盤平倉；佣金7.20萬、滑價2.88萬'}
           </td>
           <td
             style={{
@@ -3074,7 +3076,7 @@ const Page20: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'模型符合'}
+            {'設定符合'}
           </td>
         </tr>
         <tr style={{ background: '#FAF8F2' }}>
@@ -3096,7 +3098,7 @@ const Page20: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'2023＋52.68、2024＋108.38、2025＋21.34萬'}
+            {'2023＋53.95、2024＋69.82、2025＋36.53萬'}
           </td>
           <td
             style={{
@@ -3106,7 +3108,7 @@ const Page20: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'七年口徑通過'}
+            {'通過'}
           </td>
         </tr>
         <tr style={{ background: '#EAE5D8' }}>
@@ -3128,7 +3130,7 @@ const Page20: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'301.92萬元'}
+            {'224.32萬元'}
           </td>
           <td
             style={{
@@ -3138,7 +3140,7 @@ const Page20: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'歷史數值通過'}
+            {'通過'}
           </td>
         </tr>
         <tr style={{ background: '#FAF8F2' }}>
@@ -3160,7 +3162,7 @@ const Page20: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'OHLC界線78.40萬＜108.38萬元'}
+            {'60.58萬＜69.82萬元（2024）'}
           </td>
           <td
             style={{
@@ -3170,7 +3172,7 @@ const Page20: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'正式MC欄位待覆核'}
+            {'通過，差9.24萬'}
           </td>
         </tr>
         <tr style={{ background: '#EAE5D8' }}>
@@ -3192,7 +3194,7 @@ const Page20: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'簡報、講稿、PowerLanguage原碼'}
+            {'簡報、講稿、.pla（含原始碼）'}
           </td>
           <td
             style={{
@@ -3202,7 +3204,7 @@ const Page20: Page = () => (
               whiteSpace: 'pre-line',
             }}
           >
-            {'.pla尚待實機輸出'}
+            {'已輸出'}
           </td>
         </tr>
       </tbody>
@@ -3225,28 +3227,28 @@ const Page21: Page = () => (
       <Column title={'目前證據的限制'}>
         <p style={{ margin: 0 }}>{'單一市場與七年主期間，改版已反覆看資料'}</p>
         <p style={{ margin: 0 }}>{'不含夜盤路徑、流動性不足與保證金追繳'}</p>
-        <p style={{ margin: 0 }}>{'20%預算未證明最適，v6沒有未見資料績效'}</p>
+        <p style={{ margin: 0 }}>{'獲利因子1.86；20%預算未證明最適'}</p>
       </Column>
     </div>
   </Frame>
 );
 
 const Page22: Page = () => (
-  <Frame title={'結論與正式平台的完成步驟'} source={''}>
+  <Frame title={'結論與後續檢查'} source={''}>
     <Rule
       number="01"
       label={'目前結論'}
-      body={'v6通過Python七年與延伸歷史數值比較，保留已知失敗與取捨'}
+      body={'v6在MultiCharts實測通過三項門檻，淨利224.32萬、最大策略虧損60.58萬元'}
     />
     <Rule
       number="02"
-      label={'MultiCharts重現'}
-      body={'匯入相同CSV、編譯函數與訊號，先對照300.60萬元收盤代理版'}
+      label={'MultiCharts實測'}
+      body={'函數、訊號與兩支指標已編譯並匯出.pla；與Python的差距來自行情與起始年'}
     />
     <Rule
       number="03"
-      label={'正式報告與.pla'}
-      body={'核對逐筆交易、年度損益與Maximum Strategy Drawdown，再輸出策略'}
+      label={'需要補強'}
+      body={'獲利因子1.86未達2；回撤只比最大年獲利少9.24萬元，餘裕很小'}
     />
     <Rule
       number="04"
@@ -3975,7 +3977,7 @@ const Page26: Page = () => (
 const Page27: Page = () => (
   <Frame
     title="附錄E　PowerLanguage程式節錄"
-    source="完整Signal、官方結算日函數及兩個Indicator另附；本頁為條件節錄"
+    source="完整Signal、官方結算日函數及兩個Indicator已匯出於.pla；本頁為條件節錄"
     appendix
   >
     <p style={{ fontSize: 35, color: muted, margin: '0 0 42px' }}>
@@ -4003,8 +4005,8 @@ export const meta: SlideMeta = {
 };
 
 export const notes: string[] = [
-  '本報告研究台指期一口交易，說明原始均線策略如何經過失敗診斷與修正，形成目前的v6。先以期交所公開資料完成Python研究，再移植到MultiCharts。簡報中的金額是歷史模擬損益，尚未取得MultiCharts正式策略績效報告或.pla。\n\n資料來源\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁；1151_智慧量化交易_課程介紹.pptx，第4–5頁。\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。',
-  '統一報告2019至2025七年、同一口數與成本。v6淨利301萬9,200元，日盤OHLC回撤界線78萬4,000元，低於2024年最大平倉獲利108萬3,800元。2023至2025逐年都獲利。這是Python日盤模型的歷史比較，不能把OHLC界線直接改名為MultiCharts的Maximum Strategy Drawdown，也不能說已通過正式繳交驗證。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。',
+  '本報告研究台指期一口交易，說明原始均線策略如何經過失敗診斷與修正，形成目前的v6。先用期交所公開資料完成Python研究，再移到MultiCharts，用內建TXF1日K實際回測，並已匯出.pla。後面的金額除了特別標明MultiCharts的頁面，都是Python的歷史模擬。\n\n資料來源\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁；1151_智慧量化交易_課程介紹.pptx，第4–5頁。\nMultiCharts實測\nMultiCharts實測/TXF1  FCU_TrendBudget_Signal 策略回測績效報告.xlsx；MultiCharts實測/FCUpla.pla。',
+  '這頁先講MultiCharts實測的結果。用內建TXF1日K、只開日盤，2020到2025年，初始資金100萬元，固定一口，手續費每邊500元、滑價每邊200元。淨利224萬3,200元，最大策略虧損60萬5,800元，最大年獲利是2024年的69萬8,200元，所以回撤小於最大年獲利。2023到2025每年都賺錢，三項門檻都通過。獲利因子1.86，沒有到2，拿不到那項加分。Python版七年淨利301.92萬元，兩邊差在行情來源和起始年，第13頁會說明。\n\n資料來源\nMultiCharts實測\nMultiCharts實測/TXF1  FCU_TrendBudget_Signal 策略回測績效報告.xlsx；MultiCharts實測/FCUpla.pla。',
   '以Lecture05第31頁專題要求為準，第32頁是專題評分比重，與課程總成績的期中30%不同。講義的『近三年績效為正』未細分是否逐年，因此本研究採較嚴格的2023、2024、2025各年為正。課程介紹第4頁將專題一期中報告暫訂在10月27日。滑價1點是研究額外假設，費用1,000元是講義固定成本，未聲稱是真實券商費稅明細。\n\n資料來源\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁；1151_智慧量化交易_課程介紹.pptx，第4–5頁。\n臺灣期貨交易所，臺股期貨契約規格：https://www.taifex.com.tw/cht/2/tX?menuid1=12 ，2026/10/20核對。',
   'Moskowitz等人的時間序列動能研究涵蓋58種期貨與遠期契約，與本報告只做多的台指期均線規則不同。Faber的模型是月底檢查10個月均線，本研究改成每日判斷200日均線，屬於改編。Moreira與Muir提供高波動時降低風險的動機；Cederburg等人提醒樣本內優勢不易轉為即時可實施績效。上述來源都沒有驗證本策略或20%預算。\n\n資料來源\nMoskowitz, Ooi & Pedersen (2012), Time Series Momentum. https://www.aqr.com/Insights/Research/Journal-Article/Time-Series-Momentum 。Faber (2013), QTAA Update: Conclusions and FAQs. https://mebfaber.com/2013/06/14/qtaa-update-conclustions-and-faqs/ 。2026/10/20核對。\nMoreira & Muir (2016/2017), Volatility-Managed Portfolios. https://www.nber.org/papers/w22208 。Cederburg et al. (2020), On the performance of volatility-managed portfolios. https://www.sciencedirect.com/science/article/pii/S0304405X2030132X 。2026/10/20核對摘要。',
   '價格為期交所TX一般交易時段、未調整近月日K，保留到期與換月價差，沒有用現貨指數計算期貨損益。資料原先依時間切割，但經歷數次改版後，2019至2025已成為已看過資料。2026對v5曾是首次新資料，對根據其失敗而設計的v6則已不是。v6在2026年10月19日18:20台北時間凍結，後續未見行情才可重新安排獨立檢查，短期低頻或無交易也不足以證明成功。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。\n公開資料回測/來源紀錄.json；風控改版_v5/2026新增來源紀錄.json。',
@@ -4015,21 +4017,21 @@ export const notes: string[] = [
   '2019至2025時，v5的64.54萬元OHLC回撤小於最大完整年獲利95.92萬元，先通過舊歷史。首次下載2026新資料後，以100萬元空手重置的測試雖有93.14萬元淨利，OHLC回撤達186.94萬元。連續跑到10月16日也有同樣回撤。圖中刻意只用完整年度的95.92萬元作年獲利比較，沒有把2026部分年當完整年。即便寬鬆納入2026部分年的134.90萬元，回撤仍超過它。因此總獲利為正不能取代風險門檻。\n\n資料來源\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。\n風控改版_v5/結果/new_2026_v5_stop3.json；風控改版_v5/結果/continuous_to_2026_v5_stop3.json。',
   'v5在2026年的進場前波幅由年初308.55點放大到6月底1,395.8點，3倍波幅的一口風險連同成本預留由186,730元增加到839,080元。固定一口並不代表固定金額風險。課堂不准減成半口，所以v6只能在0與1口間選擇，超過20萬元就不進場。20萬元是初始100萬元的20%，是事前固定的課堂風控假說。它不是單筆最大虧損保證，跳空、進場當日波動仍可能超過預算。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\nMoreira & Muir (2016/2017), Volatility-Managed Portfolios. https://www.nber.org/papers/w22208 。Cederburg et al. (2020), On the performance of volatility-managed portfolios. https://www.sciencedirect.com/science/article/pii/S0304405X2030132X 。2026/10/20核對摘要。\n臺灣期貨交易所，臺股期貨契約規格：https://www.taifex.com.tw/cht/2/tX?menuid1=12 ，2026/10/20核對。',
   '帶內與相等時延續原趨勢狀態，避免每日重新分類。固定波幅是買進前一收盤可知的20日平均真實波幅，進場後不隨波動擴大而放寬。峰值以進場含模型滑價成交價與持倉已完成收盤價的最大值計算。第一條停損線在實際進場隔日才生效。停損當日強制關閉趨勢目標，下個空手收盤重新判斷，最早再下一個開盤重進。結算日不新增買單，退出後留一個完整空手日盤。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\n風控改版_v6/PowerLanguage/FCU_TrendBudget_Signal.txt。',
-  'TX到期採現金交割，官方最後結算價的計算與日盤最後成交收盤不同。Python主版在官方結算日按官方價結算，但MultiCharts原始碼只能先採This Bar On Close代理，因此應先與full_close_proxy.json的3,006,000元核對，不能要求它憑同一收盤代理直接重現3,019,200元。官方結算日使用117個已保存日期，含假日調整，不只推算第三個星期三。原碼的資料上限為2026年10月16日，未來獨立檢查前仍需補齊官方日曆與日期邊界。\n\n資料來源\n臺灣期貨交易所，臺股期貨契約規格：https://www.taifex.com.tw/cht/2/tX?menuid1=12 ，2026/10/20核對。\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\n風控改版_v6/MultiCharts操作單.md。',
+  '這頁比較Python研究和MultiCharts實測。Python用期交所未調整近月日K，結算日按官方最後結算價；MultiCharts用內建TXF1，結算日用日K收盤代理。MultiCharts的資料起點比較晚，扣掉200日均線的暖機期，第一筆交易在2020年1月10日，2019年沒有交易，所以是六年72筆，Python是七年82筆。TXF1的換月時間和價差調整也可能跟研究CSV不同，均線和停損位置會跟著變。淨利224萬比301萬少，是資料口徑不同，不是設定錯誤。四支程式都編譯成功，也匯出了.pla。\n\n資料來源\n臺灣期貨交易所，臺股期貨契約規格：https://www.taifex.com.tw/cht/2/tX?menuid1=12 ，2026/10/20核對。\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/full_close_proxy.json；風控改版_v6/MultiCharts操作單.md。\nMultiCharts實測\nMultiCharts實測/TXF1  FCU_TrendBudget_Signal 策略回測績效報告.xlsx；MultiCharts實測/FCUpla.pla。',
   '這張表一律使用2019至2025，成本、一口限制與結算口徑一致。v3和v4沒有因結果差而從發展歷程消失。v5在這七年淨利最高、回撤較小，卻在後續首次2026新資料失敗。v6針對該失敗加入資金預算，所以後面要同時報告七年取捨與延伸結果。表中『通過』只指Python模型風險比較，正式MultiCharts欄位仍待驗證。\n\n資料來源\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。\n風控改版_v6/報告資料.json。',
   '年度資料以已完成交易在平倉年度認列，七年合計301萬9,200元。2023獲利52.68萬元、2024獲利108.38萬元、2025獲利21.34萬元。2022仍虧10.68萬元，顯示趨勢與波動規則並不能消除所有市場風險。此表的2025包含12月31日期末強制平倉，和延伸回測的連續持倉認列不同，附錄另對照。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。',
   '這張圖為2019至2025每日評價權益的每月最後交易日抽樣，包含未平倉損益與100萬元起始本金，單位萬元。抽樣方便展示長期資金變化，不用它重新估計日內風險；所有回撤數字都由完整每日及OHLC路徑計算。v6不是整段都比v5好，不能靠曲線終點較高或較平滑宣稱穩健。七年淨利與回撤取捨在下一張風險與後續表格說明。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\n公開資料回測/結果/full_mode2.json；風控改版_v5/結果/full_v5_stop3.json。',
-  '最大回撤為歷史權益峰值減去其後低點的最大金額，不等於最大單筆虧損。只看已平倉曲線得到44.56萬元，會漏掉浮動風險。每日收盤評價為71.44萬元，日盤OHLC高先低後保守路徑界線為78.40萬元。全日持有採高先低後，盤中停損後不再承擔之後最低價，開盤退出也不取後續高低。這是目前成交與日盤假設下的界線，不含夜盤路徑、實際流動性與保證金追繳，也不等於MultiCharts正式Maximum Strategy Drawdown。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。',
+  '最大回撤是權益從高點掉下來的最大金額，不等於最大單筆虧損。這頁是Python的三種口徑：只看已平倉是44.56萬元，每日收盤評價是71.44萬元，日盤OHLC保守界線是78.40萬元，都小於最大年獲利108.38萬元。MultiCharts的正式欄位「最大策略虧損」是60.58萬元，對照的最大年獲利是69.82萬元，也通過。MultiCharts的最大平倉交易虧損是45.92萬元。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/本輪固定設定.json。\nMultiCharts實測\nMultiCharts實測/TXF1  FCU_TrendBudget_Signal 策略回測績效報告.xlsx；MultiCharts實測/FCUpla.pla。',
   '每邊2點完整重跑淨利302.96萬元，比1點主版多1.04萬元，不能說成本越高越好。因為成交價會初始化停損峰值，邊界日期的退出與後續進場可能改變。固定主版原成交路徑，只多扣每個需滑價成交1點，則會少22,600元，淨利降至299.66萬元。前者是完整策略敏感度，後者是純成本算術檢查。收盤結算代理則是準備MultiCharts比對的資料口徑。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。',
   'v6在舊七年少賺73萬3,400元，OHLC回撤還比v5多13萬8,600元；改善的是納入2026高波動期間之後的資金風險相容性。2026重置結果只有1筆，淨利27萬200元，之後167個合格空手判斷日因預算被擋。這是日數，不能說避開167筆虧損交易。連續2019至2026年10月16日淨利346萬5,200元，與分段測試因持倉與期末認列不同，不能直接相加。所有2026數字對v6均是已看過資料。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。',
-  '這張核對表把能證明的結果與未完成的正式平台驗證分開。Python模型確實滿足七年獲利與風險數字，但未以MultiCharts正式欄位判定。講義要求策略輸出.pla，這是平台匯出檔，不能把文字原碼改副檔名冒充。七年最大年獲利是完整的2024年，不拿2026部分年年化增加門檻。獲利因子以淨交易損益計算為2.23，可作課堂補充，但正式平台可能採不同毛淨定義，仍須核對。\n\n資料來源\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁；1151_智慧量化交易_課程介紹.pptx，第4–5頁。\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\n風控改版_v6/驗證結果.json；風控改版_v6/帳務與成交核對.json；風控改版_v6/匯出資料重跑核對.json。',
+  '這頁全部用MultiCharts的策略績效報告判定。回測2020到2025六年，共72筆，一次最多一口。結算日在收盤平倉，佣金總共7萬2,000元，等於每筆來回1,000元，滑價2萬8,800元，等於每邊200元。近三年2023賺53.95萬、2024賺69.82萬、2025賺36.53萬。淨利224.32萬元，大於120萬。最大策略虧損60.58萬元，小於2024年的69.82萬元，不過只差9.24萬元，餘裕不大。.pla已經匯出，裡面有函數、訊號和兩支指標，含原始碼。\n\n資料來源\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁。\nMultiCharts實測\nMultiCharts實測/TXF1  FCU_TrendBudget_Signal 策略回測績效報告.xlsx；MultiCharts實測/FCUpla.pla。',
   '課堂已介紹高低通道突破，因此報告不把任何單一指標稱為創新。這份作業的差異在於將長期趨勢、因果明確的盤中訂單與固定本金預算整合，並留下每次錯誤、失敗與代價。日盤OHLC無法還原夜間最大浮虧，漲跌停或流動性也可能讓模擬價無法成交。均線、波幅、20%預算及多輪改版都有選擇偏誤，歷史通過不能證明未來能獲利。\n\n資料來源\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁；1151_智慧量化交易_課程介紹.pptx，第4–5頁。',
-  '收尾時回到研究問題：有清楚市場邏輯的簡單策略，也會因訂單時間與一口資金風險而失敗。v6提供可重現的候選規則，歷史上達到作業數值，但未完成MultiCharts正式驗證。接著先重現相同資料與代理結算結果，若有差異就查逐筆訂單，不直接改參數追求總淨利相同。取得正式報表與.pla後，才補上平台證據。新資料檢查需維持規則，不能把改完後的重跑重新命名為樣本外成功。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\n風控改版_v6/MultiCharts操作單.md。',
+  '最後回到研究問題：一口台指期的趨勢策略，能不能同時過獲利和回撤門檻。v6在MultiCharts實測三項都過了，淨利224.32萬元，最大策略虧損60.58萬元。程式已經編譯並匯出.pla，跟Python的差距來自行情來源和起始年。還要補強的有兩點：獲利因子1.86，沒到2；回撤只比最大年獲利少9.24萬元，換一段行情就可能不過。之後如果要做獨立檢查，要先固定規則，用凍結後沒看過的資料，不在那段挑參數。\n\n資料來源\nMultiCharts實測\nMultiCharts實測/TXF1  FCU_TrendBudget_Signal 策略回測績效報告.xlsx；MultiCharts實測/FCUpla.pla。\n風控改版_v6/規則凍結.json。',
   '真實波幅跨近月切換時，以前一個已選近月收盤計算，包含未調整價差，這是明示資料選擇。固定進場前波幅是掛買單時已知的波幅。峰值以完成收盤而非當日最高價計算，賣出停損向下取整到1點，才符合TX最小升降單位。20萬元只作進場資格，不代表實際損失上限，也不會把後來變大的波幅回填到過去決策。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\n臺灣期貨交易所，臺股期貨契約規格：https://www.taifex.com.tw/cht/2/tX?menuid1=12 ，2026/10/20核對。',
   '這是2019至2022開發期檢查，不是七年績效。10萬元版淨利21.30萬元、回撤42.74萬元，大於最大年獲利37.72萬元。20萬元主版淨利119.52萬元、回撤42.04萬元、最大年56.84萬元。30萬元淨利153.38萬元、回撤36.06萬元，開發期更好，但本輪主版在回測前已固定20萬元，沒有看結果後換成冠軍。鄰近設定只在開發期跑，不能把這張表拿來證明20%最適或穩健。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。',
   '2025年最後一筆交易在七年測試於12月31日強制平倉，連續測試則延續到2026才認列，所以2025平倉獲利由21.34萬元變為12.46萬元。分段各自重置本金與空手，不能把七年與2026重置結果相加。獲利因子2.2318採每筆淨損益的正值合計除以負值絕對合計，勝率50/82即60.98%，平均每筆36,820元，收盤持倉日比例54.73%。這些定義在正式平台可能不同，不混用平台毛利與本報告淨損益。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。',
   '持續做多一口基準七年淨利413.12萬元，日結回撤176.34萬元，大於最大年獲利95萬元。原始無緩衝200日均線七年淨利與回撤均由full_mode1.json取值。這張基準比較使用三版都有的每日評價最大回撤，不把它與前文v6的OHLC界線混稱。完整來源URL附在本頁備註與講稿，交易明細和PowerLanguage檔保存在v6轉移包。44項測試、23組來源稽核及3組CSV重跑是既有研究驗證紀錄，不等於MultiCharts實機驗證。\n\n資料來源\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁；1151_智慧量化交易_課程介紹.pptx，第4–5頁。\n臺灣期貨交易所，臺股期貨契約規格：https://www.taifex.com.tw/cht/2/tX?menuid1=12 ，2026/10/20核對。\nMoskowitz, Ooi & Pedersen (2012), Time Series Momentum. https://www.aqr.com/Insights/Research/Journal-Article/Time-Series-Momentum 。Faber (2013), QTAA Update: Conclusions and FAQs. https://mebfaber.com/2013/06/14/qtaa-update-conclustions-and-faqs/ 。2026/10/20核對。\nMoreira & Muir (2016/2017), Volatility-Managed Portfolios. https://www.nber.org/papers/w22208 。Cederburg et al. (2020), On the performance of volatility-managed portfolios. https://www.sciencedirect.com/science/article/pii/S0304405X2030132X 。2026/10/20核對摘要。\nMultiCharts官方文件，Stop：https://www.multicharts.com/trading-software/index.php?title=Stop ；Intra-bar Price Movement Assumptions：https://www.multicharts.com/trading-software/index.php?title=Intra-bar_Price_Movement_Assumptions 。2026/10/20核對。\n風控改版_v6/驗證結果.json；風控改版_v6/帳務與成交核對.json；風控改版_v6/匯出資料重跑核對.json。\n公開資料回測/結果/full_mode0.json；公開資料回測/結果/full_mode1.json。',
-  '這一頁摘錄v6核心條件。進場預算使用已完成收盤資料，合格才送次日買單；峰值減去固定進場前波幅，決定下一根日K的停損線。完整程式另處理趨勢退出、結算、第一天保護空窗與停損後重進，不能單獨貼上節錄編譯。原碼尚未在MultiCharts實機驗證。\n\n來源：風控改版_v6/PowerLanguage/FCU_TrendBudget_Signal.txt',
+  '這一頁摘錄v6的核心條件。進場預算用已經收完的資料計算，合格才送隔天的買單；峰值減掉固定的進場前波幅，就是下一根日K的停損線。完整程式還處理趨勢退出、結算、進場當天沒有停損保護，以及停損後怎麼重新進場，這一段不能單獨拿去編譯。完整程式已在MultiCharts編譯成功，並匯出.pla。\n\n來源：風控改版_v6/PowerLanguage/FCU_TrendBudget_Signal.txt；MultiCharts實測/FCUpla.pla',
 ];
 
 export default [
