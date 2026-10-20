@@ -1055,7 +1055,6 @@ export const meta: SlideMeta = {
 export default [
   TermCover,
   Speaker,
-  QandA,
   Topics,
   BasicCover,
   CanYouMakeup,
