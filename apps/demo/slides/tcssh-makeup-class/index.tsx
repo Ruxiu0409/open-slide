@@ -47,7 +47,7 @@ const muted = '#5b5b5b';
 const paperGray = '#e9e9e9';
 const sand = '#d2cdb4';
 const cream = '#f1efc3';
-const TERM = '113學年度 第二學期';
+const TERM = '115學年度 第一學期';
 const CLUB = '現代視覺文化同人社';
 
 const fill = {
