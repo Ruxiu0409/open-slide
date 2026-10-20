@@ -719,7 +719,7 @@ const PixelPhoto = ({
   src,
   w,
   h,
-  px = 4,
+  px = 2,
   bg = C.white,
   cover = false,
   zoom = 1,
@@ -1117,7 +1117,7 @@ const Speaker: Page = () => (
     <Meta>Player 1 · Ready</Meta>
     <PixelBox x={120} y={280} w={560} h={672} fill={C.ink}>
       <div style={abs(32, 32, { background: DARK, padding: 8 })}>
-        <PixelPhoto src={speakerPhoto} w={480} h={480} px={5} cover bg={C.ink} />
+        <PixelPhoto src={speakerPhoto} w={480} h={480} px={3} cover bg={C.ink} />
       </div>
       <div style={abs(32, 560, { ...LABEL, color: C.yellow })}>Player 1 · 化妝師</div>
       <div style={{ ...PIXEL_TC, ...abs(32, 600), fontSize: 55 }}>瑞瑞</div>
@@ -1297,7 +1297,7 @@ const Slot = ({
       <div style={abs(24, 64)}>
         <PixelBox w={200} h={280} fill={C.white} edge={C.silver} shade={false}>
           <div style={abs(8, 8)}>
-            <PixelPhoto src={src} w={184} h={264} px={4} />
+            <PixelPhoto src={src} w={184} h={264} px={2} />
           </div>
         </PixelBox>
       </div>
@@ -1425,7 +1425,7 @@ const ItemDetail = ({
       <div style={abs(32, 72)}>
         <PixelBox w={336} h={440} fill={C.white} edge={C.silver} shade={false}>
           <div style={abs(8, 8)}>
-            <PixelPhoto src={src} w={320} h={424} px={4} />
+            <PixelPhoto src={src} w={320} h={424} px={2} />
           </div>
         </PixelBox>
       </div>
@@ -1533,7 +1533,7 @@ const Primer: Page = () => (
         <div className="mk-in" style={abs(760, 0)}>
           <PixelBox w={456} h={304} fill={C.white} edge={C.silver}>
             <div style={abs(16, 16)}>
-              <PixelPhoto src={primerSamples} w={424} h={272} px={3} />
+              <PixelPhoto src={primerSamples} w={424} h={272} px={2} />
             </div>
           </PixelBox>
         </div>
@@ -1542,7 +1542,7 @@ const Primer: Page = () => (
         <div className="mk-in" style={abs(760, 336)}>
           <PixelBox w={456} h={304} fill={C.white} edge={C.silver}>
             <div style={abs(16, 16)}>
-              <PixelPhoto src={colorWheel} w={424} h={272} px={3} />
+              <PixelPhoto src={colorWheel} w={424} h={272} px={2} />
             </div>
           </PixelBox>
         </div>
@@ -1570,7 +1570,7 @@ const ItemCard = ({ src, name, children }: { src: string; name: string; children
       <div style={abs(24, 24)}>
         <PixelBox w={160} h={252} fill={C.white} edge={C.silver} shade={false}>
           <div style={abs(8, 8)}>
-            <PixelPhoto src={src} w={144} h={236} px={4} />
+            <PixelPhoto src={src} w={144} h={236} px={2} />
           </div>
         </PixelBox>
       </div>
@@ -1707,7 +1707,7 @@ const PowderCard = ({
       <div style={abs(144, 40)}>
         <PixelBox w={520} h={320} fill={C.white} edge={C.silver} shade={false}>
           <div style={abs(8, 8)}>
-            <PixelPhoto src={src} w={504} h={304} px={4} />
+            <PixelPhoto src={src} w={504} h={304} px={2} />
           </div>
         </PixelBox>
       </div>
@@ -1751,7 +1751,7 @@ const ComboSlot = ({ x, n, src, label }: { x: number; n: string; src: string; la
     <div style={abs(24, 80)}>
       <PixelBox w={224} h={300} fill={C.white} edge={C.silver} shade={false}>
         <div style={abs(8, 8)}>
-          <PixelPhoto src={src} w={208} h={284} px={4} />
+          <PixelPhoto src={src} w={208} h={284} px={2} />
         </div>
       </PixelBox>
     </div>
@@ -1854,7 +1854,7 @@ const LinerCard = ({
       <div style={abs(32, 32)}>
         <PixelBox w={464} h={288} fill={C.white} edge={C.silver} shade={false}>
           <div style={abs(8, 8)}>
-            <PixelPhoto src={src} w={448} h={272} px={4} zoom={1.35} turn />
+            <PixelPhoto src={src} w={448} h={272} px={2} zoom={1.35} turn />
           </div>
         </PixelBox>
       </div>
@@ -1937,7 +1937,7 @@ const Dialog = ({
     <div style={abs(40, 64)}>
       <PixelBox w={208} h={208} fill={DARK} edge={C.slate} shade={false}>
         <div style={abs(8, 8)}>
-          <PixelPhoto src={portrait} w={192} h={192} px={6} cover bg={C.ink} />
+          <PixelPhoto src={portrait} w={192} h={192} px={3} cover bg={C.ink} />
         </div>
       </PixelBox>
     </div>
