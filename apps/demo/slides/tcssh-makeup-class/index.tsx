@@ -1010,43 +1010,6 @@ const ClosingWithLinks: Page = () => (
   </ClosingLayout>
 );
 
-const Poll = ({ question }: { question: string }) => (
-  <div style={fill}>
-    <Header />
-    <Body>
-      <div
-        style={{
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          padding: '0 160px 80px',
-        }}
-      >
-        <div
-          style={{
-            fontSize: 34,
-            letterSpacing: '0.2em',
-            color: 'var(--osd-accent)',
-            fontWeight: 700,
-          }}
-        >
-          SLIDO 投票
-        </div>
-        <div style={{ ...serif, fontSize: 104, lineHeight: 1.3, marginTop: 40 }}>
-          <Highlight size={104}>{question}</Highlight>
-        </div>
-      </div>
-    </Body>
-  </div>
-);
-
-const PollPowder: Page = () => <Poll question="誰適合用蜜粉？" />;
-const PollCanYou: Page = () => <Poll question="你會化妝嗎？" />;
-const PollOrder: Page = () => <Poll question="下列哪個化粧順序是對的？" />;
-const PollWig: Page = () => <Poll question="假髮可以用離子夾造型？" />;
-const PollSpeaker: Page = () => <Poll question="講師叫什麼？" />;
-
 export const meta: SlideMeta = {
   title: '台中二中上課簡報：基礎化妝課程',
   createdAt: '2026-10-20T12:34:28.227Z',
@@ -1081,10 +1044,5 @@ export default [
   ColorTools,
   QandA,
   Closing,
-  PollPowder,
-  PollCanYou,
-  PollOrder,
-  PollWig,
-  PollSpeaker,
   ClosingWithLinks,
 ] satisfies Page[];
