@@ -1193,9 +1193,8 @@ const Speaker: Page = () => (
     </PixelBox>
     <PixelBox x={744} y={280} w={1056} h={672} fill={C.deep}>
       <div style={abs(48, 48, { ...LABEL, color: C.silver })}>成就 · Achievements</div>
-      <Achievement y={120}>2020 逢甲百鬼夜行特聘化妝師</Achievement>
-      <Achievement y={304}>現代視覺文化同人社 16 屆公關</Achievement>
-      <Achievement y={488}>TCS 中部動漫文化祭 12 屆副召集人</Achievement>
+      <Achievement y={192}>現代視覺文化同人社 16 屆公關</Achievement>
+      <Achievement y={400}>TCS 中部動漫文化祭 12 屆副召集人</Achievement>
     </PixelBox>
   </Screen>
 );
