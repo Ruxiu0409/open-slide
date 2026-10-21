@@ -8,7 +8,7 @@ import {
   useIsActivePage,
   useSlidePageNumber,
 } from '@open-slide/core';
-import { type CSSProperties, type ReactNode, useEffect, useRef } from 'react';
+import { type CSSProperties, type ReactNode, useEffect, useRef, useState } from 'react';
 import closingPhoto from './assets/closing.jpg';
 import colorWheel from './assets/color-wheel.png';
 import concealer from './assets/concealer.png';
@@ -779,6 +779,75 @@ const PixelPhoto = ({
   );
 };
 
+const REVEAL_LEVELS = [48, 32, 24, 16, 12, 8, 6, 4, 3, 2];
+
+const RevealPhoto = ({ src, w, h }: { src: string; w: number; h: number }) => {
+  const live = useIsActivePage();
+  const ref = useRef<HTMLCanvasElement>(null);
+  const [sharp, setSharp] = useState(!live);
+  useEffect(() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!live || reduced) {
+      setSharp(true);
+      return;
+    }
+    setSharp(false);
+    let level = 0;
+    let timer: number | undefined;
+    const img = new Image();
+    const draw = () => {
+      const canvas = ref.current;
+      const ctx = canvas?.getContext('2d');
+      if (!canvas || !ctx) return;
+      const px = REVEAL_LEVELS[level];
+      const cw = Math.max(1, Math.round(w / px));
+      const ch = Math.max(1, Math.round(h / px));
+      canvas.width = cw;
+      canvas.height = ch;
+      const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+      const dw = img.naturalWidth * scale;
+      const dh = img.naturalHeight * scale;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+    };
+    img.onload = () => {
+      draw();
+      timer = window.setInterval(() => {
+        level++;
+        if (level >= REVEAL_LEVELS.length) {
+          window.clearInterval(timer);
+          setSharp(true);
+          return;
+        }
+        draw();
+      }, 130);
+    };
+    img.src = src;
+    return () => {
+      img.onload = null;
+      window.clearInterval(timer);
+    };
+  }, [live, src, w, h]);
+  return (
+    <div style={{ position: 'relative', width: w, height: h, flex: 'none' }}>
+      <img src={src} alt="" style={{ display: 'block', width: w, height: h, objectFit: 'cover' }} />
+      {!sharp && (
+        <canvas
+          ref={ref}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: w,
+            height: h,
+            background: C.ink,
+            imageRendering: 'pixelated',
+          }}
+        />
+      )}
+    </div>
+  );
+};
+
 const SegBar = ({
   x,
   y,
@@ -1117,7 +1186,7 @@ const Speaker: Page = () => (
     <Meta>Player 1 · Ready</Meta>
     <PixelBox x={120} y={280} w={560} h={672} fill={C.ink}>
       <div style={abs(32, 32, { background: DARK, padding: 8 })}>
-        <PixelPhoto src={speakerPhoto} w={480} h={480} px={3} cover bg={C.ink} />
+        <RevealPhoto src={speakerPhoto} w={480} h={480} />
       </div>
       <div style={abs(32, 560, { ...LABEL, color: C.yellow })}>Player 1 · 化妝師</div>
       <div style={{ ...PIXEL_TC, ...abs(32, 600), fontSize: 55 }}>瑞瑞</div>
