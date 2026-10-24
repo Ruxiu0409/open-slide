@@ -608,28 +608,6 @@ const Page05: Page = () => (
             {'v5首次新資料檢查失敗；v6已用來診斷與改版'}
           </td>
         </tr>
-        <tr style={{ background: '#FAF8F2' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'v6凍結後的新行情'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'可另作未見資料檢查；目前沒有可報告的結果'}
-          </td>
-        </tr>
       </tbody>
     </table>
   </Frame>
@@ -3013,7 +2991,7 @@ const Page21: Page = () => (
 );
 
 const Page22: Page = () => (
-  <Frame title={'結論與後續檢查'} source={''}>
+  <Frame title={'結論'} source={''}>
     <Rule
       number="01"
       label={'目前結論'}
@@ -3025,7 +3003,6 @@ const Page22: Page = () => (
       body={'v7.pla已匯出；已繳交v6的PF 1.86、淨利224.32萬，保留作對照'}
     />
     <Rule number="03" label={'證據限制'} body={'2019–2025已看過，沒有樣本外驗證'} />
-    <Rule number="04" label={'下一步'} body={'平台重跑每邊2點滑價，再做未見資料檢查'} />
   </Frame>
 );
 
@@ -3776,7 +3753,7 @@ export const notes: string[] = [
   '這頁是v7候選在MultiCharts的結果。TXF1日K從2020年1月10日測到2025年底，初始100萬元，每邊佣金500元、滑價200元，只做多且最多一口。79筆交易，淨利260.68萬元，最大策略虧損53.22萬元，2024年獲利74.46萬元。PF是2.08，跨過加分線。已繳交版仍是v6，PF 1.86、淨利224.32萬元，兩版身分要分清楚。\n\n資料來源\nWindows回傳_2026-10-24 截圖：220622、221025、221109；Windows回傳_2026-10-24/v7.pla。',
   '以Lecture05第31頁專題要求為準，第32頁是專題評分比重，與課程總成績的期中30%不同。講義的『近三年績效為正』未細分是否逐年，因此本研究採較嚴格的2023、2024、2025各年為正。課程介紹第4頁將專題一期中報告暫訂在10月27日。滑價1點是研究額外假設，費用1,000元是講義固定成本，未聲稱是真實券商費稅明細。\n\n資料來源\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁；1151_智慧量化交易_課程介紹.pptx，第4–5頁。\n臺灣期貨交易所，臺股期貨契約規格：https://www.taifex.com.tw/cht/2/tX?menuid1=12 ，2026/10/20核對。',
   'Moskowitz等人的時間序列動能研究涵蓋58種期貨與遠期契約，與本報告只做多的台指期均線規則不同。Faber的模型是月底檢查10個月均線，本研究改成每日判斷200日均線，屬於改編。Moreira與Muir提供高波動時降低風險的動機；Cederburg等人提醒樣本內優勢不易轉為即時可實施績效。上述來源都沒有驗證本策略或20%預算。\n\n資料來源\nMoskowitz, Ooi & Pedersen (2012), Time Series Momentum. https://www.aqr.com/Insights/Research/Journal-Article/Time-Series-Momentum 。Faber (2013), QTAA Update: Conclusions and FAQs. https://mebfaber.com/2013/06/14/qtaa-update-conclustions-and-faqs/ 。2026/10/20核對。\nMoreira & Muir (2016/2017), Volatility-Managed Portfolios. https://www.nber.org/papers/w22208 。Cederburg et al. (2020), On the performance of volatility-managed portfolios. https://www.sciencedirect.com/science/article/pii/S0304405X2030132X 。2026/10/20核對摘要。',
-  '價格為期交所TX一般交易時段、未調整近月日K，保留到期與換月價差，沒有用現貨指數計算期貨損益。資料原先依時間切割，但經歷數次改版後，2019至2025已成為已看過資料。2026對v5曾是首次新資料，對根據其失敗而設計的v6則已不是。v6在2026年10月19日18:20台北時間凍結，後續未見行情才可重新安排獨立檢查，短期低頻或無交易也不足以證明成功。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。\n公開資料回測/來源紀錄.json；風控改版_v5/2026新增來源紀錄.json。',
+  '價格為期交所TX一般交易時段、未調整近月日K，保留到期與換月價差，沒有用現貨指數計算期貨損益。資料原先依時間切割，但經歷數次改版後，2019至2025已成為已看過資料。2026對v5曾是首次新資料，對根據其失敗而設計的v6則已不是。v6在2026年10月19日18:20台北時間凍結。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。\n公開資料回測/來源紀錄.json；風控改版_v5/2026新增來源紀錄.json。',
   '一開始希望用最簡單的趨勢規則建立比較基準。v1在第一次價格回測前就提出波動緩衝，假說是減少盤整交易，代價是較晚進出。原始無緩衝均線版的日結回撤也是89.34萬元，最大年獲利74.46萬元；v1緩衝版最大年獲利76.70萬元，均未過風險門檻。不是因為獲利不足才加更多指標，下一步要追查持倉回撤與出場速度。\n\n資料來源\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。\n公開資料回測/結果/full_mode1.json；公開資料回測/結果/full_mode2.json。',
   'v2以進場成交價與持倉最高已完成收盤價中的較高者，減3倍進場前平均真實波幅，產生追蹤退出參考。只向上提高，波幅進場時固定。當時仍等待當日收盤確認，再次日開盤賣出。7月結算後重進，剛好遇到8月急跌，不能在事後假設已於22,035.85點附近成交。問題包含弱勢重進與出場等待，後續分開試驗。\n\n資料來源\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。\n風控改版_v2/結果/full_same_period_risk3.json。',
   'v3通道排除當日最高價，收盤突破後仍次日開盤成交，避免不可能的當日最高價條件。它在2025年虧4萬4,800元，也未滿足近三年逐年為正。v4移除嚴格創高限制，改用20日均線判斷進出，但盤整與反彈切換效果不好。兩版在開發期曾通過風險比較，七年卻失敗，不能只挑開發期結果採用。兩個分支均保留，主策略回到長期趨勢與固定波幅出場。\n\n資料來源\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。\n風控改版_v6/報告資料.json。',
