@@ -1479,7 +1479,7 @@ const Page20: Page = () => (
         <tr style={{ background: '#FAF8F2' }}>
           <B_Td>{'最大策略虧損＜最大年獲利'}</B_Td>
           <B_Td>{'53.22萬＜74.46萬元（2024）'}</B_Td>
-          <B_Td>{'通過，差21.24萬'}</B_Td>
+          <B_Td>{'通過'}</B_Td>
         </tr>
         <tr style={{ background: '#EAE5D8' }}>
           <B_Td>{'獲利因子≥2（加分）'}</B_Td>
