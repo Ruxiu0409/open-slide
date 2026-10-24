@@ -263,6 +263,60 @@ const Page02: Page = () => (
   </Frame>
 );
 
+const contents = [
+  { label: '研究設定', detail: '作業要求、設計依據、資料期間', page: 4 },
+  { label: '策略修正歷程', detail: 'v1到v6的失敗與修正，v7只改追蹤距離', page: 7 },
+  { label: '公開資料回測績效', detail: 'v1–v6同期間比較、v6年度損益與回撤', page: 15 },
+  { label: 'MultiCharts實測績效', detail: 'v6與v7對照、門檻核對、平台原始畫面', page: 21 },
+  { label: '策略發想與限制', detail: '和課堂方法的差異，證據範圍', page: 27 },
+  { label: '結論', detail: '', page: 28 },
+  { label: '附錄', detail: '指標定義、預算檢查、補充績效、程式節錄', page: 29 },
+];
+
+const PageContents: Page = () => (
+  <Frame title={'目錄'}>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      {contents.map((item, index) => (
+        <div
+          key={item.label}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '100px 560px 1fr 120px',
+            alignItems: 'baseline',
+            padding: '18px 0',
+            lineHeight: 1.3,
+            borderBottom: '1px solid #D8D2C4',
+          }}
+        >
+          <span
+            style={{
+              fontSize: 34,
+              fontFamily: 'Arial,sans-serif',
+              fontWeight: 700,
+              color: 'var(--osd-accent)',
+            }}
+          >
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <span style={{ fontSize: 42, fontWeight: 550 }}>{item.label}</span>
+          <span style={{ fontSize: 32, color: muted }}>{item.detail}</span>
+          <span
+            style={{
+              fontSize: 34,
+              fontFamily: 'Arial,sans-serif',
+              color: muted,
+              textAlign: 'right',
+              fontVariantNumeric: 'tabular-nums',
+            }}
+          >
+            {item.page}
+          </span>
+        </div>
+      ))}
+    </div>
+  </Frame>
+);
+
 const Page03: Page = () => (
   <Frame
     title={'作業要求與研究設定'}
@@ -3751,6 +3805,7 @@ export const meta: SlideMeta = {
 export const notes: string[] = [
   '這份報告先交代已繳交的v6研究，再看另存的v7加分候選。v7只把獲利後追蹤停損距離從3倍改成2.5倍，進場預算仍用3倍波幅。今天更新的是MultiCharts TXF1平台實測，v1至v6的歷程頁採公開資料歷史回測。\n\n資料來源\nWindows回傳_2026-10-24 截圖：220622、221025、221051、221109；Windows回傳_2026-10-24/v7.pla。\n加分改版_v7/結果_完整評估/摘要.json。',
   '這頁是v7候選在MultiCharts的結果。TXF1日K從2020年1月10日測到2025年底，初始100萬元，每邊佣金500元、滑價200元，只做多且最多一口。79筆交易，淨利260.68萬元，最大策略虧損53.22萬元，2024年獲利74.46萬元。PF是2.08，跨過加分線。已繳交版仍是v6，PF 1.86、淨利224.32萬元，兩版身分要分清楚。\n\n資料來源\nWindows回傳_2026-10-24 截圖：220622、221025、221109；Windows回傳_2026-10-24/v7.pla。',
+  '目錄照作業要求的順序排。先交代作業要求和研究設定，再講策略從v1一路修到v7的過程。績效分兩段：v1到v6是公開資料回測，v7看MultiCharts實測和平台原始畫面。最後是策略發想、限制和結論，附錄放指標定義、預算檢查和程式節錄。\n\n資料來源\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁。',
   '以Lecture05第31頁專題要求為準，第32頁是專題評分比重，與課程總成績的期中30%不同。講義的『近三年績效為正』未細分是否逐年，因此本研究採較嚴格的2023、2024、2025各年為正。課程介紹第4頁將專題一期中報告暫訂在10月27日。滑價1點是研究額外假設，費用1,000元是講義固定成本，未聲稱是真實券商費稅明細。\n\n資料來源\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁；1151_智慧量化交易_課程介紹.pptx，第4–5頁。\n臺灣期貨交易所，臺股期貨契約規格：https://www.taifex.com.tw/cht/2/tX?menuid1=12 ，2026/10/20核對。',
   'Moskowitz等人的時間序列動能研究涵蓋58種期貨與遠期契約，與本報告只做多的台指期均線規則不同。Faber的模型是月底檢查10個月均線，本研究改成每日判斷200日均線，屬於改編。Moreira與Muir提供高波動時降低風險的動機；Cederburg等人提醒樣本內優勢不易轉為即時可實施績效。上述來源都沒有驗證本策略或20%預算。\n\n資料來源\nMoskowitz, Ooi & Pedersen (2012), Time Series Momentum. https://www.aqr.com/Insights/Research/Journal-Article/Time-Series-Momentum 。Faber (2013), QTAA Update: Conclusions and FAQs. https://mebfaber.com/2013/06/14/qtaa-update-conclustions-and-faqs/ 。2026/10/20核對。\nMoreira & Muir (2016/2017), Volatility-Managed Portfolios. https://www.nber.org/papers/w22208 。Cederburg et al. (2020), On the performance of volatility-managed portfolios. https://www.sciencedirect.com/science/article/pii/S0304405X2030132X 。2026/10/20核對摘要。',
   '價格為期交所TX一般交易時段、未調整近月日K，保留到期與換月價差，沒有用現貨指數計算期貨損益。資料原先依時間切割，但經歷數次改版後，2019至2025已成為已看過資料。2026對v5曾是首次新資料，對根據其失敗而設計的v6則已不是。v6在2026年10月19日18:20台北時間凍結。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。\n公開資料回測/來源紀錄.json；風控改版_v5/2026新增來源紀錄.json。',
@@ -3786,6 +3841,7 @@ export const notes: string[] = [
 export default [
   Page01,
   Page02,
+  PageContents,
   Page03,
   Page04,
   Page05,
