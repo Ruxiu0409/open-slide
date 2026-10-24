@@ -286,9 +286,9 @@ export const SummaryBottomPage: Page = () => (
 
 export const SettingsPage: Page = () => (
   <Frame
-    title="平台設定與仍待確認的差異"
+    title="平台設定與證據限制"
     source="MultiCharts v7設定原始畫面；加分改版_v7／結果_完整評估；加分改版_v8／改版結果與下一步"
-    takeaway="平台PF過2，但公開資料方向相反；後續須對齊行情並做樣本外驗證。"
+    takeaway="平台PF過2；仍待樣本外驗證與每邊2點滑價重跑。"
   >
     <div style={{ display: 'flex', gap: 58, alignItems: 'start' }}>
       <div>
@@ -302,16 +302,9 @@ export const SettingsPage: Page = () => (
       <div
         style={{ width: 500, display: 'flex', flexDirection: 'column', gap: 35, paddingTop: 42 }}
       >
-        <Rule number="01" label="公開資料結果相反" body="同段期間Python PF：v7為2.09，v6為2.22。" />
-        <Rule
-          number="02"
-          label="差異尚未拆開"
-          body="日期、交易時段、價格與TXF1串接都待逐筆對齊。"
-        />
+        <Rule number="01" label="樣本外驗證" body="2019–2025皆為已看過資料，尚無樣本外驗證。" />
+        <Rule number="02" label="滑價敏感度" body="每邊2點滑價尚未在平台重跑。" />
       </div>
     </div>
-    <p style={{ fontSize: 30, lineHeight: 1.45, margin: '24px 0 0', color: muted }}>
-      2019–2025皆為已看過資料，尚無樣本外驗證；每邊2點滑價尚未在平台重跑。
-    </p>
   </Frame>
 );
