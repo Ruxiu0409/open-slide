@@ -148,7 +148,7 @@ const comparison = [
   ['勝率', '54.2%', '55.7%'],
 ];
 
-const SelectionPage: Page = () => (
+export const SelectionPage: Page = () => (
   <Frame
     title="v7只改一處：獲利後追蹤距離"
     source="資料：加分改版_v7／虧損階段統計、結果、結果_第二輪；MultiCharts設定截圖"
@@ -179,7 +179,7 @@ const SelectionPage: Page = () => (
   </Frame>
 );
 
-const ComparisonPage: Page = () => (
+export const ComparisonPage: Page = () => (
   <Frame
     title="MultiCharts實測：v6與v7"
     source="TXF1日K，2020–2025；v6原始Excel、v7平台截圖；金額單位：新臺幣元換算為萬元"
@@ -230,7 +230,7 @@ const ComparisonPage: Page = () => (
   </Frame>
 );
 
-const YearlyPage: Page = () => (
+export const YearlyPage: Page = () => (
   <Frame
     title="v7各年損益：2022仍虧損"
     source="MultiCharts年週期分析原始畫面，2020–2025；單位：新臺幣元"
@@ -253,7 +253,7 @@ const YearlyPage: Page = () => (
   </Frame>
 );
 
-const SummaryTopPage: Page = () => (
+export const SummaryTopPage: Page = () => (
   <Frame
     title="平台原始畫面：淨利與回撤"
     source="MultiCharts v7策略績效總結果，原始畫面裁切；2020/1/10–2025/12/31"
@@ -267,7 +267,7 @@ const SummaryTopPage: Page = () => (
   </Frame>
 );
 
-const SummaryBottomPage: Page = () => (
+export const SummaryBottomPage: Page = () => (
   <Frame
     title="平台原始畫面：PF與勝率"
     source="MultiCharts v7策略績效總結果，原始畫面裁切；與上一頁為同一報表"
@@ -284,7 +284,7 @@ const SummaryBottomPage: Page = () => (
   </Frame>
 );
 
-const SettingsPage: Page = () => (
+export const SettingsPage: Page = () => (
   <Frame
     title="平台設定與仍待確認的差異"
     source="MultiCharts v7設定原始畫面；加分改版_v7／結果_完整評估；加分改版_v8／改版結果與下一步"
@@ -315,21 +315,3 @@ const SettingsPage: Page = () => (
     </p>
   </Frame>
 );
-
-export const v7Pages: Page[] = [
-  SelectionPage,
-  ComparisonPage,
-  YearlyPage,
-  SummaryTopPage,
-  SummaryBottomPage,
-  SettingsPage,
-];
-
-export const v7Notes: string[] = [
-  '這次v7只動一個地方，就是獲利後的追蹤停損，從原本三倍固定進場波幅改成二點五倍。進場時要不要做這一口，還是用三倍波幅去算二十萬元預算。我先回頭看v6的二十九筆RiskStop，其中二十三筆連十萬元的最大有利波動都沒有，合計虧了二百一十點八六萬元。先試過五十日均線斜率和停損後冷卻五日，開發期都變差。第二輪的一點五倍、兩倍也讓PF下降，二點五倍在開發期提高到一點七四，選定後才跑完整期間。失敗的結果都有保留。\n\n資料來源\n加分改版_v7/虧損階段統計.json；加分改版_v7/結果/摘要.json；加分改版_v7/結果_第二輪/摘要.json；加分改版_v7/規則凍結.json；Windows回傳_2026-10-24/螢幕擷取畫面 2026-10-24 221109.png。',
-  '這張是同一個MultiCharts TXF1期間的結果。v6是已繳交版，七十二筆、淨利二百二十四點三二萬、PF一點八六；v7是候選版，七十九筆、淨利二百六十點六八萬、PF二點零八。最大策略虧損從六十點五八萬降到五十三點二二萬。回撤餘裕就是最大年獲利減掉最大策略虧損，v7有二十一點二四萬。勝率的v6數字是從原始Excel查到的五十四點二％。\n\n資料來源\n期中報告/MultiCharts實測/TXF1  FCU_TrendBudget_Signal 策略回測績效報告.xlsx；Windows回傳_2026-10-24/螢幕擷取畫面 2026-10-24 221025.png；Windows回傳_2026-10-24/螢幕擷取畫面 2026-10-24 220622.png。',
-  '這是平台年週期分析的原始表格，只裁掉左邊選單和空白。二〇二〇年賺六十九點四九萬，二〇二一年三十二點九六萬，二〇二二年虧二十九點八七萬。之後二〇二三到二〇二五年都正獲利，最高是二〇二四年的七十四點四六萬。我不把二〇二二年的虧損藏掉，因為這就是策略實際要承受的年度波動。\n\n資料來源\nWindows回傳_2026-10-24/螢幕擷取畫面 2026-10-24 220622.png；同資料夾的221051.png為相同年週期表格。',
-  '這張是MultiCharts策略績效總結果的上半段原始畫面。淨利欄是二百六十點六八萬，最大策略虧損是五十三點二二萬。注意最大平倉交易虧損是三十八點五六萬，它是單筆平倉交易的數字，不能拿來代替整段資金曲線的最大策略虧損。\n\n資料來源\nWindows回傳_2026-10-24/螢幕擷取畫面 2026-10-24 221025.png；Windows回傳_2026-10-24/v7.pla。',
-  '這裡接著看同一張報表的下半段。平台列出的獲利因子是二點零八，交易總次數七十九筆，勝率五十五點七％。這三個數字和前面的比較表是同一份平台結果，不是拿Python結果來替代。\n\n資料來源\nWindows回傳_2026-10-24/螢幕擷取畫面 2026-10-24 221025.png；加分改版_v7/結果_完整評估/摘要.json。',
-  '最後看平台的設定畫面，追蹤倍數確實是二點五，進場預算倍數仍是三，畫面上的模型滑價是每邊一點。這個候選版在平台PF過二，但用公開資料、同一段期間跑Python，v7約二點零九，反而低於v6的二點二二。日期、交易時段、價格和TXF1的串接差異還沒逐項拆開。二〇一九到二〇二五都是看過的資料，也還沒有樣本外驗證。每邊兩點滑價雖已在公開資料模型測過，平台還沒有重跑。\n\n資料來源\nWindows回傳_2026-10-24/螢幕擷取畫面 2026-10-24 221109.png；加分改版_v7/結果_完整評估/摘要.json；加分改版_v8/改版結果與下一步.md；加分改版_v8/MultiCharts操作單.md。',
-];
