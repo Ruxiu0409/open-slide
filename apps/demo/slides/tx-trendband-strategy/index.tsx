@@ -374,7 +374,7 @@ const Page03: Page = () => (
   <Frame
     title={'作業要求與研究設定'}
     source={
-      '來源：課程講義Lecture05第31–32頁、1151智慧量化交易課程介紹第4–5頁［7］；臺灣期貨交易所臺股期貨契約規格［5］，2026/10/20核對'
+      '來源：課程講義Lecture05第31–32頁［7］；臺灣期貨交易所臺股期貨契約規格［5］，2026/10/20核對'
     }
   >
     <A_Table
@@ -394,16 +394,7 @@ const Page03: Page = () => (
           '近三年績效為正、淨利＞120萬元、最大策略虧損＜最大年獲利',
           '2023、2024、2025各年皆為正',
         ],
-        [
-          '繳交內容',
-          '發想、程式、優缺點、修正、績效；簡報與.pla',
-          '期中報告依課程介紹第4頁，暫訂10月27日',
-        ],
-        [
-          '評分比重',
-          '策略合理性40%、策略績效30%、策略發想30%（第32頁）',
-          '這是專題本身的評分；課程介紹第5頁的「期中30%」是整門課的總成績比重，兩者層級不同',
-        ],
+        ['繳交內容', '發想、程式、優缺點、修正、績效；簡報與.pla', '本報告與平台匯出的v7.pla'],
       ]}
     />
   </Frame>
@@ -2446,7 +2437,7 @@ const Page26: Page = () => (
       }
     </C_Para>
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 26 }}>
-      <C_SourceLine label={'作業要求'} body={'課程講義Lecture05第31–32頁、課程介紹第4–5頁［7］'} />
+      <C_SourceLine label={'作業要求'} body={'課程講義Lecture05第31–32頁［7］'} />
       <C_SourceLine
         label={'行情與規格'}
         body={'期交所TX一般交易時段、未調整近月日K；臺股期貨契約規格［5］'}
@@ -2533,11 +2524,7 @@ const PageReferences: Page = () => (
           'MultiCharts. Stop；Intra-bar Price Movement Assumptions；How Scripts Work。https://www.multicharts.com/trading-software/index.php?title=Stop 等（2026年10月20日查閱）'
         }
       </C_Ref>
-      <C_Ref number={'［7］'}>
-        {
-          '課程講義：Lecture05 MultiCharts策略開發實務，第31–32頁；1151 智慧量化交易課程介紹，第4–5頁。'
-        }
-      </C_Ref>
+      <C_Ref number={'［7］'}>{'課程講義：Lecture05 MultiCharts策略開發實務，第31–32頁。'}</C_Ref>
     </div>
     <h2
       style={{
@@ -2574,7 +2561,7 @@ export const notes: string[] = [
   '這份報告的最終策略是v7，前面先交代從原始均線一路改到v6的過程。v7只把獲利後追蹤停損距離從3倍改成2.5倍，進場預算仍用3倍波幅。今天更新的是MultiCharts TXF1平台實測，v1至v6的歷程頁採公開資料歷史回測。\n\n資料來源\nWindows回傳_2026-10-24 截圖：220622、221025、221051、221109；Windows回傳_2026-10-24/v7.pla。\n加分改版_v7/結果_完整評估/摘要.json。',
   '這頁是最終版v7在MultiCharts的結果。TXF1日K從2020年1月10日測到2025年底，初始100萬元，每邊佣金500元、滑價200元，只做多且最多一口。79筆交易，淨利260.68萬元，最大策略虧損53.22萬元，2024年獲利74.46萬元。PF是2.08，達到2以上的加分條件。前一版v6是PF 1.86、淨利224.32萬元。\n\n資料來源\nWindows回傳_2026-10-24 截圖：220622、221025、221109；Windows回傳_2026-10-24/v7.pla。',
   '目錄照作業要求的順序排。先交代作業要求和研究設定，再講策略從v1一路修到v7的過程。績效分兩段：v1到v6是公開資料回測，v7看MultiCharts實測和平台原始畫面。最後是策略發想、限制和結論，附錄放指標定義、預算檢查和程式節錄。\n\n資料來源\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁。',
-  '以Lecture05第31頁專題要求為準，第32頁是專題評分比重，與課程總成績的期中30%不同。近三年績效為正，本研究以2023、2024、2025各年皆為正來核對。課程介紹第4頁將專題一期中報告暫訂在10月27日。滑價1點是研究額外假設，費用1,000元是講義固定成本，未聲稱是真實券商費稅明細。\n\n資料來源\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁；1151_智慧量化交易_課程介紹.pptx，第4–5頁。\n臺灣期貨交易所，臺股期貨契約規格：https://www.taifex.com.tw/cht/2/tX?menuid1=12 ，2026/10/20核對。',
+  '以Lecture05第31頁專題要求為準。近三年績效為正，本研究以2023、2024、2025各年皆為正來核對。滑價1點是研究額外假設，費用1,000元是講義固定成本，未聲稱是真實券商費稅明細。\n\n資料來源\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁；1151_智慧量化交易_課程介紹.pptx，第4–5頁。\n臺灣期貨交易所，臺股期貨契約規格：https://www.taifex.com.tw/cht/2/tX?menuid1=12 ，2026/10/20核對。',
   'Moskowitz等人的時間序列動能研究涵蓋58種期貨與遠期契約，與本報告只做多的台指期均線規則不同。Faber的模型是月底檢查10個月均線，本研究改成每日判斷200日均線，屬於改編。Moreira與Muir提供高波動時降低風險的動機；Cederburg等人提醒樣本內優勢不易轉為即時可實施績效。上述來源都沒有驗證本策略或20%預算。\n\n資料來源\nMoskowitz, Ooi & Pedersen (2012), Time Series Momentum. https://www.aqr.com/Insights/Research/Journal-Article/Time-Series-Momentum 。Faber (2013), QTAA Update: Conclusions and FAQs. https://mebfaber.com/2013/06/14/qtaa-update-conclustions-and-faqs/ 。2026/10/20核對。\nMoreira & Muir (2016/2017), Volatility-Managed Portfolios. https://www.nber.org/papers/w22208 。Cederburg et al. (2020), On the performance of volatility-managed portfolios. https://www.sciencedirect.com/science/article/pii/S0304405X2030132X 。2026/10/20核對摘要。',
   '價格為期交所TX一般交易時段、未調整近月日K，保留到期與換月價差，沒有用現貨指數計算期貨損益。資料原先依時間切割，但經歷數次改版後，2019至2025已成為已看過資料。2026對v5曾是首次新資料，對根據其失敗而設計的v6則已不是。v6在2026年10月19日18:20台北時間凍結。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。\n公開資料回測/來源紀錄.json；風控改版_v5/2026新增來源紀錄.json。',
   '這頁把最早的兩版放在一起看。原始均線只用一條200日均線，收盤在上面就隔天開盤買一口，掉到下面就隔天開盤賣掉。v1在第一次回測之前就提出，只改趨勢判斷：均線上下各加一倍20日平均真實波幅，收盤要高過上緣才進場、低於下緣才出場，中間不動。兩版都沒有停損，結算日一律平倉，隔一個日盤再判斷。',
