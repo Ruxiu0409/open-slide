@@ -233,10 +233,9 @@ const contents = [
   { label: '策略修正歷程', detail: 'v1到v7各版規則、程式與修正原因', page: 6 },
   { label: '公開資料回測績效', detail: 'v1–v6同期間比較、v6年度損益與回撤', page: 23 },
   { label: 'MultiCharts實測績效', detail: 'v6與v7對照、門檻核對、平台原始畫面', page: 29 },
-  { label: '策略發想與限制', detail: '和課堂方法的差異，證據範圍', page: 35 },
-  { label: '結論', detail: '', page: 36 },
-  { label: '附錄', detail: '指標定義、預算檢查、補充績效、程式節錄', page: 37 },
-  { label: '參考文獻', detail: '', page: 42 },
+  { label: '結論', detail: '', page: 35 },
+  { label: '附錄', detail: '指標定義、預算檢查、補充績效、程式節錄', page: 36 },
+  { label: '參考文獻', detail: '', page: 41 },
 ];
 
 const PageContents: Page = () => (
@@ -1491,44 +1490,6 @@ const Page20: Page = () => (
   </Frame>
 );
 
-const C_Heading = ({ children }: { children: ReactNode }) => (
-  <h2
-    style={{
-      fontSize: 32,
-      fontWeight: 550,
-      lineHeight: 1.3,
-      color: 'var(--osd-accent)',
-      margin: '0 0 18px',
-    }}
-  >
-    {children}
-  </h2>
-);
-
-const C_Point = ({ label, body }: { label: string; body: string }) => (
-  <div style={{ fontSize: 28, lineHeight: 1.45 }}>
-    <strong style={{ fontWeight: 600 }}>{label}</strong>
-    <span style={{ color: muted }}>{'：'}</span>
-    {body}
-  </div>
-);
-
-const C_Limit = ({ number, body }: { number: string; body: string }) => (
-  <div
-    style={{
-      display: 'grid',
-      gridTemplateColumns: '44px 1fr',
-      fontSize: 28,
-      lineHeight: 1.45,
-    }}
-  >
-    <span style={{ fontFamily: 'Arial,sans-serif', fontWeight: 700, color: 'var(--osd-accent)' }}>
-      {number}
-    </span>
-    <span>{body}</span>
-  </div>
-);
-
 const C_Def = ({ title, body }: { title: string; body: string }) => (
   <div style={{ marginBottom: 34 }}>
     <h2
@@ -1584,52 +1545,6 @@ const C_DataItem = ({ children }: { children: ReactNode }) => (
     <span style={{ color: 'var(--osd-accent)' }}>{'・'}</span>
     <span>{children}</span>
   </div>
-);
-
-const Page21: Page = () => (
-  <Frame
-    title={'策略發想的差異與研究限制'}
-    source={
-      '平台實測：MultiCharts TXF1日K，2020/1/10–2025/12/31；公開資料回測：期交所TX日盤日K，2019–2025'
-    }
-  >
-    <C_Heading>{'與課堂範例的差異'}</C_Heading>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 56 }}>
-      <C_Point
-        label={'趨勢背景'}
-        body={'以200日均線帶判斷多空背景，盤整時用波動緩衝減少來回進出'}
-      />
-      <C_Point
-        label={'訂單時間'}
-        body={'停損線在前一日收盤後算好、隔日盤中有效，開盤跳空以較差的開盤價成交'}
-      />
-      <C_Point label={'一口預算'} body={'只在0或1口間選擇，一口的規劃風險超過20萬元就不進場'} />
-    </div>
-    <C_Para gap={16}>
-      {
-        '課堂已介紹通道突破等指標，本報告不把單一指標當成新的交易理論；比較能說的貢獻，是把規則寫成可追溯的訂單，並保留每次失敗與修正的紀錄。'
-      }
-    </C_Para>
-    <div style={{ height: 40 }} />
-    <C_Heading>{'研究限制'}</C_Heading>
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px 64px' }}>
-      <C_Limit number="1" body={'2019–2025年的資料在多輪改版中都已看過，沒有樣本外驗證。'} />
-      <C_Limit
-        number="2"
-        body={'v1到v7每一版都是看過前一版的歷史結果才修改，規則與參數有選擇偏誤。'}
-      />
-      <C_Limit
-        number="3"
-        body={'平台只用每邊1點（200元）滑價測試；每邊2點只在公開資料回測做過，平台沒有重跑。'}
-      />
-      <C_Limit number="4" body={'20萬元預算只決定要不要進場，不是單筆交易或整段期間的損失上限。'} />
-      <C_Limit number="5" body={'只用日盤OHLC，還原不了夜盤期間的浮虧；保證金追繳也沒有納入。'} />
-      <C_Limit
-        number="6"
-        body={'遇到跳空、漲跌停或流動性不足時，實際成交價可能比模擬價差，甚至無法成交。'}
-      />
-    </div>
-  </Frame>
 );
 
 const Page22: Page = () => (
@@ -2541,7 +2456,6 @@ export const notes: string[] = [
   '這張是MultiCharts策略績效總結果的上半段原始畫面。淨利欄是260.68萬，最大策略虧損是53.22萬。注意最大平倉交易虧損是38.56萬，它只看每筆平倉後的累積權益，不含持倉期間的浮動虧損，也不是單筆交易的最大虧損，不能拿來代替最大策略虧損。\n\n資料來源\nWindows回傳_2026-10-24/螢幕擷取畫面 2026-10-24 221025.png；Windows回傳_2026-10-24/v7.pla。',
   '這裡接著看同一張報表的下半段。平台列出的獲利因子是2.08，交易總次數79筆，勝率55.7%。這三個數字和前面的比較表是同一份平台結果。\n\n資料來源\nWindows回傳_2026-10-24/螢幕擷取畫面 2026-10-24 221025.png；加分改版_v7/結果_完整評估/摘要.json。',
   '最後看平台的設定畫面，追蹤倍數確實是2.5，進場預算倍數仍是3，畫面上的模型滑價是每邊1點。v7在平台的PF過2。2019到2025都是看過的資料，也還沒有樣本外驗證。每邊2點滑價雖已在公開資料模型測過，平台還沒有重跑。\n\n資料來源\nWindows回傳_2026-10-24/螢幕擷取畫面 2026-10-24 221109.png；加分改版_v7/結果_完整評估/摘要.json；加分改版_v8/改版結果與下一步.md；加分改版_v8/MultiCharts操作單.md。',
-  '課堂已介紹高低通道突破，所以不把單一指標說成創新。v7沿用長期趨勢、隔日盤中訂單與一口預算，只縮短獲利後追蹤距離。限制要明講：2019至2025的資料都看過，沒有樣本外驗證；平台還沒有用每邊2點滑價重跑。20萬元預算也不是實際損失上限。\n\n資料來源\n加分改版_v7/結果_完整評估/mc_calendar_2020_v6_control.json；加分改版_v7/結果_完整評估/mc_calendar_2020_trail2_5.json。\nWindows回傳_2026-10-24 截圖：221025、221109；Windows回傳_2026-10-24/v7.pla。',
   '結論是最終版v7在這張TXF1圖表的歷史回測四項門檻都過：PF 2.08、淨利260.68萬、近三年每年正獲利，最大策略虧損53.22萬低於最大年獲利74.46萬，差21.24萬。程式已匯出為v7.pla。2019至2025沒有樣本外資料，而且每邊2點滑價還沒在平台重跑。\n\n資料來源\nWindows回傳_2026-10-24 截圖：220622、221025、221109；Windows回傳_2026-10-24/v7.pla。\n加分改版_v7/結果_完整評估/摘要.json。',
   '這頁的停損定義已改成v7：峰值減2.5倍固定進場前波幅，停損價向下取整到1點。下方進場風險預算仍以3倍當前波幅估算，加上費用、滑價與最小跳動單位。20萬元只決定是否進場，不保證實際虧損不超過20萬元。\n\n資料來源\nWindows回傳_2026-10-24 截圖：221109；Windows回傳_2026-10-24/v7.pla。\n加分改版_v7/規則凍結.json。',
   '這是2019至2022開發期檢查，不是七年績效。10萬元版淨利21.30萬元、回撤42.74萬元，大於最大年獲利37.72萬元。20萬元主版淨利119.52萬元、回撤42.04萬元、最大年56.84萬元。30萬元淨利153.38萬元、回撤36.06萬元，開發期更好，但本輪主版在回測前已固定20萬元，沒有看結果後換成冠軍。鄰近設定只在開發期跑，不能把這張表拿來證明20%最適或穩健。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。',
@@ -2586,7 +2500,6 @@ export default [
   SummaryTopPage,
   SummaryBottomPage,
   SettingsPage,
-  Page21,
   Page22,
   Page23,
   Page24,
