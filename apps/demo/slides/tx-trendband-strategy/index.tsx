@@ -383,11 +383,7 @@ const Page03: Page = () => (
       rows={[
         ['商品與期間', '台指期，日線或分線，至少5年', 'TX日K，2019–2025共七年；每點200元［5］'],
         ['部位與本金', '一口、不加碼；初始資金100萬元', '一次0或1口，只做多，不放空'],
-        [
-          '交易成本',
-          '來回手續費1,000元',
-          '另加每邊1點滑價，是本研究額外的假設；1,000元沿用講義的固定成本，不代表實際券商費稅',
-        ],
+        ['交易成本', '來回手續費1,000元', '另加每邊1點滑價（200元），是本研究額外的假設'],
         ['結算', '參與結算', '持倉在月結算日了結，結算後重新判斷是否進場'],
         [
           '績效門檻',
@@ -436,7 +432,7 @@ const Page04: Page = () => (
     />
     <A_P size={28} margin="30px 0 0">
       {
-        '上述文獻都沒有驗證本策略或20%預算。200日均線、20日平均真實波幅、1倍緩衝帶、3倍固定波幅出場與20萬元進場預算，都是事前設定、再用台指期歷史資料檢驗的假說，不是文獻證明的最佳參數。真實波幅取「高減低、高減前收、低減前收」三者絕對值的最大值，20日採簡單平均。'
+        '文獻提供研究方向，具體參數由本研究設定：200日均線、20日平均真實波幅、1倍緩衝帶、3倍固定波幅出場與20萬元進場預算，都是事前設定、再用台指期歷史資料檢驗的假說。真實波幅取「高減低、高減前收、低減前收」三者絕對值的最大值，20日採簡單平均。'
       }
     </A_P>
   </Frame>
@@ -749,7 +745,7 @@ const Page11: Page = () => (
     />
     <A_P size={28} margin="24px 0 0">
       {
-        '20萬元是初始100萬元的20%，在任何v6回測前固定，是課堂風控假說。課堂限定一口，不能減成半口，只能在0與1口之間選擇。Moreira與Muir（2017）［3］支持高波動時降低曝險；Cederburg等人（2020）［4］提醒樣本內優勢不容易變成即時可實施的績效。兩者都沒有驗證本策略或20%預算。'
+        '20萬元是初始100萬元的20%，在任何v6回測前固定，是課堂風控假說。課堂限定一口，不能減成半口，只能在0與1口之間選擇。Moreira與Muir（2017）［3］支持高波動時降低曝險；Cederburg等人（2020）［4］指出樣本內優勢不容易變成即時可實施的績效。20%是本研究自行設定的參數。'
       }
     </A_P>
   </Frame>
@@ -2561,8 +2557,8 @@ export const notes: string[] = [
   '這份報告的最終策略是v7，前面先交代從原始均線一路改到v6的過程。v7只把獲利後追蹤停損距離從3倍改成2.5倍，進場預算仍用3倍波幅。今天更新的是MultiCharts TXF1平台實測，v1至v6的歷程頁採公開資料歷史回測。\n\n資料來源\nWindows回傳_2026-10-24 截圖：220622、221025、221051、221109；Windows回傳_2026-10-24/v7.pla。\n加分改版_v7/結果_完整評估/摘要.json。',
   '這頁是最終版v7在MultiCharts的結果。TXF1日K從2020年1月10日測到2025年底，初始100萬元，每邊佣金500元、滑價200元，只做多且最多一口。79筆交易，淨利260.68萬元，最大策略虧損53.22萬元，2024年獲利74.46萬元。PF是2.08，達到2以上的加分條件。前一版v6是PF 1.86、淨利224.32萬元。\n\n資料來源\nWindows回傳_2026-10-24 截圖：220622、221025、221109；Windows回傳_2026-10-24/v7.pla。',
   '目錄照作業要求的順序排。先交代作業要求和研究設定，再講策略從v1一路修到v7的過程。績效分兩段：v1到v6是公開資料回測，v7看MultiCharts實測和平台原始畫面。最後是策略發想、限制和結論，附錄放指標定義、預算檢查和程式節錄。\n\n資料來源\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁。',
-  '以Lecture05第31頁專題要求為準。近三年績效為正，本研究以2023、2024、2025各年皆為正來核對。滑價1點是研究額外假設，費用1,000元是講義固定成本，未聲稱是真實券商費稅明細。\n\n資料來源\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁；1151_智慧量化交易_課程介紹.pptx，第4–5頁。\n臺灣期貨交易所，臺股期貨契約規格：https://www.taifex.com.tw/cht/2/tX?menuid1=12 ，2026/10/20核對。',
-  'Moskowitz等人的時間序列動能研究涵蓋58種期貨與遠期契約，與本報告只做多的台指期均線規則不同。Faber的模型是月底檢查10個月均線，本研究改成每日判斷200日均線，屬於改編。Moreira與Muir提供高波動時降低風險的動機；Cederburg等人提醒樣本內優勢不易轉為即時可實施績效。上述來源都沒有驗證本策略或20%預算。\n\n資料來源\nMoskowitz, Ooi & Pedersen (2012), Time Series Momentum. https://www.aqr.com/Insights/Research/Journal-Article/Time-Series-Momentum 。Faber (2013), QTAA Update: Conclusions and FAQs. https://mebfaber.com/2013/06/14/qtaa-update-conclustions-and-faqs/ 。2026/10/20核對。\nMoreira & Muir (2016/2017), Volatility-Managed Portfolios. https://www.nber.org/papers/w22208 。Cederburg et al. (2020), On the performance of volatility-managed portfolios. https://www.sciencedirect.com/science/article/pii/S0304405X2030132X 。2026/10/20核對摘要。',
+  '以Lecture05第31頁專題要求為準。近三年績效為正，本研究以2023、2024、2025各年皆為正來核對。滑價1點是本研究額外的假設。\n\n資料來源\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁；1151_智慧量化交易_課程介紹.pptx，第4–5頁。\n臺灣期貨交易所，臺股期貨契約規格：https://www.taifex.com.tw/cht/2/tX?menuid1=12 ，2026/10/20核對。',
+  'Moskowitz等人的時間序列動能研究涵蓋58種期貨與遠期契約，與本報告只做多的台指期均線規則不同。Faber的模型是月底檢查10個月均線，本研究改成每日判斷200日均線，屬於改編。Moreira與Muir提供高波動時降低風險的動機；Cederburg等人提醒樣本內優勢不易轉為即時可實施績效。具體參數由本研究自行設定。\n\n資料來源\nMoskowitz, Ooi & Pedersen (2012), Time Series Momentum. https://www.aqr.com/Insights/Research/Journal-Article/Time-Series-Momentum 。Faber (2013), QTAA Update: Conclusions and FAQs. https://mebfaber.com/2013/06/14/qtaa-update-conclustions-and-faqs/ 。2026/10/20核對。\nMoreira & Muir (2016/2017), Volatility-Managed Portfolios. https://www.nber.org/papers/w22208 。Cederburg et al. (2020), On the performance of volatility-managed portfolios. https://www.sciencedirect.com/science/article/pii/S0304405X2030132X 。2026/10/20核對摘要。',
   '價格為期交所TX一般交易時段、未調整近月日K，保留到期與換月價差，沒有用現貨指數計算期貨損益。資料原先依時間切割，但經歷數次改版後，2019至2025已成為已看過資料。2026對v5曾是首次新資料，對根據其失敗而設計的v6則已不是。v6在2026年10月19日18:20台北時間凍結。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。\n公開資料回測/來源紀錄.json；風控改版_v5/2026新增來源紀錄.json。',
   '這頁把最早的兩版放在一起看。原始均線只用一條200日均線，收盤在上面就隔天開盤買一口，掉到下面就隔天開盤賣掉。v1在第一次回測之前就提出，只改趨勢判斷：均線上下各加一倍20日平均真實波幅，收盤要高過上緣才進場、低於下緣才出場，中間不動。兩版都沒有停損，結算日一律平倉，隔一個日盤再判斷。',
   '這是早期草稿的實際程式，原始均線和v1是同一支訊號，用Mode切換。Mode等於1時帶寬是0，就是原始均線；等於2時帶寬是一倍波幅。買賣都用Next Bar At Market，也就是收盤確認、隔天開盤成交。這份草稿當時沒有在平台編譯，結算用收盤價代理，公開資料回測則改用期交所最後結算價，兩者口徑不同。',
