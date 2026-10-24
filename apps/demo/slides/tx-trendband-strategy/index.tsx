@@ -229,14 +229,14 @@ const Page02: Page = () => (
 );
 
 const contents = [
-  { label: '研究設定', detail: '作業要求、設計依據、資料期間', page: 4 },
-  { label: '策略修正歷程', detail: 'v1到v7各版規則、程式與修正原因', page: 7 },
-  { label: '公開資料回測績效', detail: 'v1–v6同期間比較、v6年度損益與回撤', page: 24 },
-  { label: 'MultiCharts實測績效', detail: 'v6與v7對照、門檻核對、平台原始畫面', page: 30 },
-  { label: '策略發想與限制', detail: '和課堂方法的差異，證據範圍', page: 36 },
-  { label: '結論', detail: '', page: 37 },
-  { label: '附錄', detail: '指標定義、預算檢查、補充績效、程式節錄', page: 38 },
-  { label: '參考文獻', detail: '', page: 43 },
+  { label: '研究設定', detail: '作業要求、設計依據', page: 4 },
+  { label: '策略修正歷程', detail: 'v1到v7各版規則、程式與修正原因', page: 6 },
+  { label: '公開資料回測績效', detail: 'v1–v6同期間比較、v6年度損益與回撤', page: 23 },
+  { label: 'MultiCharts實測績效', detail: 'v6與v7對照、門檻核對、平台原始畫面', page: 29 },
+  { label: '策略發想與限制', detail: '和課堂方法的差異，證據範圍', page: 35 },
+  { label: '結論', detail: '', page: 36 },
+  { label: '附錄', detail: '指標定義、預算檢查、補充績效、程式節錄', page: 37 },
+  { label: '參考文獻', detail: '', page: 42 },
 ];
 
 const PageContents: Page = () => (
@@ -435,36 +435,6 @@ const Page04: Page = () => (
         '文獻提供研究方向，具體參數由本研究設定：200日均線、20日平均真實波幅、1倍緩衝帶、3倍固定波幅出場與20萬元進場預算，都是事前設定、再用台指期歷史資料檢驗的假說。真實波幅取「高減低、高減前收、低減前收」三者絕對值的最大值，20日採簡單平均。'
       }
     </A_P>
-  </Frame>
-);
-
-const Page05: Page = () => (
-  <Frame
-    title={'資料期間與驗證順序'}
-    source={
-      '來源：臺灣期貨交易所期貨每日行情與最後結算價，2017–2025年度檔與2026年1–10月月檔；下載網址與SHA256保存於來源紀錄'
-    }
-    takeaway={'v6所有現有績效都是歷史開發證據，沒有獨立樣本外結果'}
-  >
-    <A_P margin="0 0 30px">
-      {
-        '價格是臺灣期貨交易所TX一般交易時段的未調整近月日K：近月合約持有到結算日，下一交易日才換月，保留到期與換月價差；到期以官方最後結算價了結，不用現貨指數計算期貨損益。v1至v6的數字都是這份資料的公開資料回測。'
-      }
-    </A_P>
-    <A_Table
-      widths={[330, 1366]}
-      head={['資料', '用途與目前狀態']}
-      rows={[
-        ['2017–2018', '只供200日均線與20日波幅暖機，不列入作業損益'],
-        ['2019–2022', '開發期；倍數與預算的鄰近設定只在這段比較'],
-        ['2023–2025', '早期曾作保留期；之後每次改版都看過，已不算未使用資料'],
-        [
-          '2026/01/02–10/16',
-          'v5規則凍結後才下載的190根日K，是v5的首次新資料檢查，結果失敗；v6依這次失敗設計，對v6已是看過的資料',
-        ],
-        ['v6凍結時點', '2026年10月19日18:20（台北時間）凍結規則與程式，之後才跑任何v6回測'],
-      ]}
-    />
   </Frame>
 );
 
@@ -2559,7 +2529,6 @@ export const notes: string[] = [
   '目錄照作業要求的順序排。先交代作業要求和研究設定，再講策略從v1一路修到v7的過程。績效分兩段：v1到v6是公開資料回測，v7看MultiCharts實測和平台原始畫面。最後是策略發想、限制和結論，附錄放指標定義、預算檢查和程式節錄。\n\n資料來源\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁。',
   '以Lecture05第31頁專題要求為準。近三年績效為正，本研究以2023、2024、2025各年皆為正來核對。滑價1點是本研究額外的假設。\n\n資料來源\nLecture05_MultiCharts策略開發實務.pptx，第31–32頁；1151_智慧量化交易_課程介紹.pptx，第4–5頁。\n臺灣期貨交易所，臺股期貨契約規格：https://www.taifex.com.tw/cht/2/tX?menuid1=12 ，2026/10/20核對。',
   'Moskowitz等人的時間序列動能研究涵蓋58種期貨與遠期契約，與本報告只做多的台指期均線規則不同。Faber的模型是月底檢查10個月均線，本研究改成每日判斷200日均線，屬於改編。Moreira與Muir提供高波動時降低風險的動機；Cederburg等人提醒樣本內優勢不易轉為即時可實施績效。具體參數由本研究自行設定。\n\n資料來源\nMoskowitz, Ooi & Pedersen (2012), Time Series Momentum. https://www.aqr.com/Insights/Research/Journal-Article/Time-Series-Momentum 。Faber (2013), QTAA Update: Conclusions and FAQs. https://mebfaber.com/2013/06/14/qtaa-update-conclustions-and-faqs/ 。2026/10/20核對。\nMoreira & Muir (2016/2017), Volatility-Managed Portfolios. https://www.nber.org/papers/w22208 。Cederburg et al. (2020), On the performance of volatility-managed portfolios. https://www.sciencedirect.com/science/article/pii/S0304405X2030132X 。2026/10/20核對摘要。',
-  '價格為期交所TX一般交易時段、未調整近月日K，保留到期與換月價差，沒有用現貨指數計算期貨損益。資料原先依時間切割，但經歷數次改版後，2019至2025已成為已看過資料。2026對v5曾是首次新資料，對根據其失敗而設計的v6則已不是。v6在2026年10月19日18:20台北時間凍結。\n\n資料來源\n風控改版_v6/結果/full_primary200k.json；風控改版_v6/結果/continuous_primary200k.json；風控改版_v6/本輪固定設定.json；風控改版_v6/規則凍結.json。\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。\n公開資料回測/來源紀錄.json；風控改版_v5/2026新增來源紀錄.json。',
   '這頁把最早的兩版放在一起看。原始均線只用一條200日均線，收盤在上面就隔天開盤買一口，掉到下面就隔天開盤賣掉。v1在第一次回測之前就提出，只改趨勢判斷：均線上下各加一倍20日平均真實波幅，收盤要高過上緣才進場、低於下緣才出場，中間不動。兩版都沒有停損，結算日一律平倉，隔一個日盤再判斷。',
   '這是早期草稿的實際程式，原始均線和v1是同一支訊號，用Mode切換。Mode等於1時帶寬是0，就是原始均線；等於2時帶寬是一倍波幅。買賣都用Next Bar At Market，也就是收盤確認、隔天開盤成交。這份草稿當時沒有在平台編譯，結算用收盤價代理，公開資料回測則改用期交所最後結算價，兩者口徑不同。',
   '一開始希望用最簡單的趨勢規則建立比較基準。v1在第一次價格回測前就提出波動緩衝，假說是減少盤整交易，代價是較晚進出。原始無緩衝均線版的日結回撤也是89.34萬元，最大年獲利74.46萬元；v1緩衝版最大年獲利76.70萬元，均未過風險門檻。問題在持倉回撤與出場速度，不是獲利不足。\n\n資料來源\n策略發展歷程_從原始均線到公開資料回測.md；策略發展歷程_風控改版v2到v6.md。\n公開資料回測/結果/full_mode1.json；公開資料回測/結果/full_mode2.json。',
@@ -2605,7 +2574,6 @@ export default [
   PageContents,
   Page03,
   Page04,
-  Page05,
   VersionV1Page,
   VersionV1CodePage,
   Page06,
