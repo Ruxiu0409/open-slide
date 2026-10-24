@@ -259,7 +259,7 @@ const v1Rows: { label: string; base: string; band: string; shared?: boolean }[] 
   },
   {
     label: '結算日',
-    base: '兩版相同：結算日以期交所最後結算價平倉；次一交易日整天空手，收盤重新判斷，最早再隔日開盤進場',
+    base: '兩版相同：結算日以收盤價代理平倉；次一交易日整天空手，收盤重新判斷，最早再隔日開盤進場',
     band: '',
     shared: true,
   },
