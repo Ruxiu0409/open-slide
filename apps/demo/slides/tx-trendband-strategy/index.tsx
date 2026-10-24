@@ -322,1167 +322,564 @@ const PageContents: Page = () => (
   </Frame>
 );
 
+const A_border = '1px solid #D8D2C4';
+
+const A_Table = ({
+  widths,
+  head,
+  rows,
+  fontSize = 28,
+  padding = '10px 16px',
+}: {
+  widths: number[];
+  head: string[];
+  rows: ReactNode[][];
+  fontSize?: number;
+  padding?: string;
+}) => (
+  <table
+    data-evidence="table"
+    style={{
+      width: 1696,
+      tableLayout: 'fixed',
+      borderCollapse: 'collapse',
+      fontSize,
+      lineHeight: 1.4,
+    }}
+  >
+    <colgroup>
+      {widths.map((w, i) => (
+        <col key={`${i}-${w}`} style={{ width: w }} />
+      ))}
+    </colgroup>
+    <thead>
+      <tr>
+        {head.map((h) => (
+          <th
+            key={h}
+            style={{
+              background: 'var(--osd-text)',
+              color: 'var(--osd-bg)',
+              fontWeight: 600,
+              textAlign: 'left',
+              padding,
+              border: A_border,
+            }}
+          >
+            {h}
+          </th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row, r) => (
+        <tr key={`row-${r}`} style={{ background: r % 2 === 0 ? '#FAF8F2' : '#EAE5D8' }}>
+          {row.map((cell, c) => (
+            <td
+              key={`cell-${r}-${c}`}
+              style={{
+                padding,
+                border: A_border,
+                verticalAlign: 'middle',
+                whiteSpace: 'pre-line',
+              }}
+            >
+              {cell}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+);
+
+const A_P = ({
+  children,
+  size = 30,
+  color,
+  margin = 0,
+}: {
+  children: ReactNode;
+  size?: number;
+  color?: string;
+  margin?: string | number;
+}) => (
+  <p style={{ fontSize: size, lineHeight: 1.45, color: color ?? 'var(--osd-text)', margin }}>
+    {children}
+  </p>
+);
+
 const Page03: Page = () => (
   <Frame
     title={'作業要求與研究設定'}
-    source={'來源：Lecture05第31–32頁；近三年先採逐年為正的較嚴格解讀'}
+    source={
+      '來源：課程講義Lecture05第31–32頁、1151智慧量化交易課程介紹第4–5頁［7］；臺灣期貨交易所臺股期貨契約規格［5］，2026/10/20核對'
+    }
   >
-    <table
-      data-evidence="table"
-      style={{
-        width: 1696,
-        height: 585,
-        tableLayout: 'fixed',
-        borderCollapse: 'collapse',
-        fontSize: 34,
-        lineHeight: 1.4,
-      }}
-    >
-      <colgroup>
-        <col style={{ width: 328.45 }} />
-        <col style={{ width: 1367.55 }} />
-      </colgroup>
-      <thead>
-        <tr>
-          <th
-            style={{
-              background: 'var(--osd-text)',
-              color: 'var(--osd-bg)',
-              fontWeight: 600,
-              textAlign: 'left',
-              padding: '15px 18px',
-              border: '1px solid #D8D2C4',
-            }}
-          >
-            {'項目'}
-          </th>
-          <th
-            style={{
-              background: 'var(--osd-text)',
-              color: 'var(--osd-bg)',
-              fontWeight: 600,
-              textAlign: 'left',
-              padding: '15px 18px',
-              border: '1px solid #D8D2C4',
-            }}
-          >
-            {'講義要求與本研究設定'}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style={{ background: '#FAF8F2' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'商品與期間'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'台指期TX、日K；2019–2025，共七年'}
-          </td>
-        </tr>
-        <tr style={{ background: '#EAE5D8' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'部位與本金'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'一次0或1口、只做多、不加碼；初始100萬元'}
-          </td>
-        </tr>
-        <tr style={{ background: '#FAF8F2' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'成本與結算'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'來回費1,000元；另加每邊1點滑價；參與月結算'}
-          </td>
-        </tr>
-        <tr style={{ background: '#EAE5D8' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'績效門檻'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'近三年為正、淨利＞120萬元、最大策略虧損＜最大年獲利'}
-          </td>
-        </tr>
-        <tr style={{ background: '#FAF8F2' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'報告內容'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'發想、程式、優缺點、修正、績效；簡報與.pla'}
-          </td>
-        </tr>
-        <tr style={{ background: '#EAE5D8' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'評分比重'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'策略合理性40%、策略績效30%、策略發想30%'}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <A_Table
+      widths={[210, 690, 796]}
+      head={['項目', '講義要求', '本研究的解讀與設定']}
+      rows={[
+        ['商品與期間', '台指期，日線或分線，至少5年', 'TX日K，2019–2025共七年；每點200元［5］'],
+        ['部位與本金', '一口、不加碼；初始資金100萬元', '一次0或1口，只做多，不放空'],
+        [
+          '交易成本',
+          '來回手續費1,000元',
+          '另加每邊1點滑價，是本研究額外的假設；1,000元沿用講義的固定成本，不代表實際券商費稅',
+        ],
+        ['結算', '參與結算', '持倉在月結算日了結，結算後重新判斷是否進場'],
+        [
+          '績效門檻',
+          '近三年績效為正、淨利＞120萬元、最大策略虧損＜最大年獲利',
+          '講義沒有說明「近三年為正」是否逐年；本研究採較嚴格的解讀：2023、2024、2025各年皆為正',
+        ],
+        [
+          '繳交內容',
+          '發想、程式、優缺點、修正、績效；簡報與.pla',
+          '期中報告依課程介紹第4頁，暫訂10月27日',
+        ],
+        [
+          '評分比重',
+          '策略合理性40%、策略績效30%、策略發想30%（第32頁）',
+          '這是專題本身的評分；課程介紹第5頁的「期中30%」是整門課的總成績比重，兩者層級不同',
+        ],
+      ]}
+    />
   </Frame>
 );
 
 const Page04: Page = () => (
   <Frame
     title={'200日趨勢與波動的設計依據'}
-    source={''}
+    source={
+      '文獻：［1］Moskowitz, Ooi & Pedersen (2012)；［2］Faber (2013)；［3］Moreira & Muir (2017)；［4］Cederburg et al. (2020)。完整書目見參考文獻頁'
+    }
     takeaway={'文獻提供動機，台指期規則與參數須由自己的資料驗證'}
   >
-    <div style={{ display: 'flex', gap: 96 }}>
-      <Column title={'文獻支持的研究方向'}>
-        <p style={{ margin: 0 }}>{'跨市場期貨研究提供趨勢追蹤的實證動機'}</p>
-        <p style={{ margin: 0 }}>{'Faber以10個月均線判斷長期趨勢'}</p>
-        <p style={{ margin: 0 }}>{'高波動降低曝險，作為風控研究方向'}</p>
-      </Column>
-      <Column title={'本研究另行驗證的假說'}>
-        <p style={{ margin: 0 }}>{'日K、200日均線與20日平均真實波幅'}</p>
-        <p style={{ margin: 0 }}>{'1倍波幅緩衝帶、3倍固定波幅出場'}</p>
-        <p style={{ margin: 0 }}>{'20萬元進場預算，均非文獻證明的最佳參數'}</p>
-      </Column>
-    </div>
+    <A_Table
+      widths={[400, 620, 676]}
+      head={['文獻', '提供的依據', '與本研究的差異']}
+      rows={[
+        [
+          'Moskowitz、Ooi與Pedersen（2012）［1］',
+          '涵蓋58種期貨與遠期契約的時間序列動能，支持測試趨勢追蹤',
+          '本研究只做多台指期一口，用均線判斷趨勢',
+        ],
+        [
+          'Faber（2013）［2］',
+          '每月底檢查10個月均線，決定持有或空手',
+          '本研究改成每日判斷200日均線，屬於改編，不是原規則',
+        ],
+        [
+          'Moreira與Muir（2017）［3］',
+          '高波動時降低曝險的研究動機',
+          '本研究不能減成半口，只能用預算決定做0或1口',
+        ],
+        [
+          'Cederburg等人（2020）［4］',
+          '樣本內的優勢不容易變成即時可實施的績效',
+          '本研究所有歷史數字都屬於開發證據',
+        ],
+      ]}
+    />
+    <A_P size={28} margin="30px 0 0">
+      {
+        '上述文獻都沒有驗證本策略或20%預算。200日均線、20日平均真實波幅、1倍緩衝帶、3倍固定波幅出場與20萬元進場預算，都是事前設定、再用台指期歷史資料檢驗的假說，不是文獻證明的最佳參數。真實波幅取「高減低、高減前收、低減前收」三者絕對值的最大值，20日採簡單平均。'
+      }
+    </A_P>
   </Frame>
 );
 
 const Page05: Page = () => (
   <Frame
     title={'資料期間與驗證順序'}
-    source={''}
+    source={
+      '來源：臺灣期貨交易所期貨每日行情與最後結算價，2017–2025年度檔與2026年1–10月月檔；下載網址與SHA256保存於來源紀錄'
+    }
     takeaway={'v6所有現有績效都是歷史開發證據，沒有獨立樣本外結果'}
   >
-    <table
-      data-evidence="table"
-      style={{
-        width: 1696,
-        height: 585,
-        tableLayout: 'fixed',
-        borderCollapse: 'collapse',
-        fontSize: 34,
-        lineHeight: 1.4,
-      }}
-    >
-      <colgroup>
-        <col style={{ width: 388.17 }} />
-        <col style={{ width: 1307.83 }} />
-      </colgroup>
-      <thead>
-        <tr>
-          <th
-            style={{
-              background: 'var(--osd-text)',
-              color: 'var(--osd-bg)',
-              fontWeight: 600,
-              textAlign: 'left',
-              padding: '15px 18px',
-              border: '1px solid #D8D2C4',
-            }}
-          >
-            {'資料'}
-          </th>
-          <th
-            style={{
-              background: 'var(--osd-text)',
-              color: 'var(--osd-bg)',
-              fontWeight: 600,
-              textAlign: 'left',
-              padding: '15px 18px',
-              border: '1px solid #D8D2C4',
-            }}
-          >
-            {'用途與目前狀態'}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style={{ background: '#FAF8F2' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'2017–2018'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'指標前置資料，不列入作業獲利'}
-          </td>
-        </tr>
-        <tr style={{ background: '#EAE5D8' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'2019–2022'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'主要開發與鄰近參數檢查'}
-          </td>
-        </tr>
-        <tr style={{ background: '#FAF8F2' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'2023–2025'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'早期曾作驗證／保留期；後續改版已反覆看過'}
-          </td>
-        </tr>
-        <tr style={{ background: '#EAE5D8' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'2026/01–10/16'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'v5首次新資料檢查失敗；v6已用來診斷與改版'}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <A_P margin="0 0 30px">
+      {
+        '價格是臺灣期貨交易所TX一般交易時段的未調整近月日K：近月合約持有到結算日，下一交易日才換月，保留到期與換月價差；到期以官方最後結算價了結，不用現貨指數計算期貨損益。v1至v6的數字都是這份資料的公開資料回測。'
+      }
+    </A_P>
+    <A_Table
+      widths={[330, 1366]}
+      head={['資料', '用途與目前狀態']}
+      rows={[
+        ['2017–2018', '只供200日均線與20日波幅暖機，不列入作業損益'],
+        ['2019–2022', '開發期；倍數與預算的鄰近設定只在這段比較'],
+        ['2023–2025', '早期曾作保留期；之後每次改版都看過，已不算未使用資料'],
+        [
+          '2026/01/02–10/16',
+          'v5規則凍結後才下載的190根日K，是v5的首次新資料檢查，結果失敗；v6依這次失敗設計，對v6已是看過的資料',
+        ],
+        ['v6凍結時點', '2026年10月19日18:20（台北時間）凍結規則與程式，之後才跑任何v6回測'],
+      ]}
+    />
   </Frame>
 );
 
 const Page06: Page = () => (
   <Frame
     title={'原始均線與v1緩衝帶'}
-    source={''}
+    source={
+      '公開資料回測，2019–2025，一口，來回1,000元＋每邊1點滑價；日結回撤以每日收盤評價、含未平倉損益；年獲利依平倉年度認列'
+    }
     takeaway={'v1日結回撤89.34萬元，仍高於最大年獲利76.70萬元'}
   >
-    <div style={{ display: 'flex', gap: 96 }}>
-      <Column title={'原始200日均線'}>
-        <p style={{ margin: 0 }}>{'收盤高於均線，次日開盤做多'}</p>
-        <p style={{ margin: 0 }}>{'低於均線，次日開盤退出'}</p>
-        <p style={{ margin: 0 }}>{'規則簡單，盤整可能反覆切換'}</p>
-      </Column>
-      <Column title={'v1加入波動緩衝'}>
-        <p style={{ margin: 0 }}>{'上緣＝均線＋20日平均真實波幅'}</p>
-        <p style={{ margin: 0 }}>{'下緣＝均線－20日平均真實波幅'}</p>
-        <p style={{ margin: 0 }}>{'突破才切換方向，帶內保留原狀態'}</p>
-      </Column>
-    </div>
+    <A_P color={muted} margin="0 0 26px">
+      {
+        'v1規則見前一頁。原始均線版是比較基準；緩衝帶在第一次價格回測前就提出，假說是減少盤整時的來回交易。'
+      }
+    </A_P>
+    <A_Table
+      widths={[260, 560, 220, 150, 230, 276]}
+      head={['版本', '規則與用意', '七年淨利', '交易', '日結回撤', '最大年獲利']}
+      rows={[
+        [
+          '原始200日均線',
+          '收盤穿越均線，次日開盤進出；最簡單的基準',
+          '332.02萬',
+          '83筆',
+          '89.34萬',
+          '74.46萬',
+        ],
+        [
+          'v1緩衝帶',
+          '均線±1倍20日平均真實波幅，帶內維持原狀態',
+          '339.08萬',
+          '68筆',
+          '89.34萬',
+          '76.70萬',
+        ],
+      ]}
+    />
+    <A_P margin="30px 0 0">
+      {
+        '緩衝帶減少了交易，訊號出場由17筆降為4筆，但兩版的最大日結回撤相同，都來自2024年7月11日到8月5日的急跌：8月5日收盤仍在v1下緣之上，沒有觸發退出。問題在持倉回撤與出場速度，不是獲利不足。v1的已平倉回撤57.38萬元雖小於年獲利，本研究不改用較有利的口徑。'
+      }
+    </A_P>
   </Frame>
 );
 
 const Page07: Page = () => (
   <Frame
     title={'v2追蹤退出仍遇到跳空損失'}
-    source={''}
+    source={
+      '公開資料回測，一口，來回1,000元＋每邊1點滑價。OHLC回撤：用日盤開高低收估算盤中權益，假設先到最高價再到最低價，是對策略不利的保守界線'
+    }
     takeaway={'七年OHLC回撤89.56萬元＞最大年獲利82.24萬元，未通過'}
   >
-    <p style={{ fontSize: 38, color: muted, margin: '-10px 0 45px' }}>
-      {'固定進場前波幅，避免下跌時出場線反而放寬'}
-    </p>
-    <table
-      data-evidence="table"
-      style={{
-        width: 1696,
-        height: 475,
-        tableLayout: 'fixed',
-        borderCollapse: 'collapse',
-        fontSize: 35,
-        lineHeight: 1.4,
-      }}
-    >
-      <colgroup>
-        <col style={{ width: 388.17 }} />
-        <col style={{ width: 1307.83 }} />
-      </colgroup>
-      <thead>
-        <tr>
-          <th
-            style={{
-              background: 'var(--osd-text)',
-              color: 'var(--osd-bg)',
-              fontWeight: 600,
-              textAlign: 'left',
-              padding: '15px 18px',
-              border: '1px solid #D8D2C4',
-            }}
-          >
-            {'事件'}
-          </th>
-          <th
-            style={{
-              background: 'var(--osd-text)',
-              color: 'var(--osd-bg)',
-              fontWeight: 600,
-              textAlign: 'left',
-              padding: '15px 18px',
-              border: '1px solid #D8D2C4',
-            }}
-          >
-            {'實際序列'}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style={{ background: '#FAF8F2' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'2024/07/17'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'月結算後，長期趨勢仍偏多'}
-          </td>
-        </tr>
-        <tr style={{ background: '#EAE5D8' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'2024/07/19'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'重新進場23,149點；固定波幅371.05點'}
-          </td>
-        </tr>
-        <tr style={{ background: '#FAF8F2' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'2024/08/02'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'收盤才確認觸發追蹤退出'}
-          </td>
-        </tr>
-        <tr style={{ background: '#EAE5D8' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'2024/08/05'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'跳空後20,711點賣出；該筆淨虧48.86萬元'}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <A_P margin="0 0 28px">
+      {
+        'v2規則見前一頁。v2想解決200日均線退出太慢的問題，固定進場前波幅，避免下跌時出場線反而放寬。開發期2019–2022淨利160.24萬元、OHLC回撤33.84萬元，通過；延伸到2019–2025，淨利358.44萬元，卻遇到下面這筆交易。'
+      }
+    </A_P>
+    <A_Table
+      widths={[300, 1396]}
+      head={['日期', '實際序列']}
+      fontSize={30}
+      rows={[
+        ['2024/07/17', '月結算平倉；200日趨勢仍偏多，新合約被當成新交易'],
+        ['2024/07/19', '重新進場23,149點；固定波幅371.05點，追蹤線約22,035.85點'],
+        ['2024/08/02', '收盤跌破追蹤線，規則要等收盤才確認退出'],
+        ['2024/08/05', '開盤跳空，20,711點賣出（含1點滑價）；該筆淨虧48.86萬元'],
+      ]}
+    />
+    <A_P margin="28px 0 0">
+      {
+        '這筆不能事後假設在22,035.85點附近成交。失敗包含兩個問題：結算後在弱勢中重新進場，以及等收盤才處理風險。v3、v4先試著處理前者，v5處理後者。'
+      }
+    </A_P>
   </Frame>
 );
 
 const Page08: Page = () => (
   <Frame
     title={'v3與v4的進場修正都未通過'}
-    source={'相同2019–2025期間、一口與成本；金額為新臺幣'}
+    source={
+      '公開資料回測，2019–2025，一口，來回1,000元＋每邊1點滑價；OHLC回撤為日盤開高低收估算的保守界線；年獲利依平倉年度認列'
+    }
     takeaway={'v3錯過未創新高的反彈；v4頻繁切換，後段回撤更大'}
   >
-    <table
-      data-evidence="table"
-      style={{
-        width: 1696,
-        height: 585,
-        tableLayout: 'fixed',
-        borderCollapse: 'collapse',
-        fontSize: 34,
-        lineHeight: 1.4,
-      }}
-    >
-      <colgroup>
-        <col style={{ width: 164.23 }} />
-        <col style={{ width: 761.41 }} />
-        <col style={{ width: 268.73 }} />
-        <col style={{ width: 501.63 }} />
-      </colgroup>
-      <thead>
-        <tr>
-          <th
-            style={{
-              background: 'var(--osd-text)',
-              color: 'var(--osd-bg)',
-              fontWeight: 600,
-              textAlign: 'left',
-              padding: '15px 18px',
-              border: '1px solid #D8D2C4',
-            }}
-          >
-            {'版本'}
-          </th>
-          <th
-            style={{
-              background: 'var(--osd-text)',
-              color: 'var(--osd-bg)',
-              fontWeight: 600,
-              textAlign: 'left',
-              padding: '15px 18px',
-              border: '1px solid #D8D2C4',
-            }}
-          >
-            {'修改與預期'}
-          </th>
-          <th
-            style={{
-              background: 'var(--osd-text)',
-              color: 'var(--osd-bg)',
-              fontWeight: 600,
-              textAlign: 'left',
-              padding: '15px 18px',
-              border: '1px solid #D8D2C4',
-            }}
-          >
-            {'七年淨利'}
-          </th>
-          <th
-            style={{
-              background: 'var(--osd-text)',
-              color: 'var(--osd-bg)',
-              fontWeight: 600,
-              textAlign: 'left',
-              padding: '15px 18px',
-              border: '1px solid #D8D2C4',
-            }}
-          >
-            {'OHLC回撤／最大年獲利'}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style={{ background: '#FAF8F2' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'v3'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'收盤突破前20日高點才進場\n減少下跌中的結算後重進'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'126.94萬'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'88.06萬／52.96萬'}
-          </td>
-        </tr>
-        <tr style={{ background: '#EAE5D8' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'v4'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'長期趨勢內改用20日均線進出\n希望較早離開弱勢行情'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'159.76萬'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'123.22萬／44.22萬'}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <A_P color={muted} margin="0 0 26px">
+      {'兩版規則見前一頁。兩版都針對v2「結算後在弱勢中重進」的問題修改進場或短期退出。'}
+    </A_P>
+    <A_Table
+      widths={[110, 520, 190, 360, 516]}
+      head={['版本', '想解決的問題與修改', '七年淨利', 'OHLC回撤／最大年獲利', '未通過的原因']}
+      rows={[
+        [
+          'v3',
+          '避免下跌中重進：收盤須突破前20日最高價（不含當日）才進場',
+          '126.94萬',
+          '88.06萬／52.96萬',
+          '回撤過大；2025年虧4.48萬元，近三年未逐年為正',
+        ],
+        [
+          'v4',
+          '較早離開弱勢行情：長期趨勢內改用20日均線進出',
+          '159.76萬',
+          '123.22萬／44.22萬',
+          '頻繁切換又錯過反彈，回撤比v3更大',
+        ],
+      ]}
+    />
+    <A_P margin="30px 0 0">
+      {
+        '兩版在開發期2019–2022都通過風險比較，延伸到七年卻失敗；只挑開發期結果，就會選到這兩版。兩個分支都保留為失敗紀錄，主策略回到v2的長期趨勢與固定波幅出場，改從出場時間著手。'
+      }
+    </A_P>
   </Frame>
 );
 
 const Page09: Page = () => (
   <Frame
     title={'v5先算好隔日日盤出場線'}
-    source={''}
+    source={
+      '公開資料回測的成交假設；MultiCharts官方文件Stop、Intra-bar Price Movement Assumptions［6］，2026/10/20核對'
+    }
     takeaway={'當日最高價不能回頭提高當日已生效的停損線'}
   >
-    <table
-      data-evidence="table"
-      style={{
-        width: 1696,
-        height: 585,
-        tableLayout: 'fixed',
-        borderCollapse: 'collapse',
-        fontSize: 34,
-        lineHeight: 1.4,
-      }}
-    >
-      <colgroup>
-        <col style={{ width: 313.52 }} />
-        <col style={{ width: 1382.48 }} />
-      </colgroup>
-      <thead>
-        <tr>
-          <th
-            style={{
-              background: 'var(--osd-text)',
-              color: 'var(--osd-bg)',
-              fontWeight: 600,
-              textAlign: 'left',
-              padding: '15px 18px',
-              border: '1px solid #D8D2C4',
-            }}
-          >
-            {'時間'}
-          </th>
-          <th
-            style={{
-              background: 'var(--osd-text)',
-              color: 'var(--osd-bg)',
-              fontWeight: 600,
-              textAlign: 'left',
-              padding: '15px 18px',
-              border: '1px solid #D8D2C4',
-            }}
-          >
-            {'可使用資訊與成交規則'}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style={{ background: '#FAF8F2' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'當日收盤'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'只用已完成收盤資料，算出明日日盤賣出停損價'}
-          </td>
-        </tr>
-        <tr style={{ background: '#EAE5D8' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'次日開盤'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'若開盤≤停損價，以開盤價減1點賣出'}
-          </td>
-        </tr>
-        <tr style={{ background: '#FAF8F2' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'次日盤中'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'否則最低價觸線，以停損價減1點賣出'}
-          </td>
-        </tr>
-        <tr style={{ background: '#EAE5D8' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'成交限制'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'線向下取整至1點；實際進場當天沒有盤中停損'}
-          </td>
-        </tr>
-        <tr style={{ background: '#FAF8F2' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'重新進場'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'停損當日關閉目標；最早再隔一個交易日開盤重進'}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <A_P margin="0 0 24px">
+      {
+        'v5規則見前一頁。v5要解決v2「等收盤才確認」的問題：v2的1,104個隔夜持倉日中，有43日盤中觸及前一收盤已知的追蹤線，其中18日收盤又站回線上。這是改用盤中停損的動機，不代表能省下這43日的損失。'
+      }
+    </A_P>
+    <A_Table
+      widths={[290, 1406]}
+      head={['時間', '可使用的資訊與成交規則']}
+      padding="9px 16px"
+      rows={[
+        ['當日收盤', '只用已完成的收盤資料，算出明日日盤的賣出停損價'],
+        ['次日開盤', '若開盤≤停損價，視為跳空，以開盤價減1點賣出'],
+        ['次日盤中', '否則最低價觸及停損線時，以停損價減1點賣出'],
+        ['成交限制', '停損線向下取整到1點；實際進場當天沒有盤中停損'],
+        ['重新進場', '停損當日不再進場；最早隔一個交易日開盤重進'],
+      ]}
+    />
+    <A_P margin="24px 0 0">
+      {
+        '停損單參照MultiCharts的Stop指令；平台以K棒的開高低收模擬盤中成交［6］。本研究對跳空的處理較保守，但兩者的成交模擬沒有逐筆對照，也不保證實盤能在停損價成交。'
+      }
+    </A_P>
   </Frame>
 );
 
 const Page10: Page = () => (
   <Frame
     title={'v5在首次2026新資料檢查失敗'}
-    source={'單位：萬元；2026僅至10/16；完整年度最大獲利為2024年'}
+    source={
+      '公開資料回測，初始100萬元，一口，來回1,000元＋每邊1點滑價；單位萬元；2026僅至10/16；OHLC回撤為日盤開高低收估算的保守界線'
+    }
     takeaway={'2026重置測試仍賺93.14萬元，回撤卻達186.94萬元'}
   >
-    <svg
-      data-evidence="chart"
-      role="img"
-      aria-label={'v5在首次2026新資料檢查失敗'}
-      width={1696}
-      height={590}
-      viewBox="0 0 1696 590"
-      style={{ fontFamily: 'var(--osd-font-body)' }}
-    >
-      <line x1="110" x2="1668" y1="452.0" y2="452.0" stroke="#D8D2C4" strokeWidth="1.6" />
-      <text x={88.0} y={461.0} textAnchor="end" fontSize={26} fontWeight={400} fill="#77726A">
-        {'0'}
-      </text>
-      <line
-        x1="110"
-        x2="1668"
-        y1="357.22727272727275"
-        y2="357.22727272727275"
-        stroke="#D8D2C4"
-        strokeWidth="1"
-      />
-      <text x={88.0} y={366.23} textAnchor="end" fontSize={26} fontWeight={400} fill="#77726A">
-        {'50'}
-      </text>
-      <line
-        x1="110"
-        x2="1668"
-        y1="262.45454545454544"
-        y2="262.45454545454544"
-        stroke="#D8D2C4"
-        strokeWidth="1"
-      />
-      <text x={88.0} y={271.45} textAnchor="end" fontSize={26} fontWeight={400} fill="#77726A">
-        {'100'}
-      </text>
-      <line
-        x1="110"
-        x2="1668"
-        y1="167.6818181818182"
-        y2="167.6818181818182"
-        stroke="#D8D2C4"
-        strokeWidth="1"
-      />
-      <text x={88.0} y={176.68} textAnchor="end" fontSize={26} fontWeight={400} fill="#77726A">
-        {'150'}
-      </text>
-      <line
-        x1="110"
-        x2="1668"
-        y1="72.90909090909088"
-        y2="72.90909090909088"
-        stroke="#D8D2C4"
-        strokeWidth="1"
-      />
-      <text x={88.0} y={81.91} textAnchor="end" fontSize={26} fontWeight={400} fill="#77726A">
-        {'200'}
-      </text>
-      <text x={88.0} y={16.0} textAnchor="end" fontSize={25} fontWeight={400} fill="#77726A">
-        {'萬元'}
-      </text>
-      <rect x="329.50" y="329.67" width="161.00" height="122.33" rx="3" fill="#B4432A" />
-      <text
-        x={410.0}
-        y={314.67}
-        textAnchor="middle"
-        fontSize={32}
-        fontWeight={400}
-        fill="var(--osd-text)"
+    <div style={{ display: 'flex', gap: 56 }}>
+      <svg
+        data-evidence="chart"
+        role="img"
+        aria-label={'v5在首次2026新資料檢查失敗'}
+        width={1010}
+        height={590}
+        viewBox="0 0 1010 590"
+        style={{ fontFamily: 'var(--osd-font-body)', flexShrink: 0 }}
       >
-        {'64.54'}
-      </text>
-      <rect x="499.50" y="270.19" width="161.00" height="181.81" rx="3" fill="#2F6B4F" />
-      <text
-        x={580.0}
-        y={255.19}
-        textAnchor="middle"
-        fontSize={32}
-        fontWeight={400}
-        fill="var(--osd-text)"
-      >
-        {'95.92'}
-      </text>
-      <text x={499.5} y={520.0} textAnchor="middle" fontSize={29} fontWeight={400} fill="#77726A">
-        {'2019–2025'}
-      </text>
-      <rect x="1108.50" y="97.66" width="161.00" height="354.34" rx="3" fill="#B4432A" />
-      <text
-        x={1189.0}
-        y={82.66}
-        textAnchor="middle"
-        fontSize={32}
-        fontWeight={400}
-        fill="var(--osd-text)"
-      >
-        {'186.94'}
-      </text>
-      <rect x="1278.50" y="270.19" width="161.00" height="181.81" rx="3" fill="#2F6B4F" />
-      <text
-        x={1359.0}
-        y={255.19}
-        textAnchor="middle"
-        fontSize={32}
-        fontWeight={400}
-        fill="var(--osd-text)"
-      >
-        {'95.92'}
-      </text>
-      <text x={1278.5} y={520.0} textAnchor="middle" fontSize={29} fontWeight={400} fill="#77726A">
-        {'2019–2026/10/16'}
-      </text>
-      <rect x="548.0" y="558" width="16" height="16" rx="2" fill="#B4432A" />
-      <text
-        x={576.0}
-        y={574.0}
-        textAnchor="start"
-        fontSize={27}
-        fontWeight={400}
-        fill="var(--osd-text)"
-      >
-        {'OHLC回撤界線'}
-      </text>
-      <rect x="834.0" y="558" width="16" height="16" rx="2" fill="#2F6B4F" />
-      <text
-        x={862.0}
-        y={574.0}
-        textAnchor="start"
-        fontSize={27}
-        fontWeight={400}
-        fill="var(--osd-text)"
-      >
-        {'最大完整年平倉獲利'}
-      </text>
-    </svg>
+        <line x1="110" x2="990" y1="452.0" y2="452.0" stroke="#D8D2C4" strokeWidth="1.6" />
+        <text x={88.0} y={461.0} textAnchor="end" fontSize={26} fill="#77726A">
+          {'0'}
+        </text>
+        <line x1="110" x2="990" y1="357.23" y2="357.23" stroke="#D8D2C4" strokeWidth="1" />
+        <text x={88.0} y={366.23} textAnchor="end" fontSize={26} fill="#77726A">
+          {'50'}
+        </text>
+        <line x1="110" x2="990" y1="262.45" y2="262.45" stroke="#D8D2C4" strokeWidth="1" />
+        <text x={88.0} y={271.45} textAnchor="end" fontSize={26} fill="#77726A">
+          {'100'}
+        </text>
+        <line x1="110" x2="990" y1="167.68" y2="167.68" stroke="#D8D2C4" strokeWidth="1" />
+        <text x={88.0} y={176.68} textAnchor="end" fontSize={26} fill="#77726A">
+          {'150'}
+        </text>
+        <line x1="110" x2="990" y1="72.91" y2="72.91" stroke="#D8D2C4" strokeWidth="1" />
+        <text x={88.0} y={81.91} textAnchor="end" fontSize={26} fill="#77726A">
+          {'200'}
+        </text>
+        <text x={88.0} y={16.0} textAnchor="end" fontSize={25} fill="#77726A">
+          {'萬元'}
+        </text>
+        <rect x="190" y="329.67" width="140" height="122.33" rx="3" fill="#B4432A" />
+        <text x={260} y={314.67} textAnchor="middle" fontSize={32} fill="var(--osd-text)">
+          {'64.54'}
+        </text>
+        <rect x="339" y="270.19" width="140" height="181.81" rx="3" fill="#2F6B4F" />
+        <text x={409} y={255.19} textAnchor="middle" fontSize={32} fill="var(--osd-text)">
+          {'95.92'}
+        </text>
+        <text x={334.5} y={520.0} textAnchor="middle" fontSize={29} fill="#77726A">
+          {'2019–2025'}
+        </text>
+        <rect x="620" y="97.66" width="140" height="354.34" rx="3" fill="#B4432A" />
+        <text x={690} y={82.66} textAnchor="middle" fontSize={32} fill="var(--osd-text)">
+          {'186.94'}
+        </text>
+        <rect x="769" y="270.19" width="140" height="181.81" rx="3" fill="#2F6B4F" />
+        <text x={839} y={255.19} textAnchor="middle" fontSize={32} fill="var(--osd-text)">
+          {'95.92'}
+        </text>
+        <text x={764.5} y={520.0} textAnchor="middle" fontSize={29} fill="#77726A">
+          {'2019–2026/10/16'}
+        </text>
+        <rect x="200" y="558" width="16" height="16" rx="2" fill="#B4432A" />
+        <text x={228} y={574.0} textAnchor="start" fontSize={27} fill="var(--osd-text)">
+          {'OHLC回撤界線'}
+        </text>
+        <rect x="500" y="558" width="16" height="16" rx="2" fill="#2F6B4F" />
+        <text x={528} y={574.0} textAnchor="start" fontSize={27} fill="var(--osd-text)">
+          {'最大完整年平倉獲利'}
+        </text>
+      </svg>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 26, width: 630 }}>
+        <A_P size={28}>
+          {'2019–2025：OHLC回撤64.54萬元，小於最大完整年獲利95.92萬元（2024年），通過舊歷史。'}
+        </A_P>
+        <A_P size={28}>
+          {
+            '2026新資料：v5規則凍結後才下載。以100萬元空手重置測試，16筆交易淨利93.14萬元，OHLC回撤卻達186.94萬元；從2019連續跑到10/16，回撤相同。'
+          }
+        </A_P>
+        <A_P size={28}>
+          {
+            '右組的年獲利只用完整年度。即使寬鬆納入2026部分年的134.90萬元，回撤仍超過它。總獲利為正，不能取代風險門檻。'
+          }
+        </A_P>
+      </div>
+    </div>
   </Frame>
 );
 
 const Page11: Page = () => (
   <Frame
     title={'v6把一口契約換算成資金風險'}
-    source={'20萬元是進場時的估算門檻；跳空與進場當日損失仍可超過預算'}
+    source={
+      '20萬元只決定能否進場，不是單筆虧損上限；跳空與進場當日波動仍可超過預算。波幅與風險估值來自2026年公開資料回測'
+    }
     takeaway={'只在估值≤20萬元時允許新倉；固定預算不隨獲利放大'}
   >
+    <A_P margin="0 0 22px">
+      {
+        'v6規則見前一頁。v5在2026年失敗，是因為進場前20日平均真實波幅由年初308.55點放大到6月底1,395.8點，一口的規劃風險由186,730元增加到839,080元。固定一口，不等於固定金額風險。'
+      }
+    </A_P>
     <p
       style={{
-        fontSize: 47,
+        fontSize: 42,
         color: 'var(--osd-accent)',
         fontWeight: 550,
-        margin: '20px 0 60px',
+        margin: '0 0 10px',
         lineHeight: 1.4,
       }}
     >
-      {'規劃風險＝3 × 20日平均真實波幅 × 200 ＋ 1,600元'}
+      {'規劃風險＝3 × 20日平均真實波幅 × 200元 ＋ 1,600元'}
     </p>
-    <p style={{ fontSize: 36, color: muted, margin: '0 0 65px' }}>
-      {'1,600元＝來回費1,000＋兩邊滑價400＋取整預留200'}
-    </p>
-    <table
-      data-evidence="table"
-      style={{
-        width: 1696,
-        height: 275,
-        tableLayout: 'fixed',
-        borderCollapse: 'collapse',
-        fontSize: 37,
-        lineHeight: 1.4,
-      }}
-    >
-      <colgroup>
-        <col style={{ width: 612.11 }} />
-        <col style={{ width: 477.75 }} />
-        <col style={{ width: 606.14 }} />
-      </colgroup>
-      <thead>
-        <tr>
-          <th
-            style={{
-              background: 'var(--osd-text)',
-              color: 'var(--osd-bg)',
-              fontWeight: 600,
-              textAlign: 'left',
-              padding: '15px 18px',
-              border: '1px solid #D8D2C4',
-            }}
-          >
-            {'當前平均真實波幅'}
-          </th>
-          <th
-            style={{
-              background: 'var(--osd-text)',
-              color: 'var(--osd-bg)',
-              fontWeight: 600,
-              textAlign: 'left',
-              padding: '15px 18px',
-              border: '1px solid #D8D2C4',
-            }}
-          >
-            {'規劃風險'}
-          </th>
-          <th
-            style={{
-              background: 'var(--osd-text)',
-              color: 'var(--osd-bg)',
-              fontWeight: 600,
-              textAlign: 'left',
-              padding: '15px 18px',
-              border: '1px solid #D8D2C4',
-            }}
-          >
-            {'在預算條件下'}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style={{ background: '#FAF8F2' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'波幅300點'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'181,600元'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'允許評估進場'}
-          </td>
-        </tr>
-        <tr style={{ background: '#EAE5D8' }}>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'波幅400點'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'241,600元'}
-          </td>
-          <td
-            style={{
-              padding: '14px 18px',
-              border: '1px solid #D8D2C4',
-              verticalAlign: 'middle',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {'不送新買單'}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <A_P size={28} color={muted} margin="0 0 22px">
+      {'每點200元［5］；1,600元＝來回費1,000＋兩邊各1點滑價400＋取整預留1點200'}
+    </A_P>
+    <A_Table
+      widths={[612, 478, 606]}
+      head={['當前平均真實波幅', '規劃風險', '在預算條件下']}
+      fontSize={30}
+      padding="9px 16px"
+      rows={[
+        ['波幅300點', '181,600元', '允許評估進場'],
+        ['波幅400點', '241,600元', '不送新買單'],
+      ]}
+    />
+    <A_P size={28} margin="24px 0 0">
+      {
+        '20萬元是初始100萬元的20%，在任何v6回測前固定，是課堂風控假說。課堂限定一口，不能減成半口，只能在0與1口之間選擇。Moreira與Muir（2017）［3］支持高波動時降低曝險；Cederburg等人（2020）［4］提醒樣本內優勢不容易變成即時可實施的績效。兩者都沒有驗證本策略或20%預算。'
+      }
+    </A_P>
   </Frame>
+);
+
+const A_RuleRow = ({
+  number,
+  label,
+  tag,
+  body,
+}: {
+  number: string;
+  label: string;
+  tag: string;
+  body: string;
+}) => (
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: '80px 330px 1fr',
+      gap: 30,
+      padding: '14px 0',
+      borderTop: A_border,
+    }}
+  >
+    <div
+      style={{
+        fontSize: 36,
+        fontFamily: 'Arial,sans-serif',
+        fontWeight: 700,
+        color: 'var(--osd-accent)',
+      }}
+    >
+      {number}
+    </div>
+    <div>
+      <div style={{ fontSize: 34, fontWeight: 550, lineHeight: 1.3 }}>{label}</div>
+      <div style={{ fontSize: 28, color: muted, lineHeight: 1.4, marginTop: 4 }}>{tag}</div>
+    </div>
+    <p style={{ fontSize: 29, lineHeight: 1.45, margin: 0 }}>{body}</p>
+  </div>
 );
 
 const Page12: Page = () => (
   <Frame
     title={'v7加分候選的完整交易規則'}
-    source={''}
+    source={
+      'MultiCharts訊號參數：EntryBudgetMultiple＝3、TrailMultiple＝2.5、每邊滑價1點（平台設定畫面）；v7.pla另存，已繳交版本仍是v6'
+    }
     takeaway={'停損後重新判斷趨勢；全程0或1口、不放空、不加碼'}
   >
-    <Rule
+    <A_RuleRow
       number="01"
       label={'趨勢狀態'}
-      body={'200日均線±1倍20日平均真實波幅；越上緣開啟，跌破下緣關閉'}
+      tag={'沿用v1'}
+      body={'200日均線±1倍20日平均真實波幅。收盤高於上緣開啟趨勢，低於下緣關閉，帶內維持原狀態。'}
     />
-    <Rule
+    <A_RuleRow
       number="02"
       label={'進場許可'}
-      body={'空手、趨勢開啟，且以3倍波幅估算風險≤20萬元，才送次日買單'}
+      tag={'沿用v6'}
+      body={'空手、趨勢開啟，且以3倍當前波幅估算的一口規劃風險≤20萬元，才送次日開盤買單。'}
     />
-    <Rule
+    <A_RuleRow
       number="03"
       label={'固定波幅追蹤'}
-      body={'最大已完成收盤／進場價，減2.5倍固定進場前波幅，作隔日停損線'}
+      tag={'v7唯一修改：3倍改2.5倍'}
+      body={
+        '進場價與持倉最高已完成收盤取較高者，減2.5倍固定進場前波幅，向下取整到1點，作隔日日盤停損線。'
+      }
     />
-    <Rule
+    <A_RuleRow
       number="04"
       label={'退出與結算'}
-      body={'保留趨勢轉弱次日退出；月結算處理持倉，之後保留一個空手日盤'}
+      tag={'未修改'}
+      body={
+        '收盤跌破下緣，次日開盤退出；月結算日了結持倉，之後至少空手一個日盤；停損後重新判斷趨勢。'
+      }
     />
+    <A_P size={28} color={muted} margin="20px 0 0">
+      {'3倍只用在進場前估算預算，2.5倍只用在持倉後的停損距離，兩個倍數不可混用。'}
+    </A_P>
   </Frame>
 );
 
