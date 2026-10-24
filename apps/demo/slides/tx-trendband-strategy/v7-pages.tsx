@@ -53,7 +53,7 @@ const Frame = ({
 }: {
   title: string;
   source: string;
-  takeaway: string;
+  takeaway?: string;
   children: ReactNode;
 }) => (
   <section lang="zh-Hant" data-report-page={title} style={canvas}>
@@ -78,22 +78,24 @@ const Frame = ({
     <div data-content-region style={{ position: 'absolute', left: 112, right: 112, top: 265 }}>
       {children}
     </div>
-    <p
-      data-takeaway
-      style={{
-        position: 'absolute',
-        left: 112,
-        right: 112,
-        top: 914,
-        margin: 0,
-        color: accent,
-        fontSize: 35,
-        fontWeight: 550,
-        lineHeight: 1.4,
-      }}
-    >
-      {takeaway}
-    </p>
+    {takeaway && (
+      <p
+        data-takeaway
+        style={{
+          position: 'absolute',
+          left: 112,
+          right: 112,
+          top: 914,
+          margin: 0,
+          color: accent,
+          fontSize: 35,
+          fontWeight: 550,
+          lineHeight: 1.4,
+        }}
+      >
+        {takeaway}
+      </p>
+    )}
     <Footer source={source} />
   </section>
 );
@@ -302,82 +304,36 @@ export const YearlyPage: Page = () => (
 
 export const SummaryTopPage: Page = () => (
   <Frame
-    title="平台原始畫面：淨利與回撤"
+    title="平台原始畫面：策略績效總結果（上）"
     source="MultiCharts v7策略績效總結果，原始畫面裁切；2020/1/10–2025/12/31"
-    takeaway="淨利260.68萬元；最大策略虧損53.22萬元。"
   >
     <Screenshot
       src={summaryTopImage}
       alt="MultiCharts v7策略績效總結果上半部，顯示淨利2,606,800元、最大策略虧損532,200元、最大平倉交易虧損385,600元。"
-      width={1150}
+      width={1600}
     />
-    <Notes top={20}>
-      <Note term="最大策略虧損">
-        權益從前一高點到其後低點的最大回落，含持倉中尚未平倉的損益。畫面只裁掉視窗標題、左側選單與空單欄。
-      </Note>
-      <Note term="最大平倉交易虧損">
-        只用每筆平倉後的權益計算同樣的回落，不是單筆交易虧損。以v6實測Excel核對，單筆最大虧損15.98萬元，此欄是45.92萬元，等於平倉權益的最大回落。
-      </Note>
-    </Notes>
   </Frame>
 );
 
 export const SummaryBottomPage: Page = () => (
   <Frame
-    title="平台原始畫面：PF與勝率"
+    title="平台原始畫面：策略績效總結果（下）"
     source="MultiCharts v7策略績效總結果，原始畫面裁切；與上一頁為同一報表"
-    takeaway="獲利因子2.08、79筆交易、勝率55.7%。"
   >
     <Screenshot
       src={summaryBottomImage}
       alt="MultiCharts v7策略績效總結果下半部，顯示獲利因子2.08、交易總次數79、勝率55.7%。"
-      width={1200}
+      width={1600}
     />
-    <Notes top={24}>
-      <Note term="獲利因子">
-        毛利÷毛損＝501.60÷240.92≈2.08，兩者都已扣佣金與滑價。這是同一份報表的下半段，同樣只做裁切。
-      </Note>
-      <Note term="勝率">
-        獲利交易筆數÷交易總次數，79筆中44筆獲利。最大持有契約數量為1，一次只持有一口。
-      </Note>
-      <Note term="成本">
-        佣金7.90萬元＝79筆×來回1,000元；滑價3.16萬元＝79筆×來回400元，即每邊1點、每點200元。
-      </Note>
-    </Notes>
   </Frame>
 );
 
 export const SettingsPage: Page = () => (
-  <Frame
-    title="平台設定與證據限制"
-    source="MultiCharts v7設定原始畫面（裁切）；加分改版_v7／結果_完整評估；加分改版_v8研究紀錄"
-    takeaway="平台PF過2；但沒有樣本外驗證，每邊2點滑價也還沒在平台重跑。"
-  >
-    <div style={{ display: 'flex', gap: 56, alignItems: 'start' }}>
-      <div style={{ width: 900, flexShrink: 0 }}>
-        <div style={{ fontSize: 28, color: muted, marginBottom: 16 }}>MultiCharts平台原始畫面</div>
-        <Screenshot
-          src={settingsImage}
-          alt="MultiCharts v7設定，TrailMultiple為2.5、EntryBudgetMultiple為3、ModelSlippagePoints為1。"
-          width={900}
-        />
-        <Notes top={20}>
-          <Note>
-            TrailMultiple是追蹤停損倍數：停損線＝進場價與持倉最高收盤的較大者，減2.5倍固定進場前波幅。EntryBudgetMultiple是估算進場風險的倍數，仍為3。ModelSlippagePoints用於預算估算。
-          </Note>
-        </Notes>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 26 }}>
-        <p style={{ fontSize: 28, lineHeight: 1.45, margin: 0 }}>
-          同一畫面下方的平台設定：原始資本100萬元，佣金每口500元，滑價每口200元，期間2020/1/10–2025/12/31。「細部資料」為已停用，平台只用日K開高低收推估盤中是否觸及停損價［6］。
-        </p>
-        <Rule number="01" label="樣本外驗證" body="2019–2025都是看過的資料，沒有樣本外驗證。" />
-        <Rule
-          number="02"
-          label="滑價敏感度"
-          body="每邊2點滑價只在公開資料回測測過，還沒在平台重跑。"
-        />
-      </div>
-    </div>
+  <Frame title="平台原始畫面：策略參數與回測設定" source="MultiCharts v7設定原始畫面，裁切">
+    <Screenshot
+      src={settingsImage}
+      alt="MultiCharts v7設定，TrailMultiple為2.5、EntryBudgetMultiple為3、ModelSlippagePoints為1。"
+      width={1500}
+    />
   </Frame>
 );
