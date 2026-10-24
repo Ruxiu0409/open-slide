@@ -262,9 +262,7 @@ export const ComparisonPage: Page = () => (
         兩版都以MultiCharts
         TXF1日K回測，交易只到2025年底，成本同為每口每邊佣金500元、滑價200元；v6勝率取自Excel。
       </Note>
-      <Note term="回撤餘裕">
-        最大年獲利減最大策略虧損，表示回撤門檻還剩多少空間。
-      </Note>
+      <Note term="回撤餘裕">最大年獲利減最大策略虧損，表示回撤門檻還剩多少空間。</Note>
     </Notes>
   </Frame>
 );
