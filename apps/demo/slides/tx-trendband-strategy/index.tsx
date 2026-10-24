@@ -238,8 +238,8 @@ const Page01: Page = () => (
     <div style={{ position: 'absolute', left: 112, bottom: 127, fontSize: 31, color: '#77726A' }}>
       {'2026年10月24日'}
     </div>
-    <div style={{ position: 'absolute', left: 112, bottom: 70, fontSize: 25, color: '#77726A' }}>
-      公開資料歷史研究＋MultiCharts TXF1實測（2020–2025）
+    <div style={{ position: 'absolute', left: 112, bottom: 66, fontSize: 28, color: '#77726A' }}>
+      {'公開資料回測（2019–2025）＋MultiCharts TXF1平台實測（2020–2025）'}
     </div>
   </section>
 );
@@ -252,8 +252,13 @@ const Page02: Page = () => (
     }
     takeaway={'v7平台獲利因子2.08，達到加分線；已繳交版仍為v6'}
   >
-    <p style={{ fontSize: 42, lineHeight: 1.5, margin: '0 0 145px' }}>
+    <p style={{ fontSize: 40, lineHeight: 1.4, fontWeight: 550, margin: '0 0 26px' }}>
       {'一口台指期的趨勢交易，能否同時符合獲利與回撤門檻？'}
+    </p>
+    <p style={{ fontSize: 30, lineHeight: 1.5, margin: '0 0 56px' }}>
+      {
+        '已繳交的正式版本是v6，平台實測72筆、淨利224.32萬元、獲利因子1.86。v7是另存的加分候選，只把獲利後的追蹤停損距離由3倍改為2.5倍固定進場前波幅，進場預算仍以3倍波幅計算。下方是v7的平台實測：MultiCharts TXF1日K，2020年1月10日至2025年12月31日，初始資金100萬元，只做多、最多一口，手續費每邊500元、滑價每邊200元（1點），共79筆交易。'
+      }
     </p>
     <div style={{ display: 'flex', gap: 75 }}>
       <Metric label={'v7平台淨利'} value={'260.68'} unit={'萬元'} />
@@ -3024,60 +3029,199 @@ const Page20: Page = () => (
   </Frame>
 );
 
+const C_Heading = ({ children }: { children: ReactNode }) => (
+  <h2
+    style={{
+      fontSize: 32,
+      fontWeight: 550,
+      lineHeight: 1.3,
+      color: 'var(--osd-accent)',
+      margin: '0 0 18px',
+    }}
+  >
+    {children}
+  </h2>
+);
+
+const C_Point = ({ label, body }: { label: string; body: string }) => (
+  <div style={{ fontSize: 28, lineHeight: 1.45 }}>
+    <strong style={{ fontWeight: 600 }}>{label}</strong>
+    <span style={{ color: muted }}>{'：'}</span>
+    {body}
+  </div>
+);
+
+const C_Limit = ({ number, body }: { number: string; body: string }) => (
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: '44px 1fr',
+      fontSize: 28,
+      lineHeight: 1.45,
+    }}
+  >
+    <span style={{ fontFamily: 'Arial,sans-serif', fontWeight: 700, color: 'var(--osd-accent)' }}>
+      {number}
+    </span>
+    <span>{body}</span>
+  </div>
+);
+
+const C_Def = ({ title, body }: { title: string; body: string }) => (
+  <div style={{ marginBottom: 34 }}>
+    <h2
+      style={{
+        fontSize: 34,
+        fontWeight: 550,
+        lineHeight: 1.3,
+        color: 'var(--osd-accent)',
+        margin: '0 0 12px',
+      }}
+    >
+      {title}
+    </h2>
+    <p style={{ fontSize: 31, lineHeight: 1.5, whiteSpace: 'pre-line', margin: 0 }}>{body}</p>
+  </div>
+);
+
+const C_Para = ({ children, gap = 0 }: { children: ReactNode; gap?: number }) => (
+  <p style={{ fontSize: 28, lineHeight: 1.5, margin: `${gap}px 0 0` }}>{children}</p>
+);
+
+const C_SourceLine = ({ label, body }: { label: string; body: string }) => (
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: '200px 1fr',
+      fontSize: 28,
+      lineHeight: 1.45,
+    }}
+  >
+    <span style={{ color: muted }}>{label}</span>
+    <span>{body}</span>
+  </div>
+);
+
+const C_Ref = ({ number, children }: { number: string; children: ReactNode }) => (
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: '92px 1fr',
+      fontSize: 26,
+      lineHeight: 1.4,
+      overflowWrap: 'anywhere',
+    }}
+  >
+    <span style={{ color: 'var(--osd-accent)', whiteSpace: 'nowrap' }}>{number}</span>
+    <span>{children}</span>
+  </div>
+);
+
+const C_DataItem = ({ children }: { children: ReactNode }) => (
+  <div style={{ fontSize: 26, lineHeight: 1.4, display: 'flex', gap: 14 }}>
+    <span style={{ color: 'var(--osd-accent)' }}>{'・'}</span>
+    <span>{children}</span>
+  </div>
+);
+
 const Page21: Page = () => (
   <Frame
     title={'策略發想的差異與研究限制'}
-    source={''}
-    takeaway={'貢獻是可追溯的規則與失敗修正，未宣稱提出全新交易理論'}
+    source={
+      '平台實測：MultiCharts TXF1日K，2020/1/10–2025/12/31；公開資料回測：期交所TX日盤日K，2019–2025'
+    }
   >
-    <div style={{ display: 'flex', gap: 96 }}>
-      <Column title={'相對課堂範例的差異'}>
-        <p style={{ margin: 0 }}>{'長期均線帶判斷背景，固定波幅管理退出'}</p>
-        <p style={{ margin: 0 }}>{'前一收盤決定隔日停損，明確保留跳空損失'}</p>
-        <p style={{ margin: 0 }}>{'以0或1口對應固定本金的金額風險預算'}</p>
-      </Column>
-      <Column title={'目前證據的限制'}>
-        <p style={{ margin: 0 }}>{'2019–2025都已看過，沒有樣本外驗證'}</p>
-        <p style={{ margin: 0 }}>{'平台尚未重跑每邊2點滑價；20%預算未證明最適'}</p>
-      </Column>
+    <C_Heading>{'與課堂範例的差異'}</C_Heading>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 56 }}>
+      <C_Point
+        label={'趨勢背景'}
+        body={'以200日均線帶判斷多空背景，盤整時用波動緩衝減少來回進出'}
+      />
+      <C_Point
+        label={'訂單時間'}
+        body={'停損線在前一日收盤後算好、隔日盤中有效，開盤跳空以較差的開盤價成交'}
+      />
+      <C_Point label={'一口預算'} body={'只在0或1口間選擇，一口的規劃風險超過20萬元就不進場'} />
+    </div>
+    <C_Para gap={16}>
+      {
+        '課堂已介紹通道突破等指標，本報告不把單一指標當成新的交易理論；比較能說的貢獻，是把規則寫成可追溯的訂單，並保留每次失敗與修正的紀錄。'
+      }
+    </C_Para>
+    <div style={{ height: 40 }} />
+    <C_Heading>{'研究限制'}</C_Heading>
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px 64px' }}>
+      <C_Limit number="1" body={'2019–2025年的資料在多輪改版中都已看過，沒有樣本外驗證。'} />
+      <C_Limit
+        number="2"
+        body={'v1到v7每一版都是看過前一版的歷史結果才修改，規則與參數有選擇偏誤。'}
+      />
+      <C_Limit
+        number="3"
+        body={'平台只用每邊1點（200元）滑價測試；每邊2點只在公開資料回測做過，平台沒有重跑。'}
+      />
+      <C_Limit number="4" body={'20萬元預算只決定要不要進場，不是單筆交易或整段期間的損失上限。'} />
+      <C_Limit number="5" body={'只用日盤OHLC，還原不了夜盤期間的浮虧；保證金追繳也沒有納入。'} />
+      <C_Limit
+        number="6"
+        body={'遇到跳空、漲跌停或流動性不足時，實際成交價可能比模擬價差，甚至無法成交。'}
+      />
     </div>
   </Frame>
 );
 
 const Page22: Page = () => (
-  <Frame title={'結論'} source={''}>
-    <Rule
-      number="01"
-      label={'目前結論'}
-      body={'v7平台四項門檻全過：PF 2.08、淨利260.68萬、近三年獲利、回撤53.22萬'}
-    />
-    <Rule
-      number="02"
-      label={'MultiCharts實測'}
-      body={'v7.pla已匯出；已繳交v6的PF 1.86、淨利224.32萬，保留作對照'}
-    />
-    <Rule number="03" label={'證據限制'} body={'2019–2025已看過，沒有樣本外驗證'} />
+  <Frame title={'結論'} source={'平台實測：MultiCharts TXF1日K，2020/1/10–2025/12/31，初始100萬元'}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 34,
+        fontSize: 32,
+        lineHeight: 1.55,
+      }}
+    >
+      <p style={{ margin: 0 }}>
+        {
+          '本研究以台指期日K檢驗一口長期趨勢策略能否同時符合作業的獲利與回撤門檻。策略以200日均線帶判斷背景，用前一日收盤算好的隔日停損線出場，並在一口的規劃風險超過20萬元時不進場。v1到v6的每次修改，都對應前一版留下的問題：出場等待、開盤跳空、盤整期的來回進出，以及2026年高波動時一口風險放大。'
+        }
+      </p>
+      <p style={{ margin: 0 }}>
+        {
+          '已繳交的v6在平台實測為72筆、淨利224.32萬元、獲利因子1.86。另存的v7只把追蹤停損距離改為2.5倍固定進場前波幅，在相同平台設定下為79筆、淨利260.68萬元、獲利因子2.08；2023至2025年逐年獲利，最大策略虧損53.22萬元低於2024年獲利74.46萬元，相差21.24萬元。作業門檻與獲利因子2的加分線都有達到。'
+        }
+      </p>
+      <p style={{ margin: 0 }}>
+        {
+          '這些結果只說明策略在已看過的歷史資料上符合條件。v7是比較過v6的結果後才選定，沒有樣本外驗證，平台也只用每邊1點滑價測試，因此不能據此推論未來行情會有相同表現。'
+        }
+      </p>
+    </div>
   </Frame>
 );
 
 const Page23: Page = () => (
-  <Frame title={'附錄A　指標與訂單的精確定義'} source={''} appendix>
-    <Definition
+  <Frame
+    title={'附錄A　指標與訂單的精確定義'}
+    source={'定義依v7凍結規則；價格單位為點，每點200元'}
+    appendix
+  >
+    <C_Def
       title={'真實波幅與平均方式'}
       body={
         'TR＝max（高－低，|高－前收|，|低－前收|）\n20日波幅＝最近20個TR的算術平均，並非Wilder平滑'
       }
     />
-    <Definition
-      title={'隔日追蹤出場線'}
+    <C_Def
+      title={'隔日追蹤出場線（v7）'}
       body={
-        '峰值＝max（進場含滑價成交價，持倉已完成收盤價）\n停損價＝向下取整（峰值－2.5×固定進場前波幅），以1點為單位'
+        '峰值＝max（進場含滑價成交價，持倉已完成收盤價）\n停損價＝向下取整（峰值－2.5×固定進場前波幅），以1點為單位；v6為3倍\n停損線在前一日收盤後算好，隔日日盤有效；進場當天沒有盤中停損'
       }
     />
-    <Definition
-      title={'進場風險預算'}
+    <C_Def
+      title={'進場風險預算（v6、v7相同）'}
       body={
-        '3×當前20日波幅×200＋1,000＋400＋200≤200,000元\n只限制新買單；已有部位不因預算超標而事後新增退出'
+        '3×當前20日波幅×200＋1,000＋400＋200≤200,000元\n200元為每點價值；1,000元為來回手續費，400元為進出各1點滑價，200元為1點跳動\n只限制新買單，已有部位不因超標另加退出；20萬元不是實際虧損上限'
       }
     />
   </Frame>
@@ -3086,7 +3230,7 @@ const Page23: Page = () => (
 const Page24: Page = () => (
   <Frame
     title={'附錄B　20萬元預算的鄰近檢查'}
-    source={'僅2019–2022開發期，單位：萬元；不在2023–2026搜尋預算網格'}
+    source={'v6公開資料回測，僅2019–2022開發期，單位：萬元；不在2023–2026搜尋預算網格'}
     takeaway={'預算越小不代表回撤必然越低；沒有改挑較賺的30萬元版'}
     appendix
   >
@@ -3094,7 +3238,7 @@ const Page24: Page = () => (
       data-evidence="table"
       style={{
         width: 1696,
-        height: 570,
+        height: 330,
         tableLayout: 'fixed',
         borderCollapse: 'collapse',
         fontSize: 34,
@@ -3331,19 +3475,28 @@ const Page24: Page = () => (
         </tr>
       </tbody>
     </table>
+    <C_Para gap={36}>
+      {
+        '風險比較指開發期OHLC回撤是否小於最大年獲利。20萬元是初始資金100萬元的20%，在跑這組比較之前就定為主版；10萬元與30萬元只作鄰近比較。30萬元在開發期淨利較高、回撤較小，主版沒有因此更換。這張表只涵蓋開發期，不能證明20%是最適或穩健的預算。'
+      }
+    </C_Para>
   </Frame>
 );
 
 const Page25: Page = () => (
-  <Frame title={'附錄C　年度認列與補充績效'} source={''} appendix>
+  <Frame
+    title={'附錄C　年度認列與補充績效'}
+    source={'v6公開資料回測；單位：萬元，平均每筆淨利單位為元'}
+    appendix
+  >
     <table
       data-evidence="table"
       style={{
         width: 1696,
-        height: 335,
+        height: 250,
         tableLayout: 'fixed',
         borderCollapse: 'collapse',
-        fontSize: 34,
+        fontSize: 32,
         lineHeight: 1.4,
       }}
     >
@@ -3492,19 +3645,24 @@ const Page25: Page = () => (
         </tr>
       </tbody>
     </table>
+    <C_Para gap={24}>
+      {
+        '七年測試在2025年12月31日把未平倉部位強制平倉；連續測試讓這筆持倉延續到2026年才認列，所以2025年平倉損益由21.34萬元變為12.46萬元。兩種測試各自從100萬元、空手開始，結果不能相加。'
+      }
+    </C_Para>
     <div
-      style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '45px 100px', marginTop: 70 }}
+      style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '28px 100px', marginTop: 40 }}
     >
       <div
         style={{
           display: 'flex',
           alignItems: 'baseline',
           justifyContent: 'space-between',
-          fontSize: 34,
+          fontSize: 32,
         }}
       >
         <span style={{ color: muted }}>{'七年獲利因子'}</span>
-        <strong style={{ color: 'var(--osd-accent)', fontWeight: 550, fontSize: 38 }}>
+        <strong style={{ color: 'var(--osd-accent)', fontWeight: 550, fontSize: 36 }}>
           {'2.23'}
         </strong>
       </div>
@@ -3513,11 +3671,11 @@ const Page25: Page = () => (
           display: 'flex',
           alignItems: 'baseline',
           justifyContent: 'space-between',
-          fontSize: 34,
+          fontSize: 32,
         }}
       >
         <span style={{ color: muted }}>{'完成交易／勝率'}</span>
-        <strong style={{ color: 'var(--osd-accent)', fontWeight: 550, fontSize: 38 }}>
+        <strong style={{ color: 'var(--osd-accent)', fontWeight: 550, fontSize: 36 }}>
           {'82筆／60.98%'}
         </strong>
       </div>
@@ -3526,11 +3684,11 @@ const Page25: Page = () => (
           display: 'flex',
           alignItems: 'baseline',
           justifyContent: 'space-between',
-          fontSize: 34,
+          fontSize: 32,
         }}
       >
         <span style={{ color: muted }}>{'平均每筆淨利'}</span>
-        <strong style={{ color: 'var(--osd-accent)', fontWeight: 550, fontSize: 38 }}>
+        <strong style={{ color: 'var(--osd-accent)', fontWeight: 550, fontSize: 36 }}>
           {'36,820元'}
         </strong>
       </div>
@@ -3539,33 +3697,37 @@ const Page25: Page = () => (
           display: 'flex',
           alignItems: 'baseline',
           justifyContent: 'space-between',
-          fontSize: 34,
+          fontSize: 32,
         }}
       >
         <span style={{ color: muted }}>{'收盤持倉日比例'}</span>
-        <strong style={{ color: 'var(--osd-accent)', fontWeight: 550, fontSize: 38 }}>
+        <strong style={{ color: 'var(--osd-accent)', fontWeight: 550, fontSize: 36 }}>
           {'54.73%'}
         </strong>
       </div>
     </div>
+    <C_Para gap={40}>
+      {
+        '以上四項為2019–2025年的公開資料回測。獲利因子＝各筆淨損益中正值合計÷負值絕對值合計，勝率＝獲利50筆÷82筆。平台報表的計算方式可能不同，這裡不與平台實測數字混用。'
+      }
+    </C_Para>
   </Frame>
 );
 
 const Page26: Page = () => (
   <Frame
     title={'附錄D　基準、來源與重現資料'}
-    source={'2019–2025，單位：萬元；完整網址與證據路徑見本頁備註及講稿'}
-    takeaway={'基準也是參與結算、相同成本與一次一口；基準回撤均用日結口徑'}
+    source={'公開資料回測，2019–2025，單位：萬元；文獻與資料出處見「參考文獻」頁'}
     appendix
   >
     <table
       data-evidence="table"
       style={{
         width: 1696,
-        height: 355,
+        height: 290,
         tableLayout: 'fixed',
         borderCollapse: 'collapse',
-        fontSize: 32,
+        fontSize: 30,
         lineHeight: 1.4,
       }}
     >
@@ -3756,36 +3918,50 @@ const Page26: Page = () => (
         </tr>
       </tbody>
     </table>
-    <div
-      style={{
-        marginTop: 40,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 19,
-        color: muted,
-        fontSize: 29,
-        lineHeight: 1.4,
-      }}
-    >
-      <p style={{ margin: 0 }}>{'作業：Lecture05第31–32頁；逐版原因：兩份策略發展歷程'}</p>
-      <p style={{ margin: 0 }}>{'行情與規格：期交所TX；原始網址、時間及SHA256均有保存'}</p>
-      <p style={{ margin: 0 }}>
-        {'文獻：Moskowitz等（2012）、Faber（2013）、Moreira與Muir、Cederburg等'}
-      </p>
-      <p style={{ margin: 0 }}>{'重現：44項既有行為測試、23組來源核對、3組CSV重跑紀錄'}</p>
+    <C_Para gap={20}>
+      {
+        '三組都採一次一口、相同成本並參與月結算。回撤統一用每日收盤評價，與前文v6的日盤OHLC回撤界線78.40萬元是不同口徑。持續做多賺得最多，但回撤高於它的最大年獲利。'
+      }
+    </C_Para>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 26 }}>
+      <C_SourceLine label={'作業要求'} body={'課程講義Lecture05第31–32頁、課程介紹第4–5頁［7］'} />
+      <C_SourceLine
+        label={'行情與規格'}
+        body={'期交所TX一般交易時段、未調整近月日K；臺股期貨契約規格［5］'}
+      />
+      <C_SourceLine
+        label={'設計依據'}
+        body={
+          '時間序列動能［1］、200日均線改編自10個月均線模型［2］、波動調整［3］及其實施限制［4］'
+        }
+      />
+      <C_SourceLine label={'訂單語意'} body={'MultiCharts的Stop單與K棒內價格路徑假設［6］'} />
+      <C_SourceLine
+        label={'重現紀錄'}
+        body={
+          '行情保存原始網址、下載時間與SHA256；公開資料回測另有44項規則檢查、23組來源核對、3組匯出資料重跑，均不屬平台實測'
+        }
+      />
     </div>
   </Frame>
 );
+
 const Page27: Page = () => (
-  <Frame title="附錄E　PowerLanguage程式節錄" source="v7候選已匯出v7.pla；本頁為條件節錄" appendix>
-    <p style={{ fontSize: 35, color: muted, margin: '0 0 42px' }}>
-      以進場預算決定買單，前一收盤決定隔日停損線
+  <Frame
+    title="附錄E　PowerLanguage程式節錄"
+    source="v7候選已由平台匯出v7.pla；本頁為條件節錄"
+    appendix
+  >
+    <p style={{ fontSize: 28, lineHeight: 1.5, color: muted, margin: '0 0 24px' }}>
+      {
+        '節錄v7的進場與停損條件，不能單獨編譯。EntryBudgetMultiple預設3，乘上當前20日波幅估算一口的規劃風險；TrailMultiple預設2.5，乘上固定進場前波幅算出隔日停損線。'
+      }
     </p>
     <pre
       style={{
         fontFamily: 'Menlo,Consolas,monospace',
-        fontSize: 29,
-        lineHeight: 1.48,
+        fontSize: 28,
+        lineHeight: 1.45,
         whiteSpace: 'pre',
         margin: 0,
       }}
@@ -3794,6 +3970,76 @@ const Page27: Page = () => (
         'PlannedRiskTWD = EntryBudgetMultiple * RangeMean * PointValueTWD\n    + RoundTripFeeTWD + 2 * ModelSlippagePoints * PointValueTWD\n    + TickSize * PointValueTWD;\n\nif (MP = 0) and TargetLong\n   and (PlannedRiskTWD <= RiskBudgetTWD) then\n    Buy ("BudgetLong") 1 Contract Next Bar At Market;\n\nPeakClose = MaxList(PeakClose, Close);\nNextStop = IntPortion((PeakClose - TrailMultiple * FrozenEntryRange)\n    / TickSize) * TickSize;\n\nSell ("RiskStop") Next Bar At NextStop Stop;'
       }
     </pre>
+    <p style={{ fontSize: 28, lineHeight: 1.5, color: muted, margin: '24px 0 0' }}>
+      {'完整程式另外處理月結算退出、趨勢退出與停損後重新進場。已繳交的v6程式保留不變。'}
+    </p>
+  </Frame>
+);
+
+const PageReferences: Page = () => (
+  <Frame title={'參考文獻'} appendix>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <C_Ref number={'［1］'}>
+        {'Moskowitz, T. J., Ooi, Y. H., & Pedersen, L. H. (2012). Time series momentum. '}
+        <em>{'Journal of Financial Economics, 104'}</em>
+        {'(2), 228–250.'}
+      </C_Ref>
+      <C_Ref number={'［2］'}>
+        {
+          'Faber, M. (2013, June 14). QTAA update: Conclusions and FAQs. https://mebfaber.com/2013/06/14/qtaa-update-conclustions-and-faqs/'
+        }
+      </C_Ref>
+      <C_Ref number={'［3］'}>
+        {'Moreira, A., & Muir, T. (2017). Volatility-managed portfolios. '}
+        <em>{'Journal of Finance, 72'}</em>
+        {'(4), 1611–1644. （NBER Working Paper 22208, 2016）'}
+      </C_Ref>
+      <C_Ref number={'［4］'}>
+        {
+          "Cederburg, S., O'Doherty, M. S., Wang, F., & Yan, X. (2020). On the performance of volatility-managed portfolios. "
+        }
+        <em>{'Journal of Financial Economics, 138'}</em>
+        {'(1), 95–117.'}
+      </C_Ref>
+      <C_Ref number={'［5］'}>
+        {
+          '臺灣期貨交易所。臺股期貨契約規格。https://www.taifex.com.tw/cht/2/tX?menuid1=12（2026年10月20日查閱）'
+        }
+      </C_Ref>
+      <C_Ref number={'［6］'}>
+        {
+          'MultiCharts. Stop；Intra-bar Price Movement Assumptions；How Scripts Work。https://www.multicharts.com/trading-software/index.php?title=Stop 等（2026年10月20日查閱）'
+        }
+      </C_Ref>
+      <C_Ref number={'［7］'}>
+        {
+          '課程講義：Lecture05 MultiCharts策略開發實務，第31–32頁；1151 智慧量化交易課程介紹，第4–5頁。'
+        }
+      </C_Ref>
+    </div>
+    <h2
+      style={{
+        fontSize: 30,
+        fontWeight: 550,
+        lineHeight: 1.3,
+        color: 'var(--osd-accent)',
+        margin: '40px 0 14px',
+      }}
+    >
+      {'研究資料'}
+    </h2>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+      <C_DataItem>
+        {'臺灣期貨交易所TX一般交易時段公開日K資料（未調整近月），2017年至2026年10月16日'}
+      </C_DataItem>
+      <C_DataItem>
+        {'MultiCharts「TXF1 FCU_TrendBudget_Signal 策略回測績效報告」xlsx（已繳交v6）'}
+      </C_DataItem>
+      <C_DataItem>
+        {'2026年10月24日MultiCharts平台截圖四張：績效總表、年週期分析、策略設定（v7）'}
+      </C_DataItem>
+      <C_DataItem>{'平台匯出程式：v7.pla（加分候選）、FCUpla.pla（已繳交v6）'}</C_DataItem>
+    </div>
   </Frame>
 );
 
