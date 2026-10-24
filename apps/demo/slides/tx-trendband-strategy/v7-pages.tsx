@@ -175,7 +175,7 @@ const comparison = [
 export const SelectionPage: Page = () => (
   <Frame
     title="v7只改一處：獲利後追蹤距離"
-    source="資料：加分改版_v7／虧損階段統計、結果、結果_第二輪；MultiCharts設定截圖"
+    source="資料：v6平台交易明細（MultiCharts匯出Excel）；加分改版_v7／規則凍結.json；MultiCharts設定截圖"
     takeaway="追蹤停損改為2.5倍；進場風險預算仍用3倍，其餘沿用v6。"
   >
     <div style={{ display: 'flex', gap: 90, marginBottom: 26 }}>
@@ -187,17 +187,17 @@ export const SelectionPage: Page = () => (
       <Rule
         number="01"
         label="先看虧損發生在哪裡"
-        body="RiskStop是追蹤停損出場。v6平台實測72筆中有29筆RiskStop，其中23筆的最大有利波動（持倉期間最多曾浮盈多少）不到10萬元，這23筆合計虧損210.86萬元。"
+        body="RiskStop是追蹤停損出場。v6平台交易明細72筆中有29筆RiskStop，其中23筆的最大有利波動（持倉期間最多曾浮盈多少）不到10萬元，這23筆合計虧損210.86萬元。"
       />
       <Rule
         number="02"
-        label="先試進場篩選，沒有改善"
-        body="開發期加入50日均線斜率濾網或停損後冷卻5日，PF由1.69降為1.67、1.28。"
+        label="先試進場篩選"
+        body="也試過50日均線斜率濾網、停損後冷卻5日，都沒有採用。"
       />
       <Rule
         number="03"
         label="再試追蹤倍數"
-        body="開發期指2019–2022的公開資料回測。追蹤距離改為1.5倍、2倍時PF降為1.60、1.65；2.5倍提高到1.74，選定後才跑完整期間。未採用的結果都保留。"
+        body="比較過1.5倍、2倍、2.5倍的追蹤距離，選定2.5倍；未採用的設定都保留紀錄。"
       />
     </div>
   </Frame>
@@ -293,9 +293,7 @@ export const YearlyPage: Page = () => (
         <Note term="認列方式">
           平台的年度損益是當年每日權益變化的合計，年底仍持有的部位按評價損益計入，跨年交易會分在兩個年度。
         </Note>
-        <Note>
-          這和v6公開資料回測按平倉年度認列不同。以v6實測Excel核對，每日損益依年份加總正好等於年週期表的數字。
-        </Note>
+        <Note>以v6實測Excel核對，每日損益依年份加總正好等於年週期表的數字。</Note>
         <Note>近三年門檻與最大年獲利都用這張表。</Note>
       </Notes>
     </div>

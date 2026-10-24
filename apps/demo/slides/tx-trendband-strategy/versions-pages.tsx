@@ -273,7 +273,7 @@ const v1Rows: { label: string; base: string; band: string; shared?: boolean }[] 
 export const VersionV1Page: Page = () => (
   <Frame
     title="原始均線與v1緩衝帶：交易規則"
-    source="依據：策略提案_長期均線趨勢濾網.md；策略發展歷程_從原始均線到公開資料回測.md；公開資料回測／事前設定.json"
+    source="依據：策略提案_長期均線趨勢濾網.md；研究紀錄：原始均線與v1規則設定"
   >
     <DiffLine
       label="v1的修改"
@@ -338,7 +338,7 @@ export const VersionV1Page: Page = () => (
 export const VersionV1CodePage: Page = () => (
   <Frame
     title="原始均線與v1：早期PowerLanguage程式"
-    source="說明依據：策略發展歷程_從原始均線到公開資料回測.md；公開資料回測／事前設定.json"
+    source="說明依據：研究紀錄：原始均線與v1規則設定"
   >
     <DiffLine
       label="同一支訊號程式"
@@ -371,7 +371,7 @@ export const VersionV1CodePage: Page = () => (
     />
     <p style={{ fontSize: 28, lineHeight: 1.4, color: muted, margin: '18px 0 0' }}>
       第73–76行位於非結算日的分支；結算日由第70行Sell ("SettleProxy") This Bar On
-      Close以收盤價代理平倉，公開資料回測則改用期交所最後結算價。此為早期草稿，當時尚未在MultiCharts編譯。
+      Close以收盤價代理平倉。此為早期草稿，當時尚未在MultiCharts編譯。
     </p>
   </Frame>
 );
@@ -636,7 +636,7 @@ export const VersionV6Page: Page = () => (
         },
         {
           label: '結算日',
-          body: '結算日平倉，次一交易日空手；公開資料回測用最後結算價，平台程式用收盤價代理',
+          body: '結算日平倉，次一交易日空手；以收盤價代理平倉（This Bar On Close）',
         },
         {
           label: '停損後重進',
@@ -728,7 +728,7 @@ export const VersionV7Page: Page = () => (
         },
         {
           label: '結算日',
-          body: '結算日平倉，次一交易日空手；公開資料回測用最後結算價，平台程式用收盤價代理',
+          body: '結算日平倉，次一交易日空手；以收盤價代理平倉（This Bar On Close）',
         },
         {
           label: '停損後重進',
