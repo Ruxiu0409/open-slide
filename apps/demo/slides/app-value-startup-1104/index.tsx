@@ -423,6 +423,7 @@ const Tag = ({
       <span
         style={{
           ...MONO,
+          textTransform: 'none',
           fontSize: 18,
           padding: '0 20px 0 16px',
           display: 'flex',
