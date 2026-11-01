@@ -7,6 +7,7 @@ import {
   useSlidePageNumber,
 } from '@open-slide/core';
 import { type CSSProperties, type ReactNode, useEffect, useState } from 'react';
+import banfengFood from './assets/banfeng-food.webp';
 
 export const design: DesignSystem = {
   palette: { bg: '#FFF3DF', text: '#151313', accent: '#FF5A2C' },
@@ -33,7 +34,7 @@ const SLIDE_ID = 'app-value-startup-1104';
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Gabarito:wght@500;700;800;900&display=swap';
 const CJK_TEXT =
-  '、。「」【】一三上下不世主之也了事二五些交人什今仍他付代以件伴但位住作你使來例供便促保修個們候值假做停備像價元先光免入內全兩公六其具再出分判別到制刻前剛創力功加助動務勢包十千卡卻厲去參及友只可台右合同名向否告呢品哪商問善喜單嗎嚮四回因困園圖團在報場塊境多夜夠夥大天套好如始媒子字學它完官定室害宵家容實審寫專對導小少就展工己師帳常幫平年底店度廢廣弄式弱張形往待很後得從心忙怎思情想意感慢慣成我或所手才打扣批找把抽拜拿持指按掉排接推提換揪搭撐據擾收改放教散整數料新斷方於明易是時曝更書最會月有朋服本材束東板果架某校核格案楚業標模樣機次歡正段每比求決沒沿注活流清測準滑濟為然煩營版牌特猜獎班現理瑞生產用由甲界留畫當療登發百的目直省看真知碰確示社禮科種立第筆等答算箭簡系紙素結絡給統經繼續群義習考者而聊聯聽育能自至與舉花萬著蓋薦號表被補裡西要見覺角解觸訂計訊記設評試話認說誰課請講謝證識讀變讓買費貼資賣賺購賽走起越跟跳蹺身躺車較載近送這逢連進遇過道適選邀還邊那都醒醫重量錢錯鎖鐘開間閱附陪隊階際離需靠項頒頭題願飲餐麻麼點！（），／：；＝？';
+  '、。「」【】一三上下不世主之也了事二五些交人什今仍他付代以件伴但位住作你使來例供便促保修個們候值假做停備像價元先光免入內全兩公六其具再出分判別到制刻前剛創力功加助動務勢包十千半卡卻厲去參及友只可台右合同名向否告呢品哪商問善喜單嗎嚮四回因困園圖團在地報場塊境多夜夠夥大天套好如始媒子字學它完官定室害宵家容實審寫專對導小少就展工己師帳常幫平年底店度廢廣弄式弱張形往待很後得從心忙怎思情想意感慢慣成我或所手才打扣批找把抽拜拿持指按掉排接推提換揪搭撐據擾收改放教散整數料新斷方於明易是時曝更書最會月有朋服本材束東板果架某查校核格案楚業標模樣機次歡正段每比求決沒沿注活流清測準滑濟為然煩營版牌特猜獎班現理瑞生產用由甲界留畫當療登發百的目直省看真知碰確示社禮科種立第筆等答算箭簡系約紙素結絡給統經繼續美群義習考者而聊聯聽育能自至與舉花萬著蓋薦號表被補裡西要見覺角解觸訂計訊記設評試話認說誰課調請講謝證識讀變讓買費貼資賣賺購賽走起越跟跳蹺躍身躺車較載近送這逢連進遇過道適選邀還邊那都醒醫重量錢錯鎖鐘開間閱附陪隊階際離需靠面頁項頒頭題願食飲餐首麻麼點！（），／：；＝？';
 const CJK_FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap&text=${encodeURIComponent(CJK_TEXT)}`;
 const CJK_FONT_LINK_ID = `osd-webfont-cjk-${SLIDE_ID}`;
 const FONT_LINK_ID = `osd-webfont-${SLIDE_ID}`;
@@ -93,7 +94,8 @@ const CSS = `
 @keyframes av-buy-away { from { opacity: 1; transform: translateY(0) scale(1) } to { opacity: 0; transform: translateY(-22px) scale(0.8) } }
 @keyframes av-grey { from { filter: grayscale(0) } to { filter: grayscale(1) } }
 @keyframes av-tip { from { transform: rotate(0deg) } }
-@keyframes av-draw { from { opacity: 0; stroke-dashoffset: 1 } 1% { opacity: 1 } to { opacity: 1; stroke-dashoffset: 0 } }
+@keyframes av-grow { from { transform: scaleX(0) } to { transform: scaleX(1) } }
+@keyframes av-draw{ from { opacity: 0; stroke-dashoffset: 1 } 1% { opacity: 1 } to { opacity: 1; stroke-dashoffset: 0 } }
 @media (prefers-reduced-motion: reduce) {
   .pm-root *, .pm-root *::before, .pm-root *::after { animation: none !important; transition: none !important; }
 }
@@ -1075,6 +1077,156 @@ const ValueExchange: Page = () => {
   );
 };
 
+const POLL_USERS = 6000;
+const POLL_PRICE = 10;
+const POLL_RATIOS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+const POLL_BAR_MAX = 520;
+
+const PollQuestion = ({
+  n,
+  children,
+  live,
+  delay,
+}: {
+  n: string;
+  children: ReactNode;
+  live: boolean;
+  delay: number;
+}) => (
+  <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start', ...rise(live, delay, 20) }}>
+    <span
+      style={{
+        ...NUM,
+        flex: 'none',
+        width: 48,
+        height: 48,
+        borderRadius: '50%',
+        border: `3px solid ${INK}`,
+        background: BUTTER,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: 26,
+      }}
+    >
+      {n}
+    </span>
+    <p style={{ ...DISPLAY, fontSize: 32, lineHeight: 1.3 }}>{children}</p>
+  </div>
+);
+
+const LivePoll: Page = () => {
+  const live = useLive();
+  return (
+    <Stage>
+      <Tag n="06" live={live}>
+        現場調查
+      </Tag>
+      <Title live={live} size={80}>
+        你能不能提供價值，讓使用者買單？
+      </Title>
+      <div
+        style={abs(120, 300, {
+          width: 250,
+          height: 543,
+          border: BORDER,
+          borderRadius: 30,
+          boxShadow: shadow(10),
+          overflow: 'hidden',
+          background: INK,
+          ...rise(live, 200, 48),
+        })}
+      >
+        <img
+          src={banfengFood}
+          alt="半逢遇甲的美食首頁畫面"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+        />
+      </div>
+      <div style={abs(410, 300, { width: 370, ...rise(live, 320, 24) })}>
+        <h3 style={{ ...DISPLAY, fontSize: 56 }}>半逢遇甲</h3>
+        <p style={{ ...BODY, fontSize: 24, lineHeight: 1.5, marginTop: 12 }}>
+          逢甲的校園資訊 App：課表、iLearn、公車、停車，加上 596 家店的美食地圖。
+        </p>
+        <div
+          style={{
+            display: 'inline-flex',
+            alignItems: 'baseline',
+            gap: 10,
+            marginTop: 18,
+            padding: '8px 18px',
+            border: `3px solid ${INK}`,
+            borderRadius: 999,
+            background: MINT,
+            boxShadow: shadow(4),
+          }}
+        >
+          <span style={{ ...BODY, fontSize: 22, fontWeight: 700 }}>每月活躍 約</span>
+          <span style={{ ...NUM, fontSize: 34 }}>6,000</span>
+          <span style={{ ...BODY, fontSize: 22, fontWeight: 700 }}>人</span>
+        </div>
+      </div>
+      <div style={abs(410, 600, { width: 380, display: 'flex', flexDirection: 'column', gap: 22 })}>
+        <PollQuestion n="1" live={live} delay={700}>
+          你有在用半逢遇甲嗎？
+        </PollQuestion>
+        <PollQuestion n="2" live={live} delay={1000}>
+          如果一個月收 10 塊，你會買單嗎？
+        </PollQuestion>
+      </div>
+      <Sticker x={640} y={770} r={-7} bg={TOMATO} live={live} delay={1400} pad="10px 22px">
+        <span style={{ ...DISPLAY, fontSize: 34 }}>舉手！</span>
+      </Sticker>
+      <div
+        style={abs(860, 296, {
+          width: 940,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 11,
+        })}
+      >
+        {POLL_RATIOS.map((ratio, i) => {
+          const income = (POLL_USERS * ratio * POLL_PRICE) / 100;
+          return (
+            <div key={ratio} style={{ display: 'flex', alignItems: 'center', gap: 18, height: 44 }}>
+              <span style={{ ...NUM, width: 96, fontSize: 32, textAlign: 'right' }}>{ratio}%</span>
+              <div style={{ width: POLL_BAR_MAX, height: 34, position: 'relative' }}>
+                <div
+                  style={{
+                    width: (POLL_BAR_MAX * ratio) / 100,
+                    height: '100%',
+                    boxSizing: 'border-box',
+                    background: ratio === 100 ? TOMATO : BUTTER,
+                    border: `3px solid ${INK}`,
+                    borderRadius: 10,
+                    boxShadow: shadow(4),
+                    transformOrigin: 'left center',
+                    ...anim(live, `av-grow 700ms ${SNAPPY} ${1600 + i * 110}ms both`),
+                  }}
+                />
+              </div>
+              <span
+                style={{
+                  ...NUM,
+                  width: 270,
+                  fontSize: 36,
+                  textAlign: 'right',
+                  ...rise(live, 1750 + i * 110, 12),
+                }}
+              >
+                NT${income.toLocaleString('en-US')}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+      <p style={{ ...DISPLAY, ...abs(140, 908), fontSize: 38 }}>
+        這樣的比例，我一個月躺在家裡，就能賺到這麼多。
+      </p>
+    </Stage>
+  );
+};
+
 const AttentionNode = ({
   x,
   y,
@@ -1117,7 +1269,7 @@ const Instagram: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="06" live={live}>
+      <Tag n="07" live={live}>
         IG 靠什麼賺錢
       </Tag>
       <Title live={live}>IG 不收你錢，那它靠什麼賺？</Title>
@@ -1220,7 +1372,7 @@ const Traffic: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="07" live={live}>
+      <Tag n="08" live={live}>
         注意力，也有價值
       </Tag>
       <Title live={live}>有人每天打開，就有變現的機會。</Title>
@@ -1293,7 +1445,7 @@ const BusinessModels: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="08" live={live}>
+      <Tag n="09" live={live}>
         四種賺錢方式
       </Tag>
       <Title live={live}>誰付錢？為什麼願意付？</Title>
@@ -1364,7 +1516,7 @@ const FindProblem: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="09" live={live}>
+      <Tag n="10" live={live}>
         怎麼找題目
       </Tag>
       <Title live={live} size={82}>
@@ -1423,7 +1575,7 @@ const StillAlive: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="10" live={live}>
+      <Tag n="11" live={live}>
         比賽之後
       </Tag>
       <Title live={live} size={82}>
@@ -1447,7 +1599,7 @@ const Close: Page = () => {
   const live = useLive();
   return (
     <Stage footer={false}>
-      <Tag n="11" live={live} color={TOMATO}>
+      <Tag n="12" live={live} color={TOMATO}>
         我也在找一起做事的人
       </Tag>
       <h2
@@ -1563,7 +1715,15 @@ export const notes: string[] = [
 但如果一個 App，每月十塊，就能省掉選課、找室友的麻煩，我覺得省下的時間比十塊值得，就願意付。
 【指兩個蹺蹺板。】
 所以不是功能越多，就越能收錢。要看這個使用者，能不能從你這裡換到他在意的價值。
-那如果他沒付錢呢？想想我們每天用的 IG。`,
+講這麼多，不如直接拿我自己的 App 來試試看。`,
+  `這是我做的 App，半逢遇甲。課表、iLearn、公車、停車都收在一起，還有我自己整理的逢甲美食地圖，現在每個月大概有六千個人在用。
+先問第一題，你有在用半逢遇甲嗎？有的舉手。
+【數一下，回應幾句。】
+第二題，如果半逢遇甲一個月收十塊，你會買單嗎？願意的舉手。
+【估一下比例，指著右邊對應的那一條。】
+差不多是這個比例。這樣的比例，我一個月躺在家裡，就可以賺到這麼多。
+你看，同一個 App，大家願不願意付錢，就是在判斷它的價值換不換得到這十塊。
+不過也有 App 完全不跟你收錢。IG 就不收你錢，那它靠什麼賺？`,
   `IG 不收你錢，那它靠什麼賺？
 你每天滑 Reels，IG 拿內容跟你換時間。你看的廣告、花的時間，就是你的成本，也就是注意力成本。
 【沿著箭頭，從你指向 IG，再指向廣告商。】
@@ -1608,6 +1768,7 @@ export default [
   CampusMath,
   WhatIsMoney,
   ValueExchange,
+  LivePoll,
   Instagram,
   Traffic,
   BusinessModels,
