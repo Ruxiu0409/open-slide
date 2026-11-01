@@ -716,6 +716,33 @@ const TitleCover: Page = () => {
   );
 };
 
+const NotAwards: Page = () => {
+  const live = useLive();
+  return (
+    <Stage>
+      <Tag n="02" live={live}>
+        886 案例
+      </Tag>
+      <h2
+        style={{
+          ...DISPLAY,
+          ...abs(120, 320),
+          width: 1680,
+          fontSize: 96,
+          lineHeight: 1.35,
+          ...rise(live, 200, 40),
+        }}
+      >
+        這些團隊拿到錢，
+        <br />
+        不是因為得了什麼獎，
+        <br />
+        而是因為做出了<span style={{ color: TOMATO }}>有人在用</span>的東西。
+      </h2>
+    </Stage>
+  );
+};
+
 const Question300: Page = () => {
   const live = useLive();
   return (
@@ -2880,8 +2907,10 @@ export const notes: string[] = [
   `Kardomo。台灣 K-pop 粉絲的一站式追星 App。
 問題：追星要在好幾個 App 之間跳：行程、榜單、小卡都分開記。
 解法：把追星行事曆、音樂榜單、小卡圖鑑、討論串放進同一個 App。
-怎麼賺：目前免費、沒有內購，官方沒有公開怎麼收費。
-你會發現，這些團隊拿到錢，不是因為得了什麼獎，而是因為做出了有人在用的東西。`,
+怎麼賺：目前免費、沒有內購，官方沒有公開怎麼收費。`,
+  `看完這些團隊，你會發現一件事。
+【停一下，讓大家讀完。】
+他們拿到錢，不是因為得了什麼獎，而是因為做出了有人在用的東西。`,
   `【先讓大家看題目，留時間舉手。】
 那回到你們身上。如果這次沒得獎，你的 App 還會繼續做下去嗎？會的，可以舉個手嗎？
 【停一下，看看台下。】
@@ -3024,6 +3053,7 @@ export default [
   caseLfg,
   casePeeps,
   caseKardomo,
+  NotAwards,
   Cover,
   AfterCompetition,
   WhoDecides,
