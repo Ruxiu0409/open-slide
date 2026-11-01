@@ -1376,23 +1376,37 @@ const PlaceCard = ({
   x,
   color,
   place,
-  price,
-  detail,
+  wage,
+  hours,
   live,
   delay,
 }: {
   x: number;
   color: string;
   place: string;
-  price: string;
-  detail: string;
+  wage: string;
+  hours: [string, string];
   live: boolean;
   delay: number;
 }) => (
-  <Panel x={x} y={360} width={760} height={430} color={color} live={live} delay={delay}>
-    <p style={{ ...BODY, fontWeight: 700 }}>付 ChatGPT 每月 US$20，在{place}要打工</p>
-    <p style={{ ...NUM, fontSize: 110, lineHeight: 1.1, marginTop: 30 }}>{price}</p>
-    <h3 style={{ ...DISPLAY, fontSize: 52, marginTop: 30 }}>{detail}</h3>
+  <Panel x={x} y={340} width={760} height={500} color={color} live={live} delay={delay}>
+    <h3 style={{ ...DISPLAY, fontSize: 56 }}>{place}</h3>
+    <p style={{ ...BODY, fontSize: 28, marginTop: 8 }}>最低時薪 {wage}</p>
+    {(['US$20 方案', 'US$100 方案'] as const).map((plan, i) => (
+      <div
+        key={plan}
+        style={{
+          display: 'flex',
+          alignItems: 'baseline',
+          justifyContent: 'center',
+          gap: 28,
+          marginTop: i === 0 ? 40 : 18,
+        }}
+      >
+        <span style={{ ...BODY, fontSize: 32, fontWeight: 700 }}>{plan}</span>
+        <span style={{ ...NUM, fontSize: 100, lineHeight: 1.1 }}>{hours[i]}</span>
+      </div>
+    ))}
   </Panel>
 );
 
@@ -1403,13 +1417,13 @@ const PricePerspective: Page = () => {
       <Tag n="09" live={live}>
         台灣的處境
       </Tag>
-      <Title live={live}>同樣 US$20，要工作多久？</Title>
+      <Title live={live}>付 ChatGPT 一個月，要工作多久？</Title>
       <PlaceCard
         x={120}
         color={PINK}
         place="台灣"
-        price="3.3 小時"
-        detail="最低時薪 NT$196"
+        wage="NT$196"
+        hours={['3.3 小時', '16.6 小時']}
         live={live}
         delay={300}
       />
@@ -1417,13 +1431,14 @@ const PricePerspective: Page = () => {
         x={1040}
         color={MINT}
         place="舊金山"
-        price="1 小時"
-        detail="最低時薪 US$19.61"
+        wage="US$19.61"
+        hours={['1 小時', '5.1 小時']}
         live={live}
         delay={700}
       />
-      <Footnote y={880}>
-        US$20 約 NT$651（臺灣銀行 10/30 牌告 32.555）。時薪：勞動部 2026、舊金山市政府 2026/7/1 起。
+      <Footnote y={890}>
+        US$20 約 NT$651、US$100 約 NT$3,256（臺灣銀行 10/30 牌告 32.555）。時薪：勞動部
+        2026、舊金山市政府 2026/7/1 起。
       </Footnote>
     </Stage>
   );
@@ -2798,6 +2813,7 @@ ChatGPT 就不一樣。每個月付一點訂閱費，查資料、寫報告、改
 回到剛剛的 ChatGPT，最便宜的付費方案一個月二十美金，換成台幣大約六百五十塊。在台灣拿最低時薪，要打工三個多小時才付得起。
 【指右邊。】
 但在舊金山，最低時薪將近二十美金，工作一個小時就付完了。
+再看一百美金的方案，台灣要打工十六個多小時，等於兩天的班；舊金山只要五個小時左右。
 同一個價錢，在不同地方、不同生活水準裡，要付出的成本完全不一樣。`,
   `這也是為什麼台灣大部分的軟體都不太敢收錢，軟體產業也很難做起來。
 第一，使用者不習慣付錢，很多人覺得軟體就該免費。
