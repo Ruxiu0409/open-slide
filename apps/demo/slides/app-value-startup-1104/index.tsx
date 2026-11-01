@@ -84,7 +84,7 @@ const SLIDE_ID = 'app-value-startup-1104';
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Gabarito:wght@500;700;800;900&display=swap';
 const CJK_TEXT =
-  '、。「」【】一三上下不世丟中串主之也了事二互五些交亨享人什今介仍他付代以件任企伴但佈位低住作你使來例供依便係促保修個倍們候值假做停偶傘備傳像價優元先光免入內全兩公六共其具冊再凸出分初判別利到制券刻前剛創力功加助動務勢勵包北區十千升午半協卡卻原厲去參又及友取口另只叫可台右各合同名向否含告呢和品員哪售唱商問啦善喜喝單嗎嘛嚮四回因困國圍園圖團在地坊培基報場塊境壓多夜夠夥大天太央套好如始委媒子字存孩學它安完官定宜宣室害宵家容實審寫寵專對導小少就局屆展屬州工左己已市師帳帶常幕幣幫平年幹幾底店度廢廣廳弄式弱張形影往待很後得從心忘忙快念怎怕思性息情想意感慢慣慮憶應成我或截戰戲戶房所手才打扣扮批找技把投抽拆拍招拜拿持指按授掉掌排探接推提換揪搭搶摺撐撰據擬擾支收改放故教散整數文料新斷方於日明易星是時晴智曆曝更書最會月有朋服未本材束杭杯東板果架某查校核格案桿梯棄楚業榜構樂標模樣樹機權次款歡止正歲段每比求決沒沿法注洞活流淡清測源準滑滿演漫潛激濕濟灣災為無焦然照煩營牆片版牌牠物特猜獎玩班現理瑞生產用由甲申界留畢畫當疊痕療登發百的盈監目直省看真知研碎碑碰確示社神票禮私科程種究空突立站章競第筆等答策算箭簡籍籤粉精系約紅紙素累組結絡給統絲經維網緒線練總績繪繫繼續置署美群義習考者而聊聯聲聽育能自至致臺與舉色花英茶華萬著蓋薦藏處虛號螢行術衛衝表被裂補裡西要見覺角解觸言訂計訊討記設診註評詢試話該認語說誰課調請論講謝證識讀變讓貴買費貼資賣賺購賽走起越跟跳蹺躍身躺車軸較載輔輩輸轉辦近追送透這通速逢連週進遇遊過道適選邀還邊那部都鄉配醒醫重量金鉅鉸鋒錄錢錯鍵鎖鏈鐘鑑長門開間閱關附限院陪隊階際隻集離難雨零需青靜靠面音頁項順須預頒頓領頭題額願顧食飲養餐餵首駐驗體高鬼麻麼點齡！（）＋，／：；＝？～';
+  '、。「」【】一三上下不世丟中串主之也了事二互五些交亨享人什今介仍他付代以件任企伴但佈位低住作你使來例供依便係促保修個倍們候值假做停偶傘備傳像價優元先光免入內全兩公六共其具冊再凸出分初判別利到制券刻前剛創力功加助動務勢勵包北區十千升午半協卡卻原厲去參又及友取口另只叫可台右各合同名向否含告呢和品員哪售唱商問啦善喜喝單嗎嘛嚮四回因困國圍園圖團在地坊培基報場塊境壓多夜夠夥大天太央套好如始委媒子字存孩學它安完官定宜宣室害宵家容實審寫寵專對導小少就局屆展屬山州工左差己已市師帳帶常幕幣幫平年幹幾底店度廢廣廳弄式弱張形影往待很後得從心忘忙快念怎怕思性息情想意感慢慣慮憶應成我或截戰戲戶房所手才打扣扮批找技把投抽拆拍招拜拿持指按授掉掌排探接推提換揪搭搶摺撐撰據擬擾支收改放故教散整數文料新斷方於日明易星是時晴智曆曝更書最會月有朋服未本材束杭杯東板果架某查校核格案桿梯棄楚業榜構樂標模樣樹機權次款歡止正歲段每比求決沒沿法注洞活流淡清測源準滑滿演漫潛激濕濟灣災為無焦然照煩營牆片版牌牠物特猜獎玩班現理瑞生產用由甲申界留畢畫當疊痕療登發百的盈監目直省看真知研碎碑碰確示社神票禮私科程種究空突立站章競第筆等答策算箭簡籍籤粉精系約紅紙素累組結絡給統絲經維網緒線練總績繪繫繼續置署美群義習考者而聊聯聲聽育能自至致臺與舉舊色花英茶華萬著蓋薦藏處虛號螢行術衛衝表被裂補裡西要見覺角解觸言訂計訊討記設診註評詢試話該認語說誰課調請論講謝證識讀變讓貴買費貼資賣賺購賽走起越跟跳蹺躍身躺車軸較載輔輩輸轉辦近追送透這通速逢連週進遇遊過道適選邀還邊那部都鄉配醒醫重量金鉅鉸鋒錄錢錯鍵鎖鏈鐘鑑長門開間閱關附限院陪隊階際隻集離難雨零需青靜靠面音頁項順須預頒頓領頭題額願顧食飲養餐餵首駐驗體高鬼麻麼點齡！（）＋，／：；＝？～';
 const CJK_FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap&text=${encodeURIComponent(CJK_TEXT)}`;
 const CJK_FONT_LINK_ID = `osd-webfont-cjk-${SLIDE_ID}`;
 const FONT_LINK_ID = `osd-webfont-${SLIDE_ID}`;
@@ -1214,8 +1214,8 @@ const ValueWeight = ({
   </div>
 );
 
-const ValueBalance = ({ purchase, live }: { purchase: 'bag' | 'concert'; live: boolean }) => {
-  const isApp = purchase === 'concert';
+const ValueBalance = ({ purchase, live }: { purchase: 'bag' | 'chatgpt'; live: boolean }) => {
+  const isApp = purchase === 'chatgpt';
   const delay = isApp ? 2800 : 450;
   return (
     <div style={abs(34, 190, { width: 730, height: 275 })}>
@@ -1257,7 +1257,7 @@ const ValueBalance = ({ purchase, live }: { purchase: 'bag' | 'concert'; live: b
           live={live}
           delay={delay}
         >
-          {isApp ? '票價＋搶票' : '價格很重'}
+          {isApp ? '每月訂閱費' : '價格很重'}
         </ValueWeight>
         <ValueWeight
           x={448}
@@ -1267,7 +1267,7 @@ const ValueBalance = ({ purchase, live }: { purchase: 'bag' | 'concert'; live: b
           live={live}
           delay={delay + 550}
         >
-          {isApp ? '難忘回憶' : '生活用不到'}
+          {isApp ? '省很多時間' : '生活用不到'}
         </ValueWeight>
       </div>
     </div>
@@ -1295,13 +1295,13 @@ const ValueExchange: Page = () => {
         <ValueBalance purchase="bag" live={live} />
       </Panel>
       <Panel x={1000} y={350} width={800} height={510} live={live} delay={350}>
-        <h3 style={{ ...DISPLAY, fontSize: 52 }}>演唱會門票</h3>
+        <h3 style={{ ...DISPLAY, fontSize: 52 }}>ChatGPT</h3>
         <p style={{ ...BODY, fontSize: 28, lineHeight: 1.5, marginTop: 20 }}>
-          票不便宜，還要花時間搶，
+          每個月一點訂閱費，
           <br />
-          但對粉絲來說，換到的更重。
+          查資料、寫報告都快很多。
         </p>
-        <ValueBalance purchase="concert" live={live} />
+        <ValueBalance purchase="chatgpt" live={live} />
       </Panel>
       <Sticker x={723} y={320} r={8} bg={PINK} live={live} delay={2150} pad="12px 24px">
         <span style={{ ...DISPLAY, fontSize: 38 }}>不買</span>
@@ -1350,6 +1350,60 @@ const PollQuestion = ({
     <p style={{ ...DISPLAY, fontSize: 32, lineHeight: 1.3 }}>{children}</p>
   </div>
 );
+
+const PlaceCard = ({
+  x,
+  color,
+  place,
+  price,
+  detail,
+  live,
+  delay,
+}: {
+  x: number;
+  color: string;
+  place: string;
+  price: string;
+  detail: string;
+  live: boolean;
+  delay: number;
+}) => (
+  <Panel x={x} y={360} width={760} height={430} color={color} live={live} delay={delay}>
+    <p style={{ ...BODY, fontWeight: 700 }}>ChatGPT 每月 US$20，在{place}</p>
+    <p style={{ ...NUM, fontSize: 110, lineHeight: 1.1, marginTop: 30 }}>{price}</p>
+    <h3 style={{ ...DISPLAY, fontSize: 52, marginTop: 30 }}>{detail}</h3>
+  </Panel>
+);
+
+const PricePerspective: Page = () => {
+  const live = useLive();
+  return (
+    <Stage>
+      <Tag n="07" live={live}>
+        價值
+      </Tag>
+      <Title live={live}>同樣 US$20，貴不貴看你在哪裡</Title>
+      <PlaceCard
+        x={120}
+        color={PINK}
+        place="台灣"
+        price="約 NT$600 多"
+        detail="差不多 6 個便當"
+        live={live}
+        delay={300}
+      />
+      <PlaceCard
+        x={1040}
+        color={MINT}
+        place="舊金山"
+        price="US$20"
+        detail="差不多一頓午餐"
+        live={live}
+        delay={700}
+      />
+    </Stage>
+  );
+};
 
 const WeighCard = ({
   x,
@@ -2617,10 +2671,15 @@ export const notes: string[] = [
 所以使用者每打開一次你的 App，都在付出成本。就算 App 免費，成本也不是零。`,
   `把價值和成本放在一起，就是這個蹺蹺板。別人願意付出，是因為覺得值得。我們其實都在比，付出的成本，跟換到的東西，哪一邊比較重。
 拿學生生活來想，一個名牌包價格很重，我的生活卻用不到它的價值，也拿不出能換它的錢，我就不買。喜歡名牌包的人，可能有不同的判斷。
-可是演唱會門票一樣不便宜，還要熬夜搶票、排隊入場，粉絲卻搶著買。因為對他來說，換到的是難忘的回憶，比票價加上搶票的時間都重。同樣很貴，有人不買、有人搶著買，差別就在換到的價值。
+可是 ChatGPT 就不一樣。每個月只要付一點訂閱費，查資料、寫報告、改程式都快很多，一個月省下好幾個小時。用比較低的價格，換到比較高的價值，所以很多人願意付。差別就在換到的價值有多重。
 【指兩個蹺蹺板。】
 所以不是功能越多，就越能收錢。要看這個使用者付出的成本，能不能從你這裡換到他在意的價值。
 我們再多看幾個例子。`,
+  `不過，同樣的價錢，貴不貴其實看你在哪裡。
+ChatGPT 最便宜的付費方案一個月二十美金。在台灣，換算下來六百多塊，差不多六個便當，很多學生會覺得有點貴。
+【指右邊。】
+但在舊金山，二十美金差不多就是一頓午餐的錢，大家付得很自然。
+同一個價錢，在不同地方、不同生活水準、不同文化裡，感受到的成本完全不一樣。所以你的 App 要賣給誰、他們住在哪裡，會影響他們覺得值不值得。`,
   `先問大家，一款你很想玩的遊戲，要花錢買，你會買嗎？會的舉手。
 【數一下，通常不少人會舉手。】
 為什麼願意？因為玩的時候帶來的快樂，值得我花這些錢。價值比成本重，就會買。`,
@@ -2750,6 +2809,7 @@ export default [
   WhatIsValue,
   WhatIsCost,
   ValueExchange,
+  PricePerspective,
   GameExample,
   NecessityExample,
   PhoneChoice,
