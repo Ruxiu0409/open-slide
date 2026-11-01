@@ -667,21 +667,24 @@ const TitleCover: Page = () => {
       <h1
         style={{
           ...DISPLAY,
-          ...abs(120, 300),
-          fontSize: 150,
+          ...abs(120, 250),
+          fontSize: 124,
           lineHeight: 1.12,
           width: 1200,
           ...rise(live, 120),
         }}
       >
-        <AppStoreIcon size={132} />做 App，
+        <AppStoreIcon size={116} />
+        創業，
         <br />
-        就是一次<span style={{ color: TOMATO }}>新創</span>
+        其實沒有你想像中
+        <br />
+        <span style={{ color: TOMATO }}>那麼難</span>
       </h1>
       <p
         style={{
           ...BODY,
-          ...abs(120, 720),
+          ...abs(120, 790),
           width: 1200,
           fontSize: 40,
           fontWeight: 700,
@@ -2840,7 +2843,7 @@ const Close: Page = () => {
 };
 
 export const meta: SlideMeta = {
-  title: '做 App，就是一次新創',
+  title: '創業，其實沒有你想像中那麼難',
   createdAt: '2026-11-01T14:03:16.000Z',
   theme: 'pommi',
 };
@@ -2848,7 +2851,7 @@ export const meta: SlideMeta = {
 export const notes: string[] = [
   `【開場前一直停在這頁，人到齊再往下。】
 大家好，我是瑞瑞。今天在「App 登場時刻」，我想跟大家聊新創。
-先說一句：創業，其實沒有你想像中那麼難。
+就像標題寫的：創業，其實沒有你想像中那麼難。
 很多人覺得新創離我們很遠，好像要先開公司、找投資人才算。但其實，做一個 App、讓它有人用、甚至能賺錢，就已經是一次新創。開始之前，先問大家一個問題。`,
   `【讓題目停在畫面上，請兩三個人回答。】
 給你三百二十萬，你會做什麼？
