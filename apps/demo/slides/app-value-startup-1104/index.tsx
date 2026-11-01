@@ -716,6 +716,33 @@ const TitleCover: Page = () => {
   );
 };
 
+const Question300: Page = () => {
+  const live = useLive();
+  return (
+    <Stage>
+      <Tag n="01" live={live}>
+        開場提問
+      </Tag>
+      <h2
+        style={{
+          ...DISPLAY,
+          ...abs(120, 290),
+          width: 1680,
+          fontSize: 110,
+          lineHeight: 1.3,
+          ...rise(live, 200, 40),
+        }}
+      >
+        如果給你 <span style={{ color: TOMATO }}>300 萬</span>
+        <br />
+        創一間公司，
+        <br />
+        你會做什麼？
+      </h2>
+    </Stage>
+  );
+};
+
 const Cover: Page = () => {
   const live = useLive();
   return (
@@ -778,7 +805,7 @@ const AfterCompetition: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="01" live={live}>
+      <Tag n="03" live={live}>
         常見的選題習慣
       </Tag>
       <Title live={live}>題目很有意義，然後呢？</Title>
@@ -823,7 +850,7 @@ const WhoDecides: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="02" live={live}>
+      <Tag n="04" live={live}>
         誰來決定
       </Tag>
       <Title live={live}>為什麼要把 App 的結局，交給評審決定？</Title>
@@ -925,7 +952,7 @@ const ReasonsToContinue: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="03" live={live}>
+      <Tag n="05" live={live}>
         撐下去的理由
       </Tag>
       <Title live={live}>你為什麼想做這個 App？</Title>
@@ -1001,7 +1028,7 @@ const WhatIsMoney: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="04" live={live}>
+      <Tag n="06" live={live}>
         錢是什麼
       </Tag>
       <Title live={live}>100 塊，為什麼值 100 塊？</Title>
@@ -1054,7 +1081,7 @@ const MoneyWaste: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="04" live={live}>
+      <Tag n="06" live={live}>
         錢是什麼
       </Tag>
       <Title live={live}>如果有一天，它什麼都買不到……</Title>
@@ -1127,7 +1154,7 @@ const WhatIsValue: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="05" live={live}>
+      <Tag n="07" live={live}>
         價值是什麼
       </Tag>
       <Title live={live}>什麼是價值？</Title>
@@ -1169,7 +1196,7 @@ const WhatIsCost: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="06" live={live}>
+      <Tag n="08" live={live}>
         成本是什麼
       </Tag>
       <Title live={live}>什麼是成本？</Title>
@@ -1306,7 +1333,7 @@ const ValueExchange: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="07" live={live}>
+      <Tag n="09" live={live}>
         價值
       </Tag>
       <Title live={live}>付出成本，是在換一個值得的東西。</Title>
@@ -1421,7 +1448,7 @@ const PricePerspective: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="09" live={live}>
+      <Tag n="11" live={live}>
         台灣的處境
       </Tag>
       <Title live={live}>付 ChatGPT 一個月，要工作多久？</Title>
@@ -1455,7 +1482,7 @@ const WhyTaiwan: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="09" live={live}>
+      <Tag n="11" live={live}>
         台灣的處境
       </Tag>
       <Title live={live}>為什麼台灣的軟體很難收錢？</Title>
@@ -1490,7 +1517,7 @@ const GamePrices: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="08" live={live}>
+      <Tag n="10" live={live}>
         價值的例子
       </Tag>
       <Title live={live}>同一款遊戲，價錢變了，你還買嗎？</Title>
@@ -1544,7 +1571,7 @@ const PhoneChoice: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="08" live={live}>
+      <Tag n="10" live={live}>
         價值的例子
       </Tag>
       <Title live={live}>沒有預算上限，你選哪一支？</Title>
@@ -1593,7 +1620,7 @@ const PhoneNews: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="08" live={live}>
+      <Tag n="10" live={live}>
         價值的例子
       </Tag>
       <Title live={live}>但開賣才兩週，Duo 出了這些事……</Title>
@@ -1658,7 +1685,7 @@ const BanfengPricing: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="10" live={live}>
+      <Tag n="12" live={live}>
         降低成本
       </Tag>
       <Title live={live}>同一個 App，價錢不同，答案就不同。</Title>
@@ -1692,7 +1719,7 @@ const LivePoll: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="11" live={live}>
+      <Tag n="13" live={live}>
         現場調查
       </Tag>
       <Title live={live} size={80}>
@@ -1839,7 +1866,7 @@ const Instagram: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="13" live={live}>
+      <Tag n="15" live={live}>
         IG 靠什麼賺錢
       </Tag>
       <Title live={live}>IG 不收你錢，那它靠什麼賺？</Title>
@@ -1939,7 +1966,7 @@ const Traffic: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="12" live={live}>
+      <Tag n="14" live={live}>
         注意力，也有價值
       </Tag>
       <Title live={live}>有人每天打開，就有變現的機會。</Title>
@@ -2008,7 +2035,7 @@ const BusinessModels: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="14" live={live}>
+      <Tag n="16" live={live}>
         四種賺錢方式
       </Tag>
       <Title live={live}>誰付錢？為什麼願意付？</Title>
@@ -2128,7 +2155,7 @@ const caseStudyPage = (data: CaseStudyData): Page => {
     const rowWidth = data.shots.length * shotWidth + (data.shots.length - 1) * gap;
     return (
       <Stage>
-        <Tag n="17" live={live}>
+        <Tag n="02" live={live}>
           886 案例 · {data.batch}
         </Tag>
         <div
@@ -2208,12 +2235,149 @@ type CompetitionData = {
   source: string;
 };
 
+type Founder = {
+  name: string;
+  role: string;
+  photo?: string;
+  lines: string[];
+};
+
+type TeamData = {
+  team: string;
+  batch: string;
+  icon: string;
+  founders: Founder[];
+  note?: string;
+};
+
+const FounderCard = ({
+  founder,
+  width,
+  live,
+  delay,
+}: {
+  founder: Founder;
+  width: number;
+  live: boolean;
+  delay: number;
+}) => (
+  <div style={{ width, ...rise(live, delay, 40) }}>
+    <div
+      style={{
+        width: 220,
+        height: 220,
+        margin: '0 auto',
+        borderRadius: '50%',
+        border: BORDER,
+        boxShadow: shadow(6),
+        overflow: 'hidden',
+        background: PERI,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      {founder.photo ? (
+        <img
+          src={founder.photo}
+          alt={founder.name}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+        />
+      ) : (
+        <span style={{ ...DISPLAY, fontSize: 84 }}>{founder.name.slice(0, 1)}</span>
+      )}
+    </div>
+    <h3 style={{ ...DISPLAY, fontSize: 48, marginTop: 26 }}>{founder.name}</h3>
+    <p style={{ ...BODY, fontSize: 28, fontWeight: 700, color: MUTED, marginTop: 6 }}>
+      {founder.role}
+    </p>
+    <div style={{ marginTop: 16 }}>
+      {founder.lines.map((line) => (
+        <p key={line} style={{ ...BODY, fontSize: 32, lineHeight: 1.45 }}>
+          {line}
+        </p>
+      ))}
+    </div>
+  </div>
+);
+
+const teamPage = (data: TeamData): Page => {
+  const TeamIntro: Page = () => {
+    const live = useLive();
+    const width = data.founders.length > 2 ? 500 : 600;
+    return (
+      <Stage>
+        <Tag n="02" live={live}>
+          886 案例 · {data.batch}
+        </Tag>
+        <div
+          style={abs(120, 168, {
+            width: 1680,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 28,
+            ...rise(live, 70, 40),
+          })}
+        >
+          <img
+            src={data.icon}
+            alt=""
+            style={{
+              width: 96,
+              height: 96,
+              borderRadius: 22,
+              border: BORDER,
+              boxShadow: shadow(5),
+              display: 'block',
+            }}
+          />
+          <h2 style={{ ...DISPLAY, fontSize: 88 }}>{data.team} 的團隊</h2>
+        </div>
+        <div
+          style={abs(120, 330, {
+            width: 1680,
+            display: 'flex',
+            justifyContent: 'center',
+            gap: 60,
+          })}
+        >
+          {data.founders.map((founder, i) => (
+            <FounderCard
+              key={founder.name}
+              founder={founder}
+              width={width}
+              live={live}
+              delay={300 + i * 300}
+            />
+          ))}
+        </div>
+        {data.note && (
+          <p
+            style={{
+              ...DISPLAY,
+              ...abs(120, 880),
+              width: 1680,
+              fontSize: 36,
+              color: TOMATO,
+              ...rise(live, 1200),
+            }}
+          >
+            {data.note}
+          </p>
+        )}
+      </Stage>
+    );
+  };
+  return TeamIntro;
+};
+
 const competitionPage = (data: CompetitionData): Page => {
   const Competition: Page = () => {
     const live = useLive();
     return (
       <Stage>
-        <Tag n="18" live={live}>
+        <Tag n="19" live={live}>
           新創競賽
         </Tag>
         <Title live={live}>{data.name}</Title>
@@ -2256,7 +2420,7 @@ const Studio886: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="17" live={live}>
+      <Tag n="02" live={live}>
         886 案例
       </Tag>
       <Title live={live}>886 Studios：每隊投資 US$10 萬</Title>
@@ -2437,7 +2601,7 @@ const CompetitionIntro: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="18" live={live}>
+      <Tag n="19" live={live}>
         新創競賽
       </Tag>
       <Title live={live} y={330} size={110}>
@@ -2454,7 +2618,7 @@ const FindProblem: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="15" live={live}>
+      <Tag n="17" live={live}>
         怎麼找題目
       </Tag>
       <Title live={live} size={82}>
@@ -2518,7 +2682,7 @@ const StillAlive: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="16" live={live}>
+      <Tag n="18" live={live}>
         比賽之後
       </Tag>
       <Title live={live} size={82}>
@@ -2542,7 +2706,7 @@ const Garage: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="19" live={live}>
+      <Tag n="20" live={live}>
         大膽想像
       </Tag>
       <p
@@ -2591,7 +2755,7 @@ const Close: Page = () => {
   const live = useLive();
   return (
     <Stage footer={false}>
-      <Tag n="20" live={live} color={TOMATO}>
+      <Tag n="21" live={live} color={TOMATO}>
         我也在找一起做事的人
       </Tag>
       <h2
@@ -2674,8 +2838,52 @@ export const notes: string[] = [
   `【開場前一直停在這頁，人到齊再往下。】
 大家好，我是瑞瑞。今天在「App 登場時刻」，我想跟大家聊新創。
 很多人覺得新創離我們很遠，好像要先開公司、找投資人才算。但其實，做一個 App、讓它有人用、甚至能賺錢，就已經是一次新創。開始之前，先問大家一個問題。`,
+  `【讓題目停在畫面上，請兩三個人回答。】
+如果現在給你三百萬，讓你創一間公司，你會做什麼？
+【聽完回應，稍微接幾句。】`,
+  `這不是假設。台北有一間新創工作室叫 886 Studios，它的加速計畫 ikigai Launchpad，真的給每一隊十萬美元，換成台幣差不多三百多萬。
+在台北實體進行十週，從 2025 年到現在辦了四梯。
+要注意，這是投資，不是獎金。十萬美元換的是你公司 8% 的股份，拿了錢，公司就有一部分是別人的。
+我們快速看幾個拿到這筆錢、而且有做 App 的團隊。每一頁我都整理了三件事：他們遇到什麼問題、怎麼解決，還有怎麼賺錢。`,
+  `PicPet。跟好朋友一起養一隻虛擬寵物，用每天的照片餵牠。
+問題：好朋友各自忙，很少分享生活，感情慢慢就淡了。
+解法：一起養寵物，每天拍照「餵」牠，寵物會升等、解鎖家具。
+怎麼賺：免費下載。PicPet+ 月訂 NT$120／年訂 NT$1,190，另賣金幣。`,
+  `Tell It Now。店家在地圖上發探店任務，附近的人到店發文領獎勵。
+問題：小店想宣傳，找網紅又貴又難配對，也拿不到真實口碑。
+解法：附近的人收到任務就能到店體驗、發文，店家審核後發獎勵。
+怎麼賺：對發文的人免費，向店家收月費：NT$2,999 起；單次任務抽 30%。`,
+  `PictureCook。孩子的 AI 英文朋友，用互動繪本聊天學英文。
+問題：小孩學英文多半靠字卡和練習題，無聊，也很少開口說。
+解法：互動繪本加 AI 角色對話，角色會問問題，讓孩子開口回答。
+怎麼賺：免費下載。Story Plus 單月 NT$490、六個月 NT$1,990。`,
+  `Sugar AI。跟正版授權的漫畫角色一對一聊天。
+問題：喜歡的角色只能看、不能互動；創作者也少有新的變現方式。
+解法：向創作者取得授權，個性由創作者監修，角色會記得你們的對話。
+怎麼賺：免費下載，賣 App 內道具（NT$59 起）和月卡 NT$199。`,
+  `Persona2 AI。打字就能做出自己的 AI 角色扮演遊戲。
+問題：想玩互動故事只能等別人寫好；自己想做，又不會寫程式。
+解法：用 AI 打字做出角色扮演遊戲，放進大廳讓別人玩。
+怎麼賺：免費下載，Google Play 標示有 App 內購，價格未公開。`,
+  `Hushli 樹洞。陪你聊心事的 AI 日記（原名 EchoTree）。
+問題：半夜焦慮找不到人說；看心理師貴、要排隊，也怕被貼標籤。
+解法：24 小時都能找 AI 角色聊，對話自動整理成日記，每週回顧情緒。
+怎麼賺：免費下載。Premium 月訂 NT$320，另賣加購訊息 NT$120。`,
+  `lfg。把看到的店存成共用地圖，一鍵揪朋友出門。
+問題：群組裡「要幹嘛」「你決定啦」來回鬼打牆，最後常常約不成。
+解法：想去的店丟進地圖，選地點、選人、送出，朋友直接回要不要。
+怎麼賺：免費下載，收藏數用完再買：10 次 NT$30、50 次 NT$90。`,
+  `Peeps。跟好朋友、另一半一起住的線上像素小家。
+問題：想跟朋友保持聯繫，但發限動、傳訊息都有壓力。
+解法：共用的像素房間，一起佈置、養寵物、玩小遊戲，打開就像回家。
+怎麼賺：免費下載。PRIME 月訂 NT$150／年訂 NT$1,290，另賣 P 幣。`,
+  `Kardomo。台灣 K-pop 粉絲的一站式追星 App。
+問題：追星要在好幾個 App 之間跳：行程、榜單、小卡都分開記。
+解法：把追星行事曆、音樂榜單、小卡圖鑑、討論串放進同一個 App。
+怎麼賺：目前免費、沒有內購，官方沒有公開怎麼收費。
+你會發現，這些團隊拿到錢，不是因為得了什麼獎，而是因為做出了有人在用的東西。`,
   `【先讓大家看題目，留時間舉手。】
-如果這次沒得獎，你的 App 還會繼續做下去嗎？會的，可以舉個手嗎？
+那回到你們身上。如果這次沒得獎，你的 App 還會繼續做下去嗎？會的，可以舉個手嗎？
 【停一下，看看台下。】
 我也是這次的評審，所以先說清楚：今天分享的內容跟評分無關，不會因為你有沒有照今天講的做，就加分或扣分。
 今天想跟大家聊的，不是怎麼得獎，而是作品離開比賽之後，怎麼把它當成一間新創，讓它活下去，甚至賺到錢。先從大家選題目的習慣聊起。`,
@@ -2785,49 +2993,8 @@ ChatGPT 就不一樣。每個月付一點訂閱費，查資料、寫報告、改
 有人願意付錢嗎？如果現在還沒收費，有沒有人願意主動推給朋友？那至少表示你幫到了他。
 這是我看產品能不能繼續做的角度，不是這次比賽的正式評分標準。
 那如果三件事都有，但 App 暫時還賺不了錢呢？`,
-  `如果產品暫時還不賺錢，除了先想辦法把使用者留住，也可以去找資金，讓你有餘力做更多想做的事。這就是新創圈很常見的做法：找加速器、找投資。
-像 886 Studios，是台北的新創工作室，有一個加速計畫叫 ikigai Launchpad。在台北實體進行十週，每隊投資十萬美元，從 2025 年到現在辦了四梯。
-要注意，這是投資，不是獎金。十萬美元換的是你公司 8% 的股份，拿了錢，公司就有一部分是別人的。
-接下來快速看其中有做 App 的團隊。每一頁我都整理了三件事：他們遇到什麼問題、怎麼解決，還有怎麼賺錢。`,
-  `PicPet。跟好朋友一起養一隻虛擬寵物，用每天的照片餵牠。
-問題：好朋友各自忙，很少分享生活，感情慢慢就淡了。
-解法：一起養寵物，每天拍照「餵」牠，寵物會升等、解鎖家具。
-怎麼賺：免費下載。PicPet+ 月訂 NT$120／年訂 NT$1,190，另賣金幣。`,
-  `Tell It Now。店家在地圖上發探店任務，附近的人到店發文領獎勵。
-問題：小店想宣傳，找網紅又貴又難配對，也拿不到真實口碑。
-解法：附近的人收到任務就能到店體驗、發文，店家審核後發獎勵。
-怎麼賺：對發文的人免費，向店家收月費：NT$2,999 起；單次任務抽 30%。`,
-  `PictureCook。孩子的 AI 英文朋友，用互動繪本聊天學英文。
-問題：小孩學英文多半靠字卡和練習題，無聊，也很少開口說。
-解法：互動繪本加 AI 角色對話，角色會問問題，讓孩子開口回答。
-怎麼賺：免費下載。Story Plus 單月 NT$490、六個月 NT$1,990。`,
-  `Sugar AI。跟正版授權的漫畫角色一對一聊天。
-問題：喜歡的角色只能看、不能互動；創作者也少有新的變現方式。
-解法：向創作者取得授權，個性由創作者監修，角色會記得你們的對話。
-怎麼賺：免費下載，賣 App 內道具（NT$59 起）和月卡 NT$199。`,
-  `Hushli 樹洞。陪你聊心事的 AI 日記（原名 EchoTree）。
-問題：半夜焦慮找不到人說；看心理師貴、要排隊，也怕被貼標籤。
-解法：24 小時都能找 AI 角色聊，對話自動整理成日記，每週回顧情緒。
-怎麼賺：免費下載。Premium 月訂 NT$320，另賣加購訊息 NT$120。`,
-  `lfg。把看到的店存成共用地圖，一鍵揪朋友出門。
-問題：群組裡「要幹嘛」「你決定啦」來回鬼打牆，最後常常約不成。
-解法：想去的店丟進地圖，選地點、選人、送出，朋友直接回要不要。
-怎麼賺：免費下載，收藏數用完再買：10 次 NT$30、50 次 NT$90。`,
-  `Peeps。跟好朋友、另一半一起住的線上像素小家。
-問題：想跟朋友保持聯繫，但發限動、傳訊息都有壓力。
-解法：共用的像素房間，一起佈置、養寵物、玩小遊戲，打開就像回家。
-怎麼賺：免費下載。PRIME 月訂 NT$150／年訂 NT$1,290，另賣 P 幣。`,
-  `Kardomo。台灣 K-pop 粉絲的一站式追星 App。
-問題：追星要在好幾個 App 之間跳：行程、榜單、小卡都分開記。
-解法：把追星行事曆、音樂榜單、小卡圖鑑、討論串放進同一個 App。
-怎麼賺：目前免費、沒有內購，官方沒有公開怎麼收費。`,
-  `Persona2 AI。打字就能做出自己的 AI 角色扮演遊戲。
-問題：想玩互動故事只能等別人寫好；自己想做，又不會寫程式。
-解法：用 AI 打字做出角色扮演遊戲，放進大廳讓別人玩。
-怎麼賺：免費下載，Google Play 標示有 App 內購，價格未公開。
-你會發現，拿到投資的團隊，大多也是先免費把人留住，再用訂閱或內購收錢。`,
-  `除了加速器，也有很多比賽和計畫可以用。
-這裡不是叫你為了得獎去做，而是把它們當成資源：獎金、補助、輔導、投資人，讓你可以把 App 做得更久。`,
+  `如果三件事都有，但 App 暫時還賺不了錢，可以回頭想想開場的 886，去找加速器、拿投資。
+除此之外，也有很多比賽和計畫可以用。這裡不是叫你為了得獎去做，而是把它們當成資源：獎金、補助、輔導、投資人，讓你可以把 App 做得更久。`,
   `聯發科「智在家鄉」，用科技解決台灣的社會問題。題目有社會意義完全沒問題，我開場想講的，是比完之後還要能繼續做下去。只有點子也能報種子組，首獎二十萬；已經在營運的加速組，首獎一百萬，得獎隊還能再分兩百萬的合作基金。`,
   `教育部 U-start，要跟學校育成中心一起申請。第一階段補助五十萬，表現好的第二階段還有三十五萬到一百萬。`,
   `國科會 FITI，適合學校研究成果想創業的團隊。四關每關都有錢，最後決選拿一百萬創業基金。2027 第一梯次十二月底截止，現在就能報。`,
@@ -2846,6 +3013,17 @@ ChatGPT 就不一樣。每個月付一點訂閱費，查資料、寫報告、改
 
 export default [
   TitleCover,
+  Question300,
+  Studio886,
+  casePicpet,
+  caseTellitnow,
+  casePicturecook,
+  caseSugarai,
+  casePersona2Ai,
+  caseHushli,
+  caseLfg,
+  casePeeps,
+  caseKardomo,
   Cover,
   AfterCompetition,
   WhoDecides,
@@ -2868,16 +3046,6 @@ export default [
   BusinessModels,
   FindProblem,
   StillAlive,
-  Studio886,
-  casePicpet,
-  caseTellitnow,
-  casePicturecook,
-  caseSugarai,
-  caseHushli,
-  caseLfg,
-  casePeeps,
-  caseKardomo,
-  casePersona2Ai,
   CompetitionIntro,
   compMediatek,
   compUstart,
