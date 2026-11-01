@@ -1472,39 +1472,6 @@ const POLL_PRICE = 10;
 const POLL_RATIOS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 const POLL_BAR_MAX = 520;
 
-const PollQuestion = ({
-  n,
-  children,
-  live,
-  delay,
-}: {
-  n: string;
-  children: ReactNode;
-  live: boolean;
-  delay: number;
-}) => (
-  <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start', ...rise(live, delay, 20) }}>
-    <span
-      style={{
-        ...NUM,
-        flex: 'none',
-        width: 48,
-        height: 48,
-        borderRadius: '50%',
-        border: `3px solid ${INK}`,
-        background: BUTTER,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: 26,
-      }}
-    >
-      {n}
-    </span>
-    <p style={{ ...DISPLAY, fontSize: 32, lineHeight: 1.3 }}>{children}</p>
-  </div>
-);
-
 const PlaceCard = ({
   x,
   color,
@@ -1758,28 +1725,6 @@ const PhoneNews: Page = () => {
   );
 };
 
-const PriceCard = ({
-  x,
-  color,
-  price,
-  detail,
-  live,
-  delay,
-}: {
-  x: number;
-  color: string;
-  price: string;
-  detail: string;
-  live: boolean;
-  delay: number;
-}) => (
-  <Panel x={x} y={360} width={760} height={340} color={color} live={live} delay={delay}>
-    <p style={{ ...BODY, fontWeight: 700 }}>半逢遇甲一個月收</p>
-    <p style={{ ...NUM, fontSize: 120, lineHeight: 1.1, marginTop: 14 }}>{price}</p>
-    <p style={{ ...BODY, fontSize: 30, marginTop: 14 }}>{detail}</p>
-  </Panel>
-);
-
 const BanfengPricing: Page = () => {
   const live = useLive();
   return (
@@ -1787,29 +1732,22 @@ const BanfengPricing: Page = () => {
       <Tag n="12" live={live}>
         降低成本
       </Tag>
-      <Title live={live}>同一個 App，價錢不同，答案就不同。</Title>
-      <PriceCard
-        x={120}
-        color={PAPER}
-        price="NT$200"
-        detail="比一頓大餐還貴，換不到這麼多價值。"
-        live={live}
-        delay={300}
-      />
-      <PriceCard
-        x={1040}
-        color={BUTTER}
-        price="NT$10"
-        detail="用上更好的體驗，生活變好一點。"
-        live={live}
-        delay={700}
-      />
-      <Sticker x={650} y={320} r={8} live={live} delay={1200} bg={PINK} pad="12px 26px">
-        <span style={{ ...DISPLAY, fontSize: 40 }}>沒人買</span>
-      </Sticker>
-      <Sticker x={1540} y={320} r={-6} live={live} delay={1500} bg={MINT} pad="12px 26px">
-        <span style={{ ...DISPLAY, fontSize: 40 }}>有人願意付</span>
-      </Sticker>
+      <h2
+        style={{
+          ...DISPLAY,
+          ...abs(120, 300),
+          width: 1680,
+          fontSize: 100,
+          lineHeight: 1.3,
+          ...rise(live, 200, 40),
+        }}
+      >
+        如果現在半逢遇甲
+        <br />
+        每個月收 <span style={{ color: TOMATO }}>10 塊</span>，
+        <br />
+        會付錢的舉手！
+      </h2>
     </Stage>
   );
 };
@@ -1865,17 +1803,6 @@ const LivePoll: Page = () => {
           <span style={{ ...BODY, fontSize: 22, fontWeight: 700 }}>人</span>
         </div>
       </div>
-      <div style={abs(410, 600, { width: 380, display: 'flex', flexDirection: 'column', gap: 22 })}>
-        <PollQuestion n="1" live={live} delay={700}>
-          你有在用半逢遇甲嗎？
-        </PollQuestion>
-        <PollQuestion n="2" live={live} delay={1000}>
-          如果一個月收 10 塊，你會買單嗎？
-        </PollQuestion>
-      </div>
-      <Sticker x={640} y={770} r={-7} bg={TOMATO} live={live} delay={1400} pad="10px 22px">
-        <span style={{ ...DISPLAY, fontSize: 34 }}>舉手！</span>
-      </Sticker>
       <div
         style={abs(860, 296, {
           width: 940,
@@ -3169,15 +3096,13 @@ ChatGPT 就不一樣。每個月付一點訂閱費，查資料、寫報告、改
 所以在台灣，就算提供一樣的價值，使用者付出的成本也比美國高很多。這是在台灣做新創一定要面對的現實。難，但不是不可能。`,
   `那在台灣要怎麼做？大家不付錢，常常是因為成本太高。那我們把單價調低，就等於降低大家要付出的成本。
 拿我自己做的 App，半逢遇甲來說。課表、iLearn、公車、停車都收在一起，還有我整理的逢甲美食地圖。
-如果它一個月收兩百塊，我很確定沒有人會買，因為換到的價值撐不起兩百塊。
-但如果只要十塊，就能用上更好的體驗，讓生活變好一點，這時候就會有人願意付。
-那到底有多少人願意付這十塊？我們直接來問問看。`,
+如果它一個月收兩百塊，我很確定沒有人會買。但如果只要十塊呢？
+【讓題目停在畫面上。】
+如果現在半逢遇甲每個月收十塊，會付錢的舉手！
+【數一下大概的比例，記起來，下一頁用。】`,
   `半逢遇甲現在每個月大概有六千個人在用。
-先問第一題，你有在用半逢遇甲嗎？有的舉手。
-【數一下，回應幾句。】
-第二題，如果半逢遇甲一個月收十塊，你會買單嗎？願意的舉手。
-【估一下比例，指著右邊對應的那一條。】
-差不多是這個比例。這樣的比例，我一個月躺在家裡，就可以賺到這麼多。
+【指著右邊，對應剛剛舉手的比例那一條。】
+剛剛差不多是這個比例。這樣的比例，我一個月躺在家裡，就可以賺到這麼多。
 當然，這還沒扣掉 Apple 的抽成和伺服器成本，App 也要一直維護，不是真的什麼都不用做。
 但也看得出來，不是每個人都會付錢。那沒付錢的人，對 App 就沒有價值了嗎？`,
   `其實沒付錢的人，也很有價值。只要有人每天打開，就有變現的機會。
