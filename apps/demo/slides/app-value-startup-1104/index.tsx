@@ -1990,7 +1990,6 @@ type CaseStudyData = {
   revenue: string;
   icon: string;
   shots: string[];
-  source: string;
 };
 
 const CaseCard = ({
@@ -2009,9 +2008,9 @@ const CaseCard = ({
   children: ReactNode;
 }) => (
   <div
-    style={abs(900, y, {
-      width: 900,
-      height: 150,
+    style={abs(860, y, {
+      width: 940,
+      height: 190,
       boxSizing: 'border-box',
       padding: '20px 32px',
       background: color,
@@ -2025,15 +2024,15 @@ const CaseCard = ({
       ...rise(live, delay, 32),
     })}
   >
-    <span style={{ ...DISPLAY, fontSize: 30 }}>{label}</span>
-    <span style={{ ...BODY, fontSize: 27, lineHeight: 1.4 }}>{children}</span>
+    <span style={{ ...DISPLAY, fontSize: 36 }}>{label}</span>
+    <span style={{ ...BODY, fontSize: 34, lineHeight: 1.4 }}>{children}</span>
   </div>
 );
 
 const caseStudyPage = (data: CaseStudyData): Page => {
   const CaseStudy: Page = () => {
     const live = useLive();
-    const shotWidth = data.shots.length > 2 ? 220 : 260;
+    const shotWidth = data.shots.length > 2 ? 226 : 270;
     const gap = 24;
     const rowWidth = data.shots.length * shotWidth + (data.shots.length - 1) * gap;
     return (
@@ -2065,11 +2064,11 @@ const caseStudyPage = (data: CaseStudyData): Page => {
           />
           <h2 style={{ ...DISPLAY, fontSize: 88 }}>{data.name}</h2>
         </div>
-        <p style={{ ...BODY, ...abs(120, 290), width: 1680, fontSize: 32, ...rise(live, 180) }}>
+        <p style={{ ...BODY, ...abs(120, 285), width: 1680, fontSize: 38, ...rise(live, 180) }}>
           {data.tagline}
         </p>
         <div
-          style={abs(120 + (740 - rowWidth) / 2, 360, {
+          style={abs(120 + (720 - rowWidth) / 2, 360, {
             display: 'flex',
             gap,
             ...rise(live, 250, 40),
@@ -2082,7 +2081,7 @@ const caseStudyPage = (data: CaseStudyData): Page => {
               alt={`${data.name} 畫面 ${i + 1}`}
               style={{
                 width: shotWidth,
-                height: 480,
+                height: 590,
                 objectFit: 'cover',
                 objectPosition: 'top',
                 borderRadius: 26,
@@ -2097,13 +2096,12 @@ const caseStudyPage = (data: CaseStudyData): Page => {
         <CaseCard y={360} color={PINK} label="遇到的問題" live={live} delay={450}>
           {data.problem}
         </CaseCard>
-        <CaseCard y={525} color={MINT} label="解決辦法" live={live} delay={650}>
+        <CaseCard y={565} color={MINT} label="解決辦法" live={live} delay={650}>
           {data.solution}
         </CaseCard>
-        <CaseCard y={690} color={BUTTER} label="盈利模式" live={live} delay={850}>
+        <CaseCard y={770} color={BUTTER} label="盈利模式" live={live} delay={850}>
           {data.revenue}
         </CaseCard>
-        <Footnote y={890}>{data.source}</Footnote>
       </Stage>
     );
   };
@@ -2186,7 +2184,10 @@ const Studio886: Page = () => {
         <p style={{ ...NUM, fontSize: 110, lineHeight: 1.1 }}>4 梯</p>
         <p style={{ ...BODY, fontSize: 30, marginTop: 18 }}>2025 年到現在</p>
       </Panel>
-      <Footnote y={900}>資料：886studios.com、886 Studios Substack，2026/11/1 查詢。</Footnote>
+      <Footnote y={900}>
+        資料：886studios.com、886 Studios Substack；後面各頁的價格取自 App Store／Google
+        Play，2026/11/1 查詢。
+      </Footnote>
     </Stage>
   );
 };
@@ -2200,7 +2201,6 @@ const casePicpet = caseStudyPage({
   revenue: '免費下載。PicPet+ 月訂 NT$120／年訂 NT$1,190，另賣金幣。',
   icon: casePicpetIcon,
   shots: [casePicpet1, casePicpet2, casePicpet3],
-  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
 });
 
 const caseTellitnow = caseStudyPage({
@@ -2212,7 +2212,6 @@ const caseTellitnow = caseStudyPage({
   revenue: '對發文的人免費，向店家收月費：NT$2,999 起；單次任務抽 30%。',
   icon: caseTellitnowIcon,
   shots: [caseTellitnow1, caseTellitnow2, caseTellitnow3],
-  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
 });
 
 const caseInstapodz = caseStudyPage({
@@ -2224,7 +2223,6 @@ const caseInstapodz = caseStudyPage({
   revenue: '免費下載。PRO 月訂 NT$320／年訂 NT$2,490。',
   icon: caseInstapodzIcon,
   shots: [caseInstapodz1, caseInstapodz2, caseInstapodz3],
-  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
 });
 
 const casePicturecook = caseStudyPage({
@@ -2236,7 +2234,6 @@ const casePicturecook = caseStudyPage({
   revenue: '免費下載。Story Plus 單月 NT$490、六個月 NT$1,990。',
   icon: casePicturecookIcon,
   shots: [casePicturecook1, casePicturecook2, casePicturecook3],
-  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
 });
 
 const caseSugarai = caseStudyPage({
@@ -2248,7 +2245,6 @@ const caseSugarai = caseStudyPage({
   revenue: '免費下載，賣 App 內道具（NT$59 起）和月卡 NT$199。',
   icon: caseSugaraiIcon,
   shots: [caseSugarai1, caseSugarai2, caseSugarai3],
-  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
 });
 
 const caseHushli = caseStudyPage({
@@ -2260,7 +2256,6 @@ const caseHushli = caseStudyPage({
   revenue: '免費下載。Premium 月訂 NT$320，另賣加購訊息 NT$120。',
   icon: caseHushliIcon,
   shots: [caseHushli1, caseHushli2, caseHushli3],
-  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
 });
 
 const caseFootnotes = caseStudyPage({
@@ -2272,7 +2267,6 @@ const caseFootnotes = caseStudyPage({
   revenue: '目前完全免費，官方沒有公開怎麼收費，先衝使用者。',
   icon: caseFootnotesIcon,
   shots: [caseFootnotes1, caseFootnotes2, caseFootnotes3],
-  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
 });
 
 const caseLfg = caseStudyPage({
@@ -2284,7 +2278,6 @@ const caseLfg = caseStudyPage({
   revenue: '免費下載，收藏數用完再買：10 次 NT$30、50 次 NT$90。',
   icon: caseLfgIcon,
   shots: [caseLfg1, caseLfg2, caseLfg3],
-  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
 });
 
 const casePeeps = caseStudyPage({
@@ -2296,7 +2289,6 @@ const casePeeps = caseStudyPage({
   revenue: '免費下載。PRIME 月訂 NT$150／年訂 NT$1,290，另賣 P 幣。',
   icon: casePeepsIcon,
   shots: [casePeeps1, casePeeps2, casePeeps3],
-  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
 });
 
 const caseKardomo = caseStudyPage({
@@ -2308,7 +2300,6 @@ const caseKardomo = caseStudyPage({
   revenue: '目前免費、沒有內購，官方沒有公開怎麼收費。',
   icon: caseKardomoIcon,
   shots: [caseKardomo1, caseKardomo2, caseKardomo3],
-  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
 });
 
 const casePersona2Ai = caseStudyPage({
@@ -2320,7 +2311,6 @@ const casePersona2Ai = caseStudyPage({
   revenue: '免費下載，Google Play 標示有 App 內購，價格未公開。',
   icon: casePersona2AiIcon,
   shots: [casePersona2Ai1, casePersona2Ai2, casePersona2Ai3],
-  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
 });
 
 const compMediatek = competitionPage({
