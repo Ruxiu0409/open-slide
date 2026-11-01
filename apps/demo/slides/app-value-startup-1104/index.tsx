@@ -7,10 +7,6 @@ import {
   useSlidePageNumber,
 } from '@open-slide/core';
 import { type CSSProperties, type ReactNode, useState } from 'react';
-import caseFootnotes1 from './assets/886/footnotes-1.webp';
-import caseFootnotes2 from './assets/886/footnotes-2.webp';
-import caseFootnotes3 from './assets/886/footnotes-3.webp';
-import caseFootnotesIcon from './assets/886/footnotes-icon.webp';
 import caseHushli1 from './assets/886/hushli-1.webp';
 import caseHushli2 from './assets/886/hushli-2.webp';
 import caseHushli3 from './assets/886/hushli-3.webp';
@@ -2342,17 +2338,6 @@ const caseHushli = caseStudyPage({
   shots: [caseHushli1, caseHushli2, caseHushli3],
 });
 
-const caseFootnotes = caseStudyPage({
-  name: 'footnotes',
-  batch: 'ikigai #03',
-  tagline: '一本安靜的生活筆記本，收照片、聲音和念頭。',
-  problem: '在社群記錄生活總要發給別人看，有壓力；小片刻也散在各處。',
-  solution: '不用給人看的私人筆記本，文字、照片、語音自動排成時間軸。',
-  revenue: '目前完全免費，官方沒有公開怎麼收費，先衝使用者。',
-  icon: caseFootnotesIcon,
-  shots: [caseFootnotes1, caseFootnotes2, caseFootnotes3],
-});
-
 const caseLfg = caseStudyPage({
   name: 'lfg',
   batch: 'ikigai #03',
@@ -2824,10 +2809,6 @@ ChatGPT 就不一樣。每個月付一點訂閱費，查資料、寫報告、改
 問題：半夜焦慮找不到人說；看心理師貴、要排隊，也怕被貼標籤。
 解法：24 小時都能找 AI 角色聊，對話自動整理成日記，每週回顧情緒。
 怎麼賺：免費下載。Premium 月訂 NT$320，另賣加購訊息 NT$120。`,
-  `footnotes。一本安靜的生活筆記本，收照片、聲音和念頭。
-問題：在社群記錄生活總要發給別人看，有壓力；小片刻也散在各處。
-解法：不用給人看的私人筆記本，文字、照片、語音自動排成時間軸。
-怎麼賺：目前完全免費，官方沒有公開怎麼收費，先衝使用者。`,
   `lfg。把看到的店存成共用地圖，一鍵揪朋友出門。
 問題：群組裡「要幹嘛」「你決定啦」來回鬼打牆，最後常常約不成。
 解法：想去的店丟進地圖，選地點、選人、送出，朋友直接回要不要。
@@ -2893,7 +2874,6 @@ export default [
   casePicturecook,
   caseSugarai,
   caseHushli,
-  caseFootnotes,
   caseLfg,
   casePeeps,
   caseKardomo,
