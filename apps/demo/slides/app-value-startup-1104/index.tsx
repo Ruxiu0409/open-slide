@@ -36,7 +36,7 @@ const SLIDE_ID = 'app-value-startup-1104';
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Gabarito:wght@500;700;800;900&display=swap';
 const CJK_TEXT =
-  '、。「」【】一三上下不世主之也了事二五些交享人什今介仍他付代以件伴但位低住作你使來例供便係促保修個們候值假做停傘備像價元先光免入內全兩公六其具冊再出分判別利到制券刻前剛創力功加助動務勢勵包十千半卡卻原厲去參及友只可台右合同名向否告呢和品哪商問善喜單嗎嚮四回因困園圖團在地報場塊境多夜夠夥大天套好如始媒子字學它完官定室害宵家容實審寫專對導小少就局展工左己師帳常幣幫平年底店度廢廣弄式弱張形往待很後得從心忙怎思情想意感慢慣應成我或截所手才打扣批找把抽拜拿持指按掉掌排接推提換揪搭撐據擾收改放教散整數料新斷方於明易是時晴曝更書最會月有朋服本材束東板果架某查校核格案棄楚業標模樣機次歡正段每比求決沒沿法注活流清測準滑濕濟為然照煩營片版牌特猜獎班現理瑞生產用由甲界留畫當療登發百的盈目直省看真知碰確示社神禮科種空立競第筆等答算箭簡精系約紙素累結絡給統經繼續置美群義習考者而聊聯聲聽育能自至臺與舉花萬著蓋薦號表被補裡西要見覺角解觸訂計訊記設註評試話該認說誰課調請講謝證識讀變讓買費貼資賣賺購賽走起越跟跳蹺躍身躺車較載辦近送透這通逢連進遇過道適選邀還邊那都醒醫重量金錢錯鎖鐘開間閱關附陪隊階際離難雨需靠面頁項順頒頭題願食飲餐首高麻麼點！（），／：；＝？';
+  '、。「」【】一三上下不世主之也了事二五些交享人什今介仍他付代以件伴但位低住作你使來例供便係促保修個們候值假做停偶傘備像價元先光免入內全兩公六其具冊再出分判別利到制券刻前剛創力功加助動務勢勵包十千半卡卻原厲去參及友只可台右合同名向否告呢和品哪唱商問善喜喝單嗎嚮四回因困園圖團在地報場塊境多夜夠夥大天套好如始媒子字學它完官定宜室害宵家容實審寫專對導小少就局展工左己師帳常幣幫平年底店度廢廣弄式弱張形往待很後得從心忙怎思情想意感慢慣憶應成我或截所手才打扣批找把抽拜拿持指按掉掌排接推提換揪搭搶撐據擾收改放教散整數料新斷方於明易是時晴曝更書最會月有朋服本材束杯東板果架某查校核格案棄楚業標模樣機次歡正段每比求決沒沿法注活流清測準滑演濕濟為然照煩營片版牌特猜獎班現理瑞生產用由甲界留畫當療登發百的盈目直省看真知碰確示社神票禮科種空立競第筆等答算箭簡粉精系約紅紙素累結絡給統絲經繼續置美群義習考者而聊聯聲聽育能自至臺與舉花茶萬著蓋薦號表被補裡西要見覺角解觸訂計訊記設註評試話該認說誰課調請講謝證識讀變讓買費貼資賣賺購賽走起越跟跳蹺躍身躺車較載輩辦近送透這通逢連進遇過道適選邀還邊那都醒醫重量金錢錯鎖鐘門開間閱關附陪隊階際離難雨需靠面頁項順頒頭題願食飲餐首高麻麼點！（）＋，／：；＝？';
 const CJK_FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap&text=${encodeURIComponent(CJK_TEXT)}`;
 const CJK_FONT_LINK_ID = `osd-webfont-cjk-${SLIDE_ID}`;
 const FONT_LINK_ID = `osd-webfont-${SLIDE_ID}`;
@@ -1190,7 +1190,7 @@ const COSTS: { title: string; detail: string; color: string }[] = [
   { title: '精神', detail: '介面難用，越用越累。', color: BUTTER },
   { title: '習慣', detail: '放棄原本用順手的方法。', color: MINT },
   { title: '個資', detail: '交出位置和聯絡人。', color: PERI },
-  { title: '機會', detail: '用了它，就沒空用別的。', color: PINK },
+  { title: '機會成本', detail: '付你 10 塊，少喝杯紅茶。', color: PINK },
 ];
 
 const WhatIsCost: Page = () => {
@@ -1273,8 +1273,8 @@ const ValueWeight = ({
   </div>
 );
 
-const ValueBalance = ({ purchase, live }: { purchase: 'bag' | 'app'; live: boolean }) => {
-  const isApp = purchase === 'app';
+const ValueBalance = ({ purchase, live }: { purchase: 'bag' | 'concert'; live: boolean }) => {
+  const isApp = purchase === 'concert';
   const delay = isApp ? 2800 : 450;
   return (
     <div style={abs(34, 190, { width: 730, height: 275 })}>
@@ -1316,7 +1316,7 @@ const ValueBalance = ({ purchase, live }: { purchase: 'bag' | 'app'; live: boole
           live={live}
           delay={delay}
         >
-          {isApp ? '每月 10 塊' : '價格很重'}
+          {isApp ? '票價＋搶票' : '價格很重'}
         </ValueWeight>
         <ValueWeight
           x={448}
@@ -1326,7 +1326,7 @@ const ValueBalance = ({ purchase, live }: { purchase: 'bag' | 'app'; live: boole
           live={live}
           delay={delay + 550}
         >
-          {isApp ? '省下麻煩' : '生活用不到'}
+          {isApp ? '難忘回憶' : '生活用不到'}
         </ValueWeight>
       </div>
     </div>
@@ -1354,13 +1354,13 @@ const ValueExchange: Page = () => {
         <ValueBalance purchase="bag" live={live} />
       </Panel>
       <Panel x={1000} y={350} width={800} height={510} live={live} delay={350}>
-        <h3 style={{ ...DISPLAY, fontSize: 52 }}>每月 10 塊的 App</h3>
+        <h3 style={{ ...DISPLAY, fontSize: 52 }}>演唱會門票</h3>
         <p style={{ ...BODY, fontSize: 28, lineHeight: 1.5, marginTop: 20 }}>
-          省掉選課、找室友的麻煩，
+          票不便宜，還要花時間搶，
           <br />
-          換到的價值比 10 塊重。
+          但對粉絲來說，換到的更重。
         </p>
-        <ValueBalance purchase="app" live={live} />
+        <ValueBalance purchase="concert" live={live} />
       </Panel>
       <Sticker x={723} y={320} r={8} bg={PINK} live={live} delay={2150} pad="12px 24px">
         <span style={{ ...DISPLAY, fontSize: 38 }}>不買</span>
@@ -2197,12 +2197,12 @@ export const notes: string[] = [
   `那成本是什麼？成本，就是為了得到一樣東西，你得先放棄的東西。而且不只是錢。
 錢最直接，訂閱費、內購。時間也是，下載、註冊、學怎麼用。注意力也是，看廣告、被通知打擾。
 【指下面一排。】
-還有心力，你要想、要選、還要記得打開它。還有精神，介面難用，用越久越累。還有習慣，你得放棄原本用順手的方法。還有個資，要交出位置、聯絡人、照片。最後是機會，你用了這個，就沒空用別的。
+還有心力，你要想、要選、還要記得打開它。還有精神，介面難用，用越久越累。還有習慣，你得放棄原本用順手的方法。還有個資，要交出位置、聯絡人、照片。最後是機會成本。付給你的十塊，原本可以拿去買一杯紅茶；選了你，就等於放棄了那杯紅茶。只要做選擇，就一定有東西被放棄，所以機會成本永遠都在。
 【停一下。】
 所以使用者每打開一次你的 App，都在付出成本。就算 App 免費，成本也不是零。`,
   `把價值和成本放在一起，就是這個蹺蹺板。別人願意付出，是因為覺得值得。我們其實都在比，付出的成本，跟換到的東西，哪一邊比較重。
 拿學生生活來想，一個名牌包價格很重，我的生活卻用不到它的價值，也拿不出能換它的錢，我就不買。喜歡名牌包的人，可能有不同的判斷。
-但如果一個 App，每月十塊，就能省掉選課、找室友的麻煩，我覺得省下的時間比十塊加上學怎麼用的時間還值得，就願意付。
+可是演唱會門票一樣不便宜，還要熬夜搶票、排隊入場，粉絲卻搶著買。因為對他來說，換到的是難忘的回憶，比票價加上搶票的時間都重。同樣很貴，有人不買、有人搶著買，差別就在換到的價值。
 【指兩個蹺蹺板。】
 所以不是功能越多，就越能收錢。要看這個使用者付出的成本，能不能從你這裡換到他在意的價值。
 那如果你的 App 真的值得，一個月能有多少收入？我們來算算看。`,
