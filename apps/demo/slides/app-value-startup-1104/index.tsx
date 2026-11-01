@@ -15,10 +15,6 @@ import caseHushli1 from './assets/886/hushli-1.webp';
 import caseHushli2 from './assets/886/hushli-2.webp';
 import caseHushli3 from './assets/886/hushli-3.webp';
 import caseHushliIcon from './assets/886/hushli-icon.webp';
-import caseInstapodz1 from './assets/886/instapodz-1.webp';
-import caseInstapodz2 from './assets/886/instapodz-2.webp';
-import caseInstapodz3 from './assets/886/instapodz-3.webp';
-import caseInstapodzIcon from './assets/886/instapodz-icon.webp';
 import caseKardomo1 from './assets/886/kardomo-1.webp';
 import caseKardomo2 from './assets/886/kardomo-2.webp';
 import caseKardomo3 from './assets/886/kardomo-3.webp';
@@ -2313,17 +2309,6 @@ const caseTellitnow = caseStudyPage({
   shots: [caseTellitnow1, caseTellitnow2, caseTellitnow3],
 });
 
-const caseInstapodz = caseStudyPage({
-  name: 'InstaPodz',
-  batch: 'ikigai #02',
-  tagline: '想學什麼就問，AI 幫你做一集專屬 Podcast。',
-  problem: '想用零碎時間學東西，但現成的 Podcast 太長、不一定對題。',
-  solution: '輸入問題或書名，幾分鐘生成一集，長度、聲音、語言都能選。',
-  revenue: '免費下載。PRO 月訂 NT$320／年訂 NT$2,490。',
-  icon: caseInstapodzIcon,
-  shots: [caseInstapodz1, caseInstapodz2, caseInstapodz3],
-});
-
 const casePicturecook = caseStudyPage({
   name: 'PictureCook',
   batch: 'ikigai #02',
@@ -2827,10 +2812,6 @@ ChatGPT 就不一樣。每個月付一點訂閱費，查資料、寫報告、改
 問題：小店想宣傳，找網紅又貴又難配對，也拿不到真實口碑。
 解法：附近的人收到任務就能到店體驗、發文，店家審核後發獎勵。
 怎麼賺：對發文的人免費，向店家收月費：NT$2,999 起；單次任務抽 30%。`,
-  `InstaPodz。想學什麼就問，AI 幫你做一集專屬 Podcast。
-問題：想用零碎時間學東西，但現成的 Podcast 太長、不一定對題。
-解法：輸入問題或書名，幾分鐘生成一集，長度、聲音、語言都能選。
-怎麼賺：免費下載。PRO 月訂 NT$320／年訂 NT$2,490。`,
   `PictureCook。孩子的 AI 英文朋友，用互動繪本聊天學英文。
 問題：小孩學英文多半靠字卡和練習題，無聊，也很少開口說。
 解法：互動繪本加 AI 角色對話，角色會問問題，讓孩子開口回答。
@@ -2909,7 +2890,6 @@ export default [
   Studio886,
   casePicpet,
   caseTellitnow,
-  caseInstapodz,
   casePicturecook,
   caseSugarai,
   caseHushli,
