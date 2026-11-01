@@ -36,7 +36,7 @@ const SLIDE_ID = 'app-value-startup-1104';
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Gabarito:wght@500;700;800;900&display=swap';
 const CJK_TEXT =
-  '、。「」【】一三上下不世主之也了事二五些交享人什今介仍他付代以件伴但位低住作你使來例供便係促保修個們候值假做停傘備像價元先光免入內全兩公六其具冊再出分判別到制券刻前剛創力功加助動務勢包十千半卡卻原厲去參及友只可台右合同名向否告呢品哪商問善喜單嗎嚮四回因困園圖團在地報場塊境多夜夠夥大天套好如始媒子字學它完官定室害宵家容實審寫專對導小少就展工左己師帳常幣幫平年底店度廢廣弄式弱張形往待很後得從心忙怎思情想意感慢慣成我或截所手才打扣批找把抽拜拿持指按掉排接推提換揪搭撐據擾收改放教散整數料新斷方於明易是時晴曝更書最會月有朋服本材束東板果架某查校核格案棄楚業標模樣機次歡正段每比求決沒沿法注活流清測準滑濕濟為然照煩營片版牌特猜獎班現理瑞生產用由甲界留畫當療登發百的目直省看真知碰確示社神禮科種空立第筆等答算箭簡精系約紙素累結絡給統經繼續置美群義習考者而聊聯聽育能自至臺與舉花萬著蓋薦號表被補裡西要見覺角解觸訂計訊記設註評試話認說誰課調請講謝證識讀變讓買費貼資賣賺購賽走起越跟跳蹺躍身躺車較載近送透這通逢連進遇過道適選邀還邊那都醒醫重量錢錯鎖鐘開間閱關附陪隊階際離難雨需靠面頁項順頒頭題願食飲餐首高麻麼點！（），／：；＝？';
+  '、。「」【】一三上下不世主之也了事二五些交享人什今介仍他付代以件伴但位低住作你使來例供便係促保修個們候值假做停傘備像價元先光免入內全兩公六其具冊再出分判別利到制券刻前剛創力功加助動務勢勵包十千半卡卻原厲去參及友只可台右合同名向否告呢和品哪商問善喜單嗎嚮四回因困園圖團在地報場塊境多夜夠夥大天套好如始媒子字學它完官定室害宵家容實審寫專對導小少就局展工左己師帳常幣幫平年底店度廢廣弄式弱張形往待很後得從心忙怎思情想意感慢慣應成我或截所手才打扣批找把抽拜拿持指按掉掌排接推提換揪搭撐據擾收改放教散整數料新斷方於明易是時晴曝更書最會月有朋服本材束東板果架某查校核格案棄楚業標模樣機次歡正段每比求決沒沿法注活流清測準滑濕濟為然照煩營片版牌特猜獎班現理瑞生產用由甲界留畫當療登發百的盈目直省看真知碰確示社神禮科種空立競第筆等答算箭簡精系約紙素累結絡給統經繼續置美群義習考者而聊聯聲聽育能自至臺與舉花萬著蓋薦號表被補裡西要見覺角解觸訂計訊記設註評試話該認說誰課調請講謝證識讀變讓買費貼資賣賺購賽走起越跟跳蹺躍身躺車較載辦近送透這通逢連進遇過道適選邀還邊那都醒醫重量金錢錯鎖鐘開間閱關附陪隊階際離難雨需靠面頁項順頒頭題願食飲餐首高麻麼點！（），／：；＝？';
 const CJK_FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap&text=${encodeURIComponent(CJK_TEXT)}`;
 const CJK_FONT_LINK_ID = `osd-webfont-cjk-${SLIDE_ID}`;
 const FONT_LINK_ID = `osd-webfont-${SLIDE_ID}`;
@@ -781,12 +781,46 @@ const AfterCompetition: Page = () => {
           ...rise(live, 650),
         }}
       >
-        得獎看的是<span style={{ color: TOMATO }}>評審的喜好</span>。<br />
-        App 能不能活下去，看的是你想不想做，
+        得獎了，至少還有<span style={{ color: TOMATO }}>獎金和掌聲</span>。
         <br />
-        還有你找不找得到<span style={{ color: TOMATO }}>一個理由</span>撐下去。
+        沒得獎呢？它就<span style={{ color: TOMATO }}>真的沒有了</span>嗎？
       </div>
       <FooterNote>醫療、教育當然可以做。先問，誰真的需要？</FooterNote>
+    </Stage>
+  );
+};
+
+const WhoDecides: Page = () => {
+  const live = useLive();
+  return (
+    <Stage>
+      <Tag n="02" live={live}>
+        誰來決定
+      </Tag>
+      <Title live={live}>為什麼要把 App 的結局，交給評審決定？</Title>
+      <Panel x={120} y={350} width={760} height={330} color={PAPER} live={live}>
+        <p style={{ ...BODY, fontWeight: 700 }}>評審決定的</p>
+        <h3 style={{ ...DISPLAY, fontSize: 64, marginTop: 28 }}>得不得獎</h3>
+        <p style={{ ...BODY, fontSize: 30, marginTop: 22, color: MUTED }}>看的是評審的喜好。</p>
+      </Panel>
+      <div style={{ ...DISPLAY, ...abs(922, 470), fontSize: 80, ...rise(live, 350) }}>≠</div>
+      <Panel x={1060} y={350} width={740} height={330} color={BUTTER} live={live} delay={420}>
+        <p style={{ ...BODY, fontWeight: 700 }}>你自己決定的</p>
+        <h3 style={{ ...DISPLAY, fontSize: 64, marginTop: 28 }}>要不要繼續做</h3>
+        <p style={{ ...BODY, fontSize: 30, marginTop: 22 }}>看的是你想不想。</p>
+      </Panel>
+      <div
+        style={{
+          ...DISPLAY,
+          ...abs(120, 760),
+          width: 1680,
+          fontSize: 50,
+          lineHeight: 1.4,
+          ...rise(live, 650),
+        }}
+      >
+        App 要不要活下去，應該由<span style={{ color: TOMATO }}>你自己</span>決定。
+      </div>
     </Stage>
   );
 };
@@ -828,7 +862,7 @@ const ReasonsToContinue: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="02" live={live}>
+      <Tag n="03" live={live}>
         撐下去的理由
       </Tag>
       <Title live={live}>你為什麼想做這個 App？</Title>
@@ -872,7 +906,7 @@ const CampusMath: Page = () => {
   const revenue = useCount(60000, live, 650, 1700);
   return (
     <Stage>
-      <Tag n="07" live={live}>
+      <Tag n="08" live={live}>
         算給你看
       </Tag>
       <Title live={live}>不用先改變世界，先從你的學校開始。</Title>
@@ -970,7 +1004,7 @@ const WhatIsMoney: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="03" live={live}>
+      <Tag n="04" live={live}>
         錢是什麼
       </Tag>
       <Title live={live}>100 塊，為什麼值 100 塊？</Title>
@@ -1034,7 +1068,7 @@ const MoneyWaste: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="03" live={live}>
+      <Tag n="04" live={live}>
         錢是什麼
       </Tag>
       <Title live={live}>如果有一天，它什麼都買不到……</Title>
@@ -1118,7 +1152,7 @@ const WhatIsValue: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="04" live={live}>
+      <Tag n="05" live={live}>
         價值是什麼
       </Tag>
       <Title live={live}>什麼是價值？</Title>
@@ -1163,7 +1197,7 @@ const WhatIsCost: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="05" live={live}>
+      <Tag n="06" live={live}>
         成本是什麼
       </Tag>
       <Title live={live}>什麼是成本？</Title>
@@ -1303,7 +1337,7 @@ const ValueExchange: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="06" live={live}>
+      <Tag n="07" live={live}>
         價值
       </Tag>
       <Title live={live}>付出成本，是在換一個值得的東西。</Title>
@@ -1383,7 +1417,7 @@ const LivePoll: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="08" live={live}>
+      <Tag n="09" live={live}>
         現場調查
       </Tag>
       <Title live={live} size={80}>
@@ -1533,7 +1567,7 @@ const Instagram: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="09" live={live}>
+      <Tag n="10" live={live}>
         IG 靠什麼賺錢
       </Tag>
       <Title live={live}>IG 不收你錢，那它靠什麼賺？</Title>
@@ -1636,7 +1670,7 @@ const Traffic: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="10" live={live}>
+      <Tag n="11" live={live}>
         注意力，也有價值
       </Tag>
       <Title live={live}>有人每天打開，就有變現的機會。</Title>
@@ -1709,7 +1743,7 @@ const BusinessModels: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="11" live={live}>
+      <Tag n="12" live={live}>
         四種賺錢方式
       </Tag>
       <Title live={live}>誰付錢？為什麼願意付？</Title>
@@ -1776,11 +1810,193 @@ const BusinessModels: Page = () => {
   );
 };
 
+type CaseStudyData = {
+  name: string;
+  batch: string;
+  tagline: string;
+  problem: string;
+  solution: string;
+  revenue: string;
+  icon: string;
+  shots: string[];
+  source: string;
+};
+
+const CaseCard = ({
+  y,
+  color,
+  label,
+  live,
+  delay,
+  children,
+}: {
+  y: number;
+  color: string;
+  label: string;
+  live: boolean;
+  delay: number;
+  children: ReactNode;
+}) => (
+  <div
+    style={abs(900, y, {
+      width: 900,
+      height: 150,
+      boxSizing: 'border-box',
+      padding: '20px 32px',
+      background: color,
+      border: BORDER,
+      borderRadius: 26,
+      boxShadow: shadow(8),
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      gap: 8,
+      ...rise(live, delay, 32),
+    })}
+  >
+    <span style={{ ...DISPLAY, fontSize: 30 }}>{label}</span>
+    <span style={{ ...BODY, fontSize: 27, lineHeight: 1.4 }}>{children}</span>
+  </div>
+);
+
+const caseStudyPage = (data: CaseStudyData): Page => {
+  const CaseStudy: Page = () => {
+    const live = useLive();
+    const shotWidth = data.shots.length > 2 ? 220 : 260;
+    const gap = 24;
+    const rowWidth = data.shots.length * shotWidth + (data.shots.length - 1) * gap;
+    return (
+      <Stage>
+        <Tag n="12" live={live}>
+          886 案例 · {data.batch}
+        </Tag>
+        <div
+          style={abs(120, 168, {
+            width: 1680,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 28,
+            ...rise(live, 70, 40),
+          })}
+        >
+          <img
+            src={data.icon}
+            alt=""
+            style={{
+              width: 96,
+              height: 96,
+              borderRadius: 22,
+              border: BORDER,
+              boxShadow: shadow(5),
+              display: 'block',
+            }}
+          />
+          <h2 style={{ ...DISPLAY, fontSize: 88 }}>{data.name}</h2>
+        </div>
+        <p style={{ ...BODY, ...abs(120, 290), width: 1680, fontSize: 32, ...rise(live, 180) }}>
+          {data.tagline}
+        </p>
+        <div
+          style={abs(120 + (740 - rowWidth) / 2, 360, {
+            display: 'flex',
+            gap,
+            ...rise(live, 250, 40),
+          })}
+        >
+          {data.shots.map((shot, i) => (
+            <img
+              key={shot}
+              src={shot}
+              alt={`${data.name} 畫面 ${i + 1}`}
+              style={{
+                width: shotWidth,
+                height: 480,
+                objectFit: 'cover',
+                objectPosition: 'top',
+                borderRadius: 26,
+                border: BORDER,
+                boxShadow: shadow(8),
+                display: 'block',
+                background: PAPER,
+              }}
+            />
+          ))}
+        </div>
+        <CaseCard y={360} color={PINK} label="遇到的問題" live={live} delay={450}>
+          {data.problem}
+        </CaseCard>
+        <CaseCard y={525} color={MINT} label="解決辦法" live={live} delay={650}>
+          {data.solution}
+        </CaseCard>
+        <CaseCard y={690} color={BUTTER} label="盈利模式" live={live} delay={850}>
+          {data.revenue}
+        </CaseCard>
+        <Footnote y={890}>{data.source}</Footnote>
+      </Stage>
+    );
+  };
+  return CaseStudy;
+};
+
+type CompetitionData = {
+  name: string;
+  organizer: string;
+  who: string;
+  flow: string;
+  rewards: string[];
+  source: string;
+};
+
+const competitionPage = (data: CompetitionData): Page => {
+  const Competition: Page = () => {
+    const live = useLive();
+    return (
+      <Stage>
+        <Tag n="13" live={live}>
+          新創競賽
+        </Tag>
+        <Title live={live}>{data.name}</Title>
+        <p style={{ ...BODY, ...abs(120, 290), width: 1680, fontSize: 32, ...rise(live, 180) }}>
+          {data.organizer}
+        </p>
+        <Panel x={120} y={370} width={760} height={225} color={PERI} live={live} delay={300}>
+          <h3 style={{ ...DISPLAY, fontSize: 36 }}>誰可以參加</h3>
+          <p style={{ ...BODY, fontSize: 27, lineHeight: 1.45, marginTop: 12 }}>{data.who}</p>
+        </Panel>
+        <Panel x={120} y={625} width={760} height={225} color={MINT} live={live} delay={500}>
+          <h3 style={{ ...DISPLAY, fontSize: 36 }}>怎麼比</h3>
+          <p style={{ ...BODY, fontSize: 27, lineHeight: 1.45, marginTop: 12 }}>{data.flow}</p>
+        </Panel>
+        <Panel x={940} y={370} width={860} height={480} color={BUTTER} live={live} delay={700}>
+          <h3 style={{ ...DISPLAY, fontSize: 44 }}>獎勵</h3>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 16,
+              marginTop: 22,
+            }}
+          >
+            {data.rewards.map((reward) => (
+              <p key={reward} style={{ ...DISPLAY, fontSize: 32, lineHeight: 1.3 }}>
+                {reward}
+              </p>
+            ))}
+          </div>
+        </Panel>
+        <Footnote y={890}>{data.source}</Footnote>
+      </Stage>
+    );
+  };
+  return Competition;
+};
+
 const FindProblem: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="12" live={live}>
+      <Tag n="13" live={live}>
         怎麼找題目
       </Tag>
       <Title live={live} size={82}>
@@ -1839,7 +2055,7 @@ const StillAlive: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="13" live={live}>
+      <Tag n="14" live={live}>
         比賽之後
       </Tag>
       <Title live={live} size={82}>
@@ -1863,7 +2079,7 @@ const Close: Page = () => {
   const live = useLive();
   return (
     <Stage footer={false}>
-      <Tag n="14" live={live} color={TOMATO}>
+      <Tag n="15" live={live} color={TOMATO}>
         我也在找一起做事的人
       </Tag>
       <h2
@@ -1951,10 +2167,14 @@ export const notes: string[] = [
 我是這次的評審，自己也想創業，也在找願意一起做事的夥伴。今天想聊的，是作品離開比賽之後，還有誰會打開它。
 你現在不一定知道怎麼賺錢，但可以先問，這個 App 對誰有用？他願意為它付出什麼？我們先從大家選題目的方式聊起。`,
   `以前聊比賽題目，很常聽到，醫療或教育比較有社會意義，感覺評審比較會買單。
-醫療、教育當然可以做。但這也是你自己想做的嗎？還是只在想，簡報怎麼講比較感人、比較容易得獎？
-如果每個決定都只為了上台那一刻，比完以後，功能交了、簡報交了，App 也就停了。
-得獎看的是評審的喜好。App 能不能活下去，看的是你想不想做，還有你找不找得到一個理由撐下去。
-沒得獎的時候，你還願不願意打開專案？那個理由不一定是賺錢。`,
+醫療、教育當然可以做。但如果每個決定都只為了上台那一刻，比完以後，功能交了、簡報交了，App 也就停了。
+【指右邊那張卡。】
+得獎了，至少還有獎金和掌聲。那沒得獎呢？這個 App 就真的沒有了嗎？`,
+  `得不得獎，看的是評審的喜好。這件事我們管不了。
+但我想問，為什麼要把我們 App 的結局，交給評審去決定？
+【指左右兩張卡。】
+評審決定的，是得不得獎。App 要不要繼續做下去，應該由你自己決定。
+那如果想繼續做，你可以有哪些理由？`,
   `那撐下去的理由可以是什麼？
 可能是改善生活。每天都遇到同一個麻煩，想自己做工具。你就是第一個使用者，明天還會用，就會想修好。
 也可能是幫助弱勢。你認識真的需要幫忙的人，看到他的生活方便一點，就想繼續做。
@@ -2041,6 +2261,7 @@ export default [
   TitleCover,
   Cover,
   AfterCompetition,
+  WhoDecides,
   ReasonsToContinue,
   Blank,
   WhatIsMoney,
