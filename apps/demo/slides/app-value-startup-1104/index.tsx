@@ -842,18 +842,17 @@ const WhoDecides: Page = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: 90,
         })}
       >
-        <div style={rise(live, 200)}>
+        <div style={{ width: 640, ...rise(live, 200) }}>
           <p style={{ ...BODY, fontWeight: 700, color: MUTED }}>評審決定的</p>
           <h3 style={{ ...DISPLAY, fontSize: 96, marginTop: 24 }}>得不得獎</h3>
           <p style={{ ...BODY, fontSize: 32, marginTop: 24, color: MUTED }}>看的是評審的喜好。</p>
         </div>
-        <div style={{ ...DISPLAY, fontSize: 96, ...rise(live, 350) }}>≠</div>
-        <div style={rise(live, 450)}>
+        <div style={{ ...DISPLAY, width: 200, fontSize: 96, ...rise(live, 350) }}>≠</div>
+        <div style={{ width: 640, ...rise(live, 450) }}>
           <p style={{ ...BODY, fontWeight: 700 }}>你自己決定的</p>
-          <h3 style={{ ...DISPLAY, fontSize: 96, marginTop: 24, color: TOMATO }}>要不要繼續做</h3>
+          <h3 style={{ ...DISPLAY, fontSize: 96, marginTop: 24, color: TOMATO }}>要不要做</h3>
           <p style={{ ...BODY, fontSize: 32, marginTop: 24 }}>看的是你想不想。</p>
         </div>
       </div>
