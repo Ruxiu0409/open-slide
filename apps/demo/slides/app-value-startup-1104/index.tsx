@@ -81,7 +81,7 @@ const SLIDE_ID = 'app-value-startup-1104';
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Gabarito:wght@500;700;800;900&display=swap';
 const CJK_TEXT =
-  '、。「」【】一三上下不世丟中串主久之也了事二互五些交亨享人什今介仍他付代以件任份企伯伴但佈位低住作你使來例供依便係促保修個倍們候值假做停偶傘備傳像價億優元先光免兒入內全兩公六共其具冊再准凸出分列初判別利到制券刻前剛創力功加助動務勞勢勵包北區十千升午半協卡卻原厲去參又及友取口另只叫可台右司各合同名向否含告呢和品員哪售唱商問啦善喜喝單嗎嘛器嚮四回因困國圍園圖團在地坊執培基報場塊境壓多夜夠夥大天太央失套好如始委媒子字存孩學它安完官定宜客宣室害宵家容實審寫寵專對導小少就局屆展屬山州工左差己已市師帳帶常幕幣幫平年幹幾底店府度庫廢廣廳弄式弱張形影往待很後得從心忘忙快念怎怕思性息情想意感慢慣慮憶應成我或截戰戲戶房所手才打扣扮批找技把投抽拆拍招拜拿持指按授掉掌排探接推提換揪搭搶摺撐撰擅據擬擾支收改放政故敗教散整數文料斯新斷方於日明易昕星是時景晴智曆曝更書最會月有朋服未本材束杭杯東松板果架某查校核格案桿條梯棄楚業榜構樂標模樣樹機權次款歡止正歲段每比氣求決沒沿法注洞活流淡清測港源準滑滿演漫潛激濕濟灣災為無焦然照煩營牆片版牌牠物特猜獎玩班現理瑞生產用由甲申界留畢畫當疊痕療登發百的盈監目直省看真睿知研破碎碑碰確示社神票禮私科程種積究空突立站章童競第筆等答策算管箭簡籍籤粉精系約紅紙素累組結絡給統絲經維網緒線練總績繪繫繼續置署美群義習考者而聊聯聲聽股育背能膽自至致臺與興舉舊色花苦英茶華萬葉著蓋薦薪藏處虛號螢行術衛衝表被裂補裡製西要見覺角解觸言訂計訊討記設訴診註評詢試話該認語說誰課調請論講謝證識讀變讓負責貴買費貼資賈賣賺購賽走起越趣趨跟路跳蹺躍身躺車軟軸較載輔輩輸轉辛辦近追送透這通速造逢連週進遇遊運過道適選邀還邊那部都鄉配醒醫重量金鉅鉸銀銘銷鋒錄錢錯鍵鎖鏈鐘鑑長門開間閱關附降限院陪陳隊階際隻集離難雨零需青靜非靠面音頁項順須預頒頓領頭題額願顧食飲養餐餵首駐驗體高鬼麻麼黑點齡！（）＋，／：；＝？～';
+  '、。「」【】一三上下不世丟中串主久之也了事二互五些交亨享人什今介仍他付代以件任份企伯伴但佈位低住作你使來例供依便係促保修個倍們候值假做停偶傘備傳像價億優元先光免兒入內全兩公六共其具冊再准凸出分列初判別利到制券刻前剛創力功加助動務勞勢勵包北區十千升午半協卡卻原厲去參又及友取口另只叫可台右司各合同名向否含告呢和品員哪售唱商問啦善喜喝單嗎嘛器嚮四回因困國圍園圖團在地坊執培基報場塊境壓外多夜夠夥大天太央失套好如始委媒子字存孩學它安完官定宜客宣室害宵家容實審寫寵專對導小少就局屆展屬山州工左差己已市師帳帶常幕幣幫平年幹幾底店府度庫廢廣廳弄式弱張形影往待很後得從心忘忙快念怎怕思性息情想意感慢慣慮憶應成我或截戰戲戶房所手才打扣扮批找技把投抽拆拍招拜拿持指按授掉掌排探接推提換揪搭搶摺撐撰擅據擬擾支收改放政故敗教散整數文料斯新斷方於日明易昕星是時景晴智曆曝更書最會月有朋服未本材束杭杯東松板果架某查校核格案桿條梯棄楚業榜構樂標模樣樹機權次款歡止正歲段每比氣求決沒沿法注洞活流淡清測港源準滑滿演漫潛激濕濟灣災為無焦然照煩營牆片版牌牠物特猜獎玩班現理瑞生產用由甲申界留畢畫當疊痕療登發百的盈監目直省看真睿知研破碎碑碰確示社神票禮私科程種積究空突立站章童競第筆等答策算管箭簡籍籤粉精系約紅紙素累組結絡給統絲經維網緒線練總績繪繫繼續置署美群義習考者而聊聯聲聽股育背能膽自至致臺與興舉舊色花苦英茶華萬葉著蓋薦薪藏處虛號螢行術衛衝表被裂補裡製西要見覺角解觸言訂計訊討記設訴診註評詢試話該認語說誰課調請論講謝證識讀變讓負責貴買費貼資賈賣賺購賽走起越趣趨跟路跳蹺躍身躺車軟軸較載輔輩輸轉辛辦近追送透這通速造逢連週進遇遊運過道適選邀還邊那部都鄉配醒醫重量金鉅鉸銀銘銷鋒錄錢錯鍵鎖鏈鐘鑑長門開間閱關附降限院陪陳隊階際隻集離難雨零需青靜非靠面音頁項順須預頒頓領頭題額願顧食飲養餐餵首駐驗體高鬼麻麼黑點齡！（）＋，／：；＝？～';
 const CJK_FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap&text=${encodeURIComponent(CJK_TEXT)}`;
 const CJK_FONT_LINK_ID = `osd-webfont-cjk-${SLIDE_ID}`;
 const FONT_LINK_ID = `osd-webfont-${SLIDE_ID}`;
@@ -1401,7 +1401,7 @@ const ValueExchange: Page = () => {
 const POLL_USERS = 6000;
 const POLL_PRICE = 10;
 const POLL_RATIOS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
-const POLL_BAR_MAX = 520;
+const POLL_BAR_MAX = 640;
 
 const PlaceCard = ({
   x,
@@ -1693,61 +1693,70 @@ const LivePoll: Page = () => {
       <Title live={live} size={80}>
         你能不能提供價值，讓使用者買單？
       </Title>
-      <div
-        style={abs(120, 300, {
-          width: 250,
-          height: 543,
-          border: BORDER,
-          borderRadius: 36,
-          boxShadow: shadow(10),
-          overflow: 'hidden',
-          background: PAPER,
-          ...rise(live, 200, 48),
-        })}
-      >
-        <img
-          src={banfengHome}
-          alt="半逢遇甲的美食首頁截圖"
-          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-        />
-      </div>
-      <div style={abs(410, 300, { width: 370, ...rise(live, 320, 24) })}>
-        <h3 style={{ ...DISPLAY, fontSize: 56 }}>半逢遇甲</h3>
-        <p style={{ ...BODY, fontSize: 24, lineHeight: 1.5, marginTop: 12 }}>
-          逢甲的校園資訊 App：課表、iLearn、公車、停車，加上 596 家店的美食地圖。
-        </p>
+      <div style={abs(120, 300, { width: 560 })}>
         <div
           style={{
-            display: 'inline-flex',
-            alignItems: 'baseline',
-            gap: 10,
-            marginTop: 18,
-            padding: '8px 18px',
-            border: `3px solid ${INK}`,
-            borderRadius: 999,
-            background: MINT,
-            boxShadow: shadow(4),
+            width: 230,
+            height: 420,
+            margin: '0 auto',
+            border: BORDER,
+            borderRadius: 34,
+            boxShadow: shadow(8),
+            overflow: 'hidden',
+            background: PAPER,
+            ...rise(live, 150, 40),
           }}
         >
-          <span style={{ ...BODY, fontSize: 22, fontWeight: 700 }}>每月活躍 約</span>
-          <span style={{ ...NUM, fontSize: 34 }}>6,000</span>
-          <span style={{ ...BODY, fontSize: 22, fontWeight: 700 }}>人</span>
+          <img
+            src={banfengHome}
+            alt="半逢遇甲的美食首頁截圖"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          />
+        </div>
+        <h3 style={{ ...DISPLAY, fontSize: 56, marginTop: 28, ...rise(live, 300, 20) }}>
+          半逢遇甲
+        </h3>
+        <p style={{ ...BODY, fontSize: 26, marginTop: 6, color: MUTED, ...rise(live, 350, 20) }}>
+          逢甲的校園資訊 App
+        </p>
+        <div
+          style={
+            {
+              display: 'inline-flex',
+              alignItems: 'baseline',
+              gap: 10,
+              marginTop: 18,
+              padding: '8px 20px',
+              border: `3px solid ${INK}`,
+              borderRadius: 999,
+              background: MINT,
+              boxShadow: shadow(4),
+              '--r': '-3deg',
+              transform: 'rotate(-3deg)',
+              ...anim(live, `pm-slap 600ms ${SLAP} 500ms both`),
+            } as CSSProperties
+          }
+        >
+          <span style={{ ...BODY, fontSize: 24, fontWeight: 700 }}>每月活躍 約</span>
+          <span style={{ ...NUM, fontSize: 40 }}>6,000</span>
+          <span style={{ ...BODY, fontSize: 24, fontWeight: 700 }}>人</span>
         </div>
       </div>
       <div
-        style={abs(860, 296, {
-          width: 940,
+        style={abs(740, 300, {
+          width: 1060,
           display: 'flex',
           flexDirection: 'column',
-          gap: 11,
+          gap: 8,
+          textAlign: 'left',
         })}
       >
         {POLL_RATIOS.map((ratio, i) => {
           const income = (POLL_USERS * ratio * POLL_PRICE) / 100;
           return (
-            <div key={ratio} style={{ display: 'flex', alignItems: 'center', gap: 18, height: 44 }}>
-              <span style={{ ...NUM, width: 96, fontSize: 32, textAlign: 'right' }}>{ratio}%</span>
-              <div style={{ width: POLL_BAR_MAX, height: 34, position: 'relative' }}>
+            <div key={ratio} style={{ display: 'flex', alignItems: 'center', gap: 22, height: 52 }}>
+              <span style={{ ...NUM, width: 110, fontSize: 38, textAlign: 'right' }}>{ratio}%</span>
+              <div style={{ width: POLL_BAR_MAX, height: 40 }}>
                 <div
                   style={{
                     width: (POLL_BAR_MAX * ratio) / 100,
@@ -1755,20 +1764,20 @@ const LivePoll: Page = () => {
                     boxSizing: 'border-box',
                     background: ratio === 100 ? TOMATO : BUTTER,
                     border: `3px solid ${INK}`,
-                    borderRadius: 10,
+                    borderRadius: 12,
                     boxShadow: shadow(4),
                     transformOrigin: 'left center',
-                    ...anim(live, `av-grow 700ms ${SNAPPY} ${1600 + i * 110}ms both`),
+                    ...anim(live, `av-grow 650ms ${BOUNCY} ${450 + i * 70}ms both`),
                   }}
                 />
               </div>
               <span
                 style={{
                   ...NUM,
-                  width: 270,
-                  fontSize: 36,
+                  width: 260,
+                  fontSize: 40,
                   textAlign: 'right',
-                  ...rise(live, 1750 + i * 110, 12),
+                  ...rise(live, 650 + i * 70, 12),
                 }}
               >
                 NT${income.toLocaleString('en-US')}
@@ -1824,9 +1833,9 @@ const Instagram: Page = () => {
   return (
     <Stage>
       <Tag n="15" live={live}>
-        IG 靠什麼賺錢
+        Dcard 靠什麼賺錢
       </Tag>
-      <Title live={live}>IG 不收你錢，那它靠什麼賺？</Title>
+      <Title live={live}>Dcard 不收你錢，那它靠什麼賺？</Title>
       <svg
         width={1680}
         height={550}
@@ -1862,7 +1871,7 @@ const Instagram: Page = () => {
         x={160}
         y={480}
         label="你"
-        detail="滑 Reels、看內容"
+        detail="滑文章、看討論"
         color={BUTTER}
         live={live}
         delay={200}
@@ -1870,7 +1879,7 @@ const Instagram: Page = () => {
       <AttentionNode
         x={760}
         y={480}
-        label="IG"
+        label="Dcard"
         detail="用內容留住你"
         color={PERI}
         live={live}
@@ -2183,15 +2192,6 @@ const caseStudyPage = (data: CaseStudyData): Page => {
   return CaseStudy;
 };
 
-type CompetitionData = {
-  name: string;
-  organizer: string;
-  who: string;
-  flow: string;
-  rewards: string[];
-  source: string;
-};
-
 type Founder = {
   name: string;
   role: string;
@@ -2452,50 +2452,6 @@ const teamPeeps = teamPage({
   note: '一年上架十幾款 App，大多失敗，才做出總榜第一的 Peeps',
 });
 
-const competitionPage = (data: CompetitionData): Page => {
-  const Competition: Page = () => {
-    const live = useLive();
-    return (
-      <Stage>
-        <Tag n="19" live={live}>
-          新創競賽
-        </Tag>
-        <Title live={live}>{data.name}</Title>
-        <p style={{ ...BODY, ...abs(120, 290), width: 1680, fontSize: 32, ...rise(live, 180) }}>
-          {data.organizer}
-        </p>
-        <Panel x={120} y={370} width={760} height={225} color={PERI} live={live} delay={300}>
-          <h3 style={{ ...DISPLAY, fontSize: 36 }}>誰可以參加</h3>
-          <p style={{ ...BODY, fontSize: 27, lineHeight: 1.45, marginTop: 12 }}>{data.who}</p>
-        </Panel>
-        <Panel x={120} y={625} width={760} height={225} color={MINT} live={live} delay={500}>
-          <h3 style={{ ...DISPLAY, fontSize: 36 }}>怎麼比</h3>
-          <p style={{ ...BODY, fontSize: 27, lineHeight: 1.45, marginTop: 12 }}>{data.flow}</p>
-        </Panel>
-        <Panel x={940} y={370} width={860} height={480} color={BUTTER} live={live} delay={700}>
-          <h3 style={{ ...DISPLAY, fontSize: 44 }}>獎勵</h3>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 16,
-              marginTop: 22,
-            }}
-          >
-            {data.rewards.map((reward) => (
-              <p key={reward} style={{ ...DISPLAY, fontSize: 32, lineHeight: 1.3 }}>
-                {reward}
-              </p>
-            ))}
-          </div>
-        </Panel>
-        <Footnote y={890}>{data.source}</Footnote>
-      </Stage>
-    );
-  };
-  return Competition;
-};
-
 const Studio886: Page = () => {
   const live = useLive();
   return (
@@ -2611,70 +2567,61 @@ const caseKardomo = caseStudyPage({
   shots: [caseKardomo1, caseKardomo2, caseKardomo3],
 });
 
-const compMediatek = competitionPage({
-  name: '聯發科技「智在家鄉」',
-  organizer: '聯發科技教育基金會 · 2026 第 9 屆',
-  who: '2 人以上團隊，不限年齡、國籍。只有點子也能報「創新種子組」。',
-  flow: '交提案簡報 → 入圍 15 組 → 培力課程、顧問一對一 → Demo Day。',
-  rewards: [
-    '種子組：首獎 20 萬、創新創意獎 5 萬 ×2',
-    '加速組：首獎 100 萬、潛力先鋒獎 30 萬 ×2',
-    '加速組得獎隊再分 200 萬元合作基金',
-    '企業顧問一對一輔導、交通補助',
-  ],
-  source: '來源：impact.mediatek.com 2026 簡章。報名約 5–6 月。',
-});
-
-const compUstart = competitionPage({
-  name: '教育部 U-start 創新創業計畫',
-  organizer: '教育部青年發展署 · 115 年度',
-  who: '3 人以上，2/3 是在校生或近 5 年畢業生，和學校育成中心一起申請。',
-  flow: '線上提案 → 書面評選 → 進駐學校育成 6 個月 → 績優團隊再評選。',
-  rewards: [
-    '第一階段：50 萬元創業補助',
-    '（團隊開辦費 35 萬＋學校輔導費 15 萬）',
-    '第二階段績優團隊：35～100 萬元',
-    '業師門診、創業練功坊、成果展',
-  ],
-  source: '來源：ustart.yda.gov.tw、115 年度申請須知。第一階段約 2 月截止。',
-});
-
-const compFiti = competitionPage({
-  name: '國科會 FITI 創新創業激勵計畫',
-  organizer: '國家科學及技術委員會',
-  who: '大專院校、研究機構的師生，在校生或畢業未滿一年。',
-  flow: '6 個月、4 關：初選 → 評選一 → 評選二 → 決選，每關都有錢。',
-  rewards: [
-    '初選 1 萬、評選一 5 萬、評選二 20 萬',
-    '決選：100 萬元創業基金',
-    '業師輔導，接觸 10–16 位投資人',
-    '2027 第一梯次：12/30 中午截止',
-  ],
-  source: '來源：fiti.stpi.niar.org.tw，2026/11/1 查詢。',
-});
-
-const compZhanguoce = competitionPage({
-  name: '戰國策全國創新創業競賽',
-  organizer: '新北市青年局、致理科大、中華創業育成協會 · 2026 第 21 屆',
-  who: '18–35 歲在校生、近 5 年畢業生，或新創企業。免報名費。',
-  flow: '交創新計畫書 → 書面審查 → 決賽簡報 6 分鐘＋問答 5 分鐘。',
-  rewards: ['總獎金 32 萬元，各組取前三名', '有機會進駐新北青創基地', '說明會、計畫書撰寫工作坊'],
-  source: '來源：新北市青年局、中央社 2026/3/20。報名約 3–4 月。',
-});
+const RESOURCES: { name: string; org: string; reward: string; detail: string; color: string }[] = [
+  {
+    name: '智在家鄉',
+    org: '聯發科技教育基金會',
+    reward: '最高 100 萬',
+    detail: '只有點子也能報',
+    color: BUTTER,
+  },
+  {
+    name: 'U-start',
+    org: '教育部青年發展署',
+    reward: '50～150 萬',
+    detail: '和學校育成中心申請',
+    color: MINT,
+  },
+  { name: 'FITI', org: '國科會', reward: '最高 100 萬', detail: '四關每關都有錢', color: PERI },
+  {
+    name: '戰國策',
+    org: '新北市青年局等',
+    reward: '總獎金 32 萬',
+    detail: '18～35 歲、免報名費',
+    color: PINK,
+  },
+];
 
 const CompetitionIntro: Page = () => {
   const live = useLive();
   return (
     <Stage>
       <Tag n="19" live={live}>
-        新創競賽
+        額外資源
       </Tag>
-      <Title live={live} y={330} size={110}>
-        想做下去，也有這些資源
-      </Title>
-      <p style={{ ...BODY, ...abs(120, 500), width: 1680, fontSize: 38, ...rise(live, 300) }}>
-        這些比賽和計畫，獎勵不只獎金，還有輔導、投資人和進駐。
-      </p>
+      <Title live={live}>想做下去，也有這些資源</Title>
+      {RESOURCES.map((r, i) => (
+        <Panel
+          key={r.name}
+          x={120 + i * 430}
+          y={340}
+          width={390}
+          height={500}
+          color={r.color}
+          live={live}
+          delay={300 + i * 200}
+        >
+          <h3 style={{ ...DISPLAY, fontSize: 58 }}>{r.name}</h3>
+          <p style={{ ...BODY, fontSize: 26, fontWeight: 700, color: MUTED, marginTop: 10 }}>
+            {r.org}
+          </p>
+          <p style={{ ...NUM, fontSize: 52, lineHeight: 1.2, marginTop: 70 }}>{r.reward}</p>
+          <p style={{ ...BODY, fontSize: 30, lineHeight: 1.45, marginTop: 40 }}>{r.detail}</p>
+        </Panel>
+      ))}
+      <Footnote y={890}>
+        資料：各計畫官網與簡章（2026）。U-start 為第一階段 50 萬＋第二階段 35～100 萬。
+      </Footnote>
     </Stage>
   );
 };
@@ -3036,13 +2983,13 @@ ChatGPT 就不一樣。每個月付一點訂閱費，查資料、寫報告、改
 像半逢遇甲每個月有六千個人在用，這六千個人每天打開，就是一大群人的注意力，這就是流量。
 先有使用者，因為你解決了需求，他們才會回來。持續有人看、有人找東西，才有流量，再看誰願意為這些注意力付錢。
 像大家每天用 App 找宵夜，附近店家就會想讓這群人看到自己的餐點。
-但有下載數，不等於有流量；有流量，也不是自動有收入。那注意力要怎麼變成錢？看看 IG 怎麼做。`,
-  `IG 不收你錢，那它靠什麼賺？
-你每天滑 Reels，IG 拿內容跟你換時間。你看的廣告、花的時間，就是你的成本，也就是注意力成本。
-【沿著箭頭，從你指向 IG，再指向廣告商。】
-誰想要這些注意力？廣告商。他需要很多人看到產品，才有機會讓人覺得值得買。所以 IG 提供接觸這些人的機會，廣告商拿錢來換。
-你沒有付錢，還是付出了東西。一個人的注意力很小，但幾億個人加起來，就是非常龐大的錢。這就是流量能帶來那麼多錢的原因。
-不過也要誠實講，IG 是靠幾億人的規模。六千個人的廣告收入其實很少，所以小 App 通常要搭配其他收費方式。`,
+但有下載數，不等於有流量；有流量，也不是自動有收入。那注意力要怎麼變成錢？看看 Dcard 怎麼做。`,
+  `Dcard 大家應該都用過吧？它不收你錢，那它靠什麼賺？
+你每天滑 Dcard 看文章、看討論，Dcard 拿內容跟你換時間。你滑到的廣告、花的時間，就是你的成本，也就是注意力成本。
+【沿著箭頭，從你指向 Dcard，再指向廣告商。】
+誰想要這些注意力？廣告商。Dcard 上幾乎都是大學生，想賣東西給大學生的品牌，就會想讓你看到他們的產品。所以 Dcard 提供接觸這群人的機會，廣告商拿錢來換。
+你沒有付錢，還是付出了東西。一個人的注意力很小，但很多人加起來，就變成很可觀的錢。這就是流量能帶來錢的原因。
+不過也要誠實講，Dcard 是靠很大的使用者規模。六千個人的廣告收入其實很少，所以小 App 通常要搭配其他收費方式。`,
   `新創一定要想清楚商業模式，說白了就是：你怎麼收錢？App 收錢的方式不只一種，先記這四種就夠了。
 訂閱制，使用者持續付費，換你持續解決問題。像社團排班，按月付費用進階功能。
 單次付費或內購，是為特定功能付錢。像活動修圖，付費解鎖素材包。
@@ -3062,11 +3009,12 @@ ChatGPT 就不一樣。每個月付一點訂閱費，查資料、寫報告、改
 這是我看產品能不能繼續做的角度，不是這次比賽的正式評分標準。
 那如果三件事都有，但 App 暫時還賺不了錢呢？`,
   `如果三件事都有，但 App 暫時還賺不了錢，可以回頭想想開場的 886，去找加速器、拿投資。
-除此之外，也有很多比賽和計畫可以用。這裡不是叫你為了得獎去做，而是把它們當成資源：獎金、補助、輔導、投資人，讓你可以把 App 做得更久。`,
-  `聯發科「智在家鄉」，用科技解決台灣的社會問題。題目有社會意義完全沒問題，我開場想講的，是比完之後還要能繼續做下去。只有點子也能報種子組，首獎二十萬；已經在營運的加速組，首獎一百萬，得獎隊還能再分兩百萬的合作基金。`,
-  `教育部 U-start，要跟學校育成中心一起申請。第一階段補助五十萬，表現好的第二階段還有三十五萬到一百萬。`,
-  `國科會 FITI，適合學校研究成果想創業的團隊。四關每關都有錢，最後決選拿一百萬創業基金。2027 第一梯次十二月底截止，現在就能報。`,
-  `戰國策，老牌的全國創業競賽，十八到三十五歲都能報、免報名費，總獎金三十二萬，得獎有機會進駐新北青創基地。
+除此之外，也有很多比賽和計畫可以用。這裡不是叫你為了得獎去做，而是把它們當成資源：獎金、補助、輔導、投資人，讓你可以把 App 做得更久。
+【指四張卡。】
+聯發科的「智在家鄉」，用科技解決台灣的社會問題，只有點子也能報，首獎二十萬，已經在營運的加速組首獎一百萬。
+教育部 U-start，跟學校育成中心一起申請，第一階段補助五十萬，表現好的再拿三十五到一百萬。
+國科會 FITI，四關每關都有錢，最後決選一百萬創業基金，2027 第一梯次十二月底截止，現在就能報。
+戰國策，十八到三十五歲都能報、免報名費，總獎金三十二萬，得獎有機會進駐新北青創基地。
 拿到這些資源，是為了讓你有機會做更多想做的事，甚至用你的 App 改變這個世界。`,
   `台灣很常被說是代工的地方。台灣人有一個很棒的特性：只要有人把任務交給我們，我們可以把它做得非常、非常好。
 【停一下。】
@@ -3122,10 +3070,6 @@ export default [
   FindProblem,
   StillAlive,
   CompetitionIntro,
-  compMediatek,
-  compUstart,
-  compFiti,
-  compZhanguoce,
   Garage,
   Close,
 ] satisfies Page[];
