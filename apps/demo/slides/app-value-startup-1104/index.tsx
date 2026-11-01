@@ -9,6 +9,7 @@ import {
 import { type CSSProperties, type ReactNode, useEffect, useState } from 'react';
 import banfengHome from './assets/banfeng-home.webp';
 import igQr from './assets/ig-qr.svg';
+import ntd100 from './assets/ntd-100-specimen.jpg';
 
 export const design: DesignSystem = {
   palette: { bg: '#FFF3DF', text: '#151313', accent: '#FF5A2C' },
@@ -942,40 +943,26 @@ const WhatIsMoney: Page = () => {
       <p style={{ ...BODY, ...abs(125, 293), fontSize: 34, ...rise(live, 180) }}>
         如果有一天，它什麼都買不到……
       </p>
-      <div style={abs(565, 422, { ...rise(live, 250) })}>
+      <div style={abs(580, 410, { ...rise(live, 250) })}>
         <div
           style={{
-            width: 790,
-            height: 345,
-            boxSizing: 'border-box',
-            padding: 24,
+            width: 760,
+            height: 372,
             border: BORDER,
-            borderRadius: 30,
+            borderRadius: 18,
             boxShadow: shadow(12),
-            background: MINT,
+            overflow: 'hidden',
+            background: PAPER,
             filter: 'grayscale(1)',
             transform: 'rotate(-3deg)',
             ...anim(live, 'av-grey 700ms ease-out 5900ms both'),
           }}
         >
-          <div
-            style={{
-              height: '100%',
-              border: `3px solid ${INK}`,
-              borderRadius: 18,
-              background: PAPER,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 30,
-              position: 'relative',
-            }}
-          >
-            <span style={{ ...MONO, ...abs(22, 18), fontSize: 22 }}>NT$</span>
-            <Mark size={100} />
-            <span style={{ ...NUM, fontSize: 210, letterSpacing: '-0.06em' }}>100</span>
-            <span style={{ ...BODY, ...abs(540, 242), fontSize: 20, fontWeight: 700 }}>一百元</span>
-          </div>
+          <img
+            src={ntd100}
+            alt="新臺幣 100 元券正面樣張"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          />
         </div>
       </div>
       <PurchaseSticker x={245} y={410} r={-8} color={BUTTER} label="便當" live={live} delay={850}>
