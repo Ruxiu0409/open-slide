@@ -7,7 +7,7 @@ import {
   useSlidePageNumber,
 } from '@open-slide/core';
 import { type CSSProperties, type ReactNode, useEffect, useState } from 'react';
-import banfengFood from './assets/banfeng-food.webp';
+import banfengHome from './assets/banfeng-home.webp';
 
 export const design: DesignSystem = {
   palette: { bg: '#FFF3DF', text: '#151313', accent: '#FF5A2C' },
@@ -580,12 +580,52 @@ const Panel = ({
   </div>
 );
 
+const AppStoreIcon = ({ size }: { size: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 64 64"
+    role="img"
+    aria-label="App Store"
+    style={{
+      display: 'inline-block',
+      verticalAlign: '-0.12em',
+      marginRight: '0.18em',
+      overflow: 'visible',
+      filter: `drop-shadow(6px 6px 0 ${INK})`,
+    }}
+  >
+    <defs>
+      <linearGradient id="av-appstore" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stopColor="#1AC4FA" />
+        <stop offset="1" stopColor="#1F6CF0" />
+      </linearGradient>
+    </defs>
+    <rect
+      x={2}
+      y={2}
+      width={60}
+      height={60}
+      rx={14}
+      fill="url(#av-appstore)"
+      stroke={INK}
+      strokeWidth={3}
+    />
+    <g stroke="#FFFFFF" strokeWidth={4.6} strokeLinecap="round" fill="none">
+      <path d="M 35.5 14.5 L 19 43" />
+      <path d="M 28.5 14.5 L 45 43" />
+      <path d="M 15 36.5 H 41" />
+      <path d="M 15.5 47.5 L 13.5 51" />
+    </g>
+  </svg>
+);
+
 const TitleCover: Page = () => {
   const live = useLive();
   return (
     <Stage footer={false}>
-      <p style={{ ...MONO, ...abs(120, 120), fontSize: 24, ...rise(live) }}>
-        逢甲大學 · App 登場時刻
+      <p style={{ ...MONO, ...abs(120, 120), fontSize: 24, textTransform: 'none', ...rise(live) }}>
+        iOS Club · App 登場時刻
       </p>
       <h1
         style={{
@@ -597,6 +637,7 @@ const TitleCover: Page = () => {
           ...rise(live, 120),
         }}
       >
+        <AppStoreIcon size={132} />
         App 的價值、
         <br />
         <span style={{ color: TOMATO }}>商業模式</span>與新創
@@ -668,8 +709,8 @@ const Cover: Page = () => {
       <p style={{ ...BODY, ...abs(126, 840), fontSize: 34, ...rise(live, 500) }}>
         今天聊聊，怎麼讓 App 活過比賽結束那天。
       </p>
-      <p style={{ ...MONO, ...abs(120, 984), color: MUTED }}>
-        逢甲大學 · 從比賽作品，到有人用的產品
+      <p style={{ ...MONO, ...abs(120, 984), color: MUTED, textTransform: 'none' }}>
+        iOS Club · 從比賽作品，到有人用的產品
       </p>
     </Stage>
   );
@@ -802,7 +843,7 @@ const CampusMath: Page = () => {
       <Tag n="03" live={live}>
         算給你看
       </Tag>
-      <Title live={live}>不用先改變世界，先從逢甲開始。</Title>
+      <Title live={live}>不用先改變世界，先從你的學校開始。</Title>
       <div
         style={abs(140, 338, {
           display: 'flex',
@@ -843,7 +884,7 @@ const CampusMath: Page = () => {
         躺在家做自己喜歡的事，也能過生活。
       </p>
       <FooterNote>
-        假設逢甲有 6,000 個人用，每人每月付 10 塊。這是營收試算，還沒扣成本與費用。
+        假設學校裡有 6,000 個人用，每人每月付 10 塊。這是營收試算，還沒扣成本與費用。
       </FooterNote>
     </Stage>
   );
@@ -1173,16 +1214,16 @@ const LivePoll: Page = () => {
           width: 250,
           height: 543,
           border: BORDER,
-          borderRadius: 30,
+          borderRadius: 36,
           boxShadow: shadow(10),
           overflow: 'hidden',
-          background: INK,
+          background: PAPER,
           ...rise(live, 200, 48),
         })}
       >
         <img
-          src={banfengFood}
-          alt="半逢遇甲的美食首頁畫面"
+          src={banfengHome}
+          alt="半逢遇甲的美食首頁截圖"
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
         />
       </div>
@@ -1743,7 +1784,7 @@ export const notes: string[] = [
 【停一下，讓大家想想。】
 沒有哪種理由比較厲害，要問它能不能讓你遇到麻煩時，還願意回來改一次。
 理由也可以很實際。如果這個 App 每個月幫你賺六萬呢？`,
-  `假設在逢甲，有六千個人用你的 App，每人每月付十塊，會是多少？
+  `假設在你的學校，有六千個人用你的 App，每人每月付十塊，會是多少？
 【等數字跳完。】
 每月六萬。這是假設情境，不是實際人數；算的是營收，還沒扣成本，也不是下載了就等於付費。
 不用先做全世界都在用的東西，可以先解決同學每天遇到的小麻煩。像選課資訊很散、找室友很花時間。
