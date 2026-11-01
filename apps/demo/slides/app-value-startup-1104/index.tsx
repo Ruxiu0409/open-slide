@@ -1488,86 +1488,41 @@ const WhyTaiwan: Page = () => {
   );
 };
 
-const WeighCard = ({
-  x,
-  color,
-  label,
-  title,
-  live,
-  delay,
-}: {
-  x: number;
-  color: string;
-  label: string;
-  title: string;
-  live: boolean;
-  delay: number;
-}) => (
-  <Panel x={x} y={370} width={700} height={300} color={color} live={live} delay={delay}>
-    <p style={{ ...BODY, fontWeight: 700 }}>{label}</p>
-    <h3 style={{ ...DISPLAY, fontSize: 60, lineHeight: 1.25, marginTop: 26 }}>{title}</h3>
-  </Panel>
-);
+const GAME_PRICES: { price: string; verdict: string; color: string }[] = [
+  { price: 'NT$500', verdict: '大特價，一定要買！', color: MINT },
+  { price: 'NT$1,000', verdict: '可以買', color: BUTTER },
+  { price: 'NT$2,500', verdict: '要想一下值不值得', color: PINK },
+];
 
-const ValueQuestion = ({
-  tag,
-  question,
-  cost,
-  value,
-  sign,
-  verdict,
-  verdictColor,
-}: {
-  tag: string;
-  question: ReactNode;
-  cost: string;
-  value: string;
-  sign: string;
-  verdict: string;
-  verdictColor: string;
-}) => {
+const GamePrices: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n={tag} live={live}>
+      <Tag n="08" live={live}>
         價值的例子
       </Tag>
-      <Title live={live}>{question}</Title>
-      <WeighCard x={170} color={PINK} label="你付出的成本" title={cost} live={live} delay={500} />
-      <div style={{ ...DISPLAY, ...abs(870, 445), width: 180, fontSize: 120, ...rise(live, 900) }}>
-        {sign}
-      </div>
-      <WeighCard x={1050} color={MINT} label="你換到的價值" title={value} live={live} delay={700} />
-      <Sticker x={1500} y={330} r={-6} live={live} delay={1400} bg={verdictColor} pad="12px 26px">
-        <span style={{ ...DISPLAY, fontSize: 40 }}>{verdict}</span>
-      </Sticker>
+      <Title live={live}>同一款遊戲，價錢變了，你還買嗎？</Title>
+      {GAME_PRICES.map((item, i) => (
+        <Panel
+          key={item.price}
+          x={140 + i * 565}
+          y={380}
+          width={510}
+          height={380}
+          color={item.color}
+          live={live}
+          delay={300 + i * 500}
+        >
+          <p style={{ ...BODY, fontWeight: 700 }}>如果它賣</p>
+          <p style={{ ...NUM, fontSize: 104, lineHeight: 1.15, marginTop: 20 }}>{item.price}</p>
+          <h3 style={{ ...DISPLAY, fontSize: 46, lineHeight: 1.3, marginTop: 28 }}>
+            {item.verdict}
+          </h3>
+        </Panel>
+      ))}
     </Stage>
   );
 };
-
-const GameExample: Page = () => (
-  <ValueQuestion
-    tag="08"
-    question="一款你很想玩的遊戲，你會買嗎？"
-    cost="遊戲的價錢"
-    value="玩的時候的快樂"
-    sign="<"
-    verdict="願意買"
-    verdictColor={MINT}
-  />
-);
-
-const NecessityExample: Page = () => (
-  <ValueQuestion
-    tag="08"
-    question="衛生紙突然貴了十倍，你還買嗎？"
-    cost="十倍的價錢"
-    value="一樣只是衛生紙"
-    sign=">"
-    verdict="不買了"
-    verdictColor={PINK}
-  />
-);
 
 const PhoneOption = ({
   x,
@@ -2795,12 +2750,11 @@ export const notes: string[] = [
 ChatGPT 就不一樣。每個月付一點訂閱費，查資料、寫報告、改程式都快很多，一個月省下好幾個小時。用比較低的價格，換到比較高的價值，所以很多人願意付。
 【指兩個蹺蹺板。】
 我們再多看幾個例子。`,
-  `一款你很想玩的遊戲，要花錢買，你會買嗎？會的舉手。
-【數一下，通常不少人會舉手。】
-為什麼願意？因為玩的時候帶來的快樂，值得我花這些錢。價值比成本重，就會買。`,
-  `那換一個。衛生紙是生活必需品，如果它突然貴了十倍，你還會買嗎？
-【等一下，讓大家想。】
-大部分人會想辦法找別的、少用一點，或乾脆換牌子。不是不需要衛生紙，而是它帶來的價值，撐不起這個成本了。`,
+  `先看一款你很想玩的遊戲。
+【指中間那張。】如果它賣一千塊，你可能覺得可以，就買了。
+【指左邊。】如果今天特價五百塊，你會覺得大特價，一定要買。
+【指右邊。】但如果它變成兩千五，你可能就要想一下：這個價錢，換得到我想要的快樂嗎？
+同一款遊戲，東西沒變，變的是成本。成本越高，你就越會認真比較，它的價值撐不撐得起這個價錢。`,
   `再來一個。假設你現在要買手機，而且沒有預算上限，錢不是問題。iPhone 18 Pro 四萬四千九起，最新的摺疊機 iPhone Duo 七萬四千九起。你選哪一支？
 錢不是問題，又是最新的，很多人會選 Duo。`,
   `但 Duo 開賣才兩週，就出了這些新聞。
@@ -2940,8 +2894,7 @@ export default [
   WhatIsValue,
   WhatIsCost,
   ValueExchange,
-  GameExample,
-  NecessityExample,
+  GamePrices,
   PhoneChoice,
   PhoneNews,
   PricePerspective,
