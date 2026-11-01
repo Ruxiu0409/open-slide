@@ -931,11 +931,11 @@ const WhatIsMoney: Page = () => {
       <p style={{ ...BODY, ...abs(120, 293), width: 1680, fontSize: 34, ...rise(live, 180) }}>
         因為它能換到東西。
       </p>
-      <div style={abs(580, 410, { ...rise(live, 250) })}>
+      <div style={abs(410, 370, { ...rise(live, 250) })}>
         <div
           style={{
-            width: 760,
-            height: 372,
+            width: 1100,
+            height: 538,
             border: BORDER,
             borderRadius: 18,
             boxShadow: shadow(12),
@@ -951,35 +951,24 @@ const WhatIsMoney: Page = () => {
           />
         </div>
       </div>
-      <PurchaseSticker x={245} y={410} r={-8} color={BUTTER} label="便當" live={live} delay={850}>
+      <PurchaseSticker x={130} y={520} r={-8} color={BUTTER} label="便當" live={live} delay={850}>
         <rect x={10} y={15} width={90} height={62} rx={12} />
         <path d="M 65 15 V 77 M 65 46 H 100" fill="none" />
         <circle cx={38} cy={46} r={16} fill={CREAM} />
         <path d="M 77 29 L 88 34 M 78 59 L 89 64" strokeLinecap="round" />
       </PurchaseSticker>
-      <PurchaseSticker x={1460} y={355} r={7} color={PINK} label="飲料" live={live} delay={1200}>
+      <PurchaseSticker x={1590} y={360} r={7} color={PINK} label="飲料" live={live} delay={1200}>
         <path d="M 30 20 H 83 L 76 82 H 37 Z" />
         <path d="M 25 20 H 88 M 60 20 L 68 2 H 82" fill="none" strokeLinecap="round" />
         <circle cx={48} cy={65} r={4} fill={INK} stroke="none" />
         <circle cx={64} cy={68} r={4} fill={INK} stroke="none" />
       </PurchaseSticker>
-      <PurchaseSticker x={1465} y={635} r={-5} color={PERI} label="公車" live={live} delay={1550}>
+      <PurchaseSticker x={1590} y={660} r={-5} color={PERI} label="公車" live={live} delay={1550}>
         <rect x={17} y={9} width={76} height={66} rx={12} />
         <path d="M 17 44 H 93 M 55 9 V 44 M 29 75 V 84 M 81 75 V 84" fill="none" />
         <circle cx={32} cy={60} r={5} fill={BUTTER} />
         <circle cx={78} cy={60} r={5} fill={BUTTER} />
       </PurchaseSticker>
-      <p
-        style={{
-          ...DISPLAY,
-          ...abs(120, 875),
-          width: 1680,
-          fontSize: 44,
-          ...rise(live, 2000),
-        }}
-      >
-        能換到便當、飲料、公車，它才值 100 塊。
-      </p>
     </Stage>
   );
 };
@@ -992,11 +981,11 @@ const MoneyWaste: Page = () => {
         錢是什麼
       </Tag>
       <Title live={live}>如果有一天，它什麼都買不到……</Title>
-      <div style={abs(580, 410, { ...rise(live, 250) })}>
+      <div style={abs(410, 340, { ...rise(live, 250) })}>
         <div
           style={{
-            width: 760,
-            height: 372,
+            width: 1100,
+            height: 538,
             border: BORDER,
             borderRadius: 18,
             boxShadow: shadow(12),
@@ -1014,20 +1003,9 @@ const MoneyWaste: Page = () => {
           />
         </div>
       </div>
-      <Sticker x={1000} y={565} r={-12} live={live} delay={900} bg={TOMATO} pad="22px 38px">
-        <span style={{ ...DISPLAY, fontSize: 92 }}>廢紙</span>
+      <Sticker x={1060} y={600} r={-12} live={live} delay={900} bg={TOMATO} pad="22px 38px">
+        <span style={{ ...DISPLAY, fontSize: 130 }}>廢紙</span>
       </Sticker>
-      <p
-        style={{
-          ...DISPLAY,
-          ...abs(120, 875),
-          width: 1680,
-          fontSize: 44,
-          ...rise(live, 1500),
-        }}
-      >
-        錢本身沒有價值，能換到東西，它才有價值。
-      </p>
     </Stage>
   );
 };
