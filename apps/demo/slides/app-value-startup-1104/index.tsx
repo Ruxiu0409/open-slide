@@ -1,21 +1,18 @@
 import {
   type DesignSystem,
-  MorphElement,
   type Page,
   type SlideMeta,
   type SlideTransition,
-  Step,
-  Steps,
   useIsActivePage,
   useSlidePageNumber,
 } from '@open-slide/core';
-import { type CSSProperties, type ReactNode, useEffect, useId, useState } from 'react';
+import { type CSSProperties, type ReactNode, useEffect, useState } from 'react';
 
 export const design: DesignSystem = {
   palette: { bg: '#FFF3DF', text: '#151313', accent: '#FF5A2C' },
   fonts: {
-    display: '"Gabarito", system-ui, sans-serif',
-    body: '"Gabarito", system-ui, sans-serif',
+    display: '"Gabarito", "Noto Sans TC", system-ui, sans-serif',
+    body: '"Gabarito", "Noto Sans TC", system-ui, sans-serif',
   },
   typeScale: { hero: 300, body: 30 },
   radius: 28,
@@ -32,9 +29,13 @@ const PAPER = '#FFFCF6';
 const MUTED = 'rgba(21, 19, 19, 0.6)';
 const FAINT = 'rgba(21, 19, 19, 0.16)';
 
-const SLIDE_ID = 'pommi-series-b';
+const SLIDE_ID = 'app-value-startup-1104';
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Gabarito:wght@500;700;800;900&display=swap';
+const CJK_TEXT =
+  '·×→↻✓、。「」一三上下不世之也了事二交人什今他付以件伴位住作你使來促修個值假做停價先光免入內公具再分別到制刻前剛創功助動務勢包卡卻去及友只可台合同否告呢品哪商問善喜單嗎四回因困園圖團在場塊夜夥大天好如始媒學完官室宵家容實審導小就工己師帳常幫平年店度廣式弱待很後得從心怎想意慢慣成我或手才打扣批找抽持排推撐據擾收改放教數新方於明易是時曝書最會月有朋服本材束東果架某校核業標模樣機次歡正每比求決沒活流測準為然煩營版猜獎班現理瑞生產用由甲界留當療登發的目直看真碰社科種第等算素結絡給繼續義習者聊聯聽育能自與舉萬著薦號被補裡西要見角解訂訊設評試誰課證讀變讓買費資賺購賽起身躺較送這逢進過選還邊那都醫量錢鎖鐘開閱隊階際需項題願麻麼點！（），／：＝？';
+const CJK_FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap&text=${encodeURIComponent(CJK_TEXT)}`;
+const CJK_FONT_LINK_ID = `osd-webfont-cjk-${SLIDE_ID}`;
 const FONT_LINK_ID = `osd-webfont-${SLIDE_ID}`;
 const STYLE_ID = `osd-styles-${SLIDE_ID}`;
 
@@ -69,54 +70,15 @@ const toLinear = (f: (t: number) => number, n: number) =>
 
 const BOUNCY = toLinear((t) => springAt(t, 0.38, 15), 64);
 const SNAPPY = toLinear((t) => springAt(t, 0.62, 10.5), 48);
-const DEAL = toLinear((t) => springAt(t, 0.5, 13), 56);
 const DROP = toLinear(dropAt, 72);
 const EASE_OUT = 'cubic-bezier(0, 0, 0.2, 1)';
 const EASE_IN = 'cubic-bezier(0.4, 0, 1, 1)';
 const SLAP = 'cubic-bezier(0.2, 0.8, 0.3, 1)';
 const HOLD: Keyframe[] = [{ opacity: 1 }, { opacity: 1 }];
-const MORPH_MS = 850;
-
-const STOPS: [number, number][] = [
-  [220, 720],
-  [600, 580],
-  [980, 720],
-  [1360, 580],
-  [1700, 720],
-];
-const HOP_START = 1100;
-const HOP_MOVE = 620;
-const HOP_GAP = 1150;
-const HOP_TOTAL = HOP_GAP * 3 + HOP_MOVE + 260;
-const hopLand = (i: number) => HOP_START + (i - 1) * HOP_GAP + HOP_MOVE;
-
-const hopKeyframes = () => {
-  const pct = (ms: number) => `${((ms / HOP_TOTAL) * 100).toFixed(3)}%`;
-  let move = '';
-  let jump = '';
-  for (let i = 0; i < 4; i++) {
-    const t0 = i * HOP_GAP;
-    const t1 = t0 + HOP_MOVE;
-    const ax = STOPS[i][0] - STOPS[0][0];
-    const ay = STOPS[i][1] - STOPS[0][1];
-    const bx = STOPS[i + 1][0] - STOPS[0][0];
-    const by = STOPS[i + 1][1] - STOPS[0][1];
-    move += `${pct(t0)} { transform: translate(${ax}px, ${ay}px); animation-timing-function: cubic-bezier(0.45, 0, 0.4, 1) } ${pct(t1)} { transform: translate(${bx}px, ${by}px) } `;
-    jump += `${pct(t0)} { transform: translateY(0) scale(1, 1); animation-timing-function: cubic-bezier(0.2, 0.6, 0.35, 1) } ${pct(t0 + HOP_MOVE / 2)} { transform: translateY(-84px) scale(0.96, 1.05); animation-timing-function: cubic-bezier(0.6, 0, 0.85, 0.4) } ${pct(t1)} { transform: translateY(0) scale(1.2, 0.78); animation-timing-function: ease-out } ${pct(t1 + 240)} { transform: translateY(0) scale(1, 1) } `;
-  }
-  return `@keyframes pm-hop-move { ${move}} @keyframes pm-hop-jump { ${jump}}`;
-};
-
 const CSS = `
 @keyframes pm-rise { from { opacity: 0; transform: translateY(var(--pm-rise, 32px)) } to { opacity: 1; transform: translateY(0) } }
-@keyframes pm-in-l { from { opacity: 0; transform: translateX(-90px) } to { opacity: 1; transform: translateX(0) } }
-@keyframes pm-fade { from { opacity: 0 } to { opacity: 1 } }
 @keyframes pm-drop { from { transform: translateY(var(--pm-from, -320px)) } to { transform: translateY(0) } }
 @keyframes pm-pop { from { opacity: 0; transform: scale(0) } to { opacity: 1; transform: scale(1) } }
-@keyframes pm-pop-b { from { opacity: 0; transform: translateY(20px) scale(0.55) } to { opacity: 1; transform: translateY(0) scale(1) } }
-@keyframes pm-grow-y { from { transform: scaleY(0) } to { transform: scaleY(1) } }
-@keyframes pm-grow-x { from { transform: scaleX(0) } to { transform: scaleX(1) } }
-@keyframes pm-draw { from { stroke-dashoffset: 1 } to { stroke-dashoffset: 0 } }
 @keyframes pm-squash { 0% { transform: scale(1, 1) } 26% { transform: scale(1.14, 0.82) } 56% { transform: scale(0.96, 1.05) } 100% { transform: scale(1, 1) } }
 @keyframes pm-slap {
   0% { opacity: 0; transform: rotate(calc(var(--r) - 24deg)) scale(1.9) }
@@ -128,69 +90,30 @@ const CSS = `
 @keyframes pm-bob { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-12px) } }
 @keyframes pm-twinkle { 0%, 100% { transform: scale(1) rotate(0deg) } 50% { transform: scale(0.7) rotate(25deg) } }
 @keyframes pm-thunk { 0% { transform: scale(1) } 24% { transform: scale(1.07) rotate(-1.4deg) } 58% { transform: scale(0.985) rotate(0.4deg) } 100% { transform: scale(1) } }
-@keyframes pm-dot { 0%, 60%, 100% { transform: translateY(0); opacity: 0.35 } 30% { transform: translateY(-6px); opacity: 1 } }
-@keyframes pm-blip { 0% { opacity: 0; transform: scale(0.5) } 22% { opacity: 1; transform: scale(1) } 84% { opacity: 1; transform: scale(1) } 100% { opacity: 0; transform: scale(0.7) } }
-@keyframes pm-toast {
-  0% { opacity: 0; transform: translateY(-150px); animation-timing-function: ${BOUNCY} }
-  8% { opacity: 1; transform: translateY(0) }
-  27% { opacity: 1; transform: translateY(0); animation-timing-function: cubic-bezier(0.5, 0, 0.9, 0.4) }
-  31%, 100% { opacity: 0; transform: translateY(-150px) }
-}
-@keyframes pm-toast-once {
-  0% { opacity: 0; transform: translateY(-150px); animation-timing-function: ${BOUNCY} }
-  22% { opacity: 1; transform: translateY(0) }
-  82% { opacity: 1; transform: translateY(0); animation-timing-function: cubic-bezier(0.5, 0, 0.9, 0.4) }
-  100% { opacity: 0; transform: translateY(-150px) }
-}
-@keyframes pm-tip { from { transform: rotate(0deg) } to { transform: rotate(var(--pm-tip)) } }
-@keyframes pm-nudge { 0% { transform: rotate(0deg) } 28% { transform: rotate(1.8deg) } 62% { transform: rotate(-0.5deg) } 100% { transform: rotate(0deg) } }
-@keyframes pm-stamp {
-  0%, 30% { opacity: 0; transform: rotate(-20deg) scale(1.9) }
-  38% { opacity: 1; transform: rotate(-6deg) scale(0.9) }
-  44%, 88% { opacity: 1; transform: rotate(-9deg) scale(1) }
-  96%, 100% { opacity: 0; transform: rotate(-9deg) scale(1) }
-}
-@keyframes pm-fill { 0%, 16% { transform: scaleX(0) } 30%, 90% { transform: scaleX(1) } 100% { transform: scaleX(0) } }
-@keyframes pm-tick {
-  0%, 10% { opacity: 0; transform: scale(0.3) }
-  15% { opacity: 1; transform: scale(1.25) }
-  20%, 82% { opacity: 1; transform: scale(1) }
-  88%, 100% { opacity: 0; transform: scale(1) }
-}
-@keyframes pm-strike { 0%, 12% { transform: scaleX(0) } 20%, 82% { transform: scaleX(1) } 88%, 100% { transform: scaleX(0) } }
-@keyframes pm-spin3 { 0%, 24% { transform: rotate(0deg) } 33%, 57% { transform: rotate(120deg) } 66%, 90% { transform: rotate(240deg) } 100% { transform: rotate(360deg) } }
-@keyframes pm-spin3-rev { 0%, 24% { transform: rotate(0deg) } 33%, 57% { transform: rotate(-120deg) } 66%, 90% { transform: rotate(-240deg) } 100% { transform: rotate(-360deg) } }
-@keyframes pm-glow-row { 0%, 3% { background: transparent } 8%, 30% { background: rgba(255, 210, 63, 0.6) } 35%, 100% { background: transparent } }
-${hopKeyframes()}
-
-.pm-deal { transform: translate(0, 0) rotate(var(--r)); transition: transform 980ms ${DEAL}; }
-[data-osd-step="pending"] .pm-deal { transform: translate(var(--dx), 820px) rotate(calc(var(--r) - 22deg)); }
-.pm-seg { clip-path: inset(-24px -24px -24px -24px); transition: clip-path 900ms ${SNAPPY}; }
-[data-osd-step="pending"] .pm-seg { clip-path: inset(-24px 100% -24px -24px); }
-.pm-col { opacity: 1; transform: translateY(0); transition: transform 900ms ${BOUNCY} 140ms, opacity 260ms ease-out 140ms; }
-[data-osd-step="pending"] .pm-col { opacity: 0; transform: translateY(70px); }
-.pm-block { transform: translateY(0) rotate(var(--r)); transition: transform 1150ms ${DROP}; }
-[data-osd-step="pending"] .pm-block { transform: translateY(-1100px) rotate(var(--r0)); }
-.pm-tag-in { opacity: 1; transform: translateX(0); transition: transform 760ms ${BOUNCY} 520ms, opacity 200ms ease-out 520ms; }
-[data-osd-step="pending"] .pm-tag-in { opacity: 0; transform: translateX(-60px); }
-
-/* Returning from page 2 the phone arrives by morph; a rise here would shift the measured morph target. */
-[data-osd-dir="backward"] .pm-cover-phone { animation: none !important; }
-
 @media (prefers-reduced-motion: reduce) {
   .pm-root *, .pm-root *::before, .pm-root *::after { animation: none !important; transition: none !important; }
 }
 `;
-
 if (typeof document !== 'undefined') {
-  let link = document.getElementById(FONT_LINK_ID) as HTMLLinkElement | null;
+  let link = document.getElementById(FONT_LINK_ID);
   if (!link) {
     link = document.createElement('link');
     link.id = FONT_LINK_ID;
-    link.rel = 'stylesheet';
+    link.setAttribute('rel', 'stylesheet');
     document.head.appendChild(link);
   }
-  if (link.href !== FONT_HREF) link.href = FONT_HREF;
+  if (link instanceof HTMLLinkElement && link.href !== FONT_HREF) link.href = FONT_HREF;
+
+  let cjkLink = document.getElementById(CJK_FONT_LINK_ID);
+  if (!cjkLink) {
+    cjkLink = document.createElement('link');
+    cjkLink.id = CJK_FONT_LINK_ID;
+    cjkLink.setAttribute('rel', 'stylesheet');
+    document.head.appendChild(cjkLink);
+  }
+  if (cjkLink instanceof HTMLLinkElement && cjkLink.href !== CJK_FONT_HREF) {
+    cjkLink.href = CJK_FONT_HREF;
+  }
 
   let style = document.getElementById(STYLE_ID);
   if (!style) {
@@ -214,13 +137,6 @@ export const transition: SlideTransition = {
   },
 };
 
-const morphTransition: SlideTransition = {
-  duration: 320,
-  exit: { duration: 320, easing: EASE_IN, keyframes: HOLD },
-  enter: { duration: 320, easing: EASE_OUT, keyframes: [{ opacity: 0 }, { opacity: 1 }] },
-  morph: { duration: MORPH_MS, easing: SNAPPY },
-};
-
 const BORDER = `4px solid ${INK}`;
 const shadow = (n = 8) => `${n}px ${n}px 0 ${INK}`;
 
@@ -228,12 +144,12 @@ const DISPLAY: CSSProperties = {
   fontFamily: 'var(--osd-font-display)',
   fontWeight: 900,
   letterSpacing: '-0.035em',
-  lineHeight: 1,
+  lineHeight: 1.15,
   margin: 0,
 };
 
 const MONO: CSSProperties = {
-  fontFamily: '"DM Mono", ui-monospace, monospace',
+  fontFamily: '"DM Mono", "Noto Sans TC", ui-monospace, monospace',
   fontWeight: 500,
   fontSize: 17,
   letterSpacing: '0.06em',
@@ -260,17 +176,6 @@ const abs = (left: number, top: number, extra?: CSSProperties): CSSProperties =>
 });
 
 const pad = (n: number) => String(n).padStart(2, '0');
-
-// Gabarito's heavy € has almost no right bearing; under negative tracking it collides with the digit.
-const Money = ({ v }: { v: string }) =>
-  v.startsWith('€') ? (
-    <>
-      <span style={{ marginRight: '0.06em' }}>€</span>
-      {v.slice(1)}
-    </>
-  ) : (
-    <>{v}</>
-  );
 
 const anim = (live: boolean, value: string): CSSProperties => (live ? { animation: value } : {});
 
@@ -312,24 +217,6 @@ const useCount = (target: number, live: boolean, delay: number, dur = 1700) => {
   }, [live, target, delay, dur]);
   return value;
 };
-
-const useBeats = (live: boolean, times: readonly number[]) => {
-  const [beat, setBeat] = useState(live ? 0 : times.length);
-  useEffect(() => {
-    if (!live) {
-      setBeat(times.length);
-      return;
-    }
-    setBeat(0);
-    const ids = times.map((t, i) => window.setTimeout(() => setBeat(i + 1), t));
-    return () => {
-      for (const id of ids) window.clearTimeout(id);
-    };
-  }, [live, times]);
-  return beat;
-};
-
-const svgId = (raw: string) => raw.replace(/[^a-zA-Z0-9]/g, '');
 
 const Mark = ({ size = 56 }: { size?: number }) => (
   <svg
@@ -403,46 +290,6 @@ const Letter = ({
   );
 };
 
-const Wordmark = ({ size, live, delay = 0 }: { size: number; live: boolean; delay?: number }) => (
-  <div
-    style={{
-      ...DISPLAY,
-      fontSize: size,
-      letterSpacing: '-0.055em',
-      lineHeight: 1,
-      display: 'flex',
-      whiteSpace: 'nowrap',
-    }}
-  >
-    <Letter ch="p" i={0} live={live} delay={delay} />
-    <Letter ch="o" i={1} live={live} delay={delay} />
-    <Letter ch="m" i={2} live={live} delay={delay} />
-    <Letter ch="m" i={3} live={live} delay={delay} />
-    <Letter ch="ı" i={4} live={live} delay={delay}>
-      <span
-        style={{
-          position: 'absolute',
-          left: '50%',
-          top: '0.02em',
-          width: '0.3em',
-          height: '0.3em',
-          marginLeft: '-0.13em',
-        }}
-      >
-        <span
-          style={{
-            display: 'block',
-            transformOrigin: '50% 90%',
-            ...anim(live, `pm-pop 760ms ${BOUNCY} ${delay + 4 * 85 + 620}ms both`),
-          }}
-        >
-          <Mark size={size * 0.3} />
-        </span>
-      </span>
-    </Letter>
-  </div>
-);
-
 const Footer = () => {
   const { current, total } = useSlidePageNumber();
   return (
@@ -457,10 +304,10 @@ const Footer = () => {
       })}
     >
       <Mark size={34} />
-      <span style={{ ...DISPLAY, fontSize: 30, letterSpacing: '-0.04em' }}>pommi</span>
-      <span style={{ ...MONO, color: MUTED, marginLeft: 18 }}>Series B · October 2026</span>
+      <span style={{ ...DISPLAY, fontSize: 30, letterSpacing: '-0.04em' }}>瑞瑞</span>
+      <span style={{ ...MONO, color: MUTED, marginLeft: 18 }}>App 登場時刻 · 商業模式與上架</span>
       <span style={{ ...MONO, color: MUTED, marginLeft: 'auto', marginRight: 10 }}>
-        Confidential
+        比賽結束，才剛開始
       </span>
       <span
         style={{
@@ -588,7 +435,7 @@ const Footnote = ({
   width?: number;
   children: ReactNode;
 }) => (
-  <p style={{ ...BODY, ...abs(x, y), width, fontSize: 18, lineHeight: 1.4, color: MUTED }}>
+  <p style={{ ...BODY, ...abs(x, y), width, fontSize: 22, lineHeight: 1.4, color: MUTED }}>
     {children}
   </p>
 );
@@ -691,3255 +538,787 @@ const Sparkle = ({
   </div>
 );
 
-const Avatar = ({
-  initial,
-  color,
-  size = 40,
-  border = 3,
-  style,
-}: {
-  initial: string;
-  color: string;
-  size?: number;
-  border?: number;
-  style?: CSSProperties;
-}) => (
-  <div
-    style={{
-      width: size,
-      height: size,
-      flex: 'none',
-      borderRadius: '50%',
-      background: color,
-      border: `${border}px solid ${INK}`,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontFamily: 'var(--osd-font-display)',
-      fontWeight: 800,
-      fontSize: Math.round(size * 0.42),
-      lineHeight: 1,
-      color: INK,
-      ...style,
-    }}
-  >
-    {initial}
-  </div>
-);
-
-const PHONE_W = 424;
-const PHONE_H = 860;
-const SCREEN_W = PHONE_W - 8;
-const SCREEN_H = PHONE_H - 8;
-
-const PhoneShell = ({ x, y, children }: { x: number; y: number; children?: ReactNode }) => (
-  <MorphElement id="pm-phone">
-    <div
-      style={{
-        position: 'absolute',
-        left: x,
-        top: y,
-        width: PHONE_W,
-        height: PHONE_H,
-        borderRadius: 64,
-        border: BORDER,
-        background: PAPER,
-        boxShadow: shadow(12),
-        overflow: 'hidden',
-      }}
-    >
-      <div
-        style={{
-          position: 'absolute',
-          left: (SCREEN_W - 116) / 2,
-          top: 14,
-          width: 116,
-          height: 32,
-          borderRadius: 999,
-          background: INK,
-        }}
-      />
-      {children}
-    </div>
-  </MorphElement>
-);
-
-const ScreenLayer = ({
+const Panel = ({
   x,
   y,
+  width,
+  height,
+  color = PAPER,
   live,
-  delay = 0,
+  delay = 200,
   children,
 }: {
   x: number;
   y: number;
+  width: number;
+  height: number;
+  color?: string;
   live: boolean;
   delay?: number;
   children: ReactNode;
 }) => (
   <div
-    style={abs(x + 4, y + 4, {
-      width: SCREEN_W,
-      height: SCREEN_H,
-      borderRadius: 60,
-      overflow: 'hidden',
-      ...anim(live, `pm-fade 360ms ease-out ${delay}ms both`),
+    style={abs(x, y, {
+      width,
+      height,
+      boxSizing: 'border-box',
+      padding: 36,
+      background: color,
+      border: BORDER,
+      borderRadius: 34,
+      boxShadow: shadow(10),
+      ...rise(live, delay, 48),
     })}
   >
     {children}
   </div>
-);
-
-const StatusBar = () => (
-  <div
-    style={abs(0, 16, {
-      width: SCREEN_W,
-      height: 30,
-      padding: '0 38px',
-      boxSizing: 'border-box',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      fontFamily: 'var(--osd-font-body)',
-      fontWeight: 800,
-      fontSize: 18,
-    })}
-  >
-    <span>9:41</span>
-    <span style={{ display: 'flex', alignItems: 'flex-end', gap: 3 }}>
-      <span style={{ width: 4, height: 7, background: INK, borderRadius: 1 }} />
-      <span style={{ width: 4, height: 10, background: INK, borderRadius: 1 }} />
-      <span style={{ width: 4, height: 13, background: INK, borderRadius: 1 }} />
-      <span
-        style={{
-          width: 26,
-          height: 13,
-          marginLeft: 6,
-          border: `2px solid ${INK}`,
-          borderRadius: 4,
-          padding: 1.5,
-          boxSizing: 'border-box',
-        }}
-      >
-        <span
-          style={{
-            display: 'block',
-            width: '70%',
-            height: '100%',
-            background: INK,
-            borderRadius: 1,
-          }}
-        />
-      </span>
-    </span>
-  </div>
-);
-
-const Toast = ({
-  who,
-  color,
-  children,
-  live,
-  delay,
-  shown = false,
-}: {
-  who: string;
-  color: string;
-  children: ReactNode;
-  live: boolean;
-  delay: number;
-  shown?: boolean;
-}) => (
-  <div
-    style={abs(14, 54, {
-      width: SCREEN_W - 28,
-      height: 74,
-      boxSizing: 'border-box',
-      padding: '0 18px',
-      display: 'flex',
-      alignItems: 'center',
-      gap: 14,
-      background: INK,
-      color: CREAM,
-      borderRadius: 24,
-      boxShadow: `0 6px 0 ${TOMATO}`,
-      opacity: live || shown ? undefined : 0,
-      ...anim(live, `pm-toast 12s linear ${delay}ms infinite`),
-      ...(live ? { opacity: 0 } : {}),
-      zIndex: 4,
-    })}
-  >
-    <Avatar initial={who} color={color} size={40} border={2.5} />
-    <div style={{ fontSize: 19, fontWeight: 700, lineHeight: 1.25 }}>{children}</div>
-  </div>
-);
-
-const HomeRow = ({
-  y,
-  icon,
-  title,
-  sub,
-  right,
-}: {
-  y: number;
-  icon: string;
-  title: string;
-  sub: string;
-  right: ReactNode;
-}) => (
-  <div
-    style={abs(22, y, {
-      width: SCREEN_W - 44,
-      height: 64,
-      display: 'flex',
-      alignItems: 'center',
-      gap: 14,
-    })}
-  >
-    <div
-      style={{
-        width: 48,
-        height: 48,
-        flex: 'none',
-        borderRadius: 14,
-        border: `3px solid ${INK}`,
-        background: icon,
-      }}
-    />
-    <div style={{ flex: 1, minWidth: 0 }}>
-      <div style={{ fontSize: 20, fontWeight: 800, lineHeight: 1.2 }}>{title}</div>
-      <div style={{ fontSize: 16, fontWeight: 500, color: MUTED, lineHeight: 1.3 }}>{sub}</div>
-    </div>
-    <div style={{ fontSize: 20, fontWeight: 800, fontVariantNumeric: 'tabular-nums' }}>{right}</div>
-  </div>
-);
-
-const HomeScreen = ({ live }: { live: boolean }) => (
-  <>
-    <StatusBar />
-    <div style={abs(24, 70, { display: 'flex', alignItems: 'center', width: SCREEN_W - 48 })}>
-      <div>
-        <div style={{ ...DISPLAY, fontSize: 34 }}>Flat 3B</div>
-        <div style={{ fontSize: 16, fontWeight: 500, color: MUTED, marginTop: 4 }}>
-          Weserstraße 14 · 4 people
-        </div>
-      </div>
-      <div style={{ marginLeft: 'auto', display: 'flex' }}>
-        <Avatar initial="M" color={MINT} size={40} />
-        <Avatar initial="J" color={PERI} size={40} style={{ marginLeft: -12 }} />
-        <Avatar initial="S" color={PINK} size={40} style={{ marginLeft: -12 }} />
-      </div>
-    </div>
-    <div
-      style={abs(22, 150, {
-        width: SCREEN_W - 44,
-        height: 128,
-        boxSizing: 'border-box',
-        padding: '18px 22px',
-        background: BUTTER,
-        border: `3px solid ${INK}`,
-        borderRadius: 26,
-        display: 'flex',
-        alignItems: 'center',
-      })}
-    >
-      <div>
-        <div style={{ ...MONO, fontSize: 16 }}>You're owed</div>
-        <div style={{ ...NUM, fontSize: 54, marginTop: 6 }}>
-          <Money v="€42.50" />
-        </div>
-      </div>
-      <div
-        style={{
-          marginLeft: 'auto',
-          height: 44,
-          padding: '0 18px',
-          borderRadius: 999,
-          background: INK,
-          color: CREAM,
-          display: 'flex',
-          alignItems: 'center',
-          fontSize: 18,
-          fontWeight: 800,
-        }}
-      >
-        Settle up
-      </div>
-    </div>
-    <div style={{ ...MONO, fontSize: 16, ...abs(24, 304), color: MUTED }}>This week</div>
-    <HomeRow y={334} icon={MINT} title="Rewe groceries" sub="Split 3 ways" right="€63.20" />
-    <HomeRow y={410} icon={PERI} title="Internet, October" sub="Sami paid" right="€39.99" />
-    <HomeRow y={486} icon={PINK} title="Bathroom" sub="Jonas · due Sunday" right="Chore" />
-    <Toast who="M" color={MINT} live={live} delay={2200}>
-      Mira added oat milk
-      <br />
-      to the shared list
-    </Toast>
-    <Toast who="J" color={PERI} live={live} delay={6200}>
-      Jonas finished
-      <br />
-      Kitchen, week 41
-    </Toast>
-    <Toast who="S" color={PINK} live={live} delay={10200}>
-      Sami paid you back
-      <br />
-      €13.00 for internet
-    </Toast>
-  </>
 );
 
 const Cover: Page = () => {
   const live = useLive();
   return (
     <Stage footer={false}>
-      <div
-        style={abs(120, 92, {
-          display: 'flex',
-          alignItems: 'center',
-          gap: 16,
-          ...rise(live, 0, 16),
-        })}
-      >
-        <Mark size={50} />
-        <span style={{ ...MONO, fontSize: 18 }}>Investor presentation · October 2026</span>
+      <div style={abs(120, 108, { display: 'flex', alignItems: 'center', gap: 22, ...rise(live) })}>
+        <Mark size={52} />
+        <span style={{ ...MONO, fontSize: 24 }}>App 登場時刻 · 商業模式與上架 · 瑞瑞</span>
       </div>
-
-      <div
-        style={abs(1160, 96, {
-          width: 640,
-          height: 1100,
-          background: PERI,
-          border: BORDER,
-          borderRadius: 48,
-          ...rise(live, 40, 120),
-        })}
-      />
-      <div
-        className="pm-cover-phone"
-        style={abs(1268, 520, {
-          width: PHONE_W,
-          height: PHONE_H,
-          ...(live
-            ? ({
-                animation: `pm-rise 1100ms ${SNAPPY} 360ms both`,
-                '--pm-rise': '420px',
-              } as CSSProperties)
-            : {}),
-        })}
-      >
-        <PhoneShell x={0} y={0} />
-        <ScreenLayer x={0} y={0} live={false}>
-          <HomeScreen live={live} />
-        </ScreenLayer>
-      </div>
-
-      <div style={abs(104, 236)}>
-        <Wordmark size={300} live={live} delay={220} />
-      </div>
-
-      <p
+      <h1
         style={{
           ...DISPLAY,
-          ...abs(120, 600),
-          width: 960,
-          fontSize: 64,
-          fontWeight: 800,
-          lineHeight: 1.08,
-          letterSpacing: '-0.03em',
-          ...rise(live, 900, 30),
+          ...abs(120, 270),
+          fontSize: 118,
+          lineHeight: 1.22,
+          width: 1220,
+          ...rise(live, 120),
         }}
       >
-        The app for everyone
+        如果這次沒得獎，
         <br />
-        who shares a home.
+        你的 App
+        <br />
+        <span style={{ color: TOMATO }}>還會繼續做下去嗎？</span>
+      </h1>
+      <Panel x={1390} y={275} width={370} height={490} color={PERI} live={live}>
+        <div
+          style={{
+            margin: '18px auto 0',
+            width: 240,
+            ...anim(live, 'pm-bob 3.6s ease-in-out 1400ms infinite'),
+          }}
+        >
+          <Mark size={240} />
+        </div>
+        <p style={{ ...DISPLAY, fontSize: 38, textAlign: 'center', marginTop: 50 }}>
+          比完，然後呢？
+        </p>
+      </Panel>
+      <Sticker x={1350} y={170} r={-7} live={live} delay={900} bg={BUTTER} pad="22px 34px">
+        <span style={{ ...DISPLAY, fontSize: 44 }}>會的，舉手！</span>
+      </Sticker>
+      <Sparkle x={1750} y={770} size={50} color={PINK} live={live} delay={1150} />
+      <p style={{ ...BODY, ...abs(126, 840), fontSize: 34, ...rise(live, 500) }}>
+        今天聊聊，怎麼讓 App 活過比賽結束那天。
       </p>
-      <div
-        style={abs(120, 800, {
-          display: 'flex',
-          gap: 12,
-          ...rise(live, 1040, 24),
-        })}
-      >
-        <CoverChip>412,000 households</CoverChip>
-        <CoverChip>9 markets</CoverChip>
-        <CoverChip>Est. 2022</CoverChip>
-      </div>
-      <div style={{ ...MONO, ...abs(120, 984), color: MUTED, ...rise(live, 1160, 12) }}>
-        Confidential · Prepared for Series B investors
-      </div>
-
-      <Sticker x={1440} y={226} r={7} live={live} delay={1250} bg={BUTTER}>
-        <span style={{ ...DISPLAY, fontSize: 52, letterSpacing: '-0.03em' }}>Series B</span>
-      </Sticker>
-      <Sticker x={1092} y={372} r={-10} live={live} delay={1450} bg={TOMATO} round={232}>
-        <span style={{ ...MONO, fontSize: 18 }}>Raising</span>
-        <span style={{ ...NUM, fontSize: 74, marginTop: 4 }}>
-          <Money v="€38M" />
-        </span>
-      </Sticker>
-      <Sticker x={1560} y={760} r={-6} live={live} delay={1650} bg={MINT} pad="12px 24px">
-        <span style={{ ...DISPLAY, fontSize: 34, fontWeight: 800, letterSpacing: '-0.02em' }}>
-          Made in Berlin
-        </span>
-      </Sticker>
-      <Sparkle x={1360} y={170} size={46} live={live} delay={1800} />
-      <Sparkle x={1716} y={150} size={30} color={PINK} live={live} delay={1900} />
-      <Sparkle x={1210} y={640} size={34} color={PAPER} live={live} delay={2000} />
+      <p style={{ ...MONO, ...abs(120, 984), color: MUTED }}>
+        逢甲大學 · 從比賽作品，到有人用的產品
+      </p>
     </Stage>
   );
 };
 
-const CoverChip = ({ children }: { children: ReactNode }) => (
-  <span
-    style={{
-      height: 52,
-      padding: '0 22px',
-      border: `3px solid ${INK}`,
-      borderRadius: 999,
-      display: 'inline-flex',
-      alignItems: 'center',
-      fontSize: 24,
-      fontWeight: 700,
-      background: PAPER,
-    }}
-  >
-    {children}
-  </span>
-);
-
-const PainStat = ({
-  y,
-  n,
-  color,
-  live,
-  delay,
-  children,
-}: {
-  y: number;
-  n: string;
-  color: string;
-  live: boolean;
-  delay: number;
-  children: ReactNode;
-}) => (
-  <div
-    style={abs(120, y, {
-      width: 1000,
-      height: 132,
-      display: 'flex',
-      border: BORDER,
-      borderRadius: 28,
-      background: PAPER,
-      boxShadow: shadow(8),
-      overflow: 'hidden',
-      boxSizing: 'border-box',
-      ...anim(live, `pm-in-l 900ms ${SNAPPY} ${delay}ms both`),
-    })}
-  >
-    <div
-      style={{
-        width: 250,
-        flex: 'none',
-        background: color,
-        borderRight: BORDER,
-        display: 'flex',
-        alignItems: 'center',
-        paddingLeft: 30,
-        boxSizing: 'border-box',
-      }}
-    >
-      <span style={{ ...NUM, fontSize: 76, letterSpacing: '-0.045em' }}>
-        <Money v={n} />
-      </span>
-    </div>
-    <p style={{ ...BODY, padding: '0 36px', alignSelf: 'center' }}>{children}</p>
-  </div>
-);
-
-const CHAT_T0 = MORPH_MS + 300;
-const CHAT_GAP = 880;
-
-const Bubble = ({
-  who,
-  color,
-  name,
-  i,
-  live,
-  children,
-}: {
-  who: string;
-  color: string;
-  name: string;
-  i: number;
-  live: boolean;
-  children: ReactNode;
-}) => {
-  const t = CHAT_T0 + i * CHAT_GAP;
-  return (
-    <div style={{ display: 'flex', alignItems: 'flex-end', gap: 8, position: 'relative' }}>
-      <div style={{ ...anim(live, `pm-pop 520ms ${BOUNCY} ${t - 560}ms both`) }}>
-        <Avatar initial={who} color={color} size={34} border={2.5} />
-      </div>
-      {live && (
-        <div
-          style={{
-            position: 'absolute',
-            left: 42,
-            bottom: 0,
-            opacity: 0,
-            transformOrigin: '0% 100%',
-            animation: `pm-blip 560ms ease-out ${t - 560}ms`,
-          }}
-        >
-          <TypingBubble />
-        </div>
-      )}
-      <div
-        style={{
-          maxWidth: 290,
-          padding: '8px 14px 9px',
-          background: '#FFFFFF',
-          border: `3px solid ${INK}`,
-          borderRadius: '20px 20px 20px 6px',
-          transformOrigin: '0% 100%',
-          ...anim(live, `pm-pop-b 640ms ${BOUNCY} ${t}ms both`),
-        }}
-      >
-        <div style={{ fontSize: 16, fontWeight: 800, lineHeight: 1.2, marginBottom: 2 }}>
-          {name}
-        </div>
-        <div style={{ fontSize: 20, fontWeight: 500, lineHeight: 1.3 }}>{children}</div>
-      </div>
-    </div>
-  );
-};
-
-const MyBubble = ({ i, live, children }: { i: number; live: boolean; children: ReactNode }) => (
-  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-    <div
-      style={{
-        maxWidth: 280,
-        padding: '8px 16px 9px',
-        background: TOMATO,
-        border: `3px solid ${INK}`,
-        borderRadius: '20px 20px 6px 20px',
-        fontSize: 20,
-        fontWeight: 600,
-        lineHeight: 1.3,
-        transformOrigin: '100% 100%',
-        ...anim(live, `pm-pop-b 640ms ${BOUNCY} ${CHAT_T0 + i * CHAT_GAP}ms both`),
-      }}
-    >
-      {children}
-    </div>
-  </div>
-);
-
-const TypingDot = ({ live, delay }: { live: boolean; delay: number }) => (
-  <span
-    style={{
-      width: 9,
-      height: 9,
-      borderRadius: '50%',
-      background: INK,
-      opacity: live ? undefined : 0.5,
-      ...anim(live, `pm-dot 1.1s ease-in-out ${delay}ms infinite`),
-    }}
-  />
-);
-
-const TypingBubble = ({ live = true }: { live?: boolean }) => (
-  <div
-    style={{
-      height: 40,
-      padding: '0 16px',
-      display: 'flex',
-      alignItems: 'center',
-      gap: 6,
-      background: '#FFFFFF',
-      border: `3px solid ${INK}`,
-      borderRadius: '20px 20px 20px 6px',
-      boxSizing: 'border-box',
-    }}
-  >
-    <TypingDot live={live} delay={0} />
-    <TypingDot live={live} delay={160} />
-    <TypingDot live={live} delay={320} />
-  </div>
-);
-
-const ChatScreen = ({ live }: { live: boolean }) => {
-  const typingAt = CHAT_T0 + 6 * CHAT_GAP - 200;
-  return (
-    <>
-      <StatusBar />
-      <div
-        style={abs(0, 58, {
-          width: SCREEN_W,
-          height: 84,
-          boxSizing: 'border-box',
-          padding: '0 22px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 12,
-          borderBottom: `3px solid ${INK}`,
-        })}
-      >
-        <span style={{ fontSize: 40, fontWeight: 700, lineHeight: 1, marginTop: -6 }}>‹</span>
-        <div style={{ display: 'flex' }}>
-          <Avatar initial="M" color={MINT} size={34} border={2.5} />
-          <Avatar initial="J" color={PERI} size={34} border={2.5} style={{ marginLeft: -12 }} />
-          <Avatar initial="S" color={PINK} size={34} border={2.5} style={{ marginLeft: -12 }} />
-        </div>
-        <div style={{ marginLeft: 4 }}>
-          <div style={{ fontSize: 22, fontWeight: 800, lineHeight: 1.15 }}>Flat 3B</div>
-          <div style={{ fontSize: 16, fontWeight: 500, color: MUTED }}>Mira, Jonas, Sami, you</div>
-        </div>
-      </div>
-      <div
-        style={abs(0, 154, {
-          width: SCREEN_W,
-          boxSizing: 'border-box',
-          padding: '0 18px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 9,
-        })}
-      >
-        <Bubble who="J" color={PERI} name="Jonas" i={0} live={live}>
-          Who bought six oat milks? We now own nine.
-        </Bubble>
-        <Bubble who="M" color={MINT} name="Mira" i={1} live={live}>
-          Me. They were on offer.
-        </Bubble>
-        <Bubble who="S" color={PINK} name="Sami" i={2} live={live}>
-          Also, who owes who for internet? I paid September and October.
-        </Bubble>
-        <Bubble who="M" color={MINT} name="Mira" i={3} live={live}>
-          I sent you €13 in August?
-        </Bubble>
-        <Bubble who="S" color={PINK} name="Sami" i={4} live={live}>
-          That was for the plunger.
-        </Bubble>
-        <MyBubble i={5} live={live}>
-          Fine. Spreadsheet tonight. Again.
-        </MyBubble>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'flex-end',
-            gap: 8,
-            transformOrigin: '0% 100%',
-            ...anim(live, `pm-pop-b 600ms ${BOUNCY} ${typingAt}ms both`),
-          }}
-        >
-          <Avatar initial="J" color={PERI} size={34} border={2.5} />
-          <TypingBubble live={live} />
-        </div>
-      </div>
-      <div
-        style={abs(18, 778, {
-          width: SCREEN_W - 36,
-          height: 54,
-          display: 'flex',
-          alignItems: 'center',
-          gap: 10,
-        })}
-      >
-        <div
-          style={{
-            flex: 1,
-            height: 50,
-            borderRadius: 999,
-            border: `3px solid ${INK}`,
-            display: 'flex',
-            alignItems: 'center',
-            padding: '0 18px',
-            fontSize: 18,
-            color: MUTED,
-            boxSizing: 'border-box',
-          }}
-        >
-          Message
-        </div>
-        <div
-          style={{
-            width: 50,
-            height: 50,
-            borderRadius: '50%',
-            background: TOMATO,
-            border: `3px solid ${INK}`,
-            boxSizing: 'border-box',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
-            <path
-              d="M10 16 V 4 M 4.5 9.5 L 10 4 L 15.5 9.5"
-              style={{
-                fill: 'none',
-                stroke: INK,
-                strokeWidth: 3,
-                strokeLinecap: 'round',
-                strokeLinejoin: 'round',
-              }}
-            />
-          </svg>
-        </div>
-      </div>
-    </>
-  );
-};
-
-const Problem: Page = () => {
+const AfterCompetition: Page = () => {
   const live = useLive();
   return (
     <Stage>
       <Tag n="01" live={live}>
-        The problem
+        常見的選題習慣
       </Tag>
-      <Title live={live} size={96} width={1100}>
-        Living together is
-        <br />a group project.
-      </Title>
-      <PainStat y={420} n="3.4" color={TOMATO} live={live} delay={260}>
-        apps the average shared home uses for money, shopping lists and chores
-      </PainStat>
-      <PainStat y={576} n="61%" color={BUTTER} live={live} delay={380}>
-        of flatmates argued about money with each other in the last twelve months
-      </PainStat>
-      <PainStat y={732} n="€318" color={PERI} live={live} delay={500}>
-        owed between flatmates at any given moment, on average
-      </PainStat>
-      <Footnote y={898} width={1000}>
-        Source: Pommi Shared Living Survey, n = 4,212 adults in shared homes, DE · FR · NL · ES,
-        June 2026.
-      </Footnote>
-      <PhoneShell x={1268} y={100}>
-        <ChatScreen live={live} />
-      </PhoneShell>
-    </Stage>
-  );
-};
-
-const PRODUCT_BEATS = [MORPH_MS + 1000, MORPH_MS + 1800, MORPH_MS + 2800] as const;
-
-const Toggle = ({ on }: { on: boolean }) => (
-  <div
-    style={{
-      width: 62,
-      height: 36,
-      flex: 'none',
-      borderRadius: 999,
-      border: `3px solid ${INK}`,
-      background: on ? MINT : '#EFE6D6',
-      position: 'relative',
-      boxSizing: 'border-box',
-      transition: 'background-color 200ms ease-out',
-    }}
-  >
-    <div
-      style={{
-        position: 'absolute',
-        top: 3,
-        left: 3,
-        width: 24,
-        height: 24,
-        borderRadius: '50%',
-        background: on ? INK : PAPER,
-        border: `2.5px solid ${INK}`,
-        boxSizing: 'border-box',
-        transform: on ? 'translateX(26px)' : 'translateX(0)',
-        transition: `transform 620ms ${BOUNCY}, background-color 200ms ease-out`,
-      }}
-    />
-  </div>
-);
-
-const SplitRow = ({
-  y,
-  who,
-  color,
-  name,
-  on,
-  amount,
-  live,
-}: {
-  y: number;
-  who: string;
-  color: string;
-  name: string;
-  on: boolean;
-  amount: string;
-  live: boolean;
-}) => (
-  <div
-    style={abs(22, y, {
-      width: SCREEN_W - 44,
-      height: 56,
-      display: 'flex',
-      alignItems: 'center',
-      gap: 14,
-    })}
-  >
-    <Avatar initial={who} color={color} size={42} />
-    <div style={{ flex: 1, fontSize: 21, fontWeight: 700 }}>{name}</div>
-    <span
-      key={amount}
-      style={{
-        display: 'inline-block',
-        fontSize: 21,
-        fontWeight: 800,
-        fontVariantNumeric: 'tabular-nums',
-        color: on ? INK : MUTED,
-        ...anim(live, `pm-pop-b 520ms ${BOUNCY} both`),
-      }}
-    >
-      {amount}
-    </span>
-    <Toggle on={on} />
-  </div>
-);
-
-const splitAmounts = (n: number) => {
-  const cents = 6320;
-  const base = Math.floor(cents / n);
-  const extra = cents - base * n;
-  const fmt = (c: number) => `€${(c / 100).toFixed(2)}`;
-  return Array.from({ length: n }, (_, i) => fmt(base + (i > 0 && i <= extra ? 1 : 0)));
-};
-
-const ExpenseScreen = ({ beat, live }: { beat: number; live: boolean }) => {
-  const n = 1 + (beat >= 1 ? 1 : 0) + (beat >= 2 ? 1 : 0);
-  const shares = splitAmounts(n);
-  const sent = beat >= 3;
-  return (
-    <>
-      <StatusBar />
-      <div
-        style={abs(22, 70, {
-          width: SCREEN_W - 44,
-          display: 'flex',
-          alignItems: 'center',
-          gap: 10,
-        })}
-      >
-        <span style={{ fontSize: 40, fontWeight: 700, lineHeight: 1, marginTop: -6 }}>‹</span>
-        <span style={{ fontSize: 26, fontWeight: 800 }}>New expense</span>
-        <span
-          style={{
-            ...MONO,
-            fontSize: 16,
-            marginLeft: 'auto',
-            height: 34,
-            padding: '0 12px',
-            borderRadius: 999,
-            border: `2.5px solid ${INK}`,
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          Flat 3B
-        </span>
-      </div>
-      <div
-        style={abs(22, 140, {
-          width: SCREEN_W - 44,
-          height: 96,
-          boxSizing: 'border-box',
-          padding: '0 18px',
-          background: BUTTER,
-          border: `3px solid ${INK}`,
-          borderRadius: 22,
-          display: 'flex',
-          alignItems: 'center',
-          gap: 16,
-        })}
-      >
-        <div
-          style={{
-            width: 46,
-            height: 62,
-            flex: 'none',
-            background: PAPER,
-            border: `2.5px solid ${INK}`,
-            borderRadius: 6,
-            boxSizing: 'border-box',
-            padding: '8px 7px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 5,
-          }}
-        >
-          <span style={{ height: 3, background: INK, borderRadius: 2 }} />
-          <span style={{ height: 3, width: '70%', background: INK, borderRadius: 2 }} />
-          <span style={{ height: 3, background: INK, borderRadius: 2 }} />
-          <span style={{ height: 3, width: '55%', background: INK, borderRadius: 2 }} />
-          <span style={{ height: 3, background: INK, borderRadius: 2 }} />
-        </div>
-        <div>
-          <div style={{ fontSize: 21, fontWeight: 800 }}>Rewe, Weserstraße</div>
-          <div style={{ fontSize: 16, fontWeight: 500, color: MUTED, marginTop: 2 }}>
-            Today 18:42 · 14 items scanned
-          </div>
-        </div>
-      </div>
-      <div style={abs(0, 266, { width: SCREEN_W, textAlign: 'center' })}>
-        <div style={{ ...MONO, fontSize: 16, color: MUTED }}>Total</div>
-        <div style={{ ...NUM, fontSize: 84, marginTop: 4, letterSpacing: '-0.045em' }}>
-          <Money v="€63.20" />
-        </div>
-        <span
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            height: 32,
-            padding: '0 14px',
-            marginTop: 8,
-            borderRadius: 999,
-            background: MINT,
-            border: `2.5px solid ${INK}`,
-            fontSize: 16,
-            fontWeight: 700,
-          }}
-        >
-          Groceries
-        </span>
-      </div>
-      <div style={{ ...MONO, fontSize: 16, color: MUTED, ...abs(24, 444) }}>
-        Split between · {n}
-      </div>
-      <SplitRow y={474} who="Y" color={TOMATO} name="You" on amount={shares[0]} live={live} />
-      <SplitRow
-        y={538}
-        who="M"
-        color={MINT}
-        name="Mira"
-        on={n >= 2}
-        amount={n >= 2 ? shares[1] : '—'}
-        live={live}
-      />
-      <SplitRow
-        y={602}
-        who="J"
-        color={PERI}
-        name="Jonas"
-        on={n >= 3}
-        amount={n >= 3 ? shares[2] : '—'}
-        live={live}
-      />
-      <div
-        key={sent ? 'sent' : 'idle'}
-        style={abs(22, 716, {
-          width: SCREEN_W - 44,
-          height: 64,
-          borderRadius: 999,
-          border: `3px solid ${INK}`,
-          background: sent ? MINT : INK,
-          color: sent ? INK : CREAM,
-          boxShadow: `0 5px 0 ${INK}`,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: 22,
-          fontWeight: 800,
-          boxSizing: 'border-box',
-          ...anim(live && sent, `pm-thunk 520ms ease-out both`),
-        })}
-      >
-        {sent ? 'Requests sent' : 'Split €63.20'}
-      </div>
-      <div
-        style={abs(0, 798, {
-          width: SCREEN_W,
-          textAlign: 'center',
-          fontSize: 16,
-          fontWeight: 500,
-          color: MUTED,
-        })}
-      >
-        Mira and Jonas can pay back by SEPA.
-      </div>
-      {live && sent && (
-        <div
-          style={abs(14, 54, {
-            width: SCREEN_W - 28,
-            height: 74,
-            boxSizing: 'border-box',
-            padding: '0 18px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 14,
-            background: INK,
-            color: CREAM,
-            borderRadius: 24,
-            boxShadow: `0 6px 0 ${TOMATO}`,
-            animation: 'pm-toast-once 2800ms linear 200ms both',
-          })}
-        >
-          <Avatar initial="M" color={MINT} size={40} border={2.5} />
-          <div style={{ fontSize: 19, fontWeight: 700, lineHeight: 1.25 }}>
-            Mira paid €21.07
-            <br />
-            Settled in 38 seconds
-          </div>
-        </div>
-      )}
-    </>
-  );
-};
-
-const Callout = ({
-  y,
-  n,
-  title,
-  color,
-  live,
-  delay,
-  stat,
-  statLabel,
-  children,
-}: {
-  y: number;
-  n: string;
-  title: string;
-  color: string;
-  live: boolean;
-  delay: number;
-  stat: string;
-  statLabel: string;
-  children: ReactNode;
-}) => (
-  <>
-    <svg
-      width={156}
-      height={28}
-      viewBox="0 0 156 28"
-      aria-hidden="true"
-      style={{ ...abs(634, y + 46), overflow: 'visible' }}
-    >
-      <path
-        d="M 6 14 H 150"
-        pathLength={1}
-        style={{
-          fill: 'none',
-          stroke: INK,
-          strokeWidth: 4,
-          strokeDasharray: 1,
-          strokeDashoffset: 0,
-          ...anim(live, `pm-draw 420ms ${EASE_OUT} ${delay - 260}ms both`),
-        }}
-      />
-      <circle
-        cx={6}
-        cy={14}
-        r={9}
-        style={{
-          fill: TOMATO,
-          stroke: INK,
-          strokeWidth: 3.5,
-          transformOrigin: '6px 14px',
-          ...anim(live, `pm-pop 520ms ${BOUNCY} ${delay - 380}ms both`),
-        }}
-      />
-    </svg>
-    <div
-      style={abs(790, y, {
-        width: 1010,
-        height: 120,
-        boxSizing: 'border-box',
-        padding: '0 30px 0 26px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 22,
-        background: PAPER,
-        border: BORDER,
-        borderRadius: 28,
-        boxShadow: shadow(8),
-        transformOrigin: '0% 50%',
-        ...anim(live, `pm-pop 760ms ${SNAPPY} ${delay}ms both`),
-      })}
-    >
+      <Title live={live}>題目很有意義，然後呢？</Title>
+      <Panel x={120} y={350} width={760} height={280} color={PERI} live={live}>
+        <p style={{ ...BODY, fontWeight: 700 }}>以前選題時，常聽到</p>
+        <h3 style={{ ...DISPLAY, fontSize: 62, marginTop: 28 }}>
+          「醫療、教育，
+          <br />
+          比較容易得獎。」
+        </h3>
+      </Panel>
+      <div style={{ ...DISPLAY, ...abs(922, 440), fontSize: 80, ...rise(live, 350) }}>→</div>
+      <Panel x={1060} y={350} width={740} height={280} color={PINK} live={live} delay={420}>
+        <p style={{ ...BODY, fontWeight: 700 }}>卻可能變成</p>
+        <h3 style={{ ...DISPLAY, fontSize: 62, marginTop: 28 }}>
+          比賽結束那天，
+          <br />
+          App 也停了。
+        </h3>
+      </Panel>
       <div
         style={{
-          width: 62,
-          height: 62,
-          flex: 'none',
-          borderRadius: '50%',
-          background: color,
-          border: BORDER,
-          boxSizing: 'border-box',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          ...NUM,
-          fontSize: 30,
+          ...DISPLAY,
+          ...abs(140, 712),
+          width: 1660,
+          fontSize: 50,
+          lineHeight: 1.4,
+          ...rise(live, 650),
         }}
       >
-        {n}
-      </div>
-      <div style={{ ...DISPLAY, fontSize: 46, width: 156, flex: 'none' }}>{title}</div>
-      <p style={{ ...BODY, fontSize: 28, lineHeight: 1.3, textWrap: 'balance', flex: 1 }}>
-        {children}
-      </p>
-      <div
-        style={{
-          width: 190,
-          flex: 'none',
-          alignSelf: 'stretch',
-          borderLeft: `3px dashed ${FAINT}`,
-          paddingLeft: 26,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-        }}
-      >
-        <span style={{ ...NUM, fontSize: 44, letterSpacing: '-0.03em' }}>{stat}</span>
-        <span style={{ ...MONO, fontSize: 16, color: MUTED, marginTop: 6 }}>{statLabel}</span>
-      </div>
-    </div>
-  </>
-);
-
-const Product: Page = () => {
-  const live = useLive();
-  const beat = useBeats(live, PRODUCT_BEATS);
-  return (
-    <Stage>
-      <PhoneShell x={200} y={100} />
-      <ScreenLayer x={200} y={100} live={live} delay={MORPH_MS - 320}>
-        <ExpenseScreen beat={beat} live={live} />
-      </ScreenLayer>
-      <Tag n="02" live={live} x={790}>
-        The product
-      </Tag>
-      <Title live={live} x={790} width={1010} size={80}>
-        A shared expense,
+        得獎看的是評審的 <span style={{ color: TOMATO }}>5 分鐘</span>。<br />
+        App 能不能活下去，看的是你想不想做，
         <br />
-        logged in 4 seconds.
-      </Title>
-      <Callout
-        y={384}
-        n="1"
-        title="Scan"
-        color={BUTTER}
-        live={live}
-        delay={MORPH_MS + 420}
-        stat="98.6%"
-        statLabel="Read accuracy"
-      >
-        Snap the receipt. Total, shop and items fill in on their own.
-      </Callout>
-      <Callout
-        y={616}
-        n="2"
-        title="Split"
-        color={MINT}
-        live={live}
-        delay={MORPH_MS + 1250}
-        stat="2.8"
-        statLabel="Avg. flatmates"
-      >
-        Toggle who's in. Pommi splits it down to the cent.
-      </Callout>
-      <Callout
-        y={792}
-        n="3"
-        title="Settle"
-        color={PERI}
-        live={live}
-        delay={MORPH_MS + 2950}
-        stat="71%"
-        statLabel="Paid in 24 h"
-      >
-        Requests go out at once. Flatmates pay back in one tap.
-      </Callout>
+        還有你找不找得到<span style={{ color: TOMATO }}>一個理由</span>撐下去。
+      </div>
+      <FooterNote>醫療、教育當然可以做。先問，誰真的需要？</FooterNote>
     </Stage>
   );
 };
 
-const SplitIllus = ({ live }: { live: boolean }) => (
-  <div
-    style={{
-      position: 'relative',
-      width: '100%',
-      height: '100%',
-      padding: '20px 22px',
-      boxSizing: 'border-box',
-    }}
-  >
-    <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
-      <span style={{ fontSize: 22, fontWeight: 800 }}>Rent, October</span>
-      <span style={{ ...NUM, fontSize: 30 }}>
-        <Money v="€1,650" />
-      </span>
-    </div>
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 18 }}>
-      <ShareLine who="M" color={MINT} live={live} delay={0} />
-      <ShareLine who="J" color={PERI} live={live} delay={180} />
-      <ShareLine who="Y" color={TOMATO} live={live} delay={360} />
-    </div>
-    <div
-      style={{
-        position: 'absolute',
-        right: 18,
-        bottom: 20,
-        padding: '6px 14px',
-        border: `3.5px solid ${INK}`,
-        borderRadius: 10,
-        background: MINT,
-        ...MONO,
-        fontSize: 20,
-        transform: 'rotate(-9deg)',
-        ...anim(live, 'pm-stamp 5s ease-out 400ms infinite'),
-      }}
-    >
-      Settled
-    </div>
-  </div>
+const FooterNote = ({ children }: { children: ReactNode }) => (
+  <Footnote y={940}>{children}</Footnote>
 );
 
-const ShareLine = ({
-  who,
-  color,
-  live,
-  delay,
-}: {
-  who: string;
-  color: string;
-  live: boolean;
-  delay: number;
-}) => (
-  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-    <Avatar initial={who} color={color} size={36} border={2.5} />
-    <div
-      style={{
-        flex: 1,
-        height: 18,
-        borderRadius: 999,
-        border: `2.5px solid ${INK}`,
-        overflow: 'hidden',
-        background: PAPER,
-      }}
-    >
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          background: color,
-          transformOrigin: '0% 50%',
-          ...anim(live, `pm-fill 5s ${SNAPPY} ${delay}ms infinite`),
-        }}
-      />
-    </div>
-    <span
-      style={{
-        fontSize: 20,
-        fontWeight: 800,
-        fontVariantNumeric: 'tabular-nums',
-        width: 54,
-        textAlign: 'right',
-      }}
-    >
-      €550
-    </span>
-  </div>
-);
-
-const ListItem = ({
-  label,
-  live,
-  delay,
-  checked,
-}: {
-  label: string;
-  live: boolean;
-  delay: number;
-  checked: boolean;
-}) => (
-  <div style={{ display: 'flex', alignItems: 'center', gap: 14, height: 36 }}>
-    <div
-      style={{
-        width: 30,
-        height: 30,
-        flex: 'none',
-        borderRadius: 9,
-        border: `3px solid ${INK}`,
-        background: PAPER,
-        boxSizing: 'border-box',
-        position: 'relative',
-      }}
-    >
-      <div
-        style={{
-          position: 'absolute',
-          inset: -3,
-          borderRadius: 9,
-          background: BUTTER,
-          border: `3px solid ${INK}`,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          opacity: live || checked ? undefined : 0,
-          ...anim(live, `pm-tick 6s ease-out ${delay}ms infinite`),
-          ...(live ? { opacity: 0 } : {}),
-        }}
-      >
-        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-          <path
-            d="M3 8.5 L 6.5 12 L 13 4.5"
-            style={{
-              fill: 'none',
-              stroke: INK,
-              strokeWidth: 3,
-              strokeLinecap: 'round',
-              strokeLinejoin: 'round',
-            }}
-          />
-        </svg>
-      </div>
-    </div>
-    <span style={{ position: 'relative', fontSize: 22, fontWeight: 700 }}>
-      {label}
-      <span
-        style={{
-          position: 'absolute',
-          left: -2,
-          right: -2,
-          top: '54%',
-          height: 3,
-          background: INK,
-          transformOrigin: '0% 50%',
-          transform: live || checked ? undefined : 'scaleX(0)',
-          ...anim(live, `pm-strike 6s ease-out ${delay}ms infinite`),
-        }}
-      />
-    </span>
-  </div>
-);
-
-const ShopIllus = ({ live }: { live: boolean }) => (
-  <div style={{ width: '100%', height: '100%', padding: '18px 22px', boxSizing: 'border-box' }}>
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-      <span style={{ fontSize: 22, fontWeight: 800 }}>Rewe run</span>
-      <span style={{ display: 'flex', alignItems: 'center', gap: 8, ...MONO, fontSize: 16 }}>
-        <Avatar initial="M" color={MINT} size={28} border={2.5} />
-        Mira is shopping
-      </span>
-    </div>
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 14 }}>
-      <ListItem label="Oat milk ×2" live={live} delay={0} checked />
-      <ListItem label="Dish soap" live={live} delay={700} checked />
-      <ListItem label="Basmati rice" live={live} delay={1400} checked={false} />
-      <ListItem label="Bin bags, 60 L" live={live} delay={2100} checked={false} />
-    </div>
-  </div>
-);
-
-const ChoreLine = ({
-  chore,
-  who,
-  color,
-  live,
-  delay,
-}: {
-  chore: string;
-  who: string;
-  color: string;
-  live: boolean;
-  delay: number;
-}) => (
-  <div
-    style={{
-      display: 'flex',
-      alignItems: 'center',
-      gap: 10,
-      height: 44,
-      padding: '0 10px',
-      borderRadius: 12,
-      ...anim(live, `pm-glow-row 6s ease-out ${delay}ms infinite`),
-    }}
-  >
-    <Avatar initial={who} color={color} size={30} border={2.5} />
-    <span style={{ fontSize: 21, fontWeight: 700 }}>{chore}</span>
-  </div>
-);
-
-const RingAvatar = ({
-  initial,
-  color,
-  angle,
-  live,
-}: {
-  initial: string;
-  color: string;
-  angle: number;
-  live: boolean;
-}) => (
-  <div
-    style={{
-      position: 'absolute',
-      left: 80 + 64 * Math.cos((angle * Math.PI) / 180) - 22,
-      top: 80 + 64 * Math.sin((angle * Math.PI) / 180) - 22,
-    }}
-  >
-    <div style={{ ...anim(live, `pm-spin3-rev 6s ${SNAPPY} infinite`) }}>
-      <Avatar initial={initial} color={color} size={44} />
-    </div>
-  </div>
-);
-
-const RotateIllus = ({ live }: { live: boolean }) => (
-  <div
-    style={{
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      alignItems: 'center',
-      gap: 18,
-      padding: '0 22px',
-      boxSizing: 'border-box',
-    }}
-  >
-    <div style={{ position: 'relative', width: 160, height: 160, flex: 'none' }}>
-      <div
-        style={{
-          position: 'absolute',
-          inset: 16,
-          borderRadius: '50%',
-          border: `3px dashed ${INK}`,
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          left: 58,
-          top: 58,
-          width: 44,
-          height: 44,
-          borderRadius: '50%',
-          background: BUTTER,
-          border: `3px solid ${INK}`,
-          boxSizing: 'border-box',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          ...MONO,
-          fontSize: 16,
-        }}
-      >
-        41
-      </div>
-      <div
-        style={{ position: 'absolute', inset: 0, ...anim(live, `pm-spin3 6s ${SNAPPY} infinite`) }}
-      >
-        <RingAvatar initial="M" color={MINT} angle={-90} live={live} />
-        <RingAvatar initial="J" color={PERI} angle={30} live={live} />
-        <RingAvatar initial="Y" color={TOMATO} angle={150} live={live} />
-      </div>
-    </div>
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-      <ChoreLine chore="Kitchen" who="M" color={MINT} live={live} delay={0} />
-      <ChoreLine chore="Bins" who="J" color={PERI} live={live} delay={2000} />
-      <ChoreLine chore="Bathroom" who="Y" color={TOMATO} live={live} delay={4000} />
-    </div>
-  </div>
-);
-
-const DealCard = ({
+const ReasonCard = ({
   x,
   y,
   r,
   color,
-  n,
   title,
-  stat,
-  illus,
   children,
+  live,
+  delay,
 }: {
   x: number;
   y: number;
   r: number;
   color: string;
-  n: string;
   title: string;
-  stat: string;
-  illus: ReactNode;
   children: ReactNode;
+  live: boolean;
+  delay: number;
 }) => (
-  <div
-    className="pm-deal"
-    style={
-      {
-        ...abs(x, y),
-        '--r': `${r}deg`,
-        '--dx': `${960 - (x + 250)}px`,
-        width: 500,
-        height: 580,
-        boxSizing: 'border-box',
-        padding: 28,
-        background: color,
-        border: BORDER,
-        borderRadius: 34,
-        boxShadow: shadow(10),
-        display: 'flex',
-        flexDirection: 'column',
-      } as CSSProperties
-    }
-  >
-    <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-      <span
-        style={{
-          ...MONO,
-          fontSize: 18,
-          width: 52,
-          height: 52,
-          borderRadius: '50%',
-          background: INK,
-          color: CREAM,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        {n}
-      </span>
-      <span style={{ ...DISPLAY, fontSize: 64 }}>{title}</span>
+  <Sticker x={x} y={y} r={r} live={live} delay={delay} bg={color} pad="36px">
+    <div style={{ width: 430, height: 260, textAlign: 'left' }}>
+      <h3 style={{ ...DISPLAY, fontSize: 52, lineHeight: 1.22 }}>{title}</h3>
+      <p style={{ ...BODY, fontSize: 32, lineHeight: 1.5, marginTop: 36 }}>{children}</p>
     </div>
-    <div
-      style={{
-        height: 240,
-        marginTop: 22,
-        background: PAPER,
-        border: `3px solid ${INK}`,
-        borderRadius: 22,
-        overflow: 'hidden',
-      }}
-    >
-      {illus}
-    </div>
-    <p style={{ ...BODY, fontSize: 28, marginTop: 24, lineHeight: 1.3 }}>{children}</p>
-    <div
-      style={{
-        ...MONO,
-        fontSize: 16,
-        marginTop: 'auto',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 10,
-      }}
-    >
-      <span style={{ width: 10, height: 10, borderRadius: '50%', background: INK }} />
-      {stat}
-    </div>
-  </div>
+  </Sticker>
 );
 
-const How: Page = () => {
+const ReasonsToContinue: Page = () => {
   const live = useLive();
+  return (
+    <Stage>
+      <Tag n="02" live={live}>
+        撐下去的理由
+      </Tag>
+      <Title live={live}>你為什麼想做這個 App？</Title>
+      <ReasonCard x={145} y={385} r={-3} color={BUTTER} title="改善生活" live={live} delay={200}>
+        解決你自己每天都會碰到的
+        <br />
+        麻煩，你就是第一個使用者。
+      </ReasonCard>
+      <ReasonCard x={715} y={425} r={2} color={MINT} title="幫助弱勢" live={live} delay={400}>
+        做給真的需要的人，有人因為你的 App 過得好一點。
+      </ReasonCard>
+      <ReasonCard
+        x={1285}
+        y={385}
+        r={-2}
+        color={PERI}
+        title="完成心裡的理想"
+        live={live}
+        delay={600}
+      >
+        你一直想做、想證明給自己看的那件事。
+      </ReasonCard>
+      <p
+        style={{
+          ...BODY,
+          ...abs(140, 875),
+          fontSize: 38,
+          fontWeight: 700,
+          ...rise(live, 900),
+        }}
+      >
+        理由也可以很實際：如果這個 App 每個月幫你賺 <span style={{ color: TOMATO }}>6 萬</span>
+        呢？
+      </p>
+    </Stage>
+  );
+};
+
+const CampusMath: Page = () => {
+  const live = useLive();
+  const revenue = useCount(60000, live, 650, 1700);
   return (
     <Stage>
       <Tag n="03" live={live}>
-        How it works
+        算給你看
       </Tag>
-      <Title live={live}>Three jobs every shared home has.</Title>
-      <Steps>
-        <Step duration={120}>
-          <DealCard
-            x={150}
-            y={348}
-            r={-4}
-            color={TOMATO}
-            n="01"
-            title="Split"
-            stat="Used weekly by 91% of homes"
-            illus={<SplitIllus live={live} />}
-          >
-            Rent, bills and receipts split by who's in. Settle in one tap.
-          </DealCard>
-        </Step>
-        <Step duration={120}>
-          <DealCard
-            x={710}
-            y={332}
-            r={1}
-            color={BUTTER}
-            n="02"
-            title="Shop"
-            stat="Used weekly by 74% of homes"
-            illus={<ShopIllus live={live} />}
-          >
-            One live list, sorted by aisle, for whoever is at the shop.
-          </DealCard>
-        </Step>
-        <Step duration={120}>
-          <DealCard
-            x={1270}
-            y={348}
-            r={4}
-            color={MINT}
-            n="03"
-            title="Rotate"
-            stat="Used weekly by 52% of homes"
-            illus={<RotateIllus live={live} />}
-          >
-            Chores rotate fairly, with a nudge before anything slips.
-          </DealCard>
-        </Step>
-      </Steps>
+      <Title live={live}>不用先改變世界，先從逢甲開始。</Title>
+      <div
+        style={abs(140, 338, {
+          display: 'flex',
+          alignItems: 'center',
+          gap: 60,
+          ...rise(live, 180),
+        })}
+      >
+        <div>
+          <span style={{ ...NUM, fontSize: 134 }}>6,000</span>
+          <span style={{ ...BODY, marginLeft: 24 }}>人</span>
+        </div>
+        <span style={{ ...DISPLAY, fontSize: 80 }}>×</span>
+        <div>
+          <span style={{ ...NUM, fontSize: 134 }}>NT$10</span>
+          <span style={{ ...BODY, marginLeft: 24 }}>／月</span>
+        </div>
+        <span style={{ ...DISPLAY, fontSize: 80 }}>＝</span>
+      </div>
+      <Panel x={120} y={540} width={1680} height={280} color={TOMATO} live={live} delay={350}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'baseline',
+            justifyContent: 'center',
+            gap: 24,
+            ...anim(live, 'pm-thunk 620ms ease-out 2350ms both'),
+          }}
+        >
+          <span style={{ ...DISPLAY, fontSize: 70 }}>NT$</span>
+          <span style={{ ...NUM, fontSize: 230, lineHeight: 0.86, letterSpacing: '-0.05em' }}>
+            {Math.round(revenue).toLocaleString('en-US')}
+          </span>
+          <span style={{ ...DISPLAY, fontSize: 60 }}>／月</span>
+        </div>
+      </Panel>
+      <p style={{ ...BODY, ...abs(140, 866), fontSize: 36, fontWeight: 700, ...rise(live, 750) }}>
+        躺在家做自己喜歡的事，也能過生活。
+      </p>
+      <FooterNote>
+        假設逢甲有 6,000 個人用，每人每月付 10 塊。這是營收試算，還沒扣成本與費用。
+      </FooterNote>
     </Stage>
   );
 };
 
-const BAR_BASE = 900;
-const BAR_MAX = 440;
-const BAR_X = 120;
-const BAR_PITCH = 70;
-const BAR_W = 50;
-const barH = (v: number) => Math.round((v / 412) * BAR_MAX);
-
-const Bar = ({ i, v, live }: { i: number; v: number; live: boolean }) => {
-  const h = barH(v);
-  const color = i === 23 ? TOMATO : i >= 12 ? BUTTER : PAPER;
-  return (
-    <div
-      style={abs(BAR_X + i * BAR_PITCH, BAR_BASE - h, {
-        width: BAR_W,
-        height: h,
-        boxSizing: 'border-box',
-        background: color,
-        border: `3px solid ${INK}`,
-        borderBottom: 'none',
-        borderRadius: '12px 12px 0 0',
-        transformOrigin: '50% 100%',
-        ...anim(live, `pm-grow-y 950ms ${BOUNCY} ${260 + i * 46}ms both`),
-      })}
-    />
-  );
-};
-
-const BarLabel = ({ i, v, text, live }: { i: number; v: number; text: string; live: boolean }) => (
-  <div
-    style={abs(BAR_X + i * BAR_PITCH + BAR_W / 2 - 60, BAR_BASE - barH(v) - 40, {
-      width: 120,
-      textAlign: 'center',
-      fontSize: 24,
-      fontWeight: 800,
-      fontVariantNumeric: 'tabular-nums',
-      ...anim(live, `pm-pop-b 600ms ${BOUNCY} ${260 + i * 46 + 600}ms both`),
-    })}
-  >
-    {text}
-  </div>
+const FlowCard = ({
+  x,
+  color,
+  title,
+  children,
+  live,
+  delay,
+}: {
+  x: number;
+  color: string;
+  title: string;
+  children: ReactNode;
+  live: boolean;
+  delay: number;
+}) => (
+  <Panel x={x} y={390} width={470} height={350} color={color} live={live} delay={delay}>
+    <h3 style={{ ...DISPLAY, fontSize: 76, marginTop: 16 }}>{title}</h3>
+    <p style={{ ...BODY, fontSize: 32, marginTop: 48 }}>{children}</p>
+  </Panel>
 );
 
-const GridLine = ({ v }: { v: number }) => (
-  <div
-    style={abs(BAR_X, BAR_BASE - barH(v), {
-      width: 1680,
-      height: 0,
-      borderTop: `2px dashed ${FAINT}`,
-    })}
-  >
-    <span style={{ ...MONO, fontSize: 16, color: MUTED, position: 'absolute', left: 0, top: -26 }}>
-      {v}k
-    </span>
-  </div>
-);
-
-const AxisLabel = ({ i, children }: { i: number; children: ReactNode }) => (
-  <div
-    style={{
-      ...MONO,
-      ...abs(BAR_X + i * BAR_PITCH + BAR_W / 2 - 60, BAR_BASE + 16),
-      width: 120,
-      textAlign: 'center',
-      color: MUTED,
-    }}
-  >
-    {children}
-  </div>
-);
-
-const Traction: Page = () => {
+const Traffic: Page = () => {
   const live = useLive();
-  const count = useCount(412000, live, 260, 1900);
   return (
     <Stage>
       <Tag n="04" live={live}>
-        Traction
+        免費，也能有價值
       </Tag>
-      <div
-        style={{
-          ...NUM,
-          ...abs(108, 160),
-          fontSize: 200,
-          lineHeight: 0.86,
-          letterSpacing: '-0.05em',
-          transformOrigin: '0% 80%',
-          ...anim(live, `pm-thunk 620ms ease-out 2160ms both`),
-        }}
-      >
-        {Math.round(count).toLocaleString('en-US')}
-      </div>
-      <div style={abs(1000, 172, { width: 520, ...rise(live, 160, 24) })}>
-        <div
-          style={{
-            ...DISPLAY,
-            fontSize: 50,
-            fontWeight: 800,
-            lineHeight: 1.04,
-            letterSpacing: '-0.03em',
-            textWrap: 'balance',
-          }}
-        >
-          homes use Pommi every month.
-        </div>
-        <div style={{ ...MONO, color: MUTED, marginTop: 18 }}>
-          Monthly active households · Sep 2026
-        </div>
-      </div>
-      <Sticker x={1590} y={150} r={6} live={live} delay={2300} bg={BUTTER} pad="12px 22px">
-        <span style={{ ...NUM, fontSize: 44 }}>3.1×</span>
-        <span style={{ ...MONO, fontSize: 16, marginTop: 4 }}>Year on year</span>
+      <Title live={live}>有人每天打開，就有變現的機會。</Title>
+      <FlowCard x={120} color={MINT} title="使用者" live={live} delay={200}>
+        真的需要，
+        <br />
+        才會一直回來。
+      </FlowCard>
+      <span style={{ ...DISPLAY, ...abs(615, 510), fontSize: 72, ...rise(live, 350) }}>→</span>
+      <FlowCard x={725} color={PERI} title="流量" live={live} delay={450}>
+        每天有人看，
+        <br />
+        也有人找東西。
+      </FlowCard>
+      <span style={{ ...DISPLAY, ...abs(1220, 510), fontSize: 72, ...rise(live, 600) }}>→</span>
+      <FlowCard x={1330} color={BUTTER} title="變現" live={live} delay={700}>
+        付費功能、廣告，
+        <br />
+        或促成交易。
+      </FlowCard>
+      <Sticker x={1290} y={300} r={5} live={live} delay={1150} bg={PINK}>
+        <span style={{ fontSize: 30, fontWeight: 900 }}>先留住人，再想怎麼收錢。</span>
       </Sticker>
-      <Sticker x={1574} y={292} r={-4} live={live} delay={2450} bg={MINT} pad="10px 20px">
-        <span style={{ fontSize: 24, fontWeight: 800 }}>64% organic</span>
-      </Sticker>
-
-      <GridLine v={100} />
-      <GridLine v={200} />
-      <GridLine v={300} />
-      <GridLine v={400} />
-      <div
-        style={abs(BAR_X - 20, BAR_BASE, {
-          width: 1720,
-          height: 4,
-          background: INK,
-          borderRadius: 2,
-        })}
-      />
-      <Bar i={0} v={46} live={live} />
-      <Bar i={1} v={51} live={live} />
-      <Bar i={2} v={55} live={live} />
-      <Bar i={3} v={63} live={live} />
-      <Bar i={4} v={70} live={live} />
-      <Bar i={5} v={76} live={live} />
-      <Bar i={6} v={83} live={live} />
-      <Bar i={7} v={90} live={live} />
-      <Bar i={8} v={94} live={live} />
-      <Bar i={9} v={97} live={live} />
-      <Bar i={10} v={108} live={live} />
-      <Bar i={11} v={133} live={live} />
-      <Bar i={12} v={152} live={live} />
-      <Bar i={13} v={166} live={live} />
-      <Bar i={14} v={172} live={live} />
-      <Bar i={15} v={196} live={live} />
-      <Bar i={16} v={214} live={live} />
-      <Bar i={17} v={233} live={live} />
-      <Bar i={18} v={251} live={live} />
-      <Bar i={19} v={268} live={live} />
-      <Bar i={20} v={290} live={live} />
-      <Bar i={21} v={312} live={live} />
-      <Bar i={22} v={348} live={live} />
-      <Bar i={23} v={412} live={live} />
-      <BarLabel i={0} v={46} text="46k" live={live} />
-      <BarLabel i={11} v={133} text="133k" live={live} />
-      <BarLabel i={23} v={412} text="412k" live={live} />
-      <AxisLabel i={0}>Oct '24</AxisLabel>
-      <AxisLabel i={6}>Apr '25</AxisLabel>
-      <AxisLabel i={12}>Oct '25</AxisLabel>
-      <AxisLabel i={18}>Apr '26</AxisLabel>
-      <AxisLabel i={23}>Sep '26</AxisLabel>
-      <Footnote y={950} width={1680}>
-        A monthly active household logged at least one shared expense, list item or chore that
-        month. Source: Pommi internal data.
-      </Footnote>
+      <p style={{ ...BODY, ...abs(140, 840), fontSize: 38, fontWeight: 700 }}>
+        就算免費，6,000 人每天打開，也是一項資產。
+      </p>
+      <FooterNote>有流量不是自動有收入。還得找到願意付錢的人，以及他願意買的價值。</FooterNote>
     </Stage>
   );
 };
 
-const retention = (c: number, m: number) => {
-  if (m === 0) return 100;
-  const floor = 67.8 + c * 0.6;
-  return Math.round(floor + (100 - floor) * Math.exp(-m / 2.4));
-};
-
-const HEAT_X = 270;
-const HEAT_Y = 340;
-const HEAT_PX = 72;
-const HEAT_PY = 47;
-
-const HeatTile = ({ c, m, live }: { c: number; m: number; live: boolean }) => {
-  const v = retention(c, m);
-  const a = Math.min(1, Math.max(0.1, (v - 62) / 38));
-  const hero = c === 0 && m === 12;
-  return (
-    <div
-      style={abs(HEAT_X + m * HEAT_PX, HEAT_Y + c * HEAT_PY, {
-        width: HEAT_PX - 7,
-        height: HEAT_PY - 7,
-        boxSizing: 'border-box',
-        borderRadius: 10,
-        border: hero ? BORDER : `2.5px solid ${INK}`,
-        background: hero ? BUTTER : `rgba(255, 90, 44, ${a.toFixed(2)})`,
-        boxShadow: hero ? shadow(5) : undefined,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: 18,
-        fontWeight: hero ? 900 : 700,
-        fontVariantNumeric: 'tabular-nums',
-        zIndex: hero ? 2 : 1,
-        ...anim(live, `pm-pop 620ms ${BOUNCY} ${hero ? 1900 : 200 + (c + m) * 42}ms both`),
-      })}
-    >
-      {v}
-    </div>
-  );
-};
-
-const CohortRow = ({ c, label, live }: { c: number; label: string; live: boolean }) => (
-  <>
-    <div
+const ModelCard = ({
+  x,
+  color,
+  title,
+  payer,
+  children,
+  live,
+  delay,
+}: {
+  x: number;
+  color: string;
+  title: ReactNode;
+  payer: string;
+  children: ReactNode;
+  live: boolean;
+  delay: number;
+}) => (
+  <Panel x={x} y={365} width={390} height={470} color={color} live={live} delay={delay}>
+    <h3 style={{ ...DISPLAY, fontSize: 48, lineHeight: 1.22, minHeight: 126 }}>{title}</h3>
+    <p
       style={{
-        ...MONO,
-        ...abs(120, HEAT_Y + c * HEAT_PY + 10),
-        width: 130,
-        color: MUTED,
-        ...anim(live, `pm-fade 300ms ease-out ${150 + c * 42}ms both`),
+        ...BODY,
+        fontSize: 28,
+        fontWeight: 700,
+        paddingTop: 22,
+        borderTop: `3px dashed ${FAINT}`,
       }}
     >
-      {label}
-    </div>
-    {Array.from({ length: 13 - c }, (_, m) => (
-      <HeatTile key={m} c={c} m={m} live={live} />
-    ))}
-  </>
+      {payer}
+    </p>
+    <p style={{ ...BODY, fontSize: 30, lineHeight: 1.5, marginTop: 24 }}>{children}</p>
+  </Panel>
 );
 
-const HeatHead = ({ m }: { m: number }) => (
-  <div
-    style={{
-      ...MONO,
-      ...abs(HEAT_X + m * HEAT_PX, HEAT_Y - 34),
-      width: HEAT_PX - 7,
-      textAlign: 'center',
-      fontSize: 16,
-      color: m === 12 ? INK : MUTED,
-    }}
-  >
-    M{m}
-  </div>
-);
-
-const Retention: Page = () => {
+const BusinessModels: Page = () => {
   const live = useLive();
-  const r12 = useCount(68, live, 2000, 1100);
   return (
     <Stage>
       <Tag n="05" live={live}>
-        Retention
+        四種賺錢方式
       </Tag>
-      <Title live={live}>They move in, and they stay.</Title>
-      <HeatHead m={0} />
-      <HeatHead m={1} />
-      <HeatHead m={2} />
-      <HeatHead m={3} />
-      <HeatHead m={4} />
-      <HeatHead m={5} />
-      <HeatHead m={6} />
-      <HeatHead m={7} />
-      <HeatHead m={8} />
-      <HeatHead m={9} />
-      <HeatHead m={10} />
-      <HeatHead m={11} />
-      <HeatHead m={12} />
-      <CohortRow c={0} label="Sep '25" live={live} />
-      <CohortRow c={1} label="Oct '25" live={live} />
-      <CohortRow c={2} label="Nov '25" live={live} />
-      <CohortRow c={3} label="Dec '25" live={live} />
-      <CohortRow c={4} label="Jan '26" live={live} />
-      <CohortRow c={5} label="Feb '26" live={live} />
-      <CohortRow c={6} label="Mar '26" live={live} />
-      <CohortRow c={7} label="Apr '26" live={live} />
-      <CohortRow c={8} label="May '26" live={live} />
-      <CohortRow c={9} label="Jun '26" live={live} />
-      <CohortRow c={10} label="Jul '26" live={live} />
-      <CohortRow c={11} label="Aug '26" live={live} />
-      <svg
-        width={110}
-        height={20}
-        viewBox="0 0 110 20"
-        aria-hidden="true"
-        style={{ ...abs(HEAT_X + 12 * HEAT_PX + 65, HEAT_Y + 10), overflow: 'visible' }}
+      <Title live={live}>誰付錢？為什麼願意付？</Title>
+      <ModelCard
+        x={120}
+        color={BUTTER}
+        title="訂閱制"
+        payer="為持續使用付費"
+        live={live}
+        delay={200}
       >
-        <path
-          d="M 4 10 H 104"
-          pathLength={1}
-          style={{
-            fill: 'none',
-            stroke: INK,
-            strokeWidth: 4,
-            strokeDasharray: 1,
-            strokeDashoffset: 0,
-            ...anim(live, `pm-draw 380ms ${EASE_OUT} 2250ms both`),
-          }}
-        />
-      </svg>
-      <div style={abs(1340, 300, { width: 460 })}>
-        <div style={rise(live, 1900, 30)}>
-          <div
-            style={{
-              ...NUM,
-              fontSize: 210,
-              lineHeight: 0.86,
-              letterSpacing: '-0.05em',
-              transformOrigin: '0% 80%',
-              ...anim(live, `pm-thunk 620ms ease-out 3100ms both`),
-            }}
-          >
-            {Math.round(r12)}%
-          </div>
-        </div>
-        <p
-          style={{
-            ...BODY,
-            fontSize: 32,
-            fontWeight: 700,
-            marginTop: 22,
-            ...rise(live, 2300, 20),
-          }}
-        >
-          of households are still active twelve months after they join.
-        </p>
-        <div
-          style={{
-            marginTop: 40,
-            paddingTop: 30,
-            borderTop: BORDER,
-            display: 'flex',
-            alignItems: 'baseline',
-            gap: 18,
-            ...rise(live, 2500, 20),
-          }}
-        >
-          <span style={{ ...NUM, fontSize: 72, letterSpacing: '-0.04em' }}>+4 pts</span>
-        </div>
-        <p
-          style={{
-            ...BODY,
-            fontSize: 28,
-            marginTop: 10,
-            textWrap: 'balance',
-            ...rise(live, 2560, 20),
-          }}
-        >
-          higher month-3 retention, Jun '26 cohort vs Sep '25.
-        </p>
-      </div>
-      <Footnote y={936} width={1100}>
-        Share of each monthly sign-up cohort still active, by month since joining. Source: Pommi
-        internal data, Sep 2026.
-      </Footnote>
+        社團排班工具，
+        <br />
+        每月付費用進階功能。
+      </ModelCard>
+      <ModelCard
+        x={550}
+        color={MINT}
+        title={
+          <>
+            單次付費
+            <br />
+            ／內購
+          </>
+        }
+        payer="為某個功能付費"
+        live={live}
+        delay={350}
+      >
+        校園活動修圖，
+        <br />
+        付費解鎖素材包。
+      </ModelCard>
+      <ModelCard x={980} color={PERI} title="廣告" payer="店家為曝光付費" live={live} delay={500}>
+        宵夜資訊 App，
+        <br />
+        校園店家買推薦版位。
+      </ModelCard>
+      <ModelCard
+        x={1410}
+        color={PINK}
+        title={
+          <>
+            抽成
+            <br />
+            ／媒合
+          </>
+        }
+        payer="為促成交易付費"
+        live={live}
+        delay={650}
+      >
+        二手教科書成交，
+        <br />
+        平台收服務費。
+      </ModelCard>
+      <p style={{ ...BODY, ...abs(140, 900), fontSize: 34, fontWeight: 700 }}>
+        同樣是校園 App，付錢的人可以是同學，也可以是店家。
+      </p>
     </Stage>
   );
 };
 
-const RevSegment = ({
-  x,
-  w,
-  color,
-  name,
-  pct,
-  first,
-  last,
-}: {
-  x: number;
-  w: number;
-  color: string;
-  name: string;
-  pct: string;
-  first?: boolean;
-  last?: boolean;
-}) => (
-  <div
-    className="pm-seg"
-    style={abs(x, 324, {
-      width: w,
-      height: 168,
-      boxSizing: 'border-box',
-      padding: '18px 24px',
-      background: color,
-      border: BORDER,
-      borderRadius: `${first ? 30 : 0}px ${last ? 30 : 0}px ${last ? 30 : 0}px ${first ? 30 : 0}px`,
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-    })}
-  >
-    <span style={{ fontSize: 28, fontWeight: 800 }}>{name}</span>
-    <span style={{ ...NUM, fontSize: 72, letterSpacing: '-0.04em' }}>{pct}</span>
-  </div>
-);
-
-const RevColumn = ({
-  x,
-  color,
-  name,
-  metric,
-  unit,
-  stat,
-  children,
-}: {
-  x: number;
-  color: string;
-  name: string;
-  metric: string;
-  unit: string;
-  stat: string;
-  children: ReactNode;
-}) => (
-  <div className="pm-col" style={abs(x, 560, { width: 500 })}>
-    <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-      <span
-        style={{
-          width: 30,
-          height: 30,
-          borderRadius: 9,
-          background: color,
-          border: `3px solid ${INK}`,
-          boxSizing: 'border-box',
-        }}
-      />
-      <span style={{ fontSize: 30, fontWeight: 800 }}>{name}</span>
-    </div>
-    <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 20 }}>
-      <span style={{ ...NUM, fontSize: 68, letterSpacing: '-0.04em' }}>
-        <Money v={metric} />
-      </span>
-      <span style={{ fontSize: 26, fontWeight: 700 }}>{unit}</span>
-    </div>
-    <p style={{ ...BODY, fontSize: 28, marginTop: 16 }}>{children}</p>
-    <div style={{ ...MONO, color: MUTED, marginTop: 18 }}>{stat}</div>
-  </div>
-);
-
-const Model: Page = () => {
+const FindProblem: Page = () => {
   const live = useLive();
   return (
     <Stage>
       <Tag n="06" live={live}>
-        Business model
+        怎麼找題目
       </Tag>
-      <Title live={live} width={1400}>
-        <Money v="€9.7M" /> ARR, 64% of it subscription.
+      <Title live={live} size={82}>
+        找一件煩到大家願意
+        <br />
+        <span style={{ color: TOMATO }}>每個月付 10 塊</span>解決的事。
       </Title>
-      <Sticker x={1600} y={180} r={7} live={live} delay={700} bg={BUTTER} pad="12px 22px">
-        <span style={{ ...NUM, fontSize: 44 }}>2.8×</span>
-        <span style={{ ...MONO, fontSize: 16, marginTop: 4 }}>ARR year on year</span>
+      <Sticker x={155} y={485} r={-5} live={live} delay={350} bg={BUTTER} pad="28px 42px">
+        <span style={{ ...DISPLAY, fontSize: 58 }}>選課</span>
       </Sticker>
-      <div
-        style={abs(120, 324, {
-          width: 1680,
-          height: 168,
-          boxSizing: 'border-box',
-          border: `4px dashed ${FAINT}`,
-          borderRadius: 30,
-        })}
-      />
-      <Steps>
-        <Step duration={120}>
-          <RevSegment x={120} w={1075} color={TOMATO} name="Pommi Plus" pct="64%" first />
-          <RevColumn
-            x={120}
-            color={TOMATO}
-            name="Pommi Plus"
-            metric="€5.99"
-            unit="per home / month"
-            stat="86,400 paying homes · €6.2M ARR"
-          >
-            Unlimited splits, receipt scan and rent autopay, shared by the whole flat.
-          </RevColumn>
-        </Step>
-        <Step duration={120}>
-          <RevSegment x={1191} w={290} color={PERI} name="Card" pct="17%" />
-          <RevColumn
-            x={710}
-            color={PERI}
-            name="Pommi Card"
-            metric="€852M"
-            unit="yearly spend"
-            stat="96,000 active cards · €1.7M ARR"
-          >
-            One shared card for groceries and bills. We keep the interchange.
-          </RevColumn>
-        </Step>
-        <Step duration={120}>
-          <RevSegment x={1477} w={323} color={MINT} name="Partners" pct="19%" last />
-          <RevColumn
-            x={1300}
-            color={MINT}
-            name="Partner offers"
-            metric="€58"
-            unit="per switch"
-            stat="31,200 switches · €1.8M ARR"
-          >
-            Energy, internet and insurance, switched once for the whole home.
-          </RevColumn>
-        </Step>
-      </Steps>
-      <Footnote y={936}>
-        ARR = September 2026 revenue × 12. Card revenue shown net of the issuing bank's share.
-        Source: Pommi finance.
-      </Footnote>
+      <Sticker x={510} y={500} r={4} live={live} delay={500} bg={MINT} pad="28px 42px">
+        <span style={{ ...DISPLAY, fontSize: 58 }}>找室友</span>
+      </Sticker>
+      <Sticker x={1060} y={460} r={-4} live={live} delay={650} bg={PERI} pad="28px 42px">
+        <span style={{ ...DISPLAY, fontSize: 58 }}>宵夜團購</span>
+      </Sticker>
+      <Sticker x={310} y={700} r={3} live={live} delay={800} bg={PINK} pad="28px 42px">
+        <span style={{ ...DISPLAY, fontSize: 58 }}>二手教科書</span>
+      </Sticker>
+      <Sticker x={1030} y={690} r={-3} live={live} delay={950} bg={BUTTER} pad="28px 42px">
+        <span style={{ ...DISPLAY, fontSize: 58 }}>找讀書夥伴</span>
+      </Sticker>
+      <Sparkle x={1660} y={650} size={50} color={MINT} live={live} delay={1150} />
+      <p style={{ ...BODY, ...abs(140, 900), fontSize: 34, fontWeight: 700 }}>
+        先去問正在被這件事困擾的人，別只猜評審喜歡什麼。
+      </p>
     </Stage>
   );
 };
 
-const SEE_PIVOT_X = 800;
-const SEE_PIVOT_Y = 780;
-const SEE_LEFT = 250;
-const SEE_TOP = 516;
-const LTV_DROP = 300;
-const CAC_DROP = 1900;
-
-const UnitStat = ({
-  value,
-  label,
+const LaunchStep = ({
+  x,
+  n,
   color,
+  title,
+  children,
   live,
   delay,
 }: {
-  value: string;
-  label: string;
+  x: number;
+  n: string;
   color: string;
+  title: ReactNode;
+  children: ReactNode;
   live: boolean;
   delay: number;
 }) => (
-  <div
-    style={{
-      height: 112,
-      boxSizing: 'border-box',
-      padding: '0 26px',
-      display: 'flex',
-      alignItems: 'center',
-      gap: 18,
-      background: color,
-      border: BORDER,
-      borderRadius: 26,
-      boxShadow: shadow(6),
-      ...anim(live, `pm-in-l 860ms ${SNAPPY} ${delay}ms both`),
-    }}
-  >
-    <span style={{ ...NUM, fontSize: 54, letterSpacing: '-0.04em', width: 112, flex: 'none' }}>
-      {value}
-    </span>
-    <span style={{ fontSize: 24, fontWeight: 700, lineHeight: 1.15 }}>{label}</span>
-  </div>
+  <Panel x={x} y={345} width={390} height={290} color={color} live={live} delay={delay}>
+    <span style={{ ...MONO, fontSize: 20 }}>{n}</span>
+    <h3 style={{ ...DISPLAY, fontSize: 44, lineHeight: 1.22, marginTop: 20 }}>{title}</h3>
+    <p style={{ ...BODY, fontSize: 28, marginTop: 24 }}>{children}</p>
+  </Panel>
 );
 
-const Unit: Page = () => {
+const ShipIt: Page = () => {
   const live = useLive();
-  const ratio = useCount(6.2, live, CAC_DROP + 600, 1000);
-  const ltvLand = LTV_DROP + Math.round(900 * DROP_LAND);
-  const cacLand = CAC_DROP + Math.round(800 * DROP_LAND);
   return (
     <Stage>
       <Tag n="07" live={live}>
-        Unit economics
+        實際上架
       </Tag>
-      <Title live={live} width={1200}>
-        Every paying home
-        <br />
-        pays back in 4 months.
-      </Title>
-
-      <div style={abs(170, 940, { width: 1240, height: 4, background: INK, borderRadius: 2 })} />
-      <svg
-        width={240}
-        height={160}
-        viewBox="0 0 240 160"
-        aria-hidden="true"
-        style={{ ...abs(SEE_PIVOT_X - 120, 782), overflow: 'visible' }}
-      >
-        <path
-          d="M 120 8 L 226 156 L 14 156 Z"
-          style={{ fill: BUTTER, stroke: INK, strokeWidth: 4, strokeLinejoin: 'round' }}
-        />
-        <circle cx={120} cy={10} r={10} style={{ fill: INK }} />
-      </svg>
-      <div
-        style={
-          {
-            ...abs(SEE_LEFT, SEE_TOP),
-            width: 1100,
-            height: 278,
-            transformOrigin: `${SEE_PIVOT_X - SEE_LEFT}px ${SEE_PIVOT_Y - SEE_TOP}px`,
-            transform: 'rotate(-7deg)',
-            '--pm-tip': '-7deg',
-            ...anim(live, `pm-tip 1300ms ${BOUNCY} ${ltvLand}ms both`),
-          } as CSSProperties
+      <Title live={live}>先讓人用得到，再慢慢改好。</Title>
+      <LaunchStep
+        x={120}
+        n="01 →"
+        color={BUTTER}
+        title={
+          <>
+            做最小
+            <br />
+            可用版本
+          </>
         }
+        live={live}
+        delay={200}
       >
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            transformOrigin: `${SEE_PIVOT_X - SEE_LEFT}px ${SEE_PIVOT_Y - SEE_TOP}px`,
-            ...anim(live, `pm-nudge 900ms ease-out ${cacLand}ms both`),
-          }}
-        >
-          <div
-            style={abs(0, 250, {
-              width: 1100,
-              height: 28,
-              boxSizing: 'border-box',
-              background: PAPER,
-              border: BORDER,
-              borderRadius: 14,
-            })}
-          />
-          <div
-            style={
-              {
-                ...abs(24, 0),
-                width: 340,
-                height: 250,
-                '--pm-from': '-760px',
-                ...anim(live, `pm-drop 900ms ${DROP} ${LTV_DROP}ms both`),
-              } as CSSProperties
-            }
-          >
-            <div
-              style={{
-                width: '100%',
-                height: '100%',
-                boxSizing: 'border-box',
-                padding: '24px 28px',
-                background: TOMATO,
-                border: BORDER,
-                borderRadius: 26,
-                boxShadow: shadow(8),
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                transformOrigin: '50% 100%',
-                ...anim(live, `pm-squash 520ms ease-out ${ltvLand}ms both`),
-              }}
-            >
-              <span style={{ ...MONO, fontSize: 18 }}>Lifetime value</span>
-              <span style={{ ...NUM, fontSize: 124, letterSpacing: '-0.05em' }}>
-                <Money v="€148" />
-              </span>
-            </div>
+        只解決核心問題。
+      </LaunchStep>
+      <LaunchStep
+        x={550}
+        n="02 →"
+        color={MINT}
+        title={
+          <>
+            上架
+            <br />
+            商店
+          </>
+        }
+        live={live}
+        delay={350}
+      >
+        帳號、測試、送審。
+      </LaunchStep>
+      <LaunchStep
+        x={980}
+        n="03 →"
+        color={PERI}
+        title={
+          <>
+            找到第一批
+            <br />
+            100 個使用者
+          </>
+        }
+        live={live}
+        delay={500}
+      >
+        從身邊有需求的人開始。
+      </LaunchStep>
+      <LaunchStep
+        x={1410}
+        n="04 ↻"
+        color={PINK}
+        title={
+          <>
+            看數據
+            <br />
+            再改
+          </>
+        }
+        live={live}
+        delay={650}
+      >
+        有沒有回來？卡在哪？
+      </LaunchStep>
+      <Panel x={120} y={700} width={1680} height={210} live={live} delay={850}>
+        <div style={{ display: 'flex', gap: 70, alignItems: 'center', height: '100%' }}>
+          <div style={{ width: 710 }}>
+            <p style={{ ...BODY, fontSize: 28, fontWeight: 700 }}>Google Play 開發者帳號</p>
+            <p style={{ ...DISPLAY, fontSize: 62, marginTop: 12 }}>
+              US$25<span style={{ fontSize: 30, marginLeft: 22 }}>一次付費</span>
+            </p>
           </div>
-          <div
-            style={
-              {
-                ...abs(890, 118),
-                width: 186,
-                height: 132,
-                '--pm-from': '-980px',
-                ...anim(live, `pm-drop 800ms ${DROP} ${CAC_DROP}ms both`),
-              } as CSSProperties
-            }
-          >
-            <div
-              style={{
-                width: '100%',
-                height: '100%',
-                boxSizing: 'border-box',
-                padding: '16px 20px',
-                background: MINT,
-                border: BORDER,
-                borderRadius: 22,
-                boxShadow: shadow(6),
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                transformOrigin: '50% 100%',
-                ...anim(live, `pm-squash 480ms ease-out ${cacLand}ms both`),
-              }}
-            >
-              <span style={{ ...MONO, fontSize: 16 }}>CAC</span>
-              <span style={{ ...NUM, fontSize: 64, letterSpacing: '-0.045em' }}>
-                <Money v="€24" />
-              </span>
-            </div>
+          <div style={{ borderLeft: `3px dashed ${FAINT}`, paddingLeft: 65 }}>
+            <p style={{ ...BODY, fontSize: 28, fontWeight: 700 }}>Apple Developer Program</p>
+            <p style={{ ...DISPLAY, fontSize: 62, marginTop: 12 }}>
+              US$99<span style={{ fontSize: 30, marginLeft: 22 }}>每年</span>
+            </p>
           </div>
         </div>
-      </div>
-
-      <div style={abs(1440, 330, { width: 360 })}>
-        <div style={{ ...MONO, color: MUTED, ...rise(live, CAC_DROP + 500, 16) }}>LTV : CAC</div>
-        <div style={rise(live, CAC_DROP + 500, 30)}>
-          <div
-            style={{
-              ...NUM,
-              fontSize: 180,
-              lineHeight: 0.9,
-              letterSpacing: '-0.05em',
-              marginTop: 8,
-              transformOrigin: '0% 80%',
-              ...anim(live, `pm-thunk 620ms ease-out ${CAC_DROP + 1600}ms both`),
-            }}
-          >
-            {ratio.toFixed(1)}×
-          </div>
-        </div>
-      </div>
-      <div
-        style={abs(1440, 600, { width: 360, display: 'flex', flexDirection: 'column', gap: 22 })}
-      >
-        <UnitStat
-          value="3.9"
-          label="months to pay back CAC"
-          color={BUTTER}
-          live={live}
-          delay={CAC_DROP + 1300}
-        />
-        <UnitStat
-          value="78%"
-          label="gross margin per home"
-          color={PAPER}
-          live={live}
-          delay={CAC_DROP + 1450}
-        />
-      </div>
-      <Footnote y={956} width={1300}>
-        Paying homes, Q3 2026. LTV = monthly gross profit (€6.08) ÷ monthly churn (4.1%). CAC is
-        blended across paid and organic.
-      </Footnote>
+      </Panel>
+      <FooterNote>
+        帳號費不等於上架完成，還要完成測試與審核。費用以 Google Play、Apple 官方公告為準。
+      </FooterNote>
     </Stage>
   );
 };
 
-const MAP_X = 1010;
-const MAP_Y = 290;
-const MAP_P = 100;
-const MAP_T = 88;
-
-const Country = ({
-  code,
-  c,
-  r,
-  live,
-  count,
-  color = MINT,
-  order = 0,
-}: {
-  code: string;
-  c: number;
-  r: number;
-  live: boolean;
-  count?: string;
-  color?: string;
-  order?: number;
-}) => {
-  const on = Boolean(count);
-  return (
-    <div
-      style={abs(MAP_X + c * MAP_P, MAP_Y + r * MAP_P, {
-        width: MAP_T,
-        height: MAP_T,
-        boxSizing: 'border-box',
-        borderRadius: 20,
-        border: on ? BORDER : `3px solid ${FAINT}`,
-        background: on ? color : 'transparent',
-        boxShadow: on ? shadow(5) : undefined,
-        padding: '10px 12px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        ...anim(
-          live,
-          `pm-pop 620ms ${BOUNCY} ${on ? 700 + order * 170 : 120 + (c + r) * 40}ms both`,
-        ),
-      })}
-    >
-      <span
-        style={{
-          ...MONO,
-          fontSize: on ? 22 : 17,
-          fontWeight: 500,
-          letterSpacing: '0.02em',
-          color: on ? INK : 'rgba(21, 19, 19, 0.38)',
-        }}
-      >
-        {code}
-      </span>
-      {on && (
-        <span
-          style={{
-            fontSize: 22,
-            fontWeight: 800,
-            fontVariantNumeric: 'tabular-nums',
-            lineHeight: 1,
-          }}
-        >
-          {count}
-        </span>
-      )}
-    </div>
-  );
-};
-
-const Pin = ({
-  c,
-  r,
-  live,
-  order,
-  color = TOMATO,
-}: {
-  c: number;
-  r: number;
-  live: boolean;
-  order: number;
-  color?: string;
-}) => {
-  const delay = 1000 + order * 170;
-  const land = delay + Math.round(820 * DROP_LAND);
-  const x = MAP_X + c * MAP_P + MAP_T - 30;
-  const y = MAP_Y + r * MAP_P - 34;
-  return (
-    <>
-      <div
-        style={
-          {
-            ...abs(x, y),
-            width: 38,
-            height: 52,
-            zIndex: 4,
-            '--pm-from': '-420px',
-            ...anim(
-              live,
-              `pm-drop 820ms ${DROP} ${delay}ms both, pm-fade 140ms linear ${delay}ms both`,
-            ),
-          } as CSSProperties
-        }
-      >
-        <div
-          style={{
-            transformOrigin: '50% 100%',
-            ...anim(live, `pm-squash 460ms ease-out ${land}ms both`),
-          }}
-        >
-          <div
-            style={{
-              width: 34,
-              height: 34,
-              marginLeft: 2,
-              marginTop: 2,
-              boxSizing: 'border-box',
-              borderRadius: '50% 50% 50% 0',
-              transform: 'rotate(-45deg)',
-              background: color,
-              border: `3.5px solid ${INK}`,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <span
-              style={{
-                width: 9,
-                height: 9,
-                borderRadius: '50%',
-                background: PAPER,
-                border: `2.5px solid ${INK}`,
-              }}
-            />
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
-
-const MarketStat = ({
-  value,
+const SurvivalRow = ({
+  y,
+  color,
+  title,
+  children,
   live,
   delay,
-  children,
 }: {
-  value: string;
+  y: number;
+  color: string;
+  title: string;
+  children: ReactNode;
   live: boolean;
   delay: number;
-  children: ReactNode;
 }) => (
-  <div
-    style={{
-      display: 'flex',
-      alignItems: 'center',
-      gap: 28,
-      ...anim(live, `pm-in-l 860ms ${SNAPPY} ${delay}ms both`),
-    }}
-  >
-    <span style={{ ...NUM, fontSize: 76, letterSpacing: '-0.045em', width: 230, flex: 'none' }}>
-      {value}
-    </span>
-    <p style={{ ...BODY, fontSize: 28, width: 480 }}>{children}</p>
-  </div>
+  <Panel x={120} y={y} width={1680} height={155} color={color} live={live} delay={delay}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 48 }}>
+      <span style={{ ...DISPLAY, fontSize: 56 }}>✓</span>
+      <h3 style={{ ...DISPLAY, fontSize: 50, width: 680 }}>{title}</h3>
+      <p style={{ ...BODY, fontSize: 30 }}>{children}</p>
+    </div>
+  </Panel>
 );
 
-const Market: Page = () => {
+const StillAlive: Page = () => {
   const live = useLive();
   return (
     <Stage>
       <Tag n="08" live={live}>
-        Market
+        比賽之後
       </Tag>
-      <Title live={live} width={820}>
-        Nine markets.
-        <br />
-        One playbook.
+      <Title live={live} size={82}>
+        想繼續活著，先問自己這三件事。
       </Title>
-      <div style={abs(120, 410, { display: 'flex', flexDirection: 'column', gap: 44 })}>
-        <MarketStat value="21M" live={live} delay={300}>
-          renters sharing a home across our nine live markets
-        </MarketStat>
-        <MarketStat value="2.0%" live={live} delay={430}>
-          of them use Pommi today. Plenty of room before we go wide.
-        </MarketStat>
-        <MarketStat value="11 wks" live={live} delay={560}>
-          median time to 10,000 homes in a new market, down from 30
-        </MarketStat>
-      </div>
-      <div style={abs(MAP_X, MAP_Y + 6, { width: 380, ...rise(live, 200, 12) })}>
-        <div style={{ ...MONO, color: MUTED }}>Monthly active homes</div>
-        <div style={{ display: 'flex', gap: 22, marginTop: 14 }}>
-          <MapKey color={TOMATO} label="HQ" />
-          <MapKey color={MINT} label="Live" />
-          <MapKey color="transparent" label="Next" faint />
-        </div>
-      </div>
-
-      <Country code="NO" c={4} r={0} live={live} />
-      <Country code="SE" c={5} r={0} live={live} />
-      <Country code="FI" c={6} r={0} live={live} />
-      <Country code="IE" c={1} r={1} live={live} count="12k" order={7} />
-      <Country code="GB" c={2} r={1} live={live} />
-      <Country code="DK" c={4} r={1} live={live} />
-      <Country code="EE" c={6} r={1} live={live} />
-      <Country code="NL" c={3} r={2} live={live} count="52k" order={2} />
-      <Country code="DE" c={4} r={2} live={live} count="141k" color={TOMATO} order={0} />
-      <Country code="PL" c={5} r={2} live={live} />
-      <Country code="LT" c={6} r={2} live={live} />
-      <Country code="BE" c={3} r={3} live={live} count="19k" order={4} />
-      <Country code="CZ" c={4} r={3} live={live} />
-      <Country code="SK" c={5} r={3} live={live} />
-      <Country code="FR" c={2} r={4} live={live} count="68k" order={3} />
-      <Country code="CH" c={3} r={4} live={live} count="16k" order={5} />
-      <Country code="AT" c={4} r={4} live={live} count="26k" order={1} />
-      <Country code="HU" c={5} r={4} live={live} />
-      <Country code="RO" c={6} r={4} live={live} />
-      <Country code="PT" c={0} r={5} live={live} />
-      <Country code="ES" c={1} r={5} live={live} count="47k" order={6} />
-      <Country code="IT" c={3} r={5} live={live} count="31k" order={8} />
-      <Country code="SI" c={4} r={5} live={live} />
-      <Country code="HR" c={5} r={5} live={live} />
-      <Country code="BG" c={6} r={5} live={live} />
-
-      <Pin c={4} r={2} live={live} order={0} color={BUTTER} />
-      <Pin c={4} r={4} live={live} order={1} />
-      <Pin c={3} r={2} live={live} order={2} />
-      <Pin c={2} r={4} live={live} order={3} />
-      <Pin c={3} r={3} live={live} order={4} />
-      <Pin c={3} r={4} live={live} order={5} />
-      <Pin c={1} r={5} live={live} order={6} />
-      <Pin c={1} r={1} live={live} order={7} />
-      <Pin c={3} r={5} live={live} order={8} />
-
-      <Footnote y={936} width={860}>
-        Shared homes: 2+ adults renting together. Source: Eurostat EU-SILC 2025, Pommi analysis.
-      </Footnote>
+      <SurvivalRow y={350} color={PERI} title="團隊還想做下去" live={live} delay={200}>
+        比完之後，還願意修、願意改。
+      </SurvivalRow>
+      <SurvivalRow y={550} color={MINT} title="有人每天用" live={live} delay={400}>
+        不是只在 demo 那天打開。
+      </SurvivalRow>
+      <SurvivalRow y={750} color={BUTTER} title="有人願意付錢" live={live} delay={600}>
+        或是願意幫你推給朋友。
+      </SurvivalRow>
+      <FooterNote>這是我看產品能否繼續做的角度，不是這次比賽的正式評分標準。</FooterNote>
     </Stage>
   );
 };
-
-const MapKey = ({ color, label, faint }: { color: string; label: string; faint?: boolean }) => (
-  <div style={{ display: 'flex', alignItems: 'center', gap: 10, ...MONO, fontSize: 16 }}>
-    <span
-      style={{
-        width: 20,
-        height: 20,
-        borderRadius: 6,
-        background: color,
-        border: faint ? `3px solid ${FAINT}` : `3px solid ${INK}`,
-        boxSizing: 'border-box',
-      }}
-    />
-    {label}
-  </div>
-);
-
-const trackPath = () => {
-  let d = `M ${STOPS[0][0] - 100} ${STOPS[0][1]} L ${STOPS[0][0]} ${STOPS[0][1]}`;
-  for (let i = 1; i < STOPS.length; i++) {
-    const [ax, ay] = STOPS[i - 1];
-    const [bx, by] = STOPS[i];
-    const h = (bx - ax) / 2;
-    d += ` C ${ax + h} ${ay}, ${bx - h} ${by}, ${bx} ${by}`;
-  }
-  return d;
-};
-const TRACK = trackPath();
-
-const RoadStop = ({ i, color, live }: { i: number; color: string; live: boolean }) => {
-  const [x, y] = STOPS[i];
-  const delay = i === 0 ? 300 : hopLand(i) - 60;
-  return (
-    <div
-      style={abs(x - 30, y - 30, {
-        width: 60,
-        height: 60,
-        boxSizing: 'border-box',
-        borderRadius: '50%',
-        background: color,
-        border: BORDER,
-        boxShadow: shadow(4),
-        ...anim(live, `pm-pop 620ms ${BOUNCY} ${delay}ms both`),
-      })}
-    />
-  );
-};
-
-const Milestone = ({
-  i,
-  above,
-  q,
-  title,
-  sub,
-  color,
-  live,
-  align = 'center',
-}: {
-  i: number;
-  above?: boolean;
-  q: string;
-  title: string;
-  sub: string;
-  color: string;
-  live: boolean;
-  align?: 'center' | 'right';
-}) => {
-  const [x, y] = STOPS[i];
-  const w = 440;
-  const left = align === 'right' ? 1800 - w : x - w / 2;
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        left,
-        ...(above ? { bottom: 1080 - (y - 64) } : { top: y + 64 }),
-        width: w,
-        boxSizing: 'border-box',
-        padding: '20px 24px',
-        background: PAPER,
-        border: BORDER,
-        borderRadius: 26,
-        boxShadow: shadow(8),
-        transformOrigin: above ? '50% 100%' : '50% 0%',
-        ...anim(live, `pm-pop 720ms ${BOUNCY} ${hopLand(i) + 40}ms both`),
-      }}
-    >
-      <span
-        style={{
-          ...MONO,
-          fontSize: 16,
-          display: 'inline-flex',
-          alignItems: 'center',
-          height: 32,
-          padding: '0 12px',
-          borderRadius: 999,
-          background: color,
-          border: `2.5px solid ${INK}`,
-        }}
-      >
-        {q}
-      </span>
-      <div
-        style={{
-          fontSize: 30,
-          fontWeight: 800,
-          lineHeight: 1.12,
-          textWrap: 'balance',
-          marginTop: 12,
-          letterSpacing: '-0.01em',
-        }}
-      >
-        {title}
-      </div>
-      <div style={{ fontSize: 20, fontWeight: 500, color: MUTED, marginTop: 8 }}>{sub}</div>
-    </div>
-  );
-};
-
-const Roadmap: Page = () => {
-  const live = useLive();
-  const maskId = `pm-road-${svgId(useId())}`;
-  const [x0, y0] = STOPS[0];
-  const [x4, y4] = STOPS[4];
-  return (
-    <Stage>
-      <Tag n="09" live={live}>
-        Roadmap
-      </Tag>
-      <Title live={live}>2027: from 412k to 1M homes.</Title>
-      <svg
-        width={1920}
-        height={1080}
-        viewBox="0 0 1920 1080"
-        aria-hidden="true"
-        style={{ ...abs(0, 0), pointerEvents: 'none' }}
-      >
-        <defs>
-          <mask id={maskId} maskUnits="userSpaceOnUse" x={0} y={0} width={1920} height={1080}>
-            <path
-              d={TRACK}
-              pathLength={1}
-              style={{
-                fill: 'none',
-                stroke: '#fff',
-                strokeWidth: 40,
-                strokeLinecap: 'round',
-                strokeDasharray: 1,
-                strokeDashoffset: 0,
-                ...anim(live, `pm-draw 1100ms cubic-bezier(0.45, 0, 0.3, 1) 200ms both`),
-              }}
-            />
-          </mask>
-        </defs>
-        <g mask={`url(#${maskId})`}>
-          <path
-            d={TRACK}
-            style={{ fill: 'none', stroke: INK, strokeWidth: 26, strokeLinecap: 'round' }}
-          />
-          <path
-            d={TRACK}
-            style={{
-              fill: 'none',
-              stroke: CREAM,
-              strokeWidth: 5,
-              strokeLinecap: 'round',
-              strokeDasharray: '14 18',
-            }}
-          />
-        </g>
-      </svg>
-      <RoadStop i={0} color={INK} live={live} />
-      <RoadStop i={1} color={BUTTER} live={live} />
-      <RoadStop i={2} color={PERI} live={live} />
-      <RoadStop i={3} color={PINK} live={live} />
-      <RoadStop i={4} color={TOMATO} live={live} />
-
-      <div
-        style={abs(x0 - 100, y0 + 64, {
-          width: 260,
-          ...rise(live, 500, 16),
-        })}
-      >
-        <div style={{ ...MONO, fontSize: 16, color: MUTED }}>Today · Oct 2026</div>
-        <div style={{ fontSize: 30, fontWeight: 800, marginTop: 8, lineHeight: 1.12 }}>
-          412k homes,
-          <br />9 markets
-        </div>
-      </div>
-      <Milestone
-        i={1}
-        above
-        q="Q1 2027"
-        title="Pommi Card in all 9 markets"
-        sub="Live today in DE, NL and FR"
-        color={BUTTER}
-        live={live}
-      />
-      <Milestone
-        i={2}
-        q="Q2 2027"
-        title="Direct landlord payouts"
-        sub="Pilot with 40 Berlin landlords"
-        color={PERI}
-        live={live}
-      />
-      <Milestone
-        i={3}
-        above
-        q="Q3 2027"
-        title="Launch UK, Sweden, Denmark"
-        sub="+9.4M renters in shared homes"
-        color={PINK}
-        live={live}
-      />
-      <Milestone
-        i={4}
-        q="Q4 2027"
-        title="1M monthly active homes"
-        sub="€18M ARR run-rate"
-        color={TOMATO}
-        live={live}
-        align="right"
-      />
-
-      <div
-        style={{
-          ...abs(x0 - 46, y0 - 46),
-          width: 92,
-          height: 92,
-          zIndex: 5,
-          transform: `translate(${x4 - x0}px, ${y4 - y0}px)`,
-          ...anim(live, `pm-hop-move ${HOP_TOTAL}ms linear ${HOP_START}ms both`),
-        }}
-      >
-        <div
-          style={{
-            width: 92,
-            height: 92,
-            transformOrigin: '50% 90%',
-            ...anim(live, `pm-hop-jump ${HOP_TOTAL}ms linear ${HOP_START}ms both`),
-          }}
-        >
-          <div
-            style={{
-              width: 92,
-              height: 92,
-              boxSizing: 'border-box',
-              borderRadius: '50%',
-              background: PAPER,
-              border: BORDER,
-              boxShadow: shadow(5),
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Mark size={56} />
-          </div>
-        </div>
-      </div>
-    </Stage>
-  );
-};
-
-const FundBlock = ({
-  x,
-  y,
-  w,
-  h,
-  r,
-  r0,
-  color,
-  name,
-  amount,
-  pct,
-  big,
-}: {
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-  r: number;
-  r0: number;
-  color: string;
-  name: string;
-  amount: string;
-  pct: string;
-  big?: boolean;
-}) => (
-  <div
-    className="pm-block"
-    style={
-      {
-        ...abs(x, y),
-        '--r': `${r}deg`,
-        '--r0': `${r0}deg`,
-        width: w,
-        height: h,
-        boxSizing: 'border-box',
-        padding: big ? '24px 30px' : '0 26px',
-        background: color,
-        border: BORDER,
-        borderRadius: big ? 28 : 20,
-        boxShadow: shadow(8),
-        display: 'flex',
-        flexDirection: big ? 'column' : 'row',
-        justifyContent: big ? 'space-between' : 'flex-start',
-        alignItems: big ? 'stretch' : 'center',
-        gap: big ? 0 : 16,
-      } as CSSProperties
-    }
-  >
-    {big ? (
-      <>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <span style={{ fontSize: 34, fontWeight: 800 }}>{name}</span>
-          <span style={{ ...NUM, fontSize: 40 }}>{pct}</span>
-        </div>
-        <span style={{ ...NUM, fontSize: 96, letterSpacing: '-0.05em' }}>
-          <Money v={amount} />
-        </span>
-      </>
-    ) : (
-      <>
-        <span style={{ fontSize: 28, fontWeight: 800 }}>{name}</span>
-        <span
-          style={{
-            fontSize: 28,
-            fontWeight: 800,
-            marginLeft: 'auto',
-            fontVariantNumeric: 'tabular-nums',
-          }}
-        >
-          {amount}
-        </span>
-        <span style={{ ...NUM, fontSize: 34, width: 74, textAlign: 'right' }}>{pct}</span>
-      </>
-    )}
-  </div>
-);
-
-const AskPoint = ({ children, color }: { children: ReactNode; color: string }) => (
-  <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-    <span
-      style={{
-        width: 22,
-        height: 22,
-        flex: 'none',
-        borderRadius: 7,
-        background: color,
-        border: `3px solid ${INK}`,
-        boxSizing: 'border-box',
-        transform: 'rotate(45deg)',
-      }}
-    />
-    <span style={{ fontSize: 30, fontWeight: 600 }}>{children}</span>
-  </div>
-);
-
-const Ask: Page = () => {
-  const live = useLive();
-  const raise = useCount(38, live, 200, 1400);
-  return (
-    <Stage>
-      <Tag n="10" live={live} color={TOMATO}>
-        The ask
-      </Tag>
-      <div
-        style={{
-          ...NUM,
-          ...abs(104, 176),
-          fontSize: 280,
-          lineHeight: 0.86,
-          letterSpacing: '-0.05em',
-          transformOrigin: '0% 80%',
-          ...anim(live, `pm-thunk 620ms ease-out 1620ms both`),
-        }}
-      >
-        <Money v={`€${Math.round(raise)}M`} />
-      </div>
-      <p
-        style={{
-          ...DISPLAY,
-          ...abs(120, 452),
-          width: 780,
-          fontSize: 48,
-          fontWeight: 800,
-          lineHeight: 1.1,
-          letterSpacing: '-0.025em',
-          ...rise(live, 300, 24),
-        }}
-      >
-        Series B to take Pommi to one million homes and profitability.
-      </p>
-      <div
-        style={abs(120, 640, {
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 22,
-          ...rise(live, 450, 24),
-        })}
-      >
-        <AskPoint color={BUTTER}>30 months of runway</AskPoint>
-        <AskPoint color={MINT}>1M monthly active homes by Q4 2027</AskPoint>
-        <AskPoint color={PERI}>EBITDA positive in Q3 2028</AskPoint>
-      </div>
-
-      <div style={{ ...MONO, ...abs(1080, 252), color: MUTED }}>Use of funds</div>
-      <div style={abs(1040, 944, { width: 760, height: 4, background: INK, borderRadius: 2 })} />
-      <Steps>
-        <Step duration={100}>
-          <FundBlock
-            x={1080}
-            y={692}
-            w={680}
-            h={252}
-            r={0}
-            r0={-8}
-            color={TOMATO}
-            name="Product & engineering"
-            amount="€15.2M"
-            pct="40%"
-            big
-          />
-        </Step>
-        <Step duration={100}>
-          <FundBlock
-            x={1100}
-            y={472}
-            w={640}
-            h={220}
-            r={-0.8}
-            r0={7}
-            color={BUTTER}
-            name="Growth & brand"
-            amount="€13.3M"
-            pct="35%"
-            big
-          />
-        </Step>
-        <Step duration={100}>
-          <FundBlock
-            x={1092}
-            y={376}
-            w={600}
-            h={96}
-            r={1}
-            r0={-9}
-            color={MINT}
-            name="New markets"
-            amount="€5.7M"
-            pct="15%"
-          />
-        </Step>
-        <Step duration={100}>
-          <FundBlock
-            x={1130}
-            y={306}
-            w={540}
-            h={70}
-            r={-1.4}
-            r0={10}
-            color={PERI}
-            name="Ops & G&A"
-            amount="€3.8M"
-            pct="10%"
-          />
-        </Step>
-      </Steps>
-    </Stage>
-  );
-};
-
-const Founder = ({
-  initial,
-  color,
-  name,
-  jobTitle,
-  email,
-  live,
-  delay,
-}: {
-  initial: string;
-  color: string;
-  name: string;
-  jobTitle: string;
-  email: string;
-  live: boolean;
-  delay: number;
-}) => (
-  <div
-    style={{
-      width: 470,
-      height: 150,
-      boxSizing: 'border-box',
-      padding: '0 28px',
-      display: 'flex',
-      alignItems: 'center',
-      gap: 22,
-      background: PAPER,
-      border: BORDER,
-      borderRadius: 28,
-      boxShadow: shadow(8),
-      ...anim(live, `pm-pop-b 760ms ${BOUNCY} ${delay}ms both`),
-    }}
-  >
-    <Avatar initial={initial} color={color} size={84} border={4} />
-    <div>
-      <div style={{ fontSize: 32, fontWeight: 800, lineHeight: 1.1 }}>{name}</div>
-      <div style={{ fontSize: 22, fontWeight: 500, color: MUTED, marginTop: 4 }}>{jobTitle}</div>
-      <div
-        style={{
-          ...MONO,
-          fontSize: 17,
-          marginTop: 10,
-          textTransform: 'none',
-          letterSpacing: '0.01em',
-        }}
-      >
-        {email}
-      </div>
-    </div>
-  </div>
-);
 
 const Close: Page = () => {
   const live = useLive();
   return (
     <Stage footer={false}>
-      <div style={abs(104, 150)}>
-        <Wordmark size={250} live={live} delay={150} />
+      <Tag n="09" live={live} color={TOMATO}>
+        我也在找一起做事的人
+      </Tag>
+      <h2
+        style={{
+          ...DISPLAY,
+          ...abs(120, 235),
+          fontSize: 76,
+          width: 1120,
+          lineHeight: 1.3,
+          ...rise(live, 100),
+        }}
+      >
+        如果沒得獎也想做下去，
+        <br />
+        或你想做的
+        <br />
+        不只是一個作業，
+      </h2>
+      <div style={{ ...DISPLAY, ...abs(120, 570), fontSize: 148, color: TOMATO }}>
+        <Letter ch="來" i={0} live={live} delay={400} />
+        <Letter ch="找" i={1} live={live} delay={400} />
+        <Letter ch="我" i={2} live={live} delay={400} />
+        <Letter ch="。" i={3} live={live} delay={400} />
       </div>
       <p
         style={{
-          ...DISPLAY,
-          ...abs(120, 470),
-          width: 1000,
-          fontSize: 72,
-          fontWeight: 800,
-          lineHeight: 1.06,
-          letterSpacing: '-0.035em',
-          ...rise(live, 800, 30),
+          ...BODY,
+          ...abs(130, 790),
+          fontSize: 34,
+          lineHeight: 1.55,
+          width: 1110,
+          fontWeight: 700,
         }}
       >
-        Sharing a home should be
+        你身邊有沒有一件事，
         <br />
-        the easy part.
+        煩到你願意每個月付 10 塊解決？
+        <br />
+        想到了，下課來找我聊。
       </p>
-      <div style={abs(120, 720, { display: 'flex', gap: 32 })}>
-        <Founder
-          initial="A"
-          color={BUTTER}
-          name="Anouk de Vries"
-          jobTitle="Co-founder & CEO"
-          email="anouk@pommi.app"
-          live={live}
-          delay={1100}
-        />
-        <Founder
-          initial="F"
-          color={PERI}
-          name="Felix Brandt"
-          jobTitle="Co-founder & CTO"
-          email="felix@pommi.app"
-          live={live}
-          delay={1240}
-        />
-      </div>
-      <div style={{ ...MONO, ...abs(120, 984), color: MUTED, ...rise(live, 1500, 12) }}>
-        Pommi GmbH · Oranienstraße 185 · 10999 Berlin
-      </div>
-
-      <div
-        style={abs(1180, 96, {
-          width: 620,
-          height: 888,
-          background: BUTTER,
-          border: BORDER,
-          borderRadius: 48,
-          boxShadow: shadow(12),
-          ...rise(live, 60, 80),
-        })}
-      />
-      <div
-        style={abs(1290, 250, {
-          width: 400,
-          height: 400,
-          ...anim(live, `pm-pop 900ms ${BOUNCY} 500ms both`),
-        })}
-      >
-        <div style={{ ...anim(live, 'pm-bob 3.6s ease-in-out 1400ms infinite') }}>
-          <Mark size={400} />
+      <Panel x={1360} y={300} width={410} height={570} color={BUTTER} live={live} delay={350}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 28 }}>
+          <Mark size={92} />
         </div>
-      </div>
-      <div
-        style={abs(1230, 740, {
-          width: 520,
-          textAlign: 'center',
-          ...rise(live, 900, 20),
-        })}
-      >
-        <div style={{ ...MONO, fontSize: 18 }}>Data room</div>
-        <div style={{ ...DISPLAY, fontSize: 54, marginTop: 10, letterSpacing: '-0.03em' }}>
-          pommi.app/investors
+        <div
+          style={{
+            width: 300,
+            height: 270,
+            border: `4px dashed ${INK}`,
+            borderRadius: 22,
+            background: PAPER,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            boxSizing: 'border-box',
+            gap: 16,
+          }}
+        >
+          <span style={{ ...DISPLAY, fontSize: 44 }}>IG / LINE</span>
+          <span style={{ ...BODY, fontSize: 28 }}>QR 放這裡</span>
         </div>
-      </div>
-      <Sticker x={1110} y={150} r={-9} live={live} delay={1500} bg={TOMATO} pad="12px 26px">
-        <span style={{ ...DISPLAY, fontSize: 50, letterSpacing: '-0.03em' }}>Danke!</span>
-      </Sticker>
-      <Sticker x={1560} y={600} r={8} live={live} delay={1700} bg={MINT} pad="10px 22px">
-        <span style={{ fontSize: 28, fontWeight: 800 }}>€38M Series B</span>
-      </Sticker>
-      <Sparkle x={1700} y={170} size={44} color={PAPER} live={live} delay={1850} />
-      <Sparkle x={1250} y={620} size={32} color={PINK} live={live} delay={1950} />
+        <p style={{ ...DISPLAY, fontSize: 30, marginTop: 30, textAlign: 'center' }}>
+          聯絡方式（待補）
+        </p>
+      </Panel>
+      <Sparkle x={1270} y={680} size={48} color={MINT} live={live} delay={1350} />
+      <p style={{ ...MONO, ...abs(120, 984), color: MUTED }}>
+        瑞瑞 · 商業價值聊聊 / 小比賽導師 / 一起做產品
+      </p>
     </Stage>
   );
 };
 
-Cover.transition = morphTransition;
-Problem.transition = morphTransition;
-Product.transition = morphTransition;
-
 export const meta: SlideMeta = {
   title: 'App 的價值、商業模式與新創',
   createdAt: '2026-11-01T14:03:16.000Z',
+  theme: 'pommi',
 };
 
-export const notes: (string | undefined)[] = [
-  `Let the wordmark land and the stickers slap on before you speak.
-"Hi, I'm Anouk, co-founder and CEO of Pommi. Pommi is the app for everyone who shares a home."
-"We're in Berlin, we're live in nine markets, and today we're raising a thirty-eight million euro Series B." Click.`,
-  `Let the phone rise and the group chat play out. Don't talk over the first three messages.
-"Every shared home has this chat. Oat milk, internet, the plunger."
-"In our survey of four thousand two hundred people: three point four apps per home, sixty-one percent argued about money last year, and three hundred eighteen euros floating between flatmates at any moment." Click.`,
-  `The phone glides over and the expense splits itself. Point at the toggles as they flip.
-"This is Pommi. Snap the receipt, toggle who's in, and the cents are handled."
-"Median time to log a shared expense is four seconds. Requests go out instantly, and people pay back by SEPA in one tap." Click.`,
-  `Three clicks, one card per click.
-"Split: rent, bills and receipts. Ninety-one percent of homes use it every week."
-"Shop: one live list. Seventy-four percent weekly."
-"Rotate: chores on a fair rotation. Fifty-two percent weekly, and it's the feature people tell their friends about." Click.`,
-  `Let the number count up and the bars spring in.
-"Four hundred twelve thousand homes use Pommi every month. That's three point one times a year ago."
-"Sixty-four percent of new homes come in organically, mostly a flatmate inviting the others. Note the September jumps: moving season is our Black Friday." Click.`,
-  `Watch the wave fill in, then land on the yellow tile.
-"Sixty-eight percent of households are still active twelve months after they join."
-"And it's getting better: month-three retention is four points higher for our June cohort than for last September's." Click.`,
-  `Three clicks: subscription, card, partners.
-"Nine point seven million ARR, two point eight times last year."
-"Sixty-four percent is Pommi Plus at five ninety-nine per home per month, shared by the whole flat."
-"The card adds seventeen percent from eight hundred fifty million euros of yearly spend, and partner switching adds nineteen." Click.`,
-  `Let the blocks drop and the seesaw tip.
-"For a paying home, lifetime value is one hundred forty-eight euros. Blended CAC is twenty-four. That's six point two to one."
-"Payback in three point nine months, at seventy-eight percent gross margin." Click.`,
-  `Pins drop in launch order, Berlin first.
-"Nine markets, one playbook. Twenty-one million renters share a home across them, and we have two percent."
-"We now reach ten thousand homes in a new market in eleven weeks, down from thirty in Germany." Click.`,
-  `Let the token hop all four stops before you sum up.
-"Q1: the card in all nine markets. Q2: rent split with direct landlord payout, piloting with forty Berlin landlords."
-"Q3: UK, Sweden and Denmark. Q4: one million monthly active homes and an eighteen million euro run-rate." Click.`,
-  `Four clicks, one block per click, bottom up.
-"We're raising thirty-eight million euros."
-"Forty percent into product and engineering, thirty-five into growth, fifteen into new markets, ten into operations."
-"Thirty months of runway, one million homes by end of 2027, EBITDA positive in Q3 2028." Click.`,
-  `"Sharing a home should be the easy part. That's the whole company."
-"I'm Anouk, this is my co-founder Felix. The data room is at pommi.app slash investors."
-"Danke. Happy to take questions."`,
+export const notes: string[] = [
+  `【先讓大家看題目，留時間舉手。】
+大家好，我是瑞瑞。今天在「App 登場時刻」，我想先問大家一個有點直接的問題。如果這次沒得獎，你的 App 還會繼續做下去嗎？會的，可以舉個手嗎？
+【看看台下，停一下再接。】
+先不用急著給我一個很熱血的答案。你可以想想，比賽結束以後，還有誰會打開它？隊友還會不會願意一起修問題？
+我也是這次的評審，但今天這段，我想跟大家聊的是作品離開比賽之後的事。商業模式聽起來很遠，其實就是有人需要你做的東西，而且有人願意為它付出。
+我自己也想創業，也在找願意把東西做出來、做到有人用的夥伴。所以今天這段話，既是說給參賽隊伍聽，也是我想跟未來可能一起做事的人聊的事。`,
+  `以前聊比賽題目，很常聽到一種想法，醫療或教育比較有社會意義，感覺評審比較會買單，所以先往那邊想。
+醫療、教育當然可以做。我想問的是，這個題目也是你自己想做的嗎？還是我們只是在想，簡報上怎麼講比較感人、比較像一個能得獎的題目？
+如果做的每個決定，都只是為了上台那一刻，比完之後，很容易就不知道下一步要幹嘛。功能做完了，簡報也交了，然後 App 就躺在那裡。
+得獎看的是評審的五分鐘。App 能不能活下去，看的是你想不想做，還有你找不找得到一個理由撐下去。
+沒得獎的時候，你還願不願意打開專案、繼續修問題？那個理由不一定跟比賽有關，也不一定是賺錢。我們接著來聊，你為什麼想做這個 App。`,
+  `所以，撐下去的理由可以是什麼？醫療、教育題目都很好，問題是比賽結束以後，你還有沒有一個讓自己願意繼續做的理由。
+可能是改善生活。你每天都遇到同一個麻煩，真的受不了了，想自己做一個工具。你就是第一個使用者，明天還會用到，所以你會想把它修好。
+也可能是幫助弱勢。你認識一些真的需要幫忙的人，看到有人因為你的 App，生活方便了一點，那就會想繼續把它做好。
+或者是完成心裡的理想。這件事你一直很想做，也想證明給自己看，就算沒人頒獎，你還是想把它完成。
+【停一下，讓大家想想自己的理由。】
+沒有哪一種理由比較厲害，重點是它對你來說是不是真的。做下去會遇到麻煩，那個理由能不能讓你願意再回來改一次？
+理由也可以很實際。如果這個 App 每個月幫你賺六萬呢？我們下一頁就來算算看。`,
+  `我們來算一個很小、很貼近校園的情境。假設在逢甲，有六千個人用你的 App，每個人每個月付十塊，會是多少？
+【等數字跳完，讓大家算一下。】
+每個月六萬。不是要你現在就去做全世界都在用的東西，也不用一開始就談什麼很大的市場。
+先找到一件同學真的很煩、而且你能持續幫他解決的事情。十塊聽起來很少，但對方願不願意付，會讓你很快知道，這個功能到底有沒有用。
+我自己會嚮往的是，躺在家做自己喜歡的事，也能過生活。不過這裡算的是營收，還要扣伺服器、商店費用和維護成本，也得持續有人願意付。
+六千人是我們拿來算的假設，不是實際人數，更不是下載了就等於付費。接下來要做的，就是驗證這個假設，真的有人願意拿錢出來嗎？`,
+  `那如果大家都說，我就是不想付錢，免費才會用，這個 App 是不是就沒價值？也不一定。
+假設同樣有六千個人，而且是每天真的打開，不是下載完就忘了。你其實已經知道，這裡有一群人，會為了某個需求回來找你。
+比方說大家在找宵夜，附近店家可能想讓這些人看到自己的餐點。大家在找二手書，你可能幫買賣雙方省下很多時間。
+所以可以照這個順序想，先有人，這些人持續使用才有流量，再看誰願意為這個流量，或你促成的事情付錢。
+這不是說有下載數，就可以等著收錢。你要知道大家為什麼回來、在這裡做什麼，還有誰真的願意買單。
+免費可以是起點，但如果連免費都沒人想再打開，我會先回頭看需求，不會急著塞廣告。`,
+  `賺錢的方式先記這幾種就夠了，不用一開始就寫得很複雜。
+訂閱制，是使用者持續付費，換你持續幫他解決問題。像社團排班，社團每個月都要用，進階功能就可能按月收費。
+單次付費或內購，就是為某個東西付錢。像做校園活動照片，基本修圖免費，想用某組素材再買。
+廣告，付錢的人換成店家。像宵夜資訊，店家可能願意買推薦版位，但推薦要說清楚，也不能弄到同學不想用。
+抽成或媒合，則是在你幫忙完成交易時收費。像二手教科書，你幫大家找到書、順利交易，再收服務費。
+這些都是拿來想的例子，不是保證能賣。你可以挑最適合需求的方式，先去問對方願不願意。先把「誰付錢、為什麼付」講清楚，比把每種收費方式都放進企畫書有用。`,
+  `所以題目從哪裡來？我會先找一件煩到大家願意每個月付十塊解決的事。
+不用先開一個很大的主題，先想你這禮拜被什麼事情煩到。選課資訊很散？找室友不知道合不合？揪宵夜要一直對名單？二手教科書總是找不到？想找讀書夥伴卻不知道問誰？
+【停一下，讓大家選一個自己有感的例子。】
+但有感還不夠。你要去問正在做這件事的人，現在怎麼解決，最麻煩的是哪一段，有沒有已經能用的工具。
+如果只是覺得選課很煩，也許大家需要的是資訊整理，不一定要你重新寫一套很大的系統。先把那個小麻煩解掉。
+十塊也不是所有產品都要套的定價，它是在逼你問，對方到底有多在意？比起猜什麼題目容易得獎，我更想聽到你說，我去問了使用者，他真的想要這個。`,
+  `找到需求之後，就把最小可用版本做出來。所謂可用，不是每個功能都有，而是你答應解決的核心問題，真的能走完。
+接著準備上架。Google Play 開發者帳號是一次二十五美元，Apple Developer Program 是每年九十九美元。付了帳號費還不算上架，還要處理測試、商店資料、隱私說明和審核，別把這些留到最後。
+上架以後，先去找第一批一百個使用者。從你問過需求的同學、社團、相關群組開始，親自找人來用，也看看他們用到哪裡會卡住。
+然後看數據再改。人有沒有回來？核心功能有沒有用完？不要只看下載數很開心，打開之後什麼都沒做的人，也是在告訴你問題。
+先完成這個循環，再決定下一個功能。上架是開始接觸真正使用者的起點。
+費用來源：Google Play 官方說明 https://support.google.com/googleplay/android-developer/answer/6112435 ，Apple Developer Program https://developer.apple.com/programs/ 。`,
+  `比賽結束後，我會用這幾個問題，看看這個產品還能不能繼續走。
+先回到開場，團隊自己還想做下去嗎？真的上架以後會有問題要修，也會發現自己猜錯。隊友願不願意回來一起改，這件事很實際。你們有沒有找到那個願意繼續做的理由？
+有人每天用嗎？不是只有評審來看的那天有人打開，而是他生活裡真的有一個理由，會想回來。
+有人願意付錢嗎？如果現在還沒收費，有沒有人願意主動幫你推給朋友？那表示它至少已經幫到某些人，接下來再去確認怎麼收費。
+先說清楚，這是我看產品能不能繼續做的角度，不是這次比賽的正式評分標準，也不是叫大家改簡報來迎合我。
+我比較希望你們把它當成賽後要討論的問題。如果其中一個答不出來，可以從那裡開始補，而不是直接把整個作品收起來。`,
+  `最後再回到一開始的問題。如果沒得獎，你還想不想把 App 做下去？如果想，我很想聽你在做什麼。
+你不需要已經有一份很完整的商業計畫。可以拿一個需求來，可以帶你上架時卡住的地方，也可以跟我說，現在有人在用，可是我不知道接下來怎麼收錢。
+如果你們之後參加小比賽，想找人陪著看題目、商業價值或上架，也可以找我當導師。我自己也想創業，想認識願意做事、願意聽使用者說話的夥伴。先聊、先做點東西，才知道彼此適不適合一起走。
+所以現在你可以想一下，你身邊有沒有一件事，煩到你願意每個月付十塊解決？
+【留一點時間，看看大家。】
+想到了，下課來找我聊。我是瑞瑞，謝謝大家。
+【上台前把右邊「聯絡方式（待補）」換成自己的 IG 或 LINE QR。】`,
 ];
 
 export default [
   Cover,
-  Problem,
-  Product,
-  How,
-  Traction,
-  Retention,
-  Model,
-  Unit,
-  Market,
-  Roadmap,
-  Ask,
+  AfterCompetition,
+  ReasonsToContinue,
+  CampusMath,
+  Traffic,
+  BusinessModels,
+  FindProblem,
+  ShipIt,
+  StillAlive,
   Close,
 ] satisfies Page[];
