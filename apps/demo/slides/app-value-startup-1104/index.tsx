@@ -34,7 +34,7 @@ const SLIDE_ID = 'app-value-startup-1104';
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Gabarito:wght@500;700;800;900&display=swap';
 const CJK_TEXT =
-  '、。「」【】一三上下不世主之也了事二五些交人什今仍他付代以件伴但位住作你使來例供便促保修個們候值假做停備像價元先光免入內全兩公六其具再出分判別到制刻前剛創力功加助動務勢包十千半卡卻厲去參及友只可台右合同名向否告呢品哪商問善喜單嗎嚮四回因困園圖團在地報場塊境多夜夠夥大天套好如始媒子字學它完官定室害宵家容實審寫專對導小少就展工己師帳常幫平年底店度廢廣弄式弱張形往待很後得從心忙怎思情想意感慢慣成我或所手才打扣批找把抽拜拿持指按掉排接推提換揪搭撐據擾收改放教散整數料新斷方於明易是時曝更書最會月有朋服本材束東板果架某查校核格案楚業標模樣機次歡正段每比求決沒沿注活流清測準滑濟為然煩營版牌特猜獎班現理瑞生產用由甲界留畫當療登發百的目直省看真知碰確示社禮科種立第筆等答算箭簡系約紙素結絡給統經繼續美群義習考者而聊聯聽育能自至與舉花萬著蓋薦號表被補裡西要見覺角解觸訂計訊記設評試話認說誰課調請講謝證識讀變讓買費貼資賣賺購賽走起越跟跳蹺躍身躺車較載近送這逢連進遇過道適選邀還邊那都醒醫重量錢錯鎖鐘開間閱附陪隊階際離需靠面頁項頒頭題願食飲餐首麻麼點！（），／：；＝？';
+  '、。「」【】一三上下不世主之也了事二五些交享人什今仍他付代以件伴但位住作你使來例供便促保修個們候值假做停備像價元先光免入內全兩公六其具再出分判別到制刻前剛創力功加助動務勢包十千半卡卻厲去參及友只可台右合同名向否告呢品哪商問善喜單嗎嚮四回因困園圖團在地報場塊境多夜夠夥大天套好如始媒子字學它完官定室害宵家容實審寫專對導小少就展工己師帳常幫平年底店度廢廣弄式弱張形往待很後得從心忙怎思情想意感慢慣成我或所手才打扣批找把抽拜拿持指按掉排接推提換揪搭撐據擾收改放教散整數料新斷方於明易是時曝更書最會月有朋服本材束東板果架某查校核格案楚業標模樣機次歡正段每比求決沒沿注活流清測準滑濟為然煩營版牌特猜獎班現理瑞生產用由甲界留畫當療登發百的目直省看真知碰確示社禮科種立第筆等答算箭簡系約紙素結絡給統經繼續美群義習考者而聊聯聽育能自至與舉花萬著蓋薦號表被補裡西要見覺角解觸訂計訊記設評試話認說誰課調請講謝證識讀變讓買費貼資賣賺購賽走起越跟跳蹺躍身躺車較載近送這逢連進遇過道適選邀還邊那都醒醫重量錢錯鎖鐘開間閱附陪隊階際離需靠面頁項頒頭題願食飲餐首麻麼點！（），／：；＝？';
 const CJK_FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap&text=${encodeURIComponent(CJK_TEXT)}`;
 const CJK_FONT_LINK_ID = `osd-webfont-cjk-${SLIDE_ID}`;
 const FONT_LINK_ID = `osd-webfont-${SLIDE_ID}`;
@@ -579,6 +579,49 @@ const Panel = ({
     {children}
   </div>
 );
+
+const TitleCover: Page = () => {
+  const live = useLive();
+  return (
+    <Stage footer={false}>
+      <p style={{ ...MONO, ...abs(120, 120), fontSize: 24, ...rise(live) }}>
+        逢甲大學 · App 登場時刻
+      </p>
+      <h1
+        style={{
+          ...DISPLAY,
+          ...abs(120, 300),
+          fontSize: 150,
+          lineHeight: 1.12,
+          width: 1200,
+          ...rise(live, 120),
+        }}
+      >
+        App 的價值、
+        <br />
+        <span style={{ color: TOMATO }}>商業模式</span>與新創
+      </h1>
+      <p style={{ ...BODY, ...abs(126, 720), fontSize: 40, fontWeight: 700, ...rise(live, 400) }}>
+        分享 · 瑞瑞
+      </p>
+      <Panel x={1330} y={250} width={430} height={520} color={BUTTER} live={live} delay={250}>
+        <div
+          style={{
+            margin: '60px auto 0',
+            width: 300,
+            ...anim(live, 'pm-bob 3.6s ease-in-out 1400ms infinite'),
+          }}
+        >
+          <Mark size={300} />
+        </div>
+      </Panel>
+      <Sticker x={1250} y={190} r={-8} live={live} delay={800} bg={MINT} pad="14px 28px">
+        <span style={{ ...NUM, fontSize: 40 }}>11.04</span>
+      </Sticker>
+      <Sparkle x={1770} y={800} size={50} color={PINK} live={live} delay={1100} />
+    </Stage>
+  );
+};
 
 const Cover: Page = () => {
   const live = useLive();
@@ -1681,8 +1724,10 @@ export const meta: SlideMeta = {
 };
 
 export const notes: string[] = [
+  `【開場前一直停在這頁，人到齊再往下。】
+大家好，我是瑞瑞。今天在「App 登場時刻」，我負責聊 App 的價值和商業模式。開始之前，先問大家一個問題。`,
   `【先讓大家看題目，留時間舉手。】
-大家好，我是瑞瑞。在「App 登場時刻」，我想先問大家，如果這次沒得獎，你的 App 還會繼續做下去嗎？會的，可以舉個手嗎？
+如果這次沒得獎，你的 App 還會繼續做下去嗎？會的，可以舉個手嗎？
 【停一下，看看台下。】
 我是這次的評審，自己也想創業，也在找願意一起做事的夥伴。今天想聊的，是作品離開比賽之後，還有誰會打開它。
 你現在不一定知道怎麼賺錢，但可以先問，這個 App 對誰有用？他願意為它付出什麼？我們先從大家選題目的方式聊起。`,
@@ -1762,6 +1807,7 @@ export const notes: string[] = [
 ];
 
 export default [
+  TitleCover,
   Cover,
   AfterCompetition,
   ReasonsToContinue,
