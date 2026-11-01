@@ -81,7 +81,7 @@ const SLIDE_ID = 'app-value-startup-1104';
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Gabarito:wght@500;700;800;900&display=swap';
 const CJK_TEXT =
-  '、。「」【】一三上下不世丟中串主久之也了事二互五些交亨享人什今介仍他付代以件任份企伯伴但佈位低住作你使來例供依便係促保修個倍們候值假做停偶傘備傳像價億優元先光免兒入內全兩公六共其具冊再准凸出分初判別利到制券刻前剛創力功加助動務勞勢勵包北區十千升午半協卡卻原厲去參又及友取口另只叫可台右司各合同名向否含告呢和品員哪售唱商問啦善喜喝單嗎嘛器嚮四回因困國圍園圖團在地坊執培基報場塊境壓多夜夠夥大天太央失套好如始委媒子字存孩學它安完官定宜客宣室害宵家容實審寫寵專對導小少就局屆展屬山州工左差己已市師帳帶常幕幣幫平年幹幾底店府度庫廢廣廳弄式弱張形影往待很後得從心忘忙快念怎怕思性息情想意感慢慣慮憶應成我或截戰戲戶房所手才打扣扮批找技把投抽拆拍招拜拿持指按授掉掌排探接推提換揪搭搶摺撐撰擅據擬擾支收改放政故敗教散整數文料斯新斷方於日明易昕星是時景晴智曆曝更書最會月有朋服未本材束杭杯東松板果架某查校核格案桿條梯棄楚業榜構樂標模樣樹機權次款歡止正歲段每比氣求決沒沿法注洞活流淡清測港源準滑滿演漫潛激濕濟灣災為無焦然照煩營牆片版牌牠物特猜獎玩班現理瑞生產用由甲申界留畢畫當疊痕療登發百的盈監目直省看真睿知研破碎碑碰確示社神票禮私科程種積究空突立站章童競第筆等答策算管箭簡籍籤粉精系約紅紙素累組結絡給統絲經維網緒線練總績繪繫繼續置署美群義習考者而聊聯聲聽股育背能膽自至致臺與興舉舊色花苦英茶華萬葉著蓋薦薪藏處虛號螢行術衛衝表被裂補裡製西要見覺角解觸言訂計訊討記設訴診註評詢試話該認語說誰課調請論講謝證識讀變讓負責貴買費貼資賈賣賺購賽走起越趣趨跟路跳蹺躍身躺車軟軸較載輔輩輸轉辛辦近追送透這通速造逢連週進遇遊運過道適選邀還邊那部都鄉配醒醫重量金鉅鉸銀銘銷鋒錄錢錯鍵鎖鏈鐘鑑長門開間閱關附降限院陪陳隊階際隻集離難雨零需青靜非靠面音頁項順須預頒頓領頭題額願顧食飲養餐餵首駐驗體高鬼麻麼黑點齡！（）＋，／：；＝？～';
+  '、。「」【】一三上下不世丟中串主久之也了事二互五些交亨享人什今介仍他付代以件任份企伯伴但佈位低住作你使來例供依便係促保修個倍們候值假做停偶傘備傳像價億優元先光免兒入內全兩公六共其具冊再准凸出分列初判別利到制券刻前剛創力功加助動務勞勢勵包北區十千升午半協卡卻原厲去參又及友取口另只叫可台右司各合同名向否含告呢和品員哪售唱商問啦善喜喝單嗎嘛器嚮四回因困國圍園圖團在地坊執培基報場塊境壓多夜夠夥大天太央失套好如始委媒子字存孩學它安完官定宜客宣室害宵家容實審寫寵專對導小少就局屆展屬山州工左差己已市師帳帶常幕幣幫平年幹幾底店府度庫廢廣廳弄式弱張形影往待很後得從心忘忙快念怎怕思性息情想意感慢慣慮憶應成我或截戰戲戶房所手才打扣扮批找技把投抽拆拍招拜拿持指按授掉掌排探接推提換揪搭搶摺撐撰擅據擬擾支收改放政故敗教散整數文料斯新斷方於日明易昕星是時景晴智曆曝更書最會月有朋服未本材束杭杯東松板果架某查校核格案桿條梯棄楚業榜構樂標模樣樹機權次款歡止正歲段每比氣求決沒沿法注洞活流淡清測港源準滑滿演漫潛激濕濟灣災為無焦然照煩營牆片版牌牠物特猜獎玩班現理瑞生產用由甲申界留畢畫當疊痕療登發百的盈監目直省看真睿知研破碎碑碰確示社神票禮私科程種積究空突立站章童競第筆等答策算管箭簡籍籤粉精系約紅紙素累組結絡給統絲經維網緒線練總績繪繫繼續置署美群義習考者而聊聯聲聽股育背能膽自至致臺與興舉舊色花苦英茶華萬葉著蓋薦薪藏處虛號螢行術衛衝表被裂補裡製西要見覺角解觸言訂計訊討記設訴診註評詢試話該認語說誰課調請論講謝證識讀變讓負責貴買費貼資賈賣賺購賽走起越趣趨跟路跳蹺躍身躺車軟軸較載輔輩輸轉辛辦近追送透這通速造逢連週進遇遊運過道適選邀還邊那部都鄉配醒醫重量金鉅鉸銀銘銷鋒錄錢錯鍵鎖鏈鐘鑑長門開間閱關附降限院陪陳隊階際隻集離難雨零需青靜非靠面音頁項順須預頒頓領頭題額願顧食飲養餐餵首駐驗體高鬼麻麼黑點齡！（）＋，／：；＝？～';
 const CJK_FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap&text=${encodeURIComponent(CJK_TEXT)}`;
 const CJK_FONT_LINK_ID = `osd-webfont-cjk-${SLIDE_ID}`;
 const FONT_LINK_ID = `osd-webfont-${SLIDE_ID}`;
@@ -717,6 +717,75 @@ const TitleCover: Page = () => {
         <span style={{ ...NUM, fontSize: 40 }}>11.04</span>
       </Sticker>
       <Sparkle x={1780} y={830} size={50} color={PINK} live={live} delay={1100} />
+    </Stage>
+  );
+};
+
+const DOWNLOADS: { name: string; icon: string; count: number; label: string }[] = [
+  { name: 'Peeps', icon: casePeepsIcon, count: 48365, label: '約 4.8 萬' },
+  { name: 'PictureCook', icon: casePicturecookIcon, count: 24190, label: '約 2.4 萬' },
+  { name: 'Kardomo', icon: caseKardomoIcon, count: 5857, label: '約 5,900' },
+  { name: 'Tell It Now', icon: caseTellitnowIcon, count: 957, label: '約 960' },
+];
+const DOWNLOAD_BAR_MAX = 1000;
+
+const Downloads: Page = () => {
+  const live = useLive();
+  const max = Math.max(...DOWNLOADS.map((d) => d.count));
+  return (
+    <Stage>
+      <Tag n="02" live={live}>
+        886 案例
+      </Tag>
+      <Title live={live}>它們有多少人下載？</Title>
+      <div
+        style={abs(120, 340, {
+          width: 1680,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 36,
+          textAlign: 'left',
+        })}
+      >
+        {DOWNLOADS.map((d, i) => (
+          <div key={d.name} style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
+            <img
+              src={d.icon}
+              alt=""
+              style={{
+                width: 84,
+                height: 84,
+                borderRadius: 20,
+                border: `3px solid ${INK}`,
+                display: 'block',
+                flex: 'none',
+              }}
+            />
+            <span style={{ ...DISPLAY, fontSize: 44, width: 290, flex: 'none' }}>{d.name}</span>
+            <div style={{ width: DOWNLOAD_BAR_MAX, flex: 'none' }}>
+              <div
+                style={{
+                  width: Math.max(24, (DOWNLOAD_BAR_MAX * d.count) / max),
+                  height: 72,
+                  boxSizing: 'border-box',
+                  background: i === 0 ? TOMATO : [BUTTER, MINT, PERI][(i - 1) % 3],
+                  border: BORDER,
+                  borderRadius: 16,
+                  boxShadow: shadow(6),
+                  transformOrigin: 'left center',
+                  ...anim(live, `av-grow 800ms ${SNAPPY} ${400 + i * 250}ms both`),
+                }}
+              />
+            </div>
+            <span style={{ ...NUM, fontSize: 46, ...rise(live, 700 + i * 250, 12) }}>
+              {d.label}
+            </span>
+          </div>
+        ))}
+      </div>
+      <Footnote y={900}>
+        Google Play 下載數，2026/11/2 查詢。iOS 下載數 Apple 不公開，只在 iOS 上架的作品無法列入。
+      </Footnote>
     </Stage>
   );
 };
@@ -3025,6 +3094,10 @@ export const notes: string[] = [
   `看完這些團隊，你會發現一件事。
 【停一下，讓大家讀完。】
 他們拿到錢，不是因為得了什麼獎，而是因為做出了有人在用的東西。`,
+  `這些作品到底有多少人在用？
+【指長條。】Peeps 在 Google Play 上大概有四萬八千次下載，PictureCook 兩萬四，Kardomo 快六千，Tell It Now 不到一千。
+這只是 Android 的數字，iOS 的下載數 Apple 不公開。像 PicPet 只在 iOS 上架，App Store 上就有一萬四千多則評分，實際使用的人一定更多。
+有人在用，就是這些團隊拿到錢的原因。`,
   `【先讓大家看題目，留時間舉手。】
 那回到你們身上。如果這次沒得獎，你的 App 還會繼續做下去嗎？會的，可以舉個手嗎？
 【停一下，看看台下。】
@@ -3174,6 +3247,7 @@ export default [
   casePeeps,
   caseKardomo,
   NotAwards,
+  Downloads,
   Cover,
   AfterCompetition,
   WhoDecides,
