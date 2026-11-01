@@ -718,9 +718,6 @@ const Cover: Page = () => {
         <span style={{ ...DISPLAY, fontSize: 44 }}>會的，舉手！</span>
       </Sticker>
       <Sparkle x={1750} y={770} size={50} color={PINK} live={live} delay={1150} />
-      <p style={{ ...BODY, ...abs(120, 840), width: 1220, fontSize: 34, ...rise(live, 500) }}>
-        今天聊聊，怎麼讓 App 活過比賽結束那天。
-      </p>
       <p style={{ ...MONO, ...abs(120, 984), width: 1220, color: MUTED, textTransform: 'none' }}>
         iOS Club · 從比賽作品，到有人用的產品
       </p>
@@ -769,7 +766,6 @@ const AfterCompetition: Page = () => {
         <br />
         沒得獎呢？它就<span style={{ color: TOMATO }}>真的沒有了</span>嗎？
       </div>
-      <FooterNote>醫療、教育當然可以做。先問，誰真的需要？</FooterNote>
     </Stage>
   );
 };
@@ -871,18 +867,6 @@ const ReasonsToContinue: Page = () => {
       >
         你一直想做、想證明給自己看的那件事。
       </ReasonCard>
-      <p
-        style={{
-          ...BODY,
-          ...abs(120, 875),
-          width: 1680,
-          fontSize: 38,
-          fontWeight: 700,
-          ...rise(live, 900),
-        }}
-      >
-        理由也可以很實際：<span style={{ color: TOMATO }}>有人願意為它付出</span>。
-      </p>
     </Stage>
   );
 };
@@ -1073,9 +1057,6 @@ const WhatIsValue: Page = () => {
       <Sticker x={1600} y={350} r={-6} bg={MINT} live={live} delay={1600} pad="10px 24px">
         <span style={{ ...DISPLAY, fontSize: 36 }}>價值高</span>
       </Sticker>
-      <p style={{ ...DISPLAY, ...abs(120, 880), width: 1680, fontSize: 40, ...rise(live, 1900) }}>
-        同一把傘，價值看的是誰、在什麼時候需要它。
-      </p>
     </Stage>
   );
 };
@@ -1117,9 +1098,6 @@ const WhatIsCost: Page = () => {
           <p style={{ ...BODY, fontSize: 27, lineHeight: 1.45, marginTop: 16 }}>{cost.detail}</p>
         </Panel>
       ))}
-      <p style={{ ...DISPLAY, ...abs(120, 890), width: 1680, fontSize: 40, ...rise(live, 1600) }}>
-        使用者每打開一次你的 App，都在付出成本。
-      </p>
     </Stage>
   );
 };
@@ -1266,9 +1244,6 @@ const ValueExchange: Page = () => {
       <Sticker x={1554} y={320} r={-6} bg={MINT} live={live} delay={4500} pad="12px 24px">
         <span style={{ ...DISPLAY, fontSize: 38 }}>願意付</span>
       </Sticker>
-      <p style={{ ...DISPLAY, ...abs(120, 908), width: 1680, fontSize: 38 }}>
-        使用者願不願意付出成本，看的是你給的價值夠不夠重。
-      </p>
     </Stage>
   );
 };
@@ -1340,7 +1315,6 @@ const ValueQuestion = ({
   sign,
   verdict,
   verdictColor,
-  closing,
 }: {
   tag: string;
   question: ReactNode;
@@ -1349,7 +1323,6 @@ const ValueQuestion = ({
   sign: string;
   verdict: string;
   verdictColor: string;
-  closing: ReactNode;
 }) => {
   const live = useLive();
   return (
@@ -1366,18 +1339,6 @@ const ValueQuestion = ({
       <Sticker x={1500} y={330} r={-6} live={live} delay={1400} bg={verdictColor} pad="12px 26px">
         <span style={{ ...DISPLAY, fontSize: 40 }}>{verdict}</span>
       </Sticker>
-      <p
-        style={{
-          ...DISPLAY,
-          ...abs(120, 760),
-          width: 1680,
-          fontSize: 46,
-          lineHeight: 1.4,
-          ...rise(live, 1700),
-        }}
-      >
-        {closing}
-      </p>
     </Stage>
   );
 };
@@ -1391,11 +1352,6 @@ const GameExample: Page = () => (
     sign="<"
     verdict="願意買"
     verdictColor={MINT}
-    closing={
-      <>
-        它帶來的<span style={{ color: TOMATO }}>快樂</span>，值得我花這些錢。
-      </>
-    }
   />
 );
 
@@ -1408,12 +1364,6 @@ const NecessityExample: Page = () => (
     sign=">"
     verdict="不買了"
     verdictColor={PINK}
-    closing={
-      <>
-        不是不需要，是它的價值
-        <span style={{ color: TOMATO }}>撐不起這個成本</span>。
-      </>
-    }
   />
 );
 
@@ -1467,12 +1417,6 @@ const PhoneChoice: Page = () => {
         live={live}
         delay={600}
       />
-      <Sticker x={880} y={520} r={-6} live={live} delay={1100} bg={TOMATO} pad="14px 24px">
-        <span style={{ ...DISPLAY, fontSize: 40 }}>舉手！</span>
-      </Sticker>
-      <p style={{ ...DISPLAY, ...abs(120, 830), width: 1680, fontSize: 44, ...rise(live, 1400) }}>
-        錢不是問題，很多人會選最新的 <span style={{ color: TOMATO }}>Duo</span>。
-      </p>
       <Footnote y={920}>Apple 台灣官網售價，2026/11/1 查詢。</Footnote>
     </Stage>
   );
@@ -1534,9 +1478,6 @@ const PhoneNews: Page = () => {
           </div>
         </div>
       ))}
-      <p style={{ ...DISPLAY, ...abs(120, 850), width: 1680, fontSize: 42, ...rise(live, 1300) }}>
-        價值變低、成本變高，有些人就改選 <span style={{ color: TOMATO }}>18 Pro</span>。
-      </p>
       <Footnote y={930}>圖文出處：MacRumors、TVBS TECH、鉅亨網；維修價格依 TVBS 報導。</Footnote>
     </Stage>
   );
@@ -1594,18 +1535,6 @@ const BanfengPricing: Page = () => {
       <Sticker x={1540} y={320} r={-6} live={live} delay={1500} bg={MINT} pad="12px 26px">
         <span style={{ ...DISPLAY, fontSize: 40 }}>有人願意付</span>
       </Sticker>
-      <p
-        style={{
-          ...DISPLAY,
-          ...abs(120, 790),
-          width: 1680,
-          fontSize: 46,
-          lineHeight: 1.4,
-          ...rise(live, 1800),
-        }}
-      >
-        價錢要讓使用者覺得：<span style={{ color: TOMATO }}>這樣付，值得</span>。
-      </p>
     </Stage>
   );
 };
@@ -1715,9 +1644,6 @@ const LivePoll: Page = () => {
           );
         })}
       </div>
-      <p style={{ ...DISPLAY, ...abs(120, 908), width: 1680, fontSize: 38 }}>
-        這樣的比例，我一個月躺在家裡，就能賺到這麼多。
-      </p>
     </Stage>
   );
 };
@@ -1835,9 +1761,6 @@ const Instagram: Page = () => {
       <Sticker x={1190} y={755} r={-6} bg={TOMATO} live={live} delay={3350} pad="10px 30px">
         <span style={{ ...DISPLAY, fontSize: 46 }}>錢</span>
       </Sticker>
-      <p style={{ ...DISPLAY, ...abs(120, 905), width: 1680, fontSize: 44 }}>
-        你沒有付錢，你付的是時間，也就是你的注意力。
-      </p>
     </Stage>
   );
 };
@@ -1894,10 +1817,6 @@ const Traffic: Page = () => {
       <Sticker x={1290} y={300} r={5} live={live} delay={1150} bg={PINK}>
         <span style={{ fontSize: 30, fontWeight: 900 }}>先留住人，再想怎麼收錢。</span>
       </Sticker>
-      <p style={{ ...BODY, ...abs(120, 840), width: 1680, fontSize: 38, fontWeight: 700 }}>
-        6,000 個人每天打開，就是一大群人的注意力。
-      </p>
-      <FooterNote>有流量不是自動有收入。還得找到願意付錢的人，以及他願意買的價值。</FooterNote>
     </Stage>
   );
 };
@@ -2000,9 +1919,6 @@ const BusinessModels: Page = () => {
         <br />
         平台收服務費。
       </ModelCard>
-      <p style={{ ...BODY, ...abs(120, 900), width: 1680, fontSize: 34, fontWeight: 700 }}>
-        同樣是校園 App，付錢的人可以是同學，也可以是店家。
-      </p>
     </Stage>
   );
 };
@@ -2217,9 +2133,6 @@ const FindProblem: Page = () => {
         <span style={{ ...DISPLAY, fontSize: 58 }}>找讀書夥伴</span>
       </Sticker>
       <Sparkle x={1500} y={640} size={50} color={MINT} live={live} delay={1150} />
-      <p style={{ ...BODY, ...abs(120, 900), width: 1680, fontSize: 34, fontWeight: 700 }}>
-        先去問正在被這件事困擾的人，別只猜評審喜歡什麼。
-      </p>
     </Stage>
   );
 };
@@ -2418,7 +2331,6 @@ export const notes: string[] = [
 【等一下，讓大家想。】
 大部分人會想辦法找別的、少用一點，或乾脆換牌子。不是不需要衛生紙，而是它帶來的價值，撐不起這個成本了。`,
   `再來一個。假設你現在要買手機，而且沒有預算上限，錢不是問題。iPhone 18 Pro 四萬四千九起，最新的摺疊機 iPhone Duo 七萬四千九起。你選哪一支？
-【請大家舉手選一支。】
 錢不是問題，又是最新的，很多人會選 Duo。`,
   `但 Duo 開賣才兩週，就出了這些新聞。
 有人開合沒幾次，內螢幕就沿著轉軸裂開；台灣也有首批災情，報導說內螢幕維修要三萬七千多；iFixit 拆機懷疑是轉軸的設計壓到螢幕。
