@@ -36,7 +36,7 @@ const SLIDE_ID = 'app-value-startup-1104';
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Gabarito:wght@500;700;800;900&display=swap';
 const CJK_TEXT =
-  '、。「」【】一三上下不世主之也了事二五些交享人什今仍他付代以件伴但位住作你使來例供便促保修個們候值假做停備像價元先光免入內全兩公六其具再出分判別到制券刻前剛創力功加助動務勢包十千半卡卻厲去參及友只可台右合同名向否告呢品哪商問善喜單嗎嚮四回因困園圖團在地報場塊境多夜夠夥大天套好如始媒子字學它完官定室害宵家容實審寫專對導小少就展工己師帳常幣幫平年底店度廢廣弄式弱張形往待很後得從心忙怎思情想意感慢慣成我或截所手才打扣批找把抽拜拿持指按掉排接推提換揪搭撐據擾收改放教散整數料新斷方於明易是時曝更書最會月有朋服本材束東板果架某查校核格案楚業標模樣機次歡正段每比求決沒沿注活流清測準滑濟為然煩營版牌特猜獎班現理瑞生產用由甲界留畫當療登發百的目直省看真知碰確示社禮科種立第筆等答算箭簡系約紙素結絡給統經繼續美群義習考者而聊聯聽育能自至臺與舉花萬著蓋薦號表被補裡西要見覺角解觸訂計訊記設評試話認說誰課調請講謝證識讀變讓買費貼資賣賺購賽走起越跟跳蹺躍身躺車較載近送這逢連進遇過道適選邀還邊那都醒醫重量錢錯鎖鐘開間閱附陪隊階際離需靠面頁項頒頭題願食飲餐首麻麼點！（），／：；＝？';
+  '、。「」【】一三上下不世主之也了事二五些交享人什今仍他付代以件伴但位低住作你使來例供便係促保修個們候值假做停傘備像價元先光免入內全兩公六其具冊再出分判別到制券刻前剛創力功加助動務勢包十千半卡卻厲去參及友只可台右合同名向否告呢品哪商問善喜單嗎嚮四回因困園圖團在地報場塊境多夜夠夥大天套好如始媒子字學它完官定室害宵家容實審寫專對導小少就展工左己師帳常幣幫平年底店度廢廣弄式弱張形往待很後得從心忙怎思情想意感慢慣成我或截所手才打扣批找把抽拜拿持指按掉排接推提換揪搭撐據擾收改放教散整數料新斷方於明易是時晴曝更書最會月有朋服本材束東板果架某查校核格案棄楚業標模樣機次歡正段每比求決沒沿注活流清測準滑濕濟為然煩營版牌特猜獎班現理瑞生產用由甲界留畫當療登發百的目直省看真知碰確示社禮科種立第筆等答算箭簡系約紙素結絡給統經繼續美群義習考者而聊聯聽育能自至臺與舉花萬著蓋薦號表被補裡西要見覺角解觸訂計訊記設註評試話認說誰課調請講謝證識讀變讓買費貼資賣賺購賽走起越跟跳蹺躍身躺車較載近送透這通逢連進遇過道適選邀還邊那都醒醫重量錢錯鎖鐘開間閱關附陪隊階際離雨需靠面頁項頒頭題願食飲餐首高麻麼點！（），／：；＝？';
 const CJK_FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap&text=${encodeURIComponent(CJK_TEXT)}`;
 const CJK_FONT_LINK_ID = `osd-webfont-cjk-${SLIDE_ID}`;
 const FONT_LINK_ID = `osd-webfont-${SLIDE_ID}`;
@@ -348,6 +348,7 @@ const Stage = ({ footer = true, children }: { footer?: boolean; children: ReactN
       background: CREAM,
       color: INK,
       fontFamily: 'var(--osd-font-body)',
+      textAlign: 'center',
     }}
   >
     {children}
@@ -359,54 +360,54 @@ const Tag = ({
   n,
   children,
   live,
-  x = 120,
   y = 96,
   color = BUTTER,
 }: {
   n: string;
   children: ReactNode;
   live: boolean;
-  x?: number;
   y?: number;
   color?: string;
 }) => (
-  <div
-    style={abs(x, y, {
-      display: 'flex',
-      alignItems: 'stretch',
-      height: 46,
-      border: `3px solid ${INK}`,
-      borderRadius: 999,
-      background: color,
-      boxShadow: shadow(4),
-      overflow: 'hidden',
-      ...rise(live, 0, 20),
-    })}
-  >
-    <span
+  <div style={abs(0, y, { width: 1920, display: 'flex', justifyContent: 'center' })}>
+    <div
       style={{
-        ...MONO,
-        fontSize: 18,
-        padding: '0 14px 0 16px',
         display: 'flex',
-        alignItems: 'center',
-        background: INK,
-        color: CREAM,
+        alignItems: 'stretch',
+        height: 46,
+        border: `3px solid ${INK}`,
+        borderRadius: 999,
+        background: color,
+        boxShadow: shadow(4),
+        overflow: 'hidden',
+        ...rise(live, 0, 20),
       }}
     >
-      {n}
-    </span>
-    <span
-      style={{
-        ...MONO,
-        fontSize: 18,
-        padding: '0 20px 0 16px',
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
-      {children}
-    </span>
+      <span
+        style={{
+          ...MONO,
+          fontSize: 18,
+          padding: '0 14px 0 16px',
+          display: 'flex',
+          alignItems: 'center',
+          background: INK,
+          color: CREAM,
+        }}
+      >
+        {n}
+      </span>
+      <span
+        style={{
+          ...MONO,
+          fontSize: 18,
+          padding: '0 20px 0 16px',
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        {children}
+      </span>
+    </div>
   </div>
 );
 
@@ -626,7 +627,16 @@ const TitleCover: Page = () => {
   const live = useLive();
   return (
     <Stage footer={false}>
-      <p style={{ ...MONO, ...abs(120, 120), fontSize: 24, textTransform: 'none', ...rise(live) }}>
+      <p
+        style={{
+          ...MONO,
+          ...abs(120, 120),
+          width: 1200,
+          fontSize: 24,
+          textTransform: 'none',
+          ...rise(live),
+        }}
+      >
         iOS Club · App 登場時刻
       </p>
       <h1
@@ -644,7 +654,16 @@ const TitleCover: Page = () => {
         <br />
         <span style={{ color: TOMATO }}>商業模式</span>與新創
       </h1>
-      <p style={{ ...BODY, ...abs(126, 720), fontSize: 40, fontWeight: 700, ...rise(live, 400) }}>
+      <p
+        style={{
+          ...BODY,
+          ...abs(120, 720),
+          width: 1200,
+          fontSize: 40,
+          fontWeight: 700,
+          ...rise(live, 400),
+        }}
+      >
         分享 · 瑞瑞
       </p>
       <Panel x={1330} y={250} width={430} height={520} color={BUTTER} live={live} delay={250}>
@@ -670,7 +689,16 @@ const Cover: Page = () => {
   const live = useLive();
   return (
     <Stage footer={false}>
-      <div style={abs(120, 108, { display: 'flex', alignItems: 'center', gap: 22, ...rise(live) })}>
+      <div
+        style={abs(120, 108, {
+          width: 1220,
+          justifyContent: 'center',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 22,
+          ...rise(live),
+        })}
+      >
         <Mark size={52} />
         <span style={{ ...MONO, fontSize: 24 }}>App 登場時刻 · 商業模式與價值 · 瑞瑞</span>
       </div>
@@ -708,10 +736,10 @@ const Cover: Page = () => {
         <span style={{ ...DISPLAY, fontSize: 44 }}>會的，舉手！</span>
       </Sticker>
       <Sparkle x={1750} y={770} size={50} color={PINK} live={live} delay={1150} />
-      <p style={{ ...BODY, ...abs(126, 840), fontSize: 34, ...rise(live, 500) }}>
+      <p style={{ ...BODY, ...abs(120, 840), width: 1220, fontSize: 34, ...rise(live, 500) }}>
         今天聊聊，怎麼讓 App 活過比賽結束那天。
       </p>
-      <p style={{ ...MONO, ...abs(120, 984), color: MUTED, textTransform: 'none' }}>
+      <p style={{ ...MONO, ...abs(120, 984), width: 1220, color: MUTED, textTransform: 'none' }}>
         iOS Club · 從比賽作品，到有人用的產品
       </p>
     </Stage>
@@ -746,8 +774,8 @@ const AfterCompetition: Page = () => {
       <div
         style={{
           ...DISPLAY,
-          ...abs(140, 712),
-          width: 1660,
+          ...abs(120, 712),
+          width: 1680,
           fontSize: 50,
           lineHeight: 1.4,
           ...rise(live, 650),
@@ -826,7 +854,8 @@ const ReasonsToContinue: Page = () => {
       <p
         style={{
           ...BODY,
-          ...abs(140, 875),
+          ...abs(120, 875),
+          width: 1680,
           fontSize: 38,
           fontWeight: 700,
           ...rise(live, 900),
@@ -843,12 +872,14 @@ const CampusMath: Page = () => {
   const revenue = useCount(60000, live, 650, 1700);
   return (
     <Stage>
-      <Tag n="04" live={live}>
+      <Tag n="06" live={live}>
         算給你看
       </Tag>
       <Title live={live}>不用先改變世界，先從你的學校開始。</Title>
       <div
-        style={abs(140, 338, {
+        style={abs(120, 338, {
+          width: 1680,
+          justifyContent: 'center',
           display: 'flex',
           alignItems: 'center',
           gap: 60,
@@ -883,7 +914,16 @@ const CampusMath: Page = () => {
           <span style={{ ...DISPLAY, fontSize: 60 }}>／月</span>
         </div>
       </Panel>
-      <p style={{ ...BODY, ...abs(140, 866), fontSize: 36, fontWeight: 700, ...rise(live, 750) }}>
+      <p
+        style={{
+          ...BODY,
+          ...abs(120, 866),
+          width: 1680,
+          fontSize: 36,
+          fontWeight: 700,
+          ...rise(live, 750),
+        }}
+      >
         躺在家做自己喜歡的事，也能過生活。
       </p>
       <FooterNote>
@@ -912,37 +952,30 @@ const PurchaseSticker = ({
   delay: number;
   children: ReactNode;
 }) => (
-  <div
-    style={{
-      opacity: 0,
-      ...anim(live, 'av-buy-away 420ms ease-in 5600ms both'),
-    }}
-  >
-    <Sticker x={x} y={y} r={r} bg={color} live={live} delay={delay} pad="24px 32px">
-      <svg
-        width={110}
-        height={90}
-        viewBox="0 0 110 90"
-        aria-hidden="true"
-        style={{ fill: PAPER, stroke: INK, strokeWidth: 4, strokeLinejoin: 'round' }}
-      >
-        {children}
-      </svg>
-      <span style={{ ...DISPLAY, fontSize: 40, marginTop: 12 }}>{label}</span>
-    </Sticker>
-  </div>
+  <Sticker x={x} y={y} r={r} bg={color} live={live} delay={delay} pad="24px 32px">
+    <svg
+      width={110}
+      height={90}
+      viewBox="0 0 110 90"
+      aria-hidden="true"
+      style={{ fill: PAPER, stroke: INK, strokeWidth: 4, strokeLinejoin: 'round' }}
+    >
+      {children}
+    </svg>
+    <span style={{ ...DISPLAY, fontSize: 40, marginTop: 12 }}>{label}</span>
+  </Sticker>
 );
 
 const WhatIsMoney: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="05" live={live}>
+      <Tag n="07" live={live}>
         錢是什麼
       </Tag>
       <Title live={live}>100 塊，為什麼值 100 塊？</Title>
-      <p style={{ ...BODY, ...abs(125, 293), fontSize: 34, ...rise(live, 180) }}>
-        如果有一天，它什麼都買不到……
+      <p style={{ ...BODY, ...abs(120, 293), width: 1680, fontSize: 34, ...rise(live, 180) }}>
+        因為它能換到東西。
       </p>
       <div style={abs(580, 410, { ...rise(live, 250) })}>
         <div
@@ -954,9 +987,7 @@ const WhatIsMoney: Page = () => {
             boxShadow: shadow(12),
             overflow: 'hidden',
             background: PAPER,
-            filter: 'grayscale(1)',
             transform: 'rotate(-3deg)',
-            ...anim(live, 'av-grey 700ms ease-out 5900ms both'),
           }}
         >
           <img
@@ -984,18 +1015,231 @@ const WhatIsMoney: Page = () => {
         <circle cx={32} cy={60} r={5} fill={BUTTER} />
         <circle cx={78} cy={60} r={5} fill={BUTTER} />
       </PurchaseSticker>
-      <Sticker x={1000} y={565} r={-12} live={live} delay={6650} bg={TOMATO} pad="22px 38px">
+      <p
+        style={{
+          ...DISPLAY,
+          ...abs(120, 875),
+          width: 1680,
+          fontSize: 44,
+          ...rise(live, 2000),
+        }}
+      >
+        能換到便當、飲料、公車，它才值 100 塊。
+      </p>
+    </Stage>
+  );
+};
+
+const MoneyWaste: Page = () => {
+  const live = useLive();
+  return (
+    <Stage>
+      <Tag n="07" live={live}>
+        錢是什麼
+      </Tag>
+      <Title live={live}>如果有一天，它什麼都買不到……</Title>
+      <div style={abs(580, 410, { ...rise(live, 250) })}>
+        <div
+          style={{
+            width: 760,
+            height: 372,
+            border: BORDER,
+            borderRadius: 18,
+            boxShadow: shadow(12),
+            overflow: 'hidden',
+            background: PAPER,
+            filter: 'grayscale(1)',
+            transform: 'rotate(-3deg)',
+            ...anim(live, 'av-grey 700ms ease-out 300ms both'),
+          }}
+        >
+          <img
+            src={ntd100}
+            alt="新臺幣 100 元券正面樣張"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          />
+        </div>
+      </div>
+      <Sticker x={1000} y={565} r={-12} live={live} delay={900} bg={TOMATO} pad="22px 38px">
         <span style={{ ...DISPLAY, fontSize: 92 }}>廢紙</span>
       </Sticker>
       <p
         style={{
           ...DISPLAY,
-          ...abs(140, 875),
+          ...abs(120, 875),
+          width: 1680,
           fontSize: 44,
-          ...rise(live, 7200),
+          ...rise(live, 1500),
         }}
       >
         錢本身沒有價值，能換到東西，它才有價值。
+      </p>
+    </Stage>
+  );
+};
+
+const Umbrella = ({ rain }: { rain: boolean }) => (
+  <svg
+    width={150}
+    height={150}
+    viewBox="0 0 120 120"
+    aria-hidden="true"
+    style={{ display: 'block', margin: '0 auto', overflow: 'visible' }}
+  >
+    {rain ? (
+      <g stroke={INK} strokeWidth={4} strokeLinecap="round">
+        <path d="M 14 10 L 8 24 M 40 4 L 34 18 M 84 4 L 78 18 M 110 10 L 104 24" />
+        <path d="M 10 80 L 4 94 M 112 78 L 106 92" />
+      </g>
+    ) : (
+      <g stroke={INK} strokeWidth={4}>
+        <circle cx={102} cy={18} r={11} fill={BUTTER} />
+        <path d="M 102 0 V 3 M 102 33 V 36 M 84 18 H 87 M 117 18 H 120" strokeLinecap="round" />
+      </g>
+    )}
+    <path
+      d="M 14 62 C 14 34, 36 18, 60 18 C 84 18, 106 34, 106 62 C 98 56, 90 56, 83 62 C 76 56, 67 56, 60 62 C 53 56, 44 56, 37 62 C 30 56, 22 56, 14 62 Z"
+      fill={TOMATO}
+      stroke={INK}
+      strokeWidth={4}
+      strokeLinejoin="round"
+    />
+    <path
+      d="M 60 62 V 100 C 60 110, 46 110, 46 100"
+      fill="none"
+      stroke={INK}
+      strokeWidth={5}
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+const WhatIsValue: Page = () => {
+  const live = useLive();
+  return (
+    <Stage>
+      <Tag n="03" live={live}>
+        價值是什麼
+      </Tag>
+      <Title live={live}>什麼是價值？</Title>
+      <p style={{ ...BODY, ...abs(120, 290), width: 1680, fontSize: 34, ...rise(live, 180) }}>
+        一樣東西能幫你解決多少問題、對你有多重要。
+      </p>
+      <Panel x={190} y={380} width={700} height={420} color={BUTTER} live={live} delay={300}>
+        <Umbrella rain={false} />
+        <h3 style={{ ...DISPLAY, fontSize: 52, marginTop: 24 }}>晴天的雨傘</h3>
+        <p style={{ ...BODY, fontSize: 30, marginTop: 14 }}>放在包包裡，只覺得重。</p>
+      </Panel>
+      <Panel x={1030} y={380} width={700} height={420} color={PERI} live={live} delay={650}>
+        <Umbrella rain />
+        <h3 style={{ ...DISPLAY, fontSize: 52, marginTop: 24 }}>大雨裡的雨傘</h3>
+        <p style={{ ...BODY, fontSize: 30, marginTop: 14 }}>沒有它，就全身濕透。</p>
+      </Panel>
+      <Sticker x={760} y={350} r={8} bg={PINK} live={live} delay={1300} pad="10px 24px">
+        <span style={{ ...DISPLAY, fontSize: 36 }}>價值低</span>
+      </Sticker>
+      <Sticker x={1600} y={350} r={-6} bg={MINT} live={live} delay={1600} pad="10px 24px">
+        <span style={{ ...DISPLAY, fontSize: 36 }}>價值高</span>
+      </Sticker>
+      <p style={{ ...DISPLAY, ...abs(120, 880), width: 1680, fontSize: 40, ...rise(live, 1900) }}>
+        同一把傘，價值看的是誰、在什麼時候需要它。
+      </p>
+    </Stage>
+  );
+};
+
+const CostIcon = ({ kind }: { kind: 'money' | 'time' | 'attention' }) => (
+  <svg
+    width={130}
+    height={110}
+    viewBox="0 0 130 110"
+    aria-hidden="true"
+    style={{
+      display: 'block',
+      margin: '0 auto',
+      fill: PAPER,
+      stroke: INK,
+      strokeWidth: 5,
+      strokeLinejoin: 'round',
+      strokeLinecap: 'round',
+    }}
+  >
+    {kind === 'money' && (
+      <>
+        <rect x={10} y={22} width={110} height={66} rx={10} />
+        <circle cx={65} cy={55} r={18} fill={BUTTER} />
+        <path d="M 24 36 V 74 M 106 36 V 74" fill="none" />
+      </>
+    )}
+    {kind === 'time' && (
+      <>
+        <circle cx={65} cy={58} r={44} />
+        <path d="M 65 32 V 58 L 84 70" fill="none" />
+        <path d="M 52 6 H 78" fill="none" />
+      </>
+    )}
+    {kind === 'attention' && (
+      <>
+        <path d="M 8 55 C 30 18, 100 18, 122 55 C 100 92, 30 92, 8 55 Z" />
+        <circle cx={65} cy={55} r={20} fill={PERI} />
+        <circle cx={65} cy={55} r={8} fill={INK} stroke="none" />
+      </>
+    )}
+  </svg>
+);
+
+const CostCard = ({
+  x,
+  color,
+  kind,
+  title,
+  live,
+  delay,
+  children,
+}: {
+  x: number;
+  color: string;
+  kind: 'money' | 'time' | 'attention';
+  title: string;
+  live: boolean;
+  delay: number;
+  children: ReactNode;
+}) => (
+  <Panel x={x} y={380} width={500} height={420} color={color} live={live} delay={delay}>
+    <CostIcon kind={kind} />
+    <h3 style={{ ...DISPLAY, fontSize: 64, marginTop: 26 }}>{title}</h3>
+    <p style={{ ...BODY, fontSize: 30, lineHeight: 1.5, marginTop: 14 }}>{children}</p>
+  </Panel>
+);
+
+const WhatIsCost: Page = () => {
+  const live = useLive();
+  return (
+    <Stage>
+      <Tag n="04" live={live}>
+        成本是什麼
+      </Tag>
+      <Title live={live}>什麼是成本？</Title>
+      <p style={{ ...BODY, ...abs(120, 290), width: 1680, fontSize: 34, ...rise(live, 180) }}>
+        為了得到一樣東西，你得先放棄的東西。
+      </p>
+      <CostCard x={150} color={PINK} kind="money" title="錢" live={live} delay={300}>
+        訂閱費、內購、
+        <br />
+        手續費。
+      </CostCard>
+      <CostCard x={710} color={BUTTER} kind="time" title="時間" live={live} delay={650}>
+        下載、註冊、
+        <br />
+        學怎麼用。
+      </CostCard>
+      <CostCard x={1270} color={MINT} kind="attention" title="注意力" live={live} delay={1000}>
+        看廣告、
+        <br />
+        被通知打擾。
+      </CostCard>
+      <p style={{ ...DISPLAY, ...abs(120, 880), width: 1680, fontSize: 40, ...rise(live, 1500) }}>
+        使用者每打開一次你的 App，都在付出成本。
       </p>
     </Stage>
   );
@@ -1112,12 +1356,12 @@ const ValueExchange: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="03" live={live}>
+      <Tag n="05" live={live}>
         價值
       </Tag>
       <Title live={live}>付出成本，是在換一個值得的東西。</Title>
-      <p style={{ ...BODY, ...abs(125, 287), fontSize: 28, color: MUTED }}>
-        成本不一定是錢，也可能是時間、注意力。
+      <p style={{ ...BODY, ...abs(120, 272), width: 1680, fontSize: 28, color: MUTED }}>
+        左邊是成本，右邊是價值。
       </p>
       <Panel x={120} y={350} width={800} height={510} live={live}>
         <h3 style={{ ...DISPLAY, fontSize: 52 }}>名牌包</h3>
@@ -1143,7 +1387,7 @@ const ValueExchange: Page = () => {
       <Sticker x={1554} y={320} r={-6} bg={MINT} live={live} delay={4500} pad="12px 24px">
         <span style={{ ...DISPLAY, fontSize: 38 }}>願意付</span>
       </Sticker>
-      <p style={{ ...DISPLAY, ...abs(140, 908), fontSize: 38 }}>
+      <p style={{ ...DISPLAY, ...abs(120, 908), width: 1680, fontSize: 38 }}>
         使用者願不願意付出成本，看的是你給的價值夠不夠重。
       </p>
     </Stage>
@@ -1192,7 +1436,7 @@ const LivePoll: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="06" live={live}>
+      <Tag n="08" live={live}>
         現場調查
       </Tag>
       <Title live={live} size={80}>
@@ -1293,7 +1537,7 @@ const LivePoll: Page = () => {
           );
         })}
       </div>
-      <p style={{ ...DISPLAY, ...abs(140, 908), fontSize: 38 }}>
+      <p style={{ ...DISPLAY, ...abs(120, 908), width: 1680, fontSize: 38 }}>
         這樣的比例，我一個月躺在家裡，就能賺到這麼多。
       </p>
     </Stage>
@@ -1342,7 +1586,7 @@ const Instagram: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="07" live={live}>
+      <Tag n="09" live={live}>
         IG 靠什麼賺錢
       </Tag>
       <Title live={live}>IG 不收你錢，那它靠什麼賺？</Title>
@@ -1413,7 +1657,7 @@ const Instagram: Page = () => {
       <Sticker x={1190} y={755} r={-6} bg={TOMATO} live={live} delay={3350} pad="10px 30px">
         <span style={{ ...DISPLAY, fontSize: 46 }}>錢</span>
       </Sticker>
-      <p style={{ ...DISPLAY, ...abs(140, 905), fontSize: 44 }}>
+      <p style={{ ...DISPLAY, ...abs(120, 905), width: 1680, fontSize: 44 }}>
         你沒有付錢，你付的是時間，也就是你的注意力。
       </p>
     </Stage>
@@ -1445,11 +1689,11 @@ const Traffic: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="08" live={live}>
+      <Tag n="10" live={live}>
         注意力，也有價值
       </Tag>
       <Title live={live}>有人每天打開，就有變現的機會。</Title>
-      <p style={{ ...BODY, ...abs(125, 295), fontSize: 30, ...rise(live, 120) }}>
+      <p style={{ ...BODY, ...abs(120, 295), width: 1680, fontSize: 30, ...rise(live, 120) }}>
         從 IG 回到校園，注意力也能換到錢。
       </p>
       <FlowCard x={120} color={MINT} title="使用者" live={live} delay={200}>
@@ -1472,7 +1716,7 @@ const Traffic: Page = () => {
       <Sticker x={1290} y={300} r={5} live={live} delay={1150} bg={PINK}>
         <span style={{ fontSize: 30, fontWeight: 900 }}>先留住人，再想怎麼收錢。</span>
       </Sticker>
-      <p style={{ ...BODY, ...abs(140, 840), fontSize: 38, fontWeight: 700 }}>
+      <p style={{ ...BODY, ...abs(120, 840), width: 1680, fontSize: 38, fontWeight: 700 }}>
         6,000 個人的注意力，就是廣告商想買的東西。
       </p>
       <FooterNote>有流量不是自動有收入。還得找到願意付錢的人，以及他願意買的價值。</FooterNote>
@@ -1518,11 +1762,11 @@ const BusinessModels: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="09" live={live}>
+      <Tag n="11" live={live}>
         四種賺錢方式
       </Tag>
       <Title live={live}>誰付錢？為什麼願意付？</Title>
-      <p style={{ ...BODY, ...abs(125, 290), fontSize: 30, fontWeight: 700 }}>
+      <p style={{ ...BODY, ...abs(120, 290), width: 1680, fontSize: 30, fontWeight: 700 }}>
         確定有價值，接下來是怎麼收。
       </p>
       <ModelCard
@@ -1578,7 +1822,7 @@ const BusinessModels: Page = () => {
         <br />
         平台收服務費。
       </ModelCard>
-      <p style={{ ...BODY, ...abs(140, 900), fontSize: 34, fontWeight: 700 }}>
+      <p style={{ ...BODY, ...abs(120, 900), width: 1680, fontSize: 34, fontWeight: 700 }}>
         同樣是校園 App，付錢的人可以是同學，也可以是店家。
       </p>
     </Stage>
@@ -1589,7 +1833,7 @@ const FindProblem: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="10" live={live}>
+      <Tag n="12" live={live}>
         怎麼找題目
       </Tag>
       <Title live={live} size={82}>
@@ -1613,7 +1857,7 @@ const FindProblem: Page = () => {
         <span style={{ ...DISPLAY, fontSize: 58 }}>找讀書夥伴</span>
       </Sticker>
       <Sparkle x={1660} y={650} size={50} color={MINT} live={live} delay={1150} />
-      <p style={{ ...BODY, ...abs(140, 900), fontSize: 34, fontWeight: 700 }}>
+      <p style={{ ...BODY, ...abs(120, 900), width: 1680, fontSize: 34, fontWeight: 700 }}>
         先去問正在被這件事困擾的人，別只猜評審喜歡什麼。
       </p>
     </Stage>
@@ -1648,7 +1892,7 @@ const StillAlive: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="11" live={live}>
+      <Tag n="13" live={live}>
         比賽之後
       </Tag>
       <Title live={live} size={82}>
@@ -1672,7 +1916,7 @@ const Close: Page = () => {
   const live = useLive();
   return (
     <Stage footer={false}>
-      <Tag n="12" live={live} color={TOMATO}>
+      <Tag n="14" live={live} color={TOMATO}>
         我也在找一起做事的人
       </Tag>
       <h2
@@ -1685,13 +1929,13 @@ const Close: Page = () => {
           ...rise(live, 100),
         }}
       >
-        如果沒得獎也想做下去，
+        作品不一定要得獎，
         <br />
-        或你想做的
+        才能證明自己。
         <br />
-        不只是一個作業，
+        不想比賽也沒關係，
       </h2>
-      <div style={{ ...DISPLAY, ...abs(120, 570), fontSize: 148, color: TOMATO }}>
+      <div style={{ ...DISPLAY, ...abs(120, 570), width: 1120, fontSize: 148, color: TOMATO }}>
         <Letter ch="來" i={0} live={live} delay={400} />
         <Letter ch="找" i={1} live={live} delay={400} />
         <Letter ch="我" i={2} live={live} delay={400} />
@@ -1707,11 +1951,11 @@ const Close: Page = () => {
           fontWeight: 700,
         }}
       >
-        你身邊有沒有一件事，
+        只要你想把一個 App 做到有人在用，
         <br />
-        煩到你願意每個月付 10 塊解決？
+        或身邊有件事煩到你想解決，
         <br />
-        想到了，下課來找我聊。
+        下課來找我聊。
       </p>
       <Panel x={1360} y={300} width={410} height={570} color={BUTTER} live={live} delay={350}>
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
@@ -1738,7 +1982,7 @@ const Close: Page = () => {
         <p style={{ ...DISPLAY, fontSize: 34, marginTop: 22, textAlign: 'center' }}>IG @cy_4.9</p>
       </Panel>
       <Sparkle x={1270} y={680} size={48} color={MINT} live={live} delay={1350} />
-      <p style={{ ...MONO, ...abs(120, 984), color: MUTED }}>
+      <p style={{ ...MONO, ...abs(120, 984), width: 1120, color: MUTED }}>
         瑞瑞 · 商業價值聊聊 / 小比賽導師 / 一起做產品
       </p>
     </Stage>
@@ -1772,7 +2016,15 @@ export const notes: string[] = [
 沒有哪種理由比較厲害，要問它能不能讓你遇到麻煩時，還願意回來改一次。
 理由也可以很實際，就是有人願意為它付出。那別人為什麼會願意付出？`,
   `（空白頁）`,
-  `別人願意付出，是因為覺得值得。這裡我想用「成本」來講，因為付出去的不一定是錢，也可能是時間、注意力。我們其實都在比，付出的成本，跟換到的東西，哪一邊比較重。
+  `先講什麼叫價值。價值，就是一樣東西能幫你解決多少問題、對你有多重要。
+拿雨傘來說，晴天帶著它，只覺得包包變重；下大雨的時候，沒有它就全身濕透。
+【指兩張卡。】
+同一把傘，價值差很多。所以價值不是東西本身決定的，是看誰、在什麼時候需要它。你的 App 也一樣，要先想清楚，它對誰、在什麼時候最重要。`,
+  `那成本是什麼？成本，就是為了得到一樣東西，你得先放棄的東西。
+最直接的是錢，訂閱費、內購。但還有時間，下載、註冊、學怎麼用，都要花時間。還有注意力，看廣告、被通知打擾，也是在付出。
+【停一下。】
+使用者每打開一次你的 App，都在付出成本。就算 App 免費，成本也不是零。`,
+  `把價值和成本放在一起，就是這個蹺蹺板。別人願意付出，是因為覺得值得。我們其實都在比，付出的成本，跟換到的東西，哪一邊比較重。
 拿學生生活來想，一個名牌包價格很重，我的生活卻用不到它的價值，也拿不出能換它的錢，我就不買。喜歡名牌包的人，可能有不同的判斷。
 但如果一個 App，每月十塊，就能省掉選課、找室友的麻煩，我覺得省下的時間比十塊加上學怎麼用的時間還值得，就願意付。
 【指兩個蹺蹺板。】
@@ -1787,7 +2039,8 @@ export const notes: string[] = [
   `拿一張一百塊來看，為什麼它值一百塊？因為你可以拿它換便當、買飲料，或搭公車。
 【讓貼紙出現，問大家平常會拿來買什麼。】
 在經濟活動裡，錢代表我們可以交換的價值。人們願意拿多少錢換一樣東西，形成了我們看到的價格。
-那想像一下，有一天，這張一百塊什麼都買不到，沒人願意收。紙還是同一張紙，但對你來說，就跟廢紙一樣。
+它值一百塊，是因為能換到這些東西。`,
+  `那想像一下，有一天，這張一百塊什麼都買不到，沒人願意收。紙還是同一張紙，但對你來說，就跟廢紙一樣。
 【等「廢紙」蓋下來。】
 所以這裡說錢本身沒有價值，是在提醒大家，重要的是它能換到什麼。回到 App，使用者拿錢出來，就是在換你給的價值。講這麼多，不如直接拿我自己的 App 來試試看。`,
   `這是我做的 App，半逢遇甲。課表、iLearn、公車、停車都收在一起，還有我自己整理的逢甲美食地圖，現在每個月大概有六千個人在用。
@@ -1828,10 +2081,10 @@ export const notes: string[] = [
 有人願意付錢嗎？如果現在還沒收費，有沒有人願意主動推給朋友？那至少表示你幫到了他，再去確認怎麼收費。
 這是我看產品能不能繼續做的角度，不是這次比賽的正式評分標準。有一題答不出來，就從那裡開始補。
 最後，也想邀請還想繼續做的人。`,
-  `回到一開始，如果沒得獎，你還想把 App 做下去嗎？如果想，下課來找我聊。
-不用先準備完整的商業計畫。可以拿一個需求來，也可以跟我說，現在有人在用，可是不知道怎麼收錢。
-之後參加小比賽，想找人陪著看題目、商業模式或價值，也可以找我當導師。我自己也想創業，在找願意做事、願意聽使用者說話的夥伴。先聊、先做點東西，看看適不適合一起走。
-想一下，你身邊有沒有一件事，煩到你願意每月付十塊解決？想到了，下課來找我。我是瑞瑞，謝謝大家。
+  `最後想說，作品不一定要得獎，才能證明自己。有人用、有人覺得它有價值，它就已經證明了。也不是每個人都得朝比賽去想，不想比賽也完全沒關係。
+只要你想把一個 App 做到有人在用，或身邊有件事煩到你想解決，下課來找我聊。不用先準備完整的商業計畫，帶一個想法來就好。
+想參加小比賽、找人陪著看題目或商業模式，也可以找我當導師。我自己也想創業，在找願意做事、願意聽使用者說話的夥伴。先聊、先做點東西，看看適不適合一起走。
+我是瑞瑞，謝謝大家。
 【右邊是我的 IG QR，可以停一下讓大家掃。】`,
 ];
 
@@ -1841,9 +2094,12 @@ export default [
   AfterCompetition,
   ReasonsToContinue,
   Blank,
+  WhatIsValue,
+  WhatIsCost,
   ValueExchange,
   CampusMath,
   WhatIsMoney,
+  MoneyWaste,
   LivePoll,
   Instagram,
   Traffic,
