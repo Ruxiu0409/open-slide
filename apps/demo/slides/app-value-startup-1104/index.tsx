@@ -57,6 +57,7 @@ import newsCnyes from './assets/news/cnyes.webp';
 import newsMacrumors from './assets/news/macrumors.webp';
 import newsTvbs from './assets/news/tvbs.webp';
 import ntd100 from './assets/ntd-100-specimen.jpg';
+import speaker from './assets/speaker.webp';
 
 export const design: DesignSystem = {
   palette: { bg: '#FFF3DF', text: '#151313', accent: '#FF5A2C' },
@@ -692,21 +693,34 @@ const TitleCover: Page = () => {
       >
         分享 · 瑞瑞
       </p>
-      <Panel x={1330} y={250} width={430} height={520} color={BUTTER} live={live} delay={250}>
-        <div
+      <div
+        style={abs(1290, 200, {
+          width: 470,
+          height: 640,
+          border: BORDER,
+          borderRadius: 34,
+          boxShadow: shadow(10),
+          overflow: 'hidden',
+          background: PAPER,
+          ...rise(live, 250, 48),
+        })}
+      >
+        <img
+          src={speaker}
+          alt="講者瑞瑞"
           style={{
-            margin: '60px auto 0',
-            width: 300,
-            ...anim(live, 'pm-bob 3.6s ease-in-out 1400ms infinite'),
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center top',
+            display: 'block',
           }}
-        >
-          <Mark size={300} />
-        </div>
-      </Panel>
-      <Sticker x={1250} y={190} r={-8} live={live} delay={800} bg={MINT} pad="14px 28px">
+        />
+      </div>
+      <Sticker x={1210} y={150} r={-8} live={live} delay={800} bg={MINT} pad="14px 28px">
         <span style={{ ...NUM, fontSize: 40 }}>11.04</span>
       </Sticker>
-      <Sparkle x={1770} y={800} size={50} color={PINK} live={live} delay={1100} />
+      <Sparkle x={1780} y={830} size={50} color={PINK} live={live} delay={1100} />
     </Stage>
   );
 };
