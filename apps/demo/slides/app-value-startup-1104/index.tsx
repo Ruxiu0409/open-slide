@@ -2586,17 +2586,13 @@ const Studio886: Page = () => {
       <p style={{ ...BODY, ...abs(120, 290), width: 1680, fontSize: 34, ...rise(live, 180) }}>
         台北的新創工作室，計畫叫 ikigai Launchpad。
       </p>
-      <Panel x={170} y={380} width={500} height={330} color={BUTTER} live={live} delay={300}>
+      <Panel x={340} y={380} width={560} height={330} color={BUTTER} live={live} delay={300}>
         <p style={{ ...NUM, fontSize: 110, lineHeight: 1.1 }}>10 週</p>
         <p style={{ ...BODY, fontSize: 30, marginTop: 18 }}>在台北實體進行</p>
       </Panel>
-      <Panel x={710} y={380} width={500} height={330} color={MINT} live={live} delay={500}>
+      <Panel x={1020} y={380} width={560} height={330} color={MINT} live={live} delay={500}>
         <p style={{ ...NUM, fontSize: 110, lineHeight: 1.1 }}>US$100K</p>
         <p style={{ ...BODY, fontSize: 30, marginTop: 18 }}>換公司 8% 股份</p>
-      </Panel>
-      <Panel x={1250} y={380} width={500} height={330} color={PERI} live={live} delay={700}>
-        <p style={{ ...NUM, fontSize: 110, lineHeight: 1.1 }}>4 梯</p>
-        <p style={{ ...BODY, fontSize: 30, marginTop: 18 }}>2025 年到現在</p>
       </Panel>
       <Footnote y={900}>
         投資條件：US$100K 換 8% SAFE。資料：886studios.com、886 Studios Substack；後面各頁的價格取自
@@ -3001,7 +2997,7 @@ export const notes: string[] = [
 如果現在給你三百二十萬，讓你創一間公司，你會做什麼？
 【聽完回應，稍微接幾句。】`,
   `這不是假設。台北有一間新創工作室叫 886 Studios，它的加速計畫 ikigai Launchpad，真的給每一隊十萬美元，換成台幣差不多就是三百二十萬。
-在台北實體進行十週，從 2025 年到現在辦了四梯。
+在台北實體進行十週。
 要注意，這是投資，不是獎金。十萬美元換的是你公司 8% 的股份，拿了錢，公司就有一部分是別人的。
 我們快速看幾個拿到這筆錢、而且有做 App 的團隊。每一頁我都整理了三件事：他們遇到什麼問題、怎麼解決，還有怎麼賺錢。`,
   `先看 PicPet。創辦人 Jimmy Huang，公司設在舊金山，還入選了 a16z 的加速器。`,
