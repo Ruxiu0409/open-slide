@@ -6,7 +6,7 @@ import {
   useIsActivePage,
   useSlidePageNumber,
 } from '@open-slide/core';
-import { type CSSProperties, type ReactNode, useEffect, useState } from 'react';
+import { type CSSProperties, type ReactNode, useState } from 'react';
 import banfengHome from './assets/banfeng-home.webp';
 import igQr from './assets/ig-qr.svg';
 import ntd100 from './assets/ntd-100-specimen.jpg';
@@ -36,7 +36,7 @@ const SLIDE_ID = 'app-value-startup-1104';
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Gabarito:wght@500;700;800;900&display=swap';
 const CJK_TEXT =
-  '、。「」【】一三上下不世主之也了事二五些交享人什今介仍他付代以件伴但位低住作你使來例供便係促保修個們候值假做停偶傘備像價元先光免入內全兩公六其具冊再出分判別利到制券刻前剛創力功加助動務勢勵包十千半卡卻原厲去參及友只可台右合同名向否告呢和品哪唱商問善喜喝單嗎嚮四回因困園圖團在地報場塊境多夜夠夥大天套好如始媒子字學它完官定宜室害宵家容實審寫專對導小少就局展工左己師帳常幣幫平年底店度廢廣弄式弱張形往待很後得從心忙怎思情想意感慢慣憶應成我或截所手才打扣批找把抽拜拿持指按掉掌排接推提換揪搭搶撐據擾收改放教散整數料新斷方於明易是時晴曝更書最會月有朋服本材束杯東板果架某查校核格案棄楚業標模樣機次歡正段每比求決沒沿法注活流清測準滑演濕濟為然照煩營片版牌特猜獎班現理瑞生產用由甲界留畫當療登發百的盈目直省看真知碰確示社神票禮科種空立競第筆等答算箭簡粉精系約紅紙素累結絡給統絲經繼續置美群義習考者而聊聯聲聽育能自至臺與舉花茶萬著蓋薦號表被補裡西要見覺角解觸訂計訊記設註評試話該認說誰課調請講謝證識讀變讓買費貼資賣賺購賽走起越跟跳蹺躍身躺車較載輩辦近送透這通逢連進遇過道適選邀還邊那都醒醫重量金錢錯鎖鐘門開間閱關附陪隊階際離難雨需靠面頁項順頒頭題願食飲餐首高麻麼點！（）＋，／：；＝？';
+  '、。「」【】一三上下不世主之也了事二五些交享人什今介仍他付代以件伴但位低住作你使來例供便係促保修個倍們候值假做停偶傘備像價元先光免入內全兩公六其具冊再出分判別利到制券刻前剛創力功加助動務勢勵包十千半卡卻原厲去參及友只可台右合同名向否告呢和品哪唱商問善喜喝單嗎嚮四回因困園圖團在地報場塊境多夜夠夥大天套好如始媒子字學它完官定宜室害宵家容實審寫專對導小少就局展工左己師帳帶常幣幫平年底店度廢廣弄式弱張形往待很後得從心忘忙快怎思情想意感慢慣憶應成我或截戲所手才打扣批找把抽拜拿持指按掉掌排接推提換揪搭搶撐據擾收改放教散整數料新斷方於明易是時晴曝更書最會月有朋服本材束杯東板果架某查校核格案棄楚業樂標模樣機次款歡正段每比求決沒沿法注活流清測準滑演濕濟為然照煩營片版牌特猜獎玩班現理瑞生產用由甲界留畫當療登發百的盈目直省看真知碰確示社神票禮科種空突立競第筆等答算箭簡粉精系約紅紙素累結絡給統絲經繼續置美群義習考者而聊聯聲聽育能自至臺與舉花茶萬著蓋薦號衛表被補裡西要見覺角解觸訂計訊記設註評試話該認說誰課調請講謝證識讀變讓貴買費貼資賣賺購賽走起越跟跳蹺躍身躺車較載輩辦近送透這通逢連進遇遊過道適選邀還邊那都醒醫重量金錢錯鎖鐘門開間閱關附陪隊階際離難雨需靠面頁項順頒頓頭題願食飲餐首驗體高麻麼點！（）＋，／：；＝？';
 const CJK_FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap&text=${encodeURIComponent(CJK_TEXT)}`;
 const CJK_FONT_LINK_ID = `osd-webfont-cjk-${SLIDE_ID}`;
 const FONT_LINK_ID = `osd-webfont-${SLIDE_ID}`;
@@ -203,27 +203,6 @@ const useLive = () => {
       window.matchMedia('(prefers-reduced-motion: reduce)').matches,
   );
   return active && !reduced;
-};
-
-const useCount = (target: number, live: boolean, delay: number, dur = 1700) => {
-  const [value, setValue] = useState(live ? 0 : target);
-  useEffect(() => {
-    if (!live) {
-      setValue(target);
-      return;
-    }
-    setValue(0);
-    let raf = 0;
-    const start = performance.now() + delay;
-    const tick = (now: number) => {
-      const p = Math.min(1, Math.max(0, (now - start) / dur));
-      setValue(target * (1 - (1 - p) ** 4));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [live, target, delay, dur]);
-  return value;
 };
 
 const Mark = ({ size = 56 }: { size?: number }) => (
@@ -762,8 +741,10 @@ const AfterCompetition: Page = () => {
           比較容易得獎。」
         </h3>
       </Panel>
-      <div style={{ ...DISPLAY, ...abs(922, 440), fontSize: 80, ...rise(live, 350) }}>→</div>
-      <Panel x={1060} y={350} width={740} height={280} color={PINK} live={live} delay={420}>
+      <div style={{ ...DISPLAY, ...abs(880, 440), width: 160, fontSize: 80, ...rise(live, 350) }}>
+        →
+      </div>
+      <Panel x={1040} y={350} width={760} height={280} color={PINK} live={live} delay={420}>
         <p style={{ ...BODY, fontWeight: 700 }}>卻可能變成</p>
         <h3 style={{ ...DISPLAY, fontSize: 62, marginTop: 28 }}>
           比賽結束那天，
@@ -803,8 +784,10 @@ const WhoDecides: Page = () => {
         <h3 style={{ ...DISPLAY, fontSize: 64, marginTop: 28 }}>得不得獎</h3>
         <p style={{ ...BODY, fontSize: 30, marginTop: 22, color: MUTED }}>看的是評審的喜好。</p>
       </Panel>
-      <div style={{ ...DISPLAY, ...abs(922, 470), fontSize: 80, ...rise(live, 350) }}>≠</div>
-      <Panel x={1060} y={350} width={740} height={330} color={BUTTER} live={live} delay={420}>
+      <div style={{ ...DISPLAY, ...abs(880, 470), width: 160, fontSize: 80, ...rise(live, 350) }}>
+        ≠
+      </div>
+      <Panel x={1040} y={350} width={760} height={330} color={BUTTER} live={live} delay={420}>
         <p style={{ ...BODY, fontWeight: 700 }}>你自己決定的</p>
         <h3 style={{ ...DISPLAY, fontSize: 64, marginTop: 28 }}>要不要繼續做</h3>
         <p style={{ ...BODY, fontSize: 30, marginTop: 22 }}>看的是你想不想。</p>
@@ -849,7 +832,7 @@ const ReasonCard = ({
   delay: number;
 }) => (
   <Sticker x={x} y={y} r={r} live={live} delay={delay} bg={color} pad="36px">
-    <div style={{ width: 430, height: 260, textAlign: 'left' }}>
+    <div style={{ width: 430, height: 260 }}>
       <h3 style={{ ...DISPLAY, fontSize: 52, lineHeight: 1.22 }}>{title}</h3>
       <p style={{ ...BODY, fontSize: 32, lineHeight: 1.5, marginTop: 36 }}>{children}</p>
     </div>
@@ -866,18 +849,18 @@ const ReasonsToContinue: Page = () => {
         撐下去的理由
       </Tag>
       <Title live={live}>你為什麼想做這個 App？</Title>
-      <ReasonCard x={145} y={385} r={-3} color={BUTTER} title="改善生活" live={live} delay={200}>
+      <ReasonCard x={140} y={400} r={0} color={BUTTER} title="改善生活" live={live} delay={200}>
         解決你自己每天都會碰到的
         <br />
         麻煩，你就是第一個使用者。
       </ReasonCard>
-      <ReasonCard x={715} y={425} r={2} color={MINT} title="幫助弱勢" live={live} delay={400}>
+      <ReasonCard x={705} y={400} r={0} color={MINT} title="幫助弱勢" live={live} delay={400}>
         做給真的需要的人，有人因為你的 App 過得好一點。
       </ReasonCard>
       <ReasonCard
-        x={1285}
-        y={385}
-        r={-2}
+        x={1270}
+        y={400}
+        r={0}
         color={PERI}
         title="完成心裡的理想"
         live={live}
@@ -897,72 +880,6 @@ const ReasonsToContinue: Page = () => {
       >
         理由也可以很實際：<span style={{ color: TOMATO }}>有人願意為它付出</span>。
       </p>
-    </Stage>
-  );
-};
-
-const CampusMath: Page = () => {
-  const live = useLive();
-  const revenue = useCount(60000, live, 650, 1700);
-  return (
-    <Stage>
-      <Tag n="08" live={live}>
-        算給你看
-      </Tag>
-      <Title live={live}>不用先改變世界，先從你的學校開始。</Title>
-      <div
-        style={abs(120, 338, {
-          width: 1680,
-          justifyContent: 'center',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 60,
-          ...rise(live, 180),
-        })}
-      >
-        <div>
-          <span style={{ ...NUM, fontSize: 134 }}>6,000</span>
-          <span style={{ ...BODY, marginLeft: 24 }}>人</span>
-        </div>
-        <span style={{ ...DISPLAY, fontSize: 80 }}>×</span>
-        <div>
-          <span style={{ ...NUM, fontSize: 134 }}>NT$10</span>
-          <span style={{ ...BODY, marginLeft: 24 }}>／月</span>
-        </div>
-        <span style={{ ...DISPLAY, fontSize: 80 }}>＝</span>
-      </div>
-      <Panel x={120} y={540} width={1680} height={280} color={TOMATO} live={live} delay={350}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'baseline',
-            justifyContent: 'center',
-            gap: 24,
-            ...anim(live, 'pm-thunk 620ms ease-out 2350ms both'),
-          }}
-        >
-          <span style={{ ...DISPLAY, fontSize: 70 }}>NT$</span>
-          <span style={{ ...NUM, fontSize: 230, lineHeight: 0.86, letterSpacing: '-0.05em' }}>
-            {Math.round(revenue).toLocaleString('en-US')}
-          </span>
-          <span style={{ ...DISPLAY, fontSize: 60 }}>／月</span>
-        </div>
-      </Panel>
-      <p
-        style={{
-          ...BODY,
-          ...abs(120, 866),
-          width: 1680,
-          fontSize: 36,
-          fontWeight: 700,
-          ...rise(live, 750),
-        }}
-      >
-        躺在家做自己喜歡的事，也能過生活。
-      </p>
-      <FooterNote>
-        假設學校裡有 6,000 個人用，每人每月付 10 塊。這是營收試算，還沒扣成本與費用。
-      </FooterNote>
     </Stage>
   );
 };
@@ -1412,6 +1329,180 @@ const PollQuestion = ({
     <p style={{ ...DISPLAY, fontSize: 32, lineHeight: 1.3 }}>{children}</p>
   </div>
 );
+
+const WeighCard = ({
+  x,
+  color,
+  label,
+  title,
+  live,
+  delay,
+}: {
+  x: number;
+  color: string;
+  label: string;
+  title: string;
+  live: boolean;
+  delay: number;
+}) => (
+  <Panel x={x} y={370} width={700} height={300} color={color} live={live} delay={delay}>
+    <p style={{ ...BODY, fontWeight: 700 }}>{label}</p>
+    <h3 style={{ ...DISPLAY, fontSize: 60, lineHeight: 1.25, marginTop: 26 }}>{title}</h3>
+  </Panel>
+);
+
+const ValueQuestion = ({
+  tag,
+  question,
+  cost,
+  value,
+  sign,
+  verdict,
+  verdictColor,
+  closing,
+}: {
+  tag: string;
+  question: ReactNode;
+  cost: string;
+  value: string;
+  sign: string;
+  verdict: string;
+  verdictColor: string;
+  closing: ReactNode;
+}) => {
+  const live = useLive();
+  return (
+    <Stage>
+      <Tag n={tag} live={live}>
+        價值的例子
+      </Tag>
+      <Title live={live}>{question}</Title>
+      <WeighCard x={170} color={PINK} label="你付出的成本" title={cost} live={live} delay={500} />
+      <div style={{ ...DISPLAY, ...abs(870, 445), width: 180, fontSize: 120, ...rise(live, 900) }}>
+        {sign}
+      </div>
+      <WeighCard x={1050} color={MINT} label="你換到的價值" title={value} live={live} delay={700} />
+      <Sticker x={1500} y={330} r={-6} live={live} delay={1400} bg={verdictColor} pad="12px 26px">
+        <span style={{ ...DISPLAY, fontSize: 40 }}>{verdict}</span>
+      </Sticker>
+      <p
+        style={{
+          ...DISPLAY,
+          ...abs(120, 760),
+          width: 1680,
+          fontSize: 46,
+          lineHeight: 1.4,
+          ...rise(live, 1700),
+        }}
+      >
+        {closing}
+      </p>
+    </Stage>
+  );
+};
+
+const GameExample: Page = () => (
+  <ValueQuestion
+    tag="08"
+    question="一款你很想玩的遊戲，你會買嗎？"
+    cost="遊戲的價錢"
+    value="玩的時候的快樂"
+    sign="<"
+    verdict="願意買"
+    verdictColor={MINT}
+    closing={
+      <>
+        它帶來的<span style={{ color: TOMATO }}>快樂</span>，值得我花這些錢。
+      </>
+    }
+  />
+);
+
+const NecessityExample: Page = () => (
+  <ValueQuestion
+    tag="08"
+    question="衛生紙突然貴了十倍，你還買嗎？"
+    cost="十倍的價錢"
+    value="一樣只是衛生紙"
+    sign=">"
+    verdict="不買了"
+    verdictColor={PINK}
+    closing={
+      <>
+        不是不需要，是它的價值
+        <span style={{ color: TOMATO }}>撐不起這個成本</span>。
+      </>
+    }
+  />
+);
+
+const PriceCard = ({
+  x,
+  color,
+  price,
+  detail,
+  live,
+  delay,
+}: {
+  x: number;
+  color: string;
+  price: string;
+  detail: string;
+  live: boolean;
+  delay: number;
+}) => (
+  <Panel x={x} y={360} width={760} height={340} color={color} live={live} delay={delay}>
+    <p style={{ ...BODY, fontWeight: 700 }}>半逢遇甲一個月收</p>
+    <p style={{ ...NUM, fontSize: 120, lineHeight: 1.1, marginTop: 14 }}>{price}</p>
+    <p style={{ ...BODY, fontSize: 30, marginTop: 14 }}>{detail}</p>
+  </Panel>
+);
+
+const BanfengPricing: Page = () => {
+  const live = useLive();
+  return (
+    <Stage>
+      <Tag n="08" live={live}>
+        價值的例子
+      </Tag>
+      <Title live={live}>同一個 App，價錢不同，答案就不同。</Title>
+      <PriceCard
+        x={120}
+        color={PAPER}
+        price="NT$200"
+        detail="比一頓大餐還貴，換不到這麼多價值。"
+        live={live}
+        delay={300}
+      />
+      <PriceCard
+        x={1040}
+        color={BUTTER}
+        price="NT$10"
+        detail="用上更好的體驗，生活變好一點。"
+        live={live}
+        delay={700}
+      />
+      <Sticker x={650} y={320} r={8} live={live} delay={1200} bg={PINK} pad="12px 26px">
+        <span style={{ ...DISPLAY, fontSize: 40 }}>沒人買</span>
+      </Sticker>
+      <Sticker x={1540} y={320} r={-6} live={live} delay={1500} bg={MINT} pad="12px 26px">
+        <span style={{ ...DISPLAY, fontSize: 40 }}>有人願意付</span>
+      </Sticker>
+      <p
+        style={{
+          ...DISPLAY,
+          ...abs(120, 790),
+          width: 1680,
+          fontSize: 46,
+          lineHeight: 1.4,
+          ...rise(live, 1800),
+        }}
+      >
+        價錢要讓使用者覺得：<span style={{ color: TOMATO }}>這樣付，值得</span>。
+      </p>
+    </Stage>
+  );
+};
 
 const LivePoll: Page = () => {
   const live = useLive();
@@ -2004,22 +2095,22 @@ const FindProblem: Page = () => {
         <br />
         <span style={{ color: TOMATO }}>每個月付 10 塊</span>解決的事。
       </Title>
-      <Sticker x={155} y={485} r={-5} live={live} delay={350} bg={BUTTER} pad="28px 42px">
+      <Sticker x={480} y={470} r={-5} live={live} delay={350} bg={BUTTER} pad="28px 42px">
         <span style={{ ...DISPLAY, fontSize: 58 }}>選課</span>
       </Sticker>
-      <Sticker x={510} y={500} r={4} live={live} delay={500} bg={MINT} pad="28px 42px">
+      <Sticker x={790} y={485} r={4} live={live} delay={500} bg={MINT} pad="28px 42px">
         <span style={{ ...DISPLAY, fontSize: 58 }}>找室友</span>
       </Sticker>
-      <Sticker x={1060} y={460} r={-4} live={live} delay={650} bg={PERI} pad="28px 42px">
+      <Sticker x={1140} y={460} r={-4} live={live} delay={650} bg={PERI} pad="28px 42px">
         <span style={{ ...DISPLAY, fontSize: 58 }}>宵夜團購</span>
       </Sticker>
-      <Sticker x={310} y={700} r={3} live={live} delay={800} bg={PINK} pad="28px 42px">
+      <Sticker x={540} y={690} r={3} live={live} delay={800} bg={PINK} pad="28px 42px">
         <span style={{ ...DISPLAY, fontSize: 58 }}>二手教科書</span>
       </Sticker>
-      <Sticker x={1030} y={690} r={-3} live={live} delay={950} bg={BUTTER} pad="28px 42px">
+      <Sticker x={1010} y={685} r={-3} live={live} delay={950} bg={BUTTER} pad="28px 42px">
         <span style={{ ...DISPLAY, fontSize: 58 }}>找讀書夥伴</span>
       </Sticker>
-      <Sparkle x={1660} y={650} size={50} color={MINT} live={live} delay={1150} />
+      <Sparkle x={1500} y={640} size={50} color={MINT} live={live} delay={1150} />
       <p style={{ ...BODY, ...abs(120, 900), width: 1680, fontSize: 34, fontWeight: 700 }}>
         先去問正在被這件事困擾的人，別只猜評審喜歡什麼。
       </p>
@@ -2043,10 +2134,18 @@ const SurvivalRow = ({
   delay: number;
 }) => (
   <Panel x={120} y={y} width={1680} height={155} color={color} live={live} delay={delay}>
-    <div style={{ display: 'flex', alignItems: 'center', gap: 48 }}>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 48,
+        textAlign: 'left',
+      }}
+    >
       <span style={{ ...DISPLAY, fontSize: 56 }}>✓</span>
-      <h3 style={{ ...DISPLAY, fontSize: 50, width: 680 }}>{title}</h3>
-      <p style={{ ...BODY, fontSize: 30 }}>{children}</p>
+      <h3 style={{ ...DISPLAY, fontSize: 50, width: 480 }}>{title}</h3>
+      <p style={{ ...BODY, fontSize: 30, width: 620 }}>{children}</p>
     </div>
   </Panel>
 );
@@ -2205,13 +2304,18 @@ export const notes: string[] = [
 可是演唱會門票一樣不便宜，還要熬夜搶票、排隊入場，粉絲卻搶著買。因為對他來說，換到的是難忘的回憶，比票價加上搶票的時間都重。同樣很貴，有人不買、有人搶著買，差別就在換到的價值。
 【指兩個蹺蹺板。】
 所以不是功能越多，就越能收錢。要看這個使用者付出的成本，能不能從你這裡換到他在意的價值。
-那如果你的 App 真的值得，一個月能有多少收入？我們來算算看。`,
-  `假設在你的學校，有六千個人用你的 App，每人每月付十塊，會是多少？
-【等數字跳完。】
-每月六萬。這是假設情境，不是實際人數；算的是營收，還沒扣成本，也不是下載了就等於付費。
-不用先做全世界都在用的東西，可以先解決同學每天遇到的小麻煩。像選課資訊很散、找室友很花時間。
-我嚮往的是，做自己喜歡的事，也能過生活。但這得持續有人願意付錢，不能只在試算表上成立。
-講這麼多，不如直接拿我自己的 App 來試試看。`,
+我們再多看幾個例子。`,
+  `先問大家，一款你很想玩的遊戲，要花錢買，你會買嗎？會的舉手。
+【數一下，通常不少人會舉手。】
+為什麼願意？因為玩的時候帶來的快樂，值得我花這些錢。價值比成本重，就會買。`,
+  `那換一個。衛生紙是生活必需品，如果它突然貴了十倍，你還會買嗎？
+【等一下，讓大家想。】
+大部分人會想辦法找別的、少用一點，或乾脆換牌子。不是不需要衛生紙，而是它帶來的價值，撐不起這個成本了。`,
+  `回到我自己的 App，半逢遇甲。
+如果它一個月收兩百塊，我很確定沒有人會買，因為換到的價值撐不起兩百塊。
+但如果只要十塊，就能用上更好的體驗，讓生活變好一點，這時候就會有人願意付。
+所以定價不是越高越好，而是要讓使用者覺得，這樣付，值得。
+那到底有多少人願意付十塊？我們直接來問問看。`,
   `這是我做的 App，半逢遇甲。課表、iLearn、公車、停車都收在一起，還有我自己整理的逢甲美食地圖，現在每個月大概有六千個人在用。
 先問第一題，你有在用半逢遇甲嗎？有的舉手。
 【數一下，回應幾句。】
@@ -2227,7 +2331,7 @@ export const notes: string[] = [
 所以 IG 提供接觸這些人的機會，廣告商拿錢來換。
 這裡有兩筆交換。你用時間換內容，廣告商用錢換注意力。你沒有付錢，還是付出了東西。
 回到我們的校園 App，如果同學願意每天回來，他們的注意力，也可能是店家想買的東西。`,
-  `所以，六千個人的注意力，就是廣告商想買的東西。這裡的六千人，仍然是剛才拿來想的假設。
+  `所以，六千個人的注意力，就是廣告商想買的東西。這裡的六千人，就是半逢遇甲每個月的使用者。
 先有使用者，因為你解決了需求，才會回來。持續有人看、有人找東西，才有流量，再看誰願意為這些注意力付錢。
 像大家每天用 App 找宵夜，附近店家可能想讓這群人看到自己的餐點。
 但有下載數，不等於有流量；有流量，也不是自動有收入。還要知道大家為什麼回來，誰想接觸他們，願意付多少。
@@ -2269,7 +2373,9 @@ export default [
   WhatIsValue,
   WhatIsCost,
   ValueExchange,
-  CampusMath,
+  GameExample,
+  NecessityExample,
+  BanfengPricing,
   LivePoll,
   Instagram,
   Traffic,
