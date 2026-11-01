@@ -8,6 +8,7 @@ import {
 } from '@open-slide/core';
 import { type CSSProperties, type ReactNode, useEffect, useState } from 'react';
 import banfengHome from './assets/banfeng-home.webp';
+import igQr from './assets/ig-qr.svg';
 
 export const design: DesignSystem = {
   palette: { bg: '#FFF3DF', text: '#151313', accent: '#FF5A2C' },
@@ -1725,30 +1726,28 @@ const Close: Page = () => {
         想到了，下課來找我聊。
       </p>
       <Panel x={1360} y={300} width={410} height={570} color={BUTTER} live={live} delay={350}>
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 28 }}>
-          <Mark size={92} />
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
+          <Mark size={72} />
         </div>
         <div
           style={{
             width: 300,
-            height: 270,
-            border: `4px dashed ${INK}`,
+            height: 300,
+            margin: '0 auto',
+            padding: 18,
+            border: `4px solid ${INK}`,
             borderRadius: 22,
-            background: PAPER,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
+            background: '#FFFFFF',
             boxSizing: 'border-box',
-            gap: 16,
           }}
         >
-          <span style={{ ...DISPLAY, fontSize: 44 }}>IG / LINE</span>
-          <span style={{ ...BODY, fontSize: 28 }}>QR 放這裡</span>
+          <img
+            src={igQr}
+            alt="瑞瑞的 Instagram QR code"
+            style={{ width: '100%', height: '100%', display: 'block', imageRendering: 'pixelated' }}
+          />
         </div>
-        <p style={{ ...DISPLAY, fontSize: 30, marginTop: 30, textAlign: 'center' }}>
-          聯絡方式（待補）
-        </p>
+        <p style={{ ...DISPLAY, fontSize: 34, marginTop: 22, textAlign: 'center' }}>IG @cy_4.9</p>
       </Panel>
       <Sparkle x={1270} y={680} size={48} color={MINT} live={live} delay={1350} />
       <p style={{ ...MONO, ...abs(120, 984), color: MUTED }}>
@@ -1844,7 +1843,7 @@ export const notes: string[] = [
 不用先準備完整的商業計畫。可以拿一個需求來，也可以跟我說，現在有人在用，可是不知道怎麼收錢。
 之後參加小比賽，想找人陪著看題目、商業模式或價值，也可以找我當導師。我自己也想創業，在找願意做事、願意聽使用者說話的夥伴。先聊、先做點東西，看看適不適合一起走。
 想一下，你身邊有沒有一件事，煩到你願意每月付十塊解決？想到了，下課來找我。我是瑞瑞，謝謝大家。
-【上台前補上右邊的 IG 或 LINE QR。】`,
+【右邊是我的 IG QR，可以停一下讓大家掃。】`,
 ];
 
 export default [
