@@ -7,6 +7,50 @@ import {
   useSlidePageNumber,
 } from '@open-slide/core';
 import { type CSSProperties, type ReactNode, useState } from 'react';
+import caseFootnotes1 from './assets/886/footnotes-1.webp';
+import caseFootnotes2 from './assets/886/footnotes-2.webp';
+import caseFootnotes3 from './assets/886/footnotes-3.webp';
+import caseFootnotesIcon from './assets/886/footnotes-icon.webp';
+import caseHushli1 from './assets/886/hushli-1.webp';
+import caseHushli2 from './assets/886/hushli-2.webp';
+import caseHushli3 from './assets/886/hushli-3.webp';
+import caseHushliIcon from './assets/886/hushli-icon.webp';
+import caseInstapodz1 from './assets/886/instapodz-1.webp';
+import caseInstapodz2 from './assets/886/instapodz-2.webp';
+import caseInstapodz3 from './assets/886/instapodz-3.webp';
+import caseInstapodzIcon from './assets/886/instapodz-icon.webp';
+import caseKardomo1 from './assets/886/kardomo-1.webp';
+import caseKardomo2 from './assets/886/kardomo-2.webp';
+import caseKardomo3 from './assets/886/kardomo-3.webp';
+import caseKardomoIcon from './assets/886/kardomo-icon.webp';
+import caseLfg1 from './assets/886/lfg-1.webp';
+import caseLfg2 from './assets/886/lfg-2.webp';
+import caseLfg3 from './assets/886/lfg-3.webp';
+import caseLfgIcon from './assets/886/lfg-icon.webp';
+import casePeeps1 from './assets/886/peeps-1.webp';
+import casePeeps2 from './assets/886/peeps-2.webp';
+import casePeeps3 from './assets/886/peeps-3.webp';
+import casePeepsIcon from './assets/886/peeps-icon.webp';
+import casePersona2Ai1 from './assets/886/persona2-ai-1.webp';
+import casePersona2Ai2 from './assets/886/persona2-ai-2.webp';
+import casePersona2Ai3 from './assets/886/persona2-ai-3.webp';
+import casePersona2AiIcon from './assets/886/persona2-ai-icon.webp';
+import casePicpet1 from './assets/886/picpet-1.webp';
+import casePicpet2 from './assets/886/picpet-2.webp';
+import casePicpet3 from './assets/886/picpet-3.webp';
+import casePicpetIcon from './assets/886/picpet-icon.webp';
+import casePicturecook1 from './assets/886/picturecook-1.webp';
+import casePicturecook2 from './assets/886/picturecook-2.webp';
+import casePicturecook3 from './assets/886/picturecook-3.webp';
+import casePicturecookIcon from './assets/886/picturecook-icon.webp';
+import caseSugarai1 from './assets/886/sugarai-1.webp';
+import caseSugarai2 from './assets/886/sugarai-2.webp';
+import caseSugarai3 from './assets/886/sugarai-3.webp';
+import caseSugaraiIcon from './assets/886/sugarai-icon.webp';
+import caseTellitnow1 from './assets/886/tellitnow-1.webp';
+import caseTellitnow2 from './assets/886/tellitnow-2.webp';
+import caseTellitnow3 from './assets/886/tellitnow-3.webp';
+import caseTellitnowIcon from './assets/886/tellitnow-icon.webp';
 import banfengHome from './assets/banfeng-home.webp';
 import igQr from './assets/ig-qr.svg';
 import newsCnyes from './assets/news/cnyes.webp';
@@ -39,7 +83,7 @@ const SLIDE_ID = 'app-value-startup-1104';
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Gabarito:wght@500;700;800;900&display=swap';
 const CJK_TEXT =
-  '、。「」【】一三上下不世主之也了事二五些交亨享人什今介仍他付代以件伴但位低住作你使來例供依便係促保修個倍們候值假做停偶傘備像價元先光免入內全兩公六其具冊再凸出分判別利到制券刻前剛創力功加助動務勢勵包十千半卡卻原厲去參又及友只可台右合同名向否告呢和品哪售唱商問善喜喝單嗎嚮四回因困園圖團在地報場塊境壓多夜夠夥大天套好如始媒子字學它完官定宜室害宵家容實審寫專對導小少就局展工左己師帳帶常幕幣幫平年底店度廢廣弄式弱張形往待很後得從心忘忙快怎思情想意感慢慣憶應成我或截戲戶所手才打扣批找把抽拆拜拿持指按掉掌排接推提換揪搭搶摺撐據擾支收改放教散整數文料新斷方於明易是時晴曝更書最會月有朋服本材束杯東板果架某查校核格案桿棄楚業樂標模樣機次款歡正段每比求決沒沿法注活流清測準滑演濕濟灣災為然照煩營片版牌特猜獎玩班現理瑞生產用由甲界留畫當疊痕療登發百的盈目直省看真知碰確示社神票禮科種空突立競第筆等答算箭簡粉精系約紅紙素累結絡給統絲經維網繼續置美群義習考者而聊聯聲聽育能自至臺與舉花茶萬著蓋薦處號螢衛表被裂補裡西要見覺角解觸訂計訊記設註評詢試話該認說誰課調請講謝證識讀變讓貴買費貼資賣賺購賽走起越跟跳蹺躍身躺車軸較載輩轉辦近送透這通逢連週進遇遊過道適選邀還邊那都醒醫重量金鉅鉸錢錯鎖鏈鐘門開間閱關附限陪隊階際離難雨需靠面頁項順預頒頓頭題願食飲餐首驗體高麻麼點！（）＋，／：；＝？';
+  '、。「」【】一三上下不世丟中串主之也了事二互五些交亨享人什今介仍他付代以件任企伴但佈位低住作你使來例供依便係促保修個倍們候值假做停偶傘備傳像價優元先光免入內全兩公六共其具冊再凸出分初判別利到制券刻前剛創力功加助動務勢勵包北區十千升午半協卡卻原厲去參又及友取口另只叫可台右各合同名向否含告呢和品員哪售唱商問啦善喜喝單嗎嘛嚮四回因困國圍園圖團在地坊培基報場塊境壓多夜夠夥大天太央套好如始委媒子字存孩學它安完官定宜宣室害宵家容實審寫寵專對導小少就局屆展屬州工左己已市師帳帶常幕幣幫平年幹幾底店度廢廣廳弄式弱張形影往待很後得從心忘忙快念怎怕思性息情想意感慢慣慮憶應成我或截戰戲戶房所手才打扣扮批找技把投抽拆拍招拜拿持指按授掉掌排探接推提換揪搭搶摺撐撰據擬擾支收改放故教散整數文料新斷方於日明易星是時晴智曆曝更書最會月有朋服未本材束杭杯東板果架某查校核格案桿梯棄楚業榜構樂標模樣樹機權次款歡止正歲段每比求決沒沿法注洞活流淡清測源準滑滿演漫潛激濕濟灣災為無焦然照煩營牆片版牌牠物特猜獎玩班現理瑞生產用由甲申界留畢畫當疊痕療登發百的盈監目直省看真知研碎碑碰確示社神票禮私科程種究空突立站章競第筆等答策算箭簡籍籤粉精系約紅紙素累組結絡給統絲經維網緒線練總績繪繫繼續置署美群義習考者而聊聯聲聽育能自至致臺與舉色花英茶華萬著蓋薦藏處虛號螢行術衛衝表被裂補裡西要見覺角解觸言訂計訊討記設診註評詢試話該認語說誰課調請論講謝證識讀變讓貴買費貼資賣賺購賽走起越跟跳蹺躍身躺車軸較載輔輩輸轉辦近追送透這通速逢連週進遇遊過道適選邀還邊那部都鄉配醒醫重量金鉅鉸鋒錄錢錯鍵鎖鏈鐘鑑長門開間閱關附限院陪隊階際隻集離難雨零需青靜靠面音頁項順須預頒頓領頭題額願顧食飲養餐餵首駐驗體高鬼麻麼點齡！（）＋，／：；＝？～';
 const CJK_FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap&text=${encodeURIComponent(CJK_TEXT)}`;
 const CJK_FONT_LINK_ID = `osd-webfont-cjk-${SLIDE_ID}`;
 const FONT_LINK_ID = `osd-webfont-${SLIDE_ID}`;
@@ -1980,7 +2024,7 @@ const caseStudyPage = (data: CaseStudyData): Page => {
     const rowWidth = data.shots.length * shotWidth + (data.shots.length - 1) * gap;
     return (
       <Stage>
-        <Tag n="12" live={live}>
+        <Tag n="13" live={live}>
           886 案例 · {data.batch}
         </Tag>
         <div
@@ -2066,7 +2110,7 @@ const competitionPage = (data: CompetitionData): Page => {
     const live = useLive();
     return (
       <Stage>
-        <Tag n="13" live={live}>
+        <Tag n="14" live={live}>
           新創競賽
         </Tag>
         <Title live={live}>{data.name}</Title>
@@ -2105,11 +2149,253 @@ const competitionPage = (data: CompetitionData): Page => {
   return Competition;
 };
 
-const FindProblem: Page = () => {
+const Studio886: Page = () => {
   const live = useLive();
   return (
     <Stage>
       <Tag n="13" live={live}>
+        886 案例
+      </Tag>
+      <Title live={live}>886 Studios：每隊投資 US$10 萬</Title>
+      <p style={{ ...BODY, ...abs(120, 290), width: 1680, fontSize: 34, ...rise(live, 180) }}>
+        台北的新創工作室，計畫叫 ikigai Launchpad。
+      </p>
+      <Panel x={170} y={380} width={500} height={330} color={BUTTER} live={live} delay={300}>
+        <p style={{ ...NUM, fontSize: 110, lineHeight: 1.1 }}>10 週</p>
+        <p style={{ ...BODY, fontSize: 30, marginTop: 18 }}>在台北實體進行</p>
+      </Panel>
+      <Panel x={710} y={380} width={500} height={330} color={MINT} live={live} delay={500}>
+        <p style={{ ...NUM, fontSize: 110, lineHeight: 1.1 }}>US$100K</p>
+        <p style={{ ...BODY, fontSize: 30, marginTop: 18 }}>每隊的投資金額</p>
+      </Panel>
+      <Panel x={1250} y={380} width={500} height={330} color={PERI} live={live} delay={700}>
+        <p style={{ ...NUM, fontSize: 110, lineHeight: 1.1 }}>4 梯</p>
+        <p style={{ ...BODY, fontSize: 30, marginTop: 18 }}>2025 年到現在</p>
+      </Panel>
+      <Footnote y={900}>資料：886studios.com、886 Studios Substack，2026/11/1 查詢。</Footnote>
+    </Stage>
+  );
+};
+
+const casePicpet = caseStudyPage({
+  name: 'PicPet',
+  batch: 'ikigai #01',
+  tagline: '跟好朋友一起養一隻虛擬寵物，用每天的照片餵牠。',
+  problem: '好朋友各自忙，很少分享生活，感情慢慢就淡了。',
+  solution: '一起養寵物，每天拍照「餵」牠，寵物會升等、解鎖家具。',
+  revenue: '免費下載。PicPet+ 月訂 NT$120／年訂 NT$1,190，另賣金幣。',
+  icon: casePicpetIcon,
+  shots: [casePicpet1, casePicpet2, casePicpet3],
+  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
+});
+
+const caseTellitnow = caseStudyPage({
+  name: 'Tell It Now',
+  batch: 'ikigai #02',
+  tagline: '店家在地圖上發探店任務，附近的人到店發文領獎勵。',
+  problem: '小店想宣傳，找網紅又貴又難配對，也拿不到真實口碑。',
+  solution: '附近的人收到任務就能到店體驗、發文，店家審核後發獎勵。',
+  revenue: '對發文的人免費，向店家收月費：NT$2,999 起；單次任務抽 30%。',
+  icon: caseTellitnowIcon,
+  shots: [caseTellitnow1, caseTellitnow2, caseTellitnow3],
+  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
+});
+
+const caseInstapodz = caseStudyPage({
+  name: 'InstaPodz',
+  batch: 'ikigai #02',
+  tagline: '想學什麼就問，AI 幫你做一集專屬 Podcast。',
+  problem: '想用零碎時間學東西，但現成的 Podcast 太長、不一定對題。',
+  solution: '輸入問題或書名，幾分鐘生成一集，長度、聲音、語言都能選。',
+  revenue: '免費下載。PRO 月訂 NT$320／年訂 NT$2,490。',
+  icon: caseInstapodzIcon,
+  shots: [caseInstapodz1, caseInstapodz2, caseInstapodz3],
+  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
+});
+
+const casePicturecook = caseStudyPage({
+  name: 'PictureCook',
+  batch: 'ikigai #02',
+  tagline: '孩子的 AI 英文朋友，用互動繪本聊天學英文。',
+  problem: '小孩學英文多半靠字卡和練習題，無聊，也很少開口說。',
+  solution: '互動繪本加 AI 角色對話，角色會問問題，讓孩子開口回答。',
+  revenue: '免費下載。Story Plus 單月 NT$490、六個月 NT$1,990。',
+  icon: casePicturecookIcon,
+  shots: [casePicturecook1, casePicturecook2, casePicturecook3],
+  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
+});
+
+const caseSugarai = caseStudyPage({
+  name: 'Sugar AI',
+  batch: 'ikigai #02',
+  tagline: '跟正版授權的漫畫角色一對一聊天。',
+  problem: '喜歡的角色只能看、不能互動；創作者也少有新的變現方式。',
+  solution: '向創作者取得授權，個性由創作者監修，角色會記得你們的對話。',
+  revenue: '免費下載，賣 App 內道具（NT$59 起）和月卡 NT$199。',
+  icon: caseSugaraiIcon,
+  shots: [caseSugarai1, caseSugarai2, caseSugarai3],
+  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
+});
+
+const caseHushli = caseStudyPage({
+  name: 'Hushli 樹洞',
+  batch: 'ikigai #02',
+  tagline: '陪你聊心事的 AI 日記（原名 EchoTree）。',
+  problem: '半夜焦慮找不到人說；看心理師貴、要排隊，也怕被貼標籤。',
+  solution: '24 小時都能找 AI 角色聊，對話自動整理成日記，每週回顧情緒。',
+  revenue: '免費下載。Premium 月訂 NT$320，另賣加購訊息 NT$120。',
+  icon: caseHushliIcon,
+  shots: [caseHushli1, caseHushli2, caseHushli3],
+  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
+});
+
+const caseFootnotes = caseStudyPage({
+  name: 'footnotes',
+  batch: 'ikigai #03',
+  tagline: '一本安靜的生活筆記本，收照片、聲音和念頭。',
+  problem: '在社群記錄生活總要發給別人看，有壓力；小片刻也散在各處。',
+  solution: '不用給人看的私人筆記本，文字、照片、語音自動排成時間軸。',
+  revenue: '目前完全免費，官方沒有公開怎麼收費，先衝使用者。',
+  icon: caseFootnotesIcon,
+  shots: [caseFootnotes1, caseFootnotes2, caseFootnotes3],
+  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
+});
+
+const caseLfg = caseStudyPage({
+  name: 'lfg',
+  batch: 'ikigai #03',
+  tagline: '把看到的店存成共用地圖，一鍵揪朋友出門。',
+  problem: '群組裡「要幹嘛」「你決定啦」來回鬼打牆，最後常常約不成。',
+  solution: '想去的店丟進地圖，選地點、選人、送出，朋友直接回要不要。',
+  revenue: '免費下載，收藏數用完再買：10 次 NT$30、50 次 NT$90。',
+  icon: caseLfgIcon,
+  shots: [caseLfg1, caseLfg2, caseLfg3],
+  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
+});
+
+const casePeeps = caseStudyPage({
+  name: 'Peeps',
+  batch: 'ikigai #03',
+  tagline: '跟好朋友、另一半一起住的線上像素小家。',
+  problem: '想跟朋友保持聯繫，但發限動、傳訊息都有壓力。',
+  solution: '共用的像素房間，一起佈置、養寵物、玩小遊戲，打開就像回家。',
+  revenue: '免費下載。PRIME 月訂 NT$150／年訂 NT$1,290，另賣 P 幣。',
+  icon: casePeepsIcon,
+  shots: [casePeeps1, casePeeps2, casePeeps3],
+  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
+});
+
+const caseKardomo = caseStudyPage({
+  name: 'Kardomo',
+  batch: 'ikigai #03',
+  tagline: '台灣 K-pop 粉絲的一站式追星 App。',
+  problem: '追星要在好幾個 App 之間跳：行程、榜單、小卡都分開記。',
+  solution: '把追星行事曆、音樂榜單、小卡圖鑑、討論串放進同一個 App。',
+  revenue: '目前免費、沒有內購，官方沒有公開怎麼收費。',
+  icon: caseKardomoIcon,
+  shots: [caseKardomo1, caseKardomo2, caseKardomo3],
+  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
+});
+
+const casePersona2Ai = caseStudyPage({
+  name: 'Persona2 AI',
+  batch: 'ikigai #03',
+  tagline: '打字就能做出自己的 AI 角色扮演遊戲。',
+  problem: '想玩互動故事只能等別人寫好；自己想做，又不會寫程式。',
+  solution: '用 AI 打字做出角色扮演遊戲，放進大廳讓別人玩。',
+  revenue: '免費下載，Google Play 標示有 App 內購，價格未公開。',
+  icon: casePersona2AiIcon,
+  shots: [casePersona2Ai1, casePersona2Ai2, casePersona2Ai3],
+  source: '資料：App Store／Google Play、886 Studios 官網，2026/11/1 查詢。',
+});
+
+const compMediatek = competitionPage({
+  name: '聯發科技「智在家鄉」',
+  organizer: '聯發科技教育基金會 · 2026 第 9 屆',
+  who: '2 人以上團隊，不限年齡、國籍。只有點子也能報「創新種子組」。',
+  flow: '交提案簡報 → 入圍 15 組 → 培力課程、顧問一對一 → Demo Day。',
+  rewards: [
+    '種子組：首獎 20 萬、創新創意獎 5 萬 ×2',
+    '加速組：首獎 100 萬、潛力先鋒獎 30 萬 ×2',
+    '加速組得獎隊再分 200 萬元合作基金',
+    '企業顧問一對一輔導、交通補助',
+  ],
+  source: '來源：impact.mediatek.com 2026 簡章。報名約 5–6 月。',
+});
+
+const compUstart = competitionPage({
+  name: '教育部 U-start 創新創業計畫',
+  organizer: '教育部青年發展署 · 115 年度',
+  who: '3 人以上，2/3 是在校生或近 5 年畢業生，和學校育成中心一起申請。',
+  flow: '線上提案 → 書面評選 → 進駐學校育成 6 個月 → 績優團隊再評選。',
+  rewards: [
+    '第一階段：50 萬元創業補助',
+    '（團隊開辦費 35 萬＋學校輔導費 15 萬）',
+    '第二階段績優團隊：35～100 萬元',
+    '業師門診、創業練功坊、成果展',
+  ],
+  source: '來源：ustart.yda.gov.tw、115 年度申請須知。第一階段約 2 月截止。',
+});
+
+const compFiti = competitionPage({
+  name: '國科會 FITI 創新創業激勵計畫',
+  organizer: '國家科學及技術委員會',
+  who: '大專院校、研究機構的師生，在校生或畢業未滿一年。',
+  flow: '6 個月、4 關：初選 → 評選一 → 評選二 → 決選，每關都有錢。',
+  rewards: [
+    '初選 1 萬、評選一 5 萬、評選二 20 萬',
+    '決選：100 萬元創業基金',
+    '業師輔導，接觸 10–16 位投資人',
+    '2027 第一梯次：12/30 中午截止',
+  ],
+  source: '來源：fiti.stpi.niar.org.tw，2026/11/1 查詢。',
+});
+
+const compMaic = competitionPage({
+  name: 'MAIC 行動應用創新賽',
+  organizer: 'Apple RTC（逢甲、臺大、中教大）· 2026 第 11 屆',
+  who: '在學學生 2–3 人一隊；創業組可含畢業 5 年內校友。',
+  flow: '交企畫書 → 決賽交 App、簡報、影片 → 台灣決賽 → 大中華區總決賽。',
+  rewards: [
+    '台灣最具創新獎：等值 NT 5.49 萬 Apple 產品',
+    '一等獎 2.94 萬、二等獎 1.99 萬',
+    '前三名招待去杭州參加總決賽',
+    '總決賽最具創新獎約 NT 54 萬＋WWDC 門票',
+  ],
+  source: '來源：maic.straighta.com.tw。2026 屆已結束，報名約 5 月。',
+});
+
+const compZhanguoce = competitionPage({
+  name: '戰國策全國創新創業競賽',
+  organizer: '新北市青年局、致理科大、中華創業育成協會 · 2026 第 21 屆',
+  who: '18–35 歲在校生、近 5 年畢業生，或新創企業。免報名費。',
+  flow: '交創新計畫書 → 書面審查 → 決賽簡報 6 分鐘＋問答 5 分鐘。',
+  rewards: ['總獎金 32 萬元，各組取前三名', '有機會進駐新北青創基地', '說明會、計畫書撰寫工作坊'],
+  source: '來源：新北市青年局、中央社 2026/3/20。報名約 3–4 月。',
+});
+
+const CompetitionIntro: Page = () => {
+  const live = useLive();
+  return (
+    <Stage>
+      <Tag n="14" live={live}>
+        新創競賽
+      </Tag>
+      <Title live={live} y={330} size={110}>
+        想做下去，也有這些資源
+      </Title>
+      <p style={{ ...BODY, ...abs(120, 500), width: 1680, fontSize: 38, ...rise(live, 300) }}>
+        這些比賽和計畫，獎勵不只獎金，還有輔導、投資人和進駐。
+      </p>
+    </Stage>
+  );
+};
+
+const FindProblem: Page = () => {
+  const live = useLive();
+  return (
+    <Stage>
+      <Tag n="15" live={live}>
         怎麼找題目
       </Tag>
       <Title live={live} size={82}>
@@ -2173,7 +2459,7 @@ const StillAlive: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="14" live={live}>
+      <Tag n="16" live={live}>
         比賽之後
       </Tag>
       <Title live={live} size={82}>
@@ -2197,7 +2483,7 @@ const Close: Page = () => {
   const live = useLive();
   return (
     <Stage footer={false}>
-      <Tag n="15" live={live} color={TOMATO}>
+      <Tag n="17" live={live} color={TOMATO}>
         我也在找一起做事的人
       </Tag>
       <h2
@@ -2368,7 +2654,60 @@ export const notes: string[] = [
 單次付費或內購，是為特定功能付錢。像活動修圖，付費解鎖素材包。
 廣告，付錢的人換成店家。像宵夜資訊，店家買推薦版位，但要清楚標示，也別弄到同學不想用。
 抽成或媒合，像二手教科書，促成交易後收服務費。
-這些是思考用的例子，不是保證能賣。重點是誰付錢、他換到什麼。那能做成 App 的題目，要去哪裡找？`,
+這些是思考用的例子，不是保證能賣。重點是誰付錢、他換到什麼。接下來看看真的拿到投資的團隊，他們是怎麼收錢的。`,
+  `886 Studios 是台北的新創工作室，有一個計畫叫 ikigai Launchpad。在台北實體進行十週，每隊投資十萬美元。從 2025 年到現在辦了四梯。
+接下來快速看其中有做 App 的團隊。每一頁我都整理了三件事：他們遇到什麼問題、怎麼解決，還有怎麼賺錢。`,
+  `PicPet。跟好朋友一起養一隻虛擬寵物，用每天的照片餵牠。
+問題：好朋友各自忙，很少分享生活，感情慢慢就淡了。
+解法：一起養寵物，每天拍照「餵」牠，寵物會升等、解鎖家具。
+怎麼賺：免費下載。PicPet+ 月訂 NT$120／年訂 NT$1,190，另賣金幣。`,
+  `Tell It Now。店家在地圖上發探店任務，附近的人到店發文領獎勵。
+問題：小店想宣傳，找網紅又貴又難配對，也拿不到真實口碑。
+解法：附近的人收到任務就能到店體驗、發文，店家審核後發獎勵。
+怎麼賺：對發文的人免費，向店家收月費：NT$2,999 起；單次任務抽 30%。`,
+  `InstaPodz。想學什麼就問，AI 幫你做一集專屬 Podcast。
+問題：想用零碎時間學東西，但現成的 Podcast 太長、不一定對題。
+解法：輸入問題或書名，幾分鐘生成一集，長度、聲音、語言都能選。
+怎麼賺：免費下載。PRO 月訂 NT$320／年訂 NT$2,490。`,
+  `PictureCook。孩子的 AI 英文朋友，用互動繪本聊天學英文。
+問題：小孩學英文多半靠字卡和練習題，無聊，也很少開口說。
+解法：互動繪本加 AI 角色對話，角色會問問題，讓孩子開口回答。
+怎麼賺：免費下載。Story Plus 單月 NT$490、六個月 NT$1,990。`,
+  `Sugar AI。跟正版授權的漫畫角色一對一聊天。
+問題：喜歡的角色只能看、不能互動；創作者也少有新的變現方式。
+解法：向創作者取得授權，個性由創作者監修，角色會記得你們的對話。
+怎麼賺：免費下載，賣 App 內道具（NT$59 起）和月卡 NT$199。`,
+  `Hushli 樹洞。陪你聊心事的 AI 日記（原名 EchoTree）。
+問題：半夜焦慮找不到人說；看心理師貴、要排隊，也怕被貼標籤。
+解法：24 小時都能找 AI 角色聊，對話自動整理成日記，每週回顧情緒。
+怎麼賺：免費下載。Premium 月訂 NT$320，另賣加購訊息 NT$120。`,
+  `footnotes。一本安靜的生活筆記本，收照片、聲音和念頭。
+問題：在社群記錄生活總要發給別人看，有壓力；小片刻也散在各處。
+解法：不用給人看的私人筆記本，文字、照片、語音自動排成時間軸。
+怎麼賺：目前完全免費，官方沒有公開怎麼收費，先衝使用者。`,
+  `lfg。把看到的店存成共用地圖，一鍵揪朋友出門。
+問題：群組裡「要幹嘛」「你決定啦」來回鬼打牆，最後常常約不成。
+解法：想去的店丟進地圖，選地點、選人、送出，朋友直接回要不要。
+怎麼賺：免費下載，收藏數用完再買：10 次 NT$30、50 次 NT$90。`,
+  `Peeps。跟好朋友、另一半一起住的線上像素小家。
+問題：想跟朋友保持聯繫，但發限動、傳訊息都有壓力。
+解法：共用的像素房間，一起佈置、養寵物、玩小遊戲，打開就像回家。
+怎麼賺：免費下載。PRIME 月訂 NT$150／年訂 NT$1,290，另賣 P 幣。`,
+  `Kardomo。台灣 K-pop 粉絲的一站式追星 App。
+問題：追星要在好幾個 App 之間跳：行程、榜單、小卡都分開記。
+解法：把追星行事曆、音樂榜單、小卡圖鑑、討論串放進同一個 App。
+怎麼賺：目前免費、沒有內購，官方沒有公開怎麼收費。`,
+  `Persona2 AI。打字就能做出自己的 AI 角色扮演遊戲。
+問題：想玩互動故事只能等別人寫好；自己想做，又不會寫程式。
+解法：用 AI 打字做出角色扮演遊戲，放進大廳讓別人玩。
+怎麼賺：免費下載，Google Play 標示有 App 內購，價格未公開。`,
+  `如果你想把 App 做下去，除了自己撐，也有很多比賽和計畫可以用。這些不是叫你為了得獎去做，而是看看有哪些資源：獎金、補助、輔導、投資人。`,
+  `聯發科「智在家鄉」，用科技解決台灣的社會問題。只有點子也能報種子組，首獎二十萬；已經在營運的加速組，首獎一百萬，得獎隊還能再分兩百萬的合作基金。`,
+  `教育部 U-start，要跟學校育成中心一起申請。第一階段補助五十萬，表現好的第二階段還有三十五萬到一百萬。`,
+  `國科會 FITI，適合學校研究成果想創業的團隊。四關每關都有錢，最後決選拿一百萬創業基金。2027 第一梯次十二月底截止，現在就能報。`,
+  `MAIC 行動應用創新賽，iOS App 的比賽，逢甲、臺大、中教大的 Apple RTC 承辦，跟我們 iOS Club 最相關。台灣前三名會招待去杭州比總決賽。`,
+  `戰國策，老牌的全國創業競賽，十八到三十五歲都能報、免報名費，總獎金三十二萬，得獎有機會進駐新北青創基地。
+看完這些資源，回頭來談，題目要去哪裡找？`,
   `看完收費方式，回頭找題目。我會先找一件煩到大家願意每月付十塊解決的事。
 你這禮拜被什麼煩到？選課、找室友、揪宵夜、二手教科書，還是找讀書夥伴？
 【讓大家選一個有感的例子。】
@@ -2409,6 +2748,24 @@ export default [
   Traffic,
   Instagram,
   BusinessModels,
+  Studio886,
+  casePicpet,
+  caseTellitnow,
+  caseInstapodz,
+  casePicturecook,
+  caseSugarai,
+  caseHushli,
+  caseFootnotes,
+  caseLfg,
+  casePeeps,
+  caseKardomo,
+  casePersona2Ai,
+  CompetitionIntro,
+  compMediatek,
+  compUstart,
+  compFiti,
+  compMaic,
+  compZhanguoce,
   FindProblem,
   StillAlive,
   Close,
