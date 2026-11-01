@@ -9,6 +9,9 @@ import {
 import { type CSSProperties, type ReactNode, useState } from 'react';
 import banfengHome from './assets/banfeng-home.webp';
 import igQr from './assets/ig-qr.svg';
+import newsCnyes from './assets/news/cnyes.webp';
+import newsMacrumors from './assets/news/macrumors.webp';
+import newsTvbs from './assets/news/tvbs.webp';
 import ntd100 from './assets/ntd-100-specimen.jpg';
 
 export const design: DesignSystem = {
@@ -36,7 +39,7 @@ const SLIDE_ID = 'app-value-startup-1104';
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Gabarito:wght@500;700;800;900&display=swap';
 const CJK_TEXT =
-  '、。「」【】一三上下不世主之也了事二五些交享人什今介仍他付代以件伴但位低住作你使來例供便係促保修個倍們候值假做停偶傘備像價元先光免入內全兩公六其具冊再出分判別利到制券刻前剛創力功加助動務勢勵包十千半卡卻原厲去參及友只可台右合同名向否告呢和品哪唱商問善喜喝單嗎嚮四回因困園圖團在地報場塊境多夜夠夥大天套好如始媒子字學它完官定宜室害宵家容實審寫專對導小少就局展工左己師帳帶常幣幫平年底店度廢廣弄式弱張形往待很後得從心忘忙快怎思情想意感慢慣憶應成我或截戲所手才打扣批找把抽拜拿持指按掉掌排接推提換揪搭搶撐據擾收改放教散整數料新斷方於明易是時晴曝更書最會月有朋服本材束杯東板果架某查校核格案棄楚業樂標模樣機次款歡正段每比求決沒沿法注活流清測準滑演濕濟為然照煩營片版牌特猜獎玩班現理瑞生產用由甲界留畫當療登發百的盈目直省看真知碰確示社神票禮科種空突立競第筆等答算箭簡粉精系約紅紙素累結絡給統絲經繼續置美群義習考者而聊聯聲聽育能自至臺與舉花茶萬著蓋薦號衛表被補裡西要見覺角解觸訂計訊記設註評試話該認說誰課調請講謝證識讀變讓貴買費貼資賣賺購賽走起越跟跳蹺躍身躺車較載輩辦近送透這通逢連進遇遊過道適選邀還邊那都醒醫重量金錢錯鎖鐘門開間閱關附陪隊階際離難雨需靠面頁項順頒頓頭題願食飲餐首驗體高麻麼點！（）＋，／：；＝？';
+  '、。「」【】一三上下不世主之也了事二五些交亨享人什今介仍他付代以件伴但位低住作你使來例供依便係促保修個倍們候值假做停偶傘備像價元先光免入內全兩公六其具冊再凸出分判別利到制券刻前剛創力功加助動務勢勵包十千半卡卻原厲去參又及友只可台右合同名向否告呢和品哪售唱商問善喜喝單嗎嚮四回因困園圖團在地報場塊境壓多夜夠夥大天套好如始媒子字學它完官定宜室害宵家容實審寫專對導小少就局展工左己師帳帶常幕幣幫平年底店度廢廣弄式弱張形往待很後得從心忘忙快怎思情想意感慢慣憶應成我或截戲戶所手才打扣批找把抽拆拜拿持指按掉掌排接推提換揪搭搶摺撐據擾支收改放教散整數文料新斷方於明易是時晴曝更書最會月有朋服本材束杯東板果架某查校核格案桿棄楚業樂標模樣機次款歡正段每比求決沒沿法注活流清測準滑演濕濟灣災為然照煩營片版牌特猜獎玩班現理瑞生產用由甲界留畫當疊痕療登發百的盈目直省看真知碰確示社神票禮科種空突立競第筆等答算箭簡粉精系約紅紙素累結絡給統絲經維網繼續置美群義習考者而聊聯聲聽育能自至臺與舉花茶萬著蓋薦處號螢衛表被裂補裡西要見覺角解觸訂計訊記設註評詢試話該認說誰課調請講謝證識讀變讓貴買費貼資賣賺購賽走起越跟跳蹺躍身躺車軸較載輩轉辦近送透這通逢連週進遇遊過道適選邀還邊那都醒醫重量金鉅鉸錢錯鎖鏈鐘門開間閱關附陪隊階際離難雨需靠面頁項順預頒頓頭題願食飲餐首驗體高麻麼點！（）＋，／：；＝？';
 const CJK_FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap&text=${encodeURIComponent(CJK_TEXT)}`;
 const CJK_FONT_LINK_ID = `osd-webfont-cjk-${SLIDE_ID}`;
 const FONT_LINK_ID = `osd-webfont-${SLIDE_ID}`;
@@ -1436,6 +1439,131 @@ const NecessityExample: Page = () => (
   />
 );
 
+const PhoneOption = ({
+  x,
+  color,
+  name,
+  price,
+  detail,
+  live,
+  delay,
+}: {
+  x: number;
+  color: string;
+  name: string;
+  price: string;
+  detail: string;
+  live: boolean;
+  delay: number;
+}) => (
+  <Panel x={x} y={360} width={760} height={400} color={color} live={live} delay={delay}>
+    <h3 style={{ ...DISPLAY, fontSize: 64 }}>{name}</h3>
+    <p style={{ ...NUM, fontSize: 96, lineHeight: 1.1, marginTop: 30 }}>{price}</p>
+    <p style={{ ...BODY, fontSize: 30, lineHeight: 1.5, marginTop: 22 }}>{detail}</p>
+  </Panel>
+);
+
+const PhoneChoice: Page = () => {
+  const live = useLive();
+  return (
+    <Stage>
+      <Tag n="08" live={live}>
+        價值的例子
+      </Tag>
+      <Title live={live}>預算 NT$80,000，你選哪一支？</Title>
+      <PhoneOption
+        x={120}
+        color={PERI}
+        name="iPhone 18 Pro"
+        price="NT$44,900 起"
+        detail="買到 1TB 也只要 NT$66,900。"
+        live={live}
+        delay={300}
+      />
+      <PhoneOption
+        x={1040}
+        color={BUTTER}
+        name="iPhone Duo"
+        price="NT$74,900 起"
+        detail="第一支摺疊 iPhone，預算剛好買得起。"
+        live={live}
+        delay={600}
+      />
+      <Sticker x={880} y={520} r={-6} live={live} delay={1100} bg={TOMATO} pad="14px 24px">
+        <span style={{ ...DISPLAY, fontSize: 40 }}>舉手！</span>
+      </Sticker>
+      <p style={{ ...DISPLAY, ...abs(120, 830), width: 1680, fontSize: 44, ...rise(live, 1400) }}>
+        錢夠、又是最新的，很多人會選 <span style={{ color: TOMATO }}>Duo</span>。
+      </p>
+      <Footnote y={920}>Apple 台灣官網售價，2026/11/1 查詢。</Footnote>
+    </Stage>
+  );
+};
+
+const NEWS: { image: string; outlet: string; headline: string }[] = [
+  {
+    image: newsMacrumors,
+    outlet: 'MacRumors · 10/23',
+    headline: '用戶回報：Duo 內螢幕沿著轉軸裂開',
+  },
+  {
+    image: newsTvbs,
+    outlet: 'TVBS · 10/28',
+    headline: '台灣首批災情：螢幕裂痕、鉸鏈凸起，內螢幕維修 NT$37,350',
+  },
+  {
+    image: newsCnyes,
+    outlet: '鉅亨網 · 11/1',
+    headline: 'iFixit 拆機：轉軸可能壓到內螢幕',
+  },
+];
+
+const PhoneNews: Page = () => {
+  const live = useLive();
+  return (
+    <Stage>
+      <Tag n="08" live={live}>
+        價值的例子
+      </Tag>
+      <Title live={live}>但開賣才兩週，Duo 出了這些事……</Title>
+      {NEWS.map((item, i) => (
+        <div
+          key={item.outlet}
+          style={abs(120 + i * 570, 340, {
+            width: 540,
+            height: 470,
+            boxSizing: 'border-box',
+            background: PAPER,
+            border: BORDER,
+            borderRadius: 26,
+            boxShadow: shadow(8),
+            overflow: 'hidden',
+            ...rise(live, 300 + i * 250, 40),
+          })}
+        >
+          <img
+            src={item.image}
+            alt=""
+            style={{ width: '100%', height: 300, objectFit: 'cover', display: 'block' }}
+          />
+          <div style={{ padding: '18px 26px' }}>
+            <p style={{ ...MONO, fontSize: 18, textTransform: 'none', color: MUTED }}>
+              {item.outlet}
+            </p>
+            <p style={{ ...DISPLAY, fontSize: 29, lineHeight: 1.35, marginTop: 10 }}>
+              {item.headline}
+            </p>
+          </div>
+        </div>
+      ))}
+      <p style={{ ...DISPLAY, ...abs(120, 850), width: 1680, fontSize: 42, ...rise(live, 1300) }}>
+        價值變低、成本變高，有些人就改選 <span style={{ color: TOMATO }}>18 Pro</span>。
+      </p>
+      <Footnote y={930}>圖文出處：MacRumors、TVBS TECH、鉅亨網；維修價格依 TVBS 報導。</Footnote>
+    </Stage>
+  );
+};
+
 const PriceCard = ({
   x,
   color,
@@ -2311,6 +2439,15 @@ export const notes: string[] = [
   `那換一個。衛生紙是生活必需品，如果它突然貴了十倍，你還會買嗎？
 【等一下，讓大家想。】
 大部分人會想辦法找別的、少用一點，或乾脆換牌子。不是不需要衛生紙，而是它帶來的價值，撐不起這個成本了。`,
+  `再來一個。假設你現在有八萬塊預算要買手機，iPhone 18 Pro 四萬四千九起，最新的摺疊機 iPhone Duo 七萬四千九起，預算剛好買得起。你選哪一支？
+【請大家舉手選一支。】
+錢夠、又是最新的，很多人會選 Duo。`,
+  `但 Duo 開賣才兩週，就出了這些新聞。
+有人開合沒幾次，內螢幕就沿著轉軸裂開；台灣也有首批災情，報導說內螢幕維修要三萬七千多；iFixit 拆機懷疑是轉軸的設計壓到螢幕。
+【指三則新聞。】
+這些問題會讓你覺得它的價值沒那麼高，可能壞、修很貴，等於你要付出的成本變多了。
+這時候有些人就會改選 18 Pro，因為對他來說，18 Pro 的價錢沒有大於它帶來的價值。
+同樣八萬塊，選擇變了，是因為價值和成本的天平變了。`,
   `回到我自己的 App，半逢遇甲。
 如果它一個月收兩百塊，我很確定沒有人會買，因為換到的價值撐不起兩百塊。
 但如果只要十塊，就能用上更好的體驗，讓生活變好一點，這時候就會有人願意付。
@@ -2375,6 +2512,8 @@ export default [
   ValueExchange,
   GameExample,
   NecessityExample,
+  PhoneChoice,
+  PhoneNews,
   BanfengPricing,
   LivePoll,
   Traffic,
