@@ -23,10 +23,6 @@ import casePeeps1 from './assets/886/peeps-1.webp';
 import casePeeps2 from './assets/886/peeps-2.webp';
 import casePeeps3 from './assets/886/peeps-3.webp';
 import casePeepsIcon from './assets/886/peeps-icon.webp';
-import casePersona2Ai1 from './assets/886/persona2-ai-1.webp';
-import casePersona2Ai2 from './assets/886/persona2-ai-2.webp';
-import casePersona2Ai3 from './assets/886/persona2-ai-3.webp';
-import casePersona2AiIcon from './assets/886/persona2-ai-icon.webp';
 import casePicpet1 from './assets/886/picpet-1.webp';
 import casePicpet2 from './assets/886/picpet-2.webp';
 import casePicpet3 from './assets/886/picpet-3.webp';
@@ -85,7 +81,7 @@ const SLIDE_ID = 'app-value-startup-1104';
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Gabarito:wght@500;700;800;900&display=swap';
 const CJK_TEXT =
-  '、。「」【】一三上下不世丟中串主久之也了事二互五些交亨享人什今介仍他付代以件任份企伯伴但佈位低住作你使來例供依便係促保修個倍們候值假做停偶傘備傳像價億優元先光免兒入內全兩公六共其具冊再准凸出分初判別利到制券刻前剛創力功加助動務勞勢勵包北區十千升午半協卡卻原厲去參又及友取口另只叫可台右司各合同名向否含告呢和品員哪售唱商問啦善喜喝單嗎嘛器嚮四回因困國圍園圖團在地坊執培基報場塊境壓多夜夠夥大天太央失套好如始委媒子字存孩學它安完官定宜客宣室害宵家容實審寫寵專對導小少就局屆展屬山州工左差己已市師帳帶常幕幣幫平年幹幾底店府度庫廢廣廳弄式弱張形影往待很後得從心忘忙快念怎怕思性息情想意感慢慣慮憶應成我或截戰戲戶房所手才打扣扮批找技把投抽拆拍招拜拿持指按授掉掌排探接推提換揪搭搶摺撐撰擅據擬擾支收改放政故敗教散整數文料斯新斷方於日明易昕星是時景晴智曆曝更書最會月有朋服未本材束杭杯東松板果架某查校核格案桿條梯棄楚業榜構樂標模樣樹機權次款歡止正歲段每比氣求決沒沿法注洞活流淡清測港源準滑滿演漫潛激濕濟灣災為無焦然照煩營牆片版牌牠物特猜獎玩班現理瑞生產用由甲申界留畢畫當疊痕療登發百的盈監目直省看真睿知研破碎碑碰確示社神票禮私科程種積究空突立站章童競第筆等答策算管箭簡籍籤粉精系約紅紙素累組結絡給統絲經維網緒線練總績繪繫繼續置署美群義習考者而聊聯聲聽股育背能膽自至致臺與興舉舊色花苦英茶華萬葉著蓋薦薪藏處虛號螢行術衛衝表被裂補裡製西要見覺角解觸言訂計訊討記設訴診註評詢試話該認語說誰課調請論講謝證識讀變讓負責貴買費貼資賈賣賺購賽走起越趣趨跟跳蹺躍身躺車軟軸較載輔輩輸轉辛辦近追送透這通速造逢連週進遇遊運過道適選邀還邊那部都鄉配醒醫重量金鉅鉸銀銘銷鋒錄錢錯鍵鎖鏈鐘鑑長門開間閱關附降限院陪陳隊階際隻集離難雨零需青靜非靠面音頁項順須預頒頓領頭題額願顧食飲養餐餵首駐驗體高鬼麻麼黑點齡！（）＋，／：；＝？～';
+  '、。「」【】一三上下不世丟中串主久之也了事二互五些交亨享人什今介仍他付代以件任份企伯伴但佈位低住作你使來例供依便係促保修個倍們候值假做停偶傘備傳像價億優元先光免兒入內全兩公六共其具冊再准凸出分初判別利到制券刻前剛創力功加助動務勞勢勵包北區十千升午半協卡卻原厲去參又及友取口另只叫可台右司各合同名向否含告呢和品員哪售唱商問啦善喜喝單嗎嘛器嚮四回因困國圍園圖團在地坊執培基報場塊境壓多夜夠夥大天太央失套好如始委媒子字存孩學它安完官定宜客宣室害宵家容實審寫寵專對導小少就局屆展屬山州工左差己已市師帳帶常幕幣幫平年幹幾底店府度庫廢廣廳弄式弱張形影往待很後得從心忘忙快念怎怕思性息情想意感慢慣慮憶應成我或截戰戲戶房所手才打扣扮批找技把投抽拆拍招拜拿持指按授掉掌排探接推提換揪搭搶摺撐撰擅據擬擾支收改放政故敗教散整數文料斯新斷方於日明易昕星是時景晴智曆曝更書最會月有朋服未本材束杭杯東松板果架某查校核格案桿條梯棄楚業榜構樂標模樣樹機權次款歡止正歲段每比氣求決沒沿法注洞活流淡清測港源準滑滿演漫潛激濕濟灣災為無焦然照煩營牆片版牌牠物特猜獎玩班現理瑞生產用由甲申界留畢畫當疊痕療登發百的盈監目直省看真睿知研破碎碑碰確示社神票禮私科程種積究空突立站章童競第筆等答策算管箭簡籍籤粉精系約紅紙素累組結絡給統絲經維網緒線練總績繪繫繼續置署美群義習考者而聊聯聲聽股育背能膽自至致臺與興舉舊色花苦英茶華萬葉著蓋薦薪藏處虛號螢行術衛衝表被裂補裡製西要見覺角解觸言訂計訊討記設訴診註評詢試話該認語說誰課調請論講謝證識讀變讓負責貴買費貼資賈賣賺購賽走起越趣趨跟路跳蹺躍身躺車軟軸較載輔輩輸轉辛辦近追送透這通速造逢連週進遇遊運過道適選邀還邊那部都鄉配醒醫重量金鉅鉸銀銘銷鋒錄錢錯鍵鎖鏈鐘鑑長門開間閱關附降限院陪陳隊階際隻集離難雨零需青靜非靠面音頁項順須預頒頓領頭題額願顧食飲養餐餵首駐驗體高鬼麻麼黑點齡！（）＋，／：；＝？～';
 const CJK_FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap&text=${encodeURIComponent(CJK_TEXT)}`;
 const CJK_FONT_LINK_ID = `osd-webfont-cjk-${SLIDE_ID}`;
 const FONT_LINK_ID = `osd-webfont-${SLIDE_ID}`;
@@ -2476,7 +2472,7 @@ const teamSugarai = teamPage({
       lines: ['前工研院 AI 工程師'],
     },
   ],
-  note: '大學時就一起參加黑客松，後來還做了 Persona2 AI',
+  note: '大學時就一起參加黑客松，一路合作到現在',
 });
 
 const teamHushli = teamPage({
@@ -2688,17 +2684,6 @@ const caseKardomo = caseStudyPage({
   revenue: '目前免費、沒有內購，官方沒有公開怎麼收費。',
   icon: caseKardomoIcon,
   shots: [caseKardomo1, caseKardomo2, caseKardomo3],
-});
-
-const casePersona2Ai = caseStudyPage({
-  name: 'Persona2 AI',
-  batch: 'ikigai #03',
-  tagline: '打字就能做出自己的 AI 角色扮演遊戲。',
-  problem: '想玩互動故事只能等別人寫好；自己想做，又不會寫程式。',
-  solution: '用 AI 打字做出角色扮演遊戲，放進大廳讓別人玩。',
-  revenue: '免費下載，Google Play 標示有 App 內購，價格未公開。',
-  icon: casePersona2AiIcon,
-  shots: [casePersona2Ai1, casePersona2Ai2, casePersona2Ai3],
 });
 
 const compMediatek = competitionPage({
@@ -3015,15 +3000,11 @@ export const notes: string[] = [
 問題：小孩學英文多半靠字卡和練習題，無聊，也很少開口說。
 解法：互動繪本加 AI 角色對話，角色會問問題，讓孩子開口回答。
 怎麼賺：免費下載。Story Plus 單月 NT$490、六個月 NT$1,990。`,
-  `Sugar AI 的兩位創辦人就比較年輕了。執行長 Jarshan 是前 LINE 的機器學習工程師，創業時才二十二歲；技術長 Jerry 待過工研院。他們大學時就一起參加黑客松，後來除了 Sugar AI，還做了 Persona2 AI。`,
+  `Sugar AI 的兩位創辦人就比較年輕了。執行長 Jarshan 是前 LINE 的機器學習工程師，創業時才二十二歲；技術長 Jerry 待過工研院。他們大學時就一起參加黑客松，一路合作到現在。`,
   `Sugar AI。跟正版授權的漫畫角色一對一聊天。
 問題：喜歡的角色只能看、不能互動；創作者也少有新的變現方式。
 解法：向創作者取得授權，個性由創作者監修，角色會記得你們的對話。
 怎麼賺：免費下載，賣 App 內道具（NT$59 起）和月卡 NT$199。`,
-  `Persona2 AI。打字就能做出自己的 AI 角色扮演遊戲。
-問題：想玩互動故事只能等別人寫好；自己想做，又不會寫程式。
-解法：用 AI 打字做出角色扮演遊戲，放進大廳讓別人玩。
-怎麼賺：免費下載，Google Play 標示有 App 內購，價格未公開。`,
   `Hushli 的 Tim 是工程師，這是第二次創業；Sharon 負責設計。兩個人半年做了六款 App，累積五十萬使用者。`,
   `Hushli 樹洞。陪你聊心事的 AI 日記（原名 EchoTree）。
 問題：半夜焦慮找不到人說；看心理師貴、要排隊，也怕被貼標籤。
@@ -3187,7 +3168,6 @@ export default [
   casePicturecook,
   teamSugarai,
   caseSugarai,
-  casePersona2Ai,
   teamHushli,
   caseHushli,
   teamLfg,
