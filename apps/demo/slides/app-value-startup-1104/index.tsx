@@ -721,75 +721,6 @@ const TitleCover: Page = () => {
   );
 };
 
-const DOWNLOADS: { name: string; icon: string; count: number; label: string }[] = [
-  { name: 'Peeps', icon: casePeepsIcon, count: 48365, label: '約 4.8 萬' },
-  { name: 'PictureCook', icon: casePicturecookIcon, count: 24190, label: '約 2.4 萬' },
-  { name: 'Kardomo', icon: caseKardomoIcon, count: 5857, label: '約 5,900' },
-  { name: 'Tell It Now', icon: caseTellitnowIcon, count: 957, label: '約 960' },
-];
-const DOWNLOAD_BAR_MAX = 1000;
-
-const Downloads: Page = () => {
-  const live = useLive();
-  const max = Math.max(...DOWNLOADS.map((d) => d.count));
-  return (
-    <Stage>
-      <Tag n="02" live={live}>
-        886 案例
-      </Tag>
-      <Title live={live}>它們有多少人下載？</Title>
-      <div
-        style={abs(120, 340, {
-          width: 1680,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 36,
-          textAlign: 'left',
-        })}
-      >
-        {DOWNLOADS.map((d, i) => (
-          <div key={d.name} style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
-            <img
-              src={d.icon}
-              alt=""
-              style={{
-                width: 84,
-                height: 84,
-                borderRadius: 20,
-                border: `3px solid ${INK}`,
-                display: 'block',
-                flex: 'none',
-              }}
-            />
-            <span style={{ ...DISPLAY, fontSize: 44, width: 290, flex: 'none' }}>{d.name}</span>
-            <div style={{ width: DOWNLOAD_BAR_MAX, flex: 'none' }}>
-              <div
-                style={{
-                  width: Math.max(24, (DOWNLOAD_BAR_MAX * d.count) / max),
-                  height: 72,
-                  boxSizing: 'border-box',
-                  background: i === 0 ? TOMATO : [BUTTER, MINT, PERI][(i - 1) % 3],
-                  border: BORDER,
-                  borderRadius: 16,
-                  boxShadow: shadow(6),
-                  transformOrigin: 'left center',
-                  ...anim(live, `av-grow 800ms ${SNAPPY} ${400 + i * 250}ms both`),
-                }}
-              />
-            </div>
-            <span style={{ ...NUM, fontSize: 46, ...rise(live, 700 + i * 250, 12) }}>
-              {d.label}
-            </span>
-          </div>
-        ))}
-      </div>
-      <Footnote y={900}>
-        Google Play 下載數，2026/11/2 查詢。iOS 下載數 Apple 不公開，只在 iOS 上架的作品無法列入。
-      </Footnote>
-    </Stage>
-  );
-};
-
 const NotAwards: Page = () => {
   const live = useLive();
   return (
@@ -3021,10 +2952,6 @@ export const notes: string[] = [
   `看完這些團隊，你會發現一件事。
 【停一下，讓大家讀完。】
 他們拿到錢，不是因為得了什麼獎，而是因為做出了有人在用的東西。`,
-  `這些作品到底有多少人在用？
-【指長條。】Peeps 在 Google Play 上大概有四萬八千次下載，PictureCook 兩萬四，Kardomo 快六千，Tell It Now 不到一千。
-這只是 Android 的數字，iOS 的下載數 Apple 不公開。像 PicPet 只在 iOS 上架，App Store 上就有一萬四千多則評分，實際使用的人一定更多。
-有人在用，就是這些團隊拿到錢的原因。`,
   `【先讓大家看題目，留時間舉手。】
 那回到你們身上。如果這次沒得獎，你的 App 還會繼續做下去嗎？會的，可以舉個手嗎？
 【停一下，看看台下。】
@@ -3172,7 +3099,6 @@ export default [
   casePeeps,
   caseKardomo,
   NotAwards,
-  Downloads,
   Cover,
   AfterCompetition,
   WhoDecides,
