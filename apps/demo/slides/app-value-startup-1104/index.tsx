@@ -44,6 +44,15 @@ import caseTellitnow2 from './assets/886/tellitnow-2.webp';
 import caseTellitnow3 from './assets/886/tellitnow-3.webp';
 import caseTellitnowIcon from './assets/886/tellitnow-icon.webp';
 import banfengHome from './assets/banfeng-home.webp';
+import founderJarshanChen from './assets/founders/jarshan-chen.webp';
+import founderJerryLee from './assets/founders/jerry-lee.webp';
+import founderJimmyHuang from './assets/founders/jimmy-huang.webp';
+import founderMarxYeh from './assets/founders/marx-yeh.webp';
+import founderPachaChen from './assets/founders/pacha-chen.webp';
+import founderRonnyYen from './assets/founders/ronny-yen.webp';
+import founderRyanYang from './assets/founders/ryan-yang.webp';
+import founderTimChen from './assets/founders/tim-chen.webp';
+import founderYaohuaYang from './assets/founders/yaohua-yang.webp';
 import igQr from './assets/ig-qr.svg';
 import newsCnyes from './assets/news/cnyes.webp';
 import newsMacrumors from './assets/news/macrumors.webp';
@@ -76,7 +85,7 @@ const SLIDE_ID = 'app-value-startup-1104';
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Gabarito:wght@500;700;800;900&display=swap';
 const CJK_TEXT =
-  '、。「」【】一三上下不世丟中串主久之也了事二互五些交亨享人什今介仍他付代以件任份企伯伴但佈位低住作你使來例供依便係促保修個倍們候值假做停偶傘備傳像價優元先光免入內全兩公六共其具冊再凸出分初判別利到制券刻前剛創力功加助動務勞勢勵包北區十千升午半協卡卻原厲去參又及友取口另只叫可台右司各合同名向否含告呢和品員哪售唱商問啦善喜喝單嗎嘛嚮四回因困國圍園圖團在地坊培基報場塊境壓多夜夠夥大天太央套好如始委媒子字存孩學它安完官定宜宣室害宵家容實審寫寵專對導小少就局屆展屬山州工左差己已市師帳帶常幕幣幫平年幹幾底店府度庫廢廣廳弄式弱張形影往待很後得從心忘忙快念怎怕思性息情想意感慢慣慮憶應成我或截戰戲戶房所手才打扣扮批找技把投抽拆拍招拜拿持指按授掉掌排探接推提換揪搭搶摺撐撰擅據擬擾支收改放政故教散整數文料斯新斷方於日明易星是時晴智曆曝更書最會月有朋服未本材束杭杯東板果架某查校核格案桿條梯棄楚業榜構樂標模樣樹機權次款歡止正歲段每比氣求決沒沿法注洞活流淡清測源準滑滿演漫潛激濕濟灣災為無焦然照煩營牆片版牌牠物特猜獎玩班現理瑞生產用由甲申界留畢畫當疊痕療登發百的盈監目直省看真知研碎碑碰確示社神票禮私科程種究空突立站章競第筆等答策算箭簡籍籤粉精系約紅紙素累組結絡給統絲經維網緒線練總績繪繫繼續置署美群義習考者而聊聯聲聽股育能膽自至致臺與興舉舊色花苦英茶華萬著蓋薦薪藏處虛號螢行術衛衝表被裂補裡製西要見覺角解觸言訂計訊討記設訴診註評詢試話該認語說誰課調請論講謝證識讀變讓貴買費貼資賈賣賺購賽走起越趣跟跳蹺躍身躺車軟軸較載輔輩輸轉辛辦近追送透這通速造逢連週進遇遊過道適選邀還邊那部都鄉配醒醫重量金鉅鉸銀鋒錄錢錯鍵鎖鏈鐘鑑長門開間閱關附降限院陪隊階際隻集離難雨零需青靜非靠面音頁項順須預頒頓領頭題額願顧食飲養餐餵首駐驗體高鬼麻麼點齡！（）＋，／：；＝？～';
+  '、。「」【】一三上下不世丟中串主久之也了事二互五些交亨享人什今介仍他付代以件任份企伯伴但佈位低住作你使來例供依便係促保修個倍們候值假做停偶傘備傳像價億優元先光免兒入內全兩公六共其具冊再准凸出分初判別利到制券刻前剛創力功加助動務勞勢勵包北區十千升午半協卡卻原厲去參又及友取口另只叫可台右司各合同名向否含告呢和品員哪售唱商問啦善喜喝單嗎嘛器嚮四回因困國圍園圖團在地坊執培基報場塊境壓多夜夠夥大天太央失套好如始委媒子字存孩學它安完官定宜客宣室害宵家容實審寫寵專對導小少就局屆展屬山州工左差己已市師帳帶常幕幣幫平年幹幾底店府度庫廢廣廳弄式弱張形影往待很後得從心忘忙快念怎怕思性息情想意感慢慣慮憶應成我或截戰戲戶房所手才打扣扮批找技把投抽拆拍招拜拿持指按授掉掌排探接推提換揪搭搶摺撐撰擅據擬擾支收改放政故敗教散整數文料斯新斷方於日明易昕星是時景晴智曆曝更書最會月有朋服未本材束杭杯東松板果架某查校核格案桿條梯棄楚業榜構樂標模樣樹機權次款歡止正歲段每比氣求決沒沿法注洞活流淡清測港源準滑滿演漫潛激濕濟灣災為無焦然照煩營牆片版牌牠物特猜獎玩班現理瑞生產用由甲申界留畢畫當疊痕療登發百的盈監目直省看真睿知研破碎碑碰確示社神票禮私科程種積究空突立站章童競第筆等答策算管箭簡籍籤粉精系約紅紙素累組結絡給統絲經維網緒線練總績繪繫繼續置署美群義習考者而聊聯聲聽股育背能膽自至致臺與興舉舊色花苦英茶華萬葉著蓋薦薪藏處虛號螢行術衛衝表被裂補裡製西要見覺角解觸言訂計訊討記設訴診註評詢試話該認語說誰課調請論講謝證識讀變讓負責貴買費貼資賈賣賺購賽走起越趣趨跟跳蹺躍身躺車軟軸較載輔輩輸轉辛辦近追送透這通速造逢連週進遇遊運過道適選邀還邊那部都鄉配醒醫重量金鉅鉸銀銘銷鋒錄錢錯鍵鎖鏈鐘鑑長門開間閱關附降限院陪陳隊階際隻集離難雨零需青靜非靠面音頁項順須預頒頓領頭題額願顧食飲養餐餵首駐驗體高鬼麻麼黑點齡！（）＋，／：；＝？～';
 const CJK_FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap&text=${encodeURIComponent(CJK_TEXT)}`;
 const CJK_FONT_LINK_ID = `osd-webfont-cjk-${SLIDE_ID}`;
 const FONT_LINK_ID = `osd-webfont-${SLIDE_ID}`;
@@ -760,7 +769,7 @@ const Question300: Page = () => {
           ...rise(live, 200, 40),
         }}
       >
-        如果給你 <span style={{ color: TOMATO }}>300 萬</span>
+        如果給你 <span style={{ color: TOMATO }}>320 萬</span>
         <br />
         創一間公司，
         <br />
@@ -2399,6 +2408,129 @@ const teamPage = (data: TeamData): Page => {
   return TeamIntro;
 };
 
+const teamPicpet = teamPage({
+  team: 'PicPet',
+  batch: 'ikigai #01',
+  icon: casePicpetIcon,
+  founders: [
+    {
+      name: 'Jimmy Huang',
+      role: '執行長',
+      photo: founderJimmyHuang,
+      lines: ['公司設在舊金山', '入選 a16z Speedrun 加速器'],
+    },
+  ],
+});
+
+const teamTellitnow = teamPage({
+  team: 'Tell It Now',
+  batch: 'ikigai #02',
+  icon: caseTellitnowIcon,
+  founders: [
+    {
+      name: 'Ryan Yang',
+      role: '執行長',
+      photo: founderRyanYang,
+      lines: ['Carnegie Mellon 畢業', '前 Cisco、Palo Alto Networks 工程師', '第二次創業'],
+    },
+    {
+      name: '陳昕睿 Pacha',
+      role: '營運長',
+      photo: founderPachaChen,
+      lines: ['前趨勢科技', '做過 UX 設計、新創顧問'],
+    },
+  ],
+});
+
+const teamPicturecook = teamPage({
+  team: 'PictureCook',
+  batch: 'ikigai #02',
+  icon: casePicturecookIcon,
+  founders: [
+    {
+      name: 'Yaohua Yang',
+      role: '執行長',
+      photo: founderYaohuaYang,
+      lines: ['做過兒童發展服務', '做過 FDA 核准的醫療器材'],
+    },
+    { name: 'Hogan Sung', role: '技術長', lines: ['前 Roblox、Yelp 工程師'] },
+    { name: 'Ling Chiu', role: '產品長', lines: ['做過下載破一億的產品', '設計系教授'] },
+  ],
+});
+
+const teamSugarai = teamPage({
+  team: 'Sugar AI',
+  batch: 'ikigai #02',
+  icon: caseSugaraiIcon,
+  founders: [
+    {
+      name: 'Jarshan Chen',
+      role: '執行長',
+      photo: founderJarshanChen,
+      lines: ['前 LINE 機器學習工程師', '創業時 22 歲'],
+    },
+    {
+      name: 'Jerry Lee',
+      role: '技術長',
+      photo: founderJerryLee,
+      lines: ['前工研院 AI 工程師'],
+    },
+  ],
+  note: '大學時就一起參加黑客松，後來還做了 Persona2 AI',
+});
+
+const teamHushli = teamPage({
+  team: 'Hushli',
+  batch: 'ikigai #02',
+  icon: caseHushliIcon,
+  founders: [
+    {
+      name: 'Tim Chen',
+      role: '執行長',
+      photo: founderTimChen,
+      lines: ['工程師', '第二次創業'],
+    },
+    { name: 'Sharon Wu', role: '共同創辦人', lines: ['負責設計'] },
+  ],
+  note: '兩人半年做了 6 款 App，累積 50 萬使用者',
+});
+
+const teamLfg = teamPage({
+  team: 'lfg',
+  batch: 'ikigai #03',
+  icon: caseLfgIcon,
+  founders: [
+    {
+      name: 'Prasenjit Das',
+      role: '共同創辦人',
+      lines: ['港科大數學系', '前 Lalamove、DASH 工程師'],
+    },
+    { name: 'Julia Cheung', role: '共同創辦人', lines: ['公開資料不多'] },
+    { name: 'Kartikay S.', role: '共同創辦人', lines: ['和 Prasenjit 是前同事'] },
+  ],
+});
+
+const teamPeeps = teamPage({
+  team: 'Peeps',
+  batch: 'ikigai #03',
+  icon: casePeepsIcon,
+  founders: [
+    {
+      name: '葉又銘 Marx',
+      role: '執行長',
+      photo: founderMarxYeh,
+      lines: ['台大資管／資工背景', 'Peeps 第一版一個人寫完'],
+    },
+    {
+      name: 'Ronny Yen',
+      role: '行銷長',
+      photo: founderRonnyYen,
+      lines: ['負責產品和商務'],
+    },
+  ],
+  note: '一年上架十幾款 App，大多失敗，才做出總榜第一的 Peeps',
+});
+
 const competitionPage = (data: CompetitionData): Page => {
   const Competition: Page = () => {
     const live = useLive();
@@ -2866,24 +2998,28 @@ export const notes: string[] = [
 大家好，我是瑞瑞。今天在「App 登場時刻」，我想跟大家聊新創。
 很多人覺得新創離我們很遠，好像要先開公司、找投資人才算。但其實，做一個 App、讓它有人用、甚至能賺錢，就已經是一次新創。開始之前，先問大家一個問題。`,
   `【讓題目停在畫面上，請兩三個人回答。】
-如果現在給你三百萬，讓你創一間公司，你會做什麼？
+如果現在給你三百二十萬，讓你創一間公司，你會做什麼？
 【聽完回應，稍微接幾句。】`,
-  `這不是假設。台北有一間新創工作室叫 886 Studios，它的加速計畫 ikigai Launchpad，真的給每一隊十萬美元，換成台幣差不多三百多萬。
+  `這不是假設。台北有一間新創工作室叫 886 Studios，它的加速計畫 ikigai Launchpad，真的給每一隊十萬美元，換成台幣差不多就是三百二十萬。
 在台北實體進行十週，從 2025 年到現在辦了四梯。
 要注意，這是投資，不是獎金。十萬美元換的是你公司 8% 的股份，拿了錢，公司就有一部分是別人的。
 我們快速看幾個拿到這筆錢、而且有做 App 的團隊。每一頁我都整理了三件事：他們遇到什麼問題、怎麼解決，還有怎麼賺錢。`,
+  `先看 PicPet。創辦人 Jimmy Huang，公司設在舊金山，還入選了 a16z 的加速器。`,
   `PicPet。跟好朋友一起養一隻虛擬寵物，用每天的照片餵牠。
 問題：好朋友各自忙，很少分享生活，感情慢慢就淡了。
 解法：一起養寵物，每天拍照「餵」牠，寵物會升等、解鎖家具。
 怎麼賺：免費下載。PicPet+ 月訂 NT$120／年訂 NT$1,190，另賣金幣。`,
+  `Tell It Now 的兩位創辦人，Ryan 是 Carnegie Mellon 畢業、當過 Cisco 和 Palo Alto Networks 的工程師，這是他第二次創業；營運長陳昕睿待過趨勢科技，做過 UX 設計。`,
   `Tell It Now。店家在地圖上發探店任務，附近的人到店發文領獎勵。
 問題：小店想宣傳，找網紅又貴又難配對，也拿不到真實口碑。
 解法：附近的人收到任務就能到店體驗、發文，店家審核後發獎勵。
 怎麼賺：對發文的人免費，向店家收月費：NT$2,999 起；單次任務抽 30%。`,
+  `PictureCook 有三位創辦人。執行長做過兒童發展服務和醫療器材，技術長在 Roblox、Yelp 做過工程，產品長做過下載破一億的產品，也是設計系教授。`,
   `PictureCook。孩子的 AI 英文朋友，用互動繪本聊天學英文。
 問題：小孩學英文多半靠字卡和練習題，無聊，也很少開口說。
 解法：互動繪本加 AI 角色對話，角色會問問題，讓孩子開口回答。
 怎麼賺：免費下載。Story Plus 單月 NT$490、六個月 NT$1,990。`,
+  `Sugar AI 的兩位創辦人就比較年輕了。執行長 Jarshan 是前 LINE 的機器學習工程師，創業時才二十二歲；技術長 Jerry 待過工研院。他們大學時就一起參加黑客松，後來除了 Sugar AI，還做了 Persona2 AI。`,
   `Sugar AI。跟正版授權的漫畫角色一對一聊天。
 問題：喜歡的角色只能看、不能互動；創作者也少有新的變現方式。
 解法：向創作者取得授權，個性由創作者監修，角色會記得你們的對話。
@@ -2892,14 +3028,17 @@ export const notes: string[] = [
 問題：想玩互動故事只能等別人寫好；自己想做，又不會寫程式。
 解法：用 AI 打字做出角色扮演遊戲，放進大廳讓別人玩。
 怎麼賺：免費下載，Google Play 標示有 App 內購，價格未公開。`,
+  `Hushli 的 Tim 是工程師，這是第二次創業；Sharon 負責設計。兩個人半年做了六款 App，累積五十萬使用者。`,
   `Hushli 樹洞。陪你聊心事的 AI 日記（原名 EchoTree）。
 問題：半夜焦慮找不到人說；看心理師貴、要排隊，也怕被貼標籤。
 解法：24 小時都能找 AI 角色聊，對話自動整理成日記，每週回顧情緒。
 怎麼賺：免費下載。Premium 月訂 NT$320，另賣加購訊息 NT$120。`,
+  `lfg 是三個人在香港一起做的。Prasenjit 是港科大數學系，在 Lalamove 當過工程師，跟另一位創辦人 Kartikay 以前就是同事。`,
   `lfg。把看到的店存成共用地圖，一鍵揪朋友出門。
 問題：群組裡「要幹嘛」「你決定啦」來回鬼打牆，最後常常約不成。
 解法：想去的店丟進地圖，選地點、選人、送出，朋友直接回要不要。
 怎麼賺：免費下載，收藏數用完再買：10 次 NT$30、50 次 NT$90。`,
+  `最後這組最接近在座的大家。Peeps 的執行長葉又銘是台大資管、資工背景，一年上架了十幾款 App，大多失敗，最後才做出衝上 App Store 總榜第一的 Peeps，第一版還是他一個人寫完的。`,
   `Peeps。跟好朋友、另一半一起住的線上像素小家。
 問題：想跟朋友保持聯繫，但發限動、傳訊息都有壓力。
 解法：共用的像素房間，一起佈置、養寵物、玩小遊戲，打開就像回家。
@@ -3044,13 +3183,20 @@ export default [
   TitleCover,
   Question300,
   Studio886,
+  teamPicpet,
   casePicpet,
+  teamTellitnow,
   caseTellitnow,
+  teamPicturecook,
   casePicturecook,
+  teamSugarai,
   caseSugarai,
   casePersona2Ai,
+  teamHushli,
   caseHushli,
+  teamLfg,
   caseLfg,
+  teamPeeps,
   casePeeps,
   caseKardomo,
   NotAwards,
