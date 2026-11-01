@@ -36,7 +36,7 @@ const SLIDE_ID = 'app-value-startup-1104';
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Gabarito:wght@500;700;800;900&display=swap';
 const CJK_TEXT =
-  '、。「」【】一三上下不世主之也了事二五些交享人什今仍他付代以件伴但位低住作你使來例供便係促保修個們候值假做停傘備像價元先光免入內全兩公六其具冊再出分判別到制券刻前剛創力功加助動務勢包十千半卡卻厲去參及友只可台右合同名向否告呢品哪商問善喜單嗎嚮四回因困園圖團在地報場塊境多夜夠夥大天套好如始媒子字學它完官定室害宵家容實審寫專對導小少就展工左己師帳常幣幫平年底店度廢廣弄式弱張形往待很後得從心忙怎思情想意感慢慣成我或截所手才打扣批找把抽拜拿持指按掉排接推提換揪搭撐據擾收改放教散整數料新斷方於明易是時晴曝更書最會月有朋服本材束東板果架某查校核格案棄楚業標模樣機次歡正段每比求決沒沿注活流清測準滑濕濟為然煩營版牌特猜獎班現理瑞生產用由甲界留畫當療登發百的目直省看真知碰確示社禮科種立第筆等答算箭簡系約紙素結絡給統經繼續美群義習考者而聊聯聽育能自至臺與舉花萬著蓋薦號表被補裡西要見覺角解觸訂計訊記設註評試話認說誰課調請講謝證識讀變讓買費貼資賣賺購賽走起越跟跳蹺躍身躺車較載近送透這通逢連進遇過道適選邀還邊那都醒醫重量錢錯鎖鐘開間閱關附陪隊階際離雨需靠面頁項頒頭題願食飲餐首高麻麼點！（），／：；＝？';
+  '、。「」【】一三上下不世主之也了事二五些交享人什今介仍他付代以件伴但位低住作你使來例供便係促保修個們候值假做停傘備像價元先光免入內全兩公六其具冊再出分判別到制券刻前剛創力功加助動務勢包十千半卡卻原厲去參及友只可台右合同名向否告呢品哪商問善喜單嗎嚮四回因困園圖團在地報場塊境多夜夠夥大天套好如始媒子字學它完官定室害宵家容實審寫專對導小少就展工左己師帳常幣幫平年底店度廢廣弄式弱張形往待很後得從心忙怎思情想意感慢慣成我或截所手才打扣批找把抽拜拿持指按掉排接推提換揪搭撐據擾收改放教散整數料新斷方於明易是時晴曝更書最會月有朋服本材束東板果架某查校核格案棄楚業標模樣機次歡正段每比求決沒沿法注活流清測準滑濕濟為然照煩營片版牌特猜獎班現理瑞生產用由甲界留畫當療登發百的目直省看真知碰確示社神禮科種空立第筆等答算箭簡精系約紙素累結絡給統經繼續置美群義習考者而聊聯聽育能自至臺與舉花萬著蓋薦號表被補裡西要見覺角解觸訂計訊記設註評試話認說誰課調請講謝證識讀變讓買費貼資賣賺購賽走起越跟跳蹺躍身躺車較載近送透這通逢連進遇過道適選邀還邊那都醒醫重量錢錯鎖鐘開間閱關附陪隊階際離難雨需靠面頁項順頒頭題願食飲餐首高麻麼點！（），／：；＝？';
 const CJK_FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap&text=${encodeURIComponent(CJK_TEXT)}`;
 const CJK_FONT_LINK_ID = `osd-webfont-cjk-${SLIDE_ID}`;
 const FONT_LINK_ID = `osd-webfont-${SLIDE_ID}`;
@@ -1148,69 +1148,16 @@ const WhatIsValue: Page = () => {
   );
 };
 
-const CostIcon = ({ kind }: { kind: 'money' | 'time' | 'attention' }) => (
-  <svg
-    width={130}
-    height={110}
-    viewBox="0 0 130 110"
-    aria-hidden="true"
-    style={{
-      display: 'block',
-      margin: '0 auto',
-      fill: PAPER,
-      stroke: INK,
-      strokeWidth: 5,
-      strokeLinejoin: 'round',
-      strokeLinecap: 'round',
-    }}
-  >
-    {kind === 'money' && (
-      <>
-        <rect x={10} y={22} width={110} height={66} rx={10} />
-        <circle cx={65} cy={55} r={18} fill={BUTTER} />
-        <path d="M 24 36 V 74 M 106 36 V 74" fill="none" />
-      </>
-    )}
-    {kind === 'time' && (
-      <>
-        <circle cx={65} cy={58} r={44} />
-        <path d="M 65 32 V 58 L 84 70" fill="none" />
-        <path d="M 52 6 H 78" fill="none" />
-      </>
-    )}
-    {kind === 'attention' && (
-      <>
-        <path d="M 8 55 C 30 18, 100 18, 122 55 C 100 92, 30 92, 8 55 Z" />
-        <circle cx={65} cy={55} r={20} fill={PERI} />
-        <circle cx={65} cy={55} r={8} fill={INK} stroke="none" />
-      </>
-    )}
-  </svg>
-);
-
-const CostCard = ({
-  x,
-  color,
-  kind,
-  title,
-  live,
-  delay,
-  children,
-}: {
-  x: number;
-  color: string;
-  kind: 'money' | 'time' | 'attention';
-  title: string;
-  live: boolean;
-  delay: number;
-  children: ReactNode;
-}) => (
-  <Panel x={x} y={380} width={500} height={420} color={color} live={live} delay={delay}>
-    <CostIcon kind={kind} />
-    <h3 style={{ ...DISPLAY, fontSize: 64, marginTop: 26 }}>{title}</h3>
-    <p style={{ ...BODY, fontSize: 30, lineHeight: 1.5, marginTop: 14 }}>{children}</p>
-  </Panel>
-);
+const COSTS: { title: string; detail: string; color: string }[] = [
+  { title: '錢', detail: '訂閱費、內購、手續費。', color: PINK },
+  { title: '時間', detail: '下載、註冊、學怎麼用。', color: BUTTER },
+  { title: '注意力', detail: '看廣告、被通知打擾。', color: MINT },
+  { title: '心力', detail: '要想、要選、要記得用。', color: PERI },
+  { title: '精神', detail: '介面難用，越用越累。', color: BUTTER },
+  { title: '習慣', detail: '放棄原本用順手的方法。', color: MINT },
+  { title: '個資', detail: '交出位置和聯絡人。', color: PERI },
+  { title: '機會', detail: '用了它，就沒空用別的。', color: PINK },
+];
 
 const WhatIsCost: Page = () => {
   const live = useLive();
@@ -1221,24 +1168,24 @@ const WhatIsCost: Page = () => {
       </Tag>
       <Title live={live}>什麼是成本？</Title>
       <p style={{ ...BODY, ...abs(120, 290), width: 1680, fontSize: 34, ...rise(live, 180) }}>
-        為了得到一樣東西，你得先放棄的東西。
+        為了得到一樣東西，你得先放棄的東西。不只是錢。
       </p>
-      <CostCard x={150} color={PINK} kind="money" title="錢" live={live} delay={300}>
-        訂閱費、內購、
-        <br />
-        手續費。
-      </CostCard>
-      <CostCard x={710} color={BUTTER} kind="time" title="時間" live={live} delay={650}>
-        下載、註冊、
-        <br />
-        學怎麼用。
-      </CostCard>
-      <CostCard x={1270} color={MINT} kind="attention" title="注意力" live={live} delay={1000}>
-        看廣告、
-        <br />
-        被通知打擾。
-      </CostCard>
-      <p style={{ ...DISPLAY, ...abs(120, 880), width: 1680, fontSize: 40, ...rise(live, 1500) }}>
+      {COSTS.map((cost, i) => (
+        <Panel
+          key={cost.title}
+          x={120 + (i % 4) * 430}
+          y={i < 4 ? 375 : 625}
+          width={390}
+          height={220}
+          color={cost.color}
+          live={live}
+          delay={300 + i * 140}
+        >
+          <h3 style={{ ...DISPLAY, fontSize: 60 }}>{cost.title}</h3>
+          <p style={{ ...BODY, fontSize: 27, lineHeight: 1.45, marginTop: 16 }}>{cost.detail}</p>
+        </Panel>
+      ))}
+      <p style={{ ...DISPLAY, ...abs(120, 890), width: 1680, fontSize: 40, ...rise(live, 1600) }}>
         使用者每打開一次你的 App，都在付出成本。
       </p>
     </Stage>
@@ -2027,10 +1974,12 @@ export const notes: string[] = [
 拿雨傘來說，晴天帶著它，只覺得包包變重；下大雨的時候，沒有它就全身濕透。
 【指兩張卡。】
 同一把傘，價值差很多。所以價值不是東西本身決定的，是看誰、在什麼時候需要它。你的 App 也一樣，要先想清楚，它對誰、在什麼時候最重要。`,
-  `那成本是什麼？成本，就是為了得到一樣東西，你得先放棄的東西。
-最直接的是錢，訂閱費、內購。但還有時間，下載、註冊、學怎麼用，都要花時間。還有注意力，看廣告、被通知打擾，也是在付出。
+  `那成本是什麼？成本，就是為了得到一樣東西，你得先放棄的東西。而且不只是錢。
+錢最直接，訂閱費、內購。時間也是，下載、註冊、學怎麼用。注意力也是，看廣告、被通知打擾。
+【指下面一排。】
+還有心力，你要想、要選、還要記得打開它。還有精神，介面難用，用越久越累。還有習慣，你得放棄原本用順手的方法。還有個資，要交出位置、聯絡人、照片。最後是機會，你用了這個，就沒空用別的。
 【停一下。】
-使用者每打開一次你的 App，都在付出成本。就算 App 免費，成本也不是零。`,
+所以使用者每打開一次你的 App，都在付出成本。就算 App 免費，成本也不是零。`,
   `把價值和成本放在一起，就是這個蹺蹺板。別人願意付出，是因為覺得值得。我們其實都在比，付出的成本，跟換到的東西，哪一邊比較重。
 拿學生生活來想，一個名牌包價格很重，我的生活卻用不到它的價值，也拿不出能換它的錢，我就不買。喜歡名牌包的人，可能有不同的判斷。
 但如果一個 App，每月十塊，就能省掉選課、找室友的麻煩，我覺得省下的時間比十塊加上學怎麼用的時間還值得，就願意付。
