@@ -877,33 +877,6 @@ const FooterNote = ({ children }: { children: ReactNode }) => (
   <Footnote y={940}>{children}</Footnote>
 );
 
-const ReasonCard = ({
-  x,
-  y,
-  r,
-  color,
-  title,
-  children,
-  live,
-  delay,
-}: {
-  x: number;
-  y: number;
-  r: number;
-  color: string;
-  title: string;
-  children: ReactNode;
-  live: boolean;
-  delay: number;
-}) => (
-  <Sticker x={x} y={y} r={r} live={live} delay={delay} bg={color} pad="36px">
-    <div style={{ width: 430, height: 260 }}>
-      <h3 style={{ ...DISPLAY, fontSize: 52, lineHeight: 1.22 }}>{title}</h3>
-      <p style={{ ...BODY, fontSize: 32, lineHeight: 1.5, marginTop: 36 }}>{children}</p>
-    </div>
-  </Sticker>
-);
-
 const Blank: Page = () => {
   const live = useLive();
   return (
@@ -1494,23 +1467,23 @@ const WhyTaiwan: Page = () => {
         台灣的處境
       </Tag>
       <Title live={live}>為什麼台灣的軟體很難收錢？</Title>
-      <ReasonCard
-        x={140}
-        y={400}
-        r={0}
-        color={BUTTER}
-        title="成本本來就比較高"
-        live={live}
-        delay={300}
+      <h2
+        style={{
+          ...DISPLAY,
+          ...abs(120, 400),
+          width: 1680,
+          fontSize: 84,
+          lineHeight: 1.35,
+          ...rise(live, 300, 40),
+        }}
       >
+        同樣的價值，台灣人要付出的
+        <br />
+        <span style={{ color: TOMATO }}>成本本來就比較高</span>。
+      </h2>
+      <p style={{ ...BODY, ...abs(120, 680), width: 1680, fontSize: 38, ...rise(live, 700) }}>
         同樣 US$20，台灣人要多工作好幾倍的時間。
-      </ReasonCard>
-      <ReasonCard x={705} y={400} r={0} color={PINK} title="所以先找免費的" live={live} delay={550}>
-        不是比較小氣，是付出的代價比較重。
-      </ReasonCard>
-      <ReasonCard x={1270} y={400} r={0} color={PERI} title="產業位置" live={live} delay={800}>
-        台灣擅長代工製造，很少站在軟體品牌的領導位置。
-      </ReasonCard>
+      </p>
     </Stage>
   );
 };
@@ -2842,13 +2815,10 @@ ChatGPT 就不一樣。每個月付一點訂閱費，查資料、寫報告、改
 但在舊金山，最低時薪將近二十美金，工作一個小時就付完了。
 再看一百美金的方案，台灣要打工十六個多小時，等於兩天的班；舊金山只要五個小時左右。
 同一個價錢，在不同地方、不同生活水準裡，要付出的成本完全不一樣。`,
-  `接下來是我自己的觀察，不是研究結論。為什麼台灣大部分的軟體都不太敢收錢，軟體產業也很難做起來？
-第一，台灣人為了得到軟體的價值，要付出的成本本來就比較高。剛剛看到了，同樣二十美金，台灣人要多工作好幾倍的時間。
-第二，所以大家會先找免費的。這不是台灣人比較小氣，而是同樣的價值，我們要付出的代價比較重，先找免費的是很合理的選擇。
-第三，跟台灣在世界上的位置有關。台灣很會代工、製造，國外的公司很敢收錢、收錢的方式也很簡單；台灣比較少站在領導的位置，做出全世界都在用的軟體品牌。
+  `為什麼台灣的軟體很難收錢？
+我覺得最根本的原因是，同樣的價值，台灣人要付出的成本本來就比較高。剛剛看到了，同樣二十美金，台灣人要多工作好幾倍的時間。
 【停一下。】
-所以在台灣，就算提供一樣的價值，使用者要付出的成本，也比美國高很多。這是在台灣做新創一定要面對的現實。
-當然也有反例，像 KKBOX、Dcard，都是在台灣做起來的軟體服務。難，但不是不可能。`,
+所以在台灣，就算提供一樣的價值，使用者付出的成本也比美國高很多。這是在台灣做新創一定要面對的現實。難，但不是不可能。`,
   `那在台灣要怎麼做？大家不付錢，常常是因為成本太高。那我們把單價調低，就等於降低大家要付出的成本。
 拿我自己做的 App，半逢遇甲來說。課表、iLearn、公車、停車都收在一起，還有我整理的逢甲美食地圖。
 如果它一個月收兩百塊，我很確定沒有人會買，因為換到的價值撐不起兩百塊。
