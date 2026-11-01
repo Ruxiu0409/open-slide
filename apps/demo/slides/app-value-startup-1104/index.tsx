@@ -872,7 +872,7 @@ const CampusMath: Page = () => {
   const revenue = useCount(60000, live, 650, 1700);
   return (
     <Stage>
-      <Tag n="06" live={live}>
+      <Tag n="07" live={live}>
         算給你看
       </Tag>
       <Title live={live}>不用先改變世界，先從你的學校開始。</Title>
@@ -970,7 +970,7 @@ const WhatIsMoney: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="07" live={live}>
+      <Tag n="03" live={live}>
         錢是什麼
       </Tag>
       <Title live={live}>100 塊，為什麼值 100 塊？</Title>
@@ -1034,7 +1034,7 @@ const MoneyWaste: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="07" live={live}>
+      <Tag n="03" live={live}>
         錢是什麼
       </Tag>
       <Title live={live}>如果有一天，它什麼都買不到……</Title>
@@ -1118,7 +1118,7 @@ const WhatIsValue: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="03" live={live}>
+      <Tag n="04" live={live}>
         價值是什麼
       </Tag>
       <Title live={live}>什麼是價值？</Title>
@@ -1216,7 +1216,7 @@ const WhatIsCost: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="04" live={live}>
+      <Tag n="05" live={live}>
         成本是什麼
       </Tag>
       <Title live={live}>什麼是成本？</Title>
@@ -1356,7 +1356,7 @@ const ValueExchange: Page = () => {
   const live = useLive();
   return (
     <Stage>
-      <Tag n="05" live={live}>
+      <Tag n="06" live={live}>
         價值
       </Tag>
       <Title live={live}>付出成本，是在換一個值得的東西。</Title>
@@ -2016,6 +2016,13 @@ export const notes: string[] = [
 沒有哪種理由比較厲害，要問它能不能讓你遇到麻煩時，還願意回來改一次。
 理由也可以很實際，就是有人願意為它付出。那別人為什麼會願意付出？`,
   `（空白頁）`,
+  `拿一張一百塊來看，為什麼它值一百塊？因為你可以拿它換便當、買飲料，或搭公車。
+【讓貼紙出現，問大家平常會拿來買什麼。】
+在經濟活動裡，錢代表我們可以交換的價值。人們願意拿多少錢換一樣東西，形成了我們看到的價格。
+它值一百塊，是因為能換到這些東西。`,
+  `那想像一下，有一天，這張一百塊什麼都買不到，沒人願意收。紙還是同一張紙，但對你來說，就跟廢紙一樣。
+【等「廢紙」蓋下來。】
+所以這裡說錢本身沒有價值，是在提醒大家，重要的是它能換到什麼。錢能換到的那些東西，就是價值。那什麼叫價值？`,
   `先講什麼叫價值。價值，就是一樣東西能幫你解決多少問題、對你有多重要。
 拿雨傘來說，晴天帶著它，只覺得包包變重；下大雨的時候，沒有它就全身濕透。
 【指兩張卡。】
@@ -2035,14 +2042,7 @@ export const notes: string[] = [
 每月六萬。這是假設情境，不是實際人數；算的是營收，還沒扣成本，也不是下載了就等於付費。
 不用先做全世界都在用的東西，可以先解決同學每天遇到的小麻煩。像選課資訊很散、找室友很花時間。
 我嚮往的是，做自己喜歡的事，也能過生活。但這得持續有人願意付錢，不能只在試算表上成立。
-但別人為什麼要付你這十塊？先想想錢是什麼。`,
-  `拿一張一百塊來看，為什麼它值一百塊？因為你可以拿它換便當、買飲料，或搭公車。
-【讓貼紙出現，問大家平常會拿來買什麼。】
-在經濟活動裡，錢代表我們可以交換的價值。人們願意拿多少錢換一樣東西，形成了我們看到的價格。
-它值一百塊，是因為能換到這些東西。`,
-  `那想像一下，有一天，這張一百塊什麼都買不到，沒人願意收。紙還是同一張紙，但對你來說，就跟廢紙一樣。
-【等「廢紙」蓋下來。】
-所以這裡說錢本身沒有價值，是在提醒大家，重要的是它能換到什麼。回到 App，使用者拿錢出來，就是在換你給的價值。講這麼多，不如直接拿我自己的 App 來試試看。`,
+講這麼多，不如直接拿我自己的 App 來試試看。`,
   `這是我做的 App，半逢遇甲。課表、iLearn、公車、停車都收在一起，還有我自己整理的逢甲美食地圖，現在每個月大概有六千個人在用。
 先問第一題，你有在用半逢遇甲嗎？有的舉手。
 【數一下，回應幾句。】
@@ -2094,12 +2094,12 @@ export default [
   AfterCompetition,
   ReasonsToContinue,
   Blank,
+  WhatIsMoney,
+  MoneyWaste,
   WhatIsValue,
   WhatIsCost,
   ValueExchange,
   CampusMath,
-  WhatIsMoney,
-  MoneyWaste,
   LivePoll,
   Instagram,
   Traffic,
