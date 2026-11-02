@@ -2126,7 +2126,17 @@ const CaseCard = ({
     })}
   >
     <span style={{ ...DISPLAY, fontSize: 36 }}>{label}</span>
-    <span style={{ ...BODY, fontSize: 34, lineHeight: 1.4 }}>{children}</span>
+    <span
+      style={{
+        ...BODY,
+        fontSize: 34,
+        lineHeight: 1.4,
+        textWrap: 'balance',
+        whiteSpace: 'pre-line',
+      }}
+    >
+      {children}
+    </span>
   </div>
 );
 
@@ -2170,7 +2180,9 @@ const caseStudyPage = (data: CaseStudyData): Page => {
         </p>
         <div
           style={abs(120 + (720 - rowWidth) / 2, 360, {
+            height: 600,
             display: 'flex',
+            alignItems: 'center',
             gap,
             ...rise(live, 250, 40),
           })}
@@ -2182,9 +2194,7 @@ const caseStudyPage = (data: CaseStudyData): Page => {
               alt={`${data.name} 畫面 ${i + 1}`}
               style={{
                 width: shotWidth,
-                height: 590,
-                objectFit: 'cover',
-                objectPosition: 'top',
+                height: 'auto',
                 borderRadius: 26,
                 border: BORDER,
                 boxShadow: shadow(8),
@@ -2522,7 +2532,7 @@ const casePicpet = caseStudyPage({
   batch: 'ikigai #01',
   tagline: '跟好朋友一起養一隻虛擬寵物，用每天的照片餵牠。',
   problem: '好朋友各自忙，很少分享生活，感情慢慢就淡了。',
-  solution: '一起養寵物，每天拍照「餵」牠，寵物會升等、解鎖家具。',
+  solution: '一起養寵物，每天拍照「餵」牠，\n寵物會升等、解鎖家具。',
   revenue: '免費下載。PicPet+ 月訂 NT$120／年訂 NT$1,190，另賣金幣。',
   icon: casePicpetIcon,
   shots: [casePicpet1, casePicpet2, casePicpet3],
@@ -2533,7 +2543,7 @@ const caseTellitnow = caseStudyPage({
   batch: 'ikigai #02',
   tagline: '店家在地圖上發探店任務，附近的人到店發文領獎勵。',
   problem: '小店想宣傳，找網紅又貴又難配對，也拿不到真實口碑。',
-  solution: '附近的人收到任務就能到店體驗、發文，店家審核後發獎勵。',
+  solution: '附近的人收到任務就能到店體驗、發文，\n店家審核後發獎勵。',
   revenue: '對發文的人免費，向店家收月費：NT$2,999 起；單次任務抽 30%。',
   icon: caseTellitnowIcon,
   shots: [caseTellitnow1, caseTellitnow2, caseTellitnow3],
@@ -2544,7 +2554,7 @@ const caseSugarai = caseStudyPage({
   batch: 'ikigai #02',
   tagline: '跟正版授權的漫畫角色一對一聊天。',
   problem: '喜歡的角色只能看、不能互動；創作者也少有新的變現方式。',
-  solution: '向創作者取得授權，個性由創作者監修，角色會記得你們的對話。',
+  solution: '向創作者取得授權，個性由創作者監修，\n角色會記得你們的對話。',
   revenue: '免費下載，賣 App 內道具（NT$59 起）和月卡 NT$199。',
   icon: caseSugaraiIcon,
   shots: [caseSugarai1, caseSugarai2, caseSugarai3],
@@ -2555,7 +2565,7 @@ const caseLfg = caseStudyPage({
   batch: 'ikigai #03',
   tagline: '把看到的店存成共用地圖，一鍵揪朋友出門。',
   problem: '群組裡「要幹嘛」「你決定啦」來回鬼打牆，最後常常約不成。',
-  solution: '想去的店丟進地圖，選地點、選人、送出，朋友直接回要不要。',
+  solution: '想去的店丟進地圖，\n選地點、選人、送出，朋友直接回要不要。',
   revenue: '免費下載，收藏數用完再買：10 次 NT$30、50 次 NT$90。',
   icon: caseLfgIcon,
   shots: [caseLfg1, caseLfg2, caseLfg3],
@@ -2566,7 +2576,7 @@ const casePeeps = caseStudyPage({
   batch: 'ikigai #03',
   tagline: '跟好朋友、另一半一起住的線上像素小家。',
   problem: '想跟朋友保持聯繫，但發限動、傳訊息都有壓力。',
-  solution: '共用的像素房間，一起佈置、養寵物、玩小遊戲，打開就像回家。',
+  solution: '共用的像素房間，一起佈置、養寵物、玩小遊戲，\n打開就像回家。',
   revenue: '免費下載。PRIME 月訂 NT$150／年訂 NT$1,290，另賣 P 幣。',
   icon: casePeepsIcon,
   shots: [casePeeps1, casePeeps2, casePeeps3],
@@ -2577,7 +2587,7 @@ const caseKardomo = caseStudyPage({
   batch: 'ikigai #03',
   tagline: '台灣 K-pop 粉絲的一站式追星 App。',
   problem: '追星要在好幾個 App 之間跳：行程、榜單、小卡都分開記。',
-  solution: '把追星行事曆、音樂榜單、小卡圖鑑、討論串放進同一個 App。',
+  solution: '把追星行事曆、音樂榜單、\n小卡圖鑑、討論串放進同一個 App。',
   revenue: '目前免費、沒有內購，官方沒有公開怎麼收費。',
   icon: caseKardomoIcon,
   shots: [caseKardomo1, caseKardomo2, caseKardomo3],
