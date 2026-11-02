@@ -7,6 +7,7 @@ import {
   useSlidePageNumber,
 } from '@open-slide/core';
 import { type CSSProperties, type ReactNode, useState } from 'react';
+import batchGroup from './assets/886/batch-group.webp';
 import caseKardomo1 from './assets/886/kardomo-1.webp';
 import caseKardomo2 from './assets/886/kardomo-2.webp';
 import caseKardomo3 from './assets/886/kardomo-3.webp';
@@ -2461,6 +2462,17 @@ const Studio886: Page = () => {
   const live = useLive();
   return (
     <Stage>
+      <img
+        src={batchGroup}
+        alt=""
+        style={abs(0, 0, {
+          width: 1920,
+          height: 1080,
+          objectFit: 'cover',
+          opacity: 0.16,
+          display: 'block',
+        })}
+      />
       <Tag n="02" live={live}>
         886 案例
       </Tag>
