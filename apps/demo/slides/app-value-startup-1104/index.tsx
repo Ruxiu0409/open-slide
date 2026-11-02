@@ -2723,13 +2723,6 @@ const Garage: Page = () => {
   );
 };
 
-const NEXT_STEPS = [
-  '找一件煩到大家願意付錢的事',
-  '先做出來，讓第一批人用',
-  '想清楚誰付錢、換到什麼',
-  '拿作品去爭取更多資源',
-];
-
 const Close: Page = () => {
   const live = useLive();
   return (
@@ -2751,46 +2744,14 @@ const Close: Page = () => {
         <br />
         現在你知道要做什麼了嗎？
       </h2>
-      <div
-        style={abs(120, 420, {
-          width: 1140,
-          display: 'flex',
-          justifyContent: 'center',
-        })}
-      >
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 22, textAlign: 'left' }}>
-          {NEXT_STEPS.map((step, i) => (
-            <div
-              key={step}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 26,
-                ...rise(live, 400 + i * 220, 24),
-              }}
-            >
-              <span
-                style={{
-                  ...NUM,
-                  flex: 'none',
-                  width: 70,
-                  height: 70,
-                  borderRadius: '50%',
-                  border: BORDER,
-                  background: [BUTTER, MINT, PERI, PINK][i],
-                  boxShadow: shadow(4),
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: 36,
-                }}
-              >
-                {i + 1}
-              </span>
-              <span style={{ ...DISPLAY, fontSize: 46 }}>{step}</span>
-            </div>
-          ))}
-        </div>
+      <div style={abs(120, 430, { width: 1140, ...rise(live, 450, 30) })}>
+        <p style={{ ...BODY, fontSize: 36, fontWeight: 700, color: MUTED }}>下一步</p>
+        <p style={{ ...DISPLAY, fontSize: 150, lineHeight: 1.15, color: TOMATO, marginTop: 6 }}>
+          來找我。
+        </p>
+        <p style={{ ...BODY, fontSize: 34, fontWeight: 700, marginTop: 14 }}>
+          想做出商業模式、想創業，帶一個想法來就好
+        </p>
       </div>
       <p
         style={{
@@ -2804,7 +2765,7 @@ const Close: Page = () => {
       >
         創業，其實沒有你想像中那麼難。
       </p>
-      <Panel x={1360} y={250} width={410} height={540} color={BUTTER} live={live} delay={350}>
+      <Panel x={1360} y={270} width={410} height={540} color={BUTTER} live={live} delay={350}>
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
           <Mark size={72} />
         </div>
@@ -2828,21 +2789,6 @@ const Close: Page = () => {
         </div>
         <p style={{ ...DISPLAY, fontSize: 34, marginTop: 22, textAlign: 'center' }}>IG @cy_4.9</p>
       </Panel>
-      <p
-        style={{
-          ...BODY,
-          ...abs(1330, 820),
-          width: 470,
-          fontSize: 28,
-          fontWeight: 700,
-          lineHeight: 1.45,
-          ...rise(live, 900),
-        }}
-      >
-        想做商業模式、想創業，
-        <br />
-        來找我聊
-      </p>
       <Sparkle x={1270} y={640} size={48} color={MINT} live={live} delay={1350} />
     </Stage>
   );
@@ -3024,11 +2970,10 @@ ChatGPT 就不一樣。每個月付一點訂閱費，查資料、寫報告、改
 但賈伯斯當初在車庫的時候，從來沒有人跟他說，未來會變成現在這個樣子。沒有人交代他任務，是他自己想像出來的。
 這就是新創的精神。如果你也想跟賈伯斯一樣，發揮自己的創意，靠自己的手，做出一個這個世界上還沒有的東西，請大膽地去想像。`,
   `最後，回到一開始的問題：給你三百二十萬，你會做什麼？
-聽完今天，我希望大家心裡有不一樣的答案。不是先想評審喜歡什麼，而是照這四步走：
-【一個一個指。】
-第一，找一件煩到大家願意付錢的事。第二，先做出來，讓第一批人用。第三，想清楚誰付錢、他換到什麼。第四，等你擁有作品，再拿它去爭取更多資源。
+聽完今天，我希望大家心裡有不一樣的答案。不是先想評審喜歡什麼，而是先找到一件大家願意付錢的事，把它做出來、讓人用，再拿作品去爭取更多資源。
 作品不一定要得獎才能證明自己。有人用、有人覺得它有價值，它就已經證明了。
-我在這裡負責的，就是陪大家培養出有商業模式、或是願意創業的團隊。想把 App 做出商業模式，或是有想創業的念頭，都可以來找我聊，帶一個想法來就好。我自己也想創業，也在找願意一起做事的夥伴。
+那下一步是什麼？很簡單，來找我。
+我在這裡負責的，就是陪大家培養出有商業模式、或是願意創業的團隊。想把 App 做出商業模式，或是有想創業的念頭，帶一個想法來就好。我自己也想創業，也在找願意一起做事的夥伴。
 【停一下。】
 就像開場說的：創業，其實沒有你想像中那麼難。我是瑞瑞，謝謝大家。
 【右邊是我的 IG QR，可以停一下讓大家掃。】`,
