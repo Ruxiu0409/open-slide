@@ -72,7 +72,7 @@ const SLIDE_ID = 'app-value-startup-1104';
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Gabarito:wght@500;700;800;900&display=swap';
 const CJK_TEXT =
-  '、。「」【】一三上下不世丟中串主久之也了事二互五些交亨享人什今介仍他付代以件任份企伯伴但佈位低住作你使來例供依便係促保修個倍們候值假做停偶傘備傳像價億優元先光免兒入內全兩公六共其具冊再准凸出分列初判別利到制券刻前剛創力功加助動務勞勢勵包北區十千升午半協卡卻原厲去參又及友取口另只叫可台右司各合同名向否含吵告呢和品員哪售唱商問啦善喜喝單嗎嘛器嚮四回因困圈國圍園圖團在地坊執培基堆報場塊填境壓外多夜夠夥大天太央失套好如始委媒子字存孩學它安完官定宜客宣室害宵家容實審寫寵專對導小少就局屆展層履屬山州工左差己已市師帳帶常幕幣幫平年幹幾底店府度庫廢廣廳弄式弱張形影往待很後得從心忘忙快念怎怕思性息情想意感慢慣慮憶應成我或截戰戲戶房所手才打扣扮批找技把投抽拆拍招拜拿持指按授掉掌排探接推提換揪搭搶摺撐撰擁擅據擬擾支收改放政故敗教散整數文料斯新斷方於日明易昕星是時景晴智曆曝更書最會月有朋服未本材束杭杯東松板果架某查校核格案桿條梯棄楚業榜構樂標模樣樹機權次款歡止正歲歷段每比氣求決沒沿法注洞活流淡清測港源準滑滿演漫潛激濕濟灣災為無焦然照煩營爭牆片版牌牠物特猜獎玩班現理瑞生產用由甲申界留畢畫當疊痕療登發百的盈監目直省看真睿知研破碎碑碰確示社神票禮私科程種積究空突立站章童競第筆等答策算管箭簡籍籤粉精系約紅紙級素累終組結絡給統絲經維網緒線練總績繪繫繼續置署美群義習考者而聊聯聲聽股育背能膽自至致臺與興舉舊色花苦英茶華萬葉著蓋薦薪藏處虛號螢行術衛衝表被裂補裡製西要見覺角解觸言訂計訊討記設訴診註評詢試話該認語說誰課調請論講謝證識讀變讓負責貴買費貼資賈賣賺購賽走起越趣趨跟路跳蹺躍身躺車軟軸較載輔輩輸轉辛辦近追退送透這通速造逢連週進遇遊運過道適選邀還邊那部都鄉配醒醫重量金鈕鉅鉸銀銘銷鋒錄錢錯鍵鎖鏈鐘鑑長門閃開間閱關附降限院陪陳隊階際隻集離難雨零需青靜非靠面音頁項順須預頒頓領頭題額願顧食飲養餐餵首駐驗體高鬼麻麼黑點齡！（）＋，／：；＝？～';
+  '、。「」【】一三上下不世丟中串主久之也了事二互五些交亨享人什今介仍他付代以件任份企伯伴但佈位低住作你使來例供依便係促保修個倍們候值假做停偶傘備傳像價億優元先光免兒入內全兩公六共其具冊再准凸出分列初判別利到制券刻前剛創力功加助動務勞勢勵包北區十千升午半協卡卻原厲去參又及友取口另只叫可台右司各合同名向否含吵告呢和品員哪售唱商問啦善喜喝單嗎嘛器嚮四回因困圈國圍園圖團在地坊執培基堆報場塊填境壓外多夜夠夥大天太央失套好如始委媒子字存孩學它安完官定宜客宣室害宵家容實審寫寵專對導小少就局屆展層履屬山州工左差己已市師帳帶常幕幣幫平年幹幾底店府度庫廢廣廳弄式弱張形影往待很後得從心忘忙快念怎怕思性息情想意感慢慣慮憶應成我或截戰戲戶房所手才打扣扮批找技把投抽拆拍招拜拿持指按授掉掌排探接推提換揪搭搶摺撐撰擁擅據擬擾支收改放政故敗教散整數文料斯新斷方於日明易昕星是時景晴智曆曝更書最會月有朋服未本材束杭杯東松板果架某查校核格案桿條梯棄楚業榜構樂標模樣樹機權次款歡止正步歲歷段每比氣求決沒沿法注洞活流淡清測港源準滑滿演漫潛激濕濟灣災為無焦然照煩營爭牆片版牌牠物特猜獎玩班現理瑞生產用由甲申界留畢畫當疊痕療登發百的盈監目直省看真睿知研破碎碑碰確示社神票禮私科程種積究空突立站章童競第筆等答策算管箭簡籍籤粉精系約紅紙級素累終組結絡給統絲經維網緒線練總績繪繫繼續置署美群義習考者而聊聯聲聽股育背能膽自至致臺與興舉舊色花苦英茶華萬葉著蓋薦薪藏處虛號螢行術衛衝表被裂補裡製西要見覺角解觸言訂計訊討記設訴診註評詢試話該認語說誰課調請論講謝證識讀變讓負責貴買費貼資賈賣賺購賽走起越趣趨跟路跳蹺躍身躺車軟軸較載輔輩輸轉辛辦近追退送透這通速造逢連週進遇遊運過道適選邀還邊那部都鄉配醒醫重量金鈕鉅鉸銀銘銷鋒錄錢錯鍵鎖鏈鐘鑑長門閃開間閱關附降限院陪陳隊階際隻集離難雨零需青靜非靠面音頁項順須預頒頓領頭題額願顧食飲養餐餵首駐驗體高鬼麻麼黑點齡！（）＋，／：；＝？～';
 const CJK_FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap&text=${encodeURIComponent(CJK_TEXT)}`;
 const CJK_FONT_LINK_ID = `osd-webfont-cjk-${SLIDE_ID}`;
 const FONT_LINK_ID = `osd-webfont-${SLIDE_ID}`;
@@ -271,47 +271,6 @@ const Mark = ({ size = 56 }: { size?: number }) => (
     />
   </svg>
 );
-
-const Letter = ({
-  ch,
-  i,
-  live,
-  delay,
-  children,
-}: {
-  ch: string;
-  i: number;
-  live: boolean;
-  delay: number;
-  children?: ReactNode;
-}) => {
-  const d = delay + i * 85;
-  return (
-    <span
-      style={{
-        display: 'inline-block',
-        position: 'relative',
-        ...(live
-          ? ({
-              animation: `pm-drop 940ms ${DROP} ${d}ms both`,
-              '--pm-from': '-1.6em',
-            } as CSSProperties)
-          : {}),
-      }}
-    >
-      <span
-        style={{
-          display: 'inline-block',
-          transformOrigin: '50% 88%',
-          ...anim(live, `pm-squash 560ms ease-out ${d + Math.round(940 * DROP_LAND)}ms both`),
-        }}
-      >
-        {ch}
-      </span>
-      {children}
-    </span>
-  );
-};
 
 const Footer = () => {
   const { current, total } = useSlidePageNumber();
@@ -2764,52 +2723,88 @@ const Garage: Page = () => {
   );
 };
 
+const NEXT_STEPS = [
+  '找一件煩到大家願意付錢的事',
+  '先做出來，讓第一批人用',
+  '想清楚誰付錢、換到什麼',
+  '拿作品去爭取更多資源',
+];
+
 const Close: Page = () => {
   const live = useLive();
   return (
     <Stage footer={false}>
       <Tag n="21" live={live} color={TOMATO}>
-        我也在找一起做事的人
+        結語與下一步
       </Tag>
       <h2
         style={{
           ...DISPLAY,
-          ...abs(120, 235),
-          fontSize: 76,
-          width: 1120,
+          ...abs(120, 200),
+          width: 1140,
+          fontSize: 66,
           lineHeight: 1.3,
           ...rise(live, 100),
         }}
       >
-        作品不一定要得獎，
+        給你 <span style={{ color: TOMATO }}>320 萬</span>，
         <br />
-        才能證明自己。
-        <br />
-        不想比賽也沒關係，
+        現在你知道要做什麼了嗎？
       </h2>
-      <div style={{ ...DISPLAY, ...abs(120, 570), width: 1120, fontSize: 148, color: TOMATO }}>
-        <Letter ch="來" i={0} live={live} delay={400} />
-        <Letter ch="找" i={1} live={live} delay={400} />
-        <Letter ch="我" i={2} live={live} delay={400} />
-        <Letter ch="。" i={3} live={live} delay={400} />
+      <div
+        style={abs(120, 420, {
+          width: 1140,
+          display: 'flex',
+          justifyContent: 'center',
+        })}
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 22, textAlign: 'left' }}>
+          {NEXT_STEPS.map((step, i) => (
+            <div
+              key={step}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 26,
+                ...rise(live, 400 + i * 220, 24),
+              }}
+            >
+              <span
+                style={{
+                  ...NUM,
+                  flex: 'none',
+                  width: 70,
+                  height: 70,
+                  borderRadius: '50%',
+                  border: BORDER,
+                  background: [BUTTER, MINT, PERI, PINK][i],
+                  boxShadow: shadow(4),
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: 36,
+                }}
+              >
+                {i + 1}
+              </span>
+              <span style={{ ...DISPLAY, fontSize: 46 }}>{step}</span>
+            </div>
+          ))}
+        </div>
       </div>
       <p
         style={{
-          ...BODY,
-          ...abs(130, 790),
-          fontSize: 34,
-          lineHeight: 1.55,
-          width: 1110,
-          fontWeight: 700,
+          ...DISPLAY,
+          ...abs(120, 880),
+          width: 1140,
+          fontSize: 52,
+          color: TOMATO,
+          ...rise(live, 1500),
         }}
       >
-        想把 App 做出商業模式，
-        <br />
-        或是想創業的團隊，
-        <br />
-        都可以來找我聊。
+        創業，其實沒有你想像中那麼難。
       </p>
-      <Panel x={1360} y={300} width={410} height={570} color={BUTTER} live={live} delay={350}>
+      <Panel x={1360} y={250} width={410} height={540} color={BUTTER} live={live} delay={350}>
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
           <Mark size={72} />
         </div>
@@ -2833,10 +2828,22 @@ const Close: Page = () => {
         </div>
         <p style={{ ...DISPLAY, fontSize: 34, marginTop: 22, textAlign: 'center' }}>IG @cy_4.9</p>
       </Panel>
-      <Sparkle x={1270} y={680} size={48} color={MINT} live={live} delay={1350} />
-      <p style={{ ...MONO, ...abs(120, 984), width: 1120, color: MUTED }}>
-        瑞瑞 · 陪你想商業模式 / 一起創業
+      <p
+        style={{
+          ...BODY,
+          ...abs(1330, 820),
+          width: 470,
+          fontSize: 28,
+          fontWeight: 700,
+          lineHeight: 1.45,
+          ...rise(live, 900),
+        }}
+      >
+        想做商業模式、想創業，
+        <br />
+        來找我聊
       </p>
+      <Sparkle x={1270} y={640} size={48} color={MINT} live={live} delay={1350} />
     </Stage>
   );
 };
@@ -3016,11 +3023,14 @@ ChatGPT 就不一樣。每個月付一點訂閱費，查資料、寫報告、改
 【停一下。】
 但賈伯斯當初在車庫的時候，從來沒有人跟他說，未來會變成現在這個樣子。沒有人交代他任務，是他自己想像出來的。
 這就是新創的精神。如果你也想跟賈伯斯一樣，發揮自己的創意，靠自己的手，做出一個這個世界上還沒有的東西，請大膽地去想像。`,
-  `回到一開始的問題。作品不一定要得獎，才能證明自己。有人用、有人覺得它有價值，它就已經證明了。也不是每個人都得朝比賽去想，不想比賽也完全沒關係。
-我在這裡負責的，就是陪大家培養出有商業模式、或是願意創業的團隊。
-如果你想把 App 做出商業模式，或是有想創業的念頭，都可以來找我聊。不用先準備完整的商業計畫，帶一個想法來就好。
-我自己也想創業，在找願意做事、願意聽使用者說話的夥伴。先聊、先做點東西，看看適不適合一起走。
-我是瑞瑞，謝謝大家。
+  `最後，回到一開始的問題：給你三百二十萬，你會做什麼？
+聽完今天，我希望大家心裡有不一樣的答案。不是先想評審喜歡什麼，而是照這四步走：
+【一個一個指。】
+第一，找一件煩到大家願意付錢的事。第二，先做出來，讓第一批人用。第三，想清楚誰付錢、他換到什麼。第四，等你擁有作品，再拿它去爭取更多資源。
+作品不一定要得獎才能證明自己。有人用、有人覺得它有價值，它就已經證明了。
+我在這裡負責的，就是陪大家培養出有商業模式、或是願意創業的團隊。想把 App 做出商業模式，或是有想創業的念頭，都可以來找我聊，帶一個想法來就好。我自己也想創業，也在找願意一起做事的夥伴。
+【停一下。】
+就像開場說的：創業，其實沒有你想像中那麼難。我是瑞瑞，謝謝大家。
 【右邊是我的 IG QR，可以停一下讓大家掃。】`,
 ];
 
