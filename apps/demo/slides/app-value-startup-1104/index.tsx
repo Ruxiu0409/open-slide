@@ -799,7 +799,7 @@ const AfterCompetition: Page = () => {
         常見的選題習慣
       </Tag>
       <Title live={live}>題目很有意義，然後呢？</Title>
-      <Panel x={120} y={350} width={760} height={280} color={PERI} live={live}>
+      <Panel x={120} y={400} width={760} height={280} color={PERI} live={live}>
         <p style={{ ...BODY, fontWeight: 700 }}>以前選題時常先想</p>
         <h3 style={{ ...DISPLAY, fontSize: 62, marginTop: 28 }}>
           什麼題目
@@ -807,10 +807,10 @@ const AfterCompetition: Page = () => {
           比較容易得獎
         </h3>
       </Panel>
-      <div style={{ ...DISPLAY, ...abs(880, 440), width: 160, fontSize: 80, ...rise(live, 350) }}>
+      <div style={{ ...DISPLAY, ...abs(880, 490), width: 160, fontSize: 80, ...rise(live, 350) }}>
         →
       </div>
-      <Panel x={1040} y={350} width={760} height={280} color={PINK} live={live} delay={420}>
+      <Panel x={1040} y={400} width={760} height={280} color={PINK} live={live} delay={420}>
         <p style={{ ...BODY, fontWeight: 700 }}>卻可能變成</p>
         <h3 style={{ ...DISPLAY, fontSize: 62, marginTop: 28 }}>
           比賽結束那天
@@ -821,7 +821,7 @@ const AfterCompetition: Page = () => {
       <div
         style={{
           ...DISPLAY,
-          ...abs(120, 712),
+          ...abs(120, 762),
           width: 1680,
           fontSize: 50,
           lineHeight: 1.4,
@@ -845,7 +845,7 @@ const WhoDecides: Page = () => {
       </Tag>
       <Title live={live}>為什麼要把 App 的結局，交給評審決定？</Title>
       <div
-        style={abs(120, 380, {
+        style={abs(120, 420, {
           width: 1680,
           display: 'flex',
           alignItems: 'center',
@@ -867,7 +867,7 @@ const WhoDecides: Page = () => {
       <div
         style={{
           ...DISPLAY,
-          ...abs(120, 760),
+          ...abs(120, 800),
           width: 1680,
           fontSize: 50,
           lineHeight: 1.4,
@@ -1521,7 +1521,7 @@ const GamePrices: Page = () => {
         <Panel
           key={item.price}
           x={140 + i * 565}
-          y={380}
+          y={445}
           width={510}
           height={380}
           color={item.color}
