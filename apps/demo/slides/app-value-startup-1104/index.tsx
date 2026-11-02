@@ -2466,12 +2466,30 @@ const Studio886: Page = () => {
         台北的新創工作室，計畫叫 ikigai Launchpad。
       </p>
       <Panel x={340} y={380} width={560} height={330} color={BUTTER} live={live} delay={300}>
-        <p style={{ ...NUM, fontSize: 110, lineHeight: 1.1 }}>10 週</p>
-        <p style={{ ...BODY, fontSize: 30, marginTop: 18 }}>在台北實體進行</p>
+        <div
+          style={{
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}
+        >
+          <p style={{ ...NUM, fontSize: 110, lineHeight: 1.1 }}>10 週</p>
+          <p style={{ ...BODY, fontSize: 30, marginTop: 18 }}>在台北實體進行</p>
+        </div>
       </Panel>
       <Panel x={1020} y={380} width={560} height={330} color={MINT} live={live} delay={500}>
-        <p style={{ ...NUM, fontSize: 110, lineHeight: 1.1 }}>US$100K</p>
-        <p style={{ ...BODY, fontSize: 30, marginTop: 18 }}>換公司 8% 股份</p>
+        <div
+          style={{
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}
+        >
+          <p style={{ ...NUM, fontSize: 110, lineHeight: 1.1 }}>US$100K</p>
+          <p style={{ ...BODY, fontSize: 30, marginTop: 18 }}>換公司 8% 股份</p>
+        </div>
       </Panel>
       <Footnote y={900}>
         投資條件：US$100K 換 8% SAFE。資料：886studios.com、886 Studios Substack；後面各頁的價格取自
