@@ -7,10 +7,6 @@ import {
   useSlidePageNumber,
 } from '@open-slide/core';
 import { type CSSProperties, type ReactNode, useState } from 'react';
-import caseHushli1 from './assets/886/hushli-1.webp';
-import caseHushli2 from './assets/886/hushli-2.webp';
-import caseHushli3 from './assets/886/hushli-3.webp';
-import caseHushliIcon from './assets/886/hushli-icon.webp';
 import caseKardomo1 from './assets/886/kardomo-1.webp';
 import caseKardomo2 from './assets/886/kardomo-2.webp';
 import caseKardomo3 from './assets/886/kardomo-3.webp';
@@ -27,10 +23,6 @@ import casePicpet1 from './assets/886/picpet-1.webp';
 import casePicpet2 from './assets/886/picpet-2.webp';
 import casePicpet3 from './assets/886/picpet-3.webp';
 import casePicpetIcon from './assets/886/picpet-icon.webp';
-import casePicturecook1 from './assets/886/picturecook-1.webp';
-import casePicturecook2 from './assets/886/picturecook-2.webp';
-import casePicturecook3 from './assets/886/picturecook-3.webp';
-import casePicturecookIcon from './assets/886/picturecook-icon.webp';
 import caseSugarai1 from './assets/886/sugarai-1.webp';
 import caseSugarai2 from './assets/886/sugarai-2.webp';
 import caseSugarai3 from './assets/886/sugarai-3.webp';
@@ -47,8 +39,6 @@ import founderMarxYeh from './assets/founders/marx-yeh.webp';
 import founderPachaChen from './assets/founders/pacha-chen.webp';
 import founderRonnyYen from './assets/founders/ronny-yen.webp';
 import founderRyanYang from './assets/founders/ryan-yang.webp';
-import founderTimChen from './assets/founders/tim-chen.webp';
-import founderYaohuaYang from './assets/founders/yaohua-yang.webp';
 import igQr from './assets/ig-qr.svg';
 import newsCnyes from './assets/news/cnyes.webp';
 import newsMacrumors from './assets/news/macrumors.webp';
@@ -2365,22 +2355,6 @@ const teamTellitnow = teamPage({
   ],
 });
 
-const teamPicturecook = teamPage({
-  team: 'PictureCook',
-  batch: 'ikigai #02',
-  icon: casePicturecookIcon,
-  founders: [
-    {
-      name: 'Yaohua Yang',
-      role: '執行長',
-      photo: founderYaohuaYang,
-      lines: ['做過兒童發展服務', '做過 FDA 核准的醫療器材'],
-    },
-    { name: 'Hogan Sung', role: '技術長', lines: ['前 Roblox、Yelp 工程師'] },
-    { name: 'Ling Chiu', role: '產品長', lines: ['做過下載破一億的產品', '設計系教授'] },
-  ],
-});
-
 const teamSugarai = teamPage({
   team: 'Sugar AI',
   batch: 'ikigai #02',
@@ -2400,22 +2374,6 @@ const teamSugarai = teamPage({
     },
   ],
   note: '大學時就一起參加黑客松，一路合作到現在',
-});
-
-const teamHushli = teamPage({
-  team: 'Hushli',
-  batch: 'ikigai #02',
-  icon: caseHushliIcon,
-  founders: [
-    {
-      name: 'Tim Chen',
-      role: '執行長',
-      photo: founderTimChen,
-      lines: ['工程師', '第二次創業'],
-    },
-    { name: 'Sharon Wu', role: '共同創辦人', lines: ['負責設計'] },
-  ],
-  note: '兩人半年做了 6 款 App，累積 50 萬使用者',
 });
 
 const teamLfg = teamPage({
@@ -2521,17 +2479,6 @@ const caseTellitnow = caseStudyPage({
   shots: [caseTellitnow1, caseTellitnow2, caseTellitnow3],
 });
 
-const casePicturecook = caseStudyPage({
-  name: 'PictureCook',
-  batch: 'ikigai #02',
-  tagline: '孩子的 AI 英文朋友，用互動繪本聊天學英文。',
-  problem: '小孩學英文多半靠字卡和練習題，無聊，也很少開口說。',
-  solution: '互動繪本加 AI 角色對話，角色會問問題，讓孩子開口回答。',
-  revenue: '免費下載。Story Plus 單月 NT$490、六個月 NT$1,990。',
-  icon: casePicturecookIcon,
-  shots: [casePicturecook1, casePicturecook2, casePicturecook3],
-});
-
 const caseSugarai = caseStudyPage({
   name: 'Sugar AI',
   batch: 'ikigai #02',
@@ -2541,17 +2488,6 @@ const caseSugarai = caseStudyPage({
   revenue: '免費下載，賣 App 內道具（NT$59 起）和月卡 NT$199。',
   icon: caseSugaraiIcon,
   shots: [caseSugarai1, caseSugarai2, caseSugarai3],
-});
-
-const caseHushli = caseStudyPage({
-  name: 'Hushli 樹洞',
-  batch: 'ikigai #02',
-  tagline: '陪你聊心事的 AI 日記（原名 EchoTree）。',
-  problem: '半夜焦慮找不到人說；看心理師貴、要排隊，也怕被貼標籤。',
-  solution: '24 小時都能找 AI 角色聊，對話自動整理成日記，每週回顧情緒。',
-  revenue: '免費下載。Premium 月訂 NT$320，另賣加購訊息 NT$120。',
-  icon: caseHushliIcon,
-  shots: [caseHushli1, caseHushli2, caseHushli3],
 });
 
 const caseLfg = caseStudyPage({
@@ -2888,21 +2824,11 @@ export const notes: string[] = [
 問題：小店想宣傳，找網紅又貴又難配對，也拿不到真實口碑。
 解法：附近的人收到任務就能到店體驗、發文，店家審核後發獎勵。
 怎麼賺：對發文的人免費，向店家收月費：NT$2,999 起；單次任務抽 30%。`,
-  `PictureCook 有三位創辦人。執行長做過兒童發展服務和醫療器材，技術長在 Roblox、Yelp 做過工程，產品長做過下載破一億的產品，也是設計系教授。`,
-  `PictureCook。孩子的 AI 英文朋友，用互動繪本聊天學英文。
-問題：小孩學英文多半靠字卡和練習題，無聊，也很少開口說。
-解法：互動繪本加 AI 角色對話，角色會問問題，讓孩子開口回答。
-怎麼賺：免費下載。Story Plus 單月 NT$490、六個月 NT$1,990。`,
   `Sugar AI 的兩位創辦人就比較年輕了。執行長 Jarshan 是前 LINE 的機器學習工程師，創業時才二十二歲；技術長 Jerry 待過工研院。他們大學時就一起參加黑客松，一路合作到現在。`,
   `Sugar AI。跟正版授權的漫畫角色一對一聊天。
 問題：喜歡的角色只能看、不能互動；創作者也少有新的變現方式。
 解法：向創作者取得授權，個性由創作者監修，角色會記得你們的對話。
 怎麼賺：免費下載，賣 App 內道具（NT$59 起）和月卡 NT$199。`,
-  `Hushli 的 Tim 是工程師，這是第二次創業；Sharon 負責設計。兩個人半年做了六款 App，累積五十萬使用者。`,
-  `Hushli 樹洞。陪你聊心事的 AI 日記（原名 EchoTree）。
-問題：半夜焦慮找不到人說；看心理師貴、要排隊，也怕被貼標籤。
-解法：24 小時都能找 AI 角色聊，對話自動整理成日記，每週回顧情緒。
-怎麼賺：免費下載。Premium 月訂 NT$320，另賣加購訊息 NT$120。`,
   `lfg 是三個人在香港一起做的。Prasenjit 是港科大數學系，在 Lalamove 當過工程師，跟另一位創辦人 Kartikay 以前就是同事。`,
   `lfg。把看到的店存成共用地圖，一鍵揪朋友出門。
 問題：群組裡「要幹嘛」「你決定啦」來回鬼打牆，最後常常約不成。
@@ -3056,12 +2982,8 @@ export default [
   casePicpet,
   teamTellitnow,
   caseTellitnow,
-  teamPicturecook,
-  casePicturecook,
   teamSugarai,
   caseSugarai,
-  teamHushli,
-  caseHushli,
   teamLfg,
   caseLfg,
   teamPeeps,
