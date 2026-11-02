@@ -794,11 +794,11 @@ const AfterCompetition: Page = () => {
       </Tag>
       <Title live={live}>題目很有意義，然後呢？</Title>
       <Panel x={120} y={350} width={760} height={280} color={PERI} live={live}>
-        <p style={{ ...BODY, fontWeight: 700 }}>以前選題時，常先想</p>
+        <p style={{ ...BODY, fontWeight: 700 }}>以前選題時常先想</p>
         <h3 style={{ ...DISPLAY, fontSize: 62, marginTop: 28 }}>
-          「什麼題目，
+          什麼題目
           <br />
-          比較容易得獎？」
+          比較容易得獎
         </h3>
       </Panel>
       <div style={{ ...DISPLAY, ...abs(880, 440), width: 160, fontSize: 80, ...rise(live, 350) }}>
@@ -807,9 +807,9 @@ const AfterCompetition: Page = () => {
       <Panel x={1040} y={350} width={760} height={280} color={PINK} live={live} delay={420}>
         <p style={{ ...BODY, fontWeight: 700 }}>卻可能變成</p>
         <h3 style={{ ...DISPLAY, fontSize: 62, marginTop: 28 }}>
-          比賽結束那天，
+          比賽結束那天
           <br />
-          App 也停了。
+          App 也停了
         </h3>
       </Panel>
       <div
