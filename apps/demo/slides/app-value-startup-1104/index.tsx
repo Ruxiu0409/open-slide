@@ -2196,6 +2196,7 @@ type TeamData = {
   team: string;
   batch: string;
   icon: string;
+  shots: string[];
   founders: Founder[];
   note?: string;
 };
@@ -2257,6 +2258,24 @@ const teamPage = (data: TeamData): Page => {
     const width = data.founders.length > 2 ? 500 : 600;
     return (
       <Stage>
+        <div
+          style={abs(0, 0, {
+            width: 1920,
+            height: 1080,
+            display: 'flex',
+            opacity: 0.1,
+            filter: 'blur(3px)',
+          })}
+        >
+          {data.shots.map((shot) => (
+            <img
+              key={shot}
+              src={shot}
+              alt=""
+              style={{ flex: 1, minWidth: 0, height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+          ))}
+        </div>
         <Tag n="02" live={live}>
           886 案例 · {data.batch}
         </Tag>
@@ -2326,6 +2345,7 @@ const teamPicpet = teamPage({
   team: 'PicPet',
   batch: 'ikigai #01',
   icon: casePicpetIcon,
+  shots: [casePicpet1, casePicpet2, casePicpet3],
   founders: [
     {
       name: 'Jimmy Huang',
@@ -2340,6 +2360,7 @@ const teamTellitnow = teamPage({
   team: 'Tell It Now',
   batch: 'ikigai #02',
   icon: caseTellitnowIcon,
+  shots: [caseTellitnow1, caseTellitnow2, caseTellitnow3],
   founders: [
     {
       name: 'Ryan Yang',
@@ -2360,6 +2381,7 @@ const teamSugarai = teamPage({
   team: 'Sugar AI',
   batch: 'ikigai #02',
   icon: caseSugaraiIcon,
+  shots: [caseSugarai1, caseSugarai2, caseSugarai3],
   founders: [
     {
       name: 'Jarshan Chen',
@@ -2381,6 +2403,7 @@ const teamLfg = teamPage({
   team: 'lfg',
   batch: 'ikigai #03',
   icon: caseLfgIcon,
+  shots: [caseLfg1, caseLfg2, caseLfg3],
   founders: [
     {
       name: 'Prasenjit Das',
@@ -2396,6 +2419,7 @@ const teamPeeps = teamPage({
   team: 'Peeps',
   batch: 'ikigai #03',
   icon: casePeepsIcon,
+  shots: [casePeeps1, casePeeps2, casePeeps3],
   founders: [
     {
       name: '葉又銘 Marx',
