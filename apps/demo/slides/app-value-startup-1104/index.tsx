@@ -2747,7 +2747,7 @@ const Close: Page = () => {
       <div style={abs(120, 430, { width: 1140, ...rise(live, 450, 30) })}>
         <p style={{ ...BODY, fontSize: 36, fontWeight: 700, color: MUTED }}>下一步</p>
         <p style={{ ...DISPLAY, fontSize: 150, lineHeight: 1.15, color: TOMATO, marginTop: 6 }}>
-          來找我。
+          來找我
         </p>
         <p style={{ ...BODY, fontSize: 34, fontWeight: 700, marginTop: 14 }}>
           想做出商業模式、想創業，帶一個想法來就好
