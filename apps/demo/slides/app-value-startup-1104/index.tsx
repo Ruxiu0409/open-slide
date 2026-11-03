@@ -46,6 +46,10 @@ import newsMacrumors from './assets/news/macrumors.webp';
 import newsTvbs from './assets/news/tvbs.webp';
 import ntd100 from './assets/ntd-100-specimen.jpg';
 import speaker from './assets/speaker.webp';
+import xdddIcon from './assets/xddd/icon.webp';
+import xdddLibrary from './assets/xddd/library.webp';
+import xdddMemeMaker from './assets/xddd/meme-maker.webp';
+import xdddSearchText from './assets/xddd/search-text.webp';
 
 export const design: DesignSystem = {
   palette: { bg: '#FFF3DF', text: '#151313', accent: '#FF5A2C' },
@@ -72,7 +76,7 @@ const SLIDE_ID = 'app-value-startup-1104';
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Gabarito:wght@500;700;800;900&display=swap';
 const CJK_TEXT =
-  '、。《》「」【】一七三上下不世丟中串主久之也了事二互五些交亨享人什今介仍他付代以件任份企伯伴但佈位低住作你使來例供依便係促保修個倍們候值假做停偶傘備傳像價億優元先光免兒入內全兩公六共其具冊再准凸出分列初判別利到制券刻前剛創力功加助動務勞勢勵包北區十千升午半協卡卻原厲去參又及友取口另只叫可台史右司各合同名向否含吵告呢和品員哪售唱商問啦善喜喝單嗎嘛器嚮四回因困圈國圍園圖團在地坊執培基堆報場塊填境壓外多夜夠夥大天太央失套好如始委媒子字存孩學它安完官定宜客宣室害宵家容實審寫寵專對導小少就局屆展層履屬山州工左差己已市師帳帶常幕幣幫平年幹幾底店府度庫廢廣廳弄式弱張形影往待很後得從心忘忙快念怎怕思性息悟情想意感慢慣慮憶應成我或截戰戲戶房所手才打扣扮批找技把投折抽拆拍招拜拿持指按授掉掌排探接推提換揪搭搶摺撐撰擁擅據擬擾支收改放政故敗教散整數文料斯新斷方於日明易昕星是時景晴智曆曝更書最會月有朋服未本材束杭杯東松板果架某查校核格案桿條梯棄楚業榜構樂標模樣樹機權次款歡止正步歲歷段每比氣求決沒沿法注洞活流淡清測港源準滑滿演漫潛激濕濟灣災為無焦然照煩營爭牆片版牌牠物特猜獎玩班現理瑞生產用由甲申界留畢畫當疊痕療登發百的盈益監目直省看真睿知研破碎碑碰確礙示社神票禮私科程種積究空突立站章童競第筆等答策算管箭簡籍籤粉精系約紅紙級素累終組結絡給統絲經維網緒線練總績繪繫繼續置署美群義習考者而聊聯聲聽股育背能膽自至致臺與興舉舊色花苦英茶華萬葉著蓋薦薪藏處虛號螢行術衛衝表被裂補裡製西要見覺觀角解觸言訂計訊討記設訴診註評詢試話該認語說誰課調請論講謝證識讀變讓負責貴買費貼資賈賣賺購賽贊走起越趣趨跟路跳蹺躍身躺車軟軸較載輔輩輸轉辛辦近追退送透這通速造逢連週進遇遊運過道適選邀還邊那部都鄉配醒醫重量金鈕鉅鉸銀銘銷鋒錄錢錯鍵鎖鏈鐘鑑長門閃開間閱關附降限院陪陳隊階際障隻集離難雨零需青靜非靠面音頁項順須預頒頓領頭題額願顧食飲養餐餵首駐驗體高鬼麻麼黑點齡！（）＋，／：；＝？～';
+  '、。《》「」【】一七三上下不世丟中串主久之也了事二互五些交亨享人什今介仍他付代以件任份企伯伴但佈位低住作你使來例供依便係促保修個倍們候值假做停偶傘備傳像價億優元先光兌免兒入內全兩公六共其具冊再准凸出分刑列初判別利到制券刻前剛創力功加助動務勞募勢勵包化北匯區十千升午半協卡卻原厲去參又及友取受口另只叫可台史右司各合同名向否含吵告呢和品員哪售唱商問啦善喜喝單嗎嘛器嚮四回因困圈國圍園圖團在地坊執培基堆報場塊填境壓外多夜夠夥大天太央失套好如始委媒子字存孩學它安完官定宜客宣室害宵家容察實審寫寬寵專尋對導小少就局屆展層履屬山州工左差己已市師帳帶常幕幣幫平年幹幾底店府度庫廢廣廳弄式弱張形彩影往待很律後得從心忘忙快念怎怕思性息悟情想意感慢慣慮憶應成我或截戰戲戶房所手才打扣扮批找技把投折抽拆拍招拜拿持指按授掉掌排探接推提換揪搜搭搶摺撐撰擁擅據擦擬擾支收改放政故敗教散整數文料斯新斷方於日明易昕星是時景晴智曆曝更書最會月有朋服未本材束杭杯東松板果架某查校核格案桿梗條梯棄棟楚業榜構樂樓標模樣樹機權次款歡止正步歲歷死段每比氣求決沒沿法注洞活流淡清測港源準滑滿演漫潛激濕濟灣災為無焦然照煩營爭牆片版牌牠物特猜獎玩班現理瑞生產用由甲申界留畢畫當疊痕療登發白百的盈益監目直相省看真睿知研破碎碑碰確礙示社神票禮私科租移程種積究空突立站章童競笑第筆等答策算管箭簡簽簿籍籤粉精系約紅紙級素累終組結絡給統絲經維網緒線練總績繪繫繼續置罰署美群義習翻考者而聊聯聲聽股育背能膽自至致臺與興舉舊色花苦英茶華萬葉著蓋薦薪藏處虛號螢行術衛衝表被裂補裡製西要見規視覺觀角解觸言訂計訊討記設訴診註評詞詢試話該認語說誰課調談請論講謝證識讀變讓負責貴買費貼資賈賣賭賺購賽贊走起越趣趨跟路跳蹺躍身躺車軟軸較載輔輩輪輸轉辛辦辨近追退送透這通速造逢連週進遇遊運過道適選邀還邊那部都鄉配醒醫重量金鈕鉅鉸銀銘銷鋒錄錢錯鍵鎖鏈鐘鑑長門閃開間閱關附降限院陪陳隊階際障隻集離難雨零需青靜非靠面音頁項順須預頒頓領頭題額願顧食飲養餐餵首駐驗體高鬼麻麼黑點齡！（）＋，／：；＝？～';
 const CJK_FONT_HREF = `https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap&text=${encodeURIComponent(CJK_TEXT)}`;
 const CJK_FONT_LINK_ID = `osd-webfont-cjk-${SLIDE_ID}`;
 const FONT_LINK_ID = `osd-webfont-${SLIDE_ID}`;
@@ -677,6 +681,110 @@ const TitleCover: Page = () => {
         <span style={{ ...NUM, fontSize: 40 }}>11.04</span>
       </Sticker>
       <Sparkle x={1780} y={830} size={50} color={PINK} live={live} delay={1100} />
+    </Stage>
+  );
+};
+
+const XDDD_POINTS: { title: string; detail: string; color: string }[] = [
+  { title: '圖上的字也搜得到', detail: '中英日文字辨識，全部在手機上完成', color: BUTTER },
+  { title: '擦掉字，換上你的台詞', detail: '自己做梗圖，存成新的一張', color: PINK },
+  { title: '不用登入、沒有廣告', detail: 'XDD Plus 每月 NT$30，第一個月免費', color: MINT },
+];
+
+const XDDD_SHOTS = [
+  { src: xdddLibrary, alt: '笑死圖庫畫面', r: -3 },
+  { src: xdddSearchText, alt: '笑死搜尋圖上文字畫面', r: 2 },
+  { src: xdddMemeMaker, alt: '笑死製作梗圖畫面', r: -2 },
+];
+
+const XdddIntro: Page = () => {
+  const live = useLive();
+  return (
+    <Stage>
+      <Tag n="00" live={live}>
+        我做的 App
+      </Tag>
+      <div
+        style={abs(120, 210, {
+          display: 'flex',
+          alignItems: 'center',
+          gap: 32,
+          ...rise(live, 100),
+        })}
+      >
+        <img
+          src={xdddIcon}
+          alt="笑死 App 圖示"
+          style={{
+            width: 150,
+            height: 150,
+            borderRadius: 36,
+            border: BORDER,
+            boxShadow: shadow(8),
+            display: 'block',
+          }}
+        />
+        <div style={{ textAlign: 'left' }}>
+          <h2 style={{ ...DISPLAY, fontSize: 120 }}>笑死</h2>
+          <p style={{ ...MONO, fontSize: 24, color: MUTED, marginTop: 6 }}>XDDD · iOS</p>
+        </div>
+      </div>
+      <p
+        style={{
+          ...DISPLAY,
+          ...abs(120, 420),
+          width: 760,
+          fontSize: 52,
+          textAlign: 'left',
+          ...rise(live, 250),
+        }}
+      >
+        梗圖<span style={{ color: TOMATO }}>不用再翻相簿</span>
+      </p>
+      {XDDD_POINTS.map((pt, i) => (
+        <div
+          key={pt.title}
+          style={abs(120, 530 + i * 140, {
+            width: 740,
+            height: 116,
+            boxSizing: 'border-box',
+            padding: '0 30px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            textAlign: 'left',
+            background: pt.color,
+            border: BORDER,
+            borderRadius: 24,
+            boxShadow: shadow(6),
+            ...rise(live, 450 + i * 180, 30),
+          })}
+        >
+          <p style={{ ...DISPLAY, fontSize: 38 }}>{pt.title}</p>
+          <p style={{ ...BODY, fontSize: 26, fontWeight: 700, color: MUTED, marginTop: 4 }}>
+            {pt.detail}
+          </p>
+        </div>
+      ))}
+      {XDDD_SHOTS.map((shot, i) => (
+        <img
+          key={shot.alt}
+          src={shot.src}
+          alt={shot.alt}
+          style={abs(960 + i * 290, 280 + (i === 1 ? -20 : 20), {
+            width: 270,
+            height: 587,
+            objectFit: 'cover',
+            borderRadius: 28,
+            border: BORDER,
+            boxShadow: shadow(10),
+            rotate: `${shot.r}deg`,
+            display: 'block',
+            ...rise(live, 300 + i * 200, 60),
+          })}
+        />
+      ))}
+      <Sparkle x={1790} y={880} size={46} color={PERI} live={live} delay={1200} />
     </Stage>
   );
 };
@@ -2841,6 +2949,117 @@ const Garage: Page = () => {
   );
 };
 
+const USPACE_STEPS: { year: string; text: ReactNode }[] = [
+  { year: '2016', text: '成立：私人車位白天空著，想讓別人按時租' },
+  { year: '卡關', text: '《停車場法》：每棟大樓都要一張停車場執照' },
+  { year: '2018', text: '跟台北市談半年，換來共享車位媒合計畫' },
+  {
+    year: '2024',
+    text: (
+      <>
+        B 輪募資 <span style={{ color: TOMATO }}>1,400 萬美元</span>，台日近 10 萬格車位
+      </>
+    ),
+  },
+];
+
+const LAW_CASES: { law: string; from: string; to: string; year: string; color: string }[] = [
+  { law: '刑法', from: '私人簽賭', to: '運動彩券', year: '2008', color: PINK },
+  { law: '銀行法', from: '移工地下匯兌', to: '小額匯兌執照', year: '2020', color: MINT },
+  { law: '公路法', from: 'Uber 被開罰', to: '多元化計程車', year: '2016', color: PERI },
+  { law: '醫師法', from: '視訊看診受限', to: '通訊診察放寬', year: '2024', color: PAPER },
+];
+
+const LawOpportunity: Page = () => {
+  const live = useLive();
+  return (
+    <Stage>
+      <Tag n="20" live={live}>
+        法規也是商機
+      </Tag>
+      <Title live={live} size={76}>
+        最賺錢的方式寫在<span style={{ color: TOMATO }}>刑法</span>，經濟寫在
+        <span style={{ color: TOMATO }}>行政法</span>
+      </Title>
+      <p
+        style={{
+          ...BODY,
+          ...abs(120, 278),
+          width: 1680,
+          fontSize: 34,
+          fontWeight: 700,
+          ...rise(live, 180),
+        }}
+      >
+        現在不行，不代表它合理。法律跟上之前，先卡好位置的人就有機會。
+      </p>
+      <Panel x={120} y={370} width={860} height={560} color={BUTTER} live={live} delay={300}>
+        <div style={{ textAlign: 'left' }}>
+          <h3 style={{ ...DISPLAY, fontSize: 54 }}>USPACE 共享車位</h3>
+          <div style={{ marginTop: 30, display: 'flex', flexDirection: 'column', gap: 26 }}>
+            {USPACE_STEPS.map((s, i) => (
+              <div
+                key={s.year}
+                style={{
+                  display: 'flex',
+                  gap: 22,
+                  alignItems: 'baseline',
+                  ...rise(live, 500 + i * 250, 20),
+                }}
+              >
+                <span
+                  style={{
+                    ...NUM,
+                    flex: '0 0 104px',
+                    fontSize: 34,
+                    color: s.year === '卡關' ? TOMATO : INK,
+                  }}
+                >
+                  {s.year}
+                </span>
+                <p style={{ ...BODY, fontSize: 32, fontWeight: 700 }}>{s.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Panel>
+      {LAW_CASES.map((c, i) => (
+        <Panel
+          key={c.from}
+          x={1040 + (i % 2) * 390}
+          y={370 + Math.floor(i / 2) * 290}
+          width={360}
+          height={270}
+          color={c.color}
+          live={live}
+          delay={700 + i * 200}
+        >
+          <div style={{ textAlign: 'left' }}>
+            <span
+              style={{
+                ...MONO,
+                textTransform: 'none',
+                fontSize: 20,
+                padding: '6px 14px',
+                borderRadius: 999,
+                background: INK,
+                color: CREAM,
+              }}
+            >
+              {c.law}
+            </span>
+            <p style={{ ...BODY, fontSize: 30, fontWeight: 700, color: MUTED, marginTop: 30 }}>
+              {c.from}
+            </p>
+            <p style={{ ...DISPLAY, fontSize: 38, marginTop: 10 }}>→ {c.to}</p>
+            <p style={{ ...NUM, fontSize: 26, color: MUTED, marginTop: 14 }}>{c.year}</p>
+          </div>
+        </Panel>
+      ))}
+    </Stage>
+  );
+};
+
 const Close: Page = () => {
   const live = useLive();
   return (
@@ -2922,7 +3141,13 @@ export const notes: string[] = [
   `【開場前一直停在這頁，人到齊再往下。】
 大家好，我是瑞瑞。今天在「App 登場時刻」，我想跟大家聊新創。
 就像標題寫的：創業，其實沒有你想像中那麼難。
-很多人覺得新創離我們很遠，好像要先開公司、找投資人才算。但其實，做一個 App、讓它有人用、甚至能賺錢，就已經是一次新創。開始之前，先問大家一個問題。`,
+很多人覺得新創離我們很遠，好像要先開公司、找投資人才算。但其實，做一個 App、讓它有人用、甚至能賺錢，就已經是一次新創。開始之前，先介紹一下我自己做的 App。`,
+  `這是我做的 App，叫「笑死」。
+朋友一句話丟過來，你在相簿滑了三分鐘才找到那張梗圖，梗都涼了。笑死就是在解決這件事：把梗圖收好、打標籤，連圖上的字都搜得到，三秒找到那張剛好的圖，直接傳出去。
+【指三張截圖。】
+文字辨識全部在手機上完成，中文、英文、日文都認得。付費版還可以把圖上的字擦掉，換成你自己的台詞。
+它不用登入、沒有廣告。付費的 XDD Plus 一個月三十塊，第一個月免費。
+好，介紹完了，先問大家一個問題。`,
   `【讓題目停在畫面上，請兩三個人回答。】
 給你三百二十萬，你會做什麼？
 【聽完回應，稍微接幾句。】`,
@@ -3094,6 +3319,16 @@ ChatGPT 就不一樣。每個月付一點訂閱費，查資料、寫報告、改
 【停一下。】
 但賈伯斯當初在車庫的時候，從來沒有人跟他說，未來會變成現在這個樣子。沒有人交代他任務，是他自己想像出來的。
 這就是新創的精神。如果你也想跟賈伯斯一樣，發揮自己的創意，靠自己的手，做出一個這個世界上還沒有的東西，請大膽地去想像。`,
+  `有一句話我很喜歡：最賺錢的方式寫在刑法裡，經濟寫在行政法裡。
+意思是，很多生意一開始被法律擋住，不是因為它有害，而是法律寫的時候，這種生意還不存在。現在不行，不代表它合理。
+【指左邊。】
+USPACE 就是這樣。2016 年他們想做共享車位：很多私人車位白天空著，讓別人按時段租。但《停車場法》規定，要收停車費就要有停車場執照，等於每多一棟大樓，就要多申請一張。
+他們沒有硬衝，花了半年跟台北市政府談，2018 年談出「共享車位媒合計畫」，在這個計畫裡可以不用一棟一棟申請。一開始其實很慢，前期只談到一棟大樓、六個車位，後來也跟停車場業者合作。
+到 2024 年，他們完成 1,400 萬美元的 B 輪募資，在台灣和日本管理將近十萬格車位。
+【指右邊四張卡。】
+台灣還有很多類似的例子。簽賭是刑法的賭博罪，但國家另外立法，2008 年運動彩券開賣。移工以前常透過同鄉匯錢回家，這違反《銀行法》，是地下匯兌；2020 年左右，政府開放小額匯兌執照，有新創就靠這個做起來。Uber 被公路法一直開罰，交通部後來開了「多元化計程車」這個類別。視訊看診以前被《醫師法》的「親自診察」卡住，疫情後在 2024 年正式放寬。
+【停一下。】
+不過要提醒，現在違法但有機會變合法，跟趁還沒立法先衝，是兩回事。比較實際的做法，是去跟政府談、走沙盒，在合法的範圍裡先把模式做出來。`,
   `最後，如果現在給你一個機會，你會做什麼？
 聽完今天，我希望大家心裡有不一樣的答案。不是先想評審喜歡什麼，而是先找到一件大家願意付錢的事，把它做出來、讓人用，再拿作品去爭取更多資源。
 作品不一定要得獎才能證明自己。有人用、有人覺得它有價值，它就已經證明了。
@@ -3106,6 +3341,7 @@ ChatGPT 就不一樣。每個月付一點訂閱費，查資料、寫報告、改
 
 export default [
   TitleCover,
+  XdddIntro,
   Question300,
   Studio886,
   teamPicpet,
@@ -3146,5 +3382,6 @@ export default [
   StillAlive,
   CompetitionIntro,
   Garage,
+  LawOpportunity,
   Close,
 ] satisfies Page[];
