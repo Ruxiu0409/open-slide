@@ -49,8 +49,8 @@ import speaker from './assets/speaker.webp';
 import xdddIcon from './assets/xddd/icon.webp';
 import xdddLibrary from './assets/xddd/library.webp';
 import xdddMemeMaker from './assets/xddd/meme-maker.webp';
+import xdddPromo from './assets/xddd/promo-30s-vo.mp4';
 import xdddPromoPoster from './assets/xddd/promo-poster.webp';
-import xdddPromo from './assets/xddd/promo-split-15s.mp4';
 import xdddSearchText from './assets/xddd/search-text.webp';
 
 export const design: DesignSystem = {
@@ -699,18 +699,25 @@ const XDDD_SHOTS = [
   { src: xdddMemeMaker, alt: '笑死製作梗圖畫面', r: -2 },
 ];
 
+// Browsers can refuse unmuted autoplay before any user gesture; fall back to visible controls so the presenter can click play.
+const playWithSound = (video: HTMLVideoElement | null) => {
+  if (!video) return;
+  video.play().catch(() => {
+    video.controls = true;
+  });
+};
+
 const XdddPromo: Page = () => {
   const active = useIsActivePage();
   return (
     <Stage footer={false}>
       {active ? (
+        // biome-ignore lint/a11y/useMediaCaption: subtitles are burned into the video frames
         <video
           src={xdddPromo}
           poster={xdddPromoPoster}
-          autoPlay
-          muted
-          loop
           playsInline
+          ref={playWithSound}
           style={abs(0, 0, { width: 1920, height: 1080, objectFit: 'cover', display: 'block' })}
         />
       ) : (
@@ -3193,8 +3200,8 @@ export const notes: string[] = [
 大家好，我是瑞瑞。今天在「App 登場時刻」，我想跟大家聊新創。
 就像標題寫的：創業，其實沒有你想像中那麼難。
 很多人覺得新創離我們很遠，好像要先開公司、找投資人才算。但其實，做一個 App、讓它有人用、甚至能賺錢，就已經是一次新創。開始之前，先介紹一下我自己做的 App。`,
-  `【影片會自動播放、靜音循環，放完一輪再往下。】
-先看一段十五秒的影片。左邊是用舊方法在相簿找梗圖，花了四十七秒；右邊用笑死鍵盤，三秒就傳出去了。`,
+  `【影片有聲音、只播一次，大約 32 秒，播完停在最後一格再往下。如果沒有自動播放，點畫面上的播放鍵。】
+先看一段三十秒左右的影片。`,
   `剛剛影片裡的就是我做的 App，叫「笑死」。
 朋友一句話丟過來，你在相簿滑了三分鐘才找到那張梗圖，梗都涼了。笑死就是在解決這件事：把梗圖收好、打標籤，連圖上的字都搜得到，三秒找到那張剛好的圖，直接傳出去。
 【指三張截圖。】
