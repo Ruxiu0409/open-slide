@@ -6,6 +6,9 @@ import {
   useSlidePageNumber,
 } from '@open-slide/core';
 import { useEffect, useRef, useState } from 'react';
+import asacBubbleTea from './assets/asac-bubbletea.png';
+import asacGlobe from './assets/asac-globe.png';
+import asacLogo from './assets/asac-tw-logo.svg';
 import sscHero from './assets/ssc27-hero.mp4';
 import sscHeroEnd from './assets/ssc27-hero-end.jpg';
 
@@ -986,20 +989,92 @@ const ChallengeSSC: Page = () => {
 };
 
 const ChallengeAsia: Page = () => (
-  <SitePage>
-    <Head
-      label="接下來的比賽 · 台灣"
-      title="Asia Student App Challenge"
-      sub="規則跟 Apple 的一樣，但提早一個月交，先拿到回饋。"
-    />
-    <Rows>
-      <TermRow k="誰能參加" v="13 歲以上的台灣學生" small="沒寫過程式也可以，一樣只能一個人做" />
-      <TermRow k="報名" v="11/30 23:59 前" small="appchallenge.asia/tw" />
-      <TermRow k="開幕" v="11/19 18:00，逢甲大學人言大樓 10F" />
-      <TermRow k="交作品" v="2027/1/9～1/13，線上繳交" />
-      <TermRow k="頒獎" v="1/28，逢甲大學" small="每個人都會收到歷屆得獎者給的回饋" />
-    </Rows>
-  </SitePage>
+  <div style={{ ...fill, background: '#000', color: '#fff' }}>
+    <Style />
+    <div
+      style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 40,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+      }}
+    >
+      <div
+        className="ace-fadeup"
+        style={{ position: 'relative', width: 560, aspectRatio: '360 / 230' }}
+      >
+        <img
+          src={asacBubbleTea}
+          alt=""
+          style={{
+            position: 'absolute',
+            width: '30%',
+            left: '-20%',
+            bottom: '-5%',
+            transform: 'rotate(-15deg)',
+          }}
+        />
+        <img
+          src={asacGlobe}
+          alt=""
+          style={{
+            position: 'absolute',
+            width: '50%',
+            right: 0,
+            top: '4%',
+            transform: 'rotate(-8deg)',
+          }}
+        />
+        <img
+          src={asacLogo}
+          alt="Asia Student App Challenge 台灣"
+          style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: 'auto' }}
+        />
+      </div>
+      <div
+        className="ace-fadeup"
+        style={{
+          fontSize: 24,
+          color: 'rgba(255, 255, 255, 0.62)',
+          marginTop: 124,
+          animationDelay: '100ms',
+        }}
+      >
+        接下來的比賽 · 台灣
+      </div>
+      <p
+        className="ace-fadeup"
+        style={{ fontSize: 30, margin: '12px 0 0', animationDelay: '160ms' }}
+      >
+        規則跟 Apple 的一樣，但提早一個月交，先拿到回饋。
+      </p>
+      <div
+        className="ace-fadeup"
+        style={{
+          width: 1300,
+          marginTop: 30,
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          columnGap: 64,
+          animationDelay: '220ms',
+        }}
+      >
+        <SSCCell k="誰能參加" v="13 歲以上的台灣學生" small="沒寫過程式也可以，一樣只能一個人做" />
+        <SSCCell k="報名" v="11/30 23:59 前" small="appchallenge.asia/tw" />
+        <SSCCell k="開幕" v="11/19 18:00" small="逢甲大學人言大樓 10F" />
+        <SSCCell
+          k="交作品、頒獎"
+          v="1/9～1/13 線上交，1/28 頒獎"
+          small="每個人都會收到歷屆得獎者給的回饋"
+        />
+      </div>
+    </div>
+    <Footer />
+  </div>
 );
 
 const ChallengeTimeline: Page = () => {
