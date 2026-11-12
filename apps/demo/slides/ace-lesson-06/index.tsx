@@ -1220,76 +1220,194 @@ const Theme: Page = () => (
   </Frame>
 );
 
-const majors = [
+type Topic = { t: string; d: string; use: string };
+
+const majors: {
+  name: string;
+  en: string;
+  ref: string;
+  refNote: string;
+  topics: Topic[];
+}[] = [
   {
     name: '商管、經濟',
     en: 'Business · Finance · Marketing · Economics',
     ref: 'CampusQuery',
     refNote: '用 AI 回答學校網站上找不到的問題',
-    ideas: ['用統一發票資料看懂一個地方的經濟', '分析商圈消費，幫店家找開店地點'],
+    topics: [
+      {
+        t: '用發票看懂一個商圈',
+        d: '挑一個你熟的地方，比較各行業的發票張數和金額，找出哪一類店最多人買、哪個月最旺，做成互動圖表。',
+        use: '財政部統一發票開立統計',
+      },
+      {
+        t: '開店選址顧問',
+        d: '輸入想開的店（飲料店、早餐店），結合消費、人口和附近同業數量，推薦三個地點並說明理由。',
+        use: '發票統計、戶政人口、Google 地圖',
+      },
+    ],
   },
   {
     name: '電腦、資料',
     en: 'Computer Science · Data Science · Statistics',
     ref: 'Pitch Coach',
     refNote: '上台簡報時即時給回饋',
-    ideas: ['學校公告只通知跟你有關的', '把公車到站資料畫成圖'],
+    topics: [
+      {
+        t: '上學該幾點出門',
+        d: '收集你家附近公車一週的到站紀錄，算出上學時段最常誤點的路線和站牌，告訴你今天要提早幾分鐘出門。',
+        use: 'TDX 運輸資料平台',
+      },
+      {
+        t: '學校公告過濾器',
+        d: '把學校網站的公告抓下來，用 AI 分成考試、活動、獎學金，只通知跟你年級和社團有關的。',
+        use: '學校網站、AI API',
+      },
+    ],
   },
   {
     name: '工程',
     en: 'Mechanical · Electrical · Biomedical · Civil',
     ref: 'MIT Maker Portfolio',
     refNote: '有人交電動卡丁車、義肢、太陽能電池',
-    ideas: ['教室溫度、二氧化碳提醒', '用手機感測器看騎車姿勢'],
+    topics: [
+      {
+        t: '教室空氣監測',
+        d: '用感測器量教室一整天的二氧化碳，超過 1000 ppm 提醒開窗，畫出一週曲線，看哪一節課最悶。',
+        use: 'micro:bit 或 Arduino、CO₂ 感測器',
+      },
+      {
+        t: '校園無障礙路線圖',
+        d: '實際走一遍校園，量坡道、樓梯和電梯位置，做出輪椅和推車走得通的路線，標出哪裡需要改善。',
+        use: '捲尺、手機、地圖工具',
+      },
+    ],
   },
   {
     name: '醫學、健康',
     en: 'Pre-med · Nursing · Public Health',
     ref: 'LAAS',
     refNote: '用 AR 輔助聽診肺音',
-    ideas: ['長輩吃藥提醒，家人也看得到', '運動傷害的自我檢查'],
+    topics: [
+      {
+        t: '長輩用藥小幫手',
+        d: '拍下藥袋，用 AI 讀出藥名、劑量和吃藥時間，變成大字提醒，家人手機也同步收到有沒有吃。',
+        use: '手機相機、AI 文字辨識',
+      },
+      {
+        t: '運動傷害自我判斷',
+        d: '問幾個問題（哪裡痛、怎麼受傷），告訴你該冰敷、休息還是去看醫生，每一個建議都要附資料來源。',
+        use: '運動醫學衛教資料',
+      },
+    ],
   },
   {
     name: '生物、化學',
     en: 'Biology · Chemistry · Neuroscience',
     ref: 'BioDock AI',
     refNote: 'Congressional App Challenge 2024 冠軍',
-    ideas: ['校園植物、昆蟲圖鑑', '化學實驗安全的互動教學'],
+    topics: [
+      {
+        t: '校園生物地圖',
+        d: '拍下校園裡的植物、鳥和昆蟲，辨識後標在地圖上，連續記錄幾週，看看季節變化帶來哪些不同。',
+        use: 'iNaturalist、AI 影像辨識',
+      },
+      {
+        t: '實驗課前預演',
+        d: '上實驗課前，先在網頁上一步一步模擬，像稀釋強酸要先加水還是先加酸，選錯就告訴你為什麼危險。',
+        use: '化學課本的實驗',
+      },
+    ],
   },
   {
     name: '心理',
     en: 'Psychology · Cognitive Science',
     ref: 'Steady Hands',
     refNote: '幫手會抖的人穩定筆畫',
-    ideas: ['考前焦慮的呼吸練習', '情緒日記，看出自己的週期'],
+    topics: [
+      {
+        t: '考前焦慮紀錄',
+        d: '每天花 30 秒記錄心情、睡眠和手機時間，兩週後幫你找出焦慮最跟哪一件事有關。',
+        use: '自己和同學的紀錄',
+      },
+      {
+        t: '手機通知專注力實驗',
+        d: '做一個反應時間測驗，找同學在有通知和沒通知的情況下各測一次，比較結果，寫成一份小研究。',
+        use: '網頁測驗、試算表',
+      },
+    ],
   },
   {
     name: '社會、政治、法律',
     en: 'Political Science · Sociology · Public Policy',
     ref: 'Civic AI Action Hub',
     refNote: 'Congressional App Challenge 2025 冠軍',
-    ideas: ['把選舉公報翻成白話', '新聞事實查核小幫手'],
+    topics: [
+      {
+        t: '政見並排比較',
+        d: '把候選人的政見依教育、交通、住宅分類並排，讓第一次投票的人五分鐘就看懂誰主張什麼。',
+        use: '中選會選舉公報',
+      },
+      {
+        t: '打工權益問答',
+        d: '高中生打工最常遇到的問題（時薪、加班、試用期），做成問答機器人，每個回答都附上法條。',
+        use: '勞基法、勞動部資料',
+      },
+    ],
   },
   {
     name: '環境、永續',
     en: 'Environmental Science · Sustainability',
     ref: 'Asuo',
     refNote: '淹水時即時找避難路線',
-    ideas: ['颱風、地震的避難準備清單', '校園剩食媒合'],
+    topics: [
+      {
+        t: '家庭避難計畫',
+        d: '依家裡人數、有沒有長輩和寵物，產生避難包清單，並找出離家最近的避難收容處所和走法。',
+        use: '政府避難收容處所資料',
+      },
+      {
+        t: '營養午餐剩食追蹤',
+        d: '記錄班上一個月每天剩多少、哪道菜最常剩，找出原因，提出能讓剩食變少的建議。',
+        use: '自己記錄、試算表',
+      },
+    ],
   },
   {
     name: '教育、語言、人文',
     en: 'Education · Linguistics · History',
     ref: 'LeViola',
     refNote: '沒有琴也能練中提琴',
-    ideas: ['台語、客語的日常用語練習', '可以點開的歷史時間軸'],
+    topics: [
+      {
+        t: '台語情境對話',
+        d: '設計點餐、問路、跟阿公阿嬤聊天等情境，可以聽發音、跟著唸，讓年輕人敢開口講台語。',
+        use: '教育部臺灣台語常用詞辭典',
+      },
+      {
+        t: '地方老故事地圖',
+        d: '訪問家人或社區長輩，把老店、老地名背後的故事放上地圖，配上照片和錄音。',
+        use: '訪談、地圖工具',
+      },
+    ],
   },
   {
     name: '設計、傳播、藝術',
     en: 'Design · Architecture · Communications · Film',
     ref: 'Hanafuda Tactics',
     refNote: '把日本花札做成手機遊戲',
-    ideas: ['社團海報快速排版', '校園導覽的聲音地圖'],
+    topics: [
+      {
+        t: '社團貼文產生器',
+        d: '輸入活動名稱、時間、地點，自動排出符合社團風格的 IG 貼文和海報，有好幾種版型可以換。',
+        use: 'Canva 或網頁',
+      },
+      {
+        t: '校園聲音導覽',
+        d: '錄下校園各角落的聲音和介紹，牆上貼 QR Code，新生和來參觀的人掃了就能聽。',
+        use: '錄音、QR Code',
+      },
+    ],
   },
 ];
 
@@ -1347,74 +1465,73 @@ const Majors: Page = () => (
   </SitePage>
 );
 
-const MajorTopics = ({ from, to }: { from: number; to: number }) => (
+const TopicCard = ({ topic }: { topic: Topic }) => (
+  <div
+    style={{
+      flex: 1,
+      padding: '26px 32px 28px',
+      borderRadius: 24,
+      background: site.surface,
+      textAlign: 'left',
+    }}
+  >
+    <div style={{ fontSize: 31, fontWeight: 600 }}>{topic.t}</div>
+    <div style={{ fontSize: 23, color: site.muted, lineHeight: 1.55, marginTop: 10 }}>
+      <Clauses text={topic.d} />
+    </div>
+    <div style={{ fontSize: 20, color: site.blue, marginTop: 14 }}>用到：{topic.use}</div>
+  </div>
+);
+
+const MajorTopics = ({ start }: { start: number }) => (
   <SitePage>
-    <Head
-      label={`主題 · 題目參考 ${from === 0 ? '1' : '2'}/2`}
-      title="別人做過什麼，你可以往哪想"
-    />
+    <Head label={`主題 · 題目參考 ${start / 2 + 1}/5`} title="選一題做，或自己改得更好" />
     <div
       className="ace-fadeup"
       style={{
-        width: 1600,
-        marginTop: 28,
-        textAlign: 'left',
+        width: 1640,
+        marginTop: 36,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 30,
         animationDelay: '200ms',
       }}
     >
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '300px 1fr 1fr',
-          gap: 40,
-          padding: '0 0 14px',
-          fontSize: 21,
-          color: site.faint,
-          borderBottom: `1px solid ${site.line}`,
-        }}
-      >
-        <div>科系</div>
-        <div>別人做過的</div>
-        <div>你可以往這裡想</div>
-      </div>
-      {majors.slice(from, to).map((m, i) => (
-        <div
-          key={m.name}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '300px 1fr 1fr',
-            gap: 40,
-            alignItems: 'center',
-            height: 110,
-            borderBottom: `1px solid ${site.line}`,
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
-            <span style={{ fontSize: 20, color: site.faint, fontFamily: mono }}>
-              {String(from + i + 1).padStart(2, '0')}
+      {majors.slice(start, start + 2).map((m, i) => (
+        <div key={m.name}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'baseline',
+              gap: 16,
+              marginBottom: 14,
+              textAlign: 'left',
+            }}
+          >
+            <span style={{ fontSize: 22, color: site.faint, fontFamily: mono }}>
+              {String(start + i + 1).padStart(2, '0')}
             </span>
-            <span style={{ fontSize: 32, fontWeight: 600 }}>{m.name}</span>
+            <span style={{ fontSize: 36, fontWeight: 600 }}>{m.name}</span>
+            <span style={{ marginLeft: 'auto', fontSize: 21, color: site.faint }}>
+              別人做過：{m.ref}，{m.refNote}
+            </span>
           </div>
-          <div>
-            <div style={{ fontSize: 28, fontWeight: 500 }}>{m.ref}</div>
-            <div style={{ fontSize: 22, color: site.muted, marginTop: 4 }}>{m.refNote}</div>
-          </div>
-          <div style={{ fontSize: 26, lineHeight: 1.5 }}>
-            {m.ideas.map((idea) => (
-              <div key={idea}>{idea}</div>
+          <div style={{ display: 'flex', gap: 22 }}>
+            {m.topics.map((t) => (
+              <TopicCard key={t.t} topic={t} />
             ))}
           </div>
         </div>
       ))}
-      <div style={{ fontSize: 23, color: site.muted, marginTop: 22, textAlign: 'center' }}>
-        參考的作品看看就好，題目要自己想，做出別人沒做過的。
-      </div>
     </div>
   </SitePage>
 );
 
-const MajorTopicsA: Page = () => <MajorTopics from={0} to={5} />;
-const MajorTopicsB: Page = () => <MajorTopics from={5} to={10} />;
+const MajorTopicsA: Page = () => <MajorTopics start={0} />;
+const MajorTopicsB: Page = () => <MajorTopics start={2} />;
+const MajorTopicsC: Page = () => <MajorTopics start={4} />;
+const MajorTopicsD: Page = () => <MajorTopics start={6} />;
+const MajorTopicsE: Page = () => <MajorTopics start={8} />;
 
 const TeamRules: Page = () => (
   <SitePage>
@@ -1544,6 +1661,9 @@ export default [
   Majors,
   MajorTopicsA,
   MajorTopicsB,
+  MajorTopicsC,
+  MajorTopicsD,
+  MajorTopicsE,
   TeamRules,
   TeamUp,
   IdeaMethod,
