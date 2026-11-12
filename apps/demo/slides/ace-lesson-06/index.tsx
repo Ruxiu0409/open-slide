@@ -694,9 +694,6 @@ const Winner: Page = () => (
         <br />
         帳號一個月
       </div>
-      <div style={{ fontSize: 30, color: 'rgba(255, 255, 255, 0.9)', marginTop: 22 }}>
-        恭喜！請上台領獎。
-      </div>
     </div>
   </Frame>
 );
