@@ -702,7 +702,6 @@ const Winner: Page = () => (
 const kindStyle = {
   實體: { bg: 'rgba(46, 111, 224, 0.12)', fg: site.blue },
   線上: { bg: site.surface, fg: site.muted },
-  不用到: { bg: 'transparent', fg: site.faint },
 } as const;
 
 const term2: { d: string; k: keyof typeof kindStyle; t: string; today?: boolean }[] = [
@@ -711,7 +710,7 @@ const term2: { d: string; k: keyof typeof kindStyle; t: string; today?: boolean 
   { d: '11/26', k: '實體', t: '世界咖啡館、動手做' },
   { d: '12/3', k: '線上', t: '線上討論' },
   { d: '12/24', k: '實體', t: '發表日' },
-  { d: '12/31', k: '不用到', t: '慶功日' },
+  { d: '12/31', k: '實體', t: '慶功日' },
 ];
 
 const Schedule: Page = () => (
@@ -746,7 +745,6 @@ const Schedule: Page = () => (
               fontSize: 34,
               fontWeight: 600,
               fontVariantNumeric: 'tabular-nums',
-              color: s.k === '不用到' ? site.faint : undefined,
             }}
           >
             {s.d}
@@ -763,15 +761,12 @@ const Schedule: Page = () => (
                 fontWeight: 500,
                 background: kindStyle[s.k].bg,
                 color: kindStyle[s.k].fg,
-                border: s.k === '不用到' ? `1px solid ${site.line}` : 'none',
               }}
             >
               {s.k}
             </span>
           </div>
-          <div style={{ fontSize: 32, color: s.k === '不用到' ? site.faint : undefined }}>
-            {s.t}
-          </div>
+          <div style={{ fontSize: 32 }}>{s.t}</div>
           <div style={{ fontSize: 24, fontWeight: 600, color: site.blue }}>
             {s.today ? '今天' : ''}
           </div>
