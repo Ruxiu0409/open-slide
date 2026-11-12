@@ -787,14 +787,14 @@ const ConsolationPrize: Page = () => (
 
 const kindStyle = {
   實體: { bg: 'rgba(46, 111, 224, 0.12)', fg: site.blue },
-  線上: { bg: site.surface, fg: site.muted },
+  老師線上: { bg: site.surface, fg: site.muted },
 } as const;
 
 const term2: { d: string; k: keyof typeof kindStyle; t: string; today?: boolean }[] = [
   { d: '11/12', k: '實體', t: '分組、創意發想', today: true },
-  { d: '11/19', k: '線上', t: 'UI/UX、AI 應用' },
+  { d: '11/19', k: '老師線上', t: 'UI/UX、AI 應用' },
   { d: '11/26', k: '實體', t: '世界咖啡館、動手做' },
-  { d: '12/3', k: '線上', t: '線上討論' },
+  { d: '12/3', k: '老師線上', t: '討論' },
   { d: '12/24', k: '實體', t: '發表日' },
   { d: '12/31', k: '實體', t: '慶功日' },
 ];
@@ -1441,7 +1441,11 @@ const IdeaTime: Page = () => (
 const Closing: Page = () => (
   <Frame>
     <HeroGlow />
-    <HeroText label="下週 11/19（四）· 線上" title="UI/UX 與 AI" sub="帶著你那一句話來。" />
+    <HeroText
+      label="下週 11/19（四）· 一樣到教室，老師線上"
+      title="UI/UX 與 AI"
+      sub="帶著你那一句話來。"
+    />
   </Frame>
 );
 
