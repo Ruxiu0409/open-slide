@@ -1348,6 +1348,11 @@ const TeamRules: Page = () => (
     <Head label="組隊" title="1～4 個人，自己找" />
     <Rows>
       <TermRow k="人數" v="1～4 人一組" small="想一個人做也可以" />
+      <TermRow
+        k="要比 SSC 的人"
+        v="請一人一組"
+        small="Apple Swift Student Challenge 只收個人作品，不能組隊"
+      />
       <TermRow k="怎麼找" v="找想念同一類科系的人" small="不一定要找最強的，要找會一起做完的" />
       <TermRow k="時間" v="5 分鐘內決定" />
       <TermRow k="組好之後" v="坐在一起，派一個人把名單給我" />
