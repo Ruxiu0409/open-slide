@@ -1147,6 +1147,202 @@ const Theme: Page = () => (
   </Frame>
 );
 
+const majors = [
+  {
+    name: '商管、經濟',
+    en: 'Business · Finance · Marketing · Economics',
+    ref: 'CampusQuery',
+    refNote: '用 AI 回答學校網站上找不到的問題',
+    ideas: ['福利社、義賣的庫存和定價', '高中生記帳，看懂錢花去哪'],
+  },
+  {
+    name: '電腦、資料',
+    en: 'Computer Science · Data Science · Statistics',
+    ref: 'Pitch Coach',
+    refNote: '上台簡報時即時給回饋',
+    ideas: ['學校公告只通知跟你有關的', '把公車到站資料畫成圖'],
+  },
+  {
+    name: '工程',
+    en: 'Mechanical · Electrical · Biomedical · Civil',
+    ref: 'MIT Maker Portfolio',
+    refNote: '有人交電動卡丁車、義肢、太陽能電池',
+    ideas: ['教室溫度、二氧化碳提醒', '用手機感測器看騎車姿勢'],
+  },
+  {
+    name: '醫學、健康',
+    en: 'Pre-med · Nursing · Public Health',
+    ref: 'LAAS',
+    refNote: '用 AR 輔助聽診肺音',
+    ideas: ['長輩吃藥提醒，家人也看得到', '運動傷害的自我檢查'],
+  },
+  {
+    name: '生物、化學',
+    en: 'Biology · Chemistry · Neuroscience',
+    ref: 'BioDock AI',
+    refNote: 'Congressional App Challenge 2024 冠軍',
+    ideas: ['校園植物、昆蟲圖鑑', '化學實驗安全的互動教學'],
+  },
+  {
+    name: '心理',
+    en: 'Psychology · Cognitive Science',
+    ref: 'Steady Hands',
+    refNote: '幫手會抖的人穩定筆畫',
+    ideas: ['考前焦慮的呼吸練習', '情緒日記，看出自己的週期'],
+  },
+  {
+    name: '社會、政治、法律',
+    en: 'Political Science · Sociology · Public Policy',
+    ref: 'Civic AI Action Hub',
+    refNote: 'Congressional App Challenge 2025 冠軍',
+    ideas: ['把選舉公報翻成白話', '新聞事實查核小幫手'],
+  },
+  {
+    name: '環境、永續',
+    en: 'Environmental Science · Sustainability',
+    ref: 'Asuo',
+    refNote: '淹水時即時找避難路線',
+    ideas: ['颱風、地震的避難準備清單', '校園剩食媒合'],
+  },
+  {
+    name: '教育、語言、人文',
+    en: 'Education · Linguistics · History',
+    ref: 'LeViola',
+    refNote: '沒有琴也能練中提琴',
+    ideas: ['台語、客語的日常用語練習', '可以點開的歷史時間軸'],
+  },
+  {
+    name: '設計、傳播、藝術',
+    en: 'Design · Architecture · Communications · Film',
+    ref: 'Hanafuda Tactics',
+    refNote: '把日本花札做成手機遊戲',
+    ideas: ['社團海報快速排版', '校園導覽的聲音地圖'],
+  },
+];
+
+const Majors: Page = () => (
+  <SitePage>
+    <Head
+      label="主題 · 先選科系"
+      title="十類常見的美國大學科系"
+      sub="選一個你以後想念的，跟選同一類的人坐一起。"
+    />
+    <div
+      className="ace-fadeup"
+      style={{
+        width: 1600,
+        marginTop: 52,
+        display: 'grid',
+        gridTemplateColumns: 'repeat(5, 1fr)',
+        gap: 20,
+        animationDelay: '200ms',
+      }}
+    >
+      {majors.map((m, i) => (
+        <div
+          key={m.name}
+          style={{
+            height: 220,
+            padding: '28px 26px',
+            borderRadius: 26,
+            background: site.surface,
+            textAlign: 'left',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <div style={{ fontSize: 22, color: site.muted, fontFamily: mono }}>
+            {String(i + 1).padStart(2, '0')}
+          </div>
+          <div
+            style={{
+              fontSize: 29,
+              fontWeight: 600,
+              marginTop: 12,
+              lineHeight: 1.2,
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {m.name}
+          </div>
+          <div style={{ fontSize: 19, color: site.muted, marginTop: 'auto', lineHeight: 1.45 }}>
+            {m.en}
+          </div>
+        </div>
+      ))}
+    </div>
+  </SitePage>
+);
+
+const MajorTopics = ({ from, to }: { from: number; to: number }) => (
+  <SitePage>
+    <Head
+      label={`主題 · 題目參考 ${from === 0 ? '1' : '2'}/2`}
+      title="別人做過什麼，你可以往哪想"
+    />
+    <div
+      className="ace-fadeup"
+      style={{
+        width: 1600,
+        marginTop: 28,
+        textAlign: 'left',
+        animationDelay: '200ms',
+      }}
+    >
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '300px 1fr 1fr',
+          gap: 40,
+          padding: '0 0 14px',
+          fontSize: 21,
+          color: site.faint,
+          borderBottom: `1px solid ${site.line}`,
+        }}
+      >
+        <div>科系</div>
+        <div>別人做過的</div>
+        <div>你可以往這裡想</div>
+      </div>
+      {majors.slice(from, to).map((m, i) => (
+        <div
+          key={m.name}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '300px 1fr 1fr',
+            gap: 40,
+            alignItems: 'center',
+            height: 110,
+            borderBottom: `1px solid ${site.line}`,
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
+            <span style={{ fontSize: 20, color: site.faint, fontFamily: mono }}>
+              {String(from + i + 1).padStart(2, '0')}
+            </span>
+            <span style={{ fontSize: 32, fontWeight: 600 }}>{m.name}</span>
+          </div>
+          <div>
+            <div style={{ fontSize: 28, fontWeight: 500 }}>{m.ref}</div>
+            <div style={{ fontSize: 22, color: site.muted, marginTop: 4 }}>{m.refNote}</div>
+          </div>
+          <div style={{ fontSize: 26, lineHeight: 1.5 }}>
+            {m.ideas.map((idea) => (
+              <div key={idea}>{idea}</div>
+            ))}
+          </div>
+        </div>
+      ))}
+      <div style={{ fontSize: 23, color: site.muted, marginTop: 22, textAlign: 'center' }}>
+        參考的作品看看就好，題目要自己想，做出別人沒做過的。
+      </div>
+    </div>
+  </SitePage>
+);
+
+const MajorTopicsA: Page = () => <MajorTopics from={0} to={5} />;
+const MajorTopicsB: Page = () => <MajorTopics from={5} to={10} />;
+
 const TeamRules: Page = () => (
   <SitePage>
     <Head label="組隊" title="1～4 個人，自己找" />
@@ -1263,6 +1459,9 @@ export default [
   ChallengeAsia,
   ChallengeTimeline,
   Theme,
+  Majors,
+  MajorTopicsA,
+  MajorTopicsB,
   TeamRules,
   TeamUp,
   IdeaMethod,
