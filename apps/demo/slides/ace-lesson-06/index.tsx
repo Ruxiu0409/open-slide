@@ -644,11 +644,11 @@ const Vote: Page = () => {
       >
         {done ? '投票截止' : '掃 QR Code 投票'}
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 96, marginTop: 52 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 96, marginTop: 30 }}>
         <div
           className="ace-fadeup"
           style={{
-            padding: 32,
+            padding: 28,
             borderRadius: 32,
             background: '#fff',
             border: `1px solid ${site.line}`,
@@ -659,13 +659,13 @@ const Vote: Page = () => {
           <img
             src={voteQr}
             alt="投票表單 QR Code"
-            style={{ width: 400, height: 400, display: 'block' }}
+            style={{ width: 560, height: 560, display: 'block' }}
           />
           <div
             style={{
               fontSize: 22,
               color: site.muted,
-              marginTop: 18,
+              marginTop: 12,
               fontFamily: mono,
               textAlign: 'center',
             }}
@@ -676,7 +676,7 @@ const Vote: Page = () => {
         <div style={{ textAlign: 'left' }}>
           <div
             style={{
-              fontSize: 220,
+              fontSize: 200,
               fontWeight: 500,
               letterSpacing: '-0.05em',
               lineHeight: 1,
@@ -689,7 +689,7 @@ const Vote: Page = () => {
           </div>
           <div
             style={{
-              width: 560,
+              width: 500,
               height: 14,
               borderRadius: 7,
               background: site.surface,
