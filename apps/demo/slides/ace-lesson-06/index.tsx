@@ -447,8 +447,8 @@ const Countdown = ({
 const founders = ['Cho Neil', '戴君翰', 'Kate Shen', 'Ian Huang', 'Emily', 'Charlotte'];
 
 const theme = {
-  title: '主題待公布',
-  sub: '題目範圍會在這裡公布，你要在這個範圍裡找一個真的想解決的問題。',
+  title: '你想念的科系',
+  sub: '照你以後想念的大學科系分組，做一個那個領域用得到的作品。可以參考別人做過的，但不能照做，要做出新東西。',
 };
 
 const Cover: Page = () => (
@@ -1152,7 +1152,7 @@ const TeamRules: Page = () => (
     <Head label="組隊" title="1～4 個人，自己找" />
     <Rows>
       <TermRow k="人數" v="1～4 人一組" small="想一個人做也可以" />
-      <TermRow k="怎麼找" v="找聊得來、時間對得上的人" small="不一定要找最強的，要找會一起做完的" />
+      <TermRow k="怎麼找" v="找想念同一類科系的人" small="不一定要找最強的，要找會一起做完的" />
       <TermRow k="時間" v="5 分鐘內決定" />
       <TermRow k="組好之後" v="坐在一起，派一個人把名單給我" />
     </Rows>
