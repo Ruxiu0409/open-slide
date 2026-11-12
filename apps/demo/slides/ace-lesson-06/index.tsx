@@ -1226,7 +1226,7 @@ const majors = [
     en: 'Business · Finance · Marketing · Economics',
     ref: 'CampusQuery',
     refNote: '用 AI 回答學校網站上找不到的問題',
-    ideas: ['福利社、義賣的庫存和定價', '高中生記帳，看懂錢花去哪'],
+    ideas: ['用統一發票資料看懂一個地方的經濟', '分析商圈消費，幫店家找開店地點'],
   },
   {
     name: '電腦、資料',
