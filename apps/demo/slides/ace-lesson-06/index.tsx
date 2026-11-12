@@ -5,7 +5,9 @@ import {
   useIsActivePage,
   useSlidePageNumber,
 } from '@open-slide/core';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import sscHero from './assets/ssc27-hero.mp4';
+import sscHeroEnd from './assets/ssc27-hero-end.jpg';
 
 export const design: DesignSystem = {
   palette: { bg: '#FFFFFF', text: '#0D0D0D', accent: '#2E6FE0' },
@@ -776,30 +778,131 @@ const Schedule: Page = () => (
   </SitePage>
 );
 
-const ChallengeSSC: Page = () => (
-  <SitePage>
-    <Head
-      label="接下來的比賽 · Apple 官方"
-      title="Swift Student Challenge"
-      sub="Apple 每年辦給學生的 App 比賽。2027 年 2/8～2/28 交作品。"
-    />
-    <Rows>
-      <TermRow k="誰能參加" v="13 歲以上的學生" small="免費註冊 Apple 開發者帳號就能報" />
-      <TermRow
-        k="做什麼"
-        v="用 Swift Playground 或 Xcode 做一個 App"
-        small="3 分鐘內玩得完，不能用網路，內容要英文"
-      />
-      <TermRow k="今年新規則" v="iPhone、iPad、Mac、Vision Pro、Watch、TV 都可以" />
-      <TermRow k="幾個人" v="只能一個人做，不能組隊" />
-      <TermRow
-        k="得獎"
-        v="一年 Apple Developer Program 會員"
-        small="最頂尖的 Distinguished Winners 會被邀請到 Cupertino"
-      />
-    </Rows>
-  </SitePage>
+const SSCCell = ({ k, v, small }: { k: string; v: string; small?: string }) => (
+  <div
+    style={{
+      padding: '18px 0',
+      borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+      textAlign: 'left',
+    }}
+  >
+    <div style={{ fontSize: 22, color: 'rgba(255, 255, 255, 0.62)' }}>{k}</div>
+    <div style={{ fontSize: 30, lineHeight: 1.3, marginTop: 6 }}>{v}</div>
+    {small && (
+      <div style={{ fontSize: 21, color: 'rgba(255, 255, 255, 0.62)', marginTop: 4 }}>{small}</div>
+    )}
+  </div>
 );
+
+const ChallengeSSC: Page = () => {
+  const active = useIsActivePage();
+  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+    if (active) {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [active]);
+  return (
+    <div style={{ ...fill, background: '#120A3A', color: '#fff' }}>
+      <Style />
+      <video
+        ref={ref}
+        src={sscHero}
+        poster={sscHeroEnd}
+        muted
+        playsInline
+        preload="auto"
+        style={{
+          position: 'absolute',
+          top: -36,
+          left: 0,
+          width: '100%',
+          height: 'calc(100% + 36px)',
+          objectFit: 'cover',
+          objectPosition: 'top',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          top: 416,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center',
+        }}
+      >
+        <div className="ace-fadeup" style={{ fontSize: 24, color: 'rgba(255, 255, 255, 0.7)' }}>
+          接下來的比賽 · Apple 官方
+        </div>
+        <h2
+          className="ace-fadeup"
+          style={{
+            fontSize: 68,
+            fontWeight: 600,
+            letterSpacing: '-0.025em',
+            lineHeight: 1.12,
+            margin: '12px 0 0',
+            animationDelay: '80ms',
+          }}
+        >
+          Swift Student Challenge
+        </h2>
+        <p
+          className="ace-fadeup"
+          style={{
+            fontSize: 27,
+            color: 'rgba(255, 255, 255, 0.78)',
+            margin: '14px 0 0',
+            animationDelay: '140ms',
+          }}
+        >
+          Apple 每年辦給學生的 App 比賽。2027 年 2/8～2/28 交作品。
+        </p>
+        <div
+          className="ace-fadeup"
+          style={{
+            width: 1300,
+            marginTop: 34,
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            columnGap: 64,
+            animationDelay: '220ms',
+          }}
+        >
+          <SSCCell
+            k="誰能參加"
+            v="13 歲以上，一個人報名"
+            small="不能組隊。免費註冊 Apple 開發者帳號就能報"
+          />
+          <SSCCell
+            k="得獎"
+            v="一年 Apple Developer Program 會員"
+            small="最頂尖的 Distinguished Winners 會被邀請到 Cupertino"
+          />
+          <SSCCell
+            k="做什麼"
+            v="用 Swift Playground 或 Xcode 做一個 App"
+            small="3 分鐘內玩得完，不能用網路，內容要英文"
+          />
+          <SSCCell
+            k="今年新規則"
+            v="六個 Apple 平台都能做"
+            small="iPhone、iPad、Mac、Vision Pro、Watch、TV"
+          />
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
+};
 
 const ChallengeAsia: Page = () => (
   <SitePage>
