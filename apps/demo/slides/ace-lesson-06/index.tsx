@@ -451,7 +451,7 @@ const Cover: Page = () => (
     <HeroGlow />
     <HeroText
       label="ACE Club · 2026.11.12（四）· 社課第六堂"
-      title="第二學期，開始"
+      title="下半學期，開始"
       sub="這次，你想解決什麼問題？"
     >
       <Pill>今天：選出第一名、組隊、想點子</Pill>
@@ -549,7 +549,7 @@ const Agenda: Page = () => {
         />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
           <AgendaItem i={0} time="6 分鐘" title="選出第一名" body="Pitch Day 回顧、投票" />
-          <AgendaItem i={1} time="5 分鐘" title="這學期怎麼走" body="行程、比賽、主題" />
+          <AgendaItem i={1} time="5 分鐘" title="下半學期怎麼走" body="行程、比賽、主題" />
           <AgendaItem i={2} time="5 分鐘" title="組隊" body="1～4 人，自己找" />
           <AgendaItem i={3} time="12 分鐘" title="想點子" body="帶走一句話" />
         </div>
@@ -561,7 +561,7 @@ const Agenda: Page = () => {
 const Recap: Page = () => (
   <SitePage>
     <Head
-      label="上學期回顧 · ACE Pitch Day"
+      label="上半學期回顧 · ACE Pitch Day"
       title="10/15，六位創辦人上台"
       sub="從一個問題開始，做出能 Demo 的東西，再站上台講三分鐘。"
     />
@@ -716,7 +716,7 @@ const term2: { d: string; k: keyof typeof kindStyle; t: string; today?: boolean 
 
 const Schedule: Page = () => (
   <SitePage>
-    <Head label="第二學期 · 六次社課" title="12/24 再上台一次" />
+    <Head label="下半學期 · 六次社課" title="12/24 再上台一次" />
     <div
       className="ace-fadeup"
       style={{
@@ -784,7 +784,7 @@ const Schedule: Page = () => (
 const ChallengeSSC: Page = () => (
   <SitePage>
     <Head
-      label="這學期的比賽 · Apple 官方"
+      label="接下來的比賽 · Apple 官方"
       title="Swift Student Challenge"
       sub="Apple 每年辦給學生的 App 比賽。2027 年 2/8～2/28 交作品。"
     />
@@ -809,7 +809,7 @@ const ChallengeSSC: Page = () => (
 const ChallengeAsia: Page = () => (
   <SitePage>
     <Head
-      label="這學期的比賽 · 台灣"
+      label="接下來的比賽 · 台灣"
       title="Asia Student App Challenge"
       sub="規則跟 Apple 的一樣，但提早一個月交，先拿到回饋。"
     />
@@ -875,7 +875,7 @@ const ChallengeTimeline: Page = () => {
 const Theme: Page = () => (
   <Frame>
     <HeroGlow />
-    <HeroText label="這學期的主題" title={theme.title} sub="">
+    <HeroText label="下半學期的主題" title={theme.title} sub="">
       <p
         className="ace-fadeup"
         style={{
@@ -991,7 +991,7 @@ const Closing: Page = () => (
 );
 
 export const meta: SlideMeta = {
-  title: '2026/11/12 ACE Club Lesson 6 · 第二學期開始',
+  title: '2026/11/12 ACE Club Lesson 6 · 下半學期開始',
   theme: 'aurora',
   createdAt: '2026-11-11T12:00:00+08:00',
 };
