@@ -11,6 +11,7 @@ import asacGlobe from './assets/asac-globe.png';
 import asacLogo from './assets/asac-tw-logo.svg';
 import sscHero from './assets/ssc27-hero.mp4';
 import sscHeroEnd from './assets/ssc27-hero-end.jpg';
+import voteQr from './assets/vote-qr.svg';
 
 export const design: DesignSystem = {
   palette: { bg: '#FFFFFF', text: '#0D0D0D', accent: '#2E6FE0' },
@@ -614,8 +615,8 @@ const VoteRules: Page = () => (
   <SitePage>
     <Head label="投票" title="一人一票，選出第一名" />
     <Rows>
-      <TermRow k="怎麼投" v="在紙上寫一個號碼，對折交上來" small="號碼就是上一頁的上台順序" />
-      <TermRow k="不能投自己" v="有上台的人，不能寫自己的號碼" />
+      <TermRow k="怎麼投" v="手機掃 QR Code，填名字、選一個人" small="下一頁就有 QR Code" />
+      <TermRow k="不能投自己" v="有上台的人，不能選自己" />
       <TermRow k="怎麼算" v="票數最多的拿第一名" small="同票由評審決定" />
       <TermRow k="第一名" v="Claude Team Premium 帳號一個月" />
       <TermRow k="安慰獎" v="Claude Team Standard 帳號一個月" small="其他有上台的人，每人一份" />
@@ -623,38 +624,110 @@ const VoteRules: Page = () => (
   </SitePage>
 );
 
-const Vote: Page = () => (
-  <Countdown
-    seconds={60}
-    size={220}
-    label="投票時間"
-    title="寫下一個號碼"
-    doneTitle="投票截止"
-    hint="不能寫自己。寫好對折，傳到前面。"
-    doneHint="筆放下，票交上來，現場開票。"
-  >
-    <div style={{ display: 'flex', gap: 16, marginTop: 44 }}>
-      {founders.map((name, i) => (
+const voteUrl = 'forms.gle/sRLr1TptJ2Zyg8U4A';
+
+const Vote: Page = () => {
+  const seconds = 120;
+  const elapsed = useElapsed(seconds);
+  const done = elapsed >= seconds;
+  const left = seconds - elapsed;
+  const color = done || left <= 30 ? site.claude : 'var(--osd-text)';
+  return (
+    <SitePage>
+      <div className="ace-fadeup" style={{ fontSize: 28, color: site.muted }}>
+        投票時間
+      </div>
+      <div
+        key={String(done)}
+        className="ace-fadeup"
+        style={{ fontSize: 60, fontWeight: 600, letterSpacing: '-0.02em', marginTop: 14, color }}
+      >
+        {done ? '投票截止' : '掃 QR Code 投票'}
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 96, marginTop: 52 }}>
         <div
-          key={name}
+          className="ace-fadeup"
           style={{
-            width: 210,
-            padding: '20px 0',
-            borderRadius: 22,
-            background: site.surface,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 6,
+            padding: 32,
+            borderRadius: 32,
+            background: '#fff',
+            border: `1px solid ${site.line}`,
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.08)',
+            animationDelay: '120ms',
           }}
         >
-          <div style={{ fontSize: 56, fontWeight: 500, lineHeight: 1 }}>{i + 1}</div>
-          <div style={{ fontSize: 24, fontWeight: 600 }}>{name}</div>
+          <img
+            src={voteQr}
+            alt="投票表單 QR Code"
+            style={{ width: 400, height: 400, display: 'block' }}
+          />
+          <div
+            style={{
+              fontSize: 22,
+              color: site.muted,
+              marginTop: 18,
+              fontFamily: mono,
+              textAlign: 'center',
+            }}
+          >
+            {voteUrl}
+          </div>
         </div>
-      ))}
-    </div>
-  </Countdown>
-);
+        <div style={{ textAlign: 'left' }}>
+          <div
+            style={{
+              fontSize: 220,
+              fontWeight: 500,
+              letterSpacing: '-0.05em',
+              lineHeight: 1,
+              fontVariantNumeric: 'tabular-nums',
+              color,
+              transition: 'color 400ms ease',
+            }}
+          >
+            {clock(left)}
+          </div>
+          <div
+            style={{
+              width: 560,
+              height: 14,
+              borderRadius: 7,
+              background: site.surface,
+              overflow: 'hidden',
+              marginTop: 28,
+            }}
+          >
+            <div
+              style={{
+                width: '100%',
+                height: '100%',
+                background: site.claude,
+                transformOrigin: 'left',
+                transform: `scaleX(${Math.min(elapsed / seconds, 1)})`,
+                transition: 'transform 100ms linear',
+              }}
+            />
+          </div>
+          <p
+            key={String(done)}
+            className="ace-fadeup"
+            style={{ fontSize: 30, color: site.muted, margin: '36px 0 0', lineHeight: 1.6 }}
+          >
+            {done ? (
+              '手機放下，現場開票。'
+            ) : (
+              <>
+                填你的名字，選一個人。
+                <br />
+                不能選自己。
+              </>
+            )}
+          </p>
+        </div>
+      </div>
+    </SitePage>
+  );
+};
 
 const Winner: Page = () => (
   <Frame>
