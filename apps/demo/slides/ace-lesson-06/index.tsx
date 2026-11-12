@@ -614,7 +614,8 @@ const VoteRules: Page = () => (
       <TermRow k="怎麼投" v="在紙上寫一個號碼，對折交上來" small="號碼就是上一頁的上台順序" />
       <TermRow k="不能投自己" v="有上台的人，不能寫自己的號碼" />
       <TermRow k="怎麼算" v="票數最多的拿第一名" small="同票由評審決定" />
-      <TermRow k="獎品" v="Claude Team Premium 帳號一個月" />
+      <TermRow k="第一名" v="Claude Team Premium 帳號一個月" />
+      <TermRow k="安慰獎" v="Claude Team Standard 帳號一個月" small="其他有上台的人，每人一份" />
     </Rows>
   </SitePage>
 );
@@ -693,6 +694,89 @@ const Winner: Page = () => (
         Claude Team Premium
         <br />
         帳號一個月
+      </div>
+    </div>
+  </Frame>
+);
+
+const ConsolationPrize: Page = () => (
+  <Frame>
+    <div
+      className="ace-fadeup"
+      style={{
+        position: 'absolute',
+        left: 120,
+        right: 120,
+        top: 90,
+        bottom: 130,
+        borderRadius: 44,
+        background: site.cream,
+        border: `1px solid ${site.line}`,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+      }}
+    >
+      <div
+        style={{
+          width: 190,
+          height: 190,
+          borderRadius: 48,
+          background: site.claude,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Clawd width={130} />
+      </div>
+      <div style={{ fontSize: 26, color: site.muted, marginTop: 44 }}>安慰獎</div>
+      <div
+        style={{
+          fontSize: 76,
+          fontWeight: 500,
+          letterSpacing: '-0.025em',
+          lineHeight: 1.1,
+          marginTop: 14,
+        }}
+      >
+        Claude Team Standard 帳號一個月
+      </div>
+      <div style={{ fontSize: 30, color: site.muted, marginTop: 22 }}>
+        其他有上台的每一位，都有一份。
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          gap: 14,
+          marginTop: 40,
+          maxWidth: 1300,
+        }}
+      >
+        {founders.map((name, i) => (
+          <div
+            key={name}
+            className="ace-fadeup"
+            style={{
+              height: 58,
+              padding: '0 26px',
+              borderRadius: 999,
+              background: '#fff',
+              border: `1px solid ${site.line}`,
+              display: 'inline-flex',
+              alignItems: 'center',
+              fontSize: 26,
+              fontWeight: 500,
+              animationDelay: `${300 + i * 80}ms`,
+            }}
+          >
+            {name}
+          </div>
+        ))}
       </div>
     </div>
   </Frame>
@@ -1098,6 +1182,7 @@ export default [
   VoteRules,
   Vote,
   Winner,
+  ConsolationPrize,
   Schedule,
   ChallengeSSC,
   ChallengeAsia,
