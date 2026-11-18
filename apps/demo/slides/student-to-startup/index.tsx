@@ -250,7 +250,7 @@ const Underlined = ({
 const Blank: Page = () => <Stage center>{null}</Stage>;
 
 const NotStudy: Page = () => (
-  <Split visual={<Photo src={highSchool} width={420} height={560} />}>
+  <Split visual={<Photo src={highSchool} width={600} height={800} />}>
     <p style={KICKER}>高中</p>
     <h2 style={{ ...GIANT, fontSize: 128 }}>不愛讀書。</h2>
     <p style={SPLIT_COPY}>
