@@ -8,6 +8,7 @@ import {
 } from '@open-slide/core';
 import type { CSSProperties, ReactNode } from 'react';
 import appleParkIosClub from './assets/apple-park-ios-club.jpg';
+import avatarWwdc from './assets/avatar-wwdc.jpg';
 import banfengLogo from './assets/banfeng-logo.png';
 import bitrigHacks from './assets/bitrig-hacks.jpg';
 import champion2024 from './assets/champion-2024.jpg';
@@ -156,14 +157,17 @@ const Cover: Page = () => {
   const fade = (delay: number): CSSProperties =>
     live ? { animation: `sts-fade 1.2s ${EASE_OUT} ${delay}s both` } : {};
   return (
-    <Stage>
+    <Stage center>
       <p
         style={{
           ...HEAD,
           fontSize: 34,
           letterSpacing: '-0.02em',
           lineHeight: 1,
-          marginTop: 96,
+          position: 'absolute',
+          top: 96,
+          left: 0,
+          right: 0,
           ...fade(0),
         }}
       >
@@ -175,7 +179,6 @@ const Cover: Page = () => {
           letterSpacing: '-0.035em',
           fontSize: 150,
           lineHeight: 1.25,
-          marginTop: 200,
           ...rise(0.2),
         }}
       >
@@ -205,13 +208,26 @@ const AboutMe: Page = () => {
     live ? { animation: `sts-fade 0.8s ${EASE_OUT} ${delay}s both` } : {};
   return (
     <Stage center>
+      <img
+        src={avatarWwdc}
+        alt="瑞瑞"
+        style={{
+          width: 220,
+          height: 220,
+          borderRadius: '50%',
+          objectFit: 'cover',
+          display: 'block',
+          boxShadow: '0 0 0 1px rgba(0,0,0,0.06), 0 14px 36px rgba(0,0,0,0.12)',
+          marginBottom: 40,
+        }}
+      />
       <p style={EYEBROW}>About me</p>
       <h1 style={{ ...HEAD, fontSize: 120, marginTop: 18, translate: '0px 0px' }}>瑞瑞</h1>
       <p style={{ ...COPY, fontSize: 44, color: 'var(--osd-text)', marginTop: 28 }}>
         想到就去做，先想到人。
       </p>
-      <div style={{ width: 1520, height: 2, background: HAIR, marginTop: 110, ...fade(0.2) }} />
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 90, ...fade(0.35) }}>
+      <div style={{ width: 1520, height: 2, background: HAIR, marginTop: 72, ...fade(0.2) }} />
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 64, ...fade(0.35) }}>
         <Fact value="資工大四" label="逢甲大學" />
         <Fact value="前社長" label="逢甲 iOS Club" />
         <Fact value="Founder" label="半逢遇甲" />
@@ -356,50 +372,45 @@ const Split = ({
       <div
         style={{
           position: 'absolute',
-          left: 0,
-          top: 0,
-          width: 1000,
-          height: 1080,
+          inset: 0,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          ...fade(0),
+          gap: 160,
         }}
       >
-        {visual}
-      </div>
-      <div
-        style={{
-          position: 'absolute',
-          left: 1080,
-          top: 0,
-          width: 720,
-          height: 1080,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          textAlign: 'left',
-          ...rise(0.15),
-        }}
-      >
-        {children}
-      </div>
-      {footnote && (
-        <p
+        <div style={{ flexShrink: 0, ...fade(0) }}>{visual}</div>
+        <div
           style={{
-            ...COPY,
-            position: 'absolute',
-            left: 1080,
-            top: 980,
-            width: 720,
-            fontSize: 20,
-            color: '#86868B',
+            position: 'relative',
+            alignSelf: 'stretch',
+            maxWidth: 760,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
             textAlign: 'left',
+            ...rise(0.15),
           }}
         >
-          {footnote}
-        </p>
-      )}
+          {children}
+          {footnote && (
+            <p
+              style={{
+                ...COPY,
+                position: 'absolute',
+                left: 0,
+                bottom: 80,
+                width: 'max-content',
+                fontSize: 20,
+                color: '#86868B',
+                textAlign: 'left',
+              }}
+            >
+              {footnote}
+            </p>
+          )}
+        </div>
+      </div>
     </Stage>
   );
 };
@@ -485,9 +496,9 @@ const StartupIsland: Page = () => (
 const Hackathon: Page = () => (
   <Split visual={<Photo src={ycSign} width={820} height={560} />}>
     <p style={KICKER}>Bitrig Hackathon</p>
-    <h2 style={GIANT}>@ YC</h2>
+    <h2 style={{ ...GIANT, fontSize: 96 }}>@ Y Combinator</h2>
     <p style={SPLIT_COPY}>
-      <Em>在 YC 的辦公室，</Em>
+      <Em>在 Y Combinator 的辦公室，</Em>
       <br />
       參加 Bitrig 的黑客松。
     </p>
@@ -693,7 +704,7 @@ export const notes: (string | undefined)[] = [
   '把時間軸拉開來看：從大一開始學 iOS，到全國冠軍、半逢遇甲、社長，最後走到 WWDC26。喜歡的事，就一直做下去。',
   'WWDC26，第一次到 Apple Park。我把 iOS Club 的貼紙一起帶過去。',
   'Startup Island TAIWAN：跟他們聊灣區現在的產業狀態。（待補：印象最深的一兩個重點）',
-  `我是參加 Bitrig 的黑客松去的，地點在 YC 的辦公室。
+  `我是參加 Bitrig 的黑客松去的，地點在 Y Combinator 的辦公室。
 Bitrig 在做的事，跟你們每天在做的 vibe coding 很像。`,
   `在台灣，我最常被問的是：你哪間學校？
 在那裡，從來沒有人問我這個。大家只談怎麼解決問題、怎麼拿到第一筆生意。
