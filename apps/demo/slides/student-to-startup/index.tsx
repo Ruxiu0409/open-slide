@@ -438,7 +438,7 @@ const AppIcon = ({ size }: { size: number }) => (
 );
 
 const BanFeng: Page = () => (
-  <Split visual={<AppIcon size={420} />} footnote="¹ 上線一週後，277 位使用者的 SUS 量表平均。">
+  <Split visual={<AppIcon size={420} />}>
     <p style={KICKER}>半逢遇甲</p>
     <h2 style={GIANT}>12,000+</h2>
     <p style={SPLIT_COPY}>
@@ -449,7 +449,6 @@ const BanFeng: Page = () => (
     <div style={{ display: 'flex', gap: 64, marginTop: 56 }}>
       <MiniStat value="No.2" label="上架首日 工具程式免費榜" />
       <MiniStat value="4.9" label="App Store 評分" />
-      <MiniStat value="82.9¹" label="SUS 可用性分數" />
     </div>
   </Split>
 );
