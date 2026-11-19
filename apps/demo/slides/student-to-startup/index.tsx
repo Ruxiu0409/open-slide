@@ -12,6 +12,12 @@ import banfengLogo from './assets/banfeng-logo.png';
 import bitrigHacks from './assets/bitrig-hacks.jpg';
 import champion2024 from './assets/champion-2024.jpg';
 import highSchool from './assets/high-school.jpg';
+import logoDoordash from './assets/logo-doordash.svg';
+import logoMedumo from './assets/logo-medumo.png';
+import logoOllama from './assets/logo-ollama.svg';
+import logoSafebase from './assets/logo-safebase.png';
+import logoVest from './assets/logo-vest.svg';
+import logoXendit from './assets/logo-xendit.png';
 import startupIsland from './assets/startup-island.jpg';
 import ycSign from './assets/yc-sign.jpg';
 
@@ -549,6 +555,90 @@ const Ink = ({ children }: { children: ReactNode }) => (
   <span style={{ color: 'var(--osd-text)' }}>{children}</span>
 );
 
+const WhatIsYC: Page = () => {
+  const { rise, fade } = useFade();
+  return (
+    <Stage center>
+      <p style={{ ...EYEBROW, ...fade(0) }}>Y Combinator · 2005</p>
+      <h2 style={{ ...HEAD, fontSize: 120, lineHeight: 1.3, marginTop: 40, ...rise(0.1) }}>
+        全世界最有名的新創加速器
+      </h2>
+      <p
+        style={{
+          ...HEAD,
+          fontSize: 48,
+          color: SECOND,
+          marginTop: 80,
+          letterSpacing: '0.02em',
+          ...fade(0.6),
+        }}
+      >
+        Airbnb · Stripe · DoorDash · Coinbase · Dropbox · Reddit
+      </p>
+      <p style={{ ...COPY, fontSize: 40, marginTop: 56, ...fade(0.9) }}>
+        <Ink>你手機裡，可能就有好幾個是他們投資的。</Ink>
+      </p>
+    </Stage>
+  );
+};
+
+const Part = ({
+  part,
+  title,
+  copy,
+  mist,
+}: {
+  part: string;
+  title: string;
+  copy: string;
+  mist?: boolean;
+}) => {
+  const { rise, fade } = useFade();
+  return (
+    <Stage center mist={mist}>
+      <p style={{ ...EYEBROW, ...fade(0) }}>{part}</p>
+      <h2 style={{ ...HEAD, fontSize: 132, lineHeight: 1.3, marginTop: 40, ...rise(0.1) }}>
+        {title}
+      </h2>
+      <p style={{ ...COPY, fontSize: 44, marginTop: 80, ...fade(0.7) }}>{copy}</p>
+    </Stage>
+  );
+};
+
+const PartFounders: Page = () => (
+  <Part part="Part 1 · 創辦人" title="他們怎麼開始" copy="六位創辦人，六種開始的方式。" />
+);
+
+const PartPartners: Page = () => (
+  <Part part="Part 2 · YC 合夥人" title="他們怎麼看新創" copy="看過最多新創的一群人。" mist />
+);
+
+const Takeaway = ({ head, from }: { head: string; from: string }) => (
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 440 }}>
+    <p style={{ ...HEAD, fontSize: 72 }}>{head}</p>
+    <p style={{ ...COPY, fontSize: 28, marginTop: 28, whiteSpace: 'nowrap' }}>{from}</p>
+  </div>
+);
+
+const Takeaways: Page = () => {
+  const { rise, fade } = useFade();
+  return (
+    <Stage center>
+      <p style={{ ...EYEBROW, ...fade(0) }}>YC Startup School Taipei</p>
+      <h2 style={{ ...HEAD, fontSize: 104, lineHeight: 1.3, marginTop: 40, ...rise(0.1) }}>
+        我帶回來的三件事
+      </h2>
+      <div style={{ display: 'flex', alignItems: 'flex-start', marginTop: 120, ...fade(0.6) }}>
+        <Takeaway head="先做出來" from="Ollama · DoorDash · Xendit" />
+        <div style={{ width: 2, height: 160, background: HAIR, margin: '0 40px' }} />
+        <Takeaway head="先找問題" from="SafeBase · Medumo · Jon Xu" />
+        <div style={{ width: 2, height: 160, background: HAIR, margin: '0 40px' }} />
+        <Takeaway head="不怕輸" from="Vest · Ankit Gupta" />
+      </div>
+    </Stage>
+  );
+};
+
 const StartupSchool: Page = () => {
   const { live, rise, fade } = useFade();
   return (
@@ -563,9 +653,135 @@ const StartupSchool: Page = () => {
       <p style={{ ...COPY, fontSize: 44, marginTop: 96, ...fade(0.8) }}>
         上週，<Ink>Y Combinator 來到台北。</Ink>
       </p>
+      <p style={{ ...COPY, fontSize: 32, marginTop: 28, ...fade(1) }}>
+        第一次在台灣舉辦。免費，但要通過審核才能參加。
+      </p>
     </Stage>
   );
 };
+
+const Product = ({
+  logo,
+  meta,
+  title,
+  copy,
+}: {
+  logo: ReactNode;
+  meta: string;
+  title: string;
+  copy: ReactNode;
+}) => {
+  const { rise, fade } = useFade();
+  return (
+    <Stage center>
+      <div style={{ height: 150, display: 'flex', alignItems: 'center', ...fade(0) }}>{logo}</div>
+      <p style={{ ...EYEBROW, marginTop: 48, ...fade(0.2) }}>{meta}</p>
+      <h2 style={{ ...HEAD, fontSize: 104, lineHeight: 1.3, marginTop: 32, ...rise(0.3) }}>
+        {title}
+      </h2>
+      <p style={{ ...COPY, fontSize: 36, lineHeight: 1.6, marginTop: 64, ...fade(0.8) }}>{copy}</p>
+    </Stage>
+  );
+};
+
+const Logo = ({ src, height }: { src: string; height: number }) => (
+  <img src={src} alt="" style={{ height, width: 'auto', display: 'block' }} />
+);
+
+const ProductOllama: Page = () => (
+  <Product
+    logo={
+      <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
+        <Logo src={logoOllama} height={120} />
+        <span style={{ ...HEAD, fontSize: 88 }}>Ollama</span>
+      </div>
+    }
+    meta="YC W21 · 開源 AI 工具"
+    title="在自己的電腦上跑 AI"
+    copy={
+      <>
+        一行指令，就能在筆電上跑開源的大型語言模型。
+        <br />
+        <Ink>現在超過 1,000 萬開發者在用。</Ink>
+      </>
+    }
+  />
+);
+
+const ProductMedumo: Page = () => (
+  <Product
+    logo={<Logo src={logoMedumo} height={84} />}
+    meta="YC W18 · 醫療"
+    title="帶病人走完整個療程"
+    copy={
+      <>
+        在對的時間傳簡訊和 Email，提醒病人看診前要準備什麼。
+        <br />
+        <Ink>2019 年被 Philips 收購。</Ink>
+      </>
+    }
+  />
+);
+
+const ProductSafeBase: Page = () => (
+  <Product
+    logo={<Logo src={logoSafebase} height={84} />}
+    meta="YC S20 · 資安"
+    title="讓資安審查不再卡關"
+    copy={
+      <>
+        企業買軟體前都要做資安審查，SafeBase 把它變成一個自助的 Trust Center。
+        <br />
+        <Ink>超過 1,000 家客戶，2025 年被 Drata 收購。</Ink>
+      </>
+    }
+  />
+);
+
+const ProductVest: Page = () => (
+  <Product
+    logo={<Logo src={logoVest} height={100} />}
+    meta="YC W15 · 金融"
+    title="先知道最多會賠多少"
+    copy={
+      <>
+        用選擇權設計投資商品，事先設定好報酬的範圍和風險。
+        <br />
+        <Ink>管理的商品規模超過 750 億美元。</Ink>
+      </>
+    }
+  />
+);
+
+const ProductXendit: Page = () => (
+  <Product
+    logo={<Logo src={logoXendit} height={110} />}
+    meta="YC S15 · 印尼雅加達"
+    title="東南亞的金流"
+    copy={
+      <>
+        讓東南亞的公司收款、付款，被稱為「東南亞的 Stripe」。
+        <br />
+        <Ink>一開始做比特幣匯款，現在約 700 人。</Ink>
+      </>
+    }
+  />
+);
+
+const ProductDoorDash: Page = () => (
+  <Product
+    logo={<Logo src={logoDoordash} height={70} />}
+    meta="YC S13 · 外送"
+    title="美國最大的外送平台"
+    copy={
+      <>
+        2013 年，三個史丹佛學生一起創辦。
+        <br />
+        <Ink>現在已經是上市公司。</Ink>
+      </>
+    }
+  />
+);
 
 const TalkOllama: Page = () => (
   <Talk
@@ -890,17 +1106,27 @@ export default [
   Wwdc,
   StartupIsland,
   Hackathon,
+  WhatIsYC,
   StartupSchool,
+  PartFounders,
+  ProductOllama,
   TalkOllama,
+  ProductMedumo,
   TalkMedumo,
+  ProductSafeBase,
   TalkSafeBase,
+  ProductVest,
   TalkVest,
+  ProductXendit,
   TalkXendit,
+  ProductDoorDash,
   TalkDoorDash,
+  PartPartners,
   TalkDiana,
   TalkGarry,
   TalkJon,
   TalkAnkit,
+  Takeaways,
   Contrast,
   Sponsor,
   NotStartup,
@@ -927,19 +1153,43 @@ export const notes: (string | undefined)[] = [
   'Startup Island TAIWAN：跟他們聊灣區現在的產業狀態。（待補：印象最深的一兩個重點）',
   `我是參加 Bitrig 的黑客松去的，地點在 Y Combinator 的辦公室。
 Bitrig 在做的事，跟你們每天在做的 vibe coding 很像。`,
-  `回台灣之後，上週 YC 也來到台北，辦了 Startup School。
-我也去了。接下來幾頁，是那天講者說的話裡，我覺得最想帶給你們的。`,
+  `先介紹一下 Y Combinator：2005 年在矽谷成立，是全世界最有名的新創加速器。
+Airbnb、Stripe、DoorDash、Coinbase、Dropbox、Reddit，都是 YC 投資的公司。你們手機裡可能就有好幾個。
+六月我在他們的辦公室參加黑客松，那時候還沒想到，五個月後他們會自己來台灣。`,
+  `回台灣之後，上週 YC 也來到台北，辦了 Startup School。這是他們第一次在台灣辦。
+活動免費，但要先申請、通過審核才能進場。我也去了。
+那天分成兩段：前面是創辦人分享，後面是 YC 合夥人座談。接下來幾頁，是我覺得最想帶給你們的話。`,
+  `第一段是創辦人。六個人、六間公司，每個人開始的方式都不一樣。
+有人從醫學院休學，有人做了兩年才開始成長，有人 20 歲就開始送外送。`,
+  `先介紹 Ollama：一個開源工具，一行指令就能在自己的電腦上跑大型語言模型，不用連雲端。
+2021 年冬季梯次進 YC，創辦人是 Jeffrey Morgan 和 Michael Chiang。現在超過一千萬開發者在用。`,
   'Ollama 的 Michael Chiang：很容易把成功看成一夕之間發生。Ollama 現在超過一千萬開發者在用，團隊只有大約 16 個人。他說，先做你自己想要的東西。',
+  `Medumo 做的是病人導引：在對的時間傳簡訊和 Email，提醒病人看診或手術前要準備什麼，減少因為沒準備好而取消的情況。
+2018 年冬季梯次進 YC，2019 年被 Philips 收購。`,
   'Medumo 的 Adeel Yang：他離開醫學院去創業，後來又回去把書讀完。他說，十件事裡要砍掉九件，專心做最重要的。',
+  `SafeBase：企業買軟體之前，都要先做資安審查，往往要填很長的問卷。SafeBase 讓公司做一個 Trust Center，客戶自己上去看資安資料。
+2020 年成立，同年夏季梯次進 YC。超過一千家客戶，2025 年被 Drata 收購。`,
   'SafeBase 的 Al Yang 最常問的一句話：你現在遇到什麼問題？好的產品是從一個真實的問題開始的。',
+  `Vest 是做金融商品的公司：用選擇權設計「目標結果」型的投資，事先設定好報酬的範圍和風險，讓投資人先知道最多會賠多少。
+2012 年成立，2015 年冬季梯次進 YC，管理的商品規模超過 750 億美元。`,
   'Vest 的 Jeff Chang 排了創辦人最重要的特質：韌性第一，影響力第二，創造力第三，聰明排最後。他說的是「拒絕輸掉」。',
+  `Xendit 是東南亞的金流公司，幫印尼、菲律賓等地的公司收款和付款，常被叫做「東南亞的 Stripe」。
+2015 年夏季梯次進 YC，總部在雅加達，現在大約 700 人，是印尼第一間從 YC 出來的獨角獸。`,
   'Xendit 的 Moses Lo：六週就有一萬六千個用戶。他們用樂高、網路攝影機和膠帶做了一台自動按按鈕的機器。他說，困難的往往不是取得知識，而是願不願意執行。',
+  `DoorDash 大家應該都聽過，美國最大的外送平台。
+2013 年由三個史丹佛學生 Tony Xu、Andy Fang、Stanley Tang 創辦，同年夏季梯次進 YC，現在已經上市。`,
   'DoorDash 的 Andy Fang：第一個網站只花 45 分鐘做出來，一開始創辦人自己去送餐。他 20 歲就開始了。',
+  `第二段是 YC 的合夥人。他們每年看非常多新創的申請，是看過最多新創的一群人。`,
   'YC 合夥人 Diana Hu：Intel、台積電、聯發科的創辦人，跟你沒有不同。',
   'YC 執行長 Garry Tan：大概只有 1% 的新創真正用好 AI，他們會讓 agent 去檢查 agent。你們每天在 vibe coding，其實已經站在起跑線上。',
   'YC 合夥人 Jon Xu：從好奇心開始。',
   `YC 合夥人 Ankit Gupta：最壞會發生什麼？
 想清楚最壞的情況，通常就敢做了。這也是我今天最想說的。`,
+  `整理一下，那天我帶回來的三件事：
+一、先做出來。Ollama 先做自己想用的，DoorDash 45 分鐘做出網站，Xendit 用樂高跟膠帶先把事情做完。
+二、先找問題。SafeBase 先問「你遇到什麼問題」，Medumo 十件事砍掉九件，Jon Xu 說從好奇心開始。
+三、不怕輸。Jeff Chang 說拒絕輸掉，Ankit 說先想最壞會發生什麼。
+而且，整天下來沒有人在問你是哪間學校畢業的。`,
   `在台灣，我最常被問的是：你哪間學校？
 在那裡，從來沒有人問我這個。大家只談怎麼解決問題、怎麼拿到第一筆生意。
 對一個不愛讀書的人來說，這件事很重要。`,
