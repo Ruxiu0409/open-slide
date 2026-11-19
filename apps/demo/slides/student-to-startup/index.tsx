@@ -188,7 +188,6 @@ const Cover: Page = () => {
         <Underlined live={live} width={310}>
           未來
         </Underlined>
-        。
       </h1>
       <p style={{ ...COPY, marginTop: 110, ...fade(0.7) }}>瑞瑞 · 2026/11/19</p>
     </Stage>
@@ -268,7 +267,7 @@ const Blank: Page = () => <Stage center>{null}</Stage>;
 const NotStudy: Page = () => (
   <Split visual={<Photo src={highSchool} width={600} height={800} />}>
     <p style={KICKER}>高中</p>
-    <h2 style={{ ...GIANT, fontSize: 128 }}>不愛讀書。</h2>
+    <h2 style={{ ...GIANT, fontSize: 128 }}>不愛讀書</h2>
     <p style={SPLIT_COPY}>
       <Em>原本想讀國立大學，</Em>
       <br />
@@ -287,7 +286,6 @@ const FirstCode: Page = () => {
         <Underlined live={live} width={330}>
           iOS 開發
         </Underlined>
-        。
       </h2>
       <p style={{ ...COPY, fontSize: 48, marginTop: 96, ...fade(0.8) }}>
         原來我不是不愛學，<span style={{ color: 'var(--osd-text)' }}>只是還沒找到喜歡的事。</span>
@@ -507,6 +505,187 @@ const Hackathon: Page = () => (
   </Split>
 );
 
+const Talk = ({
+  who,
+  title,
+  copy,
+  mist,
+}: {
+  who: string;
+  title: ReactNode;
+  copy: ReactNode;
+  mist?: boolean;
+}) => {
+  const { rise, fade } = useFade();
+  return (
+    <Stage center mist={mist}>
+      <p style={{ ...EYEBROW, ...fade(0) }}>{who}</p>
+      <h2 style={{ ...HEAD, fontSize: 104, lineHeight: 1.3, marginTop: 40, ...rise(0.1) }}>
+        {title}
+      </h2>
+      <p style={{ ...COPY, fontSize: 40, marginTop: 80, ...fade(0.7) }}>{copy}</p>
+    </Stage>
+  );
+};
+
+const Ink = ({ children }: { children: ReactNode }) => (
+  <span style={{ color: 'var(--osd-text)' }}>{children}</span>
+);
+
+const StartupSchool: Page = () => {
+  const { live, rise, fade } = useFade();
+  return (
+    <Stage center mist>
+      <p style={{ ...EYEBROW, ...fade(0) }}>2026.11.12 · 台北信義</p>
+      <h2 style={{ ...HEAD, fontSize: 132, lineHeight: 1.3, marginTop: 40, ...rise(0.1) }}>
+        YC{' '}
+        <Underlined live={live} width={760}>
+          Startup School
+        </Underlined>
+      </h2>
+      <p style={{ ...COPY, fontSize: 44, marginTop: 96, ...fade(0.8) }}>
+        上週，<Ink>Y Combinator 來到台北。</Ink>
+      </p>
+    </Stage>
+  );
+};
+
+const TalkOllama: Page = () => (
+  <Talk
+    who="Michael Chiang · Ollama"
+    title="成功不是一夕之間"
+    copy={
+      <>
+        超過 1,000 萬開發者在用，團隊大約 16 人。<Ink>先做你自己想要的東西。</Ink>
+      </>
+    }
+  />
+);
+
+const TalkMedumo: Page = () => (
+  <Talk
+    who="Adeel Yang · Medumo"
+    title="十件事，砍掉九件"
+    copy={
+      <>
+        離開醫學院去創業，後來又回去把書讀完。<Ink>專心做最重要的那一件。</Ink>
+      </>
+    }
+  />
+);
+
+const TalkSafeBase: Page = () => (
+  <Talk
+    who="Al Yang · SafeBase"
+    title="你現在遇到什麼問題"
+    copy={
+      <>
+        不是問你有什麼點子，<Ink>而是問你看見了什麼問題。</Ink>
+      </>
+    }
+  />
+);
+
+const TalkVest: Page = () => (
+  <Talk
+    who="Jeff Chang · Vest"
+    title="拒絕輸掉"
+    copy={
+      <>
+        韌性、影響力、創造力，<Ink>聰明排在最後。</Ink>
+      </>
+    }
+  />
+);
+
+const TalkXendit: Page = () => (
+  <Talk
+    who="Moses Lo · Xendit"
+    title={
+      <>
+        難的不是知識
+        <br />
+        是願不願意執行
+      </>
+    }
+    copy={
+      <>
+        6 週 1.6 萬個用戶。<Ink>用樂高、網路攝影機和膠帶，做出自動按按鈕的機器。</Ink>
+      </>
+    }
+  />
+);
+
+const TalkDoorDash: Page = () => (
+  <Talk
+    who="Andy Fang · DoorDash"
+    title="45 分鐘做出來的網站"
+    copy={
+      <>
+        一開始，創辦人自己去送餐。<Ink>他 20 歲就開始了。</Ink>
+      </>
+    }
+  />
+);
+
+const TalkDiana: Page = () => (
+  <Talk
+    who="Diana Hu · YC 合夥人"
+    title={
+      <>
+        台積電、聯發科的創辦人
+        <br />
+        跟你沒有不同
+      </>
+    }
+    copy={
+      <>
+        Intel 也一樣。<Ink>他們一開始，也只是一個想做事的人。</Ink>
+      </>
+    }
+    mist
+  />
+);
+
+const TalkGarry: Page = () => (
+  <Talk
+    who="Garry Tan · YC 執行長"
+    title="只有 1% 的新創真正用好 AI"
+    copy={
+      <>
+        讓 agent 去檢查 agent。<Ink>你們每天在 vibe coding，已經站在起跑線上。</Ink>
+      </>
+    }
+    mist
+  />
+);
+
+const TalkJon: Page = () => (
+  <Talk
+    who="Jon Xu · YC 合夥人"
+    title="從好奇心開始"
+    copy={
+      <>
+        不用先想好要不要創業，<Ink>先對一件事好奇。</Ink>
+      </>
+    }
+    mist
+  />
+);
+
+const TalkAnkit: Page = () => (
+  <Talk
+    who="Ankit Gupta · YC 合夥人"
+    title="最壞會發生什麼"
+    copy={
+      <>
+        想做一件事之前，<Ink>先問自己這一句。</Ink>
+      </>
+    }
+    mist
+  />
+);
+
 const Question = ({ lead, ask, strong }: { lead: string; ask: string; strong?: boolean }) => (
   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 760 }}>
     <p style={{ ...COPY, fontSize: 36 }}>{lead}</p>
@@ -530,10 +709,10 @@ const Contrast: Page = () => {
   return (
     <Stage center>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Question lead="在台灣，我最常被問" ask="你哪間學校？" />
+        <Question lead="在台灣，我最常被問" ask="你哪間學校" />
         <div style={{ width: 2, height: 360, background: HAIR, margin: '0 60px' }} />
         <div style={fade(0.3)}>
-          <Question lead="在那裡，大家只問" ask={'你解決什麼問題？\n第一筆生意在哪？'} strong />
+          <Question lead="在那裡，大家只問" ask={'你解決什麼問題\n第一筆生意在哪'} strong />
         </div>
       </div>
     </Stage>
@@ -543,7 +722,7 @@ const Contrast: Page = () => {
 const Sponsor: Page = () => (
   <Split visual={<AppIcon size={420} />}>
     <p style={KICKER}>半逢遇甲 · 第三年</p>
-    <h2 style={{ ...GIANT, fontSize: 112 }}>開始收贊助。</h2>
+    <h2 style={{ ...GIANT, fontSize: 112 }}>開始收贊助</h2>
     <p style={SPLIT_COPY}>
       <Em>作品 → 有人用 → 生意。</Em>
       <br />
@@ -594,7 +773,7 @@ const NotStartup: Page = () => {
   return (
     <Stage center mist>
       <p style={{ ...COPY, fontSize: 56 }}>找到喜歡的事，</p>
-      <h2 style={{ ...HEAD, fontSize: 132, marginTop: 56, ...rise(0.3) }}>不一定要創業。</h2>
+      <h2 style={{ ...HEAD, fontSize: 132, marginTop: 56, ...rise(0.3) }}>不一定要創業</h2>
       <p style={{ ...COPY, fontSize: 44, marginTop: 80, ...fade(0.8) }}>
         可以是比賽、社團、工作，
         <span style={{ color: 'var(--osd-text)' }}>或是做給自己用的小東西。</span>
@@ -615,7 +794,6 @@ const ThisEra: Page = () => {
         <Underlined live={live} width={570}>
           想不到的事
         </Underlined>
-        。
       </h2>
       <p style={{ ...COPY, fontSize: 44, marginTop: 96, ...fade(0.8) }}>
         AI 和 vibe coding，
@@ -635,11 +813,28 @@ const Closing: Page = () => {
         <Underlined live={live} width={670}>
           大膽去做吧
         </Underlined>
-        。
       </h2>
       <p style={{ ...COPY, fontSize: 48, marginTop: 110, ...fade(0.8) }}>
         不愛讀書的小孩，<span style={{ color: 'var(--osd-text)' }}>也有未來。</span>
       </p>
+    </Stage>
+  );
+};
+
+const Slogan: Page = () => {
+  const { live, rise, fade } = useFade();
+  return (
+    <Stage center>
+      <p style={{ ...COPY, fontSize: 56, ...fade(0) }}>如果有一天</p>
+      <h2 style={{ ...HEAD, fontSize: 132, lineHeight: 1.3, marginTop: 56, ...rise(0.2) }}>
+        可以做喜歡的事情賺錢
+        <br />
+        聽起來不
+        <Underlined live={live} width={280}>
+          好玩
+        </Underlined>
+        嗎
+      </h2>
     </Stage>
   );
 };
@@ -679,11 +874,23 @@ export default [
   Wwdc,
   StartupIsland,
   Hackathon,
+  StartupSchool,
+  TalkOllama,
+  TalkMedumo,
+  TalkSafeBase,
+  TalkVest,
+  TalkXendit,
+  TalkDoorDash,
+  TalkDiana,
+  TalkGarry,
+  TalkJon,
+  TalkAnkit,
   Contrast,
   Sponsor,
   NotStartup,
   ThisEra,
   Closing,
+  Slogan,
   Thanks,
 ] satisfies Page[];
 
@@ -705,6 +912,19 @@ export const notes: (string | undefined)[] = [
   'Startup Island TAIWAN：跟他們聊灣區現在的產業狀態。（待補：印象最深的一兩個重點）',
   `我是參加 Bitrig 的黑客松去的，地點在 Y Combinator 的辦公室。
 Bitrig 在做的事，跟你們每天在做的 vibe coding 很像。`,
+  `回台灣之後，上週 YC 也來到台北，辦了 Startup School。
+我也去了。接下來幾頁，是那天講者說的話裡，我覺得最想帶給你們的。`,
+  'Ollama 的 Michael Chiang：很容易把成功看成一夕之間發生。Ollama 現在超過一千萬開發者在用，團隊只有大約 16 個人。他說，先做你自己想要的東西。',
+  'Medumo 的 Adeel Yang：他離開醫學院去創業，後來又回去把書讀完。他說，十件事裡要砍掉九件，專心做最重要的。',
+  'SafeBase 的 Al Yang 最常問的一句話：你現在遇到什麼問題？好的產品是從一個真實的問題開始的。',
+  'Vest 的 Jeff Chang 排了創辦人最重要的特質：韌性第一，影響力第二，創造力第三，聰明排最後。他說的是「拒絕輸掉」。',
+  'Xendit 的 Moses Lo：六週就有一萬六千個用戶。他們用樂高、網路攝影機和膠帶做了一台自動按按鈕的機器。他說，困難的往往不是取得知識，而是願不願意執行。',
+  'DoorDash 的 Andy Fang：第一個網站只花 45 分鐘做出來，一開始創辦人自己去送餐。他 20 歲就開始了。',
+  'YC 合夥人 Diana Hu：Intel、台積電、聯發科的創辦人，跟你沒有不同。',
+  'YC 執行長 Garry Tan：大概只有 1% 的新創真正用好 AI，他們會讓 agent 去檢查 agent。你們每天在 vibe coding，其實已經站在起跑線上。',
+  'YC 合夥人 Jon Xu：從好奇心開始。',
+  `YC 合夥人 Ankit Gupta：最壞會發生什麼？
+想清楚最壞的情況，通常就敢做了。這也是我今天最想說的。`,
   `在台灣，我最常被問的是：你哪間學校？
 在那裡，從來沒有人問我這個。大家只談怎麼解決問題、怎麼拿到第一筆生意。
 對一個不愛讀書的人來說，這件事很重要。`,
@@ -716,5 +936,7 @@ Bitrig 在做的事，跟你們每天在做的 vibe coding 很像。`,
 AI 和 vibe coding，讓一個人就能做到以前想不到的事。你們現在就在用。`,
   `所以，有想做的事，就大膽去做吧。
 不愛讀書的小孩，也有未來。`,
+  `最後想留一句話給大家：
+如果有一天，可以做喜歡的事情賺錢，聽起來不好玩嗎？`,
   '謝謝大家，開放提問。',
 ];
