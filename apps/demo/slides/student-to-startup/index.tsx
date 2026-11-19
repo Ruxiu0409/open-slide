@@ -1,6 +1,5 @@
 import {
   type DesignSystem,
-  ImagePlaceholder,
   type Page,
   type SlideMeta,
   type SlideTransition,
@@ -8,7 +7,7 @@ import {
 } from '@open-slide/core';
 import type { CSSProperties, ReactNode } from 'react';
 import appleParkIosClub from './assets/apple-park-ios-club.jpg';
-import avatarWwdc from './assets/avatar-wwdc.jpg';
+import avatar from './assets/avatar.jpg';
 import banfengLogo from './assets/banfeng-logo.png';
 import bitrigHacks from './assets/bitrig-hacks.jpg';
 import champion2024 from './assets/champion-2024.jpg';
@@ -182,14 +181,15 @@ const Cover: Page = () => {
           ...rise(0.2),
         }}
       >
-        不愛讀書的小孩，
-        <br />
-        也有
-        <Underlined live={live} width={310}>
-          未來
+        大人眼中的
+        <Underlined live={live} width={600}>
+          不務正業
         </Underlined>
       </h1>
-      <p style={{ ...COPY, marginTop: 110, ...fade(0.7) }}>瑞瑞 · 2026/11/19</p>
+      <p style={{ ...COPY, fontSize: 56, color: 'var(--osd-text)', marginTop: 72, ...fade(0.5) }}>
+        創業好瘋，但樂在其中
+      </p>
+      <p style={{ ...COPY, marginTop: 96, ...fade(0.7) }}>瑞瑞 · 2026/11/19</p>
     </Stage>
   );
 };
@@ -208,7 +208,7 @@ const AboutMe: Page = () => {
   return (
     <Stage center>
       <img
-        src={avatarWwdc}
+        src={avatar}
         alt="瑞瑞"
         style={{
           width: 220,
@@ -229,7 +229,7 @@ const AboutMe: Page = () => {
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: 64, ...fade(0.35) }}>
         <Fact value="資工大四" label="逢甲大學" />
         <Fact value="前社長" label="逢甲 iOS Club" />
-        <Fact value="Founder" label="半逢遇甲" />
+        <Fact value="Founder" label="半逢遇甲工作室" />
         <Fact value="WWDC26" label="Apple Park 實體參加" />
       </div>
     </Stage>
@@ -306,11 +306,26 @@ const Champion: Page = () => (
   </Split>
 );
 
-const ProjectCard = ({ hint, name, note }: { hint: string; name: string; note: string }) => (
-  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 460 }}>
-    <ImagePlaceholder hint={hint} width={460} height={290} />
-    <div style={{ ...HEAD, fontSize: 40, marginTop: 28 }}>{name}</div>
-    <div style={{ ...COPY, fontSize: 28, marginTop: 10 }}>{note}</div>
+const WORKS: [string, string, string][] = [
+  ['2024.03', '椅上健康', '全國電子設計創意競賽 冠軍'],
+  ['2024', '健身管家', '兩岸青少年創客大賽 三等獎'],
+  ['2024.07', 'PetScan', 'MAIC 三等獎 · 第一次當隊長'],
+  ['2024.10', '旅文寫手', '南投山城黑客松 銅獎'],
+  ['2024.10', '半逢遇甲', '首次下載 12,000+'],
+  ['2024.12', '行動逢甲', '學校官方 App'],
+  ['2025.03', 'Hand Maestro', 'IEEE Tainan Section 特別獎'],
+  ['2025.07', '三診隨行', '兩岸青少年創客大賽 二等獎'],
+  ['2026.03', 'Vision Pro 復健系統', '全國賽亞軍 · 國科會計畫'],
+  ['2026.03', '智慧包裹系統', '全國電子設計創意競賽 佳作'],
+  ['2026.07', 'LumaStage', 'MAIC 三等獎'],
+  ['2026.10', '笑死', '梗圖收藏 App'],
+];
+
+const Work = ({ when, name, note }: { when: string; name: string; note: string }) => (
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div style={{ ...COPY, fontSize: 22, color: 'var(--osd-accent)' }}>{when}</div>
+    <div style={{ ...HEAD, fontSize: 38, marginTop: 8, whiteSpace: 'nowrap' }}>{name}</div>
+    <div style={{ ...COPY, fontSize: 22, marginTop: 6, whiteSpace: 'nowrap' }}>{note}</div>
   </div>
 );
 
@@ -318,19 +333,23 @@ const Club: Page = () => {
   const { fade } = useFade();
   return (
     <Stage center>
-      <p style={EYEBROW}>社團</p>
-      <h2 style={{ ...HEAD, fontSize: 96, marginTop: 18 }}>做了很多作品</h2>
-      <p style={{ ...COPY, marginTop: 28 }}>
+      <p style={EYEBROW}>2024 – 2026</p>
+      <h2 style={{ ...HEAD, fontSize: 88, marginTop: 18 }}>做了很多作品</h2>
+      <p style={{ ...COPY, fontSize: 32, marginTop: 24 }}>
         想做一個作品，或解決一個問題。<span style={{ color: 'var(--osd-text)' }}>沒想過賺錢。</span>
       </p>
-      <div style={{ display: 'flex', gap: 56, marginTop: 80, ...fade(0.2) }}>
-        <ProjectCard
-          hint="Apple Vision Pro 視覺空間忽略訓練系統畫面"
-          name="Vision Pro 復健系統"
-          note="比賽亞軍 · 國科會計畫"
-        />
-        <ProjectCard hint="Hand Maestro 畫面" name="Hand Maestro" note="第一次做 Core ML" />
-        <ProjectCard hint="PetScan 畫面" name="PetScan" note="第一次當隊長" />
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 380px)',
+          rowGap: 48,
+          marginTop: 72,
+          ...fade(0.2),
+        }}
+      >
+        {WORKS.map(([when, name, note]) => (
+          <Work key={name} when={when} name={name} note={note} />
+        ))}
       </div>
     </Stage>
   );
@@ -565,7 +584,7 @@ const TalkOllama: Page = () => (
 const TalkMedumo: Page = () => (
   <Talk
     who="Adeel Yang · Medumo"
-    title="十件事，砍掉九件"
+    title="十件事砍掉九件"
     copy={
       <>
         離開醫學院去創業，後來又回去把書讀完。<Ink>專心做最重要的那一件。</Ink>
@@ -788,7 +807,7 @@ const ThisEra: Page = () => {
     <Stage center>
       <p style={EYEBROW}>現在這個時代</p>
       <h2 style={{ ...HEAD, fontSize: 112, lineHeight: 1.3, marginTop: 40, ...rise(0.1) }}>
-        一個人，就能做到
+        一個人就能做到
         <br />
         以前
         <Underlined live={live} width={570}>
@@ -808,7 +827,7 @@ const Closing: Page = () => {
   return (
     <Stage center mist>
       <h2 style={{ ...HEAD, fontSize: 132, lineHeight: 1.3, ...rise(0) }}>
-        有想做的事，
+        有想做的事
         <br />就
         <Underlined live={live} width={670}>
           大膽去做吧
@@ -857,7 +876,7 @@ const Thanks: Page = () => (
 );
 
 export const meta: SlideMeta = {
-  title: '不愛讀書的小孩，也有未來',
+  title: '大人眼中的不務正業',
   createdAt: '2026-11-18T12:12:56.385Z',
 };
 
