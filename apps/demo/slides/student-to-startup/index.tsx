@@ -262,8 +262,6 @@ const Underlined = ({
   </span>
 );
 
-const Blank: Page = () => <Stage center>{null}</Stage>;
-
 const NotStudy: Page = () => (
   <Split visual={<Photo src={highSchool} width={600} height={800} />}>
     <p style={KICKER}>高中</p>
@@ -883,7 +881,6 @@ export const meta: SlideMeta = {
 export default [
   Cover,
   AboutMe,
-  Blank,
   NotStudy,
   FirstCode,
   Champion,
@@ -916,7 +913,6 @@ export default [
 export const notes: (string | undefined)[] = [
   '開場：今天不講技術，想跟大家聊聊一個不愛讀書的小孩，是怎麼一路走到現在的。',
   '自我介紹：簡單帶過四個身份，最後停在「其實我以前很不愛讀書」，接到下一段。',
-  undefined,
   `先講真話：我是一個很不喜歡讀書的人。
 原本想讀國立大學，最後來到了逢甲。`,
   `大一進來，才開始學 iOS 開發。
